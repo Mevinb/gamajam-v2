@@ -657,7 +657,7 @@ namespace Parasite.EditorTools
         }
 
         public static void Puddle(WorldKit k, Vector3 c, float sx, float sz, float yaw) =>
-            k.FloorQuad(M("DecalPuddle"), c + Vector3.up * 0.008f, sx, sz, yaw, new Rect(0, 0, 1, 1));
+            k.FloorQuad(M("DecalPuddle"), c + Vector3.up * 0.002f, sx, sz, yaw, new Rect(0, 0, 1, 1));
 
         public static void Manhole(WorldKit k, Vector3 c, float size = 0.95f) =>
             k.FloorQuad(M("DecalManhole"), c + Vector3.up * 0.007f, size, size, 0f, new Rect(0, 0, 1, 1));

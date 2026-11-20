@@ -429,7 +429,7 @@ namespace Parasite.EditorTools
             CityProps.Dumpster(k, new Vector3(46.6f, GY, 11.2f), true);
             CityProps.Crate(k, new Vector3(46.8f, GY, 15f), new Vector3(1.2f, 1.6f, 0.8f), "MetalDark");
             CityProps.Crate(k, new Vector3(40f, GY, 15.2f), new Vector3(1f, 0.9f, 0.9f));
-            k.Box(M("Puddle"), new Vector3(36f, GY + 0.003f, 12.5f), new Vector3(2f, 0.006f, 1.4f));
+            CityProps.Puddle(k, new Vector3(36f, GY, 12.5f), 2f, 1.4f, 22f);
             k.Pipe(M("Pipe"), new Vector3(13f, 3.4f, 15.85f), new Vector3(47.8f, 3.4f, 15.85f), 0.1f);
             k.Box(M("LampHead"), new Vector3(47.9f, 3.3f, 13f), new Vector3(0.12f, 0.12f, 0.5f));
             k.Text("SERVICE ACCESS", new Vector3(47.95f, 2.6f, 13f), -90f, 0.25f, new Color(1f, 0.8f, 0.3f), null, false);
@@ -538,7 +538,7 @@ namespace Parasite.EditorTools
             CityProps.Crate(k, new Vector3(60.7f, GY, 71.4f), new Vector3(1f, 0.8f, 1f));
             k.Pipe(M("Pipe"), new Vector3(61.85f, 3.2f, 58f), new Vector3(61.85f, 3.2f, 107f), 0.12f);
             k.Pipe(M("PipeYellow"), new Vector3(61.85f, 3.6f, 58f), new Vector3(61.85f, 3.6f, 107f), 0.08f);
-            k.Box(M("Puddle"), new Vector3(57.5f, GY + 0.003f, 84f), new Vector3(2.2f, 0.006f, 1.6f));
+            CityProps.Puddle(k, new Vector3(57.5f, GY, 84f), 2.2f, 1.6f, -12f);
             CityProps.Lamp(k, new Vector3(61.4f, GY, 76f), Vector3.left);
             CityProps.Hoarding(k, new Vector3(54f, 0f, 104.5f), new Vector3(62f, 0f, 104.5f), 3f);
             foreach (var (p, yaw) in new[] { (new Vector3(61.95f, 2.8f, 66f), -90f), (new Vector3(61.95f, 2.6f, 97f), -90f), (new Vector3(61.95f, 7.4f, 74f), -90f) })
@@ -732,7 +732,7 @@ namespace Parasite.EditorTools
             for (float x = 26.5f; x < 53f; x += 5f) k.Box(M("TunnelStrip"), new Vector3(x, 3.13f, 90f), new Vector3(1.2f, 0.04f, 0.14f));
             k.Box(M("PaintYellow"), new Vector3(38.85f, GY + 0.014f, 88.68f), new Vector3(29.6f, 0.006f, 0.1f));
             k.Box(M("PaintYellow"), new Vector3(38.85f, GY + 0.014f, 91.32f), new Vector3(29.6f, 0.006f, 0.1f));
-            k.Box(M("Puddle"), new Vector3(33f, GY + 0.015f, 90.3f), new Vector3(2.4f, 0.004f, 1.2f));
+            CityProps.Puddle(k, new Vector3(33f, GY + 0.01f, 90.3f), 2.4f, 1.2f, 8f);
             k.Box(M("MetalDark"), new Vector3(44f, GY + 0.014f, 90f), new Vector3(0.9f, 0.006f, 0.9f));
             k.Text("VALE BIOTECH — SERVICE TUNNEL B-2 — LAB →", new Vector3(38f, 1.7f, 88.62f), 180f, 0.22f, new Color(0.9f, 0.75f, 0.25f), null, false);
             k.Box(M("WarningLight"), new Vector3(52f, 2.9f, 88.65f), new Vector3(0.15f, 0.15f, 0.08f));

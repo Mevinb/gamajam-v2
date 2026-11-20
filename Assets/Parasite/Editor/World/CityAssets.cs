@@ -279,7 +279,6 @@ namespace Parasite.EditorTools
             P("Trunk", c(0.2f, 0.16f, 0.12f), 0.2f, 0f);
             P("Soil", c(0.09f, 0.07f, 0.05f), 0.1f, 0f);
             P("Water", c(0.03f, 0.08f, 0.1f), 0.97f, 0.1f);
-            P("Puddle", c(0.02f, 0.025f, 0.03f), 0.98f, 0f);
             P("AwningRed", c(0.45f, 0.06f, 0.05f), 0.3f, 0f);
             P("AwningGreen", c(0.06f, 0.3f, 0.18f), 0.3f, 0f);
             P("AwningNavy", c(0.06f, 0.09f, 0.22f), 0.3f, 0f);
@@ -338,14 +337,25 @@ namespace Parasite.EditorTools
             if (grass) NoShadow.Add(grass);
 
             // mesh decals (alpha blended, no shadows) — slightly offset from the surface they sit on
-            foreach (var (n, sm) in new[] { ("Graffiti", 0.35f), ("AsphaltDamage", 0.25f), ("Grime", 0.15f), ("Puddle", 0.97f), ("Manhole", 0.5f) })
+            foreach (var (n, sm) in new[] { ("Graffiti", 0.35f), ("AsphaltDamage", 0.25f), ("Grime", 0.15f), ("Manhole", 0.5f) })
             {
                 var d = Lit("Decal" + n, $"{CityArt}/Decals/{n}", Color.white, sm, tile: 1f, transparent: n != "Manhole", clip: n == "Manhole" ? 0.5f : -1f);
                 if (!d) continue;
                 NoShadow.Add(d);
-                if (n == "Puddle") { d.SetFloat("_Metallic", 0f); d.SetFloat("_Smoothness", 0.97f); }
                 if (n == "AsphaltDamage") d.SetColor("_BaseColor", new Color(0.5f, 0.5f, 0.52f, 1f));
             }
+            // Water needs coverage over its complete reflection/specular result, not only its dark base colour.
+            var water = Mat("DecalPuddle", "Parasite/GroundWater");
+            water.SetTexture("_BaseMap", T2($"{CityArt}/Decals/Puddle_albedo.png"));
+            water.SetColor("_BaseColor", c(0.025f, 0.03f, 0.035f));
+            water.SetFloat("_Smoothness", 0.94f);
+            water.SetFloat("_Coverage", 0.92f);
+            water.SetFloat("_EdgeSoftness", 0.08f);
+            water.SetFloat("_RippleStrength", 0.008f);
+            water.SetOverrideTag("RenderType", "Transparent");
+            water.SetShaderPassEnabled("ShadowCaster", false);
+            Done(water, 1f, false);
+            mats["Puddle"] = water;
 
             // skyline photo facades (night office towers)
             foreach (var n in new[] { "TowerDense", "TowerGrid", "TowerBrown", "TowerPiers", "TowerGlassNight", "TowerGlass" })
