@@ -9,13 +9,17 @@ namespace Parasite.FX
         UiClick, EndingSting, Heartbeat, BlobHop
     }
 
-    /// <summary>CONTRACT — sound effects. Placeholder implementation; replaced by the FX/audio pass.</summary>
+    /// <summary>CONTRACT — sound effects (Kenney CC0 clips where available, procedural synth otherwise).</summary>
     public static partial class Sfx
     {
         public static void Play(SfxId id, Vector3 position, float volume = 1f) => SfxBackend.Play(id, position, volume, false);
         public static void Ui(SfxId id, float volume = 1f) => SfxBackend.Play(id, Vector3.zero, volume, true);
         /// <summary>Start looping city ambience / music bed for the current scene.</summary>
         public static void StartAmbience() => SfxBackend.StartAmbience();
+        /// <summary>Global SFX volume (0..1), applied to one-shots, heartbeat and ambience.</summary>
+        public static float Volume = 1f;
+        /// <summary>Extra ambience/music-bed volume multiplier (0..1).</summary>
+        public static float AmbienceVolume = 1f;
     }
 
     /// <summary>CONTRACT — visual effects.</summary>
