@@ -162,7 +162,7 @@ namespace Parasite.Testing
 
         static IEnumerator AimSettle(Vector3 p)
         {
-            for (int i = 0; i < 20; i++) { AimAt(p); yield return null; }
+            for (float t = 0; t < 0.8f; t += Time.unscaledDeltaTime) { AimAt(p); yield return null; }
         }
 
         static HostCharacter NearestHost(Vector3 p, Func<HostCharacter, bool> pred) =>
@@ -177,6 +177,7 @@ namespace Parasite.Testing
                 h.Controller.enabled = false;
                 h.transform.SetPositionAndRotation(pos, Quaternion.Euler(0, yaw, 0));
                 h.Controller.enabled = en;
+                Physics.SyncTransforms();
             }
         }
 
@@ -275,7 +276,10 @@ namespace Parasite.Testing
             target.Brain.Notice(spot, 3f);
             yield return AimSettle(target.ChestPosition);
             var tg = PM.ComputeTarget();
-            Check(tg.kind == TargetKind.Possess && tg.host == target, $"aim target = {tg.kind} {(tg.host ? tg.host.DisplayName : "-")}");
+            float ang = Vector3.Angle(Cam.Forward, target.ChestPosition - Cam.Position);
+            float dst = Vector3.Distance(PM.ActiveBody.EyePosition, target.ChestPosition);
+            bool los = PM.LineOfSight(PM.ActiveBody.EyePosition, target.ChestPosition, PM.ActiveBody.Root, target.transform);
+            Check(tg.kind == TargetKind.Possess && tg.host == target, $"aim target = {tg.kind} {(tg.host ? tg.host.DisplayName : "-")} (angle {ang:0.0}°, dist {dst:0.0} m, LOS {los}, canPossess {target.CanBePossessed})");
             if (!current.pass) yield break;
             yield return PressInteract();
             yield return new WaitForSeconds(PossessionManager.LaunchSeconds + 0.4f);
@@ -284,8 +288,15 @@ namespace Parasite.Testing
             float camDist = Vector3.Distance(Cam.Cam.transform.position, target.CameraTarget.position);
             Check(camDist < 7f, $"camera follows host ({camDist:0.0} m)");
             Vector3 p0 = target.transform.position;
+            Vector3 free = Vector3.forward; float bestFree = -1f;
+            for (int i = 0; i < 16; i++)
+            {
+                var d = Quaternion.Euler(0, i * 22.5f, 0) * Vector3.forward;
+                float len = NavMesh.Raycast(p0, p0 + d * 6f, out var nh, NavMesh.AllAreas) ? nh.distance : 6f;
+                if (len > bestFree) { bestFree = len; free = d; }
+            }
             Cam.SetYaw(0);
-            GameInput.SimMove = new Vector2(1, 0);
+            GameInput.SimMove = new Vector2(free.x, free.z);
             yield return new WaitForSeconds(1.0f);
             GameInput.SimMove = Vector2.zero;
             float moved = Flat(target.transform.position - p0).magnitude;
@@ -444,7 +455,7 @@ namespace Parasite.Testing
             for (float t = 0; t < 2f && !reached; t += Time.deltaTime) { reached = RunState.LabEntered; yield return null; }
             Check(RunState.LabEntered, "lab entered (LabInteriorZone)");
             Calm();
-            yield return WalkTo(CityLayout.ValeOffice, 60f, r => ok = r, 1.4f);
+            yield return WalkTo(CityLayout.ValeOffice, 60f, r => ok = r, 0.6f);
             Check(ok, "walked to Dr. Vale's office");
             var vale = FindFirstObjectByType<DrValeInteraction>();
             Check(vale != null, "Dr. Vale exists");

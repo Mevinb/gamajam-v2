@@ -109,7 +109,7 @@ namespace Parasite.Missions
     /// <summary>On Dr. Vale. Any form (blob or host) can confront him.</summary>
     public class DrValeInteraction : MonoBehaviour, IInteractable
     {
-        public float range = 3.2f;
+        public float range = 3.6f;
         public Vector3 InteractPoint => transform.position + Vector3.up * 1.5f;
         public float InteractRange => range;
         public bool IsAvailable => MissionManager.Instance != null && !MissionManager.Instance.EndingStarted;

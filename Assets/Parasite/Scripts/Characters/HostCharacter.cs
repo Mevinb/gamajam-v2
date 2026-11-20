@@ -67,7 +67,6 @@ namespace Parasite.Characters
             hb.transform.SetParent(transform, false);
             HitBox = hb.AddComponent<CapsuleCollider>();
             HitBox.radius = 0.3f; HitBox.height = 1.8f; HitBox.center = new Vector3(0, 0.9f, 0);
-            Physics.IgnoreCollision(Controller, HitBox);
 
             CameraTarget = new GameObject("CameraTarget").transform;
             CameraTarget.SetParent(transform, false);
@@ -140,7 +139,7 @@ namespace Parasite.Characters
             State = HostState.Captured;
             Velocity = Vector3.zero;
             input = default;
-            if (Controller.enabled) Controller.enabled = false;
+            SetController(false);
             Glow.SetCaptured(true);
             Sfx.Play(SfxId.Capture, transform.position);
         }
@@ -157,7 +156,7 @@ namespace Parasite.Characters
         {
             if (nav)
             {
-                Controller.enabled = false;
+                SetController(false);
                 if (Nav)
                 {
                     Nav.enabled = true;
@@ -168,8 +167,15 @@ namespace Parasite.Characters
             else
             {
                 if (Nav && Nav.enabled) { if (Nav.isOnNavMesh) Nav.ResetPath(); Nav.enabled = false; }
-                Controller.enabled = !keepControllerOff;
+                SetController(!keepControllerOff);
             }
+        }
+
+        /// <summary>Exactly one of CharacterController (player-driven) or HitBox (AI/idle) is active, so they never collide.</summary>
+        void SetController(bool on)
+        {
+            Controller.enabled = on;
+            HitBox.enabled = !on;
         }
 
         // ---------- update ----------
