@@ -743,6 +743,7 @@ namespace Parasite.Testing
                 TeleportBody(tourHost, CityLayout.PlayerSpawn, 0f);
             }
             var tourDirector = CityDirector.Instance;
+            int tourCaptures = RunState.Captures;
             // Measure available headroom independently of the desktop refresh rate.
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = -1;
@@ -768,7 +769,8 @@ namespace Parasite.Testing
                 while (true)
                 {
                     if (CityDirector.Instance != tourDirector || !PM || PM.ActiveBody == null ||
-                        !GameManager.Instance || !GameManager.Instance.IsPlaying)
+                        !GameManager.Instance || !GameManager.Instance.IsPlaying || RunState.Captures != tourCaptures ||
+                        (tourHost && PM.Active.Host != tourHost))
                     { interrupted = true; break; }
                     if (!walk.MoveNext()) break;
                     if (Time.unscaledDeltaTime > 0f)
@@ -796,7 +798,7 @@ namespace Parasite.Testing
             float avg = frameTimes.Average();
             float p99 = frameTimes[Mathf.Clamp((int)(frameTimes.Count * 0.99f), 0, frameTimes.Count - 1)];
             float worst = frameTimes[^1];
-            Write($"Frames: {frameTimes.Count} over {total:0.0}s  avg {1f / avg:0.0} FPS ({avg * 1000f:0.00} ms)  1% low {1f / p99:0.0} FPS ({p99 * 1000f:0.0} ms)  worst {worst * 1000f:0.0} ms");
+            Write($"Frames: {frameTimes.Count} over {total:0.0}s  avg {1f / avg:0.0} FPS ({avg * 1000f:0.00} ms)  p99 {p99 * 1000f:0.00} ms ({1f / p99:0.0} FPS)  worst {worst * 1000f:0.0} ms");
             Write($"Memory: allocated {Profiler.GetTotalAllocatedMemoryLong() / 1048576} MB, reserved {Profiler.GetTotalReservedMemoryLong() / 1048576} MB, mono heap {Profiler.GetMonoUsedSizeLong() / 1048576} MB, gfx driver {Profiler.GetAllocatedMemoryForGraphicsDriver() / 1048576} MB");
             Write($"Scene: {HostCharacter.All.Count} NPCs, {FindObjectsByType<Renderer>(FindObjectsSortMode.None).Length} renderers, {FindObjectsByType<Light>(FindObjectsSortMode.None).Length} lights");
             Write($"Final vSync={QualitySettings.vSyncCount}; route {(interrupted ? "INTERRUPTED" : "finished (see waypoint coverage above)")}");

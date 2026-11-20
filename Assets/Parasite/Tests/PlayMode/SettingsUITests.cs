@@ -10,6 +10,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.UI;
@@ -25,6 +27,11 @@ namespace Parasite.Tests
         int oldGraphics, oldPreset;
         float oldSensitivity, oldListener, oldAmbience;
         Keyboard keyboard;
+        InputSettings.BackgroundBehavior oldBackgroundBehavior;
+        InputSettings.UpdateMode oldUpdateMode;
+#if UNITY_EDITOR
+        InputSettings.EditorInputBehaviorInPlayMode oldEditorInputBehavior;
+#endif
 
         [SetUp]
         public void SavePreferences()
@@ -36,6 +43,16 @@ namespace Parasite.Tests
             }
             oldGraphics = PlayerPrefs.GetInt(Keys[3]); oldPreset = GraphicsPreset.Current;
             oldSensitivity = GameInput.MouseSensitivity; oldListener = AudioListener.volume; oldAmbience = Sfx.AmbienceVolume;
+            oldBackgroundBehavior = InputSystem.settings.backgroundBehavior;
+            oldUpdateMode = InputSystem.settings.updateMode;
+            // Batch mode has no focused GameView. Route queued keys through the normal player
+            // input update rather than the Editor UI, matching focused standalone-player behavior.
+            InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+#if UNITY_EDITOR
+            oldEditorInputBehavior = InputSystem.settings.editorInputBehaviorInPlayMode;
+            InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+#endif
             keyboard = InputSystem.AddDevice<Keyboard>("Settings UI test keyboard");
         }
 
@@ -43,6 +60,11 @@ namespace Parasite.Tests
         public IEnumerator RestorePreferences()
         {
             if (keyboard != null && keyboard.added) InputSystem.RemoveDevice(keyboard);
+            InputSystem.settings.backgroundBehavior = oldBackgroundBehavior;
+            InputSystem.settings.updateMode = oldUpdateMode;
+#if UNITY_EDITOR
+            InputSystem.settings.editorInputBehaviorInPlayMode = oldEditorInputBehavior;
+#endif
             ClearInput();
             Time.timeScale = 1f;
             // Unload open overlays first: their OnDisable flushes the preferences they edited.
@@ -171,12 +193,31 @@ namespace Parasite.Tests
 
         IEnumerator PressEscape()
         {
-            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Escape));
-            yield return null;
-            yield return null;
-            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
-            yield return null;
-            yield return null;
+            GameInput.Ensure();
+            Assert.IsTrue(GameInput.Pause.enabled, "The game's real Pause action is enabled.");
+            int performed = 0;
+            void OnPause(InputAction.CallbackContext context)
+            {
+                if (context.control.device == keyboard) performed++;
+            }
+            GameInput.Pause.performed += OnPause;
+            try
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Escape));
+                for (int frame = 0; frame < 10 && performed == 0; frame++) yield return null;
+                Assert.AreEqual(1, performed, $"Queued Escape reached the real Pause binding (keyboard enabled: {keyboard.enabled}, focus: {Application.isFocused}).");
+                Assert.IsTrue(keyboard.escapeKey.isPressed, "The test keyboard processed the Escape state.");
+                yield return null; // allow GameManager.Update to consume WasPressedThisFrame
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null;
+                yield return null;
+                Assert.IsFalse(keyboard.escapeKey.isPressed, "Escape release was processed.");
+                Debug.Log("[SettingsUI] Queued Escape performed the real Pause action and was released.");
+            }
+            finally
+            {
+                GameInput.Pause.performed -= OnPause;
+            }
         }
 
         static void ClearInput()
@@ -207,18 +248,79 @@ namespace Parasite.Tests
 
         static IEnumerator Capture(string name)
         {
-            Canvas.ForceUpdateCanvases();
-            // Let the normal render finish before asking Unity to capture the next screen frame.
-            // WaitForEndOfFrame is deliberately avoided: it is not dispatched in Editor batch mode.
-            yield return null;
+            const int width = 1600, height = 900;
             string path = Path.Combine(Application.dataPath, "..", "Logs", "ui", name);
             Directory.CreateDirectory(Path.GetDirectoryName(path));
-            if (File.Exists(path)) File.Delete(path);
-            ScreenCapture.CaptureScreenshot(path);
-            float deadline = Time.realtimeSinceStartup + 10f;
-            while ((!File.Exists(path) || new FileInfo(path).Length == 0) && Time.realtimeSinceStartup < deadline) yield return null;
-            Assert.IsTrue(File.Exists(path) && new FileInfo(path).Length > 0, "Unity wrote screenshot " + name);
-            Debug.Log($"[SettingsUI] Screenshot {Screen.width}x{Screen.height}: {path}");
+            var camera = Camera.main;
+            Assert.IsNotNull(camera, "The generated scene has a camera for the UI render.");
+            var oldTarget = camera.targetTexture;
+            var oldActive = RenderTexture.active;
+            float oldAspect = camera.aspect;
+            Rect oldRect = camera.rect;
+            int oldMask = camera.cullingMask;
+            // ScreenCapture and WaitForEndOfFrame are not dispatched by Editor batch mode.
+            // Temporarily render the real overlay canvases through the scene camera instead.
+            var canvases = Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None)
+                .Where(canvas => canvas.isRootCanvas && canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                .Select(canvas => (canvas, worldCamera: canvas.worldCamera, mode: canvas.renderMode,
+                    plane: canvas.planeDistance, scale: canvas.scaleFactor,
+                    rt: (RectTransform)canvas.transform, position: canvas.transform.localPosition,
+                    rotation: canvas.transform.localRotation, localScale: canvas.transform.localScale,
+                    size: ((RectTransform)canvas.transform).sizeDelta)).ToArray();
+            Assert.IsNotEmpty(canvases, "The real menu overlay is included in the render.");
+            var target = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32) { antiAliasing = 1 };
+            var pixels = new Texture2D(width, height, TextureFormat.RGB24, false);
+            try
+            {
+                Assert.IsTrue(target.Create());
+                camera.targetTexture = target;
+                camera.aspect = (float)width / height;
+                camera.rect = new Rect(0, 0, 1, 1);
+                camera.cullingMask |= 1 << 5;
+                foreach (var state in canvases)
+                {
+                    state.canvas.renderMode = RenderMode.ScreenSpaceCamera;
+                    state.canvas.worldCamera = camera;
+                    state.canvas.planeDistance = camera.nearClipPlane + 0.5f;
+                }
+                // Let CanvasScaler update from the target camera's 1600x900 pixel rect.
+                yield return null;
+                Canvas.ForceUpdateCanvases();
+                var request = new UniversalRenderPipeline.SingleCameraRequest { destination = target };
+                Assert.IsTrue(RenderPipeline.SupportsRenderRequest(camera, request), "URP supports the explicit UI render request.");
+                RenderPipeline.SubmitRenderRequest(camera, request);
+                RenderTexture.active = target;
+                pixels.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                pixels.Apply();
+                byte[] png = pixels.EncodeToPNG();
+                Assert.That(png.Length, Is.GreaterThan(1024), "The UI render contains image data.");
+                File.WriteAllBytes(path, png);
+            }
+            finally
+            {
+                camera.targetTexture = oldTarget;
+                camera.aspect = oldAspect;
+                camera.rect = oldRect;
+                camera.cullingMask = oldMask;
+                foreach (var state in canvases)
+                {
+                    if (!state.canvas) continue;
+                    state.canvas.renderMode = state.mode;
+                    state.canvas.worldCamera = state.worldCamera;
+                    state.canvas.planeDistance = state.plane;
+                    state.canvas.scaleFactor = state.scale;
+                    state.rt.localPosition = state.position;
+                    state.rt.localRotation = state.rotation;
+                    state.rt.localScale = state.localScale;
+                    state.rt.sizeDelta = state.size;
+                }
+                RenderTexture.active = oldActive;
+                target.Release();
+                Object.Destroy(target); Object.Destroy(pixels);
+                Canvas.ForceUpdateCanvases();
+            }
+            Assert.IsTrue(File.Exists(path) && new FileInfo(path).Length > 1024, "Unity wrote screenshot " + name);
+            Debug.Log($"[SettingsUI] Screenshot {width}x{height}: {path}");
         }
     }
 }

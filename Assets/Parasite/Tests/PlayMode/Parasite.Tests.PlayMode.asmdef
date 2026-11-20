@@ -1,7 +1,7 @@
 {
     "name": "Parasite.Tests.PlayMode",
     "rootNamespace": "Parasite.Tests",
-    "references": ["Parasite.Runtime", "UnityEngine.TestRunner", "UnityEditor.TestRunner", "Unity.InputSystem", "UnityEngine.UI"],
+    "references": ["Parasite.Runtime", "UnityEngine.TestRunner", "UnityEditor.TestRunner", "Unity.InputSystem", "UnityEngine.UI", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

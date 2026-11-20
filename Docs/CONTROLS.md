@@ -13,11 +13,13 @@
 | V | Y / North | Split off a second amoeba (max 2) |
 | Tab | Right bumper | Switch control to the other amoeba |
 | F | Left bumper | Host ability: civilian **distraction** · guard **radio dispatch** · scientist **professional calm** (−30 suspicion) · maintenance **cut the power** (cameras off 20 s) |
-| Esc | Start | Pause (Resume · Restart · Controls · mouse sensitivity · Quit) |
+| Esc | Start | Pause (Resume · Restart · Controls · Settings · Quit); return from a submenu before resuming |
 | F1 | — | Show / hide the controls card |
 | F3 | — | FPS counter (launch with `-showfps` to start with it on) |
 
 Menus work with the mouse, or with arrows/WASD/D-pad + Enter/A.
+Settings in both the title and pause menus saves graphics quality, mouse sensitivity, master volume and ambience/music.
+Sliders apply immediately. Gamepad B returns from controls/settings; Esc/Start also returns from pause submenus.
 
 ## Possession
 Aim at a person within **5 m** (a marker and an `[E] Possess …` prompt appear) and press **E**: the amoeba leaps
