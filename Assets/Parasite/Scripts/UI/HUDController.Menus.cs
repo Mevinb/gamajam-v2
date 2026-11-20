@@ -27,7 +27,7 @@ namespace Parasite.UI
             dim.rectTransform.Stretch(); dim.raycastTarget = true;
             UIKit.Img(pauseRoot, "Vignette", UIKit.Vignette, new Color(0, 0, 0, 0.8f)).rectTransform.Stretch();
 
-            const float W = 580f, H = 720f;
+            const float W = 580f, H = 790f;
             var panel = UIKit.Panel(pauseRoot, "Panel", 14, UIKit.PanelBgLight, UIKit.AccentSoft);
             pausePanel = panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(W, H));
             var glow = UIKit.Img(panel.transform, "Glow", UIKit.Glow, UIKit.Accent.WithAlpha(0.08f));
@@ -50,6 +50,13 @@ namespace Parasite.UI
             btnResume = Add("Resume", () => { var gm = GameManager.Instance; if (gm) gm.SetPaused(false); });
             Add("Restart", () => { var gm = GameManager.Instance; if (gm) gm.RestartGame(); });
             btnControls = Add("Controls", OpenControls);
+            Button gfx = null;
+            gfx = Add("Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current], () =>
+            {
+                GraphicsPreset.Cycle();
+                var t = gfx ? gfx.GetComponentInChildren<Text>() : null;
+                if (t) t.text = "Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current];
+            });
             Add("Quit to Menu", () => { var gm = GameManager.Instance; if (gm) gm.QuitToMenu(); });
             Add("Quit Game", GameManager.QuitApp);
 

@@ -50,8 +50,8 @@ namespace Parasite.EditorTools
         public const string CityPath = SceneDir + "/City.unity";
         const string LightingPath = SettingsDir + "/CityLighting.lighting";
         const float GY = L.Sidewalk, LY = L.LabFloor;
-        static readonly Vector3 SunEuler = new(16f, 310f, 0f);
-        static readonly Color SunColor = new(1f, 0.78f, 0.58f);
+        static readonly Vector3 SunEuler = new(11f, 220f, 0f);   // matches the HDRI sun (azimuth +40° from +Z, ~8° up)
+        static readonly Color SunColor = new(1f, 0.74f, 0.52f);
 
         [MenuItem("Parasite/Setup/Build Scenes")]
         public static void BuildAll()
@@ -108,12 +108,15 @@ namespace Parasite.EditorTools
             Probe(lighting, "Probe_South", new Vector3(-12f, 5f, -60f), new Vector3(64f, 14f, 60f), false);
             Probe(lighting, "Probe_Campus", new Vector3(10f, 5f, 58f), new Vector3(100f, 14f, 30f), false);
             Probe(lighting, "Probe_Lab", new Vector3(0f, 2.3f, 88f), new Vector3(47f, 4.4f, 31f), true);
+            Probe(lighting, "Probe_Market", new Vector3(0f, 3f, -28f), new Vector3(180f, 14f, 22f), false);
+            Probe(lighting, "Probe_Avenue", new Vector3(0f, 3f, 8f), new Vector3(24f, 14f, 60f), false);
+            Probe(lighting, "Probe_Alley", new Vector3(-33f, 2.5f, -64f), new Vector3(6f, 8f, 48f), true);
 
             new GameObject("CityDirector").AddComponent<CityDirector>();
             MainCamera(L.PlayerSpawn + new Vector3(0f, 2.4f, -4.5f), Quaternion.Euler(15f, 0f, 0f));
 
             SaveAndBake(scene, CityPath);
-            Debug.Log($"[Parasite] City built: {renderers} merged renderers.");
+            Debug.Log($"[Parasite] City built: {renderers} merged renderers, {k.LastTriangles} triangles, prop triangles {k.PropTriangles}.");
         }
 
         // ------------------------------------------------------------------ ground & streets
@@ -126,6 +129,7 @@ namespace Parasite.EditorTools
             Slab(k, sw, -100f, -7f, -22f, 40f, Faces.E | Faces.N | Faces.S);
             Slab(k, sw, 7f, 100f, -22f, 40f, Faces.W | Faces.N | Faces.S);
             Slab(k, sw, -100f, 100f, 52f, 120f, Faces.S);
+            k.BoxMM(M("Cobble"), -59.5f, -12.6f, GY - 0.01f, GY + 0.003f, -20.4f, 38.4f, false);   // plaza paving
         }
 
         static void Slab(WorldKit k, Material m, float x0, float x1, float z0, float z1, Faces curbs)
@@ -139,64 +143,135 @@ namespace Parasite.EditorTools
             if ((curbs & Faces.S) != 0) k.BoxMM(c, x0, x1, 0f, h, z0 - o, z0 + w, false);
         }
 
-        static void Streets(WorldKit k)
+        // Road markings are flat quads 6 mm above the asphalt (never boxes, never overlapping each other or the curbs).
+        const float PaintY = 0.006f;
+
+        static void Stripe(WorldKit k, Material m, float x0, float x1, float z0, float z1) =>
+            k.FloorQuad(m, new Vector3((x0 + x1) * 0.5f, PaintY, (z0 + z1) * 0.5f), Mathf.Abs(x1 - x0), Mathf.Abs(z1 - z0), 0f, new Rect(0, 0, 1, 1));
+
+        static void DashesX(WorldKit k, Material m, float x0, float x1, float z, float w, float dash = 3f, float gap = 3f)
+        {
+            for (float x = x0; x + dash <= x1; x += dash + gap) Stripe(k, m, x, x + dash, z - w * 0.5f, z + w * 0.5f);
+        }
+
+        static void DashesZ(WorldKit k, Material m, float z0, float z1, float x, float w, float dash = 3f, float gap = 3f)
+        {
+            for (float z = z0; z + dash <= z1; z += dash + gap) Stripe(k, m, x - w * 0.5f, x + w * 0.5f, z, z + dash);
+        }
+
+        static void Markings(WorldKit k)
         {
             var yellow = M("PaintYellow"); var white = M("PaintWhite");
-            for (float z = -98f; z < 52f; z += 6f)
-                if ((z < -37f || z > -20f) && (z < 38f)) k.Box(yellow, new Vector3(0f, 0.005f, z + 1.5f), new Vector3(0.2f, 0.01f, 3f));
-            for (float x = -98f; x < 98f; x += 6f)
-                if (x < -10f || x > 10f)
+            // Vale Avenue (x -7..7): double yellow centre line, lane/parking edge lines, parking ticks, stop lines
+            foreach (var (z0, z1) in new[] { (-78.6f, -38.4f), (-17.6f, 35.6f) })
+            {
+                Stripe(k, yellow, -0.2f, -0.08f, z0, z1); Stripe(k, yellow, 0.08f, 0.2f, z0, z1);
+                Stripe(k, white, -4.32f, -4.2f, z0, z1); Stripe(k, white, 4.2f, 4.32f, z0, z1);
+                for (float z = z0 + 3f; z < z1 - 1f; z += 6f) { Stripe(k, white, -6.8f, -4.32f, z, z + 0.12f); Stripe(k, white, 4.32f, 6.8f, z, z + 0.12f); }
+            }
+            Stripe(k, white, 0.3f, 6.8f, -38.4f, -38.0f);     // northbound stop line before Market St
+            Stripe(k, white, -6.8f, -0.3f, -18.0f, -17.6f);   // southbound stop line after Market St
+            Stripe(k, white, 0.3f, 6.8f, 35.6f, 36.0f);       // northbound stop line before Campus Rd
+            // Market St (z -34..-22) and Campus Rd (z 40..52): dashed centre, solid parking edge lines
+            foreach (var (zc, e0, e1) in new[] { (-28f, -30.3f, -25.7f), (46f, 42.7f, 49.3f) })
+                foreach (var (x0, x1) in new[] { (-88f, -11.6f), (11.6f, 88f) })
                 {
-                    k.Box(white, new Vector3(x + 1.5f, 0.005f, -28f), new Vector3(3f, 0.01f, 0.18f));
-                    k.Box(white, new Vector3(x + 1.5f, 0.005f, 46f), new Vector3(3f, 0.01f, 0.18f));
+                    DashesX(k, white, x0 + 0.5f, x1, zc, 0.15f);
+                    Stripe(k, white, x0, x1, e0 - 0.06f, e0 + 0.06f); Stripe(k, white, x0, x1, e1 - 0.06f, e1 + 0.06f);
                 }
+            // zebra crossings
             foreach (float zc in new[] { -36.5f, -19.5f, 37.5f })
-                for (float x = -6f; x <= 6f; x += 1.1f) k.Box(white, new Vector3(x, 0.005f, zc), new Vector3(0.55f, 0.01f, 2.6f));
+                for (float x = -6.2f; x <= 6.3f; x += 1.1f) Stripe(k, white, x - 0.28f, x + 0.28f, zc - 1.3f, zc + 1.3f);
             foreach (float xc in new[] { -9.5f, 9.5f })
             {
-                for (float z = -33.4f; z <= -22.5f; z += 1.1f) k.Box(white, new Vector3(xc, 0.005f, z), new Vector3(2.6f, 0.01f, 0.55f));
-                for (float z = 40.6f; z <= 51.5f; z += 1.1f) k.Box(white, new Vector3(xc, 0.005f, z), new Vector3(2.6f, 0.01f, 0.55f));
+                for (float z = -33.4f; z <= -22.5f; z += 1.1f) Stripe(k, white, xc - 1.3f, xc + 1.3f, z - 0.28f, z + 0.28f);
+                for (float z = 40.6f; z <= 51.5f; z += 1.1f) Stripe(k, white, xc - 1.3f, xc + 1.3f, z - 0.28f, z + 0.28f);
             }
-            foreach (var p in new[] { new Vector3(2.5f, 0f, -60f), new Vector3(-3f, 0f, 10f), new Vector3(40f, 0f, -27f), new Vector3(-50f, 0f, 47f), new Vector3(30f, 0f, 44f) })
-                k.Cylinder(M("MetalDark"), p, 0.42f, 0.012f);
+        }
 
-            // lamps (curb side, arm over the road)
+        static void RoadSurface(WorldKit k)
+        {
+            // manholes, storm grates at the curbs, patched / cracked asphalt, puddles (high smoothness) for evening reflections
+            foreach (var p in new[] { new Vector3(2.5f, 0f, -60f), new Vector3(-3f, 0f, 10f), new Vector3(40f, 0f, -27f), new Vector3(-50f, 0f, 47f),
+                                      new Vector3(30f, 0f, 44f), new Vector3(-2.4f, 0f, -28f), new Vector3(-62f, 0f, -29f), new Vector3(64f, 0f, 47.5f), new Vector3(2.8f, 0f, 24f) })
+                CityProps.Manhole(k, p, 0.9f);
+            foreach (var (p, alongX) in new[] { (new Vector3(-6.75f, 0f, -55f), false), (new Vector3(6.75f, 0f, -8f), false), (new Vector3(-6.75f, 0f, 20f), false),
+                                                (new Vector3(-40f, 0f, -33.75f), true), (new Vector3(36f, 0f, -22.25f), true), (new Vector3(-30f, 0f, 40.25f), true), (new Vector3(44f, 0f, 51.75f), true) })
+            {
+                var s = alongX ? new Vector3(0.9f, 0.012f, 0.45f) : new Vector3(0.45f, 0.012f, 0.9f);
+                k.Box(M("MetalDark"), p + Vector3.up * 0.003f, s);
+                for (int i = -3; i <= 3; i++) k.Box(M("Tire"), p + Vector3.up * 0.0095f + (alongX ? new Vector3(i * 0.11f, 0, 0) : new Vector3(0, 0, i * 0.11f)), alongX ? new Vector3(0.05f, 0.002f, 0.36f) : new Vector3(0.36f, 0.002f, 0.05f));
+            }
+            var rng = new System.Random(77);
+            float R(float a, float b) => a + (float)rng.NextDouble() * (b - a);
+            for (int i = 0; i < 26; i++) CityProps.RoadDamage(k, new Vector3(R(-5.5f, 5.5f), 0f, R(-78f, 50f)), R(2.5f, 5f), R(-20f, 20f) + (rng.Next(2) == 0 ? 0f : 90f));
+            for (int i = 0; i < 30; i++) CityProps.RoadDamage(k, new Vector3(R(-86f, 86f), 0f, rng.Next(2) == 0 ? R(-33f, -23f) : R(41f, 51f)), R(2.5f, 5f), R(70f, 110f));
+            foreach (var (p, sx, sz) in new[] { (new Vector3(-6f, 0f, -42f), 2.6f, 1.6f), (new Vector3(5.8f, 0f, -14f), 2.2f, 3.4f), (new Vector3(-5.9f, 0f, 14f), 1.8f, 2.6f),
+                                               (new Vector3(-20f, 0f, -33.2f), 3.2f, 1.4f), (new Vector3(18f, 0f, -22.9f), 2.6f, 1.3f), (new Vector3(-45f, 0f, -22.9f), 2.8f, 1.2f),
+                                               (new Vector3(2f, 0f, -26f), 3.5f, 2.5f), (new Vector3(-36f, 0f, 51.1f), 3f, 1.3f), (new Vector3(20f, 0f, 40.9f), 2.6f, 1.2f),
+                                               (new Vector3(-3f, 0f, 44f), 2.4f, 1.8f), (new Vector3(55f, 0f, -33.1f), 3f, 1.2f), (new Vector3(5.9f, 0f, 30f), 1.8f, 2.8f) })
+                CityProps.Puddle(k, p, sx, sz, R(0f, 180f));
+        }
+
+        static void Streets(WorldKit k)
+        {
+            Markings(k);
+            RoadSurface(k);
+
+            // lamps (curb side, lantern posts)
             foreach (float z in new[] { -80f, -63f, -46f, -12f, 6f, 24f })
             {
-                CityProps.Lamp(k, new Vector3(-7.8f, GY, z), Vector3.right);
-                CityProps.Lamp(k, new Vector3(7.8f, GY, z + 9f), Vector3.left);
+                CityProps.Lamp(k, new Vector3(-7.6f, GY, z), Vector3.right);
+                CityProps.Lamp(k, new Vector3(7.6f, GY, z + 9f), Vector3.left);
             }
-            foreach (float x in new[] { -70f, -50f, -26f, 26f, 50f, 70f }) CityProps.Lamp(k, new Vector3(x, GY, -34.8f), Vector3.forward);
-            foreach (float x in new[] { -60f, -42f, 30f, 60f }) CityProps.Lamp(k, new Vector3(x, GY, -21.2f), Vector3.back);
-            foreach (float x in new[] { -70f, -48f, -22f, 22f, 48f, 70f }) CityProps.Lamp(k, new Vector3(x, GY, 39.2f), Vector3.forward);
-            foreach (float x in new[] { -62f, -36f, -16f, 14f, 32f, 56f, 76f }) CityProps.Lamp(k, new Vector3(x, GY, 52.8f), Vector3.back);
+            foreach (float x in new[] { -70f, -50f, -26f, 26f, 50f, 70f }) CityProps.Lamp(k, new Vector3(x, GY, -34.6f), Vector3.forward);
+            foreach (float x in new[] { -60f, -42f, 30f, 60f }) CityProps.Lamp(k, new Vector3(x, GY, -21.4f), Vector3.back);
+            foreach (float x in new[] { -70f, -48f, -22f, 22f, 48f, 70f }) CityProps.Lamp(k, new Vector3(x, GY, 39.4f), Vector3.forward);
+            foreach (float x in new[] { -62f, -36f, -16f, 14f, 32f, 56f, 76f }) CityProps.Lamp(k, new Vector3(x, GY, 52.6f), Vector3.back);
 
             foreach (float z in new[] { -72f, -55f, -3f, 15f, 31f }) { CityProps.Tree(k, new Vector3(-7.9f, GY, z)); CityProps.Tree(k, new Vector3(7.9f, GY, z - 6f)); }
             foreach (float x in new[] { -80f, -58f, -38f, 38f, 60f, 82f }) CityProps.Tree(k, new Vector3(x, GY, -18f), 0.9f);
             foreach (float x in new[] { -78f, -58f, -34f, 34f, 58f, 80f }) CityProps.Tree(k, new Vector3(x, GY, 36.2f), 0.9f);
+            foreach (float x in new[] { -66f, -44f, 18f, 40f, 62f }) CityProps.Tree(k, new Vector3(x, GY, -37.6f), 0.85f);
 
-            // parked cars (blockers)
+            // parked cars (blockers) — mixed bodies, a couple of taxis
             CityProps.Car(k, new Vector3(5.4f, 0f, -10f), true, "CarRed");
             CityProps.Car(k, new Vector3(5.4f, 0f, 22f), true, "CarWhite");
-            CityProps.Car(k, new Vector3(-5.4f, 0f, -2f), true, "CarBlue");
+            CityProps.Car(k, new Vector3(-5.4f, 0f, -2f), true, "CarTaxi");
             CityProps.Car(k, new Vector3(-5.4f, 0f, 28f), true, "CarBlack");
             CityProps.Car(k, new Vector3(5.4f, 0f, -60f), true, "CarSilver");
             CityProps.Car(k, new Vector3(-5.4f, 0f, -50f), true, "CarRed");
+            CityProps.Car(k, new Vector3(-5.4f, 0f, -66f), true, "CarGreen");
+            CityProps.Car(k, new Vector3(5.4f, 0f, 4f), true, "CarBeige");
             CityProps.Car(k, new Vector3(-48f, 0f, -24.6f), false, "CarSilver");
             CityProps.Car(k, new Vector3(28f, 0f, -24.6f), false, "CarBlue");
             CityProps.Car(k, new Vector3(58f, 0f, -31.4f), false, "CarWhite");
             CityProps.Car(k, new Vector3(-70f, 0f, -31.4f), false, "CarBlack");
+            CityProps.Car(k, new Vector3(-22f, 0f, -31.4f), false, "CarTaxi");
+            CityProps.Car(k, new Vector3(44f, 0f, -24.6f), false, "CarBeige");
             CityProps.Car(k, new Vector3(-60f, 0f, 50.4f), false, "CarWhite");
             CityProps.Car(k, new Vector3(28f, 0f, 50.4f), false, "CarRed");
             CityProps.Car(k, new Vector3(70f, 0f, 41.6f), false, "CarSilver");
             CityProps.Car(k, new Vector3(-40f, 0f, 41.6f), false, "CarBlue");
+            CityProps.Car(k, new Vector3(52f, 0f, 41.6f), false, "CarGreen");
 
             foreach (var p in new[] { new Vector3(-10.5f, GY, -42f), new Vector3(10.6f, GY, -16f), new Vector3(-11.3f, GY, 29f), new Vector3(-20f, GY, 54f), new Vector3(22f, GY, 54f), new Vector3(-28f, GY, -37.5f) })
                 Bin(k, p);
+            // hydrants, utility cabinets, newspaper/planters along the sidewalks (patrol lines at x = ±9.8 and z = 54.8 stay clear)
+            foreach (var p in new[] { new Vector3(-7.75f, GY, -60f), new Vector3(7.75f, GY, -28f + 34f), new Vector3(7.75f, GY, 12f), new Vector3(-44f, GY, -34.55f),
+                                      new Vector3(36f, GY, -21.45f), new Vector3(-30f, GY, 39.45f), new Vector3(42f, GY, 52.55f), new Vector3(-7.75f, GY, -16f) })
+                CityProps.Hydrant(k, p, k.Rand(0f, 360f));
+            foreach (var (p, yaw) in new[] { (new Vector3(-11.55f, GY, -46f), 90f), (new Vector3(11.55f, GY, -20f), -90f), (new Vector3(11.55f, GY, 37.6f), -90f),
+                                            (new Vector3(-56f, GY, -38.6f), 0f), (new Vector3(66f, GY, -17.4f), 180f), (new Vector3(-74f, GY, 35.4f), 0f) })
+                CityProps.UtilityBox(k, p, yaw, k.Chance(0.4f));
+            foreach (var (p, yaw) in new[] { (new Vector3(-16f, GY, -38.5f), 0f), (new Vector3(16f, GY, -17.5f), 0f), (new Vector3(-50f, GY, -17.6f), 0f), (new Vector3(62.5f, GY, -38.4f), 0f) })
+                CityProps.Planter(k, p, yaw);
 
             Signpost(k, new Vector3(-11.3f, GY, 33.5f), "VALE BIOTECH  ^", 0f, "NeonGreen");
             Signpost(k, new Vector3(-29f, GY, -35.3f), "VALE BIOTECH  ^  NORTH", 0f, "NeonGreen");
             Signpost(k, new Vector3(9.7f, GY, -38f), "VALE AVENUE", 0f, "NeonCyan");
+            Signpost(k, new Vector3(-12.2f, GY, -21.6f), "MARKET ST", 0f, "NeonCyan");
+            Signpost(k, new Vector3(12.2f, GY, 39.6f), "CAMPUS RD", 180f, "NeonCyan");
         }
 
         static void RoadClosed(WorldKit k, Vector3 pos, float yaw)
@@ -207,12 +282,7 @@ namespace Parasite.EditorTools
                 k.Box(M("MetalDark"), new Vector3(pos.x, 0f, pos.z) + side * s + Vector3.up * (pos.y * 0.5f), new Vector3(0.08f, pos.y, 0.08f));
         }
 
-        static void Bin(WorldKit k, Vector3 p)
-        {
-            k.Cylinder(M("MetalDark"), p, 0.28f, 0.95f);
-            k.Cylinder(M("Chrome"), p + Vector3.up * 0.95f, 0.3f, 0.05f);
-            k.Solid(p + Vector3.up * 0.5f, new Vector3(0.6f, 1f, 0.6f));
-        }
+        static void Bin(WorldKit k, Vector3 p) => CityProps.TrashCan(k, p);
 
         static void Signpost(WorldKit k, Vector3 p, string text, float yaw, string neon)
         {
@@ -224,15 +294,19 @@ namespace Parasite.EditorTools
         // ------------------------------------------------------------------ south block (start alley)
         static void SouthBlock(WorldKit k)
         {
-            CityProps.Building(k, -30f, -12f, -100f, -39f, 16f, M("Brick"), Faces.E | Faces.N | Faces.W,
-                new Shop(Faces.E, 48f, 10f, "24/7 MART", "AwningGreen", "NeonGreen"), new Shop(Faces.N, 9f, 12f, "KITO RAMEN", "AwningRed", "NeonRed"));
-            CityProps.Building(k, -62f, -36f, -100f, -39f, 13f, M("PlasterTerracotta"), Faces.N | Faces.E,
+            CityProps.Building(k, Facade("BrickRed"), -30f, -12f, -100f, -39f, 16f, Faces.E | Faces.N | Faces.W,
+                new Shop(Faces.E, 48f, 10f, "24/7 MART", "AwningGreen", "NeonGreen"), new Shop(Faces.N, 9f, 12f, "KITO RAMEN", "AwningRed", "NeonRed"),
+                new Shop(Faces.E, 33f, 8f, "PHONE FIX", "AwningNavy", "NeonCyan"), new Shop(Faces.E, 21f, 8f, "BAKERY", "AwningCream", "NeonPink"));
+            CityProps.Building(k, Facade("BrickOchre"), -62f, -36f, -100f, -39f, 13f, Faces.N | Faces.E,
                 new Shop(Faces.N, 13f, 14f, "LUCKY LAUNDRY", "AwningNavy", "NeonCyan"));
-            CityProps.Building(k, -100f, -62f, -100f, -39f, 20f, M("BrickDark"), Faces.N, new Shop(Faces.N, 24f, 12f, "PAWN & GOLD", "AwningYellow", "NeonPink"));
-            CityProps.Building(k, 12f, 40f, -100f, -39f, 18f, M("PlasterGrey"), Faces.W | Faces.N,
-                new Shop(Faces.W, 45f, 12f, "HALCYON BOOKS", "AwningGreen", "NeonGreen"), new Shop(Faces.N, 14f, 14f, "NOVA PHARMACY", "AwningNavy", "NeonCyan"));
-            CityProps.Building(k, 40f, 64f, -100f, -39f, 14f, M("Brick"), Faces.N, new Shop(Faces.N, 12f, 12f, "METRO DINER", "AwningRed", "NeonRed"));
-            CityProps.Building(k, 64f, 100f, -100f, -39f, 24f, M("PlasterCream"), Faces.N, new Shop(Faces.N, 12f, 10f, "HOTEL ARDEN", "AwningNavy", "NeonPink"));
+            CityProps.Building(k, Facade("LoftBrown"), -100f, -62f, -100f, -39f, 20f, Faces.N,
+                new Shop(Faces.N, 24f, 12f, "PAWN & GOLD", "AwningYellow", "NeonPink"), new Shop(Faces.N, 8f, 8f, "LIQUOR", "AwningBlack", "NeonRed"));
+            CityProps.Building(k, Facade("StoneGrey"), 12f, 40f, -100f, -39f, 18f, Faces.W | Faces.N,
+                new Shop(Faces.W, 45f, 12f, "HALCYON BOOKS", "AwningGreen", "NeonGreen"), new Shop(Faces.N, 14f, 14f, "NOVA PHARMACY", "AwningNavy", "NeonCyan"),
+                new Shop(Faces.W, 30f, 8f, "DRY CLEAN", "AwningCream", "NeonCyan"), new Shop(Faces.W, 16f, 9f, "TACO LOCO", "AwningYellow", "NeonRed"));
+            CityProps.Building(k, Facade("BrickCream"), 40f, 64f, -100f, -39f, 14f, Faces.N, new Shop(Faces.N, 12f, 12f, "METRO DINER", "AwningRed", "NeonRed"));
+            CityProps.Building(k, Facade("StoneSand"), 64f, 100f, -100f, -39f, 24f, Faces.N,
+                new Shop(Faces.N, 12f, 10f, "HOTEL ARDEN", "AwningNavy", "NeonPink"), new Shop(Faces.N, 27f, 8f, "TATTOO", "AwningBlack", "NeonGreen"));
 
             // alley x -36..-30: dead end + storm drain
             k.BoxMM(M("BrickDark"), -36f, -30f, 0f, 6.5f, -88.5f, -87.5f);
@@ -240,9 +314,10 @@ namespace Parasite.EditorTools
             var drain = L.StormDrain;
             k.Box(M("MetalDark"), drain + Vector3.up * 0.008f, new Vector3(1.4f, 0.016f, 0.9f));
             for (float x = -0.55f; x <= 0.56f; x += 0.22f) k.Box(M("Tire"), drain + new Vector3(x, 0.017f, 0f), new Vector3(0.1f, 0.004f, 0.7f));
-            k.Box(M("Puddle"), new Vector3(-32.1f, GY + 0.003f, -79f), new Vector3(1.7f, 0.006f, 1.2f));
-            k.Box(M("Puddle"), new Vector3(-34f, GY + 0.003f, -64f), new Vector3(1.2f, 0.006f, 2f));
-            k.Box(M("Puddle"), new Vector3(-33f, GY + 0.003f, -85.6f), new Vector3(2.4f, 0.006f, 1.2f));
+            CityProps.Puddle(k, new Vector3(-32.1f, GY, -79f), 2.2f, 1.6f, 20f);
+            CityProps.Puddle(k, new Vector3(-34f, GY, -64f), 1.6f, 2.6f, 75f);
+            CityProps.Puddle(k, new Vector3(-33f, GY, -85.8f), 3f, 1.6f, 0f);
+            CityProps.Puddle(k, new Vector3(-31.2f, GY, -50f), 1.4f, 2.2f, 40f);
             CityProps.Dumpster(k, new Vector3(-34.9f, GY, -73f), false);
             CityProps.Dumpster(k, new Vector3(-34.9f, GY, -56f), false);
             CityProps.Crate(k, new Vector3(-30.8f, GY, -67f), new Vector3(1.1f, 1f, 1.1f));
@@ -254,12 +329,27 @@ namespace Parasite.EditorTools
             foreach (float z in new[] { -82f, -58f, -44f }) k.Cylinder(M("Pipe"), new Vector3(-30.15f, 0f, z), 0.08f, 15.5f);
             k.Cylinder(M("Pipe"), new Vector3(-35.85f, 0f, -70f), 0.1f, 12.5f);
             k.Pipe(M("Pipe"), new Vector3(-35.8f, 3.6f, -86f), new Vector3(-35.8f, 3.6f, -40f), 0.09f);
-            for (float y = 5f; y < 12f; y += 3.3f)
-            {
-                k.Box(M("MetalDark"), new Vector3(-35.35f, y, -66f), new Vector3(1.3f, 0.06f, 3.2f));
-                k.Box(M("MetalDark"), new Vector3(-34.72f, y + 0.5f, -66f), new Vector3(0.04f, 1f, 3.2f));
-            }
-            foreach (float z in new[] { -80f, -52f }) k.Box(M("MetalDark"), new Vector3(-30.4f, 3.2f, z), new Vector3(0.8f, 0.7f, 1f));
+            // alley dressing: fire escapes, AC units, wall lamps, shutters, tags, trash
+            CityProps.FireEscape(k, new Vector3(-36f, 0f, -100f), Vector3.forward, Vector3.right, 34f, 3.4f, 2, 3.2f, 4.35f);
+            CityProps.FireEscape(k, new Vector3(-30f, 0f, -39f), Vector3.back, Vector3.left, 47f, 3.4f, 3, 3.6f, 4.35f);
+            foreach (var (p, yaw) in new[] { (new Vector3(-30.05f, 2.7f, -80f), -90f), (new Vector3(-30.05f, 2.9f, -52f), -90f), (new Vector3(-35.95f, 2.6f, -47f), 90f),
+                                            (new Vector3(-30.05f, 7.6f, -70f), -90f), (new Vector3(-35.95f, 8.1f, -58f), 90f), (new Vector3(-35.95f, 2.5f, -81f), 90f) })
+                CityProps.AirCon(k, p, yaw);
+            CityProps.SecurityLight(k, new Vector3(-30.08f, 3.0f, -76f), -90f);
+            CityProps.SecurityLight(k, new Vector3(-35.92f, 3.0f, -62f), 90f);
+            CityProps.Shutter(k, new Vector3(-30.02f, GY, -60f), -90f, 2.6f);
+            CityProps.Shutter(k, new Vector3(-35.98f, GY, -76.5f), 90f, 2.4f);
+            foreach (var (p, n) in new[] { (new Vector3(-30f, 1.4f, -84f), Vector3.left), (new Vector3(-36f, 1.6f, -68f), Vector3.right), (new Vector3(-30f, 1.3f, -64f), Vector3.left),
+                                          (new Vector3(-36f, 1.2f, -52f), Vector3.right), (new Vector3(-33f, 1.6f, -87.5f), Vector3.back), (new Vector3(-30f, 1.5f, -45f), Vector3.left) })
+                CityProps.Graffiti(k, p, n, k.Rand(1.6f, 2.4f));
+            CityProps.TrashPile(k, new Vector3(-35f, GY, -70.6f), 4);
+            CityProps.TrashPile(k, new Vector3(-31f, GY, -57.5f), 3);
+            CityProps.Barrel(k, new Vector3(-35.3f, GY, -79.2f));
+            CityProps.Barrel(k, new Vector3(-35.4f, GY, -78.4f));
+            CityProps.PlasticCrates(k, new Vector3(-30.7f, GY, -70f), 3);
+            CityProps.PlasticCrates(k, new Vector3(-30.7f, GY, -70.6f), 2);
+            CityProps.Tyre(k, new Vector3(-35.4f, GY, -52f));
+            CityProps.UtilityBox(k, new Vector3(-35.75f, GY, -86.6f), 90f);
             k.Text("STORM DRAIN 7", drain + new Vector3(0f, 0.03f, -0.7f), 0f, 0.12f, new Color(0.6f, 0.6f, 0.55f), null, false).transform.rotation = Quaternion.Euler(90f, 0f, 0f);
 
             // avenue south closure
@@ -272,19 +362,20 @@ namespace Parasite.EditorTools
         // ------------------------------------------------------------------ middle block (plaza, shops)
         static void MiddleBlock(WorldKit k)
         {
-            CityProps.Building(k, -100f, -60f, -17f, 10f, 15f, M("PlasterCream"), Faces.E | Faces.S,
-                new Shop(Faces.E, 20f, 12f, "CAFE LUMEN", "AwningGreen", "NeonGreen"));
-            CityProps.Building(k, -100f, -60f, 10f, 35f, 19f, M("Brick"), Faces.E | Faces.N, new Shop(Faces.E, 14f, 10f, "FLORA", "AwningYellow", "NeonPink"));
-            CityProps.Building(k, 12f, 48f, -17f, 10f, 22f, M("Brick"), Faces.W | Faces.S | Faces.N,
+            CityProps.Building(k, Facade("BrickWhite"), -100f, -60f, -17f, 10f, 15f, Faces.E | Faces.S,
+                new Shop(Faces.E, 20f, 12f, "CAFE LUMEN", "AwningGreen", "NeonGreen"), new Shop(Faces.S, 26f, 10f, "NOODLE BAR", "AwningRed", "NeonRed"));
+            CityProps.Building(k, Facade("BrickRed"), -100f, -60f, 10f, 35f, 19f, Faces.E | Faces.N, new Shop(Faces.E, 14f, 10f, "FLORA", "AwningYellow", "NeonPink"));
+            CityProps.Building(k, Facade("LoftCharcoal"), 12f, 48f, -17f, 10f, 22f, Faces.W | Faces.S | Faces.N,
                 new Shop(Faces.W, 13f, 14f, "PIXEL ARCADE", "AwningNavy", "NeonPink"), new Shop(Faces.S, 18f, 10f, "QUICK PRINT", "AwningYellow", "NeonCyan"));
-            CityProps.Building(k, 12f, 48f, 16f, 35f, 12f, M("PlasterTeal"), Faces.W | Faces.N | Faces.S,
-                new Shop(Faces.W, 10f, 12f, "OSAKA SUSHI", "AwningRed", "NeonRed"));
-            CityProps.Building(k, 48f, 100f, -17f, 35f, 18f, M("PlasterGrey"), Faces.S | Faces.N | Faces.W,
+            CityProps.Building(k, Facade("BrickWhite"), 12f, 48f, 16f, 35f, 12f, Faces.W | Faces.N | Faces.S,
+                new Shop(Faces.W, 10f, 12f, "OSAKA SUSHI", "AwningRed", "NeonRed"), new Shop(Faces.N, 10f, 9f, "BARBER", "AwningCream", "NeonRed"));
+            CityProps.Building(k, Facade("StoneSand"), 48f, 100f, -17f, 35f, 18f, Faces.S | Faces.N | Faces.W,
                 new Shop(Faces.S, 21f, 14f, "CITY BANK", "AwningNavy", "NeonCyan"));
 
             // plaza
             var f = L.Fountain;
-            k.BoxMM(M("Curb"), f.x - 9f, f.x + 9f, GY - 0.01f, GY + 0.006f, f.z - 9f, f.z + 9f, false);
+            foreach (var (a0, a1, b0, b1) in new[] { (-9f, 9f, -9f, -8.6f), (-9f, 9f, 8.6f, 9f), (-9f, -8.6f, -8.6f, 8.6f), (8.6f, 9f, -8.6f, 8.6f) })
+                k.BoxMM(M("Stone"), f.x + a0, f.x + a1, GY - 0.01f, GY + 0.008f, f.z + b0, f.z + b1, false);
             k.BoxMM(M("Concrete"), f.x - 3.5f, f.x + 3.5f, 0f, 0.65f, f.z - 3.5f, f.z - 3.1f, false);
             k.BoxMM(M("Concrete"), f.x - 3.5f, f.x + 3.5f, 0f, 0.65f, f.z + 3.1f, f.z + 3.5f, false);
             k.BoxMM(M("Concrete"), f.x - 3.5f, f.x - 3.1f, 0f, 0.65f, f.z - 3.1f, f.z + 3.1f, false);
@@ -341,9 +432,9 @@ namespace Parasite.EditorTools
         // ------------------------------------------------------------------ north block (campus surroundings)
         static void NorthBlock(WorldKit k)
         {
-            CityProps.Building(k, -100f, -50f, 57f, 82f, 16f, M("BrickDark"), Faces.S | Faces.E, new Shop(Faces.S, 30f, 12f, "MIDNIGHT BAR", "AwningRed", "NeonPink"));
-            CityProps.Building(k, -100f, -50f, 82f, 107.75f, 22f, M("Brick"), Faces.E);
-            CityProps.Building(k, 62f, 100f, 57f, 107.75f, 20f, M("PlasterTerracotta"), Faces.S | Faces.W, new Shop(Faces.S, 14f, 12f, "NIGHT OWL DELI", "AwningGreen", "NeonGreen"));
+            CityProps.Building(k, Facade("BrickRed"), -100f, -50f, 57f, 82f, 16f, Faces.S | Faces.E, new Shop(Faces.S, 30f, 12f, "MIDNIGHT BAR", "AwningBlack", "NeonPink"));
+            CityProps.Building(k, Facade("LoftBrown"), -100f, -50f, 82f, 107.75f, 22f, Faces.E);
+            CityProps.Building(k, Facade("BrickCream"), 62f, 100f, 57f, 107.75f, 20f, Faces.S | Faces.W, new Shop(Faces.S, 14f, 12f, "NIGHT OWL DELI", "AwningGreen", "NeonGreen"));
             k.BoxMM(M("Concrete"), -100f, 100f, 0f, 4.2f, 107.75f, 108.25f);
 
             var con = M("Concrete");
@@ -372,7 +463,7 @@ namespace Parasite.EditorTools
             // monolith sign outside the fence
             k.BoxMM(M("SignBoard"), -11f, -5f, 0f, 2.3f, 55.9f, 56.5f);
             k.Box(M("NeonGreen"), new Vector3(-8f, 0.35f, 55.87f), new Vector3(5.6f, 0.06f, 0.04f));
-            k.Text("VALE BIOTECH", new Vector3(-8f, 1.55f, 55.86f), 0f, 0.62f, new Color(0.45f, 1f, 0.6f));
+            k.Sign("VALE BIOTECH", new Vector3(-8f, 1.55f, 55.86f), 0f, 0.7f, 5.8f);
             k.Text("ADVANCED LIFE SCIENCES", new Vector3(-8f, 0.85f, 55.86f), 0f, 0.2f, new Color(0.8f, 0.9f, 0.85f), null, false);
 
             // forecourt (inside the gate)
@@ -387,6 +478,9 @@ namespace Parasite.EditorTools
                 k.Cylinder(M("MetalDark"), new Vector3(s * 3.2f, GY, 66f), 0.12f, 0.9f);
                 k.Box(M("LabPanel"), new Vector3(s * 3.2f, GY + 0.92f, 66f), new Vector3(0.18f, 0.06f, 0.18f));
             }
+            CityProps.SecurityCamera(k, new Vector3(-1.45f, 4.55f, 57.1f), 180f);
+            CityProps.SecurityCamera(k, new Vector3(-23.9f, 3.7f, 57.5f), 225f);
+            CityProps.SecurityCamera(k, new Vector3(-24.2f, 3.4f, 78.3f), -90f);
             // service yard (inside perimeter, east)
             CityProps.Crate(k, new Vector3(32f, GY, 64f), new Vector3(4f, 2.2f, 3f), "MetalDark");
             k.Cylinder(M("SteelPlate"), new Vector3(30f, GY, 76f), 1.3f, 4.5f);
@@ -441,6 +535,18 @@ namespace Parasite.EditorTools
             k.Box(M("Puddle"), new Vector3(57.5f, GY + 0.003f, 84f), new Vector3(2.2f, 0.006f, 1.6f));
             CityProps.Lamp(k, new Vector3(61.4f, GY, 76f), Vector3.left);
             CityProps.Hoarding(k, new Vector3(54f, 0f, 104.5f), new Vector3(62f, 0f, 104.5f), 3f);
+            foreach (var (p, yaw) in new[] { (new Vector3(61.95f, 2.8f, 66f), -90f), (new Vector3(61.95f, 2.6f, 97f), -90f), (new Vector3(61.95f, 7.4f, 74f), -90f) })
+                CityProps.AirCon(k, p, yaw);
+            CityProps.SecurityLight(k, new Vector3(54.1f, 3.3f, 92.6f), 90f);
+            CityProps.SecurityCamera(k, new Vector3(54.15f, 4.0f, 87.2f), 90f);
+            CityProps.Graffiti(k, new Vector3(62f, 1.5f, 70f), Vector3.left, 2.2f);
+            CityProps.Graffiti(k, new Vector3(50.25f, 1.6f, 66f), Vector3.right, 2f);
+            CityProps.Graffiti(k, new Vector3(62f, 1.3f, 102f), Vector3.left, 1.8f);
+            CityProps.TrashPile(k, new Vector3(61f, GY, 98.2f), 3);
+            CityProps.Barrel(k, new Vector3(61.2f, GY, 68.6f));
+            CityProps.Puddle(k, new Vector3(58.5f, GY, 95f), 1.8f, 2.6f, 10f);
+            CityProps.Puddle(k, new Vector3(56.5f, GY, 72f), 1.4f, 2f, 60f);
+            CityProps.FireEscape(k, new Vector3(62f, 0f, 107.75f), Vector3.back, Vector3.left, 28f, 3.4f, 4, 3.6f, 4.35f);
         }
 
         // ------------------------------------------------------------------ Vale Biotech lab
@@ -467,17 +573,17 @@ namespace Parasite.EditorTools
             // exterior detailing: accent band, window bands, sign, canopy
             Band(k, M("ValeAccent"), -24f, 24f, 72f, 104f, 4.55f, 4.95f, 0.08f);
             Band(k, M("Curb"), -24f, 24f, 72f, 104f, 8.75f, 9.15f, 0.12f);
-            for (float x = -22.5f; x < 23f; x += 3f)
+            // upper storey: photo office facade (one floor per face), bay-aligned
+            var labFacade = Facade("StoneGrey");
+            foreach (Faces f in new[] { Faces.N, Faces.S, Faces.E, Faces.W })
             {
-                k.Box(M(k.Chance(0.55f) ? "WindowCool" : "GlassDark"), new Vector3(x, 6.3f, 71.95f), new Vector3(2.7f, 2f, 0.1f));
-                k.Box(M(k.Chance(0.4f) ? "WindowCool" : "GlassDark"), new Vector3(x, 6.3f, 104.05f), new Vector3(2.7f, 2f, 0.1f));
+                var face = CityProps.GetFace(f, -24f, 24f, 72f, 104f);
+                int bays = Mathf.RoundToInt(face.length / 3.2f);
+                float uPer = (1f / 6f) / (face.length / bays);
+                k.WallQuad(labFacade.Mat, face.origin, face.dir, face.normal, 0f, face.length, 4.95f, 8.75f, 0.5f / 6f, uPer, 0.5f / 6f, (1f / 6f) / 3.8f, 0.01f);
             }
-            for (float z = 73.5f; z < 103f; z += 3f)
-            {
-                k.Box(M(k.Chance(0.5f) ? "WindowCool" : "GlassDark"), new Vector3(-24.05f, 6.3f, z), new Vector3(0.1f, 2f, 2.7f));
-                k.Box(M(k.Chance(0.5f) ? "WindowCool" : "GlassDark"), new Vector3(24.05f, 6.3f, z), new Vector3(0.1f, 2f, 2.7f));
-            }
-            k.Text("VALE BIOTECH", new Vector3(0f, 8.15f, 71.85f), 0f, 1.1f, new Color(0.45f, 1f, 0.6f));
+            k.Box(M("SignBoard"), new Vector3(0f, 8.1f, 71.92f), new Vector3(11.4f, 1.5f, 0.1f));
+            k.Sign("VALE BIOTECH", new Vector3(0f, 8.1f, 71.86f), 0f, 1.4f, 11.2f);
             k.Box(M("NeonGreen"), new Vector3(0f, 7.5f, 71.88f), new Vector3(9.5f, 0.06f, 0.05f));
             k.BoxMM(md, -5f, 5f, 3.95f, 4.15f, 68.4f, 72f, false);
             k.Box(M("LabPanel"), new Vector3(0f, 3.94f, 70.2f), new Vector3(8f, 0.02f, 2.6f));
@@ -661,17 +767,44 @@ namespace Parasite.EditorTools
             Ring(k, far, 24f, 46f, 45f, 140f);
         }
 
+        // photo facade towers: material, metres per texture tile (square texels)
+        static readonly (string mat, float tile)[] TowerStyles =
+        {
+            ("TowerDense", 112f), ("TowerGrid", 112f), ("TowerBrown", 112f), ("TowerPiers", 48f), ("TowerGlassNight", 61f), ("TowerGlass", 42f),
+        };
+
         static void Ring(WorldKit k, Rect r, float minW, float maxW, float minH, float maxH)
         {
-            var sky = M("Skyline"); var roof = M("MetalDark");
             void Tower(float x, float z, float w, float d)
             {
                 if (Mathf.Abs(x) < 9f + w * 0.5f && Mathf.Abs(z) > 100f) x += Mathf.Sign(x == 0 ? 1 : x) * (9f + w * 0.5f);
                 float h = k.Rand(minH, maxH);
-                k.Box(sky, new Vector3(x, h * 0.5f, z), new Vector3(w, h, d));
-                k.Box(roof, new Vector3(x, h + 0.4f, z), new Vector3(w + 0.6f, 0.8f, d + 0.6f));
-                if (k.Chance(0.4f)) k.Box(roof, new Vector3(x, h + 2.5f, z), new Vector3(w * 0.4f, 4f, d * 0.4f));
-                if (h > 60f) k.Box(M("NeonRed"), new Vector3(x, h + 5f, z), new Vector3(0.6f, 0.6f, 0.6f));
+                var (mat, tile) = TowerStyles[k.Rng.Next(TowerStyles.Length)];
+                float y = 0f;
+                // podium (lit lobby band) on most towers
+                if (k.Chance(0.6f))
+                {
+                    float ph = k.Rand(6f, 12f);
+                    TowerBlock(k, "StoneSand", 6f * 3.2f, x, z, w + 4f, d + 4f, 0f, ph, true);
+                    y = ph;
+                }
+                // shaft, optionally with one or two setbacks
+                int tiers = h > 70f ? k.Rng.Next(1, 4) : h > 40f ? k.Rng.Next(1, 3) : 1;
+                float tw = w, td = d;
+                for (int t = 0; t < tiers; t++)
+                {
+                    float top = t == tiers - 1 ? h : Mathf.Lerp(y, h, k.Rand(0.55f, 0.75f));
+                    TowerBlock(k, mat, tile, x, z, tw, td, y, top, false);
+                    y = top; tw *= k.Rand(0.7f, 0.85f); td *= k.Rand(0.7f, 0.85f);
+                }
+                // crown: mechanical floor, antenna with aviation light
+                k.Box(M("RoofMetal"), new Vector3(x, y + 1.6f, z), new Vector3(tw * 0.55f, 3.2f, td * 0.55f));
+                if (h > 55f || k.Chance(0.3f))
+                {
+                    float ah = k.Rand(6f, 16f);
+                    k.Cylinder(M("Rail"), new Vector3(x, y + 3.2f, z), 0.25f, ah);
+                    k.Box(M("AviationLight"), new Vector3(x, y + 3.4f + ah, z), new Vector3(0.7f, 0.7f, 0.7f));
+                }
             }
             for (float x = r.xMin; x < r.xMax; x += k.Rand(minW, maxW) + 2f)
             {
@@ -685,6 +818,25 @@ namespace Parasite.EditorTools
                 Tower(r.xMin - w * 0.5f, z + d * 0.5f, w, d);
                 Tower(r.xMax + w * 0.5f, z + d * 0.5f, k.Rand(minW, maxW), d);
             }
+        }
+
+        /// <summary>One box of a skyline tower with a photo facade quad on every side and a tar roof + parapet.</summary>
+        static void TowerBlock(WorldKit k, string mat, float tile, float x, float z, float w, float d, float y0, float y1, bool podium)
+        {
+            Material m;
+            float perM;
+            if (podium) { var st = Facade(mat == "StoneSand" ? (k.Chance(0.5f) ? "StoneSand" : "StoneGrey") : mat); m = st.Mat; perM = 1f / (6f * 3.2f); }
+            else { m = M(mat); perM = 1f / tile; }
+            float x0 = x - w * 0.5f, x1 = x + w * 0.5f, z0 = z - d * 0.5f, z1 = z + d * 0.5f;
+            k.Box(M("RoofTar"), new Vector3(x, (y0 + y1) * 0.5f, z), new Vector3(w - 0.1f, y1 - y0, d - 0.1f));
+            foreach (Faces f in new[] { Faces.N, Faces.S, Faces.E, Faces.W })
+            {
+                var face = CityProps.GetFace(f, x0, x1, z0, z1);
+                float u0 = (float)k.Rng.NextDouble(), v0 = (float)k.Rng.NextDouble();
+                if (podium) { u0 = 0.5f / 6f; v0 = 0.5f / 6f; }
+                k.WallQuad(m, face.origin, face.dir, face.normal, 0f, face.length, y0, y1, u0, perM, v0, perM, 0f);
+            }
+            k.BoxMM(M("RoofMetal"), x0 - 0.2f, x1 + 0.2f, y1, y1 + 0.6f, z0 - 0.2f, z1 + 0.2f, false);
         }
 
         // ------------------------------------------------------------------ gameplay markers
@@ -763,6 +915,7 @@ namespace Parasite.EditorTools
             Npc(npcs, "Gus Romero", Profession.Maintenance, NpcBehaviour.Wander, L.MaintenanceAlleySpot, 0f, seed++, wander: 6f);
             Npc(npcs, "Rita Okafor", Profession.Maintenance, NpcBehaviour.Stationary, L.ServiceLane, 90f, seed++);
             Npc(npcs, "Dr. Vale", Profession.Scientist, NpcBehaviour.Stationary, L.DrVale, L.DrValeYaw, seed++, vale: true);
+            MissionPlacement.Place(k, root);
         }
 
         static Transform Child(Transform parent, string name)
@@ -864,13 +1017,13 @@ namespace Parasite.EditorTools
             RenderSettings.sun = sun;
             RenderSettings.skybox = SkyMaterial;
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            RenderSettings.ambientIntensity = 1f;
+            RenderSettings.ambientIntensity = 1.2f;
             RenderSettings.defaultReflectionMode = DefaultReflectionMode.Skybox;
             RenderSettings.reflectionIntensity = 0.9f;
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogDensity = 0.0042f;
-            RenderSettings.fogColor = new Color(0.46f, 0.5f, 0.6f);
+            RenderSettings.fogDensity = 0.0036f;
+            RenderSettings.fogColor = new Color(0.56f, 0.55f, 0.58f);
 
             var vol = new GameObject("PostProcess");
             vol.transform.SetParent(lighting, false);
@@ -894,6 +1047,11 @@ namespace Parasite.EditorTools
             WorldKit.AddLight(lighting, "Light_LabA", LightType.Point, new Vector3(-14f, 3.9f, 94f), cool, 3f, 11f);
             WorldKit.AddLight(lighting, "Light_ValeOffice", LightType.Point, new Vector3(0f, 3.9f, 96f), new Color(1f, 0.92f, 0.82f), 2.5f, 9f);
             WorldKit.AddLight(lighting, "Light_LabB", LightType.Point, new Vector3(13f, 3.9f, 94f), cool, 3f, 11f);
+            // a few real street-lamp lights where the camera spends time (rest of the lamps are emissive only); total <= 16
+            WorldKit.AddLight(lighting, "Light_Lamp_Market", LightType.Point, new Vector3(-26f, 4.6f, -34.2f), warm, 2.6f, 13f);
+            WorldKit.AddLight(lighting, "Light_Lamp_MarketN", LightType.Point, new Vector3(30f, 4.6f, -21.8f), warm, 2.6f, 13f);
+            WorldKit.AddLight(lighting, "Light_Lamp_Avenue", LightType.Point, new Vector3(-7.2f, 4.6f, -46f), warm, 2.6f, 13f);
+            WorldKit.AddLight(lighting, "Light_Lamp_Campus", LightType.Point, new Vector3(-22f, 4.6f, 39.8f), warm, 2.6f, 13f);
         }
 
         static void Probe(Transform parent, string name, Vector3 center, Vector3 size, bool box)
@@ -907,7 +1065,7 @@ namespace Parasite.EditorTools
             rp.timeSlicingMode = ReflectionProbeTimeSlicingMode.NoTimeSlicing;
             rp.size = size;
             rp.boxProjection = box;
-            rp.resolution = 128;
+            rp.resolution = box ? 128 : 256;
             rp.hdr = true;
             rp.farClipPlane = 250f;
             rp.clearFlags = ReflectionProbeClearFlags.Skybox;
@@ -937,6 +1095,7 @@ namespace Parasite.EditorTools
             if (!ls) { ls = new LightingSettings { name = "CityLighting" }; AssetDatabase.CreateAsset(ls, LightingPath); }
             ls.bakedGI = false;
             ls.realtimeGI = false;
+            ls.lightmapper = LightingSettings.Lightmapper.ProgressiveGPU;
             Lightmapping.lightingSettings = ls;
             bool baked = false;
             try { baked = Lightmapping.Bake(); }

@@ -37,6 +37,7 @@ namespace Parasite.World
             foreach (var s in FindObjectsByType<NpcSpawn>(FindObjectsSortMode.None)) HostFactory.Create(s);
 
             PlayerCamera.Create();
+            TrafficSystem.Create(2);
 
             var spawn = FindFirstObjectByType<PlayerSpawn>();
             Vector3 p = spawn ? spawn.transform.position : Vector3.up;
