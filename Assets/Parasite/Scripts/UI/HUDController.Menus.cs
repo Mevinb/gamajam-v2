@@ -74,9 +74,46 @@ namespace Parasite.UI
             var foot = UIKit.Txt(panel.transform, "Foot", "Esc  resume", 17, UIKit.TextDim, TextAnchor.MiddleCenter);
             foot.rectTransform.Place(new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 14), new Vector2(W, 24));
 
+            BuildJournal(pauseRoot, W);
             pauseControls = UIKit.ControlsOverlay(pauseRoot, CloseControls, out pauseControlsBack);
             pauseRoot.gameObject.SetActive(false);
             pauseGroup.alpha = 0f;
+        }
+
+        Text journalText;
+
+        void BuildJournal(Transform p, float pauseW)
+        {
+            var panel = UIKit.Panel(p, "Journal", 14, UIKit.PanelBgLight, UIKit.AccentFaint);
+            panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(pauseW * 0.5f + 24f, 0), new Vector2(520, 640));
+            var head = UIKit.Txt(panel.transform, "Head", "MISSION JOURNAL", 24, UIKit.Accent, TextAnchor.MiddleLeft, Weight.Bold);
+            head.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -22), new Vector2(460, 34));
+            journalText = UIKit.Txt(panel.transform, "Body", "", 19, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium);
+            journalText.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -66), new Vector2(464, 560));
+        }
+
+        void RefreshJournal()
+        {
+            if (!journalText) return;
+            var mm = Missions.MissionManager.Instance;
+            if (!mm || mm.Missions == null) { journalText.text = ""; return; }
+            var sb = new System.Text.StringBuilder();
+            for (int i = 0; i < mm.Missions.Count; i++)
+            {
+                var m = mm.Missions[i];
+                bool done = i < RunState.MissionIndex, cur = i == RunState.MissionIndex;
+                string col = done ? "#6f9a80" : cur ? "#5cff85" : "#55665d";
+                sb.Append($"<color={col}><b>{i + 1}. {m.title}</b>{(done ? "  — complete" : cur ? "  — current" : "")}</color>\n");
+                if (cur)
+                {
+                    sb.Append($"<color=#a8c4b4><i>{m.briefing}</i></color>\n");
+                    foreach (var o in m.objectives)
+                        sb.Append(o.IsDone ? $"<color=#6f9a80>  + {o.text}</color>\n" : $"  › {o.text}\n");
+                }
+                sb.Append('\n');
+            }
+            sb.Append($"<color=#a8c4b4>Hosts possessed: {RunState.HostsPossessed}   ·   Captures: {RunState.Captures}   ·   Time: {(int)(RunState.PlayTime / 60)}:{(int)(RunState.PlayTime % 60):00}</color>");
+            journalText.text = UIKit.Clean(sb.ToString());
         }
 
         void OnSensChanged(float v)
@@ -87,6 +124,7 @@ namespace Parasite.UI
 
         void OnPause(bool paused)
         {
+            if (paused) RefreshJournal();
             if (endOpen) return;
             pauseOpen = paused;
             if (paused)

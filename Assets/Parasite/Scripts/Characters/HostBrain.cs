@@ -67,7 +67,17 @@ namespace Parasite.Characters
             noticePoint = point;
             noticeT = Mathf.Max(noticeT, seconds);
             SetIcon(icon, seconds);
+            if (icon == '!' && host && host.Profession != Profession.Guard && fleeT <= 0f && NavReady)
+            {
+                Vector3 away = transform.position - point; away.y = 0;
+                if (away.sqrMagnitude < 0.01f) away = -transform.forward;
+                var dest = transform.position + away.normalized * 9f;
+                if (NavMesh.SamplePosition(dest, out var hit, 4f, NavMesh.AllAreas)) { fleeDest = hit.position; fleeT = 3.5f; noticeT = 0f; }
+            }
         }
+
+        float fleeT;
+        Vector3 fleeDest;
 
         protected void SetIcon(char c, float seconds)
         {
@@ -84,6 +94,14 @@ namespace Parasite.Characters
         public virtual void Tick(float dt)
         {
             if (alertIconT > 0f) { alertIconT -= dt; if (alertIconT <= 0f) AlertIcon = ' '; }
+            if (fleeT > 0f)
+            {
+                fleeT -= dt;
+                GoTo(fleeDest, host.Profile.runSpeed);
+                host.Rig.LookAt(null);
+                if (fleeT <= 0f) { noticeT = 1.5f; }
+                return;
+            }
             if (noticeT > 0f)
             {
                 noticeT -= dt;
