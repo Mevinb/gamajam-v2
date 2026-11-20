@@ -22,6 +22,11 @@ namespace Parasite.Missions
         public bool startsOpen;
         public Transform interactPoint;
         public float range = 2.6f;
+        [Tooltip("Mission flag that must be set before this door works (e.g. tunnel power).")]
+        public string requiredFlag = "";
+        public string requiredFlagReason = "";
+        [Tooltip("Mission flag set when the door opens.")]
+        public string openedFlag = "";
 
         public bool IsOpen { get; private set; }
         public bool Unlocked { get; private set; }
@@ -73,7 +78,7 @@ namespace Parasite.Missions
 
         public string GetPrompt(in InteractContext ctx)
         {
-            if (terminalControlled && !Unlocked) return $"{doorName} — locked (staff terminal)";
+            if (terminalControlled && !Unlocked) return $"{doorName} — locked";
             if (required == AccessPermission.None) return $"Open {doorName}";
             return $"Use access — {doorName}";
         }
@@ -82,7 +87,7 @@ namespace Parasite.Missions
         {
             deniedReason = null;
             if (ctx.IsBlob) { deniedReason = "You can't work a door as a blob. Possess someone."; return false; }
-            if (terminalControlled && !Unlocked) { deniedReason = "Locked. Unlock it from the Staff Terminal."; return false; }
+            if (terminalControlled && !Unlocked) { deniedReason = string.IsNullOrEmpty(requiredFlagReason) ? "Locked. Unlock it from the Staff Terminal." : requiredFlagReason; return false; }
             if (!AccessRules.Has(ctx.permissions, required))
             {
                 deniedReason = required switch
@@ -94,6 +99,7 @@ namespace Parasite.Missions
                 };
                 return false;
             }
+            if (!string.IsNullOrEmpty(requiredFlag) && !RunState.Has(requiredFlag)) { deniedReason = requiredFlagReason; return false; }
             return true;
         }
 
@@ -104,7 +110,8 @@ namespace Parasite.Missions
                 GameEvents.RaiseToast(reason, Palette.Danger);
                 Sfx.Play(SfxId.Denied, InteractPoint);
                 // Only a host tripping a real lock is suspicious; blob pawing at a door is not a violation.
-                if (!ctx.IsBlob && !(terminalControlled && !Unlocked))
+                bool softLock = (terminalControlled && !Unlocked) || (!string.IsNullOrEmpty(requiredFlag) && !RunState.Has(requiredFlag));
+                if (!ctx.IsBlob && !softLock)
                     SuspicionSystem.Instance?.ReportViolation(ViolationType.UnauthorizedAccess, InteractPoint, ctx.host);
                 return;
             }
@@ -118,6 +125,7 @@ namespace Parasite.Missions
         {
             if (IsOpen) return;
             IsOpen = true;
+            if (!string.IsNullOrEmpty(openedFlag)) MissionManager.SetFlag(openedFlag);
             Sfx.Play(SfxId.DoorOpen, InteractPoint);
             GameEvents.RaiseToast($"{doorName} opened", Palette.Info);
         }

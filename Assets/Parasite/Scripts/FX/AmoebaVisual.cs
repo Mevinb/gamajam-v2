@@ -305,13 +305,13 @@ namespace Parasite.FX
             if (captured)
             {
                 capturedT += dt;
-                e = Palette.Danger * (0.3f + 0.6f * Mathf.Abs(Mathf.Sin(t * 9f)) + Mathf.Max(0f, 1f - capturedT * 3f));
+                e = Palette.Danger * (0.08f + 0.2f * Mathf.Abs(Mathf.Sin(t * 9f)) + 0.4f * Mathf.Max(0f, 1f - capturedT * 3f));
             }
-            else if (possessed) e = Palette.Amoeba * (0.32f + 0.08f * Mathf.Sin(t * 3.2f));
-            else if (unconscious && unconsciousT > 0f) e = Palette.Amoeba * (0.16f * (unconsciousT / UnconsciousSeconds) * (0.75f + 0.25f * Mathf.Sin(t * 2f)));
+            else if (possessed) e = Palette.Amoeba * (0.035f + 0.03f * Mathf.Max(0f, Mathf.Sin(t * 3.2f)));
+            else if (unconscious && unconsciousT > 0f) e = Palette.Amoeba * (0.04f * (unconsciousT / UnconsciousSeconds) * (0.75f + 0.25f * Mathf.Sin(t * 2f)));
 
             targetFade = Mathf.MoveTowards(targetFade, targeted ? 1f : 0f, dt * 5f);
-            if (targetFade > 0f) e += Palette.Amoeba * (0.2f + 0.12f * Mathf.Sin(t * 6f)) * targetFade;
+            if (targetFade > 0f) e += Palette.Amoeba * (0.06f + 0.04f * Mathf.Sin(t * 6f)) * targetFade;
             Apply(e, false);
             AnimateIndicator(t);
         }

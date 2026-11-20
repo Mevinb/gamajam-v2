@@ -11,6 +11,8 @@ namespace Parasite.Missions
         public AccessDoor linkedDoor;
         public Renderer screen;
         public float range = 2.4f;
+        public string requiredFlag = "";
+        public string requiredFlagReason = "";
         public bool Used { get; private set; }
 
         public Vector3 InteractPoint => transform.position + Vector3.up * 1.2f;
@@ -38,6 +40,7 @@ namespace Parasite.Missions
             if (ctx.IsBlob) { deniedReason = "No fingers. Possess a scientist to log in."; return false; }
             if (!AccessRules.Has(ctx.permissions, AccessPermission.StaffTerminal))
             { deniedReason = "LOGIN FAILED — staff credentials required (Scientist)."; return false; }
+            if (!string.IsNullOrEmpty(requiredFlag) && !RunState.Has(requiredFlag)) { deniedReason = requiredFlagReason; return false; }
             return true;
         }
 
@@ -47,7 +50,7 @@ namespace Parasite.Missions
             {
                 GameEvents.RaiseToast(reason, Palette.Danger);
                 Sfx.Play(SfxId.Denied, InteractPoint);
-                if (!ctx.IsBlob) SuspicionSystem.Instance?.ReportViolation(ViolationType.UnauthorizedAccess, InteractPoint, ctx.host);
+                if (!ctx.IsBlob && AccessRules.Has(ctx.permissions, AccessPermission.StaffTerminal) == false) SuspicionSystem.Instance?.ReportViolation(ViolationType.UnauthorizedAccess, InteractPoint, ctx.host);
                 return;
             }
             Used = true;

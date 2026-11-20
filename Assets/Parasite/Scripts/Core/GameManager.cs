@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,12 +20,16 @@ namespace Parasite
         public static float PeakSuspicion;
         public static int Captures;
         public static int Resets;
+        public static readonly HashSet<string> Flags = new();
+        public static int MissionIndex;
+        public static bool Has(string flag) => Flags.Contains(flag);
 
         public static void NewGame()
         {
             HasCheckpoint = false; CheckpointPosition = Vector3.zero; CheckpointName = "";
             Route = EntryRoute.None; LabEntered = false; PlayTime = 0; HostsPossessed = 0;
             PeakSuspicion = 0; Captures = 0; Resets = 0;
+            Flags.Clear(); MissionIndex = 0;
         }
     }
 

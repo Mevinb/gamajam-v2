@@ -242,6 +242,7 @@ namespace Parasite.UI
             Project(cam, targetMarker);
             for (int i = 0; i < alertUsed; i++) Project(cam, alertPool[i]);
             for (int i = 0; i < sleepUsed; i++) Project(cam, sleepPool[i]);
+            ProjectWaypoints(cam);
         }
 
         void Project(Camera cam, Marker m)

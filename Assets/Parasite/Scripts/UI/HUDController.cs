@@ -62,6 +62,7 @@ namespace Parasite.UI
             BuildPrompt(g);
             BuildToasts(g);
             BuildControlsCard(g);
+            BuildMissionUI(g, root);
 
             BuildSubtitles(root);
             BuildFps(root);
@@ -95,6 +96,7 @@ namespace Parasite.UI
             GameEvents.PossessionSplash -= OnSplash;
             GameEvents.Captured -= OnCaptured;
             Canvas.willRenderCanvases -= ProjectWorldMarkers;
+            CleanupMissionUI();
             if (Instance == this) Instance = null;
         }
 
@@ -131,6 +133,7 @@ namespace Parasite.UI
             TickFps(dt);
             TickReset(dt);
             TickMenus(dt);
+            TickMission(dt);
         }
 
         void LateUpdate() => UpdateWorldMarkers();
@@ -237,7 +240,7 @@ namespace Parasite.UI
 
         void BuildObjective(Transform p)
         {
-            objRoot = UIKit.Rect("Objective", p).Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -24), new Vector2(480, 110));
+            objRoot = UIKit.Rect("Objective", p).Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -24), new Vector2(540, 110));
             objGroup = objRoot.gameObject.AddComponent<CanvasGroup>();
             objGroup.alpha = 0f;
             var panel = UIKit.Panel(objRoot, "Panel", 10);
@@ -251,8 +254,8 @@ namespace Parasite.UI
             bar.rectTransform.offsetMin = new Vector2(12, 16); bar.rectTransform.offsetMax = new Vector2(16, -16);
             var head = UIKit.Txt(panel.transform, "Header", "OBJECTIVE", 18, UIKit.Accent, TextAnchor.MiddleLeft, Weight.Bold);
             head.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(30, -12), new Vector2(300, 24));
-            objText = UIKit.Txt(panel.transform, "Text", "", 23, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium);
-            objText.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(30, -40), new Vector2(426, 60));
+            objText = UIKit.Txt(panel.transform, "Text", "", 20, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium);
+            objText.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(30, -40), new Vector2(490, 60));
         }
 
         void SetObjective(string text)
@@ -262,8 +265,8 @@ namespace Parasite.UI
             objLast = text;
             objText.text = text;
             float h = Mathf.Max(28f, objText.preferredHeight);
-            objText.rectTransform.sizeDelta = new Vector2(426, h);
-            objRoot.sizeDelta = new Vector2(480, 40 + h + 18);
+            objText.rectTransform.sizeDelta = new Vector2(490, h);
+            objRoot.sizeDelta = new Vector2(540, 40 + h + 18);
             objFlashT = text.Length > 0 ? 1f : 0f;
         }
 

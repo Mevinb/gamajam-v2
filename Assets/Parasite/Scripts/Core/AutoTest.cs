@@ -79,10 +79,11 @@ namespace Parasite.Testing
                 ("03 Q release: host unconscious 8 s then recovers", ScenarioRelease),
                 ("04 V split max two, Tab switch, inactive stays put", ScenarioSplit),
                 ("05 Civilian denied at restricted doors", ScenarioCivilianDenied),
-                ("06 Route A: guard badge → Main Gate → lab → Dr. Vale", () => ScenarioRoute(EntryRoute.MainGate)),
-                ("07 Route B: scientist → Staff Terminal → lab → Dr. Vale", () => ScenarioRoute(EntryRoute.StaffTerminal)),
-                ("08 Route C: maintenance → Service Tunnel → lab → Dr. Vale", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
+                ("06 Route A: guard badge → Main Gate → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.MainGate)),
+                ("07 Route B: scientist + keycard → Staff Terminal → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.StaffTerminal)),
+                ("08 Route C: maintenance + substation → Service Tunnel → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
                 ("09 Suspicion only from observed violations; decays", ScenarioSuspicion),
+                ("12 Missions 1-2: alley exit, first host, newsstand, eavesdrop", ScenarioEarlyMissions),
                 ("10 Guard pursues + captures; amoeba ejects and survives", ScenarioCapture),
                 ("11 Pause + restart", ScenarioPauseRestart),
             };
@@ -396,6 +397,101 @@ namespace Parasite.Testing
             return NavMesh.CalculatePath(ha.position, hb.position, NavMesh.AllAreas, p) && p.status == NavMeshPathStatus.PathComplete;
         }
 
+        static MissionProp PropFor(string flag) => FindObjectsByType<MissionProp>(FindObjectsSortMode.None).FirstOrDefault(p => p.flag == flag);
+
+        /// <summary>Teleport the active host in front of a mission prop, aim, press E and wait.</summary>
+        static IEnumerator UseProp(string flag, float wait)
+        {
+            var prop = PropFor(flag);
+            Check(prop != null, $"mission prop '{flag}' exists");
+            if (!prop) yield break;
+            Vector3 ip = prop.InteractPoint;
+            Vector3 stand = new(ip.x, ip.y - 1.2f, ip.z);
+            Vector3 back = Flat(stand - prop.transform.position);
+            if (back.sqrMagnitude > 0.01f) stand += back.normalized * 0.35f;
+            if (NavMesh.SamplePosition(stand, out var nh, 1.5f, NavMesh.AllAreas)) stand = nh.position;
+            TeleportBody(PM.ActiveBody, stand, 0);
+            Calm();
+            yield return AimSettle(ip);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Interact && tg.interactable == (IInteractable)prop && tg.allowed, $"{prop.displayName}: prompt '{tg.prompt}'");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+            for (float t = 0; t < wait + 1f && !RunState.Has(flag); t += Time.deltaTime) yield return null;
+            Check(RunState.Has(flag), $"{prop.displayName} done");
+        }
+
+        /// <summary>Split, put the second amoeba in another staff host, badge both readers within the window.</summary>
+        static IEnumerator DualAuth()
+        {
+            var readers = FindObjectsByType<DualAuthReader>(FindObjectsSortMode.None).OrderBy(r => r.readerName).ToArray();
+            Check(readers.Length == 2, "two readers exist");
+            if (!current.pass) yield break;
+            // one host can't do both
+            yield return UseReader(readers[0]);
+            yield return UseReaderExpectDenied(readers[1]);
+            yield return new WaitForSeconds(readers[0].window + 0.3f);
+            int first = PM.ActiveIndex;
+            yield return Press(() => GameInput.SimSplit = true, () => GameInput.SimSplit = false);
+            Check(PM.Agents.Count == 2, "split for the second badge");
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            var second = NearestHost(CityLayout.LabCorridor, h => h.CanBePossessed && AccessRules.Has(h.Permissions, AccessPermission.LabInterior));
+            Check(second != null, "second staff host available in the lab");
+            if (!current.pass) yield break;
+            PM.ForcePossessImmediate(second);
+            yield return UseReader(readers[1]);
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            Check(PM.ActiveIndex == first, "switched back to the first amoeba");
+            yield return UseReader(readers[0]);
+            for (float t = 0; t < 1.5f && !RunState.Has(MissionFlags.OfficeOpen); t += Time.deltaTime) yield return null;
+        }
+
+        static IEnumerator UseReader(DualAuthReader r)
+        {
+            Vector3 stand = new(r.transform.position.x, CityLayout.LabFloor, r.transform.position.z - 1.1f);
+            TeleportBody(PM.ActiveBody, stand, 0);
+            Calm();
+            yield return AimSettle(r.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Interact && tg.interactable == (IInteractable)r && tg.allowed, $"{r.readerName}: '{tg.prompt}'");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+        }
+
+        static IEnumerator UseReaderExpectDenied(DualAuthReader r)
+        {
+            Vector3 stand = new(r.transform.position.x, CityLayout.LabFloor, r.transform.position.z - 1.1f);
+            TeleportBody(PM.ActiveBody, stand, 0);
+            yield return AimSettle(r.InteractPoint);
+            var ctx = new InteractContext { agent = PM.Active, host = PM.Active.Host, permissions = PM.Active.Host.Permissions, position = stand };
+            Check(!r.CanInteract(ctx, out var why), $"same amoeba can't badge both readers ({why})");
+        }
+
+        // ---------------------------------------------------------------- 12
+        static IEnumerator ScenarioEarlyMissions()
+        {
+            var mm = MissionManager.Instance;
+            Check(mm != null && RunState.MissionIndex == 0, "campaign starts at mission 1");
+            bool ok = false;
+            yield return WalkTo(CityLayout.AlleyMouth + Vector3.forward * 2f, 40f, r => ok = r);
+            yield return null;
+            Check(RunState.Has(MissionFlags.AlleyExit), "left the storm-drain alley");
+            var civ = NearestHost(PM.Active.Position, h => h.CanBePossessed && h.Profession == Profession.Civilian);
+            PM.ForcePossessImmediate(civ);
+            yield return null; yield return null;
+            Check(RunState.MissionIndex == 1, $"mission 1 complete → mission {RunState.MissionIndex + 1}");
+            Check(mm.Waypoints.Count >= 1, $"waypoints shown ({mm.Waypoints.Count})");
+            yield return UseProp(MissionFlags.NewsRead, 3f);
+            var cafe = CityLayout.CafeSpot + new Vector3(2.2f, 0, 0);
+            if (NavMesh.SamplePosition(cafe, out var nh, 2f, NavMesh.AllAreas)) cafe = nh.position;
+            TeleportBody(PM.ActiveBody, cafe, 0);
+            Calm();
+            for (float t = 0; t < 14f && !RunState.Has(MissionFlags.Eavesdropped); t += Time.deltaTime) { Calm(); yield return null; }
+            Check(RunState.Has(MissionFlags.Eavesdropped), "eavesdropped on Dr. Petrov");
+            yield return null;
+            Check(RunState.MissionIndex == 2, $"alley exit, first host, newsstand read, eavesdrop done → now mission {RunState.MissionIndex + 1}/5 ({mm.Current?.title})");
+        }
+
         // ---------------------------------------------------------------- 05
         static IEnumerator ScenarioCivilianDenied()
         {
@@ -437,6 +533,9 @@ namespace Parasite.Testing
             Check(host != null, $"{prof} available");
             if (!host) yield break;
             PM.ForcePossessImmediate(host);
+            if (route == EntryRoute.StaffTerminal) { yield return UseProp(MissionFlags.Keycard, 0.3f); Check(RunState.Has(MissionFlags.Keycard), "keycard taken"); }
+            if (route == EntryRoute.ServiceTunnel) { yield return UseProp(MissionFlags.Power, 3.6f); Check(RunState.Has(MissionFlags.Power), "substation power restored"); }
+            if (!current.pass) yield break;
             TeleportBody(PM.ActiveBody, outside, 0);
             yield return new WaitForSeconds(0.3f);
             IInteractable it = route == EntryRoute.StaffTerminal ? FindFirstObjectByType<StaffTerminal>() : door;
@@ -454,6 +553,16 @@ namespace Parasite.Testing
             bool reached = false;
             for (float t = 0; t < 2f && !reached; t += Time.deltaTime) { reached = RunState.LabEntered; yield return null; }
             Check(RunState.LabEntered, "lab entered (LabInteriorZone)");
+            Calm();
+            Check(!PathComplete(CityLayout.LabCorridor, CityLayout.ValeOffice), "office door closed (two-person rule)");
+            yield return UseProp(MissionFlags.DataA, 4.6f);
+            yield return UseProp(MissionFlags.DataB, 4.6f);
+            Check(RunState.Has(MissionFlags.Research), "research downloaded from Lab A + Lab B");
+            if (!current.pass) yield break;
+            yield return DualAuth();
+            Check(RunState.Has(MissionFlags.OfficeOpen), "two-person rule satisfied with a split amoeba");
+            if (!current.pass) yield break;
+            yield return new WaitForSeconds(1.2f);
             Calm();
             yield return WalkTo(CityLayout.ValeOffice, 60f, r => ok = r, 0.6f);
             Check(ok, "walked to Dr. Vale's office");
