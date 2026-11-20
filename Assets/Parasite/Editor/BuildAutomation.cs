@@ -17,24 +17,29 @@ namespace Parasite.EditorTools
         };
 
         [MenuItem("Parasite/Build/Linux x86-64")]
-        public static void BuildLinux()
+        public static void BuildLinux() => Build(BuildTarget.StandaloneLinux64, "Linux", "Parasite.x86_64");
+
+        [MenuItem("Parasite/Build/Windows x64")]
+        public static void BuildWindows() => Build(BuildTarget.StandaloneWindows64, "Windows", "Parasite.exe");
+
+        static void Build(BuildTarget target, string folder, string exe)
         {
-            string outDir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Builds", "Linux"));
+            string outDir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Builds", folder));
             Directory.CreateDirectory(outDir);
             var scenes = Scenes.Where(File.Exists).ToArray();
             if (scenes.Length == 0) { Fail("No scenes found — run Parasite/Setup/Build Scenes first."); return; }
-            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneLinux64);
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, target);
             var opts = new BuildPlayerOptions
             {
                 scenes = scenes,
-                locationPathName = Path.Combine(outDir, "Parasite.x86_64"),
-                target = BuildTarget.StandaloneLinux64,
+                locationPathName = Path.Combine(outDir, exe),
+                target = target,
                 targetGroup = BuildTargetGroup.Standalone,
                 options = BuildOptions.None,
             };
             var report = BuildPipeline.BuildPlayer(opts);
             var s = report.summary;
-            Debug.Log($"[Parasite] Build result: {s.result}, size {s.totalSize / (1024 * 1024)} MB, time {s.totalTime}, errors {s.totalErrors}, warnings {s.totalWarnings}");
+            Debug.Log($"[Parasite] {folder} build result: {s.result}, size {s.totalSize / (1024 * 1024)} MB, time {s.totalTime}, errors {s.totalErrors}, warnings {s.totalWarnings}");
             foreach (var step in report.steps)
                 foreach (var msg in step.messages)
                     if (msg.type is LogType.Error or LogType.Exception) Debug.LogError($"[Parasite][BuildError] {msg.content}");
