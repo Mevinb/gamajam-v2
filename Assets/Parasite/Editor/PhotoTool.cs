@@ -40,7 +40,25 @@ namespace Parasite.EditorTools
             var args = System.Environment.GetCommandLineArgs();
             int fi = System.Array.IndexOf(args, "-photoFilter");
             string filter = fi >= 0 && fi + 1 < args.Length ? args[fi + 1] : null;
-            EditorSceneManager.OpenScene(CityBuilder.CityPath, OpenSceneMode.Single);
+            var scene = EditorSceneManager.OpenScene(CityBuilder.CityPath, OpenSceneMode.Single);
+            int missing = 0, meshCount = 0;
+            long triangles = 0;
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                    missing += GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(t.gameObject);
+                foreach (var mf in root.GetComponentsInChildren<MeshFilter>(true))
+                {
+                    if (!mf.sharedMesh) continue;
+                    meshCount++;
+                    for (int s = 0; s < mf.sharedMesh.subMeshCount; s++)
+                        triangles += mf.sharedMesh.GetIndexCount(s) / 3;
+                }
+            }
+            Debug.Log($"[Parasite] Photo audit: {meshCount} mesh instances, {triangles} triangles, {missing} missing scripts; " +
+                      $"quality {QualitySettings.names[QualitySettings.GetQualityLevel()]}, " +
+                      $"GPU {SystemInfo.graphicsDeviceName}, pipeline {GraphicsSettings.currentRenderPipeline}.");
+            if (missing != 0) throw new System.InvalidOperationException($"City scene has {missing} missing scripts; regenerate the scenes before capturing.");
             string dir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "photos"));
             Directory.CreateDirectory(dir);
             foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsSortMode.None)) c.enabled = false;

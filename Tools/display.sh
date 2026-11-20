@@ -1,6 +1,9 @@
 #!/bin/bash
 # Source this from launchers. Remote agent shells may lack the desktop's Xwayland environment.
 # Preserve explicitly supplied display/auth settings, including Xvfb sessions.
+if [[ -z "${XDG_RUNTIME_DIR:-}" && -d "/run/user/$(id -u)" ]]; then
+  export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+fi
 if [[ -z "${DISPLAY:-}" && -S /tmp/.X11-unix/X0 ]]; then
   export DISPLAY=:0
 fi

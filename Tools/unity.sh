@@ -11,4 +11,4 @@ name=$1
 shift
 mkdir -p "$P/Logs"
 source "$P/Tools/display.sh"
-exec flock /tmp/parasite-unity.lock "$HOME/Data/Unity/Editor/6000.3.29f1/Editor/Unity" -batchmode -projectPath "$P" -logFile "$P/Logs/$name.log" "$@"
+exec flock --no-fork /tmp/parasite-unity.lock "$HOME/Data/Unity/Editor/6000.3.29f1/Editor/Unity" -batchmode -projectPath "$P" -logFile "$P/Logs/$name.log" "$@"

@@ -312,8 +312,14 @@ namespace Parasite.EditorTools
             k.BoxMM(M("BrickDark"), -36f, -30f, 0f, 6.5f, -88.5f, -87.5f);
             k.BoxMM(M("Curb"), -36f, -30f, 6.5f, 6.75f, -88.7f, -87.3f, false);
             var drain = L.StormDrain;
-            k.Box(M("MetalDark"), drain + Vector3.up * 0.008f, new Vector3(1.4f, 0.016f, 0.9f));
-            for (float x = -0.55f; x <= 0.56f; x += 0.22f) k.Box(M("Tire"), drain + new Vector3(x, 0.017f, 0f), new Vector3(0.1f, 0.004f, 0.7f));
+            // Flush cast-iron grille: dark slots over the paving, with a thin matte frame and bars.
+            k.Box(M("Tire"), drain + Vector3.up * 0.001f, new Vector3(1.4f, 0.002f, 0.9f));
+            foreach (float z in new[] { -0.41f, 0.41f })
+                k.Box(M("DrainIron"), drain + new Vector3(0f, 0.003f, z), new Vector3(1.4f, 0.006f, 0.08f));
+            foreach (float x in new[] { -0.66f, 0.66f })
+                k.Box(M("DrainIron"), drain + new Vector3(x, 0.003f, 0f), new Vector3(0.08f, 0.006f, 0.74f));
+            for (float x = -0.55f; x <= 0.56f; x += 0.22f)
+                k.Box(M("DrainIron"), drain + new Vector3(x, 0.003f, 0f), new Vector3(0.055f, 0.006f, 0.74f));
             CityProps.Puddle(k, new Vector3(-32.1f, GY, -79f), 2.2f, 1.6f, 20f);
             CityProps.Puddle(k, new Vector3(-34f, GY, -64f), 1.6f, 2.6f, 75f);
             CityProps.Puddle(k, new Vector3(-33f, GY, -85.8f), 3f, 1.6f, 0f);

@@ -13,8 +13,9 @@ namespace Parasite.EditorTools
     /// </summary>
     internal sealed class WorldKit
     {
+        // Both GI modes are disabled: ContributeGI would still send every mesh/material through the light baker.
         public const StaticEditorFlags StaticFlags = StaticEditorFlags.BatchingStatic | StaticEditorFlags.OccluderStatic |
-                                                     StaticEditorFlags.OccludeeStatic | StaticEditorFlags.ContributeGI |
+                                                     StaticEditorFlags.OccludeeStatic |
                                                      StaticEditorFlags.ReflectionProbeStatic;
         const float Cell = 48f;
 
@@ -27,6 +28,7 @@ namespace Parasite.EditorTools
 
         readonly Dictionary<(Transform, Material, int, int), Batch> batches = new();
         readonly Dictionary<Transform, Transform> colliderRoots = new();
+        readonly Dictionary<string, (int instances, int triangles)> propCosts = new();
         readonly Mesh cylinder, sphere;
         public Transform Root;
         public readonly System.Random Rng;
@@ -123,6 +125,111 @@ namespace Parasite.EditorTools
             foreach (var t in src.triangles) b.t.Add(i0 + t);
         }
 
+        /// <summary>Single-sided quad facing <paramref name="normal"/>, explicit UVs at the 4 corners (bl, br, tr, tl).</summary>
+        public void Quad(Material m, Vector3 center, Vector3 right, Vector3 up, Vector2 uv0, Vector2 uv1)
+        {
+            var b = Get(m, center);
+            int i0 = b.v.Count;
+            var n = Vector3.Cross(up, right).normalized; // right x up points away from the viewer -> normal = up x right
+            Vector3[] p = { center - right - up, center + right - up, center + right + up, center - right + up };
+            Vector2[] uv = { uv0, new Vector2(uv1.x, uv0.y), uv1, new Vector2(uv0.x, uv1.y) };
+            for (int k = 0; k < 4; k++) { b.v.Add(p[k]); b.n.Add(n); b.uv.Add(uv[k]); }
+            b.t.AddRange(new[] { i0, i0 + 2, i0 + 1, i0, i0 + 3, i0 + 2 });
+        }
+
+        /// <summary>Foliage card: like Quad, but vertex normals point away from the crown centre (soft, volumetric shading).</summary>
+        public void LeafQuad(Material m, Vector3 center, Vector3 right, Vector3 up, Vector3 crown)
+        {
+            var b = Get(m, crown);
+            int i0 = b.v.Count;
+            Vector3[] p = { center - right - up, center + right - up, center + right + up, center - right + up };
+            Vector2[] uv = { new(0, 0), new(1, 0), new(1, 1), new(0, 1) };
+            for (int k = 0; k < 4; k++)
+            {
+                var n = (p[k] - crown); n.y *= 0.6f; n += Vector3.up * n.magnitude * 0.35f;
+                b.v.Add(p[k]); b.n.Add(n.normalized); b.uv.Add(uv[k]);
+            }
+            b.t.AddRange(new[] { i0, i0 + 2, i0 + 1, i0, i0 + 3, i0 + 2 });
+        }
+
+        /// <summary>Quad in a wall plane: origin = start of the wall at y = 0, dir = along the wall, normal = outward.
+        /// UV u = u0 + s * uPerM (s along dir), v = v0 + (y - y0) * vPerM.</summary>
+        public void WallQuad(Material m, Vector3 origin, Vector3 dir, Vector3 normal, float s0, float s1, float y0, float y1,
+            float u0, float uPerM, float v0, float vPerM, float offset = 0f)
+        {
+            var b = Get(m, origin + dir * ((s0 + s1) * 0.5f));
+            int i0 = b.v.Count;
+            Vector3 P(float s, float y) => origin + dir * s + Vector3.up * y + normal * offset;
+            b.v.Add(P(s0, y0)); b.v.Add(P(s1, y0)); b.v.Add(P(s1, y1)); b.v.Add(P(s0, y1));
+            for (int k = 0; k < 4; k++) b.n.Add(normal);
+            float ua = u0, ub = u0 + (s1 - s0) * uPerM, va = v0, vb = v0 + (y1 - y0) * vPerM;
+            b.uv.Add(new Vector2(ua, va)); b.uv.Add(new Vector2(ub, va)); b.uv.Add(new Vector2(ub, vb)); b.uv.Add(new Vector2(ua, vb));
+            // front face = normal side: winding chosen so Cross(dir, up) relation holds for either orientation
+            bool ccw = Vector3.Dot(Vector3.Cross(dir, Vector3.up), normal) > 0f;
+            if (ccw) b.t.AddRange(new[] { i0, i0 + 1, i0 + 2, i0, i0 + 2, i0 + 3 });
+            else b.t.AddRange(new[] { i0, i0 + 2, i0 + 1, i0, i0 + 3, i0 + 2 });
+        }
+
+        /// <summary>Horizontal quad (decal on a floor) centred at c, size x/z, rotated by yaw, UV rect.</summary>
+        public void FloorQuad(Material m, Vector3 c, float sx, float sz, float yaw, Rect uv)
+        {
+            var q = Quaternion.Euler(0f, yaw, 0f);
+            Quad(m, c, q * Vector3.right * (sx * 0.5f), q * Vector3.forward * (sz * 0.5f), uv.min, uv.max);
+        }
+
+        /// <summary>Multi-material mesh (one material per submesh) merged into the cell batches.</summary>
+        public void Mesh(Material[] ms, Mesh src, Matrix4x4 trs, int lod = 0)
+        {
+            lod = Mathf.Clamp(lod, 0, Mathf.Max(0, src.lodCount - 1));
+            var verts = src.vertices; var norms = src.normals; var uvs = src.uv;
+            var nm = trs.inverse.transpose;
+            for (int s = 0; s < src.subMeshCount && s < ms.Length; s++)
+            {
+                var b = Get(ms[s], trs.GetColumn(3));
+                var tris = src.lodCount > 1 ? src.GetTriangles(s, lod, true) : src.GetTriangles(s);
+                var map = new Dictionary<int, int>();
+                foreach (var t in tris)
+                {
+                    if (!map.TryGetValue(t, out int ni))
+                    {
+                        ni = b.v.Count; map[t] = ni;
+                        b.v.Add(trs.MultiplyPoint3x4(verts[t]));
+                        b.n.Add(t < norms.Length ? nm.MultiplyVector(norms[t]).normalized : Vector3.up);
+                        b.uv.Add(t < uvs.Length ? uvs[t] : Vector2.zero);
+                    }
+                    b.t.Add(ni);
+                }
+            }
+        }
+
+        /// <summary>Place a Poly Haven prop: base centre at p, yaw, uniform scale. Returns its world bounds (or null if missing).</summary>
+        public Bounds? Prop(string id, Vector3 p, float yaw = 0f, float scale = 1f, bool solid = false, float solidShrink = 0.9f) =>
+            Prop(id, p, Vector3.one * scale, yaw, solid, solidShrink);
+
+        /// <summary>Place a prop with independent axis scales (for dressing that must match an existing collider footprint).</summary>
+        public Bounds? Prop(string id, Vector3 p, Vector3 scale, float yaw = 0f, bool solid = false, float solidShrink = 0.9f)
+        {
+            var pm = CityAssets.Prop(id);
+            if (pm == null) return null;
+            var b0 = pm.Bounds;
+            var q = Quaternion.Euler(0f, yaw, 0f);
+            // model base centre -> p
+            var pivot = new Vector3(b0.center.x, b0.min.y, b0.center.z);
+            var trs = Matrix4x4.TRS(p, q, scale) * Matrix4x4.Translate(-pivot);
+            foreach (var (mesh, local, mats) in pm.Parts) Mesh(mats, mesh, trs * local, pm.Lod);
+            PropTriangles += pm.Triangles;
+            propCosts.TryGetValue(id, out var cost);
+            propCosts[id] = (cost.instances + 1, cost.triangles + pm.Triangles);
+            var size = Vector3.Scale(b0.size, scale);
+            float cos = Mathf.Abs(Mathf.Cos(yaw * Mathf.Deg2Rad)), sin = Mathf.Abs(Mathf.Sin(yaw * Mathf.Deg2Rad));
+            var wsize = new Vector3(size.x * cos + size.z * sin, size.y, size.x * sin + size.z * cos);
+            var wb = new Bounds(p + Vector3.up * size.y * 0.5f, wsize);
+            if (solid) Solid(wb.center, new Vector3(wsize.x * solidShrink, wsize.y, wsize.z * solidShrink));
+            return wb;
+        }
+
+        public int PropTriangles;
+
         /// <summary>Vertical cylinder standing on base.y (or centred if axis given).</summary>
         public void Cylinder(Material m, Vector3 baseCenter, float radius, float height, Quaternion? rot = null)
         {
@@ -210,7 +317,9 @@ namespace Parasite.EditorTools
             tm.alignment = TextAlignment.Center;
             tm.color = color;
             var mr = go.GetComponent<MeshRenderer>();
-            if (CityAssets.Font) mr.sharedMaterial = CityAssets.Font.material;
+            var textMaterial = CityAssets.M("WorldText");
+            mr.sharedMaterial = textMaterial;
+            go.AddComponent<WorldTextFont>().Configure(textMaterial);
             mr.shadowCastingMode = ShadowCastingMode.Off;
             if (label)
             {
@@ -220,10 +329,43 @@ namespace Parasite.EditorTools
             return go;
         }
 
+        static int SignIndex(string text)
+        {
+            var e = SignAtlas.Entries;
+            for (int i = 0; i < e.Length; i++) if (string.Equals(e[i].text, text, System.StringComparison.OrdinalIgnoreCase)) return i;
+            return -1;
+        }
+
+        public static bool HasSign(string text) => SignIndex(text) >= 0;
+
+        /// <summary>Atlas sign quad (text rendered into Signs.mat), front facing -Z rotated by yaw, centred at pos.
+        /// Width is clamped so the text always fits; returns the used size (zero if the text is not in the atlas).</summary>
+        public Vector2 Sign(string text, Vector3 pos, float yaw, float height, float maxWidth)
+        {
+            int i = SignIndex(text);
+            if (i < 0 || !CityAssets.Has("Signs")) return Vector2.zero;
+            var (_, uv, _, fill) = SignAtlas.Entries[i];
+            float full = height * SignAtlas.Aspect;
+            float w = Mathf.Clamp(maxWidth, full * fill, full);
+            if (w > maxWidth + 0.01f) { height = maxWidth / (SignAtlas.Aspect * fill); full = height * SignAtlas.Aspect; w = maxWidth; }
+            float f = w / full;
+            var q = Quaternion.Euler(0f, yaw, 0f);
+            float u0 = uv.x + uv.width * (0.5f - f * 0.5f), u1 = uv.x + uv.width * (0.5f + f * 0.5f);
+            Quad(CityAssets.M("Signs"), pos, q * Vector3.right * (w * 0.5f), Vector3.up * (height * 0.5f), new Vector2(u0, uv.y), new Vector2(u1, uv.yMax));
+            return new Vector2(w, height);
+        }
+
         /// <summary>Dark board with a neon edge and text, facing -Z rotated by yaw. Board centre at pos.</summary>
         public void Board(string text, Vector3 pos, float yaw, float width, float height, Color color, Material neon, Transform textParent = null)
         {
             var q = Quaternion.Euler(0f, yaw, 0f);
+            if (HasSign(text))
+            {
+                var used = Sign(text, pos + q * new Vector3(0f, 0f, -0.065f), yaw, height * 0.92f, width - 0.06f);
+                Box(CityAssets.M("SignBoard"), pos, new Vector3(used.x + 0.08f, used.y + 0.08f, 0.12f), q);
+                Box(neon, pos + q * new Vector3(0f, -used.y * 0.5f - 0.07f, -0.02f), new Vector3(used.x, 0.04f, 0.08f), q);
+                return;
+            }
             Box(CityAssets.M("SignBoard"), pos, new Vector3(width, height, 0.12f), q);
             Box(neon, pos + q * new Vector3(0f, -height * 0.5f - 0.03f, -0.02f), new Vector3(width, 0.05f, 0.1f), q);
             Text(text, pos + q * new Vector3(0f, 0f, -0.08f), yaw, height * 0.62f, color, textParent);
@@ -244,9 +386,11 @@ namespace Parasite.EditorTools
         }
 
         // ------------------------------------------------------------------ flush
+        public int LastTriangles;
+
         public int Flush()
         {
-            int count = 0;
+            int count = 0, tris = 0;
             var geoRoots = new Dictionary<Transform, Transform>();
             foreach (var kv in batches)
             {
@@ -263,6 +407,7 @@ namespace Parasite.EditorTools
                 var mesh = new Mesh { name = $"{root.name}_{m.name}_{cx}_{cz}" };
                 if (b.v.Count > 65000) mesh.indexFormat = IndexFormat.UInt32;
                 mesh.SetVertices(b.v); mesh.SetNormals(b.n); mesh.SetUVs(0, b.uv); mesh.SetTriangles(b.t, 0);
+                tris += b.t.Count / 3;
                 mesh.RecalculateBounds();
                 if (m.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();
                 var go = new GameObject(mesh.name);
@@ -278,6 +423,11 @@ namespace Parasite.EditorTools
                 count++;
             }
             batches.Clear();
+            LastTriangles = tris;
+            foreach (var item in propCosts)
+                Debug.Log($"[Parasite] Prop budget {item.Key}: {item.Value.instances} instances, {item.Value.triangles} triangles.");
+            Debug.Log($"[Parasite] Geometry budget {Root.name}: {count} merged renderers, {tris} triangles, props {PropTriangles}.");
+            propCosts.Clear();
             return count;
         }
     }
