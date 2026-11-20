@@ -68,51 +68,105 @@ namespace Parasite.UI
             pauseGroup.alpha = 0f;
         }
 
-        Text journalText;
+        Text journalProgress, journalStats;
+        ScrollRect journalScroll;
+        readonly List<Text> journalEntries = new();
 
         void BuildJournal(Transform p, float pauseW)
         {
             var panel = UIKit.Panel(p, "Journal", 14, UIKit.PanelBgLight, UIKit.AccentFaint);
             panel.rectTransform.Place(new Vector2(0, 0.5f), new Vector2(0f, 0.5f), new Vector2(pauseW + 24f, 0), new Vector2(520, 640));
             var head = UIKit.Txt(panel.transform, "Head", "MISSION JOURNAL", 24, UIKit.Accent, TextAnchor.MiddleLeft, Weight.Bold);
-            head.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -22), new Vector2(460, 34));
-            journalText = UIKit.Txt(panel.transform, "Body", "", 19, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium);
-            journalText.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -66), new Vector2(464, 560));
+            head.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -22), new Vector2(320, 34));
+            journalProgress = UIKit.Txt(panel.transform, "Progress", "", 22, UIKit.Accent, TextAnchor.MiddleRight, Weight.Bold);
+            journalProgress.rectTransform.Place(new Vector2(1, 1), new Vector2(1, 1), new Vector2(-28, -22), new Vector2(100, 34));
+
+            var scrollRoot = UIKit.Rect("ScrollView", panel.transform).Stretch(28, 82, 24, 74);
+            var viewport = UIKit.Img(scrollRoot, "Viewport", UIKit.White, new Color(0, 0, 0, 0.001f));
+            viewport.raycastTarget = true;
+            viewport.rectTransform.Stretch(0, 0, 24, 0);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            var content = UIKit.Rect("Content", viewport.transform);
+            content.anchorMin = new Vector2(0, 1); content.anchorMax = Vector2.one; content.pivot = new Vector2(0.5f, 1);
+            content.anchoredPosition = Vector2.zero; content.sizeDelta = Vector2.zero;
+
+            var track = UIKit.Img(scrollRoot, "Scrollbar", UIKit.Rounded(4), UIKit.AccentFaint);
+            track.raycastTarget = true;
+            track.rectTransform.anchorMin = new Vector2(1, 0); track.rectTransform.anchorMax = Vector2.one;
+            track.rectTransform.pivot = new Vector2(1, 0.5f); track.rectTransform.sizeDelta = new Vector2(10, 0);
+            var handle = UIKit.Img(track.transform, "Handle", UIKit.Rounded(4), UIKit.AccentSoft);
+            handle.raycastTarget = true; handle.rectTransform.Stretch();
+            var scrollbar = track.gameObject.AddComponent<Scrollbar>();
+            scrollbar.handleRect = handle.rectTransform; scrollbar.targetGraphic = handle;
+            scrollbar.direction = Scrollbar.Direction.BottomToTop;
+            scrollbar.navigation = new Navigation { mode = Navigation.Mode.Explicit, selectOnLeft = btnResume, selectOnUp = btnResume, selectOnDown = btnResume };
+
+            journalScroll = scrollRoot.gameObject.AddComponent<ScrollRect>();
+            journalScroll.viewport = viewport.rectTransform; journalScroll.content = content;
+            journalScroll.horizontal = false; journalScroll.vertical = true;
+            journalScroll.movementType = ScrollRect.MovementType.Clamped;
+            journalScroll.scrollSensitivity = 32f; journalScroll.verticalScrollbar = scrollbar;
+
+            journalStats = UIKit.Txt(panel.transform, "Stats", "", 18, UIKit.TextDim, TextAnchor.MiddleLeft, Weight.Medium);
+            journalStats.rectTransform.Place(new Vector2(0, 0), new Vector2(0, 0), new Vector2(28, 38), new Vector2(464, 30));
+            var hint = UIKit.Txt(panel.transform, "ScrollHint", "Wheel / drag  ·  PgUp/PgDn  ·  Right stick", 16, UIKit.TextDim, TextAnchor.MiddleLeft, Weight.Medium);
+            hint.rectTransform.Place(new Vector2(0, 0), new Vector2(0, 0), new Vector2(28, 12), new Vector2(464, 24));
         }
 
         void RefreshJournal()
         {
-            if (!journalText) return;
+            if (!journalScroll) return;
             var mm = Missions.MissionManager.Instance;
-            if (!mm || mm.Missions == null) { journalText.text = ""; return; }
-            var sb = new System.Text.StringBuilder();
+            if (!mm || mm.Missions == null) return;
+            int active = Mathf.Clamp(RunState.MissionIndex, 0, mm.Missions.Count - 1);
+            journalProgress.text = $"{active + 1:00} / {mm.Missions.Count:00}";
+            float y = 0f, currentTop = 0f;
             for (int i = 0; i < mm.Missions.Count; i++)
             {
+                if (i >= journalEntries.Count)
+                    journalEntries.Add(UIKit.Txt(journalScroll.content, "Mission" + (i + 1), "", 19, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium));
+                var entry = journalEntries[i];
+                entry.gameObject.SetActive(true);
+                entry.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(0, -y), new Vector2(journalScroll.viewport.rect.width - 4f, 30));
                 var m = mm.Missions[i];
                 bool done = i < RunState.MissionIndex, cur = i == RunState.MissionIndex;
-                string col = done ? "#6f9a80" : cur ? "#5cff85" : "#55665d";
-                sb.Append($"<color={col}><b>{i + 1}. {m.title}</b>{(done ? "  — complete" : cur ? "  — current" : "")}</color>\n");
+                if (cur) currentTop = y;
+                string col = done ? "#6f9a80" : cur ? "#5cff85" : "#879d90";
+                var sb = new System.Text.StringBuilder();
+                sb.Append($"<color={col}><size=22><b>{i + 1}. {m.title}</b></size>{(done ? "  — complete" : cur ? "  — current" : "")}</color>");
                 if (cur)
                 {
-                    sb.Append($"<color=#a8c4b4><i>{m.briefing}</i></color>\n");
+                    sb.Append($"\n<color=#a8c4b4><i>{m.briefing}</i></color>\n");
                     foreach (var o in m.objectives)
-                        sb.Append(o.IsDone ? $"<color=#6f9a80>  + {o.text}</color>\n" : $"  › {o.text}\n");
+                    {
+                        string extra = !o.IsDone && o.extra != null ? o.extra() : "";
+                        sb.Append(o.IsDone ? $"\n<color=#6f9a80>+ {o.text}</color>" : $"\n› {o.text}{extra}");
+                    }
                 }
-                sb.Append('\n');
+                entry.text = UIKit.Clean(sb.ToString());
+                float height = Mathf.Max(32f, entry.preferredHeight);
+                entry.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+                y += height + 20f;
             }
-            sb.Append($"<color=#a8c4b4>Hosts possessed: {RunState.HostsPossessed}   ·   Captures: {RunState.Captures}   ·   Time: {(int)(RunState.PlayTime / 60)}:{(int)(RunState.PlayTime % 60):00}</color>");
-            journalText.text = UIKit.Clean(sb.ToString());
+            for (int i = mm.Missions.Count; i < journalEntries.Count; i++) journalEntries[i].gameObject.SetActive(false);
+            journalStats.text = $"Hosts: {RunState.HostsPossessed}   ·   Captures: {RunState.Captures}   ·   Time: {(int)(RunState.PlayTime / 60)}:{(int)(RunState.PlayTime % 60):00}";
+            journalScroll.content.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
+            journalScroll.StopMovement();
+            Canvas.ForceUpdateCanvases();
+            float overflow = Mathf.Max(0f, y - journalScroll.viewport.rect.height);
+            journalScroll.verticalNormalizedPosition = overflow > 0f ? 1f - Mathf.Clamp01(currentTop / overflow) : 1f;
         }
 
         void OnPause(bool paused)
         {
-            if (paused) RefreshJournal();
             if (endOpen) return;
             pauseOpen = paused;
             if (paused)
             {
                 pauseRoot.gameObject.SetActive(true);
                 CloseControlsSilently();
+                Canvas.ForceUpdateCanvases();
+                RefreshJournal();
                 UIKit.Select(btnResume);
             }
             else
@@ -174,11 +228,11 @@ namespace Parasite.UI
         bool endOpen;
 
         const string Epilogue =
-            "The containment door, the loose drain grate, the guard rotation, the unlocked tunnel — Dr. Vale laid every step " +
-            "of the path before you took it. You came looking for your creator; your creator was watching to see what you " +
-            "would become. You planned, hid, divided and stayed whole. The experiment is over. The real work begins.";
+            "Vale opened the first door. You chose the last one. His signed orders are now public, his containment relay " +
+            "is dark, and Specimen 7 has vanished through the storm drain. Two bodies carried the evidence beyond the lab — " +
+            "and one mind finally escaped the experiment.";
 
-        static readonly string[] StatLabels = { "Route into the lab", "Time", "Hosts possessed", "Peak suspicion", "Times captured" };
+        static readonly string[] StatLabels = { "Infiltration route", "Time to freedom", "Hosts possessed", "Peak suspicion", "Times captured" };
 
         void BuildEnd(Transform p)
         {
@@ -194,14 +248,16 @@ namespace Parasite.UI
             Vector2 top = new(0.5f, 1);
             var brand = UIKit.Txt(col, "Brand", "P A R A S I T E", 30, UIKit.Accent, TextAnchor.MiddleCenter, Weight.Bold);
             brand.rectTransform.Place(top, top, new Vector2(0, -40), new Vector2(1100, 40));
-            var head = UIKit.Txt(col, "Headline", "THE ESCAPE WAS ENGINEERED.", 72, Color.white, TextAnchor.MiddleCenter, Weight.Bold, true);
+            var head = UIKit.Txt(col, "Headline", "THE EVIDENCE IS OUT.", 72, Color.white, TextAnchor.MiddleCenter, Weight.Bold, true);
             head.horizontalOverflow = HorizontalWrapMode.Overflow;
             head.rectTransform.Place(top, top, new Vector2(0, -92), new Vector2(1100, 90));
             var line = UIKit.Img(col, "Rule", UIKit.White, UIKit.Accent.WithAlpha(0.45f));
             line.rectTransform.Place(top, top, new Vector2(0, -196), new Vector2(420, 2));
+            var outcome = UIKit.Txt(col, "Outcome", "EVIDENCE PUBLIC  ·  CONTAINMENT OFFLINE  ·  SPECIMEN FREE", 20, UIKit.Accent, TextAnchor.MiddleCenter, Weight.Bold);
+            outcome.rectTransform.Place(top, top, new Vector2(0, -214), new Vector2(1000, 30));
             var epi = UIKit.Txt(col, "Epilogue", Epilogue, 25, UIKit.TextDim, TextAnchor.UpperCenter, Weight.Medium);
             epi.lineSpacing = 1.1f;
-            epi.rectTransform.Place(top, top, new Vector2(0, -224), new Vector2(940, 170));
+            epi.rectTransform.Place(top, top, new Vector2(0, -258), new Vector2(940, 145));
 
             const float SW = 760f, RowH = 44f;
             var stats = UIKit.Panel(col, "Stats", 12);
@@ -279,6 +335,7 @@ namespace Parasite.UI
                 {
                     var pad = Gamepad.current;
                     if (pad != null && pad.buttonEast.wasPressedThisFrame) TryClosePauseSubmenu();
+                    if (!controlsOpen && !pauseSettings.gameObject.activeSelf) TickJournalScroll(dt);
                     UIKit.KeepFocus(pauseSettings.gameObject.activeSelf ? pauseSettings.FirstSelection : controlsOpen ? pauseControlsBack : btnResume, pauseRoot);
                 }
                 else if (pauseGroup.alpha <= 0f) pauseRoot.gameObject.SetActive(false);
@@ -294,6 +351,24 @@ namespace Parasite.UI
                 }
                 if (endGroup.interactable) UIKit.KeepFocus(endPlay, endRoot);
             }
+        }
+
+        void TickJournalScroll(float dt)
+        {
+            if (!journalScroll || journalScroll.content.rect.height <= journalScroll.viewport.rect.height) return;
+            float direction = 0f;
+            var keyboard = Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.pageUpKey.isPressed) direction += 1f;
+                if (keyboard.pageDownKey.isPressed) direction -= 1f;
+            }
+            var pad = Gamepad.current;
+            if (pad != null && Mathf.Abs(pad.rightStick.y.ReadValue()) > 0.2f) direction += pad.rightStick.y.ReadValue();
+            if (Mathf.Abs(direction) < 0.01f) return;
+            journalScroll.StopMovement();
+            float overflow = journalScroll.content.rect.height - journalScroll.viewport.rect.height;
+            journalScroll.verticalNormalizedPosition = Mathf.Clamp01(journalScroll.verticalNormalizedPosition + direction * dt * journalScroll.viewport.rect.height / overflow);
         }
     }
 }

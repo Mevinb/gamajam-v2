@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Parasite.FX;
+using Parasite.Missions;
 using Parasite.Possession;
 using Parasite.Testing;
 using Parasite.UI;
@@ -189,6 +190,56 @@ namespace Parasite.Tests
             Assert.That(SliderFor(titleSettings, "AmbienceVolume").value, Is.EqualTo(0.61f).Within(0.001f));
             Assert.That(SliderFor(titleSettings, "Sensitivity").value, Is.EqualTo(0.19f).Within(0.001f));
             Debug.Log("[SettingsUI] PASS title/pause settings, live audio, persistence, keyboard Back and paused gameplay isolation");
+        }
+
+        [UnityTest, Timeout(180000)]
+        public IEnumerator LateCampaignJournalScrollsAndShowsTheCurrentObjectives()
+        {
+            yield return AutoTest.LoadCity();
+            var missionManager = MissionManager.Instance;
+            Assert.AreEqual(8, missionManager.Missions.Count, "The extended campaign has eight missions.");
+            // UI fixture: show the last mission without bypassing any gameplay in acceptance tests.
+            RunState.MissionIndex = missionManager.Missions.Count - 1;
+            var gm = GameManager.Instance;
+            gm.SetPaused(true);
+            yield return new WaitForSecondsRealtime(0.3f);
+            var journal = HUDController.Instance.transform.Find("HUD Canvas/Pause/Content/Journal");
+            var scroll = journal.Find("ScrollView").GetComponent<ScrollRect>();
+            Assert.IsNotNull(scroll.viewport.GetComponent<RectMask2D>(), "Journal entries are clipped to their viewport.");
+            var entries = scroll.content.GetComponentsInChildren<Text>();
+            Assert.AreEqual(8, entries.Length);
+            for (int i = 0; i < entries.Length; i++) StringAssert.Contains(missionManager.Missions[i].title, entries[i].text);
+            var current = entries[entries.Length - 1];
+            StringAssert.Contains(missionManager.Current.briefing, current.text);
+            foreach (var objective in missionManager.Current.objectives) StringAssert.Contains(objective.text, current.text);
+            Assert.That(scroll.content.rect.height, Is.GreaterThan(scroll.viewport.rect.height), "The full campaign can overflow without clipping its text permanently.");
+            Assert.That(scroll.verticalNormalizedPosition, Is.LessThan(0.99f), "Opening the journal focuses the late current mission.");
+            var entryCorners = new Vector3[4]; var viewportCorners = new Vector3[4];
+            current.rectTransform.GetWorldCorners(entryCorners); scroll.viewport.GetWorldCorners(viewportCorners);
+            Assert.That(entryCorners[0].y, Is.GreaterThanOrEqualTo(viewportCorners[0].y - 1f), "The current mission's final objective is visible.");
+            Assert.That(entryCorners[2].y, Is.LessThanOrEqualTo(viewportCorners[2].y + 1f), "The current mission's title is visible.");
+            scroll.verticalNormalizedPosition = 1f;
+            scroll.OnScroll(new PointerEventData(EventSystem.current) { scrollDelta = new Vector2(0, -4f) });
+            yield return null;
+            Assert.That(scroll.verticalNormalizedPosition, Is.LessThan(0.99f), "Mouse-wheel scrolling reaches later entries.");
+            scroll.verticalNormalizedPosition = 0f;
+            yield return Capture("04-late-campaign-journal.png");
+            Click(HUDController.Instance.transform.Find("HUD Canvas/Pause"), "Btn_Settings");
+            yield return PressEscape();
+            Assert.AreEqual(GameState.Paused, gm.State, "The expanded journal preserves Settings Back behavior.");
+
+            // Exercise only the end-screen presentation; the campaign suite verifies real extraction.
+            gm.BeginEnding();
+            gm.FinishEnding(new EndingData { route = EntryRoute.ServiceTunnel, timeSeconds = 936f, hostsPossessed = 12, peakSuspicion = 70f, captures = 1 });
+            yield return new WaitForSecondsRealtime(1.3f);
+            var ending = HUDController.Instance.transform.Find("HUD Canvas/EndScreen");
+            Assert.IsTrue(ending.gameObject.activeInHierarchy);
+            var texts = ending.GetComponentsInChildren<Text>();
+            StringAssert.Contains("EVIDENCE", texts.Single(text => text.name == "Headline").text);
+            StringAssert.Contains("storm drain", texts.Single(text => text.name == "Epilogue").text);
+            Assert.AreEqual("15:36", ending.Find("Column/Stats/V1").GetComponent<Text>().text, "Escape statistics include the entire run.");
+            yield return Capture("05-evidence-ending.png");
+            Debug.Log("[SettingsUI] PASS eight-mission journal, current-objective visibility, scroll input, submenu Back and extended ending presentation (UI fixture)");
         }
 
         IEnumerator PressEscape()

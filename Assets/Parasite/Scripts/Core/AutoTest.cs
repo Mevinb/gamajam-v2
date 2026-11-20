@@ -80,9 +80,9 @@ namespace Parasite.Testing
                 ("03 Q release: host unconscious 8 s then recovers", ScenarioRelease),
                 ("04 V split max two, Tab switch, inactive stays put", ScenarioSplit),
                 ("05 Civilian denied at restricted doors", ScenarioCivilianDenied),
-                ("06 Route A: guard badge → Main Gate → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.MainGate)),
-                ("07 Route B: scientist + keycard → Staff Terminal → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.StaffTerminal)),
-                ("08 Route C: maintenance + substation → Service Tunnel → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
+                ("06 Route A: guard badge → Main Gate → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.MainGate)),
+                ("07 Route B: scientist + keycard → Staff Terminal → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.StaffTerminal)),
+                ("08 Route C: maintenance + substation → Service Tunnel → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
                 ("09 Suspicion only from observed violations; decays", ScenarioSuspicion),
                 ("12 Missions 1-2: alley exit, first host, newsstand, eavesdrop", ScenarioEarlyMissions),
                 ("13 CCTV spots a free amoeba; maintenance F-ability cuts camera power; scientist calms", ScenarioCameraAbilities),
@@ -559,7 +559,7 @@ namespace Parasite.Testing
             for (float t = 0; t < 14f && !RunState.Has(MissionFlags.Eavesdropped); t += Time.deltaTime) { Calm(); yield return null; }
             Check(RunState.Has(MissionFlags.Eavesdropped), "eavesdropped on Dr. Petrov");
             yield return null;
-            Check(RunState.MissionIndex == 2, $"alley exit, first host, newsstand read, eavesdrop done → now mission {RunState.MissionIndex + 1}/5 ({mm.Current?.title})");
+            Check(RunState.MissionIndex == 2, $"alley exit, first host, newsstand read, eavesdrop done → now mission {RunState.MissionIndex + 1}/{mm.Missions.Count} ({mm.Current?.title})");
         }
 
         // ---------------------------------------------------------------- 05
@@ -646,9 +646,133 @@ namespace Parasite.Testing
             Check(t3.kind == TargetKind.Interact && t3.interactable == (IInteractable)vale, $"Vale prompt: {t3.prompt}");
             yield return PressInteract();
             Time.timeScale = 4f;
-            for (float t = 0; t < 60f && !ended; t += Time.unscaledDeltaTime) yield return null;
+            for (float t = 0; t < 60f && !RunState.Has(MissionFlags.Confronted); t += Time.unscaledDeltaTime) yield return null;
             Time.timeScale = 1f;
-            Check(ended && data.route == route, $"{prof} → {door.doorName} → lab → Dr. Vale → ending shown (route {data.route}, {data.timeSeconds:0}s)");
+            Check(RunState.Has(MissionFlags.Confronted) && !ended && !MissionManager.Instance.EndingStarted && GameManager.Instance.IsPlaying,
+                "meeting Vale resumes gameplay instead of ending the campaign");
+            Check(MissionManager.Instance.Missions.Count == 8 && RunState.MissionIndex == 5, "three new missions follow the original five");
+            if (!current.pass) yield break;
+            yield return PostValeCampaign();
+            // The checkpoint persistence check reloads CityDirector, which intentionally clears event subscribers.
+            GameEvents.Ending += d => { ended = true; data = d; };
+            Time.timeScale = 4f;
+            for (float t = 0; t < 30f && !ended; t += Time.unscaledDeltaTime) yield return null;
+            Time.timeScale = 1f;
+            Check(ended && data.route == route && RunState.Has(MissionFlags.Escaped),
+                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → broadcast → drain escape (route {data.route}, {data.timeSeconds:0}s)");
+        }
+
+        static InteractContext ActiveContext() => new()
+        {
+            agent = PM.Active, host = PM.Active.Host,
+            permissions = PM.Active.Host ? PM.Active.Host.Permissions : AccessPermission.None,
+            position = PM.Active.Position,
+        };
+
+        static void TakeProfession(Profession profession)
+        {
+            if (PM.Active.Host && PM.Active.Host.Profession == profession) return;
+            var h = NearestHost(PM.Active.Position, candidate => candidate.CanBePossessed && candidate.Profession == profession);
+            Check(h != null, $"{profession} host available for the post-Vale campaign");
+            if (h) PM.ForcePossessImmediate(h);
+        }
+
+        static IEnumerator UseCampaignInteractable(IInteractable target, Vector3 groundPosition)
+        {
+            Vector3 stand = groundPosition + Vector3.back * 1.05f;
+            if (NavMesh.SamplePosition(stand, out var nh, 1f, NavMesh.AllAreas)) stand = nh.position;
+            TeleportBody(PM.ActiveBody, stand, 0f);
+            Calm();
+            yield return AimSettle(target.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Interact && tg.interactable == target && tg.allowed, $"post-Vale interaction: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+        }
+
+        static IEnumerator FinishCampaignOperation(CampaignOperation op)
+        {
+            yield return UseCampaignInteractable(op, op.transform.position);
+            for (float t = 0; t < op.seconds + 2f && !RunState.Has(op.flag); t += Time.deltaTime) { Calm(); yield return null; }
+            Check(RunState.Has(op.flag), $"{op.displayName} completed through real input and held controls");
+        }
+
+        static IEnumerator PostValeCampaign()
+        {
+            var coolant = CooperativeConsole.Find("coolant");
+            var dispatch = CooperativeConsole.Find("dispatch");
+            var operations = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None);
+            var archive = operations.FirstOrDefault(o => o.flag == MissionFlags.SignedArchive);
+            var relay = operations.FirstOrDefault(o => o.flag == MissionFlags.ContainmentOffline);
+            var uplink = operations.FirstOrDefault(o => o.flag == MissionFlags.EvidenceBroadcast);
+            var exit = FindFirstObjectByType<CampaignExtraction>();
+            Check(coolant && dispatch && archive && relay && uplink && exit, "all three post-Vale missions have real world interactables");
+            if (!current.pass) yield break;
+            Check(!exit.CanInteract(ActiveContext(), out _), "cannot escape before broadcasting the evidence");
+            Check(PathComplete(CityLayout.ValeOffice, MissionLayout.SignedArchive + Vector3.back) &&
+                  PathComplete(CityLayout.ServiceRoom, MissionLayout.CoolantBypass + Vector3.back), "archive and coolant controls are reachable on the lab NavMesh");
+
+            TakeProfession(Profession.Scientist);
+            Check(!archive.CanInteract(ActiveContext(), out _), "archive refuses a lone scientist without coolant support");
+            TakeProfession(Profession.Maintenance);
+            int supportIndex = PM.ActiveIndex;
+            yield return UseCampaignInteractable(coolant, coolant.transform.position);
+            var coolantHost = PM.Active.Host;
+            Vector3 heldPosition = coolantHost.transform.position;
+            Check(coolant.Held, "maintenance physically holds the coolant bypass");
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            TakeProfession(Profession.Scientist);
+            yield return UseCampaignInteractable(archive, archive.transform.position);
+            yield return new WaitForSeconds(0.5f);
+            TeleportBody(coolantHost, heldPosition + Vector3.back * 5f, 0f);
+            yield return null; yield return null;
+            Check(!archive.Busy && !RunState.Has(MissionFlags.SignedArchive), "archive copy interrupts when the second body leaves coolant");
+            TeleportBody(coolantHost, heldPosition, 0f);
+            yield return FinishCampaignOperation(archive);
+            Check(RunState.MissionIndex == 6 && GameManager.Instance.IsPlaying, "signed evidence advances to relay sabotage");
+
+            TakeProfession(Profession.Guard);
+            yield return UseCampaignInteractable(dispatch, dispatch.transform.position);
+            Check(dispatch.Held, "guard holds a false dispatch at the lobby console");
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            Check(PM.ActiveIndex == supportIndex, "switches back to the independent maintenance body");
+            TakeProfession(Profession.Maintenance);
+            Check(PathComplete(PM.Active.Position, relay.transform.position + Vector3.back), "containment relay can be reached from the service room");
+            yield return FinishCampaignOperation(relay);
+            Check(RunState.MissionIndex == 7 && SecurityCamera.All.All(c => !c || c.Disabled), "relay overload permanently disables all CCTV and starts extraction mission");
+            Check(FindObjectsByType<AccessDoor>(FindObjectsSortMode.None).Where(d => d.route != EntryRoute.None).All(d => d.IsOpen), "relay overload unlocks all campus escape routes");
+            if (!current.pass) yield break;
+
+            // A death/checkpoint reload must preserve story/world progress, without restoring a finished ending.
+            var oldDirector = CityDirector.Instance;
+            SceneManager.LoadScene(GameManager.CityScene);
+            yield return null;
+            for (float t = 0; t < 20f && (!CityDirector.Instance || CityDirector.Instance == oldDirector || !CityDirector.Instance.Ready); t += Time.unscaledDeltaTime) yield return null;
+            yield return new WaitForSeconds(0.5f);
+            GameInput.Simulated = true; ClearSim();
+            Check(RunState.Has(MissionFlags.SignedArchive) && RunState.Has(MissionFlags.ContainmentOffline) && RunState.MissionIndex == 7,
+                "checkpoint reload preserves both completed post-Vale missions");
+            Check(SecurityCamera.All.All(c => !c || c.Disabled) && !MissionManager.Instance.EndingStarted,
+                "checkpoint reload restores disabled CCTV and ongoing gameplay");
+            uplink = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.EvidenceBroadcast);
+            exit = FindFirstObjectByType<CampaignExtraction>();
+            TakeProfession(Profession.Civilian);
+            SuspicionSystem.Instance.SetValue(95f);
+            Check(!uplink.CanInteract(ActiveContext(), out _), "journalist uplink refuses to expose a contact during pursuit");
+            Calm();
+            yield return FinishCampaignOperation(uplink);
+            Check(!exit.CanInteract(ActiveContext(), out _), "a human disguise cannot fit through the final drain");
+            PM.LeaveHost();
+            TeleportBody(PM.ActiveBody, CityLayout.AlleyMouth + Vector3.back * 3f, 180f);
+            Calm();
+            bool reached = false;
+            yield return WalkTo(MissionLayout.Extraction + Vector3.forward, 30f, ok => reached = ok, 0.7f);
+            Check(reached, "walks the final alley to the original storm-drain extraction");
+            yield return AimSettle(exit.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.interactable == (IInteractable)exit && tg.allowed, $"final extraction prompt: {tg.prompt}");
+            yield return PressInteract();
+            Check(RunState.Has(MissionFlags.Escaped) && MissionManager.Instance.EndingStarted, "final ending begins only after evidence, sabotage, broadcast and free-form escape");
         }
 
         // ---------------------------------------------------------------- 09

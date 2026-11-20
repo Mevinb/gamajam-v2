@@ -20,6 +20,14 @@ namespace Parasite.World
         public static readonly Vector3 ReaderA = new(-3.2f, L.LabFloor + 1.35f, 87.8f);
         public static readonly Vector3 ReaderB = new(3.2f, L.LabFloor + 1.35f, 87.8f);
 
+        // Post-Vale campaign: control points stay on existing walkable floors.
+        public static readonly Vector3 CoolantBypass = new(20.2f, L.LabFloor, 94f);
+        public static readonly Vector3 SignedArchive = new(-3.4f, L.LabFloor, 98.5f);
+        public static readonly Vector3 DispatchOverride = new(6.9f, L.LabFloor, 81f);
+        public static readonly Vector3 ContainmentRelay = new(57.8f, L.Sidewalk, 94f);
+        public static readonly Vector3 JournalistUplink = new(-24f, L.Sidewalk, 15.5f);
+        public static readonly Vector3 Extraction = L.StormDrain + Vector3.forward * 1.4f;
+
         // security cameras: name, mount position, yaw of the view centre, range
         public static readonly (string name, Vector3 pos, float yaw, float range)[] Cameras =
         {

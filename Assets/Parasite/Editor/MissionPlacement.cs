@@ -95,10 +95,79 @@ namespace Parasite.EditorTools
             Reader(root, World.MissionLayout.ReaderA, "Reader A", office);
             Reader(root, World.MissionLayout.ReaderB, "Reader B", office);
 
+            PostValeCampaign(k, root);
+
             // stealth: CCTV
             var cams = new GameObject("SecurityCameras").transform;
             cams.SetParent(root, false);
             foreach (var (name, pos, yaw, range) in World.MissionLayout.Cameras) Cctv(cams, name, pos, yaw, range);
+        }
+
+        static void PostValeCampaign(WorldKit k, Transform root)
+        {
+            var coolant = Control(k, root, World.MissionLayout.CoolantBypass, "COOLANT BYPASS", "coolant", Profession.Maintenance,
+                MissionFlags.Confronted, MissionFlags.SignedArchive);
+            var archive = Operation(k, root, World.MissionLayout.SignedArchive, "COPY SIGNED ARCHIVE", MissionFlags.SignedArchive, MissionFlags.Confronted,
+                Profession.Scientist, 8f, "The signed orders are copied. Now sever Vale's containment relay before he tracks the evidence.");
+            archive.controlId = coolant.controlId;
+            var dispatch = Control(k, root, World.MissionLayout.DispatchOverride, "DISPATCH OVERRIDE", "dispatch", Profession.Guard,
+                MissionFlags.SignedArchive, MissionFlags.ContainmentOffline);
+            var relay = Operation(k, root, World.MissionLayout.ContainmentRelay, "OVERLOAD CONTAINMENT", MissionFlags.ContainmentOffline, MissionFlags.SignedArchive,
+                Profession.Maintenance, 7f, "Containment relay destroyed. CCTV is permanently offline and campus exits are unlocked.");
+            relay.controlId = dispatch.controlId;
+            var uplink = Operation(k, root, World.MissionLayout.JournalistUplink, "BROADCAST TO JOURNALIST", MissionFlags.EvidenceBroadcast, MissionFlags.ContainmentOffline,
+                Profession.Civilian, 10f, "Evidence received by Independent News. Return to the storm drain, leave your host and escape.");
+            uplink.anyHost = true; uplink.requireCalm = true;
+            var extraction = new GameObject("StormDrain_Extraction");
+            extraction.transform.SetParent(root, false);
+            extraction.transform.position = World.MissionLayout.Extraction;
+            extraction.AddComponent<CampaignExtraction>();
+            k.Text("DRAIN ACCESS — SPECIMEN 7", World.MissionLayout.Extraction + new Vector3(0, 0.65f, -0.35f), 0f, 0.11f, new Color(0.5f, 1f, 0.65f));
+
+            // A nearby maintenance body makes the laboratory co-op accessible on every infiltration route.
+            var worker = new GameObject("NpcSpawn_CoolantEngineer");
+            worker.transform.SetParent(root, false);
+            worker.transform.position = new Vector3(20f, L.LabFloor, 90.8f);
+            var spawn = worker.AddComponent<World.NpcSpawn>();
+            spawn.displayName = "Engineer Noor Patel"; spawn.profession = Profession.Maintenance;
+            spawn.behaviour = World.NpcBehaviour.Stationary; spawn.seed = 211;
+        }
+
+        static Renderer CampaignTerminal(WorldKit k, Vector3 pos, string label)
+        {
+            k.Box(M("MetalDark"), pos + new Vector3(0, 0.58f, 0.6f), new Vector3(0.9f, 1.16f, 0.5f));
+            k.Solid(pos + new Vector3(0, 0.58f, 0.6f), new Vector3(0.9f, 1.16f, 0.5f));
+            k.Box(M("Screen"), pos + new Vector3(0, 1.4f, 0.53f), new Vector3(0.9f, 0.5f, 0.08f));
+            k.Text(label, pos + new Vector3(0, 1.93f, 0.45f), 0f, 0.09f, new Color(0.65f, 1f, 0.75f));
+            var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Object.DestroyImmediate(lamp.GetComponent<Collider>());
+            lamp.name = "CampaignStatusLamp";
+            lamp.transform.position = pos + new Vector3(0, 1.05f, 0.32f);
+            lamp.transform.localScale = new Vector3(0.42f, 0.05f, 0.04f);
+            lamp.GetComponent<Renderer>().sharedMaterial = M("NeonGreen");
+            return lamp.GetComponent<Renderer>();
+        }
+
+        static CooperativeConsole Control(WorldKit k, Transform root, Vector3 pos, string label, string id, Profession profession, string required, string retire)
+        {
+            var go = new GameObject("Cooperative_" + id);
+            go.transform.SetParent(root, false); go.transform.position = pos;
+            var c = go.AddComponent<CooperativeConsole>();
+            c.controlId = id; c.displayName = label; c.profession = profession; c.requiredFlag = required; c.retireWhenFlag = retire;
+            c.lamp = CampaignTerminal(k, pos, label);
+            c.lamp.transform.SetParent(go.transform, true);
+            return c;
+        }
+
+        static CampaignOperation Operation(WorldKit k, Transform root, Vector3 pos, string label, string flag, string required, Profession profession, float seconds, string done)
+        {
+            var go = new GameObject("Campaign_" + flag);
+            go.transform.SetParent(root, false); go.transform.position = pos;
+            var op = go.AddComponent<CampaignOperation>();
+            op.flag = flag; op.displayName = label; op.requiredFlag = required; op.profession = profession; op.seconds = seconds; op.doneToast = done;
+            op.screen = CampaignTerminal(k, pos, label);
+            op.screen.transform.SetParent(go.transform, true);
+            return op;
         }
 
         static Material coneMat;

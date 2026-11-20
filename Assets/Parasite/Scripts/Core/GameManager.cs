@@ -88,6 +88,15 @@ namespace Parasite
 
         public void BeginEnding() { State = GameState.Ending; }
 
+        /// <summary>Return control after a story encounter that continues the campaign.</summary>
+        public void ResumeAfterDialogue()
+        {
+            if (State != GameState.Ending) return;
+            State = GameState.Playing;
+            Time.timeScale = 1f;
+            SetCursorLocked(true);
+        }
+
         public void FinishEnding(EndingData data)
         {
             State = GameState.Ended;

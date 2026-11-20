@@ -17,6 +17,8 @@ namespace Parasite.Missions
         public const string GateOpen = "gate_open", StaffOpen = "staff_open", TunnelOpen = "tunnel_open";
         public const string LabEntered = "lab_entered", DataA = "data_a", DataB = "data_b", Research = "research_done";
         public const string OfficeOpen = "office_open", Confronted = "confronted";
+        public const string SignedArchive = "signed_archive", ContainmentOffline = "containment_offline";
+        public const string EvidenceBroadcast = "evidence_broadcast", Escaped = "escaped_with_evidence";
     }
 
     public class Objective
@@ -41,14 +43,15 @@ namespace Parasite.Missions
     }
 
     /// <summary>
-    /// Five-mission campaign: escape → find the creator → get credentials (3 routes) → steal the research
-    /// (incl. a two-person-rule door that needs the split) → confront Dr. Vale. Flags persist across checkpoint reloads.
+    /// Eight-mission campaign: infiltrate via three routes, meet Vale, steal signed evidence, break containment,
+    /// expose the experiment and escape. Completed flags persist; cooperative controls must be held again after a reload.
     /// </summary>
     public class MissionManager : MonoBehaviour
     {
         public static MissionManager Instance { get; private set; }
         public string Objective { get; private set; } = "";
         public bool EndingStarted { get; private set; }
+        public bool DialoguePlaying { get; private set; }
         public List<Mission> Missions { get; private set; }
         public Mission Current => Missions != null && RunState.MissionIndex < Missions.Count ? Missions[RunState.MissionIndex] : null;
         public readonly List<(Vector3 pos, string label)> Waypoints = new();
@@ -70,6 +73,7 @@ namespace Parasite.Missions
             foreach (var d in FindObjectsByType<AccessDoor>(FindObjectsSortMode.None))
                 if (!string.IsNullOrEmpty(d.openedFlag)) propsByFlag["door:" + d.openedFlag] = d.interactPoint ? d.interactPoint : d.transform;
             foreach (var v in FindObjectsByType<DrValeInteraction>(FindObjectsSortMode.None)) propsByFlag["vale"] = v.transform;
+            RestoreCampaignState();
             Advance(announce: true);
             Refresh();
         }
@@ -85,6 +89,13 @@ namespace Parasite.Missions
         {
             if ((flag == MissionFlags.DataA || flag == MissionFlags.DataB) && RunState.Has(MissionFlags.DataA) && RunState.Has(MissionFlags.DataB))
                 SetFlag(MissionFlags.Research);
+            if (flag == MissionFlags.ContainmentOffline) RestoreCampaignState();
+            if (flag == MissionFlags.Confronted || flag == MissionFlags.SignedArchive || flag == MissionFlags.ContainmentOffline || flag == MissionFlags.EvidenceBroadcast)
+            {
+                var pm = Possession.PossessionManager.Instance;
+                if (GameManager.Instance && pm && pm.ActiveBody != null)
+                    GameManager.Instance.SetCheckpoint(pm.ActiveBody.Root.position, "After " + flag.Replace('_', ' '));
+            }
             if (flag == MissionFlags.Eavesdropped) GameEvents.RaiseToast("Overheard: Dr. Vale works nights at VALE BIOTECH. Three ways in.", Palette.Amoeba);
         }
 
@@ -113,7 +124,7 @@ namespace Parasite.Missions
 
         void Update()
         {
-            if (EndingStarted) return;
+            if (EndingStarted || DialoguePlaying) return;
             var pm = Possession.PossessionManager.Instance;
             var body = pm != null ? pm.ActiveBody : null;
             if (body != null)
@@ -157,6 +168,8 @@ namespace Parasite.Missions
             }
             var prop = MissionProp.Current;
             if (prop) sb.Append($"\n<color=#ffd45a>  {prop.verb}… {prop.Progress01 * 100f:0}%</color>");
+            var work = CampaignOperation.Current;
+            if (work) sb.Append($"\n<color=#ffd45a>  {work.displayName}… {work.Progress01 * 100f:0}%</color>");
             var ez = EavesdropZone.Active;
             if (ez && ez.Listening) sb.Append($"\n<color=#ffd45a>  Listening… {ez.Progress01 * 100f:0}%</color>");
             var dr = DualAuthReader.ArmedAny();
@@ -243,39 +256,127 @@ namespace Parasite.Missions
                         new() { text = "Confront Dr. Vale in his office", flag = MissionFlags.Confronted, waypointFlags = new[] { "vale" }, waypointLabel = "DR. VALE" },
                     },
                 },
+                new()
+                {
+                    title = "THE PART HE HID",
+                    briefing = "The stolen files were bait. Vale's signed archive proves who ordered the experiments. Split between coolant and archive; neither body can leave during the copy.",
+                    objectives =
+                    {
+                        new() { text = "As MAINTENANCE, hold the service-room coolant bypass [E]; leave that body there and [Tab]",
+                            doneWhen = () => Has(MissionFlags.SignedArchive) || (CooperativeConsole.Find("coolant") && CooperativeConsole.Find("coolant").Held),
+                            waypoints = new[] { MissionLayout.CoolantBypass }, waypointLabel = "COOLANT BYPASS" },
+                        new() { text = "As your OTHER amoeba in a SCIENTIST, copy Vale's signed archive in his office (8 s)", flag = MissionFlags.SignedArchive,
+                            waypoints = new[] { MissionLayout.SignedArchive }, waypointLabel = "SIGNED ARCHIVE" },
+                    },
+                },
+                new()
+                {
+                    title = "BREAK THE LEASH",
+                    briefing = "A city containment relay can track and seal every escape. Hold a false dispatch with a guard while your other maintenance body overloads the relay. Cameras and campus locks will go dark.",
+                    objectives =
+                    {
+                        new() { text = "As a GUARD, hold the lobby dispatch override [E]; keep this host at the console and [Tab]",
+                            doneWhen = () => Has(MissionFlags.ContainmentOffline) || (CooperativeConsole.Find("dispatch") && CooperativeConsole.Find("dispatch").Held),
+                            waypoints = new[] { MissionLayout.DispatchOverride }, waypointLabel = "DISPATCH OVERRIDE" },
+                        new() { text = "As the OTHER amoeba in MAINTENANCE, overload the east service-alley containment relay (7 s)", flag = MissionFlags.ContainmentOffline,
+                            waypoints = new[] { MissionLayout.ContainmentRelay }, waypointLabel = "CONTAINMENT RELAY" },
+                    },
+                },
+                new()
+                {
+                    title = "OUTSIDE THE EXPERIMENT",
+                    briefing = "The relay is dead. Get the signed evidence to the independent journalist's Plaza uplink, then abandon your disguise and vanish through the storm drain where it began.",
+                    objectives =
+                    {
+                        new() { text = "As any host, broadcast the evidence at the City Plaza uplink (10 s); lose any pursuit first", flag = MissionFlags.EvidenceBroadcast,
+                            waypoints = new[] { MissionLayout.JournalistUplink }, waypointLabel = "JOURNALIST UPLINK" },
+                        new() { text = "After the broadcast, leave your host [Q] and escape through the south-alley storm drain [E]", flag = MissionFlags.Escaped,
+                            waypoints = new[] { MissionLayout.Extraction }, waypointLabel = "STORM-DRAIN EXTRACTION" },
+                    },
+                },
             };
             return list;
         }
 
-        // ------------------------------------------------------------ ending
-        public void BeginEnding(Transform vale)
+        // Restore persistent world changes after checkpoint reload; transient paired controls deliberately reset.
+        void RestoreCampaignState()
         {
-            if (EndingStarted) return;
-            EndingStarted = true;
-            RunState.Flags.Add(MissionFlags.Confronted);
-            if (RunState.Route == EntryRoute.None) RunState.Route = EntryRoute.MainGate;
-            Waypoints.Clear();
-            SetObjective("");
-            GameManager.Instance?.BeginEnding();
-            StartCoroutine(EndingSequence(vale));
+            bool escapedLab = RunState.Has(MissionFlags.ContainmentOffline);
+            foreach (var d in FindObjectsByType<AccessDoor>(FindObjectsSortMode.None))
+            {
+                bool office = d.doorName == "Dr. Vale's Office" && RunState.Has(MissionFlags.OfficeOpen);
+                if (office || (!string.IsNullOrEmpty(d.openedFlag) && RunState.Has(d.openedFlag)) || (escapedLab && d.route != EntryRoute.None))
+                { d.Unlock(); d.Open(); }
+            }
+            if (!escapedLab) return;
+            foreach (var c in Stealth.SecurityCamera.All) if (c) c.DisableFor(float.PositiveInfinity);
+            if (Stealth.SuspicionSystem.Instance)
+            { Stealth.SuspicionSystem.Instance.OnSuspectGone(); Stealth.SuspicionSystem.Instance.SetValue(0f); }
         }
 
-        static readonly (string who, string line)[] Lines =
+        // ------------------------------------------------------------ ending
+        public void BeginConfrontation(Transform vale)
+        {
+            if (EndingStarted || DialoguePlaying || RunState.Has(MissionFlags.Confronted)) return;
+            DialoguePlaying = true;
+            if (GameManager.Instance) GameManager.Instance.BeginEnding();
+            StartCoroutine(RevealSequence(vale));
+        }
+
+        static readonly (string who, string line)[] RevealLines =
         {
             ("DR. VALE", "There you are. Specimen 7. You took longer than I predicted."),
             ("DR. VALE", "Did you really think a containment door fails by accident? I opened it."),
-            ("DR. VALE", "The guard rotation, the broken drain grate, the unlocked tunnel… I left you a path."),
-            ("DR. VALE", "And the files you just stole? I wrote them for you to find."),
-            ("DR. VALE", "I needed to know if you could plan. Choose. Hide. Divide yourself and still be one."),
-            ("DR. VALE", "You can. Which means the experiment is over—and the real work begins."),
-            ("DR. VALE", "Welcome home."),
+            ("DR. VALE", "The files you stole were bait. I needed to know if you could plan. Hide. Divide yourself and still be one."),
+            ("DR. VALE", "The real orders are in my signed archive. Its coolant interlock takes two operators. You cannot carry it out alone."),
+            ("DR. VALE", "And even if you do, the containment relay will trace you. My guards control its dispatch lock."),
+            ("SPECIMEN 7", "Two bodies. One choice. This time, I choose where the experiment ends."),
         };
 
-        IEnumerator EndingSequence(Transform vale)
+        IEnumerator RevealSequence(Transform vale)
         {
             Sfx.Play(SfxId.EndingSting, vale ? vale.position : Vector3.zero);
+            yield return Dialogue(RevealLines);
+            DialoguePlaying = false;
+            if (GameManager.Instance) GameManager.Instance.ResumeAfterDialogue();
+            SetFlag(MissionFlags.Confronted);
+            GameEvents.RaiseToast("Vale's reveal is only the beginning. Keep both amoebas: maintenance at coolant, scientist at the signed archive.", Palette.Amoeba);
+        }
+
+        public void CompleteEscape(Transform drain)
+        {
+            if (EndingStarted || !RunState.Has(MissionFlags.EvidenceBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
+            SetFlag(MissionFlags.Escaped);
+            EndingStarted = true;
+            Waypoints.Clear(); SetObjective("");
+            if (GameManager.Instance) GameManager.Instance.BeginEnding();
+            StartCoroutine(EscapeSequence(drain));
+        }
+
+        IEnumerator EscapeSequence(Transform drain)
+        {
+            Sfx.Play(SfxId.EndingSting, drain ? drain.position : Vector3.zero);
+            yield return Dialogue(new[]
+            {
+                ("INDEPENDENT NEWS", "The signed orders are public. Vale Biotech cannot call this a lab accident anymore."),
+                ("DR. PETROV", "The containment relay is gone. Whatever you are… keep going."),
+                ("SPECIMEN 7", "He opened the first door. We chose the last one."),
+            });
+            var data = new EndingData
+            {
+                route = RunState.Route,
+                timeSeconds = RunState.PlayTime,
+                hostsPossessed = RunState.HostsPossessed,
+                peakSuspicion = RunState.PeakSuspicion,
+                captures = RunState.Captures,
+            };
+            if (GameManager.Instance) GameManager.Instance.FinishEnding(data);
+        }
+
+        static IEnumerator Dialogue((string who, string line)[] lines)
+        {
             yield return new WaitForSeconds(0.4f);
-            foreach (var (who, line) in Lines)
+            foreach (var (who, line) in lines)
             {
                 GameEvents.RaiseSubtitle(who, line);
                 float t = 0, dur = 1.6f + line.Length * 0.045f;
@@ -287,15 +388,6 @@ namespace Parasite.Missions
                 }
             }
             GameEvents.RaiseSubtitle("", "");
-            var data = new EndingData
-            {
-                route = RunState.Route,
-                timeSeconds = RunState.PlayTime,
-                hostsPossessed = RunState.HostsPossessed,
-                peakSuspicion = RunState.PeakSuspicion,
-                captures = RunState.Captures,
-            };
-            GameManager.Instance?.FinishEnding(data);
         }
 
         public static string RouteName(EntryRoute r) => r switch
