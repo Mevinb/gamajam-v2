@@ -3,6 +3,8 @@
 Runtime/build source: `31a3e25` on `main`. Unity 6000.3.29f1, Ubuntu 26.04, Intel i5-12500H (16 threads),
 16 GB RAM, NVIDIA RTX 4050 Laptop GPU (6 GB), OpenGLCore.
 
+The demo targets **Linux x86-64 only**. Windows packaging was cancelled at the user's request.
+
 ## Verified checks
 
 | Check | Result | Evidence |
@@ -82,7 +84,6 @@ It is retained in `Logs/benchmark/`, but is not the 1080p measurement above.
 
 ## Remaining verification
 
-Standalone Linux acceptance also passed while Windows shader compilation used the CPU; this is a gameplay check, separate from
-the uncontended performance tour above. Windows packaging is still compiling its first Direct3D shader cache.
-Windows execution, physical controller operation and an extended human playthrough remain unverified.
+Standalone Linux acceptance also passed while concurrent shader compilation used the CPU; this is a gameplay check, separate from
+the uncontended performance tour above. Physical controller operation and an extended human playthrough remain unverified.
 See [known issues](KNOWN_ISSUES.md) for the remaining visual/simulation limitations.

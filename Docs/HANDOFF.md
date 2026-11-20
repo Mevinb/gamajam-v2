@@ -9,7 +9,7 @@ Repo: https://github.com/Mevinb/gamajam-v2 (remote `origin`, branch `main`). Old
 | Thing | Where |
 |---|---|
 | Project | `~/Data/Parasite` |
-| Unity editor | `~/Data/Unity/Editor/6000.3.29f1/Editor/Unity` (Linux Mono + Windows Mono build support installed) |
+| Unity editor | `~/Data/Unity/Editor/6000.3.29f1/Editor/Unity` (Linux Mono build support installed) |
 | Unity Hub | `~/Data/Unity/Hub/usr/lib/unityhub/unityhub` (install path set to `~/Data/Unity/Editor`; licence = Unity Personal, active) |
 | Linux build | `~/Data/Parasite/Builds/Linux/Parasite.x86_64`, launch with `./play.sh` (forces the NVIDIA GPU) |
 | Disk | **`~/Data` has only ~5 GB free.** Don't download big assets; delete zips after extracting. Library ≈ 3 GB, build ≈ 640 MB. |
@@ -29,7 +29,6 @@ Tools/unity.sh editmode -nographics -runTests -testPlatform EditMode -testResult
 Tools/unity.sh ui-playmode -runTests -testPlatform PlayMode -testFilter Parasite.Tests.SettingsUITests -testResults Logs/ui-playmode-results.xml
 Tools/unity.sh photos -executeMethod Parasite.EditorTools.PhotoTool.CaptureBatch   # 15 preset renders → Logs/photos/*.png (add -photoFilter 07)
 Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux       # Builds/Linux (last cached build 11.33 s; cold shaders can be much slower)
-Tools/unity.sh build-win -executeMethod Parasite.EditorTools.BuildAutomation.BuildWindows       # Builds/Windows/Parasite.exe
 ./play.sh -showfps                  # play; F3 FPS, F1 controls, Esc pause
 Builds/Linux/Parasite.x86_64 -autotest -autotestOut /tmp/report.txt    # run the acceptance scenarios inside the real build
 Builds/Linux/Parasite.x86_64 -benchmark -autotestOut /tmp/bench.txt    # walk the city, log FPS/memory, screenshots
@@ -93,7 +92,7 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
 - **New profession ability:** `AbilitySystem.Info()` + switch in `TryUse()`.
 - **New sound/effect:** extend `SfxId` (append only) and `SfxSynth`/`SfxBackend`; effects via `Fx.*`.
 
-## 6. Current state (21 Nov 2026, verification in progress)
+## 6. Current state (21 Nov 2026, Linux demo verified; development paused)
 
 - CPU compile: **60 runtime files + 11 editor files PASS**. EditMode: **22/22 PASS**, including persisted audio/mute checks.
 - Final regenerated-scene PlayMode suite: **2/2 test cases PASS**, including **13/13 gameplay scenarios** and the UI test.
@@ -102,7 +101,7 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
   `Logs/playmode.log` and `Logs/standalone-acceptance.txt`.
 - Filtered `SettingsUITests` **PASS**: title/pause controls, live volume, saved preferences, real queued Escape input and paused
   gameplay isolation. UI captures in `Logs/ui/` were rendered from the actual canvases. This proves automated input routing,
-  not a physical controller or Windows playtest.
+  not a physical controller playtest.
 - Visual overhaul reviewed on the RTX 4050: **15 fresh environment renders** in `Logs/photos/`, with the baseline retained in
   `Logs/photos-before/`. Photo audits report **zero missing scripts**. Gate/staff shots `07`/`08` confirm stray mirrored text
   through walls is fixed and intended signs remain readable. Main facade detail and fixture silhouettes remain intact at the
@@ -124,13 +123,14 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
 - Standalone RTX benchmark: **180.0 FPS average at actual 1920×1080, High, render scale 1.00**, vSync off; 19,635 frames over
   109.1 s. P99 frame time **17.11 ms**, worst **42.1 ms**, so occasional hitches remain. All three entry approaches were reached;
   the final return-to-spawn leg timed out after 35 s. See `Logs/benchmark-1080p/report.txt` and `Docs/TEST_REPORT.md` for scope.
-- **Still pending:** Windows packaging is compiling its cold Direct3D shader cache. Distinguish packaging success from actual
-  Windows execution. Check its actual Unity process/log before starting another editor; do not restart because the log is quiet.
+- **Linux x86-64 is the sole demo target.** Windows packaging was cancelled at the user's request; it is not a failed or pending
+  deliverable. The broader development goal is paused at the user's request.
 
-## 7. Known issues / next steps (priority order)
+## 7. Known issues / deferred follow-ups
 
-1. Finish the live Windows build for judges; check its real process and shader progress before any new editor run. Package builds
-   with `Tools/package_build.sh linux|windows` after verifying their terminal results. Test Windows on Windows before claiming compatibility.
+Resume development only when requested. The verified Linux demo is packaged with `Tools/package_build.sh linux`.
+
+1. Retain the Linux build, verification report and player documentation together in the demo archive.
 2. Improve occasional frame-time hitches and the timed-out return leg of the benchmark tour. Preserve the current native High
    quality while profiling; the high mean FPS is not proof of constant frame delivery.
 3. Continue the ambitious visual pass (user wants "GTA-like"): humans are still procedural primitives. Real rigged CC0 humans + Humanoid animations would be the biggest visual win

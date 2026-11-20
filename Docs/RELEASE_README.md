@@ -4,10 +4,9 @@ You are Specimen 7, an escaped amoeba. Possess people, borrow their credentials 
 
 ## Start playing
 
-Extract the entire archive. Keep the executable, `Parasite_Data` and Unity libraries together.
+This demo targets **Linux x86-64**. Extract the entire archive. Keep the executable, `Parasite_Data` and Unity libraries together.
 
-- **Linux x86-64:** open the extracted `Linux` folder and run `./play.sh` in a terminal. If executable permissions were lost during transfer, run `chmod +x play.sh Parasite.x86_64` first. On an NVIDIA hybrid laptop, you can select the discrete GPU with `__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia ./play.sh`.
-- **Windows x64:** open the extracted `Windows` folder and double-click `Parasite.exe`. Windows execution remains unverified; see `TEST_REPORT.md` for the actual build and test results.
+Open the extracted `Linux` folder and run `./play.sh` in a terminal. If executable permissions were lost during transfer, run `chmod +x play.sh Parasite.x86_64` first. On an NVIDIA hybrid laptop, you can select the discrete GPU with `__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia ./play.sh`.
 
 Select **Begin Infiltration**. Settings in the title and pause menus save graphics quality, mouse sensitivity, master volume and ambience volume. Try a lower graphics preset if performance is uneven.
 

@@ -9,7 +9,7 @@ Possess people, borrow their credentials, split into two bodies, and infiltrate 
 
 ## Play
 
-On this development machine, launch the Linux build from the project root:
+The demo targets **Linux x86-64 only**. On this development machine, launch it from the project root:
 
 ```bash
 ./play.sh
@@ -42,13 +42,12 @@ Tools/unity.sh buildscenes -executeMethod Parasite.EditorTools.CityBuilder.Build
 Tools/unity.sh playmode -runTests -testPlatform PlayMode -testResults Logs/playmode-results.xml
 Tools/unity.sh editmode -nographics -runTests -testPlatform EditMode -testResults Logs/editmode-results.xml
 Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux
-Tools/unity.sh build-win -executeMethod Parasite.EditorTools.BuildAutomation.BuildWindows
 ```
 
 The fast compile uses CPU Roslyn without starting Unity. The Unity wrapper serializes editor access and selects the RTX GPU.
 Generated logs and test results live in `Logs/`. Shader compilation uses the Unity cache; avoid clearing `Library/` on the space-limited workstation.
 
-After each successful platform build, `Tools/package_build.sh linux` or `Tools/package_build.sh windows` creates a player archive
+After a successful Linux build, `Tools/package_build.sh linux` creates a player archive
 under `Builds/Releases/`, including controls, known issues, verification notes and third-party licences.
 
 Run the actual Linux build's gameplay acceptance suite or an uncapped performance tour:
