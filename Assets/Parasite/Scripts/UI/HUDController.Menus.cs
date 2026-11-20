@@ -225,6 +225,7 @@ namespace Parasite.UI
         CanvasGroup endGroup;
         Button endPlay;
         Text[] endValues;
+        Text endHeadline, endEpilogue, endOutcome;
         bool endOpen;
 
         const string Epilogue =
@@ -249,13 +250,16 @@ namespace Parasite.UI
             var brand = UIKit.Txt(col, "Brand", "P A R A S I T E", 30, UIKit.Accent, TextAnchor.MiddleCenter, Weight.Bold);
             brand.rectTransform.Place(top, top, new Vector2(0, -40), new Vector2(1100, 40));
             var head = UIKit.Txt(col, "Headline", "THE EVIDENCE IS OUT.", 72, Color.white, TextAnchor.MiddleCenter, Weight.Bold, true);
+            endHeadline = head;
             head.horizontalOverflow = HorizontalWrapMode.Overflow;
             head.rectTransform.Place(top, top, new Vector2(0, -92), new Vector2(1100, 90));
             var line = UIKit.Img(col, "Rule", UIKit.White, UIKit.Accent.WithAlpha(0.45f));
             line.rectTransform.Place(top, top, new Vector2(0, -196), new Vector2(420, 2));
             var outcome = UIKit.Txt(col, "Outcome", "EVIDENCE PUBLIC  ·  CONTAINMENT OFFLINE  ·  SPECIMEN FREE", 20, UIKit.Accent, TextAnchor.MiddleCenter, Weight.Bold);
+            endOutcome = outcome;
             outcome.rectTransform.Place(top, top, new Vector2(0, -214), new Vector2(1000, 30));
             var epi = UIKit.Txt(col, "Epilogue", Epilogue, 25, UIKit.TextDim, TextAnchor.UpperCenter, Weight.Medium);
+            endEpilogue = epi;
             epi.lineSpacing = 1.1f;
             epi.rectTransform.Place(top, top, new Vector2(0, -258), new Vector2(940, 145));
 
@@ -306,6 +310,21 @@ namespace Parasite.UI
             endOpen = true;
             pauseOpen = false;
             pauseRoot.gameObject.SetActive(false);
+            if (d.outcome == EndingOutcome.Peace)
+            {
+                endHeadline.text = "AN ORDINARY TOMORROW.";
+                endOutcome.text = "EVIDENCE PUBLIC  ·  A QUIET LIFE CHOSEN";
+                endEpilogue.text = "Vale's signed orders are public. The relay is gone. By the lake, one borrowed heartbeat becomes a promise: " +
+                    "no more experiments, no more lives treated as tools. Tonight, the water is still. Tomorrow can be ordinary.";
+            }
+            else if (d.outcome == EndingOutcome.Dominion)
+            {
+                endHeadline.text = "THE WORLD IS NEXT.";
+                endOutcome.text = "EVIDENCE PUBLIC  ·  A NEW CONQUEST BEGINS";
+                endEpilogue.text = "Vale lost control of his experiment. Now it dreams of taking control of everyone else. " +
+                    "From this borrowed body, the plan begins: more hosts, more cities, one mind. The lake keeps its silence.";
+            }
+            else { endHeadline.text = "THE EVIDENCE IS OUT."; endEpilogue.text = Epilogue; }
             int secs = Mathf.Max(0, Mathf.FloorToInt(d.timeSeconds));
             float peak = Mathf.Clamp(d.peakSuspicion, 0f, SuspicionRules.Max);
             endValues[0].text = MissionManager.RouteName(d.route);

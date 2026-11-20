@@ -49,6 +49,8 @@ namespace Parasite.Stealth
 
         void Update()
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return;
             float t = Time.time;
             bool off = Disabled;
             if (!off) head.localRotation = Quaternion.Euler(pitchDown, baseYaw + Mathf.Sin(t * sweepSpeed + phase) * sweepDegrees, 0f);

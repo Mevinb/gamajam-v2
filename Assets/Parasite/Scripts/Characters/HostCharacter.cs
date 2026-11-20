@@ -181,6 +181,8 @@ namespace Parasite.Characters
         // ---------- update ----------
         void Update()
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return;
             float dt = Time.deltaTime;
             switch (State)
             {

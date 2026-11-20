@@ -108,6 +108,8 @@ namespace Parasite.Stealth
         /// <summary>Instant violation. Only counts if witnessed. Returns true if someone saw it.</summary>
         public bool ReportViolation(ViolationType type, Vector3 position, Component suspect, float scale = 1f, Transform ignoreWitness = null)
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return false;
             var targetRoot = suspect ? suspect.transform : null;
             var witness = FirstWitness(position, targetRoot, ignoreWitness);
             if (!witness) return false;
@@ -122,6 +124,8 @@ namespace Parasite.Stealth
         /// <summary>A non-human witness (security camera) saw something: no line-of-sight check here, the caller did it.</summary>
         public void ReportDirect(ViolationType type, Vector3 position, Component suspect, float amount, string who)
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return;
             if (Time.time < graceUntil) return;
             Raise(amount, position, suspect, null, type, who);
         }
@@ -195,6 +199,8 @@ namespace Parasite.Stealth
         // ---------------------------------------------------------------- continuous scan
         void Update()
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return;
             float dt = Time.deltaTime;
             TimeSinceObserved += dt;
             scanT -= dt;

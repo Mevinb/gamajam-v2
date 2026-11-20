@@ -61,8 +61,9 @@ namespace Parasite.Possession
             for (int i = 0; i < Agents.Count; i++)
                 if (i != ActiveIndex || !playing || InputLocked) Agents[i].Body?.ClearControlInput();
 
+            if (!playing) { SetTarget(TargetInfo.None); return; }
             TickCaptures();
-            if (!playing || InputLocked || Active == null) { SetTarget(TargetInfo.None); return; }
+            if (InputLocked || Active == null) { SetTarget(TargetInfo.None); return; }
 
             var body = Active.Body;
             if (body != null && !Active.InTransit)

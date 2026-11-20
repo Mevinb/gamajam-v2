@@ -644,22 +644,73 @@ namespace Parasite.Testing
             GameEvents.Ending += d => { ended = true; data = d; };
             var t3 = PM.ComputeTarget();
             Check(t3.kind == TargetKind.Interact && t3.interactable == (IInteractable)vale, $"Vale prompt: {t3.prompt}");
+            // Initiate the reveal with a real pursuer almost within capture range.
+            var storyGuard = NearestHost(PM.Active.Position, h => h.IsAwakeNpc && h.Brain is GuardAI);
+            Check(storyGuard != null, "nearby guard available to exercise dialogue safety under pursuit");
+            if (!storyGuard) yield break;
+            Vector3 guardSpot = PM.Active.Position + Vector3.right * 2.5f;
+            if (NavMesh.SamplePosition(guardSpot, out var guardHit, 1f, NavMesh.AllAreas)) guardSpot = guardHit.position;
+            TeleportNpc(storyGuard, guardSpot, 270f);
+            var ss = SuspicionSystem.Instance;
+            ss.ReportDirect(ViolationType.UnauthorizedAccess, PM.ActiveBody.EyePosition,
+                PM.Active.Host ? (Component)PM.Active.Host : PM.Active.Blob, 10f, "AutoTest witness");
+            ss.SetValue(95f);
+            int capturesBeforeStory = RunState.Captures, resetsBeforeStory = RunState.Resets;
+            var bodyBeforeStory = PM.ActiveBody;
             yield return PressInteract();
-            Time.timeScale = 4f;
-            for (float t = 0; t < 60f && !RunState.Has(MissionFlags.Confronted); t += Time.unscaledDeltaTime) yield return null;
-            Time.timeScale = 1f;
-            Check(RunState.Has(MissionFlags.Confronted) && !ended && !MissionManager.Instance.EndingStarted && GameManager.Instance.IsPlaying,
+            GameManager.Instance.ResetToCheckpoint("AutoTest: protected Vale story must reject reset requests");
+            Vector3 frozenGuard = storyGuard.transform.position;
+            yield return new WaitForSecondsRealtime(0.7f);
+            Check(GameManager.Instance.State == GameState.Ending && Time.timeScale == 0f &&
+                RunState.Captures == capturesBeforeStory && RunState.Resets == resetsBeforeStory && PM.ActiveBody == bodyBeforeStory &&
+                Vector3.Distance(storyGuard.transform.position, frozenGuard) < 0.02f,
+                "Vale dialogue freezes the nearby pursuer and prevents capture/checkpoint reset while input is locked");
+            yield return SkipStoryUntil(() => RunState.Has(MissionFlags.Confronted), 20f);
+            Check(RunState.Has(MissionFlags.Confronted) && !ended && !MissionManager.Instance.EndingStarted && GameManager.Instance.IsPlaying && Time.timeScale == 1f,
                 "meeting Vale resumes gameplay instead of ending the campaign");
             Check(MissionManager.Instance.Missions.Count == 8 && RunState.MissionIndex == 5, "three new missions follow the original five");
             if (!current.pass) yield break;
+            Calm();
             yield return PostValeCampaign();
             // The checkpoint persistence check reloads CityDirector, which intentionally clears event subscribers.
             GameEvents.Ending += d => { ended = true; data = d; };
-            Time.timeScale = 4f;
-            for (float t = 0; t < 30f && !ended; t += Time.unscaledDeltaTime) yield return null;
-            Time.timeScale = 1f;
-            Check(ended && data.route == route && RunState.Has(MissionFlags.Escaped),
-                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → broadcast → drain escape (route {data.route}, {data.timeSeconds:0}s)");
+            yield return SkipStoryUntil(() => UI.LakesideEpilogue.Instance, 15f);
+            var epilogue = UI.LakesideEpilogue.Instance;
+            Check(epilogue && !ended && GameManager.Instance.State == GameState.Ending && Time.timeScale == 0f,
+                "the drain leads to the protected lakeside epilogue, without publishing final statistics");
+            if (!epilogue) yield break;
+            epilogue.RevealChoices();
+            for (float t = 0; t < 5f && !epilogue.ChoicesReady; t += Time.unscaledDeltaTime) yield return null;
+            Check(epilogue.ChoicesReady, "both final life choices are presented to the player");
+            epilogue.FinishResolution();
+            yield return new WaitForSecondsRealtime(0.7f);
+            Check(!ended && GameManager.Instance.State == GameState.Ending,
+                "waiting or skipping before an explicit choice cannot select an ending or publish statistics");
+            var outcome = route == EntryRoute.ServiceTunnel ? EndingOutcome.Dominion : EndingOutcome.Peace;
+            epilogue.Choose(outcome);
+            // A second input cannot silently replace the player's committed choice.
+            epilogue.Choose(outcome == EndingOutcome.Peace ? EndingOutcome.Dominion : EndingOutcome.Peace);
+            yield return new WaitForSecondsRealtime(0.9f);
+            epilogue.FinishResolution();
+            for (float t = 0; t < 5f && !ended; t += Time.unscaledDeltaTime) yield return null;
+            Check(ended && data.route == route && data.outcome == outcome && RunState.Has(MissionFlags.Escaped) &&
+                GameManager.Instance.State == GameState.Ended && Time.timeScale == 0f,
+                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
+        }
+
+        // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.
+        static IEnumerator SkipStoryUntil(Func<bool> done, float timeout)
+        {
+            float start = Time.realtimeSinceStartup, nextPress = start + 0.65f;
+            while (!done() && Time.realtimeSinceStartup - start < timeout)
+            {
+                bool press = Time.realtimeSinceStartup >= nextPress;
+                GameInput.SimInteract = press;
+                if (press) nextPress = Time.realtimeSinceStartup + 0.65f;
+                yield return null;
+            }
+            GameInput.SimInteract = false;
+            yield return null;
         }
 
         static InteractContext ActiveContext() => new()
@@ -771,8 +822,15 @@ namespace Parasite.Testing
             yield return AimSettle(exit.InteractPoint);
             var tg = PM.ComputeTarget();
             Check(tg.interactable == (IInteractable)exit && tg.allowed, $"final extraction prompt: {tg.prompt}");
+            int finalCaptures = RunState.Captures, finalResets = RunState.Resets;
+            var finalDirector = CityDirector.Instance;
             yield return PressInteract();
-            Check(RunState.Has(MissionFlags.Escaped) && MissionManager.Instance.EndingStarted, "final ending begins only after evidence, sabotage, broadcast and free-form escape");
+            GameManager.Instance.ResetToCheckpoint("AutoTest: protected finale must reject reset requests");
+            yield return new WaitForSecondsRealtime(0.7f);
+            Check(MissionManager.Instance.EndingStarted && !RunState.Has(MissionFlags.Escaped) &&
+                  GameManager.Instance.State == GameState.Ending && Time.timeScale == 0f &&
+                  RunState.Captures == finalCaptures && RunState.Resets == finalResets && CityDirector.Instance == finalDirector,
+                  "final dialogue freezes simulation without prematurely committing escape or resetting the checkpoint");
         }
 
         // ---------------------------------------------------------------- 09

@@ -78,6 +78,14 @@ namespace Parasite.Missions
             Refresh();
         }
 
+        /// <summary>Show the current objective after a protected introduction without changing campaign progress.</summary>
+        public void ReannounceCurrentMission()
+        {
+            Refresh();
+            if (Current != null)
+                Banner?.Invoke($"MISSION {RunState.MissionIndex + 1}/{Missions.Count} · {Current.title}", Current.briefing);
+        }
+
         // ------------------------------------------------------------ flags
         public static void SetFlag(string flag)
         {
@@ -346,7 +354,6 @@ namespace Parasite.Missions
         public void CompleteEscape(Transform drain)
         {
             if (EndingStarted || !RunState.Has(MissionFlags.EvidenceBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
-            SetFlag(MissionFlags.Escaped);
             EndingStarted = true;
             Waypoints.Clear(); SetObjective("");
             if (GameManager.Instance) GameManager.Instance.BeginEnding();
@@ -362,6 +369,8 @@ namespace Parasite.Missions
                 ("DR. PETROV", "The containment relay is gone. Whatever you are… keep going."),
                 ("SPECIMEN 7", "He opened the first door. We chose the last one."),
             });
+            // GameManager commits Escaped only after the lakeside player's explicit final choice.
+            // A story interruption before resolution must still leave the extraction mission resumable.
             var data = new EndingData
             {
                 route = RunState.Route,
@@ -375,14 +384,14 @@ namespace Parasite.Missions
 
         static IEnumerator Dialogue((string who, string line)[] lines)
         {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSecondsRealtime(0.4f);
             foreach (var (who, line) in lines)
             {
                 GameEvents.RaiseSubtitle(who, line);
                 float t = 0, dur = 1.6f + line.Length * 0.045f;
                 while (t < dur)
                 {
-                    t += Time.deltaTime;
+                    t += Time.unscaledDeltaTime;
                     if (t > 0.5f && (GameInput.InteractPressed || GameInput.JumpPressed)) break;
                     yield return null;
                 }

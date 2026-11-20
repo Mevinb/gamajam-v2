@@ -196,6 +196,8 @@ namespace Parasite
         public static TargetInfo None => new() { kind = TargetKind.None, prompt = "" };
     }
 
+    public enum EndingOutcome { Unchosen, Peace, Dominion }
+
     public struct EndingData
     {
         public EntryRoute route;
@@ -203,6 +205,7 @@ namespace Parasite
         public int hostsPossessed;
         public float peakSuspicion;
         public int captures;
+        public EndingOutcome outcome;
     }
 
     public static class Layers

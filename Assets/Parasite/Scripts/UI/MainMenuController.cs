@@ -173,6 +173,7 @@ namespace Parasite.UI
             }
             fade.color = Color.black;
             RunState.NewGame();
+            OpeningCinematic.RequestForNewGame();
             Time.timeScale = 1f;
             SceneManager.LoadScene(GameManager.CityScene);
         }

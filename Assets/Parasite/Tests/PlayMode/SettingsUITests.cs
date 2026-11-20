@@ -2,6 +2,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using Parasite.Characters;
 using Parasite.FX;
 using Parasite.Missions;
 using Parasite.Possession;
@@ -231,15 +232,97 @@ namespace Parasite.Tests
             // Exercise only the end-screen presentation; the campaign suite verifies real extraction.
             gm.BeginEnding();
             gm.FinishEnding(new EndingData { route = EntryRoute.ServiceTunnel, timeSeconds = 936f, hostsPossessed = 12, peakSuspicion = 70f, captures = 1 });
+            var epilogue = LakesideEpilogue.Instance;
+            Assert.IsNotNull(epilogue);
+            epilogue.RevealChoices();
+            yield return new WaitForSecondsRealtime(0.5f);
+            Assert.IsTrue(epilogue.ChoicesReady);
+            yield return Capture("05-lakeside-choice.png");
+            epilogue.Choose(EndingOutcome.Peace);
+            yield return new WaitForSecondsRealtime(1f);
+            yield return Capture("06-peace-resolution.png");
+            epilogue.FinishResolution();
             yield return new WaitForSecondsRealtime(1.3f);
             var ending = HUDController.Instance.transform.Find("HUD Canvas/EndScreen");
             Assert.IsTrue(ending.gameObject.activeInHierarchy);
             var texts = ending.GetComponentsInChildren<Text>();
-            StringAssert.Contains("EVIDENCE", texts.Single(text => text.name == "Headline").text);
-            StringAssert.Contains("storm drain", texts.Single(text => text.name == "Epilogue").text);
+            StringAssert.Contains("ORDINARY", texts.Single(text => text.name == "Headline").text);
+            StringAssert.Contains("lake", texts.Single(text => text.name == "Epilogue").text);
             Assert.AreEqual("15:36", ending.Find("Column/Stats/V1").GetComponent<Text>().text, "Escape statistics include the entire run.");
-            yield return Capture("05-evidence-ending.png");
+            yield return Capture("07-peace-summary.png");
             Debug.Log("[SettingsUI] PASS eight-mission journal, current-objective visibility, scroll input, submenu Back and extended ending presentation (UI fixture)");
+        }
+
+        [UnityTest, Timeout(180000)]
+        public IEnumerator LakesideRequiresAChoiceAndRestoresTemporarySceneState()
+        {
+            yield return AutoTest.LoadCity();
+            var gm = GameManager.Instance;
+            var oldCamera = Camera.main;
+            bool cameraEnabled = oldCamera.enabled, fog = RenderSettings.fog;
+            var oldLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None).Select(light => (light, light.enabled)).ToArray();
+            var oldAudio = Object.FindObjectsByType<AudioSource>(FindObjectsSortMode.None).Select(source => (source, source.mute)).ToArray();
+            int hostCount = HostCharacter.All.Count, possessions = RunState.HostsPossessed;
+            bool published = false; EndingData result = default;
+            void OnEnding(EndingData data) { published = true; result = data; }
+            GameEvents.Ending += OnEnding;
+            try
+            {
+                gm.BeginEnding(); gm.FinishEnding(new EndingData { timeSeconds = 1200f });
+                var epilogue = LakesideEpilogue.Instance;
+                Assert.IsNotNull(epilogue); Assert.IsNotNull(epilogue.SeatedGirl);
+                Assert.IsNull(epilogue.SeatedGirl.GetComponent<HostCharacter>(), "The seated girl is visual staging, not a new gameplay possession.");
+                var thigh = epilogue.SeatedGirl.Find("Model/Hips/LThigh");
+                Assert.That(Quaternion.Angle(thigh.localRotation, Quaternion.Euler(-90, 0, 0)), Is.LessThan(1f), "The girl is visibly posed seated.");
+                Assert.IsNotNull(epilogue.SeatedGirl.Find("Model/Hips/Spine/Neck/Head/Long hair"));
+                var lake = GameObject.Find("Lakeside film set/Lake").GetComponent<Renderer>();
+                Assert.AreEqual("Parasite/LakesideWater", lake.sharedMaterial.shader.name);
+                Assert.IsTrue(lake.sharedMaterial.shader.isSupported, "The lake shader compiled for this GPU.");
+                Assert.AreEqual(GameState.Ending, gm.State); Assert.That(Time.timeScale, Is.Zero);
+                Assert.AreEqual(hostCount, HostCharacter.All.Count); Assert.AreEqual(possessions, RunState.HostsPossessed);
+                Assert.IsFalse(published);
+                Assert.IsFalse(HUDController.Instance.transform.Find("HUD Canvas/EndScreen").gameObject.activeSelf);
+
+                // A held skip/confirm may reveal the choices but must not click one on arrival.
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.Space));
+                yield return null; yield return null;
+                epilogue.RevealChoices();
+                yield return new WaitForSecondsRealtime(0.5f);
+                Assert.IsFalse(epilogue.ChoicesReady, "Held skip input must be released before choosing.");
+                epilogue.Choose(EndingOutcome.Dominion);
+                epilogue.FinishResolution();
+                Assert.AreEqual(EndingOutcome.Unchosen, epilogue.Outcome); Assert.IsFalse(published);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return new WaitForSecondsRealtime(0.5f);
+                Assert.IsTrue(epilogue.ChoicesReady);
+                yield return new WaitForSecondsRealtime(0.8f);
+                Assert.AreEqual(EndingOutcome.Unchosen, epilogue.Outcome, "Waiting at the choice never selects a future.");
+                epilogue.FinishResolution(); Assert.IsFalse(published);
+                Click(epilogue.transform, "Btn_Become the world");
+                Assert.AreEqual(EndingOutcome.Dominion, epilogue.Outcome);
+                epilogue.Choose(EndingOutcome.Peace);
+                Assert.AreEqual(EndingOutcome.Dominion, epilogue.Outcome, "The explicit choice is locked.");
+                yield return new WaitForSecondsRealtime(1.2f);
+                yield return Capture("08-dominion-resolution.png");
+                Assert.IsFalse(published, "The concluding beat precedes the statistics.");
+                epilogue.FinishResolution();
+                yield return new WaitForSecondsRealtime(1.3f);
+                Assert.IsTrue(published); Assert.AreEqual(EndingOutcome.Dominion, result.outcome);
+                Assert.AreEqual(GameState.Ended, gm.State);
+                yield return Capture("09-dominion-summary.png");
+
+                Object.Destroy(epilogue.gameObject);
+                yield return null; yield return null;
+                Assert.IsFalse(LakesideEpilogue.Instance);
+                Assert.IsNull(GameObject.Find("Lakeside film set"));
+                Assert.AreEqual(cameraEnabled, oldCamera.enabled);
+                Assert.AreEqual(fog, RenderSettings.fog);
+                foreach (var state in oldLights) if (state.light) Assert.AreEqual(state.enabled, state.light.enabled);
+                foreach (var state in oldAudio) if (state.source) Assert.AreEqual(state.mute, state.source.mute);
+                Assert.IsTrue(HUDController.Instance.GetComponentInChildren<Canvas>().enabled);
+                Debug.Log("[SettingsUI] PASS explicit lakeside choice, held-input debounce, seated host silhouette, both-body stats isolation and camera/light/audio cleanup (UI fixture)");
+            }
+            finally { GameEvents.Ending -= OnEnding; }
         }
 
         IEnumerator PressEscape()

@@ -86,7 +86,7 @@ namespace Parasite
             GameEvents.RaiseToast($"Checkpoint — {name}", Palette.Info);
         }
 
-        public void BeginEnding() { State = GameState.Ending; }
+        public void BeginEnding() { State = GameState.Ending; Time.timeScale = 0f; }
 
         /// <summary>Return control after a story encounter that continues the campaign.</summary>
         public void ResumeAfterDialogue()
@@ -99,7 +99,19 @@ namespace Parasite
 
         public void FinishEnding(EndingData data)
         {
+            State = GameState.Ending;
+            Time.timeScale = 0f;
+            SetCursorLocked(false);
+            UI.LakesideEpilogue.Begin(data);
+        }
+
+        /// <summary>Publish the final summary only after the player explicitly chooses their future.</summary>
+        public void PublishFinalEnding(EndingData data)
+        {
+            if (State != GameState.Ending || data.outcome == EndingOutcome.Unchosen) return;
+            Missions.MissionManager.SetFlag(Missions.MissionFlags.Escaped);
             State = GameState.Ended;
+            Time.timeScale = 0f;
             SetCursorLocked(false);
             GameEvents.RaiseEnding(data);
         }
@@ -107,7 +119,7 @@ namespace Parasite
         /// <summary>No playable amoeba left: reload the city at the last checkpoint.</summary>
         public void ResetToCheckpoint(string reason)
         {
-            if (State == GameState.Resetting || State == GameState.Ended) return;
+            if (State == GameState.Resetting || State == GameState.Ending || State == GameState.Ended) return;
             State = GameState.Resetting;
             RunState.Resets++;
             GameEvents.RaiseToast(reason + " — returning to last checkpoint", Palette.Danger);

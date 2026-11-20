@@ -49,6 +49,7 @@ namespace Parasite.World
             UI.HUDController.Create();
             FX.Sfx.StartAmbience();
             Ready = true;
+            OpeningCinematic.StartIfRequested();
         }
 
         void OnDestroy() { if (Instance == this) Instance = null; }

@@ -48,7 +48,8 @@ namespace Parasite.Missions
             if (!CanInteract(ctx, out var why)) { GameEvents.RaiseToast(why, Palette.Warning); return; }
             operatorAgent = ctx.agent; operatorHost = ctx.host; elapsed = 0f; Current = this;
             Sfx.Play(SfxId.TerminalBeep, InteractPoint);
-            GameEvents.RaiseToast($"{displayName}… stay at the terminal. Both bodies must remain in position.", Palette.Info);
+            string instruction = string.IsNullOrEmpty(controlId) ? "Stay at the terminal and avoid pursuit." : "Both bodies must remain in position.";
+            GameEvents.RaiseToast($"{displayName}… {instruction}", Palette.Info);
         }
         void OnEnable() => Interactables.Register(this);
         void OnDisable() { Interactables.Unregister(this); StopWork(); }
@@ -67,7 +68,8 @@ namespace Parasite.Missions
                 Vector3.Distance(operatorAgent.Position, transform.position) > range || !CanInteract(ctx, out _))
             {
                 StopWork();
-                GameEvents.RaiseToast($"{displayName}: interrupted. Restore both positions and try again.", Palette.Warning);
+                string instruction = string.IsNullOrEmpty(controlId) ? "Return to the terminal, lose any pursuit and try again." : "Restore both positions and try again.";
+                GameEvents.RaiseToast($"{displayName}: interrupted. {instruction}", Palette.Warning);
                 return;
             }
             elapsed += Time.deltaTime;
