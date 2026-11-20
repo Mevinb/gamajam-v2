@@ -20,7 +20,7 @@ namespace Parasite.Testing
     /// Automated acceptance scenarios driven through the real game systems with simulated input.
     /// Used by PlayMode tests and by the standalone build:
     ///   Parasite.x86_64 -autotest [-autotestOut file]      → runs all scenarios, writes a report, quits (exit code 0/1)
-    ///   Parasite.x86_64 -benchmark [-autotestOut file]     → walks the city for 40 s, logs FPS + memory, screenshots, quits
+    ///   Parasite.x86_64 -benchmark [-autotestOut file]     → walks the city, logs uncapped FPS + route coverage, screenshots, quits
     /// </summary>
     public class AutoTest : MonoBehaviour
     {
@@ -71,6 +71,7 @@ namespace Parasite.Testing
         {
             Running = true;
             Results.Clear();
+            Log.Clear();
             Write($"PARASITE autotest — {DateTime.Now:yyyy-MM-dd HH:mm:ss} — {SystemInfo.graphicsDeviceName} / {SystemInfo.operatingSystem}");
             var scenarios = new (string, Func<IEnumerator>)[]
             {
@@ -114,14 +115,19 @@ namespace Parasite.Testing
         /// <summary>Runs a scenario, catching exceptions as failures.</summary>
         static IEnumerator Guard(IEnumerator e)
         {
-            while (true)
+            try
             {
-                object cur;
-                try { if (!e.MoveNext()) yield break; cur = e.Current; }
-                catch (Exception ex) { current.pass = false; current.detail = "EXCEPTION: " + ex.Message; Debug.LogException(ex); yield break; }
-                yield return cur;
-                if (!current.pass) yield break;
+                while (true)
+                {
+                    object cur;
+                    try { if (!e.MoveNext()) yield break; cur = e.Current; }
+                    catch (Exception ex) { current.pass = false; current.detail = "EXCEPTION: " + ex.Message; Debug.LogException(ex); yield break; }
+                    if (cur is IEnumerator nested) yield return Guard(nested);
+                    else yield return cur;
+                    if (!current.pass) yield break;
+                }
             }
+            finally { (e as IDisposable)?.Dispose(); }
         }
 
         public static IEnumerator LoadCity()
@@ -142,6 +148,7 @@ namespace Parasite.Testing
         {
             GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false; GameInput.SimJump = false;
             GameInput.SimInteract = false; GameInput.SimLeave = false; GameInput.SimSplit = false; GameInput.SimSwitch = false;
+            GameInput.SimAbility = false;
         }
 
         static PossessionManager PM => PossessionManager.Instance;
@@ -475,14 +482,30 @@ namespace Parasite.Testing
             Check(cam != null, "tunnel-alley camera exists");
             if (!cam) yield break;
             Calm();
-            // move every NPC away so only the camera can witness
+            // Hold the sweep still so occlusion and power are tested against the same sightline.
+            cam.sweepDegrees = 0f;
+            yield return null;
             foreach (var h in HostCharacter.All) if (h && h.IsAwakeNpc && Vector3.Distance(h.transform.position, cam.transform.position) < 25f) TeleportNpc(h, CityLayout.PlazaSpot, 0);
             Vector3 seen = cam.head.position + Flat(cam.head.forward).normalized * 6f; seen.y = CityLayout.Sidewalk;
             if (NavMesh.SamplePosition(seen, out var nh, 3f, NavMesh.AllAreas)) seen = nh.position;
             TeleportBody(PM.ActiveBody, seen, 0);
+            // A real collider must occlude CCTV; a camera cannot see through walls.
+            var cover = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cover.name = "AutoTest_CCTV_Occluder";
+            cover.transform.position = Vector3.Lerp(cam.head.position, PM.Active.Blob.Center, 0.5f);
+            cover.transform.rotation = Quaternion.LookRotation(Flat(cam.head.forward));
+            cover.transform.localScale = new Vector3(3f, 5f, 0.5f);
+            Physics.SyncTransforms();
+            try
+            {
+                yield return new WaitForSeconds(0.8f);
+                Check(SuspicionSystem.Instance.Value < 0.01f && !cam.SeesSomething, "wall blocks the camera's view of the blob");
+            }
+            finally { Destroy(cover); }
+            yield return null;
             float t = 0;
             while (t < 6f && SuspicionSystem.Instance.Value < 3f) { t += Time.deltaTime; yield return null; }
-            Check(SuspicionSystem.Instance.Value >= 3f, $"camera saw the blob (suspicion {SuspicionSystem.Instance.Value:0})");
+            Check(SuspicionSystem.Instance.Value >= 3f && cam.SeesSomething, $"camera saw the exposed blob (suspicion {SuspicionSystem.Instance.Value:0})");
             var maint = NearestHost(cam.transform.position, h => h.CanBePossessed && h.Profession == Profession.Maintenance);
             Check(maint != null, "maintenance worker available");
             if (!maint) yield break;
@@ -492,14 +515,26 @@ namespace Parasite.Testing
             Check(cam.Disabled, "maintenance 'Cut the power' disabled the camera");
             float cd = AbilitySystem.Instance.CooldownRemaining(Profession.Maintenance);
             Check(cd > 0f, $"ability on cooldown ({cd:0}s)");
+            Check(!AbilitySystem.Instance.TryUse(maint), "cooldown rejects a second power cut");
+            PM.LeaveHost();
+            // Move the unconscious worker outside every camera view so only the free blob is under test.
+            TeleportNpc(maint, new Vector3(0, -80f, 0), 0);
+            TeleportBody(PM.ActiveBody, seen, 0);
+            Calm();
+            yield return new WaitForSeconds(0.8f);
+            Check(SuspicionSystem.Instance.Value < 0.01f && !cam.SeesSomething, "disabled camera cannot raise suspicion from the exposed blob");
             var sci = NearestHost(PM.Active.Position, h => h.CanBePossessed && h.Profession == Profession.Scientist);
-            if (sci)
-            {
-                PM.ForcePossessImmediate(sci);
-                SuspicionSystem.Instance.SetValue(50f);
-                yield return Press(() => GameInput.SimAbility = true, () => GameInput.SimAbility = false);
-                Check(SuspicionSystem.Instance.Value <= 21f, $"camera spotted blob, power cut disabled it ({cd:0}s cooldown), scientist calm → suspicion {SuspicionSystem.Instance.Value:0}");
-            }
+            Check(sci != null, "scientist available");
+            if (!sci) yield break;
+            PM.ForcePossessImmediate(sci);
+            SuspicionSystem.Instance.SetValue(50f);
+            yield return Press(() => GameInput.SimAbility = true, () => GameInput.SimAbility = false);
+            Check(SuspicionSystem.Instance.Value <= 21f, $"scientist reassurance lowered suspicion to {SuspicionSystem.Instance.Value:0}");
+            // Reassurance must not cancel a live pursuit.
+            SuspicionSystem.Instance.SetValue(95f);
+            float before = SuspicionSystem.Instance.Value;
+            Check(!SuspicionSystem.Instance.Reassure(30f) && SuspicionSystem.Instance.Value == before, "scientist cannot reassure guards during pursuit");
+            Check(!AbilitySystem.Instance.TryUse(null) && !AbilitySystem.Instance.TryUse(maint), "abilities reject free and inactive hosts");
         }
 
         // ---------------------------------------------------------------- 12
@@ -697,30 +732,65 @@ namespace Parasite.Testing
         // ================================================================ benchmark
         IEnumerator BenchmarkMain()
         {
+            Log.Clear();
             yield return LoadCity();
             GameInput.Simulated = true;
+            // A legal staff host lets the tour exercise the live city without manufacturing a blob chase.
+            var tourHost = NearestHost(CityLayout.PlayerSpawn, h => h.CanBePossessed && h.Profession == Profession.Scientist);
+            if (tourHost)
+            {
+                PM.ForcePossessImmediate(tourHost);
+                TeleportBody(tourHost, CityLayout.PlayerSpawn, 0f);
+            }
+            var tourDirector = CityDirector.Instance;
+            // Measure available headroom independently of the desktop refresh rate.
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = -1;
             Write($"PARASITE benchmark — {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             Write($"GPU: {SystemInfo.graphicsDeviceName} ({SystemInfo.graphicsDeviceType}, {SystemInfo.graphicsMemorySize} MB)  CPU: {SystemInfo.processorType} x{SystemInfo.processorCount}  RAM: {SystemInfo.systemMemorySize} MB");
             Write($"Resolution: {Screen.width}x{Screen.height} fullscreen={Screen.fullScreenMode} vSync={QualitySettings.vSyncCount} quality={QualitySettings.names[QualitySettings.GetQualityLevel()]}");
+            var pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline as UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset;
+            Write($"Preset: {GraphicsPreset.Names[GraphicsPreset.Current]}, render scale {(pipeline ? pipeline.renderScale : 1f):0.00}; touring as {(tourHost ? "scientist" : "free amoeba")}; traffic and NPC AI enabled; startup and screenshot encoding excluded from samples");
             var waypoints = new[] { CityLayout.PlayerSpawn, CityLayout.MainGateOutside, CityLayout.StaffTerminalPos, CityLayout.TunnelDoorOutside, CityLayout.PlayerSpawn };
-            string shotDir = Path.GetDirectoryName(OutPath());
+            string reportPath = Path.GetFullPath(OutPath());
+            string shotDir = Path.GetDirectoryName(reportPath);
+            Directory.CreateDirectory(shotDir);
             var frameTimes = new List<float>();
             int shot = 0;
+            bool interrupted = false;
             yield return new WaitForSeconds(2f);
             float total = 0;
             foreach (var wp in waypoints)
             {
-                bool done = false;
-                var walk = WalkTo(wp, 14f, r => done = true);
-                while (walk.MoveNext())
+                bool reached = false;
+                int firstFrame = frameTimes.Count;
+                var walk = WalkTo(wp, 35f, r => reached = r);
+                while (true)
                 {
-                    frameTimes.Add(Time.unscaledDeltaTime);
-                    total += Time.unscaledDeltaTime;
+                    if (CityDirector.Instance != tourDirector || !PM || PM.ActiveBody == null ||
+                        !GameManager.Instance || !GameManager.Instance.IsPlaying)
+                    { interrupted = true; break; }
+                    if (!walk.MoveNext()) break;
+                    if (Time.unscaledDeltaTime > 0f)
+                    {
+                        frameTimes.Add(Time.unscaledDeltaTime);
+                        total += Time.unscaledDeltaTime;
+                    }
                     yield return walk.Current;
                 }
+                (walk as IDisposable)?.Dispose();
+                if (interrupted) { Write("ERROR: gameplay reset/capture interrupted the tour; samples are incomplete"); break; }
+                Write($"Waypoint {shot}: {(reached ? "REACHED" : "TIMEOUT")} {wp}; body {PM.ActiveBody.Root.position}; sampled {frameTimes.Count - firstFrame} frames");
                 ScreenCapture.CaptureScreenshot(Path.Combine(shotDir, $"screenshot_{shot++}.png"));
-                yield return null; yield return null;
-                _ = done;
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
+            ClearSim();
+            if (frameTimes.Count == 0)
+            {
+                Write("ERROR: benchmark collected no frames");
+                File.WriteAllText(reportPath, Log.ToString());
+                Application.Quit(1);
+                yield break;
             }
             frameTimes.Sort();
             float avg = frameTimes.Average();
@@ -729,9 +799,10 @@ namespace Parasite.Testing
             Write($"Frames: {frameTimes.Count} over {total:0.0}s  avg {1f / avg:0.0} FPS ({avg * 1000f:0.00} ms)  1% low {1f / p99:0.0} FPS ({p99 * 1000f:0.0} ms)  worst {worst * 1000f:0.0} ms");
             Write($"Memory: allocated {Profiler.GetTotalAllocatedMemoryLong() / 1048576} MB, reserved {Profiler.GetTotalReservedMemoryLong() / 1048576} MB, mono heap {Profiler.GetMonoUsedSizeLong() / 1048576} MB, gfx driver {Profiler.GetAllocatedMemoryForGraphicsDriver() / 1048576} MB");
             Write($"Scene: {HostCharacter.All.Count} NPCs, {FindObjectsByType<Renderer>(FindObjectsSortMode.None).Length} renderers, {FindObjectsByType<Light>(FindObjectsSortMode.None).Length} lights");
-            File.WriteAllText(OutPath(), Log.ToString());
+            Write($"Final vSync={QualitySettings.vSyncCount}; route {(interrupted ? "INTERRUPTED" : "finished (see waypoint coverage above)")}");
+            File.WriteAllText(reportPath, Log.ToString());
             yield return new WaitForSecondsRealtime(1f);
-            Application.Quit(0);
+            Application.Quit(interrupted ? 1 : 0);
         }
     }
 }

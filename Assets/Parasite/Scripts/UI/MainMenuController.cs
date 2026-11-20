@@ -22,7 +22,8 @@ namespace Parasite.UI
         Text title;
         Outline titleOutline;
         Image titleGlow, fade;
-        Button btnBegin, btnControls;
+        Button btnBegin, btnControls, btnSettings;
+        SettingsOverlay settingsOverlay;
         GameObject controlsOverlay;
         Button controlsBack;
         bool controlsOpen, loading;
@@ -44,6 +45,7 @@ namespace Parasite.UI
             BuildColumn();
             BuildFooter();
             controlsOverlay = UIKit.ControlsOverlay(root, CloseControls, out controlsBack);
+            settingsOverlay = SettingsOverlay.Create(root, CloseSettings);
 
             fade = UIKit.Img(root, "Fade", UIKit.White, Color.black);
             fade.rectTransform.Stretch();
@@ -137,6 +139,7 @@ namespace Parasite.UI
             }
             btnBegin = Add("Begin Infiltration", Begin);
             btnControls = Add("Controls", OpenControls);
+            btnSettings = Add("Settings", OpenSettings);
             Add("Quit", GameManager.QuitApp);
             UIKit.LinkVertical(items);
         }
@@ -190,6 +193,19 @@ namespace Parasite.UI
             UIKit.Select(btnControls);
         }
 
+        void OpenSettings()
+        {
+            column.gameObject.SetActive(false);
+            settingsOverlay.Open();
+        }
+
+        void CloseSettings()
+        {
+            settingsOverlay.Close();
+            column.gameObject.SetActive(true);
+            UIKit.Select(btnSettings);
+        }
+
         // ------------------------------------------------------------------ frame
         void Update()
         {
@@ -222,9 +238,14 @@ namespace Parasite.UI
             bool back = kb != null && kb.escapeKey.wasPressedThisFrame;
             var pad = Gamepad.current;
             if (pad != null && pad.buttonEast.wasPressedThisFrame) back = true;
-            if (controlsOpen && back) CloseControls();
+            bool settingsOpen = settingsOverlay.gameObject.activeSelf;
+            if (back)
+            {
+                if (settingsOpen) CloseSettings();
+                else if (controlsOpen) CloseControls();
+            }
 
-            UIKit.KeepFocus(controlsOpen ? controlsBack : btnBegin, root);
+            UIKit.KeepFocus(settingsOverlay.gameObject.activeSelf ? settingsOverlay.FirstSelection : controlsOpen ? controlsBack : btnBegin, root);
         }
     }
 }

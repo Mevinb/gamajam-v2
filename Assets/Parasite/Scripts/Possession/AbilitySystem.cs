@@ -38,6 +38,10 @@ namespace Parasite.Possession
 
         public bool TryUse(HostCharacter host)
         {
+            var gm = GameManager.Instance;
+            var pm = PossessionManager.Instance;
+            if (!host || host.State != HostState.Possessed || !pm || pm.Active == null || pm.Active.Host != host ||
+                (gm && !gm.IsPlaying)) return false;
             var (name, _, cd) = Info(host.Profession);
             float left = CooldownRemaining(host.Profession);
             if (left > 0f) { GameEvents.RaiseToast($"{name} ready in {left:0}s", Palette.Warning); Sfx.Ui(SfxId.Denied, 0.4f); return false; }

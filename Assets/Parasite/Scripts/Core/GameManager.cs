@@ -57,7 +57,7 @@ namespace Parasite
             if (GameInput.PausePressed)
             {
                 if (State == GameState.Playing) SetPaused(true);
-                else if (State == GameState.Paused) SetPaused(false);
+                else if (State == GameState.Paused && !(UI.HUDController.Instance && UI.HUDController.Instance.TryClosePauseSubmenu())) SetPaused(false);
             }
         }
 

@@ -2,19 +2,19 @@ using System.Collections.Generic;
 using Parasite.Missions;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace Parasite.UI
 {
-    /// <summary>Pause menu (+ controls overlay, mouse sensitivity) and the end screen.</summary>
+    /// <summary>Pause menu, controls/settings overlays, journal and end screen.</summary>
     public partial class HUDController
     {
         // ================================================================== pause
-        RectTransform pauseRoot, pausePanel;
+        RectTransform pauseRoot, pausePanel, pauseContent;
         CanvasGroup pauseGroup;
-        Button btnResume, btnControls;
-        Slider sensSlider;
-        Text sensValue;
+        Button btnResume, btnControls, btnSettings;
+        SettingsOverlay pauseSettings;
         GameObject pauseControls;
         Button pauseControlsBack;
         bool pauseOpen, controlsOpen;
@@ -27,9 +27,11 @@ namespace Parasite.UI
             dim.rectTransform.Stretch(); dim.raycastTarget = true;
             UIKit.Img(pauseRoot, "Vignette", UIKit.Vignette, new Color(0, 0, 0, 0.8f)).rectTransform.Stretch();
 
-            const float W = 580f, H = 790f;
-            var panel = UIKit.Panel(pauseRoot, "Panel", 14, UIKit.PanelBgLight, UIKit.AccentSoft);
-            pausePanel = panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(W, H));
+            const float W = 580f, H = 660f;
+            // Center the complete menu/journal pair so both fit narrow laptop aspect ratios.
+            pauseContent = UIKit.Rect("Content", pauseRoot).Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(1124, H));
+            var panel = UIKit.Panel(pauseContent, "Panel", 14, UIKit.PanelBgLight, UIKit.AccentSoft);
+            pausePanel = panel.rectTransform.Place(new Vector2(0, 0.5f), new Vector2(0, 0.5f), Vector2.zero, new Vector2(W, H));
             var glow = UIKit.Img(panel.transform, "Glow", UIKit.Glow, UIKit.Accent.WithAlpha(0.08f));
             glow.rectTransform.Place(new Vector2(0.5f, 1), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(700, 300));
             var title = UIKit.Txt(panel.transform, "Title", "PAUSED", 72, UIKit.TextMain, TextAnchor.MiddleCenter, Weight.Bold, true);
@@ -50,32 +52,18 @@ namespace Parasite.UI
             btnResume = Add("Resume", () => { var gm = GameManager.Instance; if (gm) gm.SetPaused(false); });
             Add("Restart", () => { var gm = GameManager.Instance; if (gm) gm.RestartGame(); });
             btnControls = Add("Controls", OpenControls);
-            Button gfx = null;
-            gfx = Add("Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current], () =>
-            {
-                GraphicsPreset.Cycle();
-                var t = gfx ? gfx.GetComponentInChildren<Text>() : null;
-                if (t) t.text = "Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current];
-            });
+            btnSettings = Add("Settings", OpenSettings);
             Add("Quit to Menu", () => { var gm = GameManager.Instance; if (gm) gm.QuitToMenu(); });
             Add("Quit Game", GameManager.QuitApp);
 
-            y -= 12f;
-            var sl = UIKit.Txt(panel.transform, "SensLabel", "MOUSE SENSITIVITY", 18, UIKit.TextDim, TextAnchor.MiddleLeft);
-            sl.rectTransform.Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(-30, y), new Vector2(400, 26));
-            sensValue = UIKit.Txt(panel.transform, "SensValue", "", 20, UIKit.Accent, TextAnchor.MiddleRight, Weight.Bold);
-            sensValue.rectTransform.Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(170, y), new Vector2(120, 26));
-            y -= 32f;
-            sensSlider = UIKit.Sld(panel.transform, "Sensitivity", UIKit.SensMin, UIKit.SensMax, GameInput.MouseSensitivity, OnSensChanged, 460);
-            ((RectTransform)sensSlider.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, y), new Vector2(460, 30));
-            items.Add(sensSlider);
             UIKit.LinkVertical(items);
 
             var foot = UIKit.Txt(panel.transform, "Foot", "Esc  resume", 17, UIKit.TextDim, TextAnchor.MiddleCenter);
             foot.rectTransform.Place(new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 14), new Vector2(W, 24));
 
-            BuildJournal(pauseRoot, W);
+            BuildJournal(pauseContent, W);
             pauseControls = UIKit.ControlsOverlay(pauseRoot, CloseControls, out pauseControlsBack);
+            pauseSettings = SettingsOverlay.Create(pauseRoot, CloseSettings);
             pauseRoot.gameObject.SetActive(false);
             pauseGroup.alpha = 0f;
         }
@@ -85,7 +73,7 @@ namespace Parasite.UI
         void BuildJournal(Transform p, float pauseW)
         {
             var panel = UIKit.Panel(p, "Journal", 14, UIKit.PanelBgLight, UIKit.AccentFaint);
-            panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(pauseW * 0.5f + 24f, 0), new Vector2(520, 640));
+            panel.rectTransform.Place(new Vector2(0, 0.5f), new Vector2(0f, 0.5f), new Vector2(pauseW + 24f, 0), new Vector2(520, 640));
             var head = UIKit.Txt(panel.transform, "Head", "MISSION JOURNAL", 24, UIKit.Accent, TextAnchor.MiddleLeft, Weight.Bold);
             head.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(28, -22), new Vector2(460, 34));
             journalText = UIKit.Txt(panel.transform, "Body", "", 19, UIKit.TextMain, TextAnchor.UpperLeft, Weight.Medium);
@@ -116,12 +104,6 @@ namespace Parasite.UI
             journalText.text = UIKit.Clean(sb.ToString());
         }
 
-        void OnSensChanged(float v)
-        {
-            UIKit.SaveSensitivity(v);
-            sensValue.text = Mathf.RoundToInt(Mathf.InverseLerp(UIKit.SensMin, UIKit.SensMax, v) * 100f).ToString() + "%";
-        }
-
         void OnPause(bool paused)
         {
             if (paused) RefreshJournal();
@@ -131,8 +113,6 @@ namespace Parasite.UI
             {
                 pauseRoot.gameObject.SetActive(true);
                 CloseControlsSilently();
-                sensSlider.SetValueWithoutNotify(GameInput.MouseSensitivity);
-                OnSensChanged(GameInput.MouseSensitivity);
                 UIKit.Select(btnResume);
             }
             else
@@ -146,7 +126,7 @@ namespace Parasite.UI
         {
             controlsOpen = true;
             pauseControls.SetActive(true);
-            pausePanel.gameObject.SetActive(false);
+            pauseContent.gameObject.SetActive(false);
             UIKit.Select(pauseControlsBack);
         }
 
@@ -160,7 +140,30 @@ namespace Parasite.UI
         {
             controlsOpen = false;
             pauseControls.SetActive(false);
-            pausePanel.gameObject.SetActive(true);
+            pauseSettings.Close();
+            pauseContent.gameObject.SetActive(true);
+        }
+
+        void OpenSettings()
+        {
+            pauseContent.gameObject.SetActive(false);
+            pauseSettings.Open();
+        }
+
+        void CloseSettings()
+        {
+            pauseSettings.Close();
+            pauseContent.gameObject.SetActive(true);
+            UIKit.Select(btnSettings);
+        }
+
+        /// <summary>Esc/Start goes back one level before resuming the game.</summary>
+        public bool TryClosePauseSubmenu()
+        {
+            if (!pauseOpen) return false;
+            if (pauseSettings.gameObject.activeSelf) { CloseSettings(); return true; }
+            if (controlsOpen) { CloseControls(); return true; }
+            return false;
         }
 
         // ================================================================== end screen
@@ -271,8 +274,13 @@ namespace Parasite.UI
                 pauseGroup.alpha = Mathf.MoveTowards(pauseGroup.alpha, pauseOpen ? 1f : 0f, dt * 8f);
                 pauseGroup.interactable = pauseGroup.blocksRaycasts = pauseOpen;
                 float s = Mathf.Lerp(0.96f, 1f, pauseGroup.alpha);
-                pausePanel.localScale = new Vector3(s, s, 1f);
-                if (pauseOpen) UIKit.KeepFocus(controlsOpen ? pauseControlsBack : btnResume, pauseRoot);
+                pauseContent.localScale = new Vector3(s, s, 1f);
+                if (pauseOpen)
+                {
+                    var pad = Gamepad.current;
+                    if (pad != null && pad.buttonEast.wasPressedThisFrame) TryClosePauseSubmenu();
+                    UIKit.KeepFocus(pauseSettings.gameObject.activeSelf ? pauseSettings.FirstSelection : controlsOpen ? pauseControlsBack : btnResume, pauseRoot);
+                }
                 else if (pauseGroup.alpha <= 0f) pauseRoot.gameObject.SetActive(false);
             }
 

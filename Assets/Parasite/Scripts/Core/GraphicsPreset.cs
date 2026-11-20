@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace Parasite
 {
@@ -11,12 +12,17 @@ namespace Parasite
         const string Key = "parasite.graphics";
         public static int Current { get; private set; } = 2;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Boot()
         {
             int def = SystemInfo.graphicsMemorySize >= 5000 ? 2 : 1;
             Apply(PlayerPrefs.GetInt(Key, def), save: false);
+            // New gameplay cameras are created on scene load (including checkpoint reloads).
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
+
+        static void OnSceneLoaded(Scene scene, LoadSceneMode mode) => Apply(Current, save: false);
 
         public static void Cycle() => Apply((Current + 1) % Names.Length);
 

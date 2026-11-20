@@ -465,6 +465,7 @@ namespace Parasite.UI
         public static void LoadSettings()
         {
             if (PlayerPrefs.HasKey(SensKey)) GameInput.MouseSensitivity = Mathf.Clamp(PlayerPrefs.GetFloat(SensKey), SensMin, SensMax);
+            AudioPreferences.Load();
         }
 
         public static void SaveSensitivity(float v)

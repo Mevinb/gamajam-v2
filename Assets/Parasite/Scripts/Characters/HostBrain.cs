@@ -84,7 +84,7 @@ namespace Parasite.Characters
             if (c == '!' || AlertIcon != '!' || alertIconT <= 0f) { AlertIcon = c; alertIconT = seconds; }
         }
 
-        public virtual void OnPossessed() { noticeT = 0f; AlertIcon = ' '; host.Rig.LookAt(null); }
+        public virtual void OnPossessed() { noticeT = 0f; fleeT = 0f; alertIconT = 0f; AlertIcon = ' '; host.Rig.LookAt(null); }
         public virtual void OnRecovered()
         {
             Notice(transform.position + transform.forward * 2f, 1.5f, '?');
