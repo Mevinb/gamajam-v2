@@ -31,6 +31,7 @@ namespace Parasite.World
             gameObject.AddComponent<SuspicionSystem>();
             gameObject.AddComponent<MissionManager>();
             gameObject.AddComponent<PossessionManager>();
+            gameObject.AddComponent<AbilitySystem>();
 
             BakeNavMesh();
             foreach (var s in FindObjectsByType<NpcSpawn>(FindObjectsSortMode.None)) HostFactory.Create(s);

@@ -7,12 +7,12 @@ namespace Parasite
     public static class GameInput
     {
         static InputActionMap map;
-        public static InputAction Move, Look, Sprint, Jump, Interact, Leave, Split, Switch, Pause;
+        public static InputAction Move, Look, Sprint, Jump, Interact, Leave, Split, Switch, Pause, Ability;
 
         /// <summary>Set by automated tests / autoplay to drive input without devices.</summary>
         public static bool Simulated;
         public static Vector2 SimMove;
-        public static bool SimSprint, SimJump, SimInteract, SimLeave, SimSplit, SimSwitch;
+        public static bool SimSprint, SimJump, SimInteract, SimLeave, SimSplit, SimSwitch, SimAbility;
 
         public static float MouseSensitivity = 0.12f;
         public static float StickSensitivity = 160f;
@@ -42,6 +42,8 @@ namespace Parasite
             Split.AddBinding("<Gamepad>/buttonNorth");
             Switch = map.AddAction("Switch", InputActionType.Button, "<Keyboard>/tab");
             Switch.AddBinding("<Gamepad>/rightShoulder");
+            Ability = map.AddAction("Ability", InputActionType.Button, "<Keyboard>/f");
+            Ability.AddBinding("<Gamepad>/leftShoulder");
             Pause = map.AddAction("Pause", InputActionType.Button, "<Keyboard>/escape");
             Pause.AddBinding("<Gamepad>/start");
             map.Enable();
@@ -71,6 +73,7 @@ namespace Parasite
         public static bool LeavePressed { get { Ensure(); return Simulated ? SimLeave : Leave.WasPressedThisFrame(); } }
         public static bool SplitPressed { get { Ensure(); return Simulated ? SimSplit : Split.WasPressedThisFrame(); } }
         public static bool SwitchPressed { get { Ensure(); return Simulated ? SimSwitch : Switch.WasPressedThisFrame(); } }
+        public static bool AbilityPressed { get { Ensure(); return Simulated ? SimAbility : Ability.WasPressedThisFrame(); } }
         public static bool PausePressed { get { Ensure(); return Pause.WasPressedThisFrame(); } }
     }
 }

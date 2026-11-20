@@ -399,6 +399,7 @@ namespace Parasite.UI
             ("Q", "B", "Leave host (it stays unconscious 8 s)"),
             ("V", "Y", "Split off a second amoeba (max 2)"),
             ("Tab", "RB", "Switch active amoeba"),
+            ("F", "LB", "Host ability (job-specific)"),
             ("Esc", "Start", "Pause"),
             ("F1", "", "Show / hide controls card"),
             ("F3", "", "FPS counter"),

@@ -17,7 +17,7 @@ namespace Parasite.Stealth
         public static SuspicionSystem Instance { get; private set; }
 
         public float civilianRange = 16f, guardRange = 24f, fovDegrees = 125f, nearAwareness = 2.2f;
-        public float blobSightRange = 13f, unconsciousSightRange = 11f, alertRadius = 38f;
+        public float blobSightRange = 11f, unconsciousSightRange = 11f, alertRadius = 38f;
 
         public float Value { get; private set; }
         public SuspicionLevel Level { get; private set; }
@@ -119,7 +119,23 @@ namespace Parasite.Stealth
             return true;
         }
 
-        void Raise(float amount, Vector3 position, Component suspect, HostCharacter witness, ViolationType type)
+        /// <summary>A non-human witness (security camera) saw something: no line-of-sight check here, the caller did it.</summary>
+        public void ReportDirect(ViolationType type, Vector3 position, Component suspect, float amount, string who)
+        {
+            if (Time.time < graceUntil) return;
+            Raise(amount, position, suspect, null, type, who);
+        }
+
+        /// <summary>Lower suspicion (e.g. a scientist's reassurance). Never below 0; not while pursuing.</summary>
+        public bool Reassure(float amount)
+        {
+            if (Level == SuspicionLevel.Pursuing) return false;
+            Value = Mathf.Max(0f, Value - amount);
+            UpdateLevel();
+            return true;
+        }
+
+        void Raise(float amount, Vector3 position, Component suspect, HostCharacter witness, ViolationType type, string whoOverride = null)
         {
             if (Time.time < graceUntil) return;
             Value = SuspicionRules.Add(Value, amount);
@@ -133,7 +149,7 @@ namespace Parasite.Stealth
 
             if (!SuspicionRules.IsContinuous(type))
             {
-                string who = witness ? witness.DisplayName : "Someone";
+                string who = whoOverride ?? (witness ? witness.DisplayName : "Someone");
                 string what = type switch
                 {
                     ViolationType.WitnessedPossession => "saw you take over a body!",
@@ -208,7 +224,7 @@ namespace Parasite.Stealth
                         var w = FirstWitness(a.Blob.Center, a.Blob.transform, null, blobSightRange / civilianRange);
                         if (w)
                         {
-                            float prox = Mathf.Lerp(1.6f, 0.5f, Mathf.InverseLerp(1.5f, blobSightRange, Vector3.Distance(w.EyePosition, a.Blob.Center)));
+                            float prox = Mathf.Lerp(1.5f, 0.25f, Mathf.InverseLerp(1.5f, blobSightRange, Vector3.Distance(w.EyePosition, a.Blob.Center)));
                             Raise(SuspicionRules.BaseAmount(ViolationType.BlobSighted) * interval * prox, a.Blob.Center, a.Blob, w, ViolationType.BlobSighted);
                         }
                     }

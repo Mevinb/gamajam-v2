@@ -51,7 +51,27 @@ namespace Parasite
             return m;
         }
 
+        static readonly Dictionary<string, Texture2D> texCache = new();
+
+        /// <summary>Texture from Resources (cached, null if missing).</summary>
+        public static Texture2D Tex(string resourcePath)
+        {
+            if (string.IsNullOrEmpty(resourcePath)) return null;
+            if (texCache.TryGetValue(resourcePath, out var t)) return t;
+            t = Resources.Load<Texture2D>(resourcePath);
+            texCache[resourcePath] = t;
+            return t;
+        }
+
         /// <summary>A material whose emission can be animated (e.g. possession glow). Not cached: one per owner.</summary>
+        public static Material LitUnique(Color color, float smoothness, float metallic, Texture albedo, Texture normal, float tiling, float normalStrength = 1f)
+        {
+            var m = LitUnique(color, smoothness, metallic);
+            if (albedo) { m.SetTexture(BaseMap, albedo); m.SetTextureScale(BaseMap, new Vector2(tiling, tiling)); }
+            if (normal) { m.SetTexture(BumpMap, normal); m.SetFloat("_BumpScale", normalStrength); m.EnableKeyword("_NORMALMAP"); }
+            return m;
+        }
+
         public static Material LitUnique(Color color, float smoothness = 0.35f, float metallic = 0f)
         {
             var m = new Material(Template(ref litTemplate, "Materials/LitTemplate", "Universal Render Pipeline/Lit"));

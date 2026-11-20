@@ -38,6 +38,21 @@ namespace Parasite.EditorTools
             var u = Ensure($"{MatDir}/UnlitTemplate.mat", unlit);
             EditorUtility.SetDirty(u);
 
+            foreach (var guid in AssetDatabase.FindAssets("t:Texture2D", new[] { "Assets/Parasite/Resources/Textures" }))
+            {
+                var tp = AssetDatabase.GUIDToAssetPath(guid);
+                if (AssetImporter.GetAtPath(tp) is not TextureImporter ti) continue;
+                bool normal = tp.Contains("_normal");
+                var want = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
+                if (ti.textureType == want && ti.maxTextureSize == 1024) continue;
+                ti.textureType = want;
+                ti.sRGBTexture = !normal;
+                ti.maxTextureSize = 1024;
+                ti.mipmapEnabled = true;
+                ti.textureCompression = TextureImporterCompression.Compressed;
+                ti.SaveAndReimport();
+            }
+
             PlayerSettings.companyName = "Parasite Jam Team";
             PlayerSettings.productName = "PARASITE";
             PlayerSettings.defaultScreenWidth = 1920;

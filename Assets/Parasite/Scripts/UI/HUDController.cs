@@ -536,6 +536,14 @@ namespace Parasite.UI
                     hintText.text = hintCache[sig];
                 }
             }
+            if (sig > 0 && a != null && a.Host && Time.frameCount % 10 == 0)
+            {
+                var (abName, _, _) = Possession.AbilitySystem.Info(a.Host.Profession);
+                var ab = Possession.AbilitySystem.Instance;
+                float cd = ab ? ab.CooldownRemaining(a.Host.Profession) : 0f;
+                string abText = cd > 0f ? $"<color=#6a7f74>[F] {abName} {cd:0}s</color>" : Key("F", abName);
+                hintText.text = hintCache[sig] + "        " + abText;
+            }
             hintGroup.alpha = Mathf.MoveTowards(hintGroup.alpha, sig > 0 ? 1f : 0f, dt * 5f);
         }
 

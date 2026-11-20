@@ -106,7 +106,7 @@ namespace Parasite
             ViolationType.UnconsciousHostFound => 22f,
             ViolationType.UnauthorizedAccess => 16f,
             ViolationType.WitnessedSplit => 30f,
-            ViolationType.BlobSighted => 14f,   // per second while in view
+            ViolationType.BlobSighted => 6f,    // per second while in view (scaled by proximity)
             ViolationType.Trespassing => 9f,    // per second while in view
             _ => 10f,
         };

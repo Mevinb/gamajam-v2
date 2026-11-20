@@ -12,6 +12,7 @@
 | Q | B / East | Leave the current host (the host stays unconscious for 8 s) |
 | V | Y / North | Split off a second amoeba (max 2) |
 | Tab | Right bumper | Switch control to the other amoeba |
+| F | Left bumper | Host ability: civilian **distraction** · guard **radio dispatch** · scientist **professional calm** (−30 suspicion) · maintenance **cut the power** (cameras off 20 s) |
 | Esc | Start | Pause (Resume · Restart · Controls · mouse sensitivity · Quit) |
 | F1 | — | Show / hide the controls card |
 | F3 | — | FPS counter (launch with `-showfps` to start with it on) |
@@ -46,3 +47,16 @@ contains it; if no amoeba is left you return to the last checkpoint.
 
 Inside the lab, find Dr. Vale's office and confront him. The end screen shows your route, time, hosts possessed,
 peak suspicion and captures.
+
+## Missions
+
+1. **Out of the Drain** — leave the storm-drain alley, take your first host.
+2. **Word on the Street** — read the newsstand on City Plaza, eavesdrop on Dr. Petrov at the café.
+3. **Credentials** — pick a way in: guard → Main Gate · scientist + café keycard → Staff Terminal ·
+   maintenance + Substation 4 reset → Service Tunnel.
+4. **Vale's Research** — download files at the Lab A and Lab B terminals; Dr. Vale's office has a two-person rule:
+   split (V), put each amoeba in a staff host, badge both readers within 8 s (Tab to switch).
+5. **Creator** — confront Dr. Vale.
+
+Yellow waypoints show where to go. Security cameras (red blinking lamp) sweep the campus and lab: they spot free
+amoebas, trespassers and bodies. A maintenance host can cut their power with F.

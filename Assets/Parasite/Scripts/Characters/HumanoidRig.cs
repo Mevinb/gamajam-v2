@@ -42,9 +42,30 @@ namespace Parasite.Characters
             new(0.13f, 0.18f, 0.30f), new(0.10f, 0.10f, 0.11f), new(0.35f, 0.30f, 0.24f), new(0.25f, 0.27f, 0.30f),
         };
 
+        enum Fabric { None, Jersey, Poplin, Wool, Melange, Denim, Leather }
+
         Material M(Color c, float smooth = 0.3f, float metal = 0f)
         {
             var m = MatFactory.LitUnique(c, smooth, metal);
+            unique.Add(m);
+            return m;
+        }
+
+        Material F(Color tint, Fabric f, float smooth = 0.2f, float tiling = 3f)
+        {
+            string a = f switch
+            {
+                Fabric.Jersey => "cotton_jersey_grey", Fabric.Poplin => "stretch_poplin_grey", Fabric.Wool => "caban_grey",
+                Fabric.Melange => "jersey_melange_grey", Fabric.Denim => "denim_fabric_albedo", Fabric.Leather => "brown_leather_albedo", _ => null,
+            };
+            string n = f switch
+            {
+                Fabric.Jersey => "cotton_jersey_normal", Fabric.Poplin => "stretch_poplin_normal", Fabric.Wool => "caban_normal",
+                Fabric.Melange => "jersey_melange_normal", Fabric.Denim => "denim_fabric_normal", Fabric.Leather => "brown_leather_normal", _ => null,
+            };
+            var alb = a != null ? MatFactory.Tex("Textures/Clothes/" + a) : null;
+            var nor = n != null ? MatFactory.Tex("Textures/Clothes/" + n) : null;
+            var m = MatFactory.LitUnique(tint, smooth, 0f, alb, nor, tiling, 0.8f);
             unique.Add(m);
             return m;
         }
@@ -62,22 +83,26 @@ namespace Parasite.Characters
             Model.SetParent(transform, false);
             Model.localScale = new Vector3(girth, height, girth);
 
-            var skin = M(Pick(SkinTones), 0.45f);
-            var hair = M(isDrVale ? new Color(0.78f, 0.78f, 0.80f) : Pick(HairColors), 0.25f);
+            var skinC = Pick(SkinTones);
+            var skin = M(skinC, 0.42f);
+            var hairC = isDrVale ? new Color(0.78f, 0.78f, 0.80f) : Pick(HairColors);
+            var hair = F(hairC * 1.15f, Fabric.Wool, 0.35f, 5f);
             Color shirtC = Pick(ShirtColors), pantsC = Pick(PantsColors);
-            var shoes = M(new Color(0.06f, 0.05f, 0.05f), 0.55f);
+            var shoes = F(new Color(0.32f, 0.3f, 0.3f), Fabric.Leather, 0.55f, 2f);
             Material shirt, pants;
             switch (profession)
             {
                 case Profession.Guard:
-                    shirt = M(new Color(0.10f, 0.14f, 0.26f), 0.25f); pants = M(new Color(0.07f, 0.08f, 0.11f), 0.3f); break;
+                    shirt = F(new Color(0.16f, 0.22f, 0.40f), Fabric.Poplin); pants = F(new Color(0.12f, 0.13f, 0.17f), Fabric.Wool); break;
                 case Profession.Scientist:
-                    shirt = M(Pick(new[] { new Color(0.55f, 0.65f, 0.78f), new Color(0.35f, 0.38f, 0.42f), new Color(0.6f, 0.2f, 0.25f) }), 0.3f);
-                    pants = M(new Color(0.17f, 0.18f, 0.21f), 0.3f); break;
+                    shirt = F(Pick(new[] { new Color(0.62f, 0.72f, 0.86f), new Color(0.45f, 0.48f, 0.52f), new Color(0.7f, 0.28f, 0.32f) }), Fabric.Poplin);
+                    pants = F(new Color(0.25f, 0.26f, 0.3f), Fabric.Wool); break;
                 case Profession.Maintenance:
-                    shirt = M(new Color(0.16f, 0.24f, 0.40f), 0.2f); pants = M(new Color(0.16f, 0.24f, 0.40f), 0.2f); break;
+                    shirt = F(new Color(0.24f, 0.34f, 0.55f), Fabric.Wool); pants = F(new Color(0.24f, 0.34f, 0.55f), Fabric.Wool); break;
                 default:
-                    shirt = M(shirtC, 0.3f); pants = M(pantsC, 0.25f); break;
+                    shirt = F(shirtC * 1.25f, rnd.NextDouble() < 0.5 ? Fabric.Jersey : Fabric.Melange);
+                    pants = rnd.NextDouble() < 0.6 ? F(Color.Lerp(Color.white, pantsC * 2f, 0.3f), Fabric.Denim, 0.15f, 2.5f) : F(pantsC * 1.4f, Fabric.Wool);
+                    break;
             }
 
             // --- skeleton (pivots) ---
@@ -96,14 +121,24 @@ namespace Parasite.Characters
 
             // --- body meshes ---
             Prim.Make(PrimitiveType.Cube, hips, new Vector3(0, -0.02f, 0), new Vector3(0.33f, 0.16f, 0.2f), pants);
-            Prim.Make(PrimitiveType.Capsule, spine, new Vector3(0, 0.26f, 0), new Vector3(0.38f, 0.27f, 0.23f), shirt);
-            Prim.Make(PrimitiveType.Cube, spine, new Vector3(0, 0.36f, 0), new Vector3(0.40f, 0.2f, 0.22f), shirt);
+            Prim.Make(PrimitiveType.Capsule, spine, new Vector3(0, 0.16f, 0), new Vector3(0.33f, 0.2f, 0.21f), shirt);
+            Prim.Make(PrimitiveType.Sphere, spine, new Vector3(0, 0.33f, 0), new Vector3(0.40f, 0.30f, 0.245f), shirt);
+            Prim.Make(PrimitiveType.Sphere, spine, new Vector3(-0.19f, 0.41f, 0), new Vector3(0.14f, 0.13f, 0.15f), shirt);
+            Prim.Make(PrimitiveType.Sphere, spine, new Vector3(0.19f, 0.41f, 0), new Vector3(0.14f, 0.13f, 0.15f), shirt);
             Prim.Make(PrimitiveType.Cylinder, neck, new Vector3(0, 0.02f, 0), new Vector3(0.09f, 0.05f, 0.09f), skin);
             var headGo = Prim.Make(PrimitiveType.Sphere, Head, new Vector3(0, 0.11f, 0.0f), new Vector3(0.20f, 0.24f, 0.22f), skin);
             Prim.Make(PrimitiveType.Sphere, Head, new Vector3(0, 0.06f, 0.10f), new Vector3(0.06f, 0.07f, 0.05f), skin); // nose/jaw
             eyeMat = M(new Color(0.08f, 0.08f, 0.1f), 0.9f);
-            Prim.Make(PrimitiveType.Sphere, Head, new Vector3(-0.045f, 0.13f, 0.098f), Vector3.one * 0.03f, eyeMat);
-            Prim.Make(PrimitiveType.Sphere, Head, new Vector3(0.045f, 0.13f, 0.098f), Vector3.one * 0.03f, eyeMat);
+            var sclera = M(new Color(0.92f, 0.9f, 0.88f), 0.7f);
+            var brow = M(hairC * 0.8f, 0.2f);
+            var lips = M(Color.Lerp(skinC, new Color(0.55f, 0.25f, 0.25f), 0.45f), 0.5f);
+            foreach (float ex in new[] { -0.045f, 0.045f })
+            {
+                Prim.Make(PrimitiveType.Sphere, Head, new Vector3(ex, 0.13f, 0.094f), new Vector3(0.034f, 0.026f, 0.02f), sclera);
+                Prim.Make(PrimitiveType.Sphere, Head, new Vector3(ex, 0.13f, 0.103f), Vector3.one * 0.016f, eyeMat);
+                Prim.Make(PrimitiveType.Cube, Head, new Vector3(ex, 0.158f, 0.1f), new Vector3(0.042f, 0.008f, 0.012f), brow, false, null, Quaternion.Euler(0, 0, ex < 0 ? -6f : 6f));
+            }
+            Prim.Make(PrimitiveType.Cube, Head, new Vector3(0, 0.045f, 0.105f), new Vector3(0.045f, 0.009f, 0.01f), lips);
             Prim.Make(PrimitiveType.Sphere, Head, new Vector3(-0.105f, 0.11f, 0), new Vector3(0.03f, 0.06f, 0.04f), skin); // ears
             Prim.Make(PrimitiveType.Sphere, Head, new Vector3(0.105f, 0.11f, 0), new Vector3(0.03f, 0.06f, 0.04f), skin);
 
@@ -120,7 +155,8 @@ namespace Parasite.Characters
             {
                 Prim.Make(PrimitiveType.Capsule, thigh, new Vector3(0, -0.22f, 0), new Vector3(0.15f, 0.23f, 0.15f), pants);
                 Prim.Make(PrimitiveType.Capsule, shin, new Vector3(0, -0.22f, 0), new Vector3(0.12f, 0.23f, 0.12f), pants);
-                Prim.Make(PrimitiveType.Cube, shin, new Vector3(0, -0.46f, 0.05f), new Vector3(0.11f, 0.07f, 0.26f), shoes);
+                Prim.Make(PrimitiveType.Capsule, shin, new Vector3(0, -0.465f, 0.05f), new Vector3(0.11f, 0.135f, 0.075f), shoes, false, null, Quaternion.Euler(90, 0, 0));
+                Prim.Make(PrimitiveType.Cube, shin, new Vector3(0, -0.495f, 0.05f), new Vector3(0.115f, 0.02f, 0.27f), M(new Color(0.05f, 0.05f, 0.05f), 0.3f));
             }
             bool shortSleeves = profession == Profession.Civilian && rnd.NextDouble() < 0.5;
             foreach (var (upper, fore) in new[] { (lUpperArm, lForearm), (rUpperArm, rForearm) })
@@ -135,7 +171,7 @@ namespace Parasite.Characters
             {
                 case Profession.Guard:
                 {
-                    var cap = M(new Color(0.05f, 0.06f, 0.09f), 0.35f);
+                    var cap = F(new Color(0.09f, 0.11f, 0.16f), Fabric.Wool, 0.3f);
                     Prim.Make(PrimitiveType.Cylinder, Head, new Vector3(0, 0.22f, 0), new Vector3(0.23f, 0.05f, 0.24f), cap);
                     Prim.Make(PrimitiveType.Cube, Head, new Vector3(0, 0.19f, 0.13f), new Vector3(0.2f, 0.015f, 0.1f), cap);
                     var gold = M(new Color(0.85f, 0.65f, 0.2f), 0.8f, 1f);
@@ -146,7 +182,7 @@ namespace Parasite.Characters
                 }
                 case Profession.Scientist:
                 {
-                    var coat = M(new Color(0.93f, 0.94f, 0.95f), 0.25f);
+                    var coat = F(new Color(1f, 1f, 1f) * 1.08f, Fabric.Poplin, 0.25f, 2.5f);
                     Prim.Make(PrimitiveType.Cube, spine, new Vector3(0, 0.24f, 0), new Vector3(0.42f, 0.52f, 0.25f), coat);
                     Prim.Make(PrimitiveType.Cube, hips, new Vector3(0, -0.18f, 0), new Vector3(0.40f, 0.36f, 0.24f), coat);
                     foreach (var upper in new[] { lUpperArm, rUpperArm })
@@ -164,7 +200,7 @@ namespace Parasite.Characters
                 }
                 case Profession.Maintenance:
                 {
-                    var vest = M(new Color(1f, 0.45f, 0.05f), 0.3f);
+                    var vest = F(new Color(1.2f, 0.5f, 0.06f), Fabric.Melange, 0.3f);
                     var stripe = M(new Color(0.85f, 0.85f, 0.75f), 0.9f, 0.2f);
                     Prim.Make(PrimitiveType.Cube, spine, new Vector3(0, 0.27f, 0), new Vector3(0.41f, 0.42f, 0.245f), vest);
                     Prim.Make(PrimitiveType.Cube, spine, new Vector3(0, 0.18f, 0), new Vector3(0.415f, 0.04f, 0.25f), stripe);
@@ -179,7 +215,8 @@ namespace Parasite.Characters
                 default:
                     if (rnd.NextDouble() < 0.4) // jacket
                     {
-                        var jacket = M(Pick(new[] { new Color(0.2f, 0.15f, 0.1f), new Color(0.1f, 0.12f, 0.15f), new Color(0.4f, 0.42f, 0.35f) }), 0.35f);
+                        var jacket = rnd.NextDouble() < 0.5 ? F(new Color(0.9f, 0.85f, 0.8f), Fabric.Leather, 0.45f, 2f)
+                                                            : F(Pick(new[] { new Color(0.22f, 0.24f, 0.3f), new Color(0.45f, 0.47f, 0.4f), new Color(0.35f, 0.22f, 0.15f) }), Fabric.Wool);
                         Prim.Make(PrimitiveType.Cube, spine, new Vector3(0, 0.27f, -0.005f), new Vector3(0.43f, 0.46f, 0.25f), jacket);
                     }
                     if (rnd.NextDouble() < 0.35) // backpack

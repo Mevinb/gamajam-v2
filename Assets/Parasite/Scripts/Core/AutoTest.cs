@@ -84,6 +84,7 @@ namespace Parasite.Testing
                 ("08 Route C: maintenance + substation → Service Tunnel → research → two-person door → Dr. Vale", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
                 ("09 Suspicion only from observed violations; decays", ScenarioSuspicion),
                 ("12 Missions 1-2: alley exit, first host, newsstand, eavesdrop", ScenarioEarlyMissions),
+                ("13 CCTV spots a free amoeba; maintenance F-ability cuts camera power; scientist calms", ScenarioCameraAbilities),
                 ("10 Guard pursues + captures; amoeba ejects and survives", ScenarioCapture),
                 ("11 Pause + restart", ScenarioPauseRestart),
             };
@@ -465,6 +466,40 @@ namespace Parasite.Testing
             yield return AimSettle(r.InteractPoint);
             var ctx = new InteractContext { agent = PM.Active, host = PM.Active.Host, permissions = PM.Active.Host.Permissions, position = stand };
             Check(!r.CanInteract(ctx, out var why), $"same amoeba can't badge both readers ({why})");
+        }
+
+        // ---------------------------------------------------------------- 13
+        static IEnumerator ScenarioCameraAbilities()
+        {
+            var cam = SecurityCamera.All.FirstOrDefault(c => c && c.cameraName.Contains("Tunnel"));
+            Check(cam != null, "tunnel-alley camera exists");
+            if (!cam) yield break;
+            Calm();
+            // move every NPC away so only the camera can witness
+            foreach (var h in HostCharacter.All) if (h && h.IsAwakeNpc && Vector3.Distance(h.transform.position, cam.transform.position) < 25f) TeleportNpc(h, CityLayout.PlazaSpot, 0);
+            Vector3 seen = cam.head.position + Flat(cam.head.forward).normalized * 6f; seen.y = CityLayout.Sidewalk;
+            if (NavMesh.SamplePosition(seen, out var nh, 3f, NavMesh.AllAreas)) seen = nh.position;
+            TeleportBody(PM.ActiveBody, seen, 0);
+            float t = 0;
+            while (t < 6f && SuspicionSystem.Instance.Value < 3f) { t += Time.deltaTime; yield return null; }
+            Check(SuspicionSystem.Instance.Value >= 3f, $"camera saw the blob (suspicion {SuspicionSystem.Instance.Value:0})");
+            var maint = NearestHost(cam.transform.position, h => h.CanBePossessed && h.Profession == Profession.Maintenance);
+            Check(maint != null, "maintenance worker available");
+            if (!maint) yield break;
+            PM.ForcePossessImmediate(maint);
+            TeleportBody(PM.ActiveBody, seen, 0);
+            yield return Press(() => GameInput.SimAbility = true, () => GameInput.SimAbility = false);
+            Check(cam.Disabled, "maintenance 'Cut the power' disabled the camera");
+            float cd = AbilitySystem.Instance.CooldownRemaining(Profession.Maintenance);
+            Check(cd > 0f, $"ability on cooldown ({cd:0}s)");
+            var sci = NearestHost(PM.Active.Position, h => h.CanBePossessed && h.Profession == Profession.Scientist);
+            if (sci)
+            {
+                PM.ForcePossessImmediate(sci);
+                SuspicionSystem.Instance.SetValue(50f);
+                yield return Press(() => GameInput.SimAbility = true, () => GameInput.SimAbility = false);
+                Check(SuspicionSystem.Instance.Value <= 21f, $"camera spotted blob, power cut disabled it ({cd:0}s cooldown), scientist calm → suspicion {SuspicionSystem.Instance.Value:0}");
+            }
         }
 
         // ---------------------------------------------------------------- 12

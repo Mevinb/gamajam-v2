@@ -21,6 +21,7 @@ namespace Parasite.UI
         void BuildMissionUI(Transform gameplayRoot, Transform root)
         {
             waypointLayer = UIKit.Rect("Waypoints", gameplayRoot).Stretch();
+            BuildCompass(gameplayRoot);
             bannerRoot = UIKit.Rect("MissionBanner", root).Place(new Vector2(0.5f, 0.72f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(1100, 150));
             bannerGroup = bannerRoot.gameObject.AddComponent<CanvasGroup>();
             bannerGroup.alpha = 0f; bannerGroup.blocksRaycasts = false;
@@ -42,6 +43,7 @@ namespace Parasite.UI
 
         void TickMission(float dt)
         {
+            TickCompass();
             if (pendingTitle != null && state == GameState.Playing && !subActive)
             {
                 bannerTitle.text = UIKit.Clean(pendingTitle);
@@ -127,6 +129,80 @@ namespace Parasite.UI
             }
             for (int i = used; i < waypointPool.Count; i++)
                 if (waypointPool[i].on) { waypointPool[i].on = false; waypointPool[i].rt.gameObject.SetActive(false); }
+        }
+
+        // ------------------------------------------------------------ compass
+        const float CompassW = 620f, CompassSpan = 140f;
+        RectTransform compassRoot;
+        readonly List<(RectTransform rt, float heading)> compassMarks = new();
+        readonly List<Image> compassPins = new();
+
+        void BuildCompass(Transform p)
+        {
+            compassRoot = UIKit.Rect("Compass", p).Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0, -112), new Vector2(CompassW, 30));
+            compassRoot.gameObject.AddComponent<RectMask2D>();
+            var bg = UIKit.Img(compassRoot, "Bg", UIKit.GradientH, new Color(0, 0, 0, 0.0f));
+            bg.rectTransform.Stretch();
+            var line = UIKit.Img(compassRoot, "Line", UIKit.White, UIKit.AccentFaint);
+            line.rectTransform.Place(new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0, 2), new Vector2(CompassW, 1.5f));
+            string[] names = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+            for (int i = 0; i < 8; i++)
+            {
+                var t = UIKit.Txt(compassRoot, names[i], names[i], i % 2 == 0 ? 20 : 15, i == 0 ? UIKit.Accent : UIKit.TextDim, TextAnchor.MiddleCenter, Weight.Bold);
+                t.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(40, 26));
+                compassMarks.Add((t.rectTransform, i * 45f));
+            }
+            for (int i = 0; i < 24; i++)
+            {
+                if (i % 3 == 0) continue;
+                var tick = UIKit.Img(compassRoot, "Tick", UIKit.White, UIKit.AccentSoft);
+                tick.rectTransform.Place(new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), Vector2.zero, new Vector2(1.5f, 7f));
+                compassMarks.Add((tick.rectTransform, i * 15f));
+            }
+            var centre = UIKit.Img(compassRoot, "Centre", UIKit.Chevron, UIKit.Accent);
+            centre.rectTransform.Place(new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), Vector2.zero, new Vector2(12, 8));
+            centre.rectTransform.localRotation = Quaternion.Euler(0, 0, 180f);
+        }
+
+        void TickCompass()
+        {
+            if (!compassRoot) return;
+            var pc = Possession.PlayerCamera.Instance;
+            if (!pc) return;
+            float yaw = pc.Yaw;
+            foreach (var (rt, h) in compassMarks)
+            {
+                float d = Mathf.DeltaAngle(yaw, h);
+                bool vis = Mathf.Abs(d) < CompassSpan * 0.5f;
+                if (rt.gameObject.activeSelf != vis) rt.gameObject.SetActive(vis);
+                if (vis) rt.anchoredPosition = new Vector2(d / CompassSpan * CompassW, rt.anchoredPosition.y);
+            }
+            var mm = MissionManager.Instance;
+            var pm = Possession.PossessionManager.Instance;
+            int used = 0;
+            if (mm && pm != null && pm.ActiveBody != null)
+            {
+                Vector3 from = pm.ActiveBody.Root.position;
+                foreach (var (pos, _) in mm.Waypoints)
+                {
+                    Vector3 dir = pos - from; dir.y = 0;
+                    if (dir.sqrMagnitude < 0.5f) continue;
+                    float h = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                    float d = Mathf.Clamp(Mathf.DeltaAngle(yaw, h), -CompassSpan * 0.5f + 4f, CompassSpan * 0.5f - 4f);
+                    Image pin;
+                    if (used < compassPins.Count) pin = compassPins[used];
+                    else
+                    {
+                        pin = UIKit.Img(compassRoot, "Pin", UIKit.Circle, UIKit.Yellow);
+                        pin.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(11, 11));
+                        compassPins.Add(pin);
+                    }
+                    used++;
+                    pin.gameObject.SetActive(true);
+                    pin.rectTransform.anchoredPosition = new Vector2(d / CompassSpan * CompassW, -9f);
+                }
+            }
+            for (int i = used; i < compassPins.Count; i++) compassPins[i].gameObject.SetActive(false);
         }
 
         void CleanupMissionUI() { MissionManager.Banner -= OnBanner; }

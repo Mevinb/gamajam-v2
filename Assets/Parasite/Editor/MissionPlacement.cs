@@ -1,4 +1,6 @@
 using Parasite.Missions;
+using Parasite.Stealth;
+using UnityEditor;
 using UnityEngine;
 using static Parasite.EditorTools.CityAssets;
 using L = Parasite.World.CityLayout;
@@ -16,6 +18,7 @@ namespace Parasite.EditorTools
             var root = new GameObject("Missions").transform;
             root.SetParent(gameplay, false);
             WireEntrances(gameplay);
+            ExtraNpcs(root);
 
             // M2: newsstand on City Plaza (front = local -Z, where the reader stands)
             var np = World.MissionLayout.Newsstand; float ny = World.MissionLayout.NewsstandYaw;
@@ -91,6 +94,123 @@ namespace Parasite.EditorTools
             k.Text("DR. E. VALE — DIRECTOR", World.MissionLayout.OfficeDoor + new Vector3(0, 2.9f, -0.16f), 0f, 0.16f, new Color(0.85f, 1f, 0.9f));
             Reader(root, World.MissionLayout.ReaderA, "Reader A", office);
             Reader(root, World.MissionLayout.ReaderB, "Reader B", office);
+
+            // stealth: CCTV
+            var cams = new GameObject("SecurityCameras").transform;
+            cams.SetParent(root, false);
+            foreach (var (name, pos, yaw, range) in World.MissionLayout.Cameras) Cctv(cams, name, pos, yaw, range);
+        }
+
+        static Material coneMat;
+
+        static Material ConeMaterial()
+        {
+            if (coneMat) return coneMat;
+            const string path = "Assets/Parasite/Materials/CameraCone.mat";
+            coneMat = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (!coneMat)
+            {
+                coneMat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+                AssetDatabase.CreateAsset(coneMat, path);
+            }
+            coneMat.SetFloat("_Surface", 1f); coneMat.SetFloat("_Blend", 0f);
+            coneMat.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            coneMat.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            coneMat.SetFloat("_ZWrite", 0f); coneMat.SetFloat("_Cull", 0f);
+            coneMat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            coneMat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            coneMat.SetOverrideTag("RenderType", "Transparent");
+            coneMat.SetColor("_BaseColor", new Color(1f, 0.85f, 0.5f, 0.05f));
+            EditorUtility.SetDirty(coneMat);
+            return coneMat;
+        }
+
+        static Mesh ConeMesh(float length, float fov)
+        {
+            const string path = "Assets/Parasite/Materials/CameraCone.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            const int seg = 16;
+            float r = Mathf.Tan(fov * 0.5f * Mathf.Deg2Rad) * length;
+            var v = new Vector3[seg + 1]; var t = new int[seg * 3];
+            v[0] = Vector3.zero;
+            for (int i = 0; i < seg; i++)
+            {
+                float a = i / (float)seg * Mathf.PI * 2f;
+                v[i + 1] = new Vector3(Mathf.Cos(a) * r, Mathf.Sin(a) * r, length);
+                t[i * 3] = 0; t[i * 3 + 1] = i + 1; t[i * 3 + 2] = (i + 1) % seg + 1;
+            }
+            var m = existing ? existing : new Mesh { name = "CameraCone" };
+            m.Clear(); m.vertices = v; m.triangles = t; m.RecalculateNormals(); m.RecalculateBounds();
+            if (!existing) AssetDatabase.CreateAsset(m, path);
+            return m;
+        }
+
+        static void Cctv(Transform parent, string name, Vector3 pos, float yaw, float range)
+        {
+            var go = new GameObject("CCTV_" + name.Replace(' ', '_'));
+            go.transform.SetParent(parent, false);
+            go.transform.SetPositionAndRotation(pos, Quaternion.identity);
+            var arm = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Object.DestroyImmediate(arm.GetComponent<Collider>());
+            arm.transform.SetParent(go.transform, false);
+            arm.transform.localPosition = new Vector3(0, 0.12f, 0);
+            arm.transform.localScale = new Vector3(0.08f, 0.25f, 0.08f);
+            arm.GetComponent<Renderer>().sharedMaterial = M("MetalDark");
+            var head = new GameObject("Head").transform;
+            head.SetParent(go.transform, false);
+            head.localRotation = Quaternion.Euler(28f, yaw, 0f);
+            var body = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Object.DestroyImmediate(body.GetComponent<Collider>());
+            body.transform.SetParent(head, false);
+            body.transform.localPosition = new Vector3(0, 0, 0.12f);
+            body.transform.localScale = new Vector3(0.16f, 0.14f, 0.36f);
+            body.GetComponent<Renderer>().sharedMaterial = M("PaintWhite");
+            var lens = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            Object.DestroyImmediate(lens.GetComponent<Collider>());
+            lens.transform.SetParent(head, false);
+            lens.transform.localPosition = new Vector3(0, 0, 0.31f);
+            lens.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            lens.transform.localScale = new Vector3(0.1f, 0.02f, 0.1f);
+            lens.GetComponent<Renderer>().sharedMaterial = M("GlassDark");
+            var lamp = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            Object.DestroyImmediate(lamp.GetComponent<Collider>());
+            lamp.transform.SetParent(head, false);
+            lamp.transform.localPosition = new Vector3(0.05f, 0.075f, 0.25f);
+            lamp.transform.localScale = Vector3.one * 0.035f;
+            lamp.GetComponent<Renderer>().sharedMaterial = M("NeonRed");
+            var cone = new GameObject("ViewCone");
+            cone.transform.SetParent(head, false);
+            cone.transform.localPosition = new Vector3(0, 0, 0.32f);
+            cone.AddComponent<MeshFilter>().sharedMesh = ConeMesh(range * 0.75f, 40f);
+            var cr = cone.AddComponent<MeshRenderer>();
+            cr.sharedMaterial = ConeMaterial();
+            cr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            var c = go.AddComponent<SecurityCamera>();
+            c.cameraName = "CCTV " + name;
+            c.head = head; c.lamp = lamp.GetComponent<Renderer>(); c.cone = cr;
+            c.range = range; c.fov = 46f;
+        }
+
+        /// <summary>Pedestrians near the alley exit so the first possession is possible out of guards' sight.</summary>
+        static void ExtraNpcs(Transform root)
+        {
+            var parent = new GameObject("MissionNPCs").transform;
+            parent.SetParent(root, false);
+            (string name, Vector3 pos, float yaw)[] npcs =
+            {
+                ("Leo Park", new Vector3(-31.6f, L.Sidewalk, -52f), 200f),
+                ("Amara Diallo", new Vector3(-34.3f, L.Sidewalk, -60f), 20f),
+            };
+            int seed = 101;
+            foreach (var (name, pos, yaw) in npcs)
+            {
+                var go = new GameObject("NpcSpawn_" + name.Replace(' ', '_'));
+                go.transform.SetParent(parent, false);
+                go.transform.SetPositionAndRotation(pos, Quaternion.Euler(0, yaw, 0));
+                var s = go.AddComponent<World.NpcSpawn>();
+                s.displayName = name; s.profession = Profession.Civilian; s.behaviour = World.NpcBehaviour.Wander;
+                s.wanderRadius = 3f; s.seed = seed++;
+            }
         }
 
         static void WireEntrances(Transform gameplay)
