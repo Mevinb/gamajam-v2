@@ -12,7 +12,7 @@ namespace Parasite
         /// <summary>Set by automated tests / autoplay to drive input without devices.</summary>
         public static bool Simulated;
         public static Vector2 SimMove;
-        public static bool SimSprint;
+        public static bool SimSprint, SimJump, SimInteract, SimLeave, SimSplit, SimSwitch;
 
         public static float MouseSensitivity = 0.12f;
         public static float StickSensitivity = 160f;
@@ -66,11 +66,11 @@ namespace Parasite
         }
 
         public static bool SprintHeld { get { Ensure(); return Simulated ? SimSprint : Sprint.IsPressed(); } }
-        public static bool JumpPressed { get { Ensure(); return !Simulated && Jump.WasPressedThisFrame(); } }
-        public static bool InteractPressed { get { Ensure(); return !Simulated && Interact.WasPressedThisFrame(); } }
-        public static bool LeavePressed { get { Ensure(); return !Simulated && Leave.WasPressedThisFrame(); } }
-        public static bool SplitPressed { get { Ensure(); return !Simulated && Split.WasPressedThisFrame(); } }
-        public static bool SwitchPressed { get { Ensure(); return !Simulated && Switch.WasPressedThisFrame(); } }
+        public static bool JumpPressed { get { Ensure(); return Simulated ? SimJump : Jump.WasPressedThisFrame(); } }
+        public static bool InteractPressed { get { Ensure(); return Simulated ? SimInteract : Interact.WasPressedThisFrame(); } }
+        public static bool LeavePressed { get { Ensure(); return Simulated ? SimLeave : Leave.WasPressedThisFrame(); } }
+        public static bool SplitPressed { get { Ensure(); return Simulated ? SimSplit : Split.WasPressedThisFrame(); } }
+        public static bool SwitchPressed { get { Ensure(); return Simulated ? SimSwitch : Switch.WasPressedThisFrame(); } }
         public static bool PausePressed { get { Ensure(); return Pause.WasPressedThisFrame(); } }
     }
 }
