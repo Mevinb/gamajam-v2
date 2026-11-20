@@ -323,6 +323,34 @@ namespace Parasite.Missions
         }
 
         // ------------------------------------------------------------ ending
+        /// <summary>Ctrl+M demo jump. Reuses the real drain story and still requires an explicit lakeside choice.</summary>
+        public bool TryPresentationEscape()
+        {
+            var gm = GameManager.Instance;
+            var pm = Possession.PossessionManager.Instance;
+            if (!gm || !gm.IsPlaying || EndingStarted || DialoguePlaying || UI.LakesideEpilogue.Instance ||
+                !pm || pm.Active == null || pm.Active.InTransit || !pm.Active.Blob) return false;
+            if (pm.Active.Host && !pm.LeaveHost()) return false;
+            foreach (var mission in Missions)
+                foreach (var objective in mission.objectives)
+                    if (!string.IsNullOrEmpty(objective.flag) && objective.flag != MissionFlags.Escaped) RunState.Flags.Add(objective.flag);
+            RunState.Flags.Add(MissionFlags.Research);
+            RunState.Flags.Add(MissionFlags.ContainmentOffline);
+            RunState.Flags.Add(MissionFlags.EvidenceBroadcast);
+            RunState.LabEntered = true;
+            RunState.MissionIndex = Missions.Count - 1;
+            RestoreCampaignState();
+            var extraction = FindFirstObjectByType<CampaignExtraction>();
+            Vector3 position = extraction ? extraction.transform.position : MissionLayout.Extraction;
+            pm.Active.Blob.Place(position + Vector3.up * 0.15f);
+            pm.Active.Blob.ClearControlInput();
+            var camera = Possession.PlayerCamera.Instance;
+            if (camera) { camera.SetYaw(0); camera.SetTarget(pm.Active.Blob.CameraTarget, pm.Active.Blob.CameraDistance, snap: true); }
+            GameEvents.RaiseToast("Presentation shortcut — final escape. Your lakeside choice remains yours.", Palette.Info);
+            CompleteEscape(extraction ? extraction.transform : pm.Active.Blob.transform);
+            return EndingStarted;
+        }
+
         public void BeginConfrontation(Transform vale)
         {
             if (EndingStarted || DialoguePlaying || RunState.Has(MissionFlags.Confronted)) return;

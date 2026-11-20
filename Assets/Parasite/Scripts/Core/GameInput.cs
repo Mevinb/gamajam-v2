@@ -75,5 +75,15 @@ namespace Parasite
         public static bool SwitchPressed { get { Ensure(); return Simulated ? SimSwitch : Switch.WasPressedThisFrame(); } }
         public static bool AbilityPressed { get { Ensure(); return Simulated ? SimAbility : Ability.WasPressedThisFrame(); } }
         public static bool PausePressed { get { Ensure(); return Pause.WasPressedThisFrame(); } }
+        /// <summary>Presentation shortcut. Raw chord remains separate from normal gameplay actions.</summary>
+        public static bool PresentationEndingPressed
+        {
+            get
+            {
+                var keyboard = Keyboard.current;
+                return keyboard != null && keyboard.mKey.wasPressedThisFrame &&
+                    (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
+            }
+        }
     }
 }

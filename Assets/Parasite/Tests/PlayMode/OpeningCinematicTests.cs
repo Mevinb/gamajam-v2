@@ -102,15 +102,31 @@ namespace Parasite.Tests
             int realNpcs = HostCharacter.All.Count;
             Assert.That(realNpcs, Is.GreaterThan(0));
             Assert.That(Object.FindObjectsByType<HumanoidRig>(FindObjectsSortMode.None).Length, Is.GreaterThan(realNpcs), "Historical rigs are visual stand-ins, not gameplay hosts.");
-            // Exercise every scheduled shot/caption and the normal end path without waiting 80 wall-clock seconds.
-            opening.PlaybackSpeed = 80f;
+            // Render each scheduled shot through the same real-camera path as the settings UI QA.
+            float[] shotStarts = { 0f, 5f, 12f, 19f, 26f, 34f, 43f, 51f, 59f, 67f, 75f, OpeningCinematic.Duration };
+            string[] shotNames = { "subject", "petrov", "recognition", "vale", "two-bodies", "contact", "restraint", "release", "service-conduit", "storm-drain", "handoff" };
+            for (int i = 0; i < shotNames.Length; i++)
+            {
+                float targetTime = (shotStarts[i] + shotStarts[i + 1]) * 0.5f;
+                opening.PlaybackSpeed = 2f;
+                float shotDeadline = Time.realtimeSinceStartup + 15f;
+                while (opening && opening.Running && opening.ElapsedSeconds < targetTime && Time.realtimeSinceStartup < shotDeadline) yield return null;
+                Assert.IsTrue(opening && opening.Running, "The opening remains active for shot " + (i + 1));
+                Assert.That(opening.ElapsedSeconds, Is.GreaterThanOrEqualTo(targetTime), "The unscaled clock reached shot " + (i + 1));
+                opening.PlaybackSpeed = 0f;
+                yield return SettingsUITests.Capture($"10-opening-{i + 1:00}-{shotNames[i]}.png");
+                Assert.That(opening.ElapsedSeconds, Is.LessThan(shotStarts[i + 1]), "The render remains inside scheduled shot " + (i + 1));
+                Assert.That(Time.timeScale, Is.Zero, "Shot rendering keeps the live world frozen.");
+            }
+            // Retain the natural completion path after the final shot, without an 80-second wall-clock wait.
+            opening.PlaybackSpeed = 40f;
             float deadline = Time.realtimeSinceStartup + 10f;
             while (opening && opening.Running && Time.realtimeSinceStartup < deadline) yield return null;
             yield return null;
             Assert.AreEqual("Watched", OpeningCinematic.LastExitReason);
             AssertCleanHandoff();
             Assert.AreEqual(realNpcs, HostCharacter.All.Count, "The cinematic never registers historical characters as hosts.");
-            Debug.Log("[OpeningUI] PASS full unscaled story timeline, camera/HUD restoration, clean one-amoeba spawn and untouched campaign statistics");
+            Debug.Log("[OpeningUI] PASS all 11 rendered shots, full unscaled story timeline, camera/HUD restoration, clean one-amoeba spawn and untouched campaign statistics");
         }
 
         [UnityTest, Timeout(180000)]

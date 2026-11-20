@@ -53,6 +53,8 @@ namespace Parasite
 
         void Update()
         {
+            if (State == GameState.Playing && GameInput.PresentationEndingPressed && Missions.MissionManager.Instance &&
+                Missions.MissionManager.Instance.TryPresentationEscape()) return;
             if (State == GameState.Playing) RunState.PlayTime += Time.deltaTime;
             if (GameInput.PausePressed)
             {

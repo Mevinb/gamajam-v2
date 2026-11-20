@@ -347,7 +347,7 @@ namespace Parasite
                 case 4: SetCamera(Vector3.Lerp(new Vector3(-0.5f, 1.6f, -1.3f), new Vector3(0.8f, 1.2f, -0.9f), e), Vector3.Lerp(new Vector3(0, 1.48f, 0), new Vector3(1.35f, 1.14f, -0.2f), Mathf.Clamp01((t - 0.6f) / 0.4f)), 42f); break;
                 case 5: SetCamera(Vector3.Lerp(new Vector3(2.4f, 1.7f, -2f), new Vector3(2.2f, 1.5f, -1.9f), e), new Vector3(1.5f, 1.15f, -0.9f), 45f); break;
                 case 6: SetCamera(new Vector3(-1.4f, 1.6f, -0.9f), new Vector3(-0.1f, 1.5f, 0.1f), 43f); break;
-                case 7: SetCamera(Vector3.Lerp(new Vector3(1.85f, 1.28f, -1.1f), new Vector3(1.65f, 1.2f, -0.9f), e), new Vector3(1.35f, 1.14f, -0.2f), 36f); break;
+                case 7: SetCamera(Vector3.Lerp(new Vector3(2.15f, 1.35f, -0.75f), new Vector3(2.05f, 1.25f, -0.65f), e), new Vector3(1.35f, 1.14f, -0.2f), 36f); break;
                 case 8:
                     SetCamera(new Vector3(0, -3.82f, Mathf.Lerp(1.1f, 4.3f, e)), new Vector3(0, -3.82f, Mathf.Lerp(5f, 8f, e)), 48f);
                     duct.Find("Escaping Culture").localPosition = new Vector3(0, -0.25f, Mathf.Lerp(4f, 7.4f, e)); break;

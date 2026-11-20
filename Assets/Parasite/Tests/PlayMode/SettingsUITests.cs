@@ -325,6 +325,51 @@ namespace Parasite.Tests
             finally { GameEvents.Ending -= OnEnding; }
         }
 
+        [UnityTest, Timeout(180000)]
+        public IEnumerator CtrlMStartsFinalDrainSequenceWithoutChoosingFuture()
+        {
+            foreach (var control in new[] { Key.LeftCtrl, Key.RightCtrl })
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return AutoTest.LoadCity();
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.M));
+                yield return null; yield return null;
+                Assert.AreEqual(GameState.Playing, GameManager.Instance.State, "M without Ctrl must not skip the campaign.");
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                Assert.IsTrue(MissionManager.Instance.EndingStarted, control + "+M starts the existing drain ending.");
+                Assert.AreEqual(GameState.Ending, GameManager.Instance.State);
+                Assert.That(Time.timeScale, Is.Zero);
+                Assert.IsNull(PossessionManager.Instance.Active.Host);
+                Assert.That(Vector3.Distance(PossessionManager.Instance.Active.Position, Parasite.World.MissionLayout.Extraction), Is.LessThan(0.5f));
+                Assert.IsFalse(RunState.Has(MissionFlags.Escaped), "The shortcut does not commit an unchosen ending.");
+                GameInput.Simulated = true; GameInput.SimInteract = true;
+                float deadline = Time.realtimeSinceStartup + 12f;
+                while (!LakesideEpilogue.Instance && Time.realtimeSinceStartup < deadline) yield return null;
+                ClearInput();
+                var epilogue = LakesideEpilogue.Instance;
+                Assert.IsNotNull(epilogue, "The real drain dialogue leads to the lakeside scene.");
+                epilogue.RevealChoices();
+                yield return new WaitForSecondsRealtime(0.5f);
+                Assert.IsTrue(epilogue.ChoicesReady);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                Assert.AreSame(epilogue, LakesideEpilogue.Instance, "Repeating the shortcut cannot replace the current ending.");
+                Assert.AreEqual(1, Object.FindObjectsByType<LakesideEpilogue>(FindObjectsSortMode.None).Length);
+                Assert.AreEqual(EndingOutcome.Unchosen, epilogue.Outcome, "The shortcut never chooses Peace or Dominion.");
+                epilogue.Choose(EndingOutcome.Peace);
+                yield return new WaitForSecondsRealtime(0.9f);
+                epilogue.FinishResolution();
+                Assert.AreEqual(GameState.Ended, GameManager.Instance.State);
+                Assert.IsTrue(RunState.Has(MissionFlags.Escaped));
+            }
+            Debug.Log("[SettingsUI] PASS left/right Ctrl+M demo shortcut, ordinary M isolation, protected drain story, no duplicate/no automatic choice and explicit resolution");
+        }
+
         IEnumerator PressEscape()
         {
             GameInput.Ensure();
@@ -380,7 +425,7 @@ namespace Parasite.Tests
             Assert.That(corners[2].y, Is.LessThanOrEqualTo(Screen.height + 1f), panel.name + " top edge");
         }
 
-        static IEnumerator Capture(string name)
+        internal static IEnumerator Capture(string name)
         {
             const int width = 1600, height = 900;
             string path = Path.Combine(Application.dataPath, "..", "Logs", "ui", name);
