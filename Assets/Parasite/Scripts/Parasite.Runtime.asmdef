@@ -1,0 +1,21 @@
+{
+    "name": "Parasite.Runtime",
+    "rootNamespace": "Parasite",
+    "references": [
+        "Unity.InputSystem",
+        "Unity.Cinemachine",
+        "Unity.AI.Navigation",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Core.Runtime",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
