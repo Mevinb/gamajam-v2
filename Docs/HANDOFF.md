@@ -1,7 +1,13 @@
-# PARASITE — Developer handoff (read this first)
+# PARASITE 0.2.0 — Developer handoff (read this first)
 
 Unity 6.3 LTS (6000.3.29f1) URP third-person stealth game. You are an amoeba (Specimen 7) that escaped Vale Biotech,
-possesses humans, splits in two, and works through a 5-mission campaign to confront Dr. Vale.
+possesses humans, splits in two, and works through an 8-mission campaign: infiltrate, meet Dr. Vale, secure signed evidence,
+sabotage containment, broadcast the truth and escape. An 80-second skippable new-game backstory opens the campaign;
+the final sunset lake and seated-girl scene requires an explicit Peace or Dominion choice before the summary.
+Scope is frozen except for the explicitly requested Ctrl+M judges presentation shortcut: deliver Linux, push and stop.
+The final Linux rebuild succeeded (425 MB, zero errors/warnings); standalone campaign acceptance passed 13/13.
+The final opening/shortcut focused checks passed 3/3. The illustrated Markdown guide and latest README are complete.
+`Docs/TEST_REPORT.md` owns artifact-specific evidence; deliver `Builds/Releases/PARASITE-Linux.tar.gz` with its checksum.
 Repo: https://github.com/Mevinb/gamajam-v2 (remote `origin`, branch `main`). Old repo `gamejam-old` = github.com/Mevinb/gamejam.
 
 ## 1. Environment (this laptop: Ubuntu 26.04, RTX 4050 6 GB, 16 GB RAM)
@@ -28,7 +34,7 @@ grep -E '\[AutoTest\] (PASS|FAIL)' Logs/playmode.log
 Tools/unity.sh editmode -nographics -runTests -testPlatform EditMode -testResults Logs/editmode-results.xml   # 22 rule/audio tests
 Tools/unity.sh ui-playmode -runTests -testPlatform PlayMode -testFilter Parasite.Tests.SettingsUITests -testResults Logs/ui-playmode-results.xml
 Tools/unity.sh photos -executeMethod Parasite.EditorTools.PhotoTool.CaptureBatch   # 15 preset renders → Logs/photos/*.png (add -photoFilter 07)
-Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux       # Builds/Linux (last cached build 11.33 s; cold shaders can be much slower)
+Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux       # Builds/Linux (last cached build 6.56 s; cold shaders can be much slower)
 ./play.sh -showfps                  # play; F3 FPS, F1 controls, Esc pause
 Builds/Linux/Parasite.x86_64 -autotest -autotestOut /tmp/report.txt    # run the acceptance scenarios inside the real build
 Builds/Linux/Parasite.x86_64 -benchmark -autotestOut /tmp/bench.txt    # walk the city, log FPS/memory, screenshots
@@ -51,12 +57,13 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
 
 - **Boot:** `World/CityDirector` (only object in City scene besides markers) → adds GameManager, SuspicionSystem, MissionManager,
   PossessionManager, AbilitySystem; bakes the NavMesh at runtime from colliders under root `World`; spawns NPCs from `NpcSpawn`
-  markers via `Characters/HostFactory`; creates `PlayerCamera`, `TrafficSystem`, HUD, ambience.
+  markers via `Characters/HostFactory`; creates `PlayerCamera`, `TrafficSystem`, HUD, ambience, then starts `OpeningCinematic` only when requested by deliberate title-menu entry.
 - **Core:** `GameTypes.cs` (enums, ProfessionCatalog, SuspicionRules/SplitRules/AccessRules pure logic, IControllable, IInteractable,
   GameEvents hub), `GameInput.cs` (code-defined Input System actions + `Sim*` flags for tests), `GameManager.cs` (pause, checkpoints,
   `RunState` static: flags, mission index, stats — survives checkpoint reloads), `MatFactory.cs` (runtime materials cloned from
   `Resources/Materials/*Template` so shader variants survive stripping), `GraphicsPreset.cs`, `AudioPreferences.cs`,
-  `AutoTest.cs` (acceptance scenarios and benchmark tour).
+  `AutoTest.cs` (acceptance scenarios and benchmark tour). `OpeningCinematic` owns the 80-second unscaled story timeline,
+  keyboard/gamepad skip and restoration of gameplay camera/HUD/input. Checkpoint/restart/direct scene loads do not request it.
 - **Possession:** `PossessionManager` (max 2 `AmoebaAgent`s, targeting/aim cone 15° within 5 m, E/Q/V/Tab, launch arc, capture → eject,
   containment → checkpoint), `AmoebaController` (blob), `PlayerCamera` (Cinemachine 3 ThirdPersonFollow on a pivot), `AbilitySystem` (F).
 - **Characters:** `HostCharacter` (NavMeshAgent when AI, CharacterController when possessed; exactly one of CC/HitBox enabled),
@@ -64,16 +71,24 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
   body, fabric textures from `Resources/Textures/Clothes`, procedural animation).
 - **Stealth:** `SuspicionSystem` (0–100; only witnessed violations count; decay; guard alerts; `ReportDirect` for cameras),
   `SecurityCamera` (sweeping CCTV; maintenance F disables).
-- **Missions:** `MissionManager` (5 missions defined in `BuildCampaign()`; objectives keyed by flags; waypoints; banner),
+- **Missions:** `MissionManager` (8 missions defined in `BuildCampaign()`; objectives keyed by flags; waypoints; banner),
   `MissionFlags` (string constants), `MissionProp` (generic E / hold-E interactable that sets a flag, with host/permission/prereq gates),
   `EavesdropZone`, `DualAuthReader` (two-person rule → needs split), `AccessDoor` (permission + `requiredFlag` + `openedFlag`),
-  `StaffTerminal` (needs keycard flag), `DrValeInteraction` (ending).
+  `StaffTerminal` (needs keycard flag), `DrValeInteraction` (midpoint reveal, then resumes play via `GameManager.ResumeAfterDialogue`).
+  `CooperativeConsole` arms a role-specific support control while that same possessed host stays in range; a different amoeba must
+  operate the paired `CampaignOperation`. Work cancels if either host leaves/captures or an uplink pursuit begins.
+  `CampaignExtraction` requires broadcast evidence and a free amoeba at the original storm drain, followed by the lakeside epilogue.
+  `EndingOutcome` is `Unchosen`/`Peace`/`Dominion`; `GameManager.PublishFinalEnding` publishes statistics only after the explicit choice.
+  `ReannounceCurrentMission()` refreshes the objective/banner after the new-game introduction without advancing progress.
+  Completed chapter flags restore opened doors/CCTV sabotage across checkpoints; transient console operators do not persist.
 - **World data:** `CityLayout.cs` (key coordinates — CityBuilder builds from these), `MissionLayout.cs` (mission prop + camera positions),
   marker components (one MonoBehaviour per file — **Unity requires file name == class name for scene serialization**).
 - **UI:** `HUDController*.cs` (built in code, uGUI legacy Text, Rajdhani font): suspicion, objective (rich text), body/slots, prompts,
   hints incl. [F], toasts, subtitles, world markers, waypoints + compass (`.Mission.cs`), pause (+graphics preset, journal), end screen.
   `MainMenuController.cs` (Bootstrap scene), `SettingsOverlay.cs` (shared title/pause graphics, audio and sensitivity controls).
   `UIKit.EnsureEventSystem()` uses the Input System UI module; Escape closes a pause submenu before resuming gameplay.
+  `LakesideEpilogue` + `LakesideSet` stage the seated girl at a sunset lake. The first explicit Peace/Dominion choice is immutable;
+  held skip input must be released before choices activate. Waiting or skipping does not choose. The summary follows resolution.
 - **World text:** `World/WorldTextFont` binds the dynamic font atlas to `Shaders/WorldText.shader` (depth tested, back-face culled,
   alpha + vertex colour). It refreshes after `Font.textureRebuilt`; runtime material clones leave UI font materials untouched.
 - **FX:** `FxApi.cs` public API (Sfx/Fx), `FxBackend/SfxBackend/SfxSynth/FxAssets`, `AmoebaVisual` (+ `HostGlow`), shaders
@@ -82,72 +97,76 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
   `MissionPlacement.cs` (mission props, cameras, extra NPCs, door flag wiring — called at end of `CityBuilder.Gameplay()`),
   `ProjectSetup.cs`, `FxSetup.cs`, `PhotoTool.cs`, `BuildAutomation.cs`.
 
-## 5. How to add things
+## 5. Fixed release scope and campaign
 
-- **New mission / objective:** add flag constant in `MissionFlags`, add a `Mission` in `MissionManager.BuildCampaign()`, place the prop in
-  `MissionPlacement.Place()` (position in `MissionLayout`), call `MissionManager.SetFlag(flag)` from whatever completes it. Add an
-  AutoTest scenario (`UseProp(flag, wait)` helper exists) and run the suite.
-- **New NPC:** `Npc(...)` line in `CityBuilder.Gameplay()` or a `NpcSpawn` in `MissionPlacement.ExtraNpcs()`; must stand on NavMesh.
-- **New interactable:** implement `IInteractable` (+ `Interactables.Register` in OnEnable). Targeting/prompt/E handling is automatic.
-- **New profession ability:** `AbilitySystem.Info()` + switch in `TryUse()`.
-- **New sound/effect:** extend `SfxId` (append only) and `SfxSynth`/`SfxBackend`; effects via `Fx.*`.
+Version **0.2.0** contains the existing eight missions, opening backstory, lakeside choices and Ctrl+M presentation shortcut. The user froze scope:
+finish validation, package Linux, push and stop. The user subsequently requested Ctrl+M for judges; that addition is implemented.
+No additional missions, art systems or feature backlog is authorized for this delivery.
 
-## 6. Current state (21 Nov 2026, Linux demo verified; development paused)
+| Mission | Existing behavior |
+|---|---|
+| 1 — OUT OF THE DRAIN | Leave the alley and take the first host. |
+| 2 — WORD ON THE STREET | Read the Plaza newsstand and overhear Dr. Petrov at the café. |
+| 3 — CREDENTIALS | Guard badge/main gate, scientist plus café keycard/staff terminal, or maintenance plus power/service tunnel. |
+| 4 — VALE'S RESEARCH | Copy both lab terminals; two separate staff hosts badge the office readers within 8 seconds. |
+| 5 — CREATOR | Vale reveals the experiment; protected dialogue ends by restoring gameplay. |
+| 6 — THE PART HE HID | Maintenance holds service-room coolant while a different scientist host copies the signed archive for 8 seconds. |
+| 7 — BREAK THE LEASH | Guard holds lobby dispatch while a different maintenance host overloads the east-alley relay for 7 seconds; CCTV turns off permanently and exits open. |
+| 8 — OUTSIDE THE EXPERIMENT | Any host broadcasts at the Plaza uplink for 10 seconds without pursuit, then a free amoeba escapes through the original drain. |
 
-- CPU compile: **60 runtime files + 11 editor files PASS**. EditMode: **22/22 PASS**, including persisted audio/mute checks.
-- Final regenerated-scene PlayMode suite: **2/2 test cases PASS**, including **13/13 gameplay scenarios** and the UI test.
-  Covers CCTV, profession abilities, cooldowns, camera occlusion and pursuit refusal, with traffic active.
-  Standalone Linux acceptance also reports **13/13 PASS**, process exit 0. See `Logs/playmode-results.xml`,
-  `Logs/playmode.log` and `Logs/standalone-acceptance.txt`.
-- Filtered `SettingsUITests` **PASS**: title/pause controls, live volume, saved preferences, real queued Escape input and paused
-  gameplay isolation. UI captures in `Logs/ui/` were rendered from the actual canvases. This proves automated input routing,
-  not a physical controller playtest.
-- Visual overhaul reviewed on the RTX 4050: **15 fresh environment renders** in `Logs/photos/`, with the baseline retained in
-  `Logs/photos-before/`. Photo audits report **zero missing scripts**. Gate/staff shots `07`/`08` confirm stray mirrored text
-  through walls is fixed and intended signs remain readable. Main facade detail and fixture silhouettes remain intact at the
-  reviewed viewpoints. Trees are still card-based; puddle edges still need refinement.
-- Final generated city: **1,391 merged renderers, 482,691 triangles, 277,497 prop triangles**. Authoritative saved-scene baseline
-  was 965,633 triangles / 760,253 prop triangles: **50.01% fewer total triangles, 63.50% fewer prop triangles**. The older 5.8 M
-  figure predates an earlier LOD pass and is not the baseline for these reductions. `Logs/geometry-before.json` and
-  `Logs/geometry-after.json` record exact scene hashes/counts; PhotoTool also counts additional gameplay mesh instances.
-- Repeated lamps, hydrants and road barriers use selected imported mesh LODs; buildings and texture/normal maps are retained.
-  Build logs include per-model instance/triangle totals before baking. The storm drain is now a flush dark slotted grille.
-  Imported crates match requested collider dimensions; their old RNG draw is preserved to keep downstream city variation stable.
-  The bus shelter is already north of Market St and leaves the start-alley mouth clear.
-- Scene generation now takes **about 30 seconds with a warm cache**. Removing `ContributeGI` from static geometry, while both GI
-  modes remain disabled, cut recorded light-baker scene input from **6,134.55 MB to 1.50 MB** and precompute from **64.07 s to
-  0.28 s**. Environment/reflection baking still runs on the RTX; CPU compile/review work can run alongside it.
-- Third-party model/texture attribution is recorded in `Docs/THIRD_PARTY_ASSETS.md`, including the previously omitted model kits.
-  Visual overhaul/assets were committed and pushed as `1557cca`. Check `git status` for remaining verification/docs changes.
-- Current Linux build **SUCCEEDED**, **425 MB**, **11.33 seconds** with the shader/build cache, **zero errors and zero warnings**.
-- Standalone RTX benchmark: **180.0 FPS average at actual 1920×1080, High, render scale 1.00**, vSync off; 19,635 frames over
-  109.1 s. P99 frame time **17.11 ms**, worst **42.1 ms**, so occasional hitches remain. All three entry approaches were reached;
-  the final return-to-spawn leg timed out after 35 s. See `Logs/benchmark-1080p/report.txt` and `Docs/TEST_REPORT.md` for scope.
-- **Linux x86-64 is the sole demo target.** Windows packaging was cancelled at the user's request; it is not a failed or pending
-  deliverable. The broader development goal is paused at the user's request.
+New-game entry alone requests the **80-second opening**. Space/Enter/Escape or gamepad South/East skips it after release;
+checkpoint reloads and Restart do not replay it. At the end, the **sunset lake/seated girl** presents **Live quietly (Peace)** and
+**Become the world (Dominion)**. No timer or skip input selects a future. Only the chosen resolution publishes the final summary.
 
-## 7. Known issues / deferred follow-ups
+During gameplay, either Ctrl key plus M invokes `MissionManager.TryPresentationEscape`: completes prerequisite flags,
+releases the active host, stages the free amoeba at the original drain and starts the existing protected escape dialogue.
+Opening/Vale dialogue, pause, in-transit possession and an already running/completed ending reject the shortcut.
+It never sets `Escaped` or chooses Peace/Dominion. Skip the opening with Space first for a fast presentation.
 
-Resume development only when requested. The verified Linux demo is packaged with `Tools/package_build.sh linux`.
+Story presentation freezes simulation at `timeScale = 0`. Characters, suspicion, CCTV and capture timers reject non-playing story
+states. Dialogue uses realtime waits and unscaled time; input resumes only after Vale's reveal or the opening cleanup.
+The `Escaped` flag commits in `PublishFinalEnding`, after an explicit outcome. An unfinished finale can therefore resume after a reload.
+Completed evidence/sabotage/broadcast flags restore world state; transient paired console operators must be rearmed.
 
-1. Retain the Linux build, verification report and player documentation together in the demo archive.
-2. Improve occasional frame-time hitches and the timed-out return leg of the benchmark tour. Preserve the current native High
-   quality while profiling; the high mean FPS is not proof of constant frame delivery.
-3. Continue the ambitious visual pass (user wants "GTA-like"): humans are still procedural primitives. Real rigged CC0 humans + Humanoid animations would be the biggest visual win
-   (Mixamo/Asset Store require login. Older Quaternius modular men/women packs advertise CC0 with small Humanoid FBXs; candidate
-   sources and official-page evidence are in `Logs/character-candidates/provenance.md`, but included licence downloads currently
-   hit Drive quota restrictions. No models were imported. Verify the exact included licence before choosing that candidate.)
-4. Refine angular/card-like tree crowns, repeated storefront interior patterns and rectangular puddle/reflection edges; three older
-   service/tunnel puddles still use solid rectangular geometry. Preserve geometry/material quality and compare close-up renders
-   when tuning LODs. Existing 15 shots are environment views, not proof of every runtime animation or close-range angle.
-5. Balance: blob sighting rate (`SuspicionRules.BaseAmount(BlobSighted)` = 6/s), guard speed vs blob, camera ranges; verify through
-   real play sessions as well as scripted acceptance.
-6. Nice-to-have: minimap, more side missions, NPC conversation pairs, rain/wet streets. Audio volume persistence is implemented.
+## 6. Verification status (21 Nov 2026)
+
+- **CPU source compile: PASS**, 66 runtime + 11 editor files.
+- **Eight-mission gameplay: 13/13 scenarios PASS** in final Editor acceptance, all three routes and both futures.
+- **Combined PlayMode:** initial 5/6; only failure was the 20× test clock overshooting its first shot. Slowed the test to 2×;
+  affected opening rerun passed 2/2. Do not represent the initial combined XML as entirely passing.
+- **Final opening/shortcut focus: 3/3 PASS**, both opening cases plus queued left/right Ctrl+M and M-alone isolation.
+  All 11 opening captures regenerated; corrected interlock-release camera reviewed. No automatic or duplicate ending choice.
+- **Settings/journal/lakeside UI: 3/3 PASS**, including immutable explicit choices, both resolutions and temporary-scene cleanup.
+- **Generated city/photo audit:** 482,781 static triangles, 277,497 prop triangles, 1,391 merged meshes;
+  PhotoTool including gameplay meshes: 490,641 triangles, zero missing scripts, 15 RTX renders.
+- **Linux build source `3f71476`: PASS**, 425 MB, 6.56 seconds cached, zero errors/warnings (`Logs/presentation-linux.log`).
+- **Real standalone campaign acceptance: 13/13 PASS** on the final executable (`Logs/presentation-standalone.txt`,
+  `Logs/presentation-standalone-player.log`), including all three eight-mission routes and Peace/Dominion outcomes.
+  The player completed the suite and shut down cleanly. The final run used player batch mode on the RTX.
+- The earlier 22/22 EditMode rules/audio checks remain valid for unchanged rule/audio sources. Older five-mission benchmark
+  measurements are historical; no fresh 0.2.0 performance benchmark is claimed.
+
+`Docs/TEST_REPORT.md` owns final artifact-specific evidence. `Docs/COMPLETE_GAME_GUIDE.md` is the illustrated player, judges
+and developer handbook. The release archive includes this guide and its eight screenshots alongside controls, testing notes
+and licences. Delivery is complete after archive integrity/checksum and the final documentation push; no further features.
+
+## 7. Known limitations
+
+See `Docs/KNOWN_ISSUES.md` for the maintained artifact-specific list. Humans remain procedural rigs and trees use cards; simulated
+acceptance is not an extended human playthrough or physical gamepad verification. Imported prop detail is selected during scene
+generation rather than switching at runtime with camera distance. Earlier benchmarks include occasional frame-time hitches and a
+timed-out return leg; they do not guarantee constant performance across every view or establish fresh 0.2.0 performance.
+Linux x86-64 is the sole delivery target. Windows was cancelled by the user and is not a pending deliverable.
+
+These are limitations of the fixed release, not directions to add features before delivery.
 
 ## 8. Gotchas learned
 
 - Unity 6 batch needs the licence: if runs fail with licensing errors, open Unity Hub and sign in.
 - One MonoBehaviour per file (else "missing script" in generated scenes).
+- Story sequences freeze simulation with `timeScale = 0`; dialogue waits and skip timing must use realtime/unscaled time.
+  Resume gameplay only after Vale's reveal; commit `Escaped` only when the chosen lakeside ending resolves. Acceptance must not speed
+  story sequences by overriding `timeScale`, because that bypasses capture/AI safety.
 - `Physics.IgnoreCollision` resets when a collider is disabled — that's why HostCharacter toggles CC vs HitBox instead.
 - Unity `?.`/`??` on UnityEngine.Object is unsafe (fake null) — use `if (!obj)`.
 - Python urllib gets 403 from Poly Haven/ambientCG — use `curl -A "Mozilla/5.0"`.

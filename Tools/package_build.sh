@@ -44,6 +44,13 @@ cp "$project_dir/Docs/RELEASE_README.md" "$build_dir/README.md"
 for doc in CONTROLS KNOWN_ISSUES THIRD_PARTY_ASSETS TEST_REPORT; do
   cp "$project_dir/Docs/$doc.md" "$build_dir/$doc.md"
 done
+if [[ -s "$project_dir/Docs/COMPLETE_GAME_GUIDE.md" ]]; then
+  cp "$project_dir/Docs/COMPLETE_GAME_GUIDE.md" "$build_dir/COMPLETE_GAME_GUIDE.md"
+  if [[ -d "$project_dir/Docs/Screenshots/guide" ]]; then
+    mkdir -p "$build_dir/Screenshots"
+    cp -R "$project_dir/Docs/Screenshots/guide" "$build_dir/Screenshots/"
+  fi
+fi
 cp "$project_dir/Assets/Parasite/Resources/UI/OFL-Rajdhani.txt" "$build_dir/Licenses/"
 cp "$project_dir/Assets/Parasite/Audio/KENNEY_LICENSE.txt" "$build_dir/Licenses/"
 if [[ "$platform" == linux ]]; then

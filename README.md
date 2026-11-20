@@ -1,40 +1,77 @@
-# PARASITE
+# PARASITE — 0.2.0
 
-A third-person stealth game about Specimen 7, an escaped amoeba hunting the scientist who created it.
-Possess people, borrow their credentials, split into two bodies, and infiltrate Vale Biotech through a five-mission campaign.
+You are Specimen 7: an escaped amoeba looking for the scientist who created it. Possess people, borrow their credentials,
+split into two bodies and infiltrate Vale Biotech. Meeting Dr. Vale is the turning point of an **eight-mission campaign**:
+steal his signed orders, break containment, expose the experiment and escape.
 
-![Market Street, rendered in Unity](Docs/Screenshots/market-street.png)
+An **80-second skippable opening** tells the creature's backstory. The finale finds it in a girl's body, seated beside a
+lake at sunset. Choose **Live quietly** or **Become the world**. Each future has its own concluding beat and summary;
+waiting or skipping never chooses for you.
 
-![Vale Biotech main gate, rendered in Unity](Docs/Screenshots/vale-gate.png)
+![Market Street, captured in Unity](Docs/Screenshots/market-street.png)
 
-## Play
+![Vale Biotech main gate, captured in Unity](Docs/Screenshots/vale-gate.png)
 
-The demo targets **Linux x86-64 only**. On this development machine, launch it from the project root:
+## Play on Linux
+
+**Linux x86-64 is the release target.** The player is version **0.2.0**, built from runtime source `3f71476`.
+Local build and archive files are generated artifacts and are not stored in Git.
+
+- Player: `Builds/Linux/Parasite.x86_64`
+- Release archive: `Builds/Releases/PARASITE-Linux.tar.gz` with a `.sha256` checksum
+
+From the project root, run:
 
 ```bash
 ./play.sh
 ```
 
-The launcher selects the NVIDIA GPU. Builds are local artifacts under `Builds/` and are not included in Git.
-Use **Settings** in the title or pause menu for graphics, mouse sensitivity, master volume and ambience/music.
-Preferences survive restarting the game.
+The project launcher selects the NVIDIA GPU. For an extracted release, keep the executable, `UnityPlayer.so` and
+`Parasite_Data` together, open the extracted `Linux` folder and run its `./play.sh`.
+
+Choose **Begin Infiltration**. Watch the opening, or press **Space**, **Enter** or **Esc**, then release the key to enter
+gameplay. Checkpoint reloads and Restart do not replay the opening. Settings in the title and pause menus save graphics,
+mouse sensitivity, master volume and ambience/music. The pause journal scrolls through all eight missions.
 
 | Input | Action |
 |---|---|
 | WASD / mouse | Move / look |
 | Shift / Space | Sprint / jump |
-| E | Possess, interact, or eject during capture |
+| E | Possess, interact, or eject when captured |
 | Q | Leave host |
 | V / Tab | Split / switch amoebas |
 | F | Use the current host's profession ability |
 | Esc / F1 / F3 | Pause / controls / FPS |
+| Ctrl + M | Jump from gameplay to the final escape and lakeside choices |
 
-Full keyboard and gamepad controls, mission guidance and infiltration routes: [Controls](Docs/CONTROLS.md).
+**For a short presentation:** begin the game, skip the opening with **Space** and release it, then press **Ctrl + M**.
+Either Ctrl key works. This shortcut operates during gameplay; it does not interrupt the opening or Vale's dialogue.
+It bypasses the remaining missions, plays the protected drain escape and reaches the lake. You still explicitly choose
+**Live quietly (Peace)** or **Become the world (Dominion)** before the final statistics appear.
+
+Read the [complete game guide](Docs/COMPLETE_GAME_GUIDE.md) for the full walkthrough, paired-body puzzles and screenshots.
+The shorter [controls reference](Docs/CONTROLS.md) includes keyboard/gamepad mappings and infiltration routes.
+
+## Verified release checks
+
+| Check | Result |
+|---|---|
+| Final Linux build | 425 MB; 6.56-second cached build; zero errors/warnings |
+| CPU compilation | 66 runtime and 11 editor source files pass |
+| Editor gameplay acceptance | 13/13 scenarios passed, including all three routes and both futures |
+| Settings, journal and lakeside UI | 3/3 tests passed; rendered captures inspected |
+| Final opening and Ctrl+M checks | 3/3 tests passed, including real queued left/right Ctrl+M input |
+| Final standalone Linux acceptance | 13/13 passed on the rebuilt executable: all three eight-mission routes and both futures |
+
+The queued-input tests verify the shortcut inside Unity. A separate visible Linux smoke attempt could not reliably drive
+the desktop's synthetic input, so it does **not** establish an interactive standalone Ctrl+M pass. Physical gamepad use
+and an extended human playthrough remain unverified. See the [verification report](Docs/TEST_REPORT.md) and
+[known issues](Docs/KNOWN_ISSUES.md) for coverage and limits.
 
 ## Develop
 
-Read [the developer handoff](Docs/HANDOFF.md) first. Unity **6000.3.29f1**, URP, Cinemachine and the Input System are used.
-City and title scenes are generated from source; edit their builders instead of scene YAML.
+Read [the handoff](Docs/HANDOFF.md) first. The project uses **Unity 6000.3.29f1**, URP, Cinemachine and the Input System.
+Scenes are generated from source; edit the builders instead of scene YAML.
 
 ```bash
 Tools/compile_check.sh all
@@ -42,23 +79,16 @@ Tools/unity.sh buildscenes -executeMethod Parasite.EditorTools.CityBuilder.Build
 Tools/unity.sh playmode -runTests -testPlatform PlayMode -testResults Logs/playmode-results.xml
 Tools/unity.sh editmode -nographics -runTests -testPlatform EditMode -testResults Logs/editmode-results.xml
 Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux
+Tools/package_build.sh linux
 ```
 
-The fast compile uses CPU Roslyn without starting Unity. The Unity wrapper serializes editor access and selects the RTX GPU.
-Generated logs and test results live in `Logs/`. Shader compilation uses the Unity cache; avoid clearing `Library/` on the space-limited workstation.
+The fast compile uses CPU Roslyn; the Unity wrapper serializes editor access and selects the RTX GPU. Logs and rendered
+captures live in `Logs/`. Package only after updating the verification report for the built executable.
 
-After a successful Linux build, `Tools/package_build.sh linux` creates a player archive
-under `Builds/Releases/`, including controls, known issues, verification notes and third-party licences.
-
-Run the actual Linux build's gameplay acceptance suite or an uncapped performance tour:
+Run acceptance inside the actual Linux player:
 
 ```bash
 ./play.sh -autotest -autotestOut /tmp/parasite-acceptance.txt
-./play.sh -benchmark -screen-width 1920 -screen-height 1080 -screen-fullscreen 1 -autotestOut /tmp/parasite-benchmark.txt
 ```
 
-The benchmark reports the active render scale, frame times, memory and reached/timed-out waypoints; NPC AI and traffic stay active.
-Judge performance together with route coverage and graphics settings.
-Fullscreen avoids the desktop shrinking a 1080p window to fit its title bar; confirm the actual resolution in the report.
-
-External art, audio and font sources: [third-party assets](Docs/THIRD_PARTY_ASSETS.md).
+External art, audio and fonts: [third-party assets and licences](Docs/THIRD_PARTY_ASSETS.md).

@@ -1,4 +1,14 @@
-# PARASITE — Controls & How It Plays
+# PARASITE 0.2.0 — Controls & How It Plays
+
+## Opening and final choice
+
+**Begin Infiltration** starts the 80-second backstory. Skip with **Space**, **Enter** or **Esc** (gamepad **A/South** or **B/East**),
+then release the key/button to enter gameplay. Checkpoint reloads and Restart do not replay the opening.
+The live city, guards and capture timers freeze during the opening, Vale's reveal and the final cinematic.
+
+After the eight missions, the final scene shows a girl seated beside a sunset lake. Choose **Live quietly (Peace)** or
+**Become the world (Dominion)** using the mouse or menu navigation and confirm. Waiting, Escape or a dialogue-skip input never
+chooses an outcome. Your first choice is locked; the final statistics follow its resolution.
 
 ## Controls
 
@@ -16,10 +26,15 @@
 | Esc | Start | Pause (Resume · Restart · Controls · Settings · Quit); return from a submenu before resuming |
 | F1 | — | Show / hide the controls card |
 | F3 | — | FPS counter (launch with `-showfps` to start with it on) |
+| Ctrl + M | — | Judges' presentation shortcut: from gameplay, jump to the final escape and sunset-lake choices |
 
 Menus work with the mouse, or with arrows/WASD/D-pad + Enter/A.
-Settings in both the title and pause menus saves graphics quality, mouse sensitivity, master volume and ambience/music.
+Settings in both the title and pause menus save graphics quality, mouse sensitivity, master volume and ambience/music.
 Sliders apply immediately. Gamepad B returns from controls/settings; Esc/Start also returns from pause submenus.
+
+For a short judges' presentation, press **Ctrl + M during gameplay** to jump to the final escape and sunset-lake epilogue.
+This skips the remaining campaign for the presentation. You still choose **Live quietly (Peace)** or **Become the world (Dominion)**;
+the shortcut never chooses an outcome automatically.
 
 ## Possession
 Aim at a person within **5 m** (a marker and an `[E] Possess …` prompt appear) and press **E**: the amoeba leaps
@@ -47,10 +62,15 @@ contains it; if no amoeba is left you return to the last checkpoint.
 | Scientist | Staff credentials | **Staff Terminal** (unlocks a staff door) |
 | Maintenance Worker | Maintenance keys | **Service Tunnel** |
 
-Inside the lab, find Dr. Vale's office and confront him. The end screen shows your route, time, hosts possessed,
-peak suspicion and captures.
+Inside the lab, find Dr. Vale's office and confront him. His reveal starts three more missions; you can keep playing.
+The final end screen follows the evidence broadcast, storm-drain escape and your explicit lakeside choice, showing your chosen
+future, original infiltration route, total time, hosts possessed, peak suspicion and captures across the campaign.
 
 ## Missions
+
+This describes version 0.2.0. Focused UI and opening checks passed; the final combined PlayMode run is running, and the Linux
+rebuild/standalone verification are pending. The existing Linux artifact is still the earlier five-mission version until replaced.
+Check `TEST_REPORT.md` for the artifact's actual results.
 
 1. **Out of the Drain** — leave the storm-drain alley, take your first host.
 2. **Word on the Street** — read the newsstand on City Plaza, eavesdrop on Dr. Petrov at the café.
@@ -58,7 +78,21 @@ peak suspicion and captures.
    maintenance + Substation 4 reset → Service Tunnel.
 4. **Vale's Research** — download files at the Lab A and Lab B terminals; Dr. Vale's office has a two-person rule:
    split (V), put each amoeba in a staff host, badge both readers within 8 s (Tab to switch).
-5. **Creator** — confront Dr. Vale.
+5. **Creator** — confront Dr. Vale. His dialogue reveals that the research you stole was bait; gameplay resumes afterward.
+6. **The Part He Hid** — as **maintenance**, press **E** at the service-room coolant bypass and leave that body there.
+   **Tab** to the other amoeba, possess a **scientist** and copy Vale's signed archive in his office for **8 seconds**.
+   The two different hosts must stay at their respective terminals. Moving or losing either host interrupts the copy.
+7. **Break the Leash** — put a **guard** at the lobby dispatch override and press **E** to hold it. **Tab** back to a
+   **maintenance** body and overload the east service-alley containment relay for **7 seconds**. The guard must stay at dispatch.
+   Success permanently disables security cameras and opens the campus exits.
+8. **Outside the Experiment** — as **any host**, send the signed evidence through the **City Plaza journalist uplink** for
+   **10 seconds**. A pursuit blocks or interrupts the upload. After it succeeds, return to the south storm-drain alley,
+   leave your host with **Q**, and press **E** at the drain as a **free amoeba** to escape and reach the lakeside epilogue.
+   Choose **Live quietly** or **Become the world** to decide your future before the final summary. There is no automatic choice.
+
+Paired consoles need a separate amoeba at each position; one host cannot operate both. Press **E** once to start work, then stay
+close while progress fills. Completed evidence, sabotage and broadcast objectives survive checkpoint reloads. After a reload,
+reacquire hosts and rearm any unfinished paired controls; temporary body positions are not saved.
 
 Yellow waypoints show where to go. Security cameras (red blinking lamp) sweep the campus and lab: they spot free
 amoebas, trespassers and bodies. A maintenance host can cut their power with F.
