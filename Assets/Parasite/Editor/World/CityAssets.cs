@@ -222,52 +222,53 @@ namespace Parasite.EditorTools
             // textured surfaces: name, set, tint, tile metres, smoothness scale
             if (File.Exists($"{G}/Road_albedo.jpg"))
             {
-                Lit("Asphalt", $"{G}/Road", c(0.82f, 0.82f, 0.84f), 1f, tile: 6f);
-                Lit("Cobble", $"{G}/Cobble", c(0.85f, 0.83f, 0.8f), 1f, tile: 3.2f);
-                Lit("Gravel", $"{G}/Gravel", c(0.7f, 0.7f, 0.7f), 1f, tile: 2.5f);
+                // Asphalt: subtle damp sheen reflecting evening sky and city lights
+                Lit("Asphalt", $"{G}/Road", c(0.82f, 0.82f, 0.84f), 0.82f, tile: 6f, bumpScale: 1.35f);
+                Lit("Cobble", $"{G}/Cobble", c(0.85f, 0.83f, 0.8f), 0.85f, tile: 3.2f, bumpScale: 1.35f);
+                Lit("Gravel", $"{G}/Gravel", c(0.7f, 0.7f, 0.7f), 0.75f, tile: 2.5f, bumpScale: 1.25f);
             }
-            else T("Asphalt", "asphalt", c(0.78f, 0.78f, 0.8f), 7f, 0.75f);
-            T("Sidewalk", "sidewalk", c(0.86f, 0.85f, 0.84f), 3f, 0.75f);
-            T("Curb", "concrete", c(0.72f, 0.72f, 0.7f), 2f, 0.6f);
-            T("Brick", "brick", Color.white, 3f, 0.8f);
-            T("BrickDark", "brick", c(0.58f, 0.5f, 0.48f), 3f, 0.8f);
-            T("PlasterCream", "plaster", c(1f, 0.9f, 0.76f), 4f, 0.7f);
-            T("PlasterGrey", "plaster", c(0.7f, 0.72f, 0.76f), 4f, 0.7f);
-            T("PlasterTeal", "plaster", c(0.5f, 0.7f, 0.7f), 4f, 0.7f);
-            T("PlasterTerracotta", "plaster", c(0.86f, 0.56f, 0.44f), 4f, 0.7f);
-            T("PlasterWhite", "plaster", c(0.86f, 0.86f, 0.83f), 4f, 0.7f);
-            T("PlasterCharcoal", "plaster", c(0.32f, 0.32f, 0.33f), 4f, 0.7f);
-            T("PlasterOchre", "plaster", c(0.8f, 0.6f, 0.38f), 4f, 0.7f);
-            T("PlasterSand", "plaster", c(0.84f, 0.76f, 0.62f), 4f, 0.7f);
-            T("Stone", "concrete", c(0.62f, 0.6f, 0.57f), 3f, 0.7f);
-            T("LabWhite", "plaster", c(0.96f, 0.97f, 0.98f), 6f, 0.9f);
-            T("LabFloor", "labfloor", c(0.95f, 0.97f, 1f), 2.4f, 1f);
-            T("Concrete", "concrete", c(0.85f, 0.85f, 0.85f), 4f, 0.7f);
-            T("TunnelConcrete", "concrete", c(0.55f, 0.58f, 0.56f), 3f, 0.8f);
-            T("RustyMetal", "metal", Color.white, 2f, 0.9f);
-            T("SteelPlate", "labmetal", c(0.85f, 0.87f, 0.9f), 2f, 1f);
-            T("Wood", "wood", Color.white, 2f, 0.9f);
-            T("Hoarding", "wood", c(0.75f, 0.68f, 0.55f), 2.5f, 0.6f);
-            T("ShopFloor", "labfloor", c(0.8f, 0.78f, 0.74f), 1.6f, 0.9f);
-            if (!Has("Cobble")) T("Cobble", "sidewalk", c(0.8f, 0.78f, 0.75f), 3f, 0.7f);
-            if (!Has("Gravel")) T("Gravel", "concrete", c(0.5f, 0.5f, 0.5f), 3f, 0.4f);
+            else T("Asphalt", "asphalt", c(0.78f, 0.78f, 0.8f), 7f, 0.82f, bumpScale: 1.35f);
+            T("Sidewalk", "sidewalk", c(0.86f, 0.85f, 0.84f), 3f, 0.82f, bumpScale: 1.3f);
+            T("Curb", "concrete", c(0.72f, 0.72f, 0.7f), 2f, 0.7f, bumpScale: 1.25f);
+            T("Brick", "brick", Color.white, 3f, 0.85f, bumpScale: 1.35f);
+            T("BrickDark", "brick", c(0.58f, 0.5f, 0.48f), 3f, 0.85f, bumpScale: 1.35f);
+            T("PlasterCream", "plaster", c(1f, 0.9f, 0.76f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterGrey", "plaster", c(0.7f, 0.72f, 0.76f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterTeal", "plaster", c(0.5f, 0.7f, 0.7f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterTerracotta", "plaster", c(0.86f, 0.56f, 0.44f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterWhite", "plaster", c(0.86f, 0.86f, 0.83f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterCharcoal", "plaster", c(0.32f, 0.32f, 0.33f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterOchre", "plaster", c(0.8f, 0.6f, 0.38f), 4f, 0.7f, bumpScale: 1.2f);
+            T("PlasterSand", "plaster", c(0.84f, 0.76f, 0.62f), 4f, 0.7f, bumpScale: 1.2f);
+            T("Stone", "concrete", c(0.62f, 0.6f, 0.57f), 3f, 0.75f, bumpScale: 1.3f);
+            T("LabWhite", "plaster", c(0.96f, 0.97f, 0.98f), 6f, 0.9f, bumpScale: 1.1f);
+            T("LabFloor", "labfloor", c(0.95f, 0.97f, 1f), 2.4f, 1f, bumpScale: 1.1f);
+            T("Concrete", "concrete", c(0.85f, 0.85f, 0.85f), 4f, 0.78f, bumpScale: 1.3f);
+            T("TunnelConcrete", "concrete", c(0.55f, 0.58f, 0.56f), 3f, 0.82f, bumpScale: 1.3f);
+            T("RustyMetal", "metal", Color.white, 2f, 0.9f, bumpScale: 1.2f);
+            T("SteelPlate", "labmetal", c(0.85f, 0.87f, 0.9f), 2f, 1f, bumpScale: 1.2f);
+            T("Wood", "wood", Color.white, 2f, 0.9f, bumpScale: 1.2f);
+            T("Hoarding", "wood", c(0.75f, 0.68f, 0.55f), 2.5f, 0.65f, bumpScale: 1.2f);
+            T("ShopFloor", "labfloor", c(0.8f, 0.78f, 0.74f), 1.6f, 0.9f, bumpScale: 1.1f);
+            if (!Has("Cobble")) T("Cobble", "sidewalk", c(0.8f, 0.78f, 0.75f), 3f, 0.85f, bumpScale: 1.35f);
+            if (!Has("Gravel")) T("Gravel", "concrete", c(0.5f, 0.5f, 0.5f), 3f, 0.5f, bumpScale: 1.25f);
 
             P("GlassDark", c(0.04f, 0.055f, 0.07f), 0.94f, 0.3f);
             P("SignBoard", c(0.06f, 0.07f, 0.09f), 0.55f, 0.3f);
             P("MetalDark", c(0.11f, 0.12f, 0.13f), 0.55f, 0.75f);
             P("DrainIron", c(0.055f, 0.06f, 0.06f), 0.22f, 0.55f);
             P("MetalFrame", c(0.16f, 0.17f, 0.18f), 0.6f, 0.8f);
-            P("Chrome", c(0.75f, 0.76f, 0.78f), 0.88f, 1f);
-            P("Tire", c(0.03f, 0.03f, 0.03f), 0.25f, 0f);
-            P("Rim", c(0.55f, 0.56f, 0.58f), 0.75f, 0.9f);
+            P("Chrome", c(0.75f, 0.76f, 0.78f), 0.98f, 1f);
+            P("Tire", c(0.03f, 0.03f, 0.03f), 0.35f, 0.02f);
+            P("Rim", c(0.55f, 0.56f, 0.58f), 0.88f, 0.95f);
             P("CarTrim", c(0.025f, 0.025f, 0.028f), 0.45f, 0.1f);
-            CarPaint("CarRed", c(0.42f, 0.03f, 0.03f));
-            CarPaint("CarBlue", c(0.05f, 0.12f, 0.32f));
-            CarPaint("CarWhite", c(0.8f, 0.8f, 0.8f));
-            CarPaint("CarBlack", c(0.025f, 0.028f, 0.032f));
-            CarPaint("CarSilver", c(0.45f, 0.47f, 0.5f), 0.85f);
-            CarPaint("CarGreen", c(0.06f, 0.18f, 0.12f));
-            CarPaint("CarTaxi", c(0.85f, 0.6f, 0.05f));
+            CarPaint("CarRed", c(0.55f, 0.04f, 0.06f));
+            CarPaint("CarBlue", c(0.04f, 0.14f, 0.45f));
+            CarPaint("CarWhite", c(0.92f, 0.92f, 0.94f));
+            CarPaint("CarBlack", c(0.02f, 0.02f, 0.025f));
+            CarPaint("CarSilver", c(0.65f, 0.67f, 0.72f), 0.85f);
+            CarPaint("CarGreen", c(0.04f, 0.22f, 0.12f));
+            CarPaint("CarTaxi", c(0.98f, 0.68f, 0.04f));
             CarPaint("CarBeige", c(0.55f, 0.48f, 0.38f));
             P("TruckWhite", c(0.75f, 0.76f, 0.74f), 0.45f, 0.1f);
             P("BarrierOrange", c(0.95f, 0.36f, 0.04f), 0.45f, 0f);
@@ -306,8 +307,8 @@ namespace Parasite.EditorTools
             P("Rail", c(0.06f, 0.065f, 0.07f), 0.5f, 0.8f);
             P("KickPlate", c(0.09f, 0.09f, 0.1f), 0.7f, 0.6f);
 
-            E("WindowWarm", c(0.16f, 0.13f, 0.1f), c(1f, 0.68f, 0.4f) * 0.85f);
-            E("WindowCool", c(0.1f, 0.12f, 0.14f), c(0.42f, 0.56f, 0.72f) * 0.9f);
+            E("WindowWarm", c(0.16f, 0.13f, 0.1f), c(1f, 0.72f, 0.44f) * 1.4f);
+            E("WindowCool", c(0.1f, 0.12f, 0.14f), c(0.48f, 0.68f, 0.95f) * 1.35f);
             E("ShopGlow", c(0.95f, 0.85f, 0.65f), c(1f, 0.82f, 0.58f) * 1.4f);
             E("ShopStrip", c(1f, 0.95f, 0.85f), c(1f, 0.9f, 0.75f) * 2.5f);
             E("LampHead", c(1f, 0.9f, 0.7f), c(1f, 0.8f, 0.52f) * 5f);
@@ -401,7 +402,7 @@ namespace Parasite.EditorTools
             EditorUtility.SetDirty(m);
         }
 
-        static void T(string name, string set, Color tint, float tile, float smooth)
+        static void T(string name, string set, Color tint, float tile, float smooth, float bumpScale = 1.25f)
         {
             var m = Mat(name);
             var alb = T2(Tex(set, "albedo") + ".jpg");
@@ -409,15 +410,15 @@ namespace Parasite.EditorTools
             var mask = T2(Tex(set, "mask") + ".png");
             m.SetColor("_BaseColor", alb ? tint : tint * 0.6f);
             if (alb) m.SetTexture("_BaseMap", alb);
-            if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", 1f); m.EnableKeyword("_NORMALMAP"); }
+            if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", bumpScale); m.EnableKeyword("_NORMALMAP"); }
             if (mask) { m.SetTexture("_MetallicGlossMap", mask); m.EnableKeyword("_METALLICSPECGLOSSMAP"); m.SetFloat("_Smoothness", smooth); }
-            else { m.SetFloat("_Smoothness", 0.3f * smooth); m.SetFloat("_Metallic", 0f); }
+            else { m.SetFloat("_Smoothness", 0.35f * smooth); m.SetFloat("_Metallic", 0f); }
             Done(m, tile, true);
         }
 
         /// <summary>URP/Lit from a texture prefix (prefix_albedo.jpg|png, _normal.jpg, _mask.png, _height.png, _emission.jpg|png).</summary>
         static Material Lit(string name, string prefix, Color tint, float smooth, float emission = 0f, float tile = 1f, float clip = -1f,
-            bool transparent = false, bool twoSided = false, float parallax = 0f, string dir = MatDir)
+            bool transparent = false, bool twoSided = false, float parallax = 0f, float bumpScale = 1.25f, string dir = MatDir)
         {
             Texture2D Find(string kind) => T2($"{prefix}_{kind}.jpg") ?? T2($"{prefix}_{kind}.png");
             var alb = Find("albedo");
@@ -426,7 +427,7 @@ namespace Parasite.EditorTools
             m.SetTexture("_BaseMap", alb);
             m.SetColor("_BaseColor", tint);
             var nor = Find("normal");
-            if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", 1f); m.EnableKeyword("_NORMALMAP"); }
+            if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", bumpScale); m.EnableKeyword("_NORMALMAP"); }
             var mask = Find("mask");
             if (mask)
             {
@@ -476,17 +477,17 @@ namespace Parasite.EditorTools
             Done(m, 2f, shadow);
         }
 
-        static void CarPaint(string name, Color color, float metal = 0.55f)
+        static void CarPaint(string name, Color color, float metal = 0.85f)
         {
             var sh = Shader.Find("Universal Render Pipeline/Complex Lit");
             var m = Mat(name, sh ? "Universal Render Pipeline/Complex Lit" : "Universal Render Pipeline/Lit");
             m.SetColor("_BaseColor", color);
-            m.SetFloat("_Smoothness", 0.7f);
+            m.SetFloat("_Smoothness", 0.94f);
             m.SetFloat("_Metallic", metal);
             if (sh)
             {
                 m.SetFloat("_ClearCoat", 1f); m.EnableKeyword("_CLEARCOAT");
-                m.SetFloat("_ClearCoatMask", 1f); m.SetFloat("_ClearCoatSmoothness", 0.95f);
+                m.SetFloat("_ClearCoatMask", 1f); m.SetFloat("_ClearCoatSmoothness", 0.96f);
             }
             Done(m, 2f, true);
         }
@@ -534,7 +535,7 @@ namespace Parasite.EditorTools
                     m.SetTexture("_BaseMap", alb);
                     m.SetColor("_BaseColor", Color.white);
                     var nor = T2($"{F}/{d.bas}_normal.jpg");
-                    if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", 1f); m.EnableKeyword("_NORMALMAP"); }
+                    if (nor) { m.SetTexture("_BumpMap", nor); m.SetFloat("_BumpScale", 1.35f); m.EnableKeyword("_NORMALMAP"); }
                     var mask = T2($"{F}/{d.bas}_mask.png");
                     if (mask)
                     {
@@ -542,11 +543,15 @@ namespace Parasite.EditorTools
                         m.SetTexture("_OcclusionMap", mask); m.EnableKeyword("_OCCLUSIONMAP"); m.SetFloat("_OcclusionStrength", 1f);
                     }
                     var h = T2($"{F}/{d.bas}_height.png");
-                    if (h) { m.SetTexture("_ParallaxMap", h); m.SetFloat("_Parallax", 0.012f); m.EnableKeyword("_PARALLAXMAP"); }
+                    if (h) { m.SetTexture("_ParallaxMap", h); m.SetFloat("_Parallax", 0.02f); m.EnableKeyword("_PARALLAXMAP"); }
                     var e = T2($"{F}/{d.name}_emission.jpg");
                     if (e)
                     {
-                        m.SetTexture("_EmissionMap", e); m.SetColor("_EmissionColor", Color.white * 1.3f); m.EnableKeyword("_EMISSION");
+                        // Warm and cool architectural lighting variations
+                        Color emit = d.res
+                            ? new Color(1.08f, 0.86f, 0.62f) * 1.55f   // Warm domestic amber/tungsten
+                            : new Color(0.85f, 0.94f, 1.08f) * 1.45f;  // Crisp cool architectural luminescence
+                        m.SetTexture("_EmissionMap", e); m.SetColor("_EmissionColor", emit); m.EnableKeyword("_EMISSION");
                         m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
                     }
                     Done(m, 1f, true);
@@ -706,14 +711,14 @@ namespace Parasite.EditorTools
 
             var tm = p.Add<Tonemapping>(); tm.mode.Override(TonemappingMode.ACES);
             var bl = p.Add<Bloom>();
-            bl.threshold.Override(1.1f); bl.intensity.Override(0.5f); bl.scatter.Override(0.68f);
-            bl.tint.Override(new Color(1f, 0.93f, 0.86f)); bl.highQualityFiltering.Override(true);
+            bl.threshold.Override(0.88f); bl.intensity.Override(0.82f); bl.scatter.Override(0.72f);
+            bl.tint.Override(new Color(1f, 0.94f, 0.88f)); bl.highQualityFiltering.Override(true);
             var ca = p.Add<ColorAdjustments>();
-            ca.postExposure.Override(0.25f); ca.contrast.Override(14f); ca.saturation.Override(6f);
-            var vg = p.Add<Vignette>(); vg.intensity.Override(0.22f); vg.smoothness.Override(0.45f);
+            ca.postExposure.Override(0.25f); ca.contrast.Override(18f); ca.saturation.Override(10f);
+            var vg = p.Add<Vignette>(); vg.intensity.Override(0.26f); vg.smoothness.Override(0.45f);
             var wb = p.Add<WhiteBalance>(); wb.temperature.Override(3f); wb.tint.Override(1f);
             var sp = p.Add<SplitToning>();
-            sp.shadows.Override(new Color(0.36f, 0.52f, 0.58f)); sp.highlights.Override(new Color(0.75f, 0.58f, 0.4f)); sp.balance.Override(-15f);
+            sp.shadows.Override(new Color(0.32f, 0.54f, 0.62f)); sp.highlights.Override(new Color(0.82f, 0.64f, 0.42f)); sp.balance.Override(-10f);
             var smh = p.Add<ShadowsMidtonesHighlights>();
             smh.shadows.Override(new Vector4(0.96f, 1.0f, 1.05f, 0f));
             smh.highlights.Override(new Vector4(1.04f, 1.0f, 0.95f, 0f));
@@ -733,10 +738,10 @@ namespace Parasite.EditorTools
             var rp = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
             if (rp)
             {
-                rp.shadowDistance = 120f;
+                rp.shadowDistance = 160f;
                 rp.shadowCascadeCount = 4;
-                rp.cascade4Split = new Vector3(0.067f, 0.2f, 0.47f);
-                rp.cascadeBorder = 0.12f;
+                rp.cascade4Split = new Vector3(0.065f, 0.18f, 0.45f);
+                rp.cascadeBorder = 0.1f;
                 rp.mainLightShadowmapResolution = 4096;
                 EditorUtility.SetDirty(rp);
             }
@@ -746,11 +751,20 @@ namespace Parasite.EditorTools
                 foreach (var f in rd.rendererFeatures)
                 {
                     if (!f || f.GetType().Name != "ScreenSpaceAmbientOcclusion") continue;
+                    f.SetActive(true);
                     var so = new SerializedObject(f);
                     var s = so.FindProperty("m_Settings");
                     if (s == null) continue;
                     void Set(string n, float v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.floatValue = v; }
-                    Set("Intensity", 0.75f); Set("Radius", 0.45f); Set("DirectLightingStrength", 0.3f);
+                    void SetInt(string n, int v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.intValue = v; }
+                    void SetBool(string n, bool v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.boolValue = v; }
+                    Set("Intensity", 0.85f);
+                    Set("Radius", 0.45f);
+                    Set("DirectLightingStrength", 0.35f);
+                    SetInt("Samples", 0);
+                    SetInt("NormalSamples", 2);
+                    SetInt("BlurQuality", 0);
+                    SetBool("Downsample", false);
                     so.ApplyModifiedPropertiesWithoutUndo();
                 }
                 EditorUtility.SetDirty(rd);
