@@ -46,22 +46,106 @@ namespace Parasite.EditorTools
             var mesh = BodyMesh(body, sp);
             var q = Quaternion.Euler(0f, yaw, 0f);
             var trs = Matrix4x4.TRS(p, q, Vector3.one);
-            k.Mesh(new[] { M(pm), M("GlassCar"), M("CarTrim"), M("Headlight"), M("Taillight"), M("Chrome") }, mesh, trs);
-            // wheels: tyre + rim + hub
+            k.Mesh(new[] { M(pm), M("GlassCar"), M("CarTrim"), M("Headlight"), M("Taillight"), M("Chrome"), M("PaintWhite"), M("MetalDark") }, mesh, trs);
+
+            // wheels: 5-spoke sculpted alloy rims with dark tire tread ring, chrome center hubcap, and visible brake calipers
             foreach (float zs in new[] { -0.5f, 0.5f })
             foreach (float xs in new[] { -1f, 1f })
             {
                 var c = new Vector3(xs * (sp.W * 0.5f - 0.13f), sp.wheelR, zs * sp.wheelBase + (body == Body.Van ? 0.2f : 0f));
-                var a = p + q * (c + Vector3.right * xs * -0.11f); var b = p + q * (c + Vector3.right * xs * 0.11f);
+                var a = p + q * (c + Vector3.right * xs * -0.11f);
+                var b = p + q * (c + Vector3.right * xs * 0.11f);
+
+                // 1. Tire body & dark tread ring
                 k.Pipe(M("Tire"), a, b, sp.wheelR);
-                k.Pipe(M("Rim"), p + q * (c + Vector3.right * xs * 0.1f), p + q * (c + Vector3.right * xs * 0.125f), sp.wheelR * 0.62f);
-                k.Pipe(M("CarTrim"), p + q * (c + Vector3.right * xs * 0.12f), p + q * (c + Vector3.right * xs * 0.135f), sp.wheelR * 0.2f);
+                k.Pipe(M("CarTrim"), p + q * (c + Vector3.right * xs * -0.07f), p + q * (c + Vector3.right * xs * 0.07f), sp.wheelR * 1.018f);
+
+                // 2. Steel brake rotor disc & sporty red brake caliper
+                var discA = p + q * (c + Vector3.right * xs * -0.01f);
+                var discB = p + q * (c + Vector3.right * xs * 0.025f);
+                k.Pipe(M("SteelPlate"), discA, discB, sp.wheelR * 0.55f);
+                var caliperOffset = new Vector3(xs * 0.03f, sp.wheelR * 0.36f, sp.wheelR * 0.22f);
+                k.Box(M("CarRed"), p + q * (c + caliperOffset), new Vector3(0.048f, 0.085f, 0.075f), q * Quaternion.Euler(xs * 25f, 0f, 0f));
+
+                // 3. Rim barrel & outer lip
+                k.Pipe(M("Rim"), p + q * (c + Vector3.right * xs * 0.085f), p + q * (c + Vector3.right * xs * 0.125f), sp.wheelR * 0.65f);
+                k.Pipe(M("MetalDark"), p + q * (c + Vector3.right * xs * 0.02f), p + q * (c + Vector3.right * xs * 0.09f), sp.wheelR * 0.60f);
+
+                // 4. 5-spoke sculpted alloy rims
+                for (int i = 0; i < 5; i++)
+                {
+                    float ang = (i * 72f + 18f) * Mathf.Deg2Rad;
+                    float cosA = Mathf.Cos(ang), sinA = Mathf.Sin(ang);
+                    Vector3 spokeDir = new Vector3(0f, cosA, sinA);
+                    Vector3 s0 = c + Vector3.right * xs * 0.125f + spokeDir * (sp.wheelR * 0.16f);
+                    Vector3 s1 = c + Vector3.right * xs * 0.118f + spokeDir * (sp.wheelR * 0.61f);
+                    k.Pipe(M("Rim"), p + q * s0, p + q * s1, 0.024f);
+                }
+
+                // 5. Chrome center hubcap
+                k.Pipe(M("Chrome"), p + q * (c + Vector3.right * xs * 0.115f), p + q * (c + Vector3.right * xs * 0.138f), sp.wheelR * 0.18f);
+                k.Pipe(M("CarTrim"), p + q * (c + Vector3.right * xs * 0.136f), p + q * (c + Vector3.right * xs * 0.142f), sp.wheelR * 0.08f);
             }
+
+            // Body-specific accents
             if (body == Body.Taxi)
             {
-                k.Box(M("CarTrim"), p + q * new Vector3(0f, sp.roof + 0.02f, -0.25f), new Vector3(0.75f, 0.04f, 0.28f), q);
-                k.Box(M("WarningLight"), p + q * new Vector3(0f, sp.roof + 0.14f, -0.25f), new Vector3(0.7f, 0.2f, 0.24f), q);
+                // Aerodynamic mounting brackets on roof
+                k.Box(M("Chrome"), p + q * new Vector3(-0.35f, sp.roof + 0.02f, -0.25f), new Vector3(0.08f, 0.04f, 0.24f), q);
+                k.Box(M("Chrome"), p + q * new Vector3(0.35f, sp.roof + 0.02f, -0.25f), new Vector3(0.08f, 0.04f, 0.24f), q);
+                k.Box(M("CarTrim"), p + q * new Vector3(0f, sp.roof + 0.035f, -0.25f), new Vector3(0.78f, 0.03f, 0.26f), q);
+                // Bright illuminated taxi sign body
+                k.Box(M("WarningLight"), p + q * new Vector3(0f, sp.roof + 0.14f, -0.25f), new Vector3(0.72f, 0.18f, 0.22f), q);
+                // High-emission topper strip
+                k.Box(M("LampHead"), p + q * new Vector3(0f, sp.roof + 0.235f, -0.25f), new Vector3(0.65f, 0.02f, 0.16f), q);
+                // Dark end caps
+                k.Box(M("CarTrim"), p + q * new Vector3(-0.365f, sp.roof + 0.14f, -0.25f), new Vector3(0.02f, 0.18f, 0.22f), q);
+                k.Box(M("CarTrim"), p + q * new Vector3(0.365f, sp.roof + 0.14f, -0.25f), new Vector3(0.02f, 0.18f, 0.22f), q);
             }
+            else if (body == Body.Van)
+            {
+                // Longitudinal roof ribs
+                float[] ribXs = { -0.6f, -0.3f, 0f, 0.3f, 0.6f };
+                float ribLen = (sp.cabF - 0.25f) - (sp.cabR + 0.25f);
+                float ribZ = (sp.cabF - 0.25f + sp.cabR + 0.25f) * 0.5f;
+                foreach (float rx in ribXs)
+                    k.Box(M(pm), p + q * new Vector3(rx, sp.roof + 0.018f, ribZ), new Vector3(0.045f, 0.025f, ribLen), q);
+
+                // Rear split-door vertical seam line and hinges
+                k.Box(M("CarTrim"), p + q * new Vector3(0f, (sp.sill + sp.roof) * 0.5f, -sp.L * 0.5f - 0.005f), new Vector3(0.018f, sp.roof - sp.sill - 0.1f, 0.02f), q);
+                foreach (float yHinge in new[] { sp.sill + 0.35f, sp.roof - 0.35f })
+                foreach (float xHinge in new[] { -sp.W * 0.5f + 0.08f, sp.W * 0.5f - 0.08f })
+                    k.Box(M("CarTrim"), p + q * new Vector3(xHinge, yHinge, -sp.L * 0.5f - 0.01f), new Vector3(0.04f, 0.08f, 0.03f), q);
+
+                // Passenger sliding door guide rail
+                k.Box(M("Chrome"), p + q * new Vector3(sp.W * 0.5f + 0.006f, sp.sill + 0.65f, -0.4f), new Vector3(0.016f, 0.022f, 1.8f), q);
+            }
+            else if (body == Body.Suv)
+            {
+                float railX = sp.W * 0.5f - 0.28f;
+                float railZ0 = sp.cabR + 0.3f, railZ1 = sp.cabF - 0.3f;
+                // Elevated tubular side rails
+                foreach (float rx in new[] { -railX, railX })
+                {
+                    var rA = p + q * new Vector3(rx, sp.roof + 0.08f, railZ0);
+                    var rB = p + q * new Vector3(rx, sp.roof + 0.08f, railZ1);
+                    k.Pipe(M("MetalFrame"), rA, rB, 0.022f);
+                    foreach (float sz in new[] { railZ0, (railZ0 + railZ1) * 0.5f, railZ1 })
+                        k.Box(M("CarTrim"), p + q * new Vector3(rx, sp.roof + 0.04f, sz), new Vector3(0.05f, 0.08f, 0.08f), q);
+                }
+                // Crossbars
+                var c1A = p + q * new Vector3(-railX, sp.roof + 0.08f, railZ0 + 0.4f);
+                var c1B = p + q * new Vector3(railX, sp.roof + 0.08f, railZ0 + 0.4f);
+                k.Pipe(M("MetalFrame"), c1A, c1B, 0.018f);
+                var c2A = p + q * new Vector3(-railX, sp.roof + 0.08f, railZ1 - 0.4f);
+                var c2B = p + q * new Vector3(railX, sp.roof + 0.08f, railZ1 - 0.4f);
+                k.Pipe(M("MetalFrame"), c2A, c2B, 0.018f);
+
+                // Front & rear silver skid plates under bumpers
+                k.Box(M("Chrome"), p + q * new Vector3(0f, sp.sill + 0.06f, sp.L * 0.5f - 0.01f), new Vector3(0.85f, 0.10f, 0.12f), q * Quaternion.Euler(20f, 0f, 0f));
+                k.Box(M("Chrome"), p + q * new Vector3(0f, sp.sill + 0.08f, -sp.L * 0.5f + 0.01f), new Vector3(0.85f, 0.10f, 0.12f), q * Quaternion.Euler(-20f, 0f, 0f));
+            }
+
             // contact shadow under the car (helps grounding at low sun angles)
             k.FloorQuad(M("DecalGrime"), p + Vector3.up * 0.006f, sp.W + 0.3f, sp.L + 0.2f, yaw, new Rect(0f, 0.02f, 1f, 0.02f));
             float L = Mathf.Max(sp.L, 4.4f), W = Mathf.Max(sp.W, 1.84f);
@@ -73,7 +157,7 @@ namespace Parasite.EditorTools
         {
             if (cache.TryGetValue((body, ""), out var m) && m) return m;
             var v = new List<Vector3>(); var uv = new List<Vector2>();
-            var sub = new List<int>[6]; for (int i = 0; i < 6; i++) sub[i] = new List<int>();
+            var sub = new List<int>[8]; for (int i = 0; i < 8; i++) sub[i] = new List<int>();
             float hl = s.L * 0.5f;
             float wb = s.wheelBase * 0.5f + (body == Body.Van ? 0.2f : 0f), wbR = -s.wheelBase * 0.5f + (body == Body.Van ? 0.2f : 0f);
             float Top(float z)
@@ -120,6 +204,7 @@ namespace Parasite.EditorTools
             Loft(v, uv, sub, rings, edgeMat, true);
             Cap(v, uv, sub[0], rings[0], false);
             Cap(v, uv, sub[0], rings[N], true);
+
             // ---- greenhouse
             const int C = 18;
             var cab = new List<Vector3[]>();
@@ -147,7 +232,8 @@ namespace Parasite.EditorTools
             }
             Cap(v, uv, sub[1], cab[0], false);
             Cap(v, uv, sub[1], cab[C], true);
-            // ---- lights, grille, bumpers, plates, mirrors (boxes in local space)
+
+            // ---- detailed accessories, grille, lights, plates, mirrors, door handles ----
             void Box(int mat, Vector3 c, Vector3 size)
             {
                 var h = size * 0.5f;
@@ -157,25 +243,108 @@ namespace Parasite.EditorTools
                 QuadV(v, uv, sub[mat], p[4], p[0], p[3], p[7], c); QuadV(v, uv, sub[mat], p[1], p[5], p[6], p[2], c);
                 QuadV(v, uv, sub[mat], p[3], p[2], p[6], p[7], c); QuadV(v, uv, sub[mat], p[4], p[5], p[1], p[0], c);
             }
+
             float fy = Top(hl - 0.08f), ry = Top(-hl + 0.06f);
+
+            // 1. Front Grille: horizontal slats with metallic/chrome trim between headlights
+            float grilleW = hw * 0.82f;
+            float grilleH = 0.16f;
+            // Recessed grille backing
+            Box(2, new Vector3(0f, fy - 0.15f, hl - 0.035f), new Vector3(grilleW, grilleH, 0.07f));
+            // Chrome surround frame
+            Box(5, new Vector3(0f, fy - 0.07f, hl - 0.015f), new Vector3(grilleW + 0.02f, 0.018f, 0.04f));
+            Box(5, new Vector3(0f, fy - 0.23f, hl - 0.015f), new Vector3(grilleW + 0.02f, 0.018f, 0.04f));
+            Box(5, new Vector3(-grilleW * 0.5f, fy - 0.15f, hl - 0.015f), new Vector3(0.018f, grilleH, 0.04f));
+            Box(5, new Vector3(grilleW * 0.5f, fy - 0.15f, hl - 0.015f), new Vector3(0.018f, grilleH, 0.04f));
+            // 3 horizontal chrome slats
+            for (int si = -1; si <= 1; si++)
+            {
+                float slatY = fy - 0.15f + si * 0.045f;
+                Box(5, new Vector3(0f, slatY, hl - 0.012f), new Vector3(grilleW - 0.03f, 0.014f, 0.03f));
+            }
+            // Center chrome brand emblem
+            Box(5, new Vector3(0f, fy - 0.15f, hl + 0.005f), new Vector3(0.065f, 0.055f, 0.02f));
+            // Lower air intake grille & lower chrome chin spoiler
+            Box(2, new Vector3(0f, s.sill + 0.11f, hl - 0.01f), new Vector3(hw * 0.72f, 0.08f, 0.06f));
+            Box(5, new Vector3(0f, s.sill + 0.065f, hl), new Vector3(hw * 0.74f, 0.014f, 0.035f));
+
+            // 2. Headlights & Taillights
             foreach (float xs in new[] { -1f, 1f })
             {
-                Box(3, new Vector3(xs * (hw - 0.3f), fy - 0.12f, hl - 0.05f), new Vector3(0.34f, 0.11f, 0.1f));
-                Box(4, new Vector3(xs * (hw - 0.22f), ry - 0.14f, -hl + 0.03f), new Vector3(0.36f, 0.12f, 0.08f));
-                Box(2, new Vector3(xs * (hw + 0.07f), s.belt + 0.07f, s.cabF - 0.25f), new Vector3(0.14f, 0.11f, 0.2f));
+                // Front Headlights: chrome reflector bowl, projector bulb, DRL brow, faceted crystal lens
+                Box(5, new Vector3(xs * (hw - 0.30f), fy - 0.12f, hl - 0.065f), new Vector3(0.35f, 0.12f, 0.07f));
+                Box(3, new Vector3(xs * (hw - 0.28f), fy - 0.12f, hl - 0.04f), new Vector3(0.12f, 0.09f, 0.05f));
+                Box(3, new Vector3(xs * (hw - 0.30f), fy - 0.068f, hl - 0.035f), new Vector3(0.33f, 0.016f, 0.045f));
+                Box(1, new Vector3(xs * (hw - 0.30f), fy - 0.12f, hl - 0.012f), new Vector3(0.34f, 0.11f, 0.02f));
+                Box(5, new Vector3(xs * (hw - 0.44f), fy - 0.12f, hl - 0.03f), new Vector3(0.04f, 0.08f, 0.04f));
+
+                // Rear Taillights: dark bezel, layered ruby reflector, high-emission brake bar, reverse light
+                Box(2, new Vector3(xs * (hw - 0.22f), ry - 0.14f, -hl + 0.02f), new Vector3(0.38f, 0.14f, 0.06f));
+                Box(4, new Vector3(xs * (hw - 0.22f), ry - 0.14f, -hl + 0.01f), new Vector3(0.35f, 0.115f, 0.045f));
+                Box(4, new Vector3(xs * (hw - 0.22f), ry - 0.12f, -hl - 0.005f), new Vector3(0.31f, 0.032f, 0.03f));
+                Box(5, new Vector3(xs * (hw - 0.16f), ry - 0.155f, -hl - 0.002f), new Vector3(0.12f, 0.028f, 0.02f));
+
+                // 3. Side Mirrors: aerodynamic painted shell, mounting stalk, reflective chrome glass face
+                float mirrorY = s.belt + 0.07f, mirrorZ = s.cabF - 0.22f;
+                Box(2, new Vector3(xs * (hw + 0.04f), mirrorY - 0.02f, mirrorZ), new Vector3(0.08f, 0.025f, 0.045f));
+                Box(0, new Vector3(xs * (hw + 0.11f), mirrorY, mirrorZ), new Vector3(0.13f, 0.095f, 0.17f));
+                Box(0, new Vector3(xs * (hw + 0.11f), mirrorY, mirrorZ + 0.08f), new Vector3(0.11f, 0.08f, 0.055f));
+                Box(5, new Vector3(xs * (hw + 0.11f), mirrorY, mirrorZ - 0.082f), new Vector3(0.115f, 0.082f, 0.012f));
+                Box(5, new Vector3(xs * (hw + 0.172f), mirrorY, mirrorZ + 0.01f), new Vector3(0.012f, 0.022f, 0.09f));
+
+                // 4. Door Handles: recessed pocket with sculpted chrome pull bar
+                float handleY = s.belt - 0.075f;
+                var handleZs = new List<float>();
+                if (body == Body.Van)
+                {
+                    handleZs.Add(s.cabF - 0.45f);
+                    if (xs > 0f) handleZs.Add(-0.35f);
+                }
+                else if (body == Body.Hatch)
+                {
+                    handleZs.Add(s.cabF - 0.38f);
+                    handleZs.Add(s.cabR + 0.38f);
+                }
+                else
+                {
+                    handleZs.Add(s.cabF - 0.52f);
+                    handleZs.Add((s.cabR + s.cabF) * 0.5f - 0.32f);
+                }
+                foreach (float hz in handleZs)
+                {
+                    Box(2, new Vector3(xs * (hw - 0.005f), handleY, hz), new Vector3(0.025f, 0.042f, 0.135f));
+                    Box(5, new Vector3(xs * (hw + 0.014f), handleY, hz), new Vector3(0.022f, 0.022f, 0.115f));
+                    if (hz > 0f) Box(5, new Vector3(xs * (hw + 0.015f), handleY, hz - 0.072f), new Vector3(0.016f, 0.016f, 0.016f));
+                }
+
+                // Side lower rocker trim strip
+                Box(2, new Vector3(xs * (hw - 0.005f), s.sill + 0.06f, 0f), new Vector3(0.03f, 0.06f, s.wheelBase - 0.8f));
             }
-            Box(2, new Vector3(0f, fy - 0.15f, hl - 0.03f), new Vector3(hw * 0.75f, 0.14f, 0.08f));
+
+            // High-mount third brake light
+            Box(4, new Vector3(0f, s.roof - 0.025f, s.cabR + 0.02f), new Vector3(0.24f, 0.022f, 0.03f));
+
+            // Bumpers
             Box(2, new Vector3(0f, s.sill + 0.12f, hl - 0.02f), new Vector3(s.W - 0.16f, 0.18f, 0.12f));
             Box(2, new Vector3(0f, s.sill + 0.14f, -hl + 0.02f), new Vector3(s.W - 0.16f, 0.2f, 0.12f));
-            Box(5, new Vector3(0f, s.sill + 0.28f, hl + 0.02f), new Vector3(0.5f, 0.11f, 0.02f));
-            Box(5, new Vector3(0f, s.sill + 0.33f, -hl - 0.02f), new Vector3(0.5f, 0.11f, 0.02f));
-            // side trim strips (door handles line)
-            foreach (float xs in new[] { -1f, 1f }) Box(2, new Vector3(xs * (hw - 0.005f), s.sill + 0.08f, 0f), new Vector3(0.03f, 0.08f, s.wheelBase - 0.9f));
+
+            // 5. License Plates: dark frame with white plate and chrome bolts
+            // Front plate
+            Box(2, new Vector3(0f, s.sill + 0.28f, hl + 0.014f), new Vector3(0.54f, 0.13f, 0.018f));
+            Box(6, new Vector3(0f, s.sill + 0.28f, hl + 0.024f), new Vector3(0.50f, 0.10f, 0.006f));
+            Box(5, new Vector3(-0.21f, s.sill + 0.28f, hl + 0.028f), new Vector3(0.016f, 0.016f, 0.006f));
+            Box(5, new Vector3(0.21f, s.sill + 0.28f, hl + 0.028f), new Vector3(0.016f, 0.016f, 0.006f));
+            // Rear plate
+            Box(2, new Vector3(0f, s.sill + 0.33f, -hl - 0.014f), new Vector3(0.54f, 0.13f, 0.018f));
+            Box(6, new Vector3(0f, s.sill + 0.33f, -hl - 0.024f), new Vector3(0.50f, 0.10f, 0.006f));
+            Box(2, new Vector3(0f, s.sill + 0.405f, -hl - 0.018f), new Vector3(0.36f, 0.024f, 0.026f));
+            Box(5, new Vector3(-0.21f, s.sill + 0.33f, -hl - 0.028f), new Vector3(0.016f, 0.016f, 0.006f));
+            Box(5, new Vector3(0.21f, s.sill + 0.33f, -hl - 0.028f), new Vector3(0.016f, 0.016f, 0.006f));
 
             m = new Mesh { name = "Car_" + body };
             m.SetVertices(v); m.SetUVs(0, uv);
-            m.subMeshCount = 6;
-            for (int i = 0; i < 6; i++) m.SetTriangles(sub[i], i);
+            m.subMeshCount = 8;
+            for (int i = 0; i < 8; i++) m.SetTriangles(sub[i], i);
             m.SetNormals(SmoothNormals(v, sub, 55f));
             m.RecalculateBounds();
             cache[(body, "")] = m;
@@ -267,26 +436,46 @@ namespace Parasite.EditorTools
             k.Box(M("MetalFrame"), P(-1f, 3.62f, 0), new Vector3(W + 0.04f, 0.06f, 5.84f), q);
             k.Box(M("MetalFrame"), P(-3.92f, 2.25f, 0), new Vector3(W + 0.04f, 2.72f, 0.06f), q);
             for (float l = -3.4f; l < 1.9f; l += 1.2f) k.Box(M("MetalFrame"), P(l, 2.25f, 0), new Vector3(W + 0.03f, 2.6f, 0.04f), q);
-            // cab: lofted van front
-            var vs = Get(Body.Van);
+
+            // Cab: lofted van front
             k.Box(M(paint), P(2.9f, 1.25f, 0), new Vector3(W - 0.05f, 1.3f, 2.1f), q);
             k.Box(M(paint), P(2.75f, 2.35f, 0), new Vector3(W - 0.15f, 0.9f, 1.8f), q);
             k.Box(M("GlassCar"), P(3.68f, 2.3f, 0), new Vector3(W - 0.3f, 0.75f, 0.06f), q * Quaternion.Euler(-12f, 0f, 0f));
+
             foreach (float s in new[] { -1f, 1f })
             {
                 k.Box(M("GlassCar"), P(2.85f, 2.35f, s * (W * 0.5f - 0.07f)), new Vector3(0.04f, 0.6f, 1.1f), q);
-                k.Box(M("Headlight"), P(3.96f, 1.0f, s * 0.85f), new Vector3(0.3f, 0.16f, 0.05f), q);
-                k.Box(M("Taillight"), P(-3.96f, 0.9f, s * 1.0f), new Vector3(0.25f, 0.14f, 0.05f), q);
+                // Headlight with chrome reflector
+                k.Box(M("Chrome"), P(3.95f, 1.0f, s * 0.85f), new Vector3(0.32f, 0.18f, 0.06f), q);
+                k.Box(M("Headlight"), P(3.97f, 1.0f, s * 0.85f), new Vector3(0.28f, 0.14f, 0.04f), q);
+                // Taillight
+                k.Box(M("CarTrim"), P(-3.95f, 0.9f, s * 1.0f), new Vector3(0.28f, 0.16f, 0.06f), q);
+                k.Box(M("Taillight"), P(-3.97f, 0.9f, s * 1.0f), new Vector3(0.24f, 0.12f, 0.04f), q);
+                // Side mirrors with chrome reflective face
                 k.Box(M("CarTrim"), P(3.4f, 2.4f, s * (W * 0.5f + 0.12f)), new Vector3(0.06f, 0.35f, 0.2f), q);
+                k.Box(M("Chrome"), P(3.39f, 2.4f, s * (W * 0.5f + 0.12f)), new Vector3(0.05f, 0.32f, 0.02f), q);
             }
+
+            // Grille & bumpers
+            k.Box(M("Chrome"), P(3.97f, 1.15f, 0), new Vector3(1.2f, 0.04f, 0.05f), q);
             k.Box(M("CarTrim"), P(3.97f, 0.65f, 0), new Vector3(W, 0.3f, 0.12f), q);
             k.Box(M("CarTrim"), P(0.5f, 0.75f, 0), new Vector3(W - 0.3f, 0.3f, 8f), q);
+
+            // Front & rear license plates
+            k.Box(M("CarTrim"), P(3.98f, 0.65f, 0), new Vector3(0.54f, 0.13f, 0.02f), q);
+            k.Box(M("PaintWhite"), P(3.99f, 0.65f, 0), new Vector3(0.50f, 0.10f, 0.006f), q);
+            k.Box(M("CarTrim"), P(-3.95f, 0.65f, 0), new Vector3(0.54f, 0.13f, 0.02f), q);
+            k.Box(M("PaintWhite"), P(-3.96f, 0.65f, 0), new Vector3(0.50f, 0.10f, 0.006f), q);
+
+            // Wheels with alloy rims and hubcaps
             foreach (float l in new[] { -3f, -1.9f, 3.1f })
             foreach (float w in new[] { -1.05f, 1.05f })
             {
                 k.Pipe(M("Tire"), P(l, 0.48f, w - 0.16f), P(l, 0.48f, w + 0.16f), 0.48f);
-                k.Pipe(M("Rim"), P(l, 0.48f, w + Mathf.Sign(w) * 0.14f), P(l, 0.48f, w + Mathf.Sign(w) * 0.17f), 0.3f);
+                k.Pipe(M("Rim"), P(l, 0.48f, w + Mathf.Sign(w) * 0.14f), P(l, 0.48f, w + Mathf.Sign(w) * 0.17f), 0.31f);
+                k.Pipe(M("Chrome"), P(l, 0.48f, w + Mathf.Sign(w) * 0.16f), P(l, 0.48f, w + Mathf.Sign(w) * 0.18f), 0.12f);
             }
+
             k.FloorQuad(M("DecalGrime"), p + Vector3.up * 0.006f, W + 0.4f, 8.4f, yaw, new Rect(0f, 0.02f, 1f, 0.02f));
             var sz = q * new Vector3(W, 3.6f, 8.1f);
             k.Solid(P(0f, 1.8f, 0), new Vector3(Mathf.Abs(sz.x), 3.6f, Mathf.Abs(sz.z)));
