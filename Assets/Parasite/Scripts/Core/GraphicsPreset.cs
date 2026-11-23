@@ -32,9 +32,9 @@ namespace Parasite
             Current = Mathf.Clamp(level, 0, Names.Length - 1);
             if (save) { PlayerPrefs.SetInt(Key, Current); PlayerPrefs.Save(); }
             var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
-            float[] scale = { 0.7f, 0.85f, 1f, 1f };
-            float[] shadow = { 40f, 70f, 110f, 160f };
-            float[] lod = { 0.6f, 0.9f, 1.3f, 2.2f };
+            float[] scale = { 0.7f, 0.85f, 1f, 1.25f };
+            float[] shadow = { 40f, 70f, 110f, 180f };
+            float[] lod = { 0.6f, 0.9f, 1.3f, 2.5f };
             int[] msaa = { 1, 1, 1, 4 };
             int[] shadowRes = { 1024, 2048, 2048, 4096 };
             if (urp)
@@ -47,8 +47,8 @@ namespace Parasite
                 EnableSSAO(urp, Current >= 2);
             }
             // street-lamp light budget (FX.LampLights), screen-space water reflections, light-cone haze
-            int[] lamps = { 6, 14, 32, 56 };
-            float[] lampDist = { 32f, 48f, 70f, 95f };
+            int[] lamps = { 6, 14, 32, 64 };
+            float[] lampDist = { 32f, 48f, 70f, 110f };
             FX.LampLights.Budget = lamps[Current];
             FX.LampLights.MaxDistance = lampDist[Current];
             if (Current == 0) Shader.EnableKeyword(SsrOff); else Shader.DisableKeyword(SsrOff);

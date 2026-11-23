@@ -99,7 +99,7 @@ namespace Parasite.UI
                 "70% render scale · short shadows · 6 lamp lights · no water reflections · FXAA",
                 "85% render scale · medium shadows · 14 lamp lights · water reflections · FXAA",
                 "Native resolution · long shadows · 32 lamp lights · SSAO · film grain · SMAA",
-                "Native resolution · longest shadows · 56 lamp lights · SSAO · SMAA + 4x MSAA",
+                "125% supersampling · ultra shadows · 64 lamp lights · HQ SSAO · SSR · SMAA + 4x MSAA",
             };
             graphicsDetail.text = detail[GraphicsPreset.Current];
         }

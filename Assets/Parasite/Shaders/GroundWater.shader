@@ -154,15 +154,15 @@ Shader "Parasite/GroundWater"
                 #if defined(_PARASITE_SSR_OFF)
                     return fallback;
                 #else
-                float3 p = posWS + R * 0.05;
-                float stepLen = 0.18;
+                float3 p = posWS + R * 0.04;
+                float stepLen = 0.12;
                 float3 prev = p;
                 UNITY_LOOP
-                for (int k = 0; k < 22; k++)
+                for (int k = 0; k < 36; k++)
                 {
                     prev = p;
                     p += R * stepLen;
-                    stepLen *= 1.22;
+                    stepLen = stepLen * 1.14 + 0.005;
                     float4 cs = TransformWorldToHClip(p);
                     if (cs.w <= 0.0) break;
                     float4 sp = ComputeScreenPos(cs);
@@ -173,10 +173,10 @@ Shader "Parasite/GroundWater"
                     float diff = cs.w - sceneZ;
                     if (diff > 0.0)
                     {
-                        if (diff > stepLen * 3.0 + 0.4) break;           // passed behind a thin object: no reliable hit
+                        if (diff > stepLen * 3.5 + 0.5) break;           // passed behind a thin object: no reliable hit
                         float3 a = prev, b = p;
                         UNITY_UNROLL
-                        for (int j = 0; j < 4; j++)
+                        for (int j = 0; j < 6; j++)
                         {
                             float3 m = (a + b) * 0.5;
                             float4 mcs = TransformWorldToHClip(m);
@@ -188,7 +188,7 @@ Shader "Parasite/GroundWater"
                         float4 hsp = ComputeScreenPos(hcs);
                         float2 huv = hsp.xy / hsp.w;
                         float2 edge = min(huv, 1.0 - huv);
-                        hit = saturate(min(edge.x, edge.y) * 9.0) * saturate(1.2 - k / 22.0) * _SSRStrength;
+                        hit = saturate(min(edge.x, edge.y) * 10.0) * saturate(1.25 - k / 36.0) * _SSRStrength;
                         return lerp(fallback, SampleSceneColor(huv), hit);
                     }
                 }
