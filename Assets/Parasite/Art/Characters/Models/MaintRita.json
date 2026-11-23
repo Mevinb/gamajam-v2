@@ -1,0 +1,86 @@
+{
+ "id": "MaintRita",
+ "profession": "Maintenance",
+ "names": [
+  "Rita Okafor"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.6153846153846154,
+ "height": 1.645,
+ "skin": "middleage_african_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.06019048467433646,
+   0.13316173796073713,
+   0.35635305327543293
+  ],
+  "B": [
+   1.4492613077163696,
+   1.4637949466705322,
+   1.5065975189208984
+  ]
+ },
+ "palettes": {
+  "A": "coverall",
+  "B": "tshirt"
+ },
+ "lodTris": [
+  19277,
+  6995,
+  2498
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_african_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow006"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "rehmanpolanski_hair_bun_brown"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "male_worksuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_african_female.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "MaintRita_Cloth_A.jpg",
+  "clothN": "MaintRita_Cloth_N.jpg",
+  "clothM": "MaintRita_Cloth_M.png",
+  "hairA": "MaintRita_Hair_A.png"
+ }
+}

@@ -111,8 +111,20 @@ namespace Parasite.Characters
                 return;
             }
             host.Rig.LookAt(null);
-            Routine(dt);
+            if (RoutineOverride != null) RoutineOverride(dt);
+            else Routine(dt);
         }
+
+        // ---------- mission scripting (THE TAIL / HUNTER PROTOCOL): replaces only the idle routine; notice/flee still apply
+        /// <summary>When set, called instead of the Wander/Patrol/Stationary routine while this NPC is awake and calm.</summary>
+        public System.Action<float> RoutineOverride;
+        public void ScriptMove(Vector3 p, float speed) => GoTo(p, speed);
+        public void ScriptStop() => Stop();
+        public bool ScriptArrived(float tolerance = 0.6f) => Arrived(tolerance);
+        public bool ScriptNavReady => NavReady;
+        public void ScriptFace(Vector3 point, float dt, float speed = 6f) => Face(point, dt, speed);
+        public void ShowAlert(char icon, float seconds) => SetIcon(icon, seconds);
+        public void SetHome(Vector3 position, Quaternion rotation) { home = position; homeRot = rotation; }
 
         protected void Routine(float dt)
         {

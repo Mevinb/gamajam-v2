@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Parasite.Missions;
 using Parasite.Stealth;
 using UnityEditor;
@@ -96,6 +97,9 @@ namespace Parasite.EditorTools
             Reader(root, World.MissionLayout.ReaderB, "Reader B", office);
 
             PostValeCampaign(k, root);
+            TailMission(k, root);
+            HunterMission(k, root);
+            BlackoutMission(k, root);
 
             // stealth: CCTV
             var cams = new GameObject("SecurityCameras").transform;
@@ -106,8 +110,8 @@ namespace Parasite.EditorTools
         static void PostValeCampaign(WorldKit k, Transform root)
         {
             var coolant = Control(k, root, World.MissionLayout.CoolantBypass, "COOLANT BYPASS", "coolant", Profession.Maintenance,
-                MissionFlags.Confronted, MissionFlags.SignedArchive);
-            var archive = Operation(k, root, World.MissionLayout.SignedArchive, "COPY SIGNED ARCHIVE", MissionFlags.SignedArchive, MissionFlags.Confronted,
+                MissionFlags.HuntersDown, MissionFlags.SignedArchive);
+            var archive = Operation(k, root, World.MissionLayout.SignedArchive, "COPY SIGNED ARCHIVE", MissionFlags.SignedArchive, MissionFlags.HuntersDown,
                 Profession.Scientist, 8f, "The signed orders are copied. Now sever Vale's containment relay before he tracks the evidence.");
             archive.controlId = coolant.controlId;
             var dispatch = Control(k, root, World.MissionLayout.DispatchOverride, "DISPATCH OVERRIDE", "dispatch", Profession.Guard,
@@ -152,12 +156,12 @@ namespace Parasite.EditorTools
             k.Text("PERIMETER LOCKDOWN PYLON", World.MissionLayout.GridOverride + new Vector3(0, 2.8f, 0.6f), 0f, 0.10f, new Color(1f, 0.2f, 0.2f));
 
             // M11: THE FINAL CONVERGENCE
-            var masterUplink = Operation(k, root, World.MissionLayout.MasterUplink, "PLAZA MASTER ANTENNA", MissionFlags.MasterBroadcast, MissionFlags.GridOverride,
+            var masterUplink = Operation(k, root, World.MissionLayout.MasterUplink, "PLAZA MASTER ANTENNA", MissionFlags.MasterBroadcast, MissionFlags.DistrictBlackout,
                 Profession.Civilian, 12f, "The Black Site Archive has been broadcast worldwide! Eject from your host [Q] and escape through the storm drain.");
             masterUplink.anyHost = true; masterUplink.requireCalm = true;
             k.Text("METROPOLITAN BROADCAST MAST", World.MissionLayout.MasterUplink + new Vector3(0, 2.2f, 0.45f), 0f, 0.12f, new Color(0.4f, 0.9f, 1f));
             k.Cylinder(M("MetalDark"), World.MissionLayout.MasterUplink + new Vector3(0, 0f, 0.8f), 0.25f, 4.5f);
-            k.Box(M("NeonBlue"), World.MissionLayout.MasterUplink + new Vector3(0, 4.5f, 0.8f), new Vector3(0.5f, 0.2f, 0.5f));
+            k.Box(M("NeonCyan"), World.MissionLayout.MasterUplink + new Vector3(0, 4.5f, 0.8f), new Vector3(0.5f, 0.2f, 0.5f));
             k.Text("EMERGENCY CIVIL DEFENSE UPLINK", World.MissionLayout.MasterUplink + new Vector3(0, 1.8f, 0.45f), 0f, 0.09f, new Color(0.8f, 0.95f, 1f));
 
             var extraction = new GameObject("StormDrain_Extraction");
@@ -173,6 +177,188 @@ namespace Parasite.EditorTools
             var spawn = worker.AddComponent<World.NpcSpawn>();
             spawn.displayName = "Engineer Noor Patel"; spawn.profession = Profession.Maintenance;
             spawn.behaviour = World.NpcBehaviour.Stationary; spawn.seed = 211;
+        }
+
+        // ------------------------------------------------------------------ THE TAIL
+        static void TailMission(WorldKit k, Transform root)
+        {
+            // Petrov's dead drop: a rusty junction box on the alley's west wall, behind the dumpster.
+            var dp = World.MissionLayout.DeadDrop;
+            k.Box(M("MetalDark"), new Vector3(-35.89f, dp.y, dp.z), new Vector3(0.2f, 0.55f, 0.46f));
+            k.Box(M("SteelPlate"), new Vector3(-35.78f, dp.y + 0.2f, dp.z), new Vector3(0.03f, 0.1f, 0.36f));
+            k.Text("J-BOX 7", new Vector3(-35.76f, dp.y + 0.2f, dp.z), 90f, 0.06f, new Color(0.85f, 0.85f, 0.8f), null, false);
+            var drop = Prop(root, "DeadDrop", dp, MissionFlags.DeadDrop, "Take", "Petrov's envelope", 0f,
+                "", Quaternion.Euler(0f, -90f, 0f), small: true);
+            drop.requiredFlag = MissionFlags.TailDone;
+            drop.requiredFlagReason = "Nothing here… yet.";
+            drop.visibleWhenFlag = MissionFlags.TailDone;
+            drop.hideWhenDone = true;
+            var envelope = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Object.DestroyImmediate(envelope.GetComponent<Collider>());
+            envelope.name = "Envelope";
+            envelope.transform.SetParent(drop.transform, false);
+            envelope.transform.position = new Vector3(-35.74f, dp.y - 0.05f, dp.z);
+            envelope.transform.rotation = Quaternion.Euler(0f, 0f, 8f);
+            envelope.transform.localScale = new Vector3(0.025f, 0.2f, 0.3f);
+            envelope.GetComponent<Renderer>().sharedMaterial = M("PaintWhite");
+            drop.revealObjects = new[] { envelope };
+
+            var go = new GameObject("Tail_Petrov");
+            go.transform.SetParent(root, false);
+            go.transform.position = L.CafeSpot;
+            var tail = go.AddComponent<TailTarget>();
+            tail.targetName = "Dr. Hana Petrov";
+            tail.route = (Vector3[])World.MissionLayout.TailRoute.Clone();
+            tail.pauseSeconds = (float[])World.MissionLayout.TailPauses.Clone();
+            tail.checkpointWaypoints = new[] { 1, 3 };
+            tail.checkpointNames = new[] { "Market St bus stop", "storm-drain alley mouth" };
+            tail.checkpointFlags = new[] { MissionFlags.TailLeg1, MissionFlags.TailLeg2 };
+            tail.startName = "café terrace";
+            tail.dropProp = drop;
+            tail.dropYaw = -90f;
+            tail.restPoint = World.MissionLayout.PetrovRest;
+            tail.restYaw = 180f;
+        }
+
+        // ------------------------------------------------------------------ HUNTER PROTOCOL
+        static void HunterMission(WorldKit k, Transform root)
+        {
+            var routes = new GameObject("HunterRoutes").transform;
+            routes.SetParent(root, false);
+            var corridor = PatrolPath(routes, "Route_HunterCorridor", 2f, World.MissionLayout.HunterCorridorRoute);
+            var lobby = PatrolPath(routes, "Route_HunterLobby", 1.5f, World.MissionLayout.HunterLobbyRoute);
+            var squadGo = new GameObject("HunterSquad");
+            squadGo.transform.SetParent(root, false);
+            var squad = squadGo.AddComponent<HunterSquad>();
+            squad.hunterNames = new[] { "Hunter Kade", "Hunter Sol" };
+            squad.hunterSeeds = new[] { 301, 302 };
+            squad.hunterRoutes = new[] { corridor, lobby };
+            squad.entryPoint = World.MissionLayout.HunterEntry;
+            squad.exitPoint = World.MissionLayout.HunterExit;
+            squad.officerName = "Officer Ines Duarte";
+            squad.officerPost = World.MissionLayout.DutyOfficer;
+            squad.officerYaw = World.MissionLayout.DutyOfficerYaw;
+            squad.officerSeed = 311;
+
+            // Bio-scan arch in the security office doorway (visual frame only — the opening stays fully walkable).
+            var g = World.MissionLayout.ScanGate;
+            foreach (float sx in new[] { -1.31f, 1.31f })
+            {
+                k.Box(M("MetalDark"), g + new Vector3(sx, 1.3f, 0f), new Vector3(0.12f, 2.6f, 0.42f));
+                k.Box(M("WarningLight"), g + new Vector3(sx, 2.35f, 0.22f), new Vector3(0.1f, 0.12f, 0.03f));
+            }
+            k.Box(M("MetalDark"), g + new Vector3(0f, 2.66f, 0f), new Vector3(2.74f, 0.12f, 0.42f));
+            k.Text("PROTOCOL HOUND — BIO-SCAN", g + new Vector3(0f, 2.66f, 0.22f), 180f, 0.07f, new Color(0.4f, 1f, 0.9f));
+            var gateGo = new GameObject("ScanGate_SecurityOffice");
+            gateGo.transform.SetParent(root, false);
+            gateGo.transform.position = g;
+            var gate = gateGo.AddComponent<ScanGate>();
+            gate.gateName = "Security doorway bio-scanner";
+            gate.size = new Vector3(2.5f, 3f, 1.4f);
+            gate.requiredFlag = MissionFlags.Confronted;
+            gate.retireFlag = MissionFlags.HuntersDown;
+            gate.blobPassFlag = MissionFlags.HunterGate;
+            var beams = new List<Renderer>();
+            foreach (float y in new[] { 0.35f, 0.95f, 1.55f, 2.15f })
+            {
+                var beam = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Object.DestroyImmediate(beam.GetComponent<Collider>());
+                beam.name = "LaserBeam";
+                beam.transform.SetParent(gateGo.transform, false);
+                beam.transform.localPosition = new Vector3(0f, y, 0f);
+                beam.transform.localScale = new Vector3(2.5f, 0.018f, 0.018f);
+                var r = beam.GetComponent<Renderer>();
+                r.sharedMaterial = M("NeonCyan");
+                r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                beams.Add(r);
+            }
+            gate.beams = beams.ToArray();
+
+            // Lockdown breaker on the security office's east wall; only a security badge releases it.
+            var b = World.MissionLayout.HoundBreaker;
+            k.Box(M("MetalDark"), new Vector3(23.38f, b.y, b.z), new Vector3(0.22f, 1.15f, 0.85f));
+            k.Box(M("PaintYellow"), new Vector3(23.26f, b.y + 0.42f, b.z), new Vector3(0.02f, 0.12f, 0.75f));
+            k.Box(M("PipeRed"), new Vector3(23.2f, b.y - 0.05f, b.z + 0.22f), new Vector3(0.12f, 0.42f, 0.07f));
+            k.Text("PROTOCOL HOUND — LOCKDOWN", new Vector3(23.25f, b.y + 0.72f, b.z), 90f, 0.07f, new Color(1f, 0.85f, 0.3f));
+            var breaker = Prop(root, "HoundBreaker", b, MissionFlags.HuntersDown, "Release lockdown", "Protocol Hound breaker", 4f,
+                "Lockdown released. Protocol Hound scanners are going dark.", Quaternion.Euler(0f, 90f, 0f));
+            breaker.requiredFlag = MissionFlags.Confronted;
+            breaker.requiredFlagReason = "The lockdown panel is idle.";
+            breaker.requiredPermission = AccessPermission.SecurityGate;
+            breaker.permissionReason = "SECURITY BADGE REQUIRED — only a guard's badge can release Protocol Hound.";
+        }
+
+        static World.PatrolRoute PatrolPath(Transform parent, string name, float wait, Vector3[] points)
+        {
+            var t = new GameObject(name).transform;
+            t.SetParent(parent, false);
+            t.position = points[0];
+            var pr = t.gameObject.AddComponent<World.PatrolRoute>();
+            pr.loop = true;
+            pr.waitAtPoint = wait;
+            for (int i = 0; i < points.Length; i++)
+            {
+                var wp = new GameObject("WP" + i).transform;
+                wp.SetParent(t, false);
+                wp.position = points[i];
+            }
+            return pr;
+        }
+
+        // ------------------------------------------------------------------ BLACKOUT
+        static void BlackoutMission(WorldKit k, Transform root)
+        {
+            var gridGo = new GameObject("BlackoutGrid");
+            gridGo.transform.SetParent(root, false);
+            var grid = gridGo.AddComponent<BlackoutGrid>();
+            var switches = new List<BlackoutSwitch>();
+            foreach (var (name, pos, yaw) in World.MissionLayout.Transformers)
+            {
+                var q = Quaternion.Euler(0f, yaw, 0f);
+                var body = new Vector3(1.3f, 1.7f, 0.7f);
+                k.Box(M("DumpsterGreen"), pos + q * new Vector3(0f, 0.85f, 0.15f), body, q);
+                k.Solid(pos + q * new Vector3(0f, 0.85f, 0.15f), Flat(body, yaw));
+                k.Box(M("MetalDark"), pos + q * new Vector3(0f, 1.74f, 0.15f), new Vector3(1.42f, 0.08f, 0.82f), q);
+                k.Box(M("MetalDark"), pos + q * new Vector3(0f, 0.04f, 0.15f), new Vector3(1.4f, 0.08f, 0.8f), q);
+                k.Box(M("PaintYellow"), pos + q * new Vector3(0.1f, 1.3f, -0.21f), new Vector3(0.62f, 0.3f, 0.02f), q);
+                k.Text("DANGER 11 kV", pos + q * new Vector3(0.1f, 1.3f, -0.225f), yaw, 0.075f, new Color(0.8f, 0.1f, 0.05f), null, false);
+                k.Text(name, pos + q * new Vector3(0f, 1.95f, -0.22f), yaw, 0.11f, new Color(1f, 0.85f, 0.35f));
+                k.Box(M("PipeRed"), pos + q * new Vector3(0.48f, 0.95f, -0.25f), new Vector3(0.07f, 0.45f, 0.07f), q);
+                k.Box(M("MetalDark"), pos + q * new Vector3(0.48f, 0.7f, -0.22f), new Vector3(0.16f, 0.1f, 0.06f), q);
+
+                var go = new GameObject("Blackout_" + name.Replace(' ', '_'));
+                go.transform.SetParent(gridGo.transform, false);
+                go.transform.SetPositionAndRotation(pos, q);
+                var sw = go.AddComponent<BlackoutSwitch>();
+                sw.switchName = name;
+                var ip = new GameObject("InteractPoint").transform;
+                ip.SetParent(go.transform, false);
+                ip.localPosition = new Vector3(0f, 1.1f, -0.55f);
+                sw.interactPoint = ip;
+                var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Object.DestroyImmediate(lamp.GetComponent<Collider>());
+                lamp.name = "StatusLamp";
+                lamp.transform.SetParent(go.transform, false);
+                lamp.transform.localPosition = new Vector3(-0.38f, 1.55f, -0.215f);
+                lamp.transform.localScale = new Vector3(0.14f, 0.1f, 0.025f);
+                lamp.GetComponent<Renderer>().sharedMaterial = M("NeonGreen");
+                lamp.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                sw.lamp = lamp.GetComponent<Renderer>();
+                switches.Add(sw);
+            }
+            grid.switches = switches.ToArray();
+            var extras = World.MissionLayout.BlackoutExtras;
+            grid.extraNames = new string[extras.Length];
+            grid.extraProfessions = new Profession[extras.Length];
+            grid.extraPositions = new Vector3[extras.Length];
+            grid.extraSeeds = new int[extras.Length];
+            for (int i = 0; i < extras.Length; i++)
+            {
+                grid.extraNames[i] = extras[i].name;
+                grid.extraProfessions[i] = extras[i].profession;
+                grid.extraPositions[i] = extras[i].pos;
+                grid.extraSeeds[i] = 401 + i;
+            }
         }
 
         static Renderer CampaignTerminal(WorldKit k, Vector3 pos, string label)

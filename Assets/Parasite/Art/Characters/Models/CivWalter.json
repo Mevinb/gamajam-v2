@@ -1,0 +1,98 @@
+{
+ "id": "CivWalter",
+ "profession": "Civilian",
+ "names": [],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.8538461538461539,
+ "height": 1.745,
+ "skin": "old_caucasian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "lightblue",
+ "hairColor": [
+  0.52,
+  0.5,
+  0.49
+ ],
+ "tints": {
+  "A": [
+   0.3102635196646412,
+   0.06019048467433646,
+   0.04457275218822681
+  ],
+  "B": [
+   0.13316173796073713,
+   0.11586144597253044,
+   0.08538945579840525
+  ],
+  "C": [
+   0.13316173796073713,
+   0.10773367475868027,
+   0.07214892632459273
+  ]
+ },
+ "palettes": {
+  "A": "sweater",
+  "B": "trousers",
+  "C": "cap"
+ },
+ "lodTris": [
+  18332,
+  6997,
+  2497
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "old_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow004"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short02"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes lightblue"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_knitted_sweater_01"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_wool_pants"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_monk_strap_male"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_flat_cap1"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/old_caucasian_male.jpg",
+  "eyes": "Eyes/lightblue.png",
+  "clothA": "CivWalter_Cloth_A.jpg",
+  "clothN": "CivWalter_Cloth_N.jpg",
+  "clothM": "CivWalter_Cloth_M.png",
+  "hairA": "CivWalter_Hair_A.png"
+ }
+}

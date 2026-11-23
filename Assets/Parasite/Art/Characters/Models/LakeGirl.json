@@ -1,0 +1,90 @@
+{
+ "id": "LakeGirl",
+ "profession": "Civilian",
+ "names": [
+  "Lakeside Girl"
+ ],
+ "unique": true,
+ "gender": 0.0,
+ "age": 0.3214285714285714,
+ "height": 1.6,
+ "skin": "young_caucasian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.055,
+  0.04,
+  0.035
+ ],
+ "tints": {
+  "A": [
+   0.8943728015577793,
+   0.6910115208178168,
+   0.44157602528018736
+  ],
+  "B": [
+   0.03996535832706764,
+   0.07214892632459273,
+   0.12433609846939316
+  ]
+ },
+ "palettes": {
+  "A": "sweater",
+  "B": "denim"
+ },
+ "lodTris": [
+  19997,
+  6995,
+  2497
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_caucasian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow009"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "long01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_fisherman_sweater"
+  },
+  {
+   "kind": "clothes",
+   "name": "punkduck_female_tight_jeans"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_caucasian_female.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "LakeGirl_Cloth_A.jpg",
+  "clothN": "LakeGirl_Cloth_N.jpg",
+  "clothM": "LakeGirl_Cloth_M.png",
+  "hairA": "LakeGirl_Hair_A.png"
+ }
+}

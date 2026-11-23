@@ -31,12 +31,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BedOpacity: 0.6
+    - _BedOpacityDeep: 0.78
     - _Coverage: 0.92
+    - _DampCoverage: 0.3
     - _EdgeSoftness: 0.08
+    - _Gutter: 0.75
+    - _PuddleScale: 0.11
+    - _PuddleThreshold: 0.62
+    - _ReflectionBoost: 1.25
     - _RippleStrength: 0.008
+    - _SSRStrength: 1
     - _Smoothness: 0.94
+    - _VertexCoverage: 0
+    - _WetFilm: 0
     m_Colors:
     - _BaseColor: {r: 0.025, g: 0.03, b: 0.035, a: 1}
+    - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7905207939576404247

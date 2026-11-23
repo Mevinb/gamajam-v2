@@ -44,6 +44,30 @@ namespace Parasite.FX
             return band + inner;
         });
 
+        /// <summary>Blobby slime splat: lumpy disc with a few satellite droplets (deterministic).</summary>
+        public static Texture2D Splat(int size = 128)
+        {
+            var rnd = new System.Random(5);
+            var drops = new Vector3[7];
+            for (int i = 0; i < drops.Length; i++)
+            {
+                float a = (float)rnd.NextDouble() * Mathf.PI * 2f, r = 0.62f + (float)rnd.NextDouble() * 0.3f;
+                drops[i] = new Vector3(Mathf.Cos(a) * r, Mathf.Sin(a) * r, 0.05f + (float)rnd.NextDouble() * 0.08f);
+            }
+            return Build(size, size, "Splat", (u, v) =>
+            {
+                float ang = Mathf.Atan2(v, u), r = Mathf.Sqrt(u * u + v * v);
+                float edge = 0.5f + 0.07f * Mathf.Sin(ang * 5f + 1.3f) + 0.05f * Mathf.Sin(ang * 9f + 0.4f) + 0.03f * Mathf.Sin(ang * 17f);
+                float a = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((edge - r) / 0.06f));
+                foreach (var d in drops)
+                {
+                    float dr = Mathf.Sqrt((u - d.x) * (u - d.x) + (v - d.y) * (v - d.y));
+                    a = Mathf.Max(a, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01((d.z - dr) / 0.03f)));
+                }
+                return a;
+            });
+        }
+
         /// <summary>Horizontal streak: uniform along u, gaussian across v — trails.</summary>
         public static Texture2D Streak(int w = 64, int h = 32) => Build(w, h, "Streak", (u, v) => Mathf.Exp(-v * v * 5f) * (1f - v * v));
     }
@@ -54,6 +78,28 @@ namespace Parasite.FX
         public const string ParticleShader = "Universal Render Pipeline/Particles/Unlit";
         public const string AmoebaShader = "Parasite/Amoeba";
         public const string NucleusShader = "Parasite/AmoebaNucleus";
+        public const string SlimeShader = "Parasite/GroundWater";
+
+        /// <summary>GroundWater as a glossy green slime decal: splat alpha x vertex alpha, faint bioluminescence.</summary>
+        public static void ConfigureSlime(Material m, Texture tex)
+        {
+            if (!m) return;
+            if (tex) m.SetTexture("_BaseMap", tex);
+            m.SetColor("_BaseColor", new Color(0.08f, 0.36f, 0.1f, 1f));
+            m.SetColor("_GlowColor", new Color(0.16f, 1.0f, 0.3f, 1f));
+            m.SetFloat("_BedOpacity", 0.55f);
+            m.SetFloat("_BedOpacityDeep", 0.7f);
+            m.SetFloat("_Smoothness", 0.93f);
+            m.SetFloat("_Coverage", 0.92f);
+            m.SetFloat("_EdgeSoftness", 0.12f);
+            m.SetFloat("_RippleStrength", 0.004f);
+            m.SetFloat("_ReflectionBoost", 1.1f);
+            m.SetFloat("_VertexCoverage", 1f);
+            m.EnableKeyword("_VERTEX_COVERAGE");
+            m.SetFloat("_WetFilm", 0f);
+            m.DisableKeyword("_WETFILM");
+            m.renderQueue = (int)RenderQueue.Transparent - 9;
+        }
 
         /// <summary>Configure a URP Particles/Unlit material as transparent alpha or additive (mirrors BaseShaderGUI).</summary>
         public static void ConfigureParticle(Material m, bool additive, Texture tex)
@@ -81,7 +127,7 @@ namespace Parasite.FX
     /// <summary>Runtime access to FX materials: Resources/FX (baked by FxSetup) → runtime-built → MatFactory fallback.</summary>
     internal static class FxAssets
     {
-        static Material amoeba, nucleus, additive, alpha, ring, trail;
+        static Material amoeba, nucleus, additive, alpha, ring, trail, slime;
         static Texture2D softTex, ringTex, streakTex;
 
         static Material LoadShaderMat(string res, string shader, ref Material slot)
@@ -145,6 +191,26 @@ namespace Parasite.FX
         public static Material Alpha => alpha ? alpha : Particle(ref alpha, "FX/ParticleAlpha", false, Soft, Palette.Amoeba * 0.7f);
         public static Material Ring => ring ? ring : Particle(ref ring, "FX/RingAdditive", true, RingTex, Palette.Amoeba);
         public static Material Trail => trail ? trail : Particle(ref trail, "FX/TrailAdditive", true, StreakTex, Palette.Amoeba);
+        /// <summary>Slime decal material (GroundWater + vertex coverage) or null when the shader is unavailable.</summary>
+        public static Material Slime
+        {
+            get
+            {
+                if (slime) return slime;
+                slime = Resources.Load<Material>("FX/SlimeTrail");
+                if (!slime)
+                {
+                    var sh = Shader.Find(FxMaterials.SlimeShader);
+                    if (sh && sh.isSupported)
+                    {
+                        slime = new Material(sh) { name = "SlimeTrail (runtime)", hideFlags = HideFlags.DontUnloadUnusedAsset };
+                        FxMaterials.ConfigureSlime(slime, FxTextures.Splat());
+                    }
+                }
+                return slime;
+            }
+        }
+
         /// <summary>True if Ring is a real textured particle material (not an opaque fallback).</summary>
         public static bool RingIsTextured => Ring && Ring.shader && Ring.shader.name == FxMaterials.ParticleShader;
     }
@@ -219,6 +285,47 @@ namespace Parasite.FX
             Object.DestroyImmediate(tmp);
             meshes[type] = m;
             return m;
+        }
+
+        static Mesh ico;
+        /// <summary>Smooth icosphere (radius 0.5 like the built-in sphere, 4 subdivisions = 5,120 triangles) for the jelly,
+        /// so vertex wobble/pseudopods stay round instead of showing the UV-sphere poles.</summary>
+        public static Mesh Icosphere()
+        {
+            if (ico) return ico;
+            float t = (1f + Mathf.Sqrt(5f)) * 0.5f;
+            var v = new System.Collections.Generic.List<Vector3>
+            {
+                new(-1, t, 0), new(1, t, 0), new(-1, -t, 0), new(1, -t, 0), new(0, -1, t), new(0, 1, t),
+                new(0, -1, -t), new(0, 1, -t), new(t, 0, -1), new(t, 0, 1), new(-t, 0, -1), new(-t, 0, 1),
+            };
+            for (int i = 0; i < v.Count; i++) v[i] = v[i].normalized;
+            var f = new System.Collections.Generic.List<int> { 0,11,5, 0,5,1, 0,1,7, 0,7,10, 0,10,11, 1,5,9, 5,11,4, 11,10,2, 10,7,6, 7,1,8,
+                3,9,4, 3,4,2, 3,2,6, 3,6,8, 3,8,9, 4,9,5, 2,4,11, 6,2,10, 8,6,7, 9,8,1 };
+            for (int s = 0; s < 4; s++)
+            {
+                var mid = new System.Collections.Generic.Dictionary<long, int>();
+                int Mid(int a, int b)
+                {
+                    long key = a < b ? ((long)a << 32) | (uint)b : ((long)b << 32) | (uint)a;
+                    if (mid.TryGetValue(key, out int m)) return m;
+                    v.Add(((v[a] + v[b]) * 0.5f).normalized); return mid[key] = v.Count - 1;
+                }
+                var nf = new System.Collections.Generic.List<int>(f.Count * 4);
+                for (int i = 0; i < f.Count; i += 3)
+                {
+                    int a = f[i], b = f[i + 1], c = f[i + 2], ab = Mid(a, b), bc = Mid(b, c), ca = Mid(c, a);
+                    nf.AddRange(new[] { a, ab, ca, b, bc, ab, c, ca, bc, ab, bc, ca });
+                }
+                f = nf;
+            }
+            var n = new Vector3[v.Count];
+            for (int i = 0; i < v.Count; i++) { n[i] = v[i]; v[i] *= 0.5f; }
+            ico = new Mesh { name = "JellyIcosphere" };
+            ico.SetVertices(v); ico.SetNormals(n); ico.SetTriangles(f, 0);
+            ico.RecalculateBounds();
+            ico.bounds = new Bounds(Vector3.zero, Vector3.one * 1.6f);   // room for wobble + pseudopods
+            return ico;
         }
 
         public static GameObject Make(PrimitiveType type, Transform parent, Vector3 localPos, Vector3 localScale, Material mat,

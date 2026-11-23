@@ -22,6 +22,9 @@ namespace Parasite.FX
         Vector3 lastCamPos;
 
         const int MaxRainParticles = 1450;
+        /// <summary>Rain strength fed to the wet-street shader (ripple rings in puddles), 0..1.</summary>
+        public const float Intensity = 0.65f;
+        static readonly int RainId = Shader.PropertyToID("_ParasiteRain");
         const float RainRate = 720f; // ~720/s * ~1.8s lifetime ≈ 1,300 active particles
 
         public static RainSystem Ensure()
@@ -48,6 +51,7 @@ namespace Parasite.FX
 
             BuildRain();
             BuildMist();
+            Shader.SetGlobalFloat(RainId, Intensity);
             FindTargetCamera();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -56,7 +60,7 @@ namespace Parasite.FX
         void OnDestroy()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
-            if (Instance == this) Instance = null;
+            if (Instance == this) { Instance = null; Shader.SetGlobalFloat(RainId, 0f); }
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)

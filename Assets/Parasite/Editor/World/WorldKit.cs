@@ -229,6 +229,54 @@ namespace Parasite.EditorTools
         }
 
         public int PropTriangles;
+        /// <summary>LOD0 triangles of separate (non-merged) instances such as the Blender trees.</summary>
+        public int InstanceTriangles;
+        readonly Dictionary<(Transform, string), Transform> groups = new();
+
+        /// <summary>Separate renderer hierarchy (not merged): keeps LODGroups and per-object wind pivots. Materials are
+        /// remapped per submesh. Returns the instance root.</summary>
+        public GameObject Instance(GameObject model, string group, Vector3 p, float yaw, float scale, System.Func<Material, Material> remap,
+            float[] lodHeights = null)
+        {
+            if (!groups.TryGetValue((Root, group), out var parent) || !parent)
+            {
+                parent = new GameObject(group).transform;
+                parent.SetParent(Root, false);
+                groups[(Root, group)] = parent;
+            }
+            var go = (GameObject)Object.Instantiate(model);
+            go.name = model.name;
+            go.transform.SetParent(parent, false);
+            go.transform.SetPositionAndRotation(p, Quaternion.Euler(0f, yaw, 0f));
+            go.transform.localScale = Vector3.one * scale;
+            foreach (var r in go.GetComponentsInChildren<MeshRenderer>(true))
+            {
+                var ms = r.sharedMaterials;
+                for (int i = 0; i < ms.Length; i++) ms[i] = remap != null ? remap(ms[i]) : ms[i];
+                r.sharedMaterials = ms;
+                r.shadowCastingMode = ShadowCastingMode.On;
+                r.receiveGI = ReceiveGI.LightProbes;
+                r.lightProbeUsage = LightProbeUsage.BlendProbes;
+                r.reflectionProbeUsage = ReflectionProbeUsage.BlendProbes;
+                var mf = r.GetComponent<MeshFilter>();
+                if (mf && mf.sharedMesh && (r.name.EndsWith("_LOD0") || !r.name.Contains("_LOD")))
+                    for (int s = 0; s < mf.sharedMesh.subMeshCount; s++) InstanceTriangles += (int)mf.sharedMesh.GetIndexCount(s) / 3;
+            }
+            var lg = go.GetComponent<LODGroup>();
+            if (lg)
+            {
+                var lods = lg.GetLODs();
+                for (int i = 0; i < lods.Length; i++)
+                    lods[i].screenRelativeTransitionHeight = lodHeights != null && i < lodHeights.Length ? lodHeights[i] : lods[i].screenRelativeTransitionHeight;
+                lg.SetLODs(lods);
+                lg.fadeMode = LODFadeMode.CrossFade;
+                lg.animateCrossFading = true;
+                lg.RecalculateBounds();
+            }
+            foreach (var t in go.GetComponentsInChildren<Transform>(true))
+                GameObjectUtility.SetStaticEditorFlags(t.gameObject, StaticEditorFlags.OccludeeStatic | StaticEditorFlags.ReflectionProbeStatic);
+            return go;
+        }
 
         /// <summary>Vertical cylinder standing on base.y (or centred if axis given).</summary>
         public void Cylinder(Material m, Vector3 baseCenter, float radius, float height, Quaternion? rot = null)
@@ -426,7 +474,7 @@ namespace Parasite.EditorTools
             LastTriangles = tris;
             foreach (var item in propCosts)
                 Debug.Log($"[Parasite] Prop budget {item.Key}: {item.Value.instances} instances, {item.Value.triangles} triangles.");
-            Debug.Log($"[Parasite] Geometry budget {Root.name}: {count} merged renderers, {tris} triangles, props {PropTriangles}.");
+            Debug.Log($"[Parasite] Geometry budget {Root.name}: {count} merged renderers, {tris} triangles, props {PropTriangles}, separate instances (LOD0) {InstanceTriangles}.");
             propCosts.Clear();
             return count;
         }

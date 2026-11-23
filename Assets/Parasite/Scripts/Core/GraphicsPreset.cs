@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 namespace Parasite
 {
-    /// <summary>Player-facing graphics presets (render scale, shadows, LOD, AA). Saved in PlayerPrefs.</summary>
+    /// <summary>Player-facing graphics presets (render scale, shadows, LOD, AA, lamp-light budget, water reflections,
+    /// SSAO, post quality). Saved in PlayerPrefs.</summary>
     public static class GraphicsPreset
     {
         public static readonly string[] Names = { "Low", "Medium", "High", "Ultra" };
@@ -45,6 +46,15 @@ namespace Parasite
                 if (Current >= 2) urp.supportsHDR = true;
                 EnableSSAO(urp, Current >= 2);
             }
+            // street-lamp light budget (FX.LampLights), screen-space water reflections, light-cone haze
+            int[] lamps = { 6, 14, 32, 56 };
+            float[] lampDist = { 32f, 48f, 70f, 95f };
+            FX.LampLights.Budget = lamps[Current];
+            FX.LampLights.MaxDistance = lampDist[Current];
+            if (Current == 0) Shader.EnableKeyword(SsrOff); else Shader.DisableKeyword(SsrOff);
+            Shader.SetGlobalFloat(ConeScale, Current == 0 ? 0.7f : 1f);
+            Shader.SetGlobalFloat(ShaftScale, Current == 0 ? -1f : 1f);   // sun shafts off on Low
+            ApplyPostQuality();
             QualitySettings.lodBias = lod[Current];
             QualitySettings.anisotropicFiltering = Current >= 3 ? AnisotropicFiltering.ForceEnable : AnisotropicFiltering.Enable;
             QualitySettings.vSyncCount = 1;
@@ -60,6 +70,35 @@ namespace Parasite
                     d.renderPostProcessing = true;
                 }
             }
+        }
+
+        const string SsrOff = "_PARASITE_SSR_OFF";
+        static readonly int ConeScale = Shader.PropertyToID("_ParasiteConeScale");
+        static readonly int ShaftScale = Shader.PropertyToID("_ParasiteShaftScale");
+        static Volume postOverride;
+        static VolumeProfile postProfile;
+
+        /// <summary>Low/Medium: cheaper bloom, no film grain / chromatic aberration (a runtime override volume, so the
+        /// scene's grading asset is never modified).</summary>
+        static void ApplyPostQuality()
+        {
+            if (!Application.isPlaying) return;
+            if (!postOverride)
+            {
+                var go = new GameObject("[Graphics Preset Post]");
+                Object.DontDestroyOnLoad(go);
+                go.hideFlags = HideFlags.DontSave;
+                postOverride = go.AddComponent<Volume>();
+                postOverride.isGlobal = true;
+                postOverride.priority = 30f;
+                postProfile = ScriptableObject.CreateInstance<VolumeProfile>();
+                postProfile.name = "Graphics Preset Overrides";
+                var bloom = postProfile.Add<Bloom>(false); bloom.highQualityFiltering.Override(false);
+                var grain = postProfile.Add<FilmGrain>(false); grain.intensity.Override(0f);
+                var ca = postProfile.Add<ChromaticAberration>(false); ca.intensity.Override(0f);
+                postOverride.sharedProfile = postProfile;
+            }
+            postOverride.weight = Current <= 1 ? 1f : 0f;
         }
 
         static void EnableSSAO(UniversalRenderPipelineAsset urp, bool enable)

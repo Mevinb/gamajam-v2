@@ -18,6 +18,8 @@ namespace Parasite.FX
         Vignette vignette;
         ChromaticAberration chroma;
         ColorAdjustments color;
+        LensDistortion lens;
+        Bloom bloom;
         AudioSource heart;
 
         Color pulseColor = Color.white;
@@ -82,6 +84,12 @@ namespace Parasite.FX
             chroma.intensity.Override(0f);
             color = profile.Add<ColorAdjustments>(false);
             color.colorFilter.Override(Color.white);
+            // a short lens "gulp" + bloom swell sells possession/capture hits
+            lens = profile.Add<LensDistortion>(false);
+            lens.intensity.Override(0f);
+            lens.scale.Override(1f);
+            bloom = profile.Add<Bloom>(false);
+            bloom.intensity.Override(0.95f);
             volume.sharedProfile = profile;
             EnsureCameraPost();
         }
@@ -143,6 +151,10 @@ namespace Parasite.FX
             var filter = Color.Lerp(Color.white, Color.Lerp(Color.white, pulseColor, 0.55f), Mathf.Clamp01(p * 0.6f));
             filter = Color.Lerp(filter, new Color(1f, 0.82f, 0.82f), Mathf.InverseLerp(0.7f, 1f, d) * 0.45f);
             color.colorFilter.value = filter;
+            float env = p > 0f ? Mathf.Sin(Mathf.Clamp01((now - pulseStart) / pulseDuration) * Mathf.PI) : 0f;
+            lens.intensity.value = -0.28f * env * Mathf.Min(1f, pulseStrength);
+            lens.scale.value = 1f + 0.04f * env;
+            bloom.intensity.value = 0.95f + 1.4f * p;
             volume.weight = Mathf.Clamp01(Mathf.Max(p, d) * 4f);
         }
     }

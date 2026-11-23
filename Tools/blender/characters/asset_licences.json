@@ -1,0 +1,4587 @@
+{
+"clothes/aethelraed_flapper_dress": {
+"author": "Aethelraed_Unraed",
+"license": "CC0",
+"name": "aethelraed_flapper_dress",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/aethelraed_unraed_cloche_hat": {
+"author": "Aethelraed_Unraed",
+"license": "CC0",
+"name": "aethelraed_unraed_cloche_hat",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/callharvey3d_harvey_pskirt01": {
+"author": "callharvey3d",
+"license": "CC-BY",
+"name": "callharvey3d_harvey_pskirt01",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/callharvey3d_harvey_saddleshoes1": {
+"author": "callharvey3d",
+"license": "CC-BY",
+"name": "callharvey3d_harvey_saddleshoes1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/cortu_cargo_pants": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_cargo_pants",
+"pack": "pants01",
+"type": "clothes"
+},
+"clothes/cortu_floppy_overknee_shoes": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_floppy_overknee_shoes",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/cortu_jeans_shorts": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_jeans_shorts",
+"pack": "pants01",
+"type": "clothes"
+},
+"clothes/cortu_shaggy_green_hair": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_shaggy_green_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/cortu_short_messy_hair": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_short_messy_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/cortu_straight_bangs": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_straight_bangs",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/cortu_strawberry_cloud_hair": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_strawberry_cloud_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/cortu_t-bar": {
+"author": "Cortu",
+"license": "CC0",
+"name": "cortu_t-bar",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_cl_bowler_hat": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_cl_bowler_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/culturalibre_cl_don_quixote_hat": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_cl_don_quixote_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/culturalibre_dal_moustache": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_dal_moustache",
+"pack": "bodyparts06",
+"type": "clothes"
+},
+"clothes/culturalibre_doc_ock_glasses": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_doc_ock_glasses",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/culturalibre_el_chapulin_colorado": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_el_chapulin_colorado",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_faun_beard": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_faun_beard",
+"pack": "bodyparts05",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_01": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hair_01",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_02": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hair_02",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_05": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hair_05",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_06": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hair_06",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_11": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_11",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_12": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_12",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_13": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_13",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_14": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_14",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_17": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_17",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hair_18": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hair_18",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/culturalibre_hand_claws": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hand_claws",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero-heroine_gloves_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero-heroine_gloves_1",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero-heroine_gloves_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero-heroine_gloves_2",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero-heroine_gloves_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero-heroine_gloves_3",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero-heroine_gloves_4": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero-heroine_gloves_4",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero-heroine_gloves_5": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero-heroine_gloves_5",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_boots_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_boots_1",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_boots_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_boots_2",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_boots_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_boots_3",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_boots_4": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_boots_4",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_boots_5": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_boots_5",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_kalistick": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_kalistick",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_kalistick_lefthanded": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_kalistick_lefthanded",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_suit_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_suit_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_2",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_suit_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_3",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/culturalibre_hero_suit_4": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_hero_suit_4",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_boots_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_boots_1",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_boots_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_boots_2",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_boots_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_boots_3",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_boots_4": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_heroine_boots_4",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1",
+"pack": "suits05",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_3",
+"pack": "suits05",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_4": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_4",
+"pack": "suits05",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_5": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_heroine_suit_5",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_6": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_heroine_suit_6",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_heroine_suit_7": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_heroine_suit_7",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_magic_sceptre": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_magic_sceptre",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/culturalibre_male_boots": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_male_boots",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/culturalibre_male_sport_suit": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_male_sport_suit",
+"pack": "suits04",
+"type": "clothes"
+},
+"clothes/culturalibre_motorcycle_helmet": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_motorcycle_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/culturalibre_skull_helmet": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_skull_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/culturalibre_sneakers": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_sneakers",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/culturalibre_suitcase": {
+"author": "culturalibre",
+"license": "CC-BY",
+"name": "culturalibre_suitcase",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/culturalibre_war_hammer": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_war_hammer",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/culturalibre_warrior_helmet": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_warrior_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/culturalibre_wooden_bow": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_wooden_bow",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/donitz_monk_robe": {
+"author": "Donitz",
+"license": "CC0",
+"name": "donitz_monk_robe",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/donitz_monk_robe_hood": {
+"author": "Donitz",
+"license": "CC0",
+"name": "donitz_monk_robe_hood",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/donitz_monk_robe_hood_down": {
+"author": "Donitz",
+"license": "CC0",
+"name": "donitz_monk_robe_hood_down",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/donitz_monk_robe_hood_off": {
+"author": "Donitz",
+"license": "CC0",
+"name": "donitz_monk_robe_hood_off",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/drednicolson_asymmetric_tunic_and_sash": {
+"author": "DredNicolson",
+"license": "CC-BY",
+"name": "drednicolson_asymmetric_tunic_and_sash",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/drednicolson_short-tail_camo_tee": {
+"author": "DredNicolson",
+"license": "CC-BY",
+"name": "drednicolson_short-tail_camo_tee",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/dressupdoc_balletflat1": {
+"author": "DressUpDoc",
+"license": "CC-BY",
+"name": "dressupdoc_balletflat1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/dressupdoc_domsjeans1": {
+"author": "DressUpDoc",
+"license": "CC-BY",
+"name": "dressupdoc_domsjeans1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/dressupdoc_maryjane1": {
+"author": "DressUpDoc",
+"license": "CC-BY",
+"name": "dressupdoc_maryjane1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/dressupdoc_sandals1": {
+"author": "DressUpDoc",
+"license": "CC-BY",
+"name": "dressupdoc_sandals1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_50s_updo": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_50s_updo",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_adrienne_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_adrienne_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_ashley_may_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_ashley_may_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_asymmetrical_skirt": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_asymmetrical_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/elvs_basic_brave_feathers1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_basic_brave_feathers1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_basic_felt_elf_shoes": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_basic_felt_elf_shoes",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_braid_bun": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_braid_bun",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_braided_rows": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_braided_rows",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_caesar_sandals1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_caesar_sandals1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_charity_veil1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_charity_veil1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_covid_goggles1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_covid_goggles1",
+"pack": "glasses02",
+"type": "clothes"
+},
+"clothes/elvs_crude_t-shirt_male": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvs_crude_t-shirt_male",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/elvs_daisy_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_daisy_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_dirty_lil_maid_bonnet": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_dirty_lil_maid_bonnet",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_disco_mini_skirt": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_mini_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/elvs_disco_pants_double_ruffles": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_pants_double_ruffles",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_disco_pants_single_ruffles": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_pants_single_ruffles",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_disco_pants_skinny": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_pants_skinny",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_disco_top2": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_top2",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_disco_top_1_butterfly": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_disco_top_1_butterfly",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_double_mh_braid": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvs_double_mh_braid",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/elvs_emt_uniform_jacket_female": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_emt_uniform_jacket_female",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_emt_uniform_jacket_male": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_emt_uniform_jacket_male",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_emt_uniform_pants_female": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_emt_uniform_pants_female",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_emt_uniform_pants_male": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_emt_uniform_pants_male",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_flatshoe_bow1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_flatshoe_bow1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_flatshoe_buckle_1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_flatshoe_buckle_1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_flatshoe_gemmed1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_flatshoe_gemmed1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_flatshoe_plain1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_flatshoe_plain1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_flatshoe_pointy1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_flatshoe_pointy1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_french_braid_variation": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvs_french_braid_variation",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/elvs_gored_elephant_pants": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_gored_elephant_pants",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_gored_midi_skirt": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_gored_midi_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/elvs_grump_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_grump_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_halter_style_pantsuit1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_halter_style_pantsuit1",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_hazel_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_hazel_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_hooded_sweat_jacket1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_hooded_sweat_jacket1",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/elvs_inverted_curly_bob": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_inverted_curly_bob",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_island_princess_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_island_princess_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_jeans_bootcut": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_jeans_bootcut",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_jeans_straight_leg": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_jeans_straight_leg",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_katherine_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_katherine_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_keylth_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_keylth_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_knee_high_heel_boots1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_knee_high_heel_boots1",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/elvs_ladies_sunglass1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_ladies_sunglass1",
+"pack": "glasses02",
+"type": "clothes"
+},
+"clothes/elvs_ladies_tank1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_ladies_tank1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_lady_hippy_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_lady_hippy_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_lara_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_lara_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_lara_tank1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_lara_tank1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_male_athletic_tank1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_athletic_tank1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_male_boho_top1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_boho_top1",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/elvs_male_coveralls_1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_coveralls_1",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_male_flat_cap1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_flat_cap1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_male_flip_flop_sandals1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_flip_flop_sandals1",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/elvs_male_logo_tshirt1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_logo_tshirt1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_male_muscle_shirt1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_muscle_shirt1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_male_shirt_tie_tucked1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_shirt_tie_tucked1",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/elvs_male_shirt_untucked_bd1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_shirt_untucked_bd1",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/elvs_male_swim_shorts1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_swim_shorts1",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/elvs_male_tankshirt1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_tankshirt1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_male_trilby_hat": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_trilby_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_male_trouser": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_trouser",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_male_trouser_short_1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_trouser_short_1",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/elvs_male_trouser_short_2": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_trouser_short_2",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/elvs_male_trouser_with_chain": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_male_trouser_with_chain",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/elvs_maxwell_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_maxwell_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_micky_afro": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_micky_afro",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_pencil_skirt": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_pencil_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/elvs_pleated_plaid_mini_skirt": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_pleated_plaid_mini_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/elvs_racing_fire_suit_female1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_racing_fire_suit_female1",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_racing_fire_suit_male1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_racing_fire_suit_male1",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_retro_girly_shorts1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_retro_girly_shorts1",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/elvs_reverse_french_braid_bun": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvs_reverse_french_braid_bun",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/elvs_ruffle_sleeve_peasant_blouse_1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_ruffle_sleeve_peasant_blouse_1",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/elvs_santa_hat": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_santa_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_scruffy_beard1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_scruffy_beard1",
+"pack": "bodyparts06",
+"type": "clothes"
+},
+"clothes/elvs_short_daisy_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_short_daisy_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_short_side_do": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_short_side_do",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_sling_purse1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_sling_purse1",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/elvs_slouchy_beanie1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_slouchy_beanie1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_sporty_tracksuit_hoodie_dress1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_sporty_tracksuit_hoodie_dress1",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/elvs_that_80s_babe_hair": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_that_80s_babe_hair",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_tophat1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_tophat1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_unisex_chef_hat_1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_unisex_chef_hat_1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_unkempt_french_braid": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvs_unkempt_french_braid",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/elvs_wavy_bob": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_wavy_bob",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_wedge_tall_boots1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_wedge_tall_boots1",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/elvs_witchy_hallows_hat1": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_witchy_hallows_hat1",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/elvs_witchy_lil_bob": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_witchy_lil_bob",
+"pack": "hair02",
+"type": "clothes"
+},
+"clothes/elvs_zombie_killer_sneakers": {
+"author": "Elvaerwyn",
+"license": "CC-BY",
+"name": "elvs_zombie_killer_sneakers",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/ews_3d_glasses": {
+"author": "EWS",
+"license": "CC0",
+"name": "ews_3d_glasses",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/ews_striped_shirt": {
+"author": "EWS",
+"license": "CC-BY",
+"name": "ews_striped_shirt",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/faydaen_hair_1": {
+"author": "Faydaen",
+"license": "CC0",
+"name": "faydaen_hair_1",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/fedora01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "fedora01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/fedora_cocked": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "fedora_cocked",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/female_casualsuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_casualsuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/female_casualsuit02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_casualsuit02",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/female_elegantsuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_elegantsuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/female_sportsuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_sportsuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/frankyaye_glasses_library_male": {
+"author": "frankyaye",
+"license": "CC0",
+"name": "frankyaye_glasses_library_male",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/frankyaye_mini_skirt_01": {
+"author": "frankyaye",
+"license": "CC0",
+"name": "frankyaye_mini_skirt_01",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/frankyaye_mini_skirt_02": {
+"author": "frankyaye",
+"license": "CC0",
+"name": "frankyaye_mini_skirt_02",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/green_tomato_rei_ayanami": {
+"author": "green_tomato",
+"license": "CC0",
+"name": "green_tomato_rei_ayanami",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/green_tomato_yoko_tsuno": {
+"author": "green_tomato",
+"license": "CC0",
+"name": "green_tomato_yoko_tsuno",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/grinsegold_beard_sigmund_wip": {
+"author": "grinsegold",
+"license": "CC0",
+"name": "grinsegold_beard_sigmund_wip",
+"pack": "bodyparts05",
+"type": "clothes"
+},
+"clothes/grinsegold_corinthian_helmet": {
+"author": "grinsegold",
+"license": "CC0",
+"name": "grinsegold_corinthian_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/grinsegold_female_pirate_boots": {
+"author": "grinsegold",
+"license": "CC0",
+"name": "grinsegold_female_pirate_boots",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/grinsegold_full_beard": {
+"author": "grinsegold",
+"license": "CC-BY",
+"name": "grinsegold_full_beard",
+"pack": "bodyparts06",
+"type": "clothes"
+},
+"clothes/grinsegold_mars_suit": {
+"author": "grinsegold",
+"license": "CC-BY",
+"name": "grinsegold_mars_suit",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/grinsegold_moustache": {
+"author": "grinsegold",
+"license": "CC-BY",
+"name": "grinsegold_moustache",
+"pack": "bodyparts06",
+"type": "clothes"
+},
+"clothes/grinsegold_uncle_joshis_hat": {
+"author": "grinsegold",
+"license": "CC0",
+"name": "grinsegold_uncle_joshis_hat",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/grinsegold_wig_bow_tie": {
+"author": "grinsegold",
+"license": "CC-BY",
+"name": "grinsegold_wig_bow_tie",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/grinsegold_wig_bun_blonde_braids": {
+"author": "grinsegold",
+"license": "CC-BY",
+"name": "grinsegold_wig_bun_blonde_braids",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/janexx_old_female_sweater": {
+"author": "janexx",
+"license": "CC-BY",
+"name": "janexx_old_female_sweater",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/javherre_casco_caballero_templario_templar_knight_helmet": {
+"author": "javherre",
+"license": "CC0",
+"name": "javherre_casco_caballero_templario_templar_knight_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/joachip_cyborg_suit": {
+"author": "joachip",
+"license": "CC0",
+"name": "joachip_cyborg_suit",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/joepal_crude_high_socks": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_crude_high_socks",
+"pack": "underwear04",
+"type": "clothes"
+},
+"clothes/joepal_crude_low_socks": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_crude_low_socks",
+"pack": "underwear04",
+"type": "clothes"
+},
+"clothes/joepal_crude_sword": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_crude_sword",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/joepal_crude_t-shirt_female": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_crude_t-shirt_female",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/joepal_xmas_cap": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_xmas_cap",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/jujube_bag_on_head": {
+"author": "jujube",
+"license": "CC0",
+"name": "jujube_bag_on_head",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/jujube_newsboy_cap": {
+"author": "jujube",
+"license": "CC0",
+"name": "jujube_newsboy_cap",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/kwnet_at_optical_glasses": {
+"author": "kwnet_at",
+"license": "CC0",
+"name": "kwnet_at_optical_glasses",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/learning_anime_hair": {
+"author": "learning",
+"license": "CC0",
+"name": "learning_anime_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/learning_mma_fighting_gloves": {
+"author": "learning",
+"license": "CC0",
+"name": "learning_mma_fighting_gloves",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/littleright_bobcut_hair": {
+"author": "littleright",
+"license": "CC0",
+"name": "littleright_bobcut_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/maciekg_leather_boots": {
+"author": "MaciekG",
+"license": "CC-BY",
+"name": "maciekg_leather_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/maciekg_wizard_hat": {
+"author": "MaciekG",
+"license": "CC-BY",
+"name": "maciekg_wizard_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/maciekg_wizard_robe": {
+"author": "MaciekG",
+"license": "CC-BY",
+"name": "maciekg_wizard_robe",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/madmanny_tight_leather_boots": {
+"author": "madmanny",
+"license": "CC-BY",
+"name": "madmanny_tight_leather_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/male_casualsuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_casualsuit02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit02",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_casualsuit03": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit03",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_casualsuit04": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit04",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_casualsuit05": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit05",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_casualsuit06": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_casualsuit06",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_elegantsuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_elegantsuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/male_worksuit01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_worksuit01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/matcreator_mc-bodysuit-2021": {
+"author": "MatCreator",
+"license": "CC0",
+"name": "matcreator_mc-bodysuit-2021",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/matcreator_mc-scifi-armor_guardian": {
+"author": "MatCreator",
+"license": "CC0",
+"name": "matcreator_mc-scifi-armor_guardian",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/matcreator_mc-scifi-armor_helios": {
+"author": "MatCreator",
+"license": "CC0",
+"name": "matcreator_mc-scifi-armor_helios",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/matcreator_mc-scifi-armor_jupiter7": {
+"author": "MatCreator",
+"license": "CC0",
+"name": "matcreator_mc-scifi-armor_jupiter7",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/matcreator_mc-skinsuit_2022": {
+"author": "MatCreator",
+"license": "CC0",
+"name": "matcreator_mc-skinsuit_2022",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/mindfront_cardigan_long_open_front": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_cardigan_long_open_front",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_01": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_01",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_02": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_02",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_03": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_03",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_04": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_04",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_05": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_05",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_06": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_06",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_07": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_07",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_08": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_08",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_09": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_09",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_10": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_10",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_11": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_11",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_12": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_12",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_13": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_13",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyebrows_14": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyebrows_14",
+"pack": "eyebrows01",
+"type": "clothes"
+},
+"clothes/mindfront_eyelashes_01": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyelashes_01",
+"pack": "eyelashes01",
+"type": "clothes"
+},
+"clothes/mindfront_eyelashes_02": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyelashes_02",
+"pack": "eyelashes01",
+"type": "clothes"
+},
+"clothes/mindfront_eyelashes_03": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyelashes_03",
+"pack": "eyelashes01",
+"type": "clothes"
+},
+"clothes/mindfront_eyelashes_04": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyelashes_04",
+"pack": "eyelashes01",
+"type": "clothes"
+},
+"clothes/mindfront_eyelashes_05": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_eyelashes_05",
+"pack": "eyelashes01",
+"type": "clothes"
+},
+"clothes/mindfront_f_ninja": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_f_ninja",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/mindfront_female_trousers_1": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_female_trousers_1",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/mindfront_fishing_hat_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_fishing_hat_01",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/mindfront_kimono": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_kimono",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/mindfront_knitted_hat_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_knitted_hat_01",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/mindfront_knitted_sweater_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_knitted_sweater_01",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/mindfront_knitted_sweater_02": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_knitted_sweater_02",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/mindfront_lusekofta": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_lusekofta",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/mindfront_m_suit_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_m_suit_01",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/mindfront_male_swimming_trunks_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_male_swimming_trunks_01",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/mindfront_male_swimming_trunks_02": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_male_swimming_trunks_02",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/mindfront_male_swimming_trunks_03": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_male_swimming_trunks_03",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/mindfront_male_trousers_1": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_male_trousers_1",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/mindfront_male_trousers_2": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_male_trousers_2",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/mindfront_patrol_cap": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_patrol_cap",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/mindfront_sherpa_hat": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_sherpa_hat",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_biker_boots_female": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_biker_boots_female",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_biker_boots_male": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_biker_boots_male",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_monk_strap_female": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_monk_strap_female",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_monk_strap_male": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_monk_strap_male",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_oxford_female": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_oxford_female",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/mindfront_shoes_oxford_male": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_shoes_oxford_male",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/mindfront_tactical_vest_female": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_tactical_vest_female",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/mindfront_tactical_vest_male": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_tactical_vest_male",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/mindfront_tank_top_01": {
+"author": "Mindfront",
+"license": "CC-BY",
+"name": "mindfront_tank_top_01",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/mrgreaterthan_m1_helmet": {
+"author": "MrGreaterThan",
+"license": "CC0",
+"name": "mrgreaterthan_m1_helmet",
+"pack": "hats02",
+"type": "clothes"
+},
+"clothes/mtknife_low_mini_skirt": {
+"author": "MTKnife",
+"license": "CC-BY",
+"name": "mtknife_low_mini_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/mtknife_pleated_mini_skirt": {
+"author": "MTKnife",
+"license": "CC-BY",
+"name": "mtknife_pleated_mini_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/namuhekam_male_polo_shirt": {
+"author": "namuhekam",
+"license": "CC0",
+"name": "namuhekam_male_polo_shirt",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/o4saken_chinesebob01": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "o4saken_chinesebob01",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/o4saken_curly01": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "o4saken_curly01",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/o4saken_dagger": {
+"author": "o4saken",
+"license": "CC0",
+"name": "o4saken_dagger",
+"pack": "equipment01",
+"type": "clothes"
+},
+"clothes/o4saken_long01": {
+"author": "punkduck",
+"license": "CC0",
+"name": "o4saken_long01",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/punkduck_alpha7_curly": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_alpha7_curly",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/punkduck_alpha7_curly2": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_alpha7_curly2",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/punkduck_alpha7_long": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_alpha7_long",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/punkduck_alpha7_long2": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_alpha7_long2",
+"pack": "hair03",
+"type": "clothes"
+},
+"clothes/punkduck_black_mini_skirt": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_black_mini_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/punkduck_comfortable_sneakers": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_comfortable_sneakers",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/punkduck_cycling_shoes": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_cycling_shoes",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/punkduck_deathnote_t-shirt": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_deathnote_t-shirt",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/punkduck_diver_scuba_rig": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_diver_scuba_rig",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_diver_suit": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_diver_suit",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/punkduck_electric_guitar": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_electric_guitar",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_female_half-boots": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_female_half-boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/punkduck_female_knee_boots": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_female_knee_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/punkduck_female_short_jeans": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_female_short_jeans",
+"pack": "pants03",
+"type": "clothes"
+},
+"clothes/punkduck_female_tight_jeans": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_female_tight_jeans",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/punkduck_glasses_modern_form": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_glasses_modern_form",
+"pack": "glasses02",
+"type": "clothes"
+},
+"clothes/punkduck_goggles": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_goggles",
+"pack": "glasses02",
+"type": "clothes"
+},
+"clothes/punkduck_handbag01": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_handbag01",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_head_mirror": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_head_mirror",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_high_neck_crop_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_high_neck_crop_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_jeans_skirt": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_jeans_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/punkduck_kill_bill_shoes": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_kill_bill_shoes",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/punkduck_lace_up_blouse": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_lace_up_blouse",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/punkduck_male_classic_jeans": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_male_classic_jeans",
+"pack": "pants02",
+"type": "clothes"
+},
+"clothes/punkduck_medieval_boots": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_medieval_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/punkduck_microphone": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_microphone",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_off-shoulder_long-sleeve_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_off-shoulder_long-sleeve_top",
+"pack": "shirts02",
+"type": "clothes"
+},
+"clothes/punkduck_retro_polka_dot_skirt": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_retro_polka_dot_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/punkduck_retro_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_retro_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_riding_boots": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_riding_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/punkduck_running_shoes_01": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_running_shoes_01",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/punkduck_shopping_bag01": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_shopping_bag01",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_short_bodysuit_female": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_short_bodysuit_female",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/punkduck_skirt_native_american_fashion": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_skirt_native_american_fashion",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/punkduck_sleeveless_crop_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_sleeveless_crop_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_sleeveless_shirt": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_sleeveless_shirt",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_spaghetti_strap_tank_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_spaghetti_strap_tank_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_sport-sunglasses": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_sport-sunglasses",
+"pack": "glasses02",
+"type": "clothes"
+},
+"clothes/punkduck_stethoscope": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_stethoscope",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_sun_visor_sports_visor": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_sun_visor_sports_visor",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/punkduck_swim_cap": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_swim_cap",
+"pack": "hats03",
+"type": "clothes"
+},
+"clothes/punkduck_tennis_dress": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_tennis_dress",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/punkduck_tennis_racket": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_tennis_racket",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/punkduck_tennis_shoes": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_tennis_shoes",
+"pack": "shoes02",
+"type": "clothes"
+},
+"clothes/punkduck_triathlon_suit_female": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_triathlon_suit_female",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/punkduck_tube_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_tube_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_v_neck_top": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_v_neck_top",
+"pack": "shirts03",
+"type": "clothes"
+},
+"clothes/punkduck_wetsuit": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_wetsuit",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/punkduck_winter_boots": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_winter_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/punkduck_wireless_headset": {
+"author": "punkduck",
+"license": "CC-BY",
+"name": "punkduck_wireless_headset",
+"pack": "equipment03",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_beard_viking": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_beard_viking",
+"pack": "bodyparts05",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_hair_bun_brown": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_hair_bun_brown",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_moustache_viking": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_moustache_viking",
+"pack": "bodyparts05",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_viking_boots": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_viking_boots",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_viking_pants": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_viking_pants",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/rehmanpolanski_viking_tunic": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_viking_tunic",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/scailman_gogo_platform_boots": {
+"author": "scailman",
+"license": "CC0",
+"name": "scailman_gogo_platform_boots",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/scailman_low-heeled_boots": {
+"author": "scailman",
+"license": "CC-BY",
+"name": "scailman_low-heeled_boots",
+"pack": "shoes03",
+"type": "clothes"
+},
+"clothes/scailman_semitransparent_water_boots": {
+"author": "scailman",
+"license": "CC0",
+"name": "scailman_semitransparent_water_boots",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/scsouza_mini_denin_skirt": {
+"author": "scsouza",
+"license": "CC-BY",
+"name": "scsouza_mini_denin_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/shoes01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes01",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/shoes02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes02",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/shoes03": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes03",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/shoes04": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes04",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/shoes05": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes05",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/shoes06": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "shoes06",
+"pack": "makehuman_system_assets",
+"type": "clothes"
+},
+"clothes/skalldyrssuppe_tube_top_funky_colors": {
+"author": "skalldyrssuppe",
+"license": "CC0",
+"name": "skalldyrssuppe_tube_top_funky_colors",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/slayer227_spider-gwen": {
+"author": "Slayer227",
+"license": "CC0",
+"name": "slayer227_spider-gwen",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/sonicteam998_maria_skirt": {
+"author": "sonicteam998",
+"license": "CC-BY",
+"name": "sonicteam998_maria_skirt",
+"pack": "skirts02",
+"type": "clothes"
+},
+"clothes/sonntag78_blond_with_headband": {
+"author": "sonntag78",
+"license": "CC0",
+"name": "sonntag78_blond_with_headband",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/sonntag78_junglebook_hair": {
+"author": "sonntag78",
+"license": "CC0",
+"name": "sonntag78_junglebook_hair",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/spamrakuen_sagerfrogs_glasses_01": {
+"author": "spamrakuen",
+"license": "CC0",
+"name": "spamrakuen_sagerfrogs_glasses_01",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/spamrakuen_sagerfrogs_glasses_02": {
+"author": "spamrakuen",
+"license": "CC0",
+"name": "spamrakuen_sagerfrogs_glasses_02",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/spamrakuen_sagerfrogs_glasses_03": {
+"author": "spamrakuen",
+"license": "CC0",
+"name": "spamrakuen_sagerfrogs_glasses_03",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/spamrakuen_sagerfrogs_glasses_04": {
+"author": "spamrakuen",
+"license": "CC0",
+"name": "spamrakuen_sagerfrogs_glasses_04",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/spamrakuen_tbm_glasses_frames_01": {
+"author": "spamrakuen",
+"license": "CC0",
+"name": "spamrakuen_tbm_glasses_frames_01",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/thegreatengineer_galactic_warrior_uniform": {
+"author": "TheGreatEngineer",
+"license": "CC0",
+"name": "thegreatengineer_galactic_warrior_uniform",
+"pack": "suits02",
+"type": "clothes"
+},
+"clothes/tiomegamanx_skintight_body_suit_female": {
+"author": "TioMegamanX",
+"license": "CC-BY",
+"name": "tiomegamanx_skintight_body_suit_female",
+"pack": "suits03",
+"type": "clothes"
+},
+"clothes/toigo_ankle_boots_female": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_ankle_boots_female",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_ankle_boots_male": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_ankle_boots_male",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_ballet_flats": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_ballet_flats",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_ballet_flats_with_bows": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_ballet_flats_with_bows",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_ballet_flats_with_flowers": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_ballet_flats_with_flowers",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_basic_tucked_t-shirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_basic_tucked_t-shirt",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_blunt_bob": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_blunt_bob",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_blunt_bob_with_bangs": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_blunt_bob_with_bangs",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_bodice-style_top": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_bodice-style_top",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_bodice_dress_with_lace_ruffle_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_bodice_dress_with_lace_ruffle_skirt",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_camisole_dress_with_full_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_camisole_dress_with_full_skirt",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_camisole_top": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_camisole_top",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_curled_under_bob": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_curled_under_bob",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_curled_under_bob_with_bangs": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_curled_under_bob_with_bangs",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_cut_out_dress": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_cut_out_dress",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_dress_with_tiered_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_dress_with_tiered_skirt",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_female_double-breasted_suit": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_female_double-breasted_suit",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_female_suit": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_female_suit",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_female_suit_2": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_female_suit_2",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_fisherman_sweater": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_fisherman_sweater",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_flats": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_flats",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_gloves_long": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_gloves_long",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/toigo_gloves_medium": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_gloves_medium",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/toigo_gloves_short": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_gloves_short",
+"pack": "gloves01",
+"type": "clothes"
+},
+"clothes/toigo_halter_dress_knee_length": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_halter_dress_knee_length",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_halter_dress_midi": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_halter_dress_midi",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_halter_dress_with_fluted_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_halter_dress_with_fluted_skirt",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_harem_pants": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_harem_pants",
+"pack": "pants01",
+"type": "clothes"
+},
+"clothes/toigo_inverted_bob": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_inverted_bob",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_inverted_bob_with_bangs": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_inverted_bob_with_bangs",
+"pack": "hair01",
+"type": "clothes"
+},
+"clothes/toigo_keyhole_neck_dress": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_keyhole_neck_dress",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_keyhole_tank_top": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_keyhole_tank_top",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_lace_frill_socks": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_lace_frill_socks",
+"pack": "underwear04",
+"type": "clothes"
+},
+"clothes/toigo_leg_warmer_socks": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_leg_warmer_socks",
+"pack": "underwear04",
+"type": "clothes"
+},
+"clothes/toigo_long_full_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_full_skirt",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/toigo_maga_hat": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_maga_hat",
+"pack": "hats01",
+"type": "clothes"
+},
+"clothes/toigo_male_double-breasted_suit": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_double-breasted_suit",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_male_suit_3": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_suit_3",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_male_suit_tie_and_jacket": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_suit_tie_and_jacket",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_mj_cloth_shoes": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_mj_cloth_shoes",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_round_glasses_leopard": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_round_glasses_leopard",
+"pack": "glasses01",
+"type": "clothes"
+},
+"clothes/toigo_shift_dress": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_shift_dress",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_skirt_with_lace_ruffle": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_skirt_with_lace_ruffle",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/toigo_stiletto_booties": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_stiletto_booties",
+"pack": "shoes01",
+"type": "clothes"
+},
+"clothes/toigo_strapless_ruffle_top_dress": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_strapless_ruffle_top_dress",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/toigo_suit_with_dinner_jacket": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_suit_with_dinner_jacket",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_suit_with_jacket_and_bowtie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_suit_with_jacket_and_bowtie",
+"pack": "suits01",
+"type": "clothes"
+},
+"clothes/toigo_tiered_mini_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_tiered_mini_skirt",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/toigo_tiered_skirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_tiered_skirt",
+"pack": "skirts01",
+"type": "clothes"
+},
+"clothes/toigo_turtleneck_halter_top": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_turtleneck_halter_top",
+"pack": "shirts01",
+"type": "clothes"
+},
+"clothes/toigo_wool_pants": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_wool_pants",
+"pack": "pants01",
+"type": "clothes"
+},
+"clothes/wdg_mycenaean_tunic": {
+"author": "WDG",
+"license": "CC0",
+"name": "wdg_mycenaean_tunic",
+"pack": "dress01",
+"type": "clothes"
+},
+"clothes/wdg_scruffy_beard": {
+"author": "WDG",
+"license": "CC0",
+"name": "wdg_scruffy_beard",
+"pack": "bodyparts05",
+"type": "clothes"
+},
+"eyebrows/eyebrow001": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow001",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow002": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow002",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow003": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow003",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow004": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow004",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow005": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow005",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow006": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow006",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow007": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow007",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow008": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow008",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow009": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow009",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow010": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow010",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow011": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow011",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyebrows/eyebrow012": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyebrow012",
+"pack": "makehuman_system_assets",
+"type": "eyebrows"
+},
+"eyelashes/eyelashes01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyelashes01",
+"pack": "makehuman_system_assets",
+"type": "eyelashes"
+},
+"eyelashes/eyelashes02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyelashes02",
+"pack": "makehuman_system_assets",
+"type": "eyelashes"
+},
+"eyelashes/eyelashes03": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyelashes03",
+"pack": "makehuman_system_assets",
+"type": "eyelashes"
+},
+"eyelashes/eyelashes04": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "eyelashes04",
+"pack": "makehuman_system_assets",
+"type": "eyelashes"
+},
+"eyes/blue": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "blue",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/bluegreen": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "bluegreen",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/brown": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "brown",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/brownlight": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "brownlight",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/deepblue": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "deepblue",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/green": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "green",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/grey": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "grey",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/high-poly": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "high-poly",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/ice": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "ice",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/lightblue": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "lightblue",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"eyes/low-poly": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "low-poly",
+"pack": "makehuman_system_assets",
+"type": "eyes"
+},
+"hair/afro01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "afro01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/bob01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "bob01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/bob02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "bob02",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/braid01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "braid01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/long01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "long01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/ponytail01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "ponytail01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/short01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "short01",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/short02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "short02",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/short03": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "short03",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"hair/short04": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "short04",
+"pack": "makehuman_system_assets",
+"type": "hair"
+},
+"material/bogdan666_short_02_brown": {
+"author": "bogdan666",
+"license": "CC0",
+"name": "bogdan666_short_02_brown",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/bogdan666_short_02_gray": {
+"author": "bogdan666",
+"license": "CC0",
+"name": "bogdan666_short_02_gray",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/bogdan666_short_02_red": {
+"author": "bogdan666",
+"license": "CC0",
+"name": "bogdan666_short_02_red",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_1",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_2": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_2",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_3": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_3",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_4": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_4",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_blue": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_blue",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_captain_america": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_captain_america",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_green": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_green",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_hawkeye": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_hawkeye",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_nightwing": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_nightwing",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_vision": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_vision",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_white": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_white",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_x-men": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_x-men",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_1_yellow": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_1_yellow",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_2_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_2_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_2_grey": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_2_grey",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_2_hawkeye": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_2_hawkeye",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_3_deadpool": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_3_deadpool",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_3_spiderman_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_3_spiderman_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_4_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_4_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_hero_suit_4_superman": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_hero_suit_4_superman",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_blue": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_blue",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_captain_marvel": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_captain_marvel",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_green": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_green",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_pink": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_pink",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_1_white": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_1_white",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_2_blue": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2_blue",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_2_green": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2_green",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_2_mockingbird": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2_mockingbird",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_2_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_2_white": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_2_white",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_3_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_3_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_3_blue": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_3_blue",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_3_purple": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_3_purple",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_3_white": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_3_white",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_5_1": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_5_1",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_5_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_5_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_5_purple": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_5_purple",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_5_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_5_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_6_purple": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_6_purple",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_6_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_6_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_6_spiderwoman": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_6_spiderwoman",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_7_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_7_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_heroine_suit_7_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_heroine_suit_7_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_ladybug_suit": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_ladybug_suit",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_m_suit_01_black": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_m_suit_01_black",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_male_sport_suit_comic": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_male_sport_suit_comic",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_male_sport_suit_red": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_male_sport_suit_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_nightcrawler": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_nightcrawler",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/culturalibre_short_02_green": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_short_02_green",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/culturalibre_the_spot_material_suit": {
+"author": "culturalibre",
+"license": "CC0",
+"name": "culturalibre_the_spot_material_suit",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_black": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_black",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_brown": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_brown",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_gold": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_gold",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_green": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_green",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_pink": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_pink",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_platinum": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_platinum",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_red": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_red",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/dariush086_ponytail01_violet": {
+"author": "dariush086",
+"license": "CC0",
+"name": "dariush086_ponytail01_violet",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_blood_copper": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_blood_copper",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_dark_lime_gold": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_dark_lime_gold",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_flat_black": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_flat_black",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_gothic_brown": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_gothic_brown",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_new_gold": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_new_gold",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_old_gold": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_old_gold",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_old_world_mermaid": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_old_world_mermaid",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_01_veronika": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_01_veronika",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_50s_cherrybomb": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_50s_cherrybomb",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_candy_fushia": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_candy_fushia",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_honey_blonde": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_honey_blonde",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_platinum": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_platinum",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_pumpkin": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_pumpkin",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_retro_black": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_retro_black",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_retro_grey": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_retro_grey",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_retro_oilslickster": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_retro_oilslickster",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/elvaerwyn_bob_02_tangerine": {
+"author": "Elvaerwyn",
+"license": "CC0",
+"name": "elvaerwyn_bob_02_tangerine",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_bob02_dark_blond": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_bob02_dark_blond",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_bob02_dark_ginger": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_bob02_dark_ginger",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_bob02_ginger": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_bob02_ginger",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_bob02_light_ginger": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_bob02_light_ginger",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_short01_brown": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_short01_brown",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_short01_dark_ginger": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_short01_dark_ginger",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_short01_rustbrown": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_short01_rustbrown",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_short02_blond": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_short02_blond",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/jartur69_short02_blond_for_female": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_short02_blond_for_female",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/joepal_long_01_blond": {
+"author": "Joel Palmius",
+"license": "CC0",
+"name": "joepal_long_01_blond",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/mtknife_ponytail01_deep_red": {
+"author": "MTKnife",
+"license": "CC0",
+"name": "mtknife_ponytail01_deep_red",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/punkduck_blond_for_long01": {
+"author": "punkduck",
+"license": "CC0",
+"name": "punkduck_blond_for_long01",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/toigo_braid01_ash": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_ash",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_black": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_black",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_fuchsia": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_fuchsia",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_ginger": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_ginger",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_golden": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_golden",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_gray": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_gray",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_red": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_red",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_strawberry": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_strawberry",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_teal": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_teal",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_braid01_violet": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_braid01_violet",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_ash": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_ash",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_black": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_black",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_fuchsia": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_fuchsia",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_ginger": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_ginger",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_gray": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_gray",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_red": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_red",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_teal": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_teal",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_long_01_violet": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_long_01_violet",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_m_suit_01_gold_tie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_m_suit_01_gold_tie",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/toigo_m_suit_01_purple_tie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_m_suit_01_purple_tie",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/toigo_m_suit_01_red_tie_with_black_shirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_m_suit_01_red_tie_with_black_shirt",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_khaki": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_khaki",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_purple_shirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_purple_shirt",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_purple_shirt_with_black_jeans": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_purple_shirt_with_black_jeans",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_red_shirt_with_black_jeans": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_red_shirt_with_black_jeans",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_teal_shirt_with_black_jeans": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_teal_shirt_with_black_jeans",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_white_shirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_white_shirt",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_casual_suit_01_yellow_shirt": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_casual_suit_01_yellow_shirt",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_blue_pinstripe_with_paisley_tie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_blue_pinstripe_with_paisley_tie",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_blue_with_red_striped_tie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_blue_with_red_striped_tie",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_brown": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_brown",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_burgundy": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_burgundy",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_eggplant": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_eggplant",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_gray": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_gray",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_gray_pinstripe_with_paisley_tie": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_gray_pinstripe_with_paisley_tie",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_olive": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_olive",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_male_elegant_suit_teal": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_male_elegant_suit_teal",
+"pack": "system_clothes_materials01",
+"type": "material"
+},
+"material/toigo_short_04_auburn": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_auburn",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_blonde": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_blonde",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_blue": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_blue",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_brown": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_brown",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_ginger": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_ginger",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_gray": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_gray",
+"pack": "system_hair_materials01",
+"type": "material"
+},
+"material/toigo_short_04_green": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_green",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/toigo_short_04_violet": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_short_04_violet",
+"pack": "system_hair_materials02",
+"type": "material"
+},
+"material/toigo_suit_with_jacket_and_bowtie_blue_and_gold": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_suit_with_jacket_and_bowtie_blue_and_gold",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/toigo_suit_with_jacket_and_bowtie_blue_and_red": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_suit_with_jacket_and_bowtie_blue_and_red",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"material/toigo_suit_with_jacket_and_bowtie_brown": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_suit_with_jacket_and_bowtie_brown",
+"pack": "clothes_materials01",
+"type": "material"
+},
+"proxymeshes/female1605": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female1605",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/female_generic": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_generic",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/female_muscle_13442": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "female_muscle_13442",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/male1591": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male1591",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/male_generic": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_generic",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/male_muscle_13290": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "male_muscle_13290",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"proxymeshes/proxy741": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "proxy741",
+"pack": "makehuman_system_assets",
+"type": "proxymeshes"
+},
+"skin/blindsaypatten_uniform_skin_texture": {
+"author": "blindsaypatten",
+"license": "CC0",
+"name": "blindsaypatten_uniform_skin_texture",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/bobby_03_young_female_hairless": {
+"author": "bobby_03",
+"license": "CC0",
+"name": "bobby_03_young_female_hairless",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/callharvey3d_midtoned_female": {
+"author": "callharvey3d",
+"license": "CC0",
+"name": "callharvey3d_midtoned_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/cutoff3d_indian_female_enhanced": {
+"author": "CutOff3D",
+"license": "CC0",
+"name": "cutoff3d_indian_female_enhanced",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/cutoff3d_indian_female_skin": {
+"author": "CutOff3D",
+"license": "CC0",
+"name": "cutoff3d_indian_female_skin",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/darthfurby_caucasian_female": {
+"author": "darthfurby",
+"license": "CC0",
+"name": "darthfurby_caucasian_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/flower-angel_red_head_skin": {
+"author": "flower-angel",
+"license": "CC0",
+"name": "flower-angel_red_head_skin",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/jartur69_middleage_slavic_male_with_genitals_and_beard": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_middleage_slavic_male_with_genitals_and_beard",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/jartur69_old_slavic_male_with_genitals_and_beard": {
+"author": "jartur69",
+"license": "CC0",
+"name": "jartur69_old_slavic_male_with_genitals_and_beard",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/ken1138_caucasian_male_tattooed_skin": {
+"author": "ken1138",
+"license": "CC0",
+"name": "ken1138_caucasian_male_tattooed_skin",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/mindfront_aksel_skin": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_aksel_skin",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/mindfront_skin_male_african_middleage": {
+"author": "Mindfront",
+"license": "CC0",
+"name": "mindfront_skin_male_african_middleage",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/nyloseth_zoeyskin": {
+"author": "Nyloseth",
+"license": "CC0",
+"name": "nyloseth_zoeyskin",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/onlytheghosts_middle_aged_eurasian_female": {
+"author": "OnlyTheGhosts",
+"license": "CC0",
+"name": "onlytheghosts_middle_aged_eurasian_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/onlytheghosts_old_eurasian_female": {
+"author": "OnlyTheGhosts",
+"license": "CC0",
+"name": "onlytheghosts_old_eurasian_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/onlytheghosts_old_eurasian_male": {
+"author": "OnlyTheGhosts",
+"license": "CC0",
+"name": "onlytheghosts_old_eurasian_male",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/onlytheghosts_young_eurasian_female": {
+"author": "OnlyTheGhosts",
+"license": "CC0",
+"name": "onlytheghosts_young_eurasian_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/rehmanpolanski_skin_viking_tattoos": {
+"author": "RehmanPolanski",
+"license": "CC0",
+"name": "rehmanpolanski_skin_viking_tattoos",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/saltycowdawg_genuine_caucasian_female_with_genitals": {
+"author": "saltycowdawg",
+"license": "CC0",
+"name": "saltycowdawg_genuine_caucasian_female_with_genitals",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/skalldyrssuppe_creamy_female": {
+"author": "skalldyrssuppe",
+"license": "CC0",
+"name": "skalldyrssuppe_creamy_female",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/spreadcore_alana_caucasian_female_with_genitals_skin": {
+"author": "spreadcore",
+"license": "CC0",
+"name": "spreadcore_alana_caucasian_female_with_genitals_skin",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_bronze": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_bronze",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_bronze_with_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_bronze_with_makeup",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_freckles": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_freckles",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_ginger": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_ginger",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_ginger_2": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_ginger_2",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_ginger_with_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_ginger_with_makeup",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_female_with_violet_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_female_with_violet_makeup",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_bronze": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_bronze",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_freckles": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_freckles",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_ginger": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_ginger",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_with_emo_eyes": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_with_emo_eyes",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_with_eyeliner": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_with_eyeliner",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_male_with_goth_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_male_with_goth_makeup",
+"pack": "skins02",
+"type": "skin"
+},
+"skin/toigo_light_skin_with_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_with_makeup",
+"pack": "skins01",
+"type": "skin"
+},
+"skin/toigo_light_skin_with_natural_makeup": {
+"author": "MargaretToigo",
+"license": "CC0",
+"name": "toigo_light_skin_with_natural_makeup",
+"pack": "skins01",
+"type": "skin"
+},
+"skins/middleage_african_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_african_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/middleage_african_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_african_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/middleage_asian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_asian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/middleage_asian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_asian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/middleage_caucasian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_caucasian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/middleage_caucasian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "middleage_caucasian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_african_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_african_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_african_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_african_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_asian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_asian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_asian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_asian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_caucasian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_caucasian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/old_caucasian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "old_caucasian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/toon01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "toon01",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_african_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_african_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_african_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_african_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_asian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_asian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_asian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_asian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_female": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_female",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_female2": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_female2",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_female_special_suit": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_female_special_suit",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_male": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_male",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_male2": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_male2",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"skins/young_caucasian_male_special_suit": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "young_caucasian_male_special_suit",
+"pack": "makehuman_system_assets",
+"type": "skins"
+},
+"teeth/teeth_base": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_base",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"teeth/teeth_shape01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_shape01",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"teeth/teeth_shape02": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_shape02",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"teeth/teeth_shape03": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_shape03",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"teeth/teeth_shape04": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_shape04",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"teeth/teeth_shape05": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "teeth_shape05",
+"pack": "makehuman_system_assets",
+"type": "teeth"
+},
+"tongue/tongue01": {
+"author": "makehuman_system",
+"license": "CC0",
+"name": "tongue01",
+"pack": "makehuman_system_assets",
+"type": "tongue"
+}
+}

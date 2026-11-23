@@ -1,0 +1,90 @@
+{
+ "id": "CivLeo",
+ "profession": "Civilian",
+ "names": [
+  "Leo Park"
+ ],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.4330357142857143,
+ "height": 1.76,
+ "skin": "young_asian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.06019048467433646,
+   0.18269365443222418,
+   0.4786789244656768
+  ],
+  "B": [
+   0.039999671280384064,
+   0.03947988897562027,
+   0.0641617476940155
+  ]
+ },
+ "palettes": {
+  "A": "shirt",
+  "B": "denim"
+ },
+ "lodTris": [
+  19996,
+  6996,
+  2498
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_asian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow003"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "cortu_short_messy_hair"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "namuhekam_male_polo_shirt"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_jeans_straight_leg"
+  },
+  {
+   "kind": "clothes",
+   "name": "shoes06"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_asian_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "CivLeo_Cloth_A.jpg",
+  "clothN": "CivLeo_Cloth_N.jpg",
+  "clothM": "CivLeo_Cloth_M.png",
+  "hairA": "CivLeo_Hair_A.png"
+ }
+}

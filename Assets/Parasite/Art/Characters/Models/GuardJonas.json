@@ -1,0 +1,98 @@
+{
+ "id": "GuardJonas",
+ "profession": "Guard",
+ "names": [],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.5153846153846153,
+ "height": 1.784,
+ "skin": "young_caucasian_male",
+ "skinTint": [
+  0.95,
+  0.88,
+  0.8
+ ],
+ "eyes": "brownlight",
+ "hairColor": [
+  0.12,
+  0.075,
+  0.05
+ ],
+ "tints": {
+  "A": [
+   0.018223319227034615,
+   0.027864006037506325,
+   0.08538945579840525
+  ],
+  "B": [
+   0.010874653768394109,
+   0.013080744165605333,
+   0.02117351073789841
+  ],
+  "C": [
+   0.013080744165605333,
+   0.018223319227034615,
+   0.04457275218822681
+  ]
+ },
+ "palettes": {
+  "A": "uniform",
+  "B": "uniform_pants",
+  "C": "uniform"
+ },
+ "lodTris": [
+  19942,
+  7009,
+  2512
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow003"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short03"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brownlight"
+  },
+  {
+   "kind": "clothes",
+   "name": "namuhekam_male_polo_shirt"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_male_trousers_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_male"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_patrol_cap"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_caucasian_male.jpg",
+  "eyes": "Eyes/brownlight.png",
+  "clothA": "GuardJonas_Cloth_A.jpg",
+  "clothN": "GuardJonas_Cloth_N.jpg",
+  "clothM": "GuardJonas_Cloth_M.png",
+  "hairA": "GuardJonas_Hair_A.png"
+ }
+}

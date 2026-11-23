@@ -108,8 +108,9 @@ namespace Parasite.FX
             main.startSize = new ParticleSystem.MinMaxCurve(0.4f, 0.7f);
             main.startRotation = new ParticleSystem.MinMaxCurve(0f, Mathf.PI * 2f); // random rotation
             main.startColor = new ParticleSystem.MinMaxGradient(
-                new Color(0.92f, 0.94f, 0.96f, 0.22f),
-                new Color(0.85f, 0.88f, 0.92f, 0.16f)
+                // unlit particles: keep the steam near the dusk scene's brightness so it reads as lit vapour, not white paint
+                new Color(0.6f, 0.6f, 0.66f, 0.2f),
+                new Color(0.52f, 0.52f, 0.58f, 0.15f)
             );
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             main.scalingMode = ParticleSystemScalingMode.Hierarchy;

@@ -52,6 +52,9 @@ namespace Parasite.Testing
             return Path.Combine(Application.persistentDataPath, "autotest_report.txt");
         }
 
+        /// <summary>Diagnostic detail for a running scenario (not a PASS/FAIL line).</summary>
+        static void Note(string line) => Debug.Log("[AutoTest-note] " + (current.name ?? "") + " :: " + line);
+
         static void Write(string line)
         {
             Log.AppendLine(line);
@@ -282,17 +285,25 @@ namespace Parasite.Testing
                 ("03 Q release: host unconscious 8 s then recovers", ScenarioRelease),
                 ("04 V split max two, Tab switch, inactive stays put", ScenarioSplit),
                 ("05 Civilian denied at restricted doors", ScenarioCivilianDenied),
-                ("06 Route A: guard badge → Main Gate → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.MainGate)),
-                ("07 Route B: scientist + keycard → Staff Terminal → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.StaffTerminal)),
-                ("08 Route C: maintenance + substation → Service Tunnel → research → Vale → evidence → containment → escape", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
+                ("06 Route A: leads → tail → guard badge → Main Gate → research → Vale → hunters → evidence → containment → blackout → escape", () => ScenarioRoute(EntryRoute.MainGate)),
+                ("07 Route B: leads → tail → scientist + keycard → Staff Terminal → research → Vale → hunters → evidence → containment → blackout → escape", () => ScenarioRoute(EntryRoute.StaffTerminal)),
+                ("08 Route C: leads → tail → maintenance + substation → Service Tunnel → research → Vale → hunters → evidence → containment → blackout → escape", () => ScenarioRoute(EntryRoute.ServiceTunnel)),
                 ("09 Suspicion only from observed violations; decays", ScenarioSuspicion),
                 ("12 Missions 1-2: alley exit, first host, newsstand, eavesdrop", ScenarioEarlyMissions),
                 ("13 CCTV spots a free amoeba; maintenance F-ability cuts camera power; scientist calms", ScenarioCameraAbilities),
+                ("14 The Tail: losing Petrov or crowding her sends her back to the last checkpoint; progress survives a reload", ScenarioTail),
+                ("15 Hunter Protocol: bio-scanner burns a worn body, leaving it breaks the trail, the arch passes only a free amoeba", ScenarioHunters),
+                ("16 Blackout: palm-print lockout, grid reroute on timeout, three-body chain, blackout persists", ScenarioBlackout),
                 ("10 Guard pursues + captures; amoeba ejects and survives", ScenarioCapture),
                 ("11 Pause + restart", ScenarioPauseRestart),
             };
+            // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
+            var args = Environment.GetCommandLineArgs();
+            int fi = Array.IndexOf(args, "-autotestFilter");
+            var only = fi >= 0 && fi + 1 < args.Length ? args[fi + 1].Split(',') : null;
             foreach (var (name, fn) in scenarios)
             {
+                if (only != null && !only.Any(o => name.StartsWith(o.Trim()))) continue;
                 yield return LoadCity();
                 current = new Result { name = name, pass = true };
                 float t0 = Time.realtimeSinceStartup;
@@ -805,6 +816,12 @@ namespace Parasite.Testing
             Check(host != null, $"{prof} available");
             if (!host) yield break;
             PM.ForcePossessImmediate(host);
+            // Missions 2-3 for real: newsstand + Petrov's call, then tail her to the dead drop.
+            yield return CityLeads();
+            if (!current.pass) yield break;
+            yield return TailPetrov();
+            if (!current.pass) yield break;
+            Check(RunState.MissionIndex == 3, $"dead drop taken → mission {RunState.MissionIndex + 1} ({MissionManager.Instance.Current?.title})");
             if (route == EntryRoute.StaffTerminal) { yield return UseProp(MissionFlags.Keycard, 0.3f); Check(RunState.Has(MissionFlags.Keycard), "keycard taken"); }
             if (route == EntryRoute.ServiceTunnel) { yield return UseProp(MissionFlags.Power, 3.6f); Check(RunState.Has(MissionFlags.Power), "substation power restored"); }
             if (!current.pass) yield break;
@@ -870,7 +887,10 @@ namespace Parasite.Testing
             yield return SkipStoryUntil(() => RunState.Has(MissionFlags.Confronted), 20f);
             Check(RunState.Has(MissionFlags.Confronted) && !ended && !MissionManager.Instance.EndingStarted && GameManager.Instance.IsPlaying && Time.timeScale == 1f,
                 "meeting Vale resumes gameplay instead of ending the campaign");
-            Check(MissionManager.Instance.Missions.Count == 11 && RunState.MissionIndex == 5, "six new missions follow the original five");
+            Check(MissionManager.Instance.Missions.Count == 14 && RunState.MissionIndex == 6, "HUNTER PROTOCOL follows Vale's reveal in the fourteen-mission campaign");
+            if (!current.pass) yield break;
+            Calm();
+            yield return HunterProtocolRoute();
             if (!current.pass) yield break;
             Calm();
             yield return PostValeCampaign();
@@ -897,7 +917,7 @@ namespace Parasite.Testing
             for (float t = 0; t < 5f && !ended; t += Time.unscaledDeltaTime) yield return null;
             Check(ended && data.route == route && data.outcome == outcome && RunState.Has(MissionFlags.Escaped) &&
                 GameManager.Instance.State == GameState.Ended && Time.timeScale == 0f,
-                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → shadow uplink → black site vault → protocol epsilon → master broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
+                $"{prof} → tail → {door.doorName} → Vale reveal → hunters → signed evidence → relay sabotage → shadow uplink → black site vault → protocol epsilon → blackout → master broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
         }
 
         // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.
@@ -959,7 +979,7 @@ namespace Parasite.Testing
             var relay = operations.FirstOrDefault(o => o.flag == MissionFlags.ContainmentOffline);
             var uplink = operations.FirstOrDefault(o => o.flag == MissionFlags.EvidenceBroadcast);
             var exit = FindFirstObjectByType<CampaignExtraction>();
-            Check(coolant && dispatch && archive && relay && uplink && exit, "all three post-Vale missions have real world interactables");
+            Check(coolant && dispatch && archive && relay && uplink && exit, "all post-Vale missions have real world interactables");
             if (!current.pass) yield break;
             Check(!exit.CanInteract(ActiveContext(), out _), "cannot escape before broadcasting the evidence");
             Check(PathComplete(CityLayout.ValeOffice, MissionLayout.SignedArchive + Vector3.back) &&
@@ -982,7 +1002,7 @@ namespace Parasite.Testing
             Check(!archive.Busy && !RunState.Has(MissionFlags.SignedArchive), "archive copy interrupts when the second body leaves coolant");
             TeleportBody(coolantHost, heldPosition, 0f);
             yield return FinishCampaignOperation(archive);
-            Check(RunState.MissionIndex == 6 && GameManager.Instance.IsPlaying, "signed evidence advances to relay sabotage");
+            Check(RunState.MissionIndex == 8 && GameManager.Instance.IsPlaying, "signed evidence advances to relay sabotage");
 
             TakeProfession(Profession.Guard);
             yield return UseCampaignInteractable(dispatch, dispatch.transform.position);
@@ -992,7 +1012,7 @@ namespace Parasite.Testing
             TakeProfession(Profession.Maintenance);
             Check(PathComplete(PM.Active.Position, relay.transform.position + Vector3.back), "containment relay can be reached from the service room");
             yield return FinishCampaignOperation(relay);
-            Check(RunState.MissionIndex == 7 && SecurityCamera.All.All(c => !c || c.Disabled), "relay overload permanently disables all CCTV and starts shadow uplink mission");
+            Check(RunState.MissionIndex == 9 && SecurityCamera.All.All(c => !c || c.Disabled), "relay overload permanently disables all CCTV and starts shadow uplink mission");
             Check(FindObjectsByType<AccessDoor>(FindObjectsSortMode.None).Where(d => d.route != EntryRoute.None).All(d => d.IsOpen), "relay overload unlocks all campus escape routes");
             if (!current.pass) yield break;
 
@@ -1003,7 +1023,7 @@ namespace Parasite.Testing
             for (float t = 0; t < 20f && (!CityDirector.Instance || CityDirector.Instance == oldDirector || !CityDirector.Instance.Ready); t += Time.unscaledDeltaTime) yield return null;
             yield return new WaitForSeconds(0.5f);
             GameInput.Simulated = true; ClearSim();
-            Check(RunState.Has(MissionFlags.SignedArchive) && RunState.Has(MissionFlags.ContainmentOffline) && RunState.MissionIndex == 7,
+            Check(RunState.Has(MissionFlags.SignedArchive) && RunState.Has(MissionFlags.ContainmentOffline) && RunState.MissionIndex == 9,
                 "checkpoint reload preserves both completed post-Vale missions");
             Check(SecurityCamera.All.All(c => !c || c.Disabled) && !MissionManager.Instance.EndingStarted,
                 "checkpoint reload restores disabled CCTV and ongoing gameplay");
@@ -1014,7 +1034,7 @@ namespace Parasite.Testing
             Check(!uplink.CanInteract(ActiveContext(), out _), "journalist uplink refuses to expose a contact during pursuit");
             Calm();
             yield return FinishCampaignOperation(uplink);
-            Check(RunState.Has(MissionFlags.EvidenceBroadcast) && RunState.MissionIndex == 8, "shadow uplink broadcast complete → mission 9");
+            Check(RunState.Has(MissionFlags.EvidenceBroadcast) && RunState.MissionIndex == 10, "shadow uplink broadcast complete → black site archive");
 
             // M9: THE BLACK SITE ARCHIVE
             var subvault = CooperativeConsole.Find(MissionFlags.SubVaultDiversion);
@@ -1033,7 +1053,7 @@ namespace Parasite.Testing
             yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
             TakeProfession(Profession.Scientist);
             yield return FinishCampaignOperation(blacksite);
-            Check(RunState.Has(MissionFlags.BlackSiteArchive) && RunState.MissionIndex == 9, "black site archive downloaded → mission 10");
+            Check(RunState.Has(MissionFlags.BlackSiteArchive) && RunState.MissionIndex == 11, "black site archive downloaded → protocol epsilon");
 
             // M10: CONTAINMENT PROTOCOL EPSILON
             var backupGen = CooperativeConsole.Find(MissionFlags.BackupGenerator);
@@ -1046,7 +1066,11 @@ namespace Parasite.Testing
             yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
             TakeProfession(Profession.Guard);
             yield return FinishCampaignOperation(gridOverride);
-            Check((RunState.Has(MissionFlags.GridOverride) || RunState.Has(MissionFlags.ProtocolEpsilonBreached)) && RunState.MissionIndex == 10, "grid override completed → mission 11");
+            Check((RunState.Has(MissionFlags.GridOverride) || RunState.Has(MissionFlags.ProtocolEpsilonBreached)) && RunState.MissionIndex == 12, "grid override completed → blackout");
+
+            // M13: BLACKOUT
+            yield return BlackoutRoute();
+            if (!current.pass) yield break;
 
             // M11: THE FINAL CONVERGENCE
             var masterUplink = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.MasterBroadcast);
@@ -1078,6 +1102,597 @@ namespace Parasite.Testing
                   GameManager.Instance.State == GameState.Ending && Time.timeScale == 0f &&
                   RunState.Captures == finalCaptures && RunState.Resets == finalResets && CityDirector.Instance == finalDirector,
                   "final dialogue freezes simulation without prematurely committing escape or resetting the checkpoint");
+        }
+
+
+        // ================================================================ THE TAIL · HUNTER PROTOCOL · BLACKOUT
+        static readonly string[] CampaignOrder =
+        {
+            MissionFlags.AlleyExit, MissionFlags.FirstHost, MissionFlags.NewsRead, MissionFlags.Eavesdropped, MissionFlags.TailDone,
+            MissionFlags.DeadDrop, MissionFlags.LabEntered, MissionFlags.DataA, MissionFlags.DataB, MissionFlags.OfficeOpen,
+            MissionFlags.Confronted, MissionFlags.HunterGate, MissionFlags.HuntersDown, MissionFlags.SignedArchive,
+            MissionFlags.ContainmentOffline, MissionFlags.EvidenceBroadcast, MissionFlags.SubVaultDiversion, MissionFlags.BlackSiteArchive,
+            MissionFlags.BackupGenerator, MissionFlags.GridOverride, MissionFlags.ProtocolEpsilonBreached,
+        };
+
+        /// <summary>Focused-scenario setup only: marks earlier chapters complete so the mechanic under test is current.</summary>
+        static void AdvanceCampaignTo(string last)
+        {
+            foreach (var f in CampaignOrder)
+            {
+                if (f == MissionFlags.LabEntered) RunState.LabEntered = true;
+                MissionManager.SetFlag(f);
+                if (f == last) break;
+            }
+        }
+
+        static IEnumerator ReloadCheckpoint()
+        {
+            var oldDirector = CityDirector.Instance;
+            SceneManager.LoadScene(GameManager.CityScene);
+            yield return null;
+            for (float t = 0; t < 20f && (!CityDirector.Instance || CityDirector.Instance == oldDirector || !CityDirector.Instance.Ready); t += Time.unscaledDeltaTime) yield return null;
+            yield return new WaitForSeconds(0.5f);
+            GameInput.Simulated = true; ClearSim();
+        }
+
+        static Vector3 Ground(Vector3 p, float radius = 1.5f)
+        {
+            p.y = CityLayout.Sidewalk;
+            return NavMesh.SamplePosition(p, out var h, radius, NavMesh.AllAreas) ? h.position : p;
+        }
+
+        /// <summary>Mission 2 for real: read the newsstand, then overhear Petrov's call at the café as a host.</summary>
+        static IEnumerator CityLeads()
+        {
+            yield return UseProp(MissionFlags.NewsRead, 3f);
+            if (!current.pass) yield break;
+            TeleportBody(PM.ActiveBody, Ground(CityLayout.CafeSpot + new Vector3(2.2f, 0, 0), 2f), 0);
+            for (float t = 0; t < 14f && !RunState.Has(MissionFlags.Eavesdropped); t += Time.deltaTime) { Calm(); yield return null; }
+            Check(RunState.Has(MissionFlags.Eavesdropped), "overheard Dr. Petrov's call at the café");
+        }
+
+        /// <summary>Back away from the tail target to a comfortable distance before she sets off.</summary>
+        static IEnumerator BackOff(TailTarget tail, float distance)
+        {
+            Vector3 away = Flat(PM.Active.Position - tail.TargetPosition);
+            if (away.sqrMagnitude < 0.01f) away = Vector3.right;
+            Vector3 spot = Ground(tail.TargetPosition + away.normalized * distance, 3f);
+            bool ok = false;
+            yield return WalkTo(spot, 10f, r => ok = r, 1f);
+            GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false;
+        }
+
+        /// <summary>
+        /// Follow the tail target with simulated WASD along NavMesh paths, like a careful player: close in when she gets
+        /// past ~11 m, stop at ~7.5 m, freeze whenever she glances back or pauses, and step away if she comes too close.
+        /// </summary>
+        static IEnumerator FollowTail(Func<bool> until, float timeout, Action<bool> done, float near = 7.5f, float far = 11f)
+        {
+            var tail = TailTarget.Instance;
+            var path = new NavMeshPath();
+            Vector3[] corners = Array.Empty<Vector3>();
+            int ci = 0; float repath = 0f, stuckT = 0f;
+            bool moving = false;
+            Vector3 lastPos = PM.ActiveBody.Root.position;
+            Cam.SetYaw(0f);
+            for (float t = 0; t < timeout; t += Time.deltaTime)
+            {
+                if (until()) { GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false; done(true); yield break; }
+                Calm();
+                var body = PM.ActiveBody;
+                Vector3 pos = body.Root.position, target = tail.TargetPosition;
+                float d = Flat(target - pos).magnitude;
+                Cam.SetYaw(0f);
+                if (d < TailRules.TooClose + 1f && tail.State != TailState.DoublingBack)
+                {
+                    Vector3 back = Flat(pos - target).normalized;
+                    GameInput.SimMove = new Vector2(back.x, back.z); GameInput.SimSprint = false;
+                    moving = false;
+                    yield return null;
+                    continue;
+                }
+                bool freeze = tail.Glancing || tail.State == TailState.Preparing || tail.State == TailState.Dropping ||
+                              (tail.State == TailState.Pausing && d < far + 2f);
+                if (freeze || d < near) moving = false;
+                else if (d > far) moving = true;
+                if (!moving)
+                {
+                    GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false;
+                    stuckT = 0f; lastPos = pos;
+                    yield return null;
+                    continue;
+                }
+                repath -= Time.deltaTime;
+                if (repath <= 0f)
+                {
+                    repath = 0.5f;
+                    NavMesh.SamplePosition(pos, out var a, 3f, NavMesh.AllAreas);
+                    NavMesh.SamplePosition(target, out var b, 3f, NavMesh.AllAreas);
+                    if (NavMesh.CalculatePath(a.position, b.position, NavMesh.AllAreas, path) && path.corners.Length > 0) { corners = path.corners; ci = 0; }
+                    else { corners = new[] { target }; ci = 0; }
+                }
+                while (ci < corners.Length - 1 && Flat(corners[ci] - pos).magnitude < 0.5f) ci++;
+                Vector3 dir = Flat((ci < corners.Length ? corners[ci] : target) - pos).normalized;
+                GameInput.SimMove = new Vector2(dir.x, dir.z);
+                GameInput.SimSprint = d > 17f;
+                if ((pos - lastPos).magnitude < 0.02f) { stuckT += Time.deltaTime; if (stuckT > 0.8f) { GameInput.SimJump = true; stuckT = 0f; } }
+                else stuckT = 0f;
+                lastPos = pos;
+                yield return null;
+                GameInput.SimJump = false;
+            }
+            GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false;
+            done(false);
+        }
+
+        /// <summary>
+        /// Real aim + [E] possession of a nearby human: approach to ~2.6 m on the side away from <paramref name="avoid"/>
+        /// (an interactable whose prompt would otherwise take priority), aim at the chest and press E.
+        /// </summary>
+        static IEnumerator PossessNearby(HostCharacter target, Vector3 avoid)
+        {
+            for (int attempt = 0; attempt < 4 && target && PM.Active.Host != target; attempt++)
+            {
+                Vector3 away = Flat(target.transform.position - avoid);
+                if (away.sqrMagnitude < 0.01f) away = Flat(PM.Active.Position - target.transform.position);
+                Vector3 stand = Ground(target.transform.position + away.normalized * 2.6f, 2f);
+                bool ok = false;
+                yield return WalkTo(stand, 10f, r => ok = r, 0.5f);
+                yield return AimSettle(target.ChestPosition);
+                var tg = PM.ComputeTarget();
+                if (tg.kind != TargetKind.Possess || tg.host != target) { Note($"possess attempt {attempt}: {tg.kind} '{tg.prompt}'"); continue; }
+                yield return PressInteract();
+                for (float t = 0; t < 2f && PM.Active.Host != target; t += Time.deltaTime) yield return null;
+            }
+            Check(target && PM.Active.Host == target, $"possessed {(target ? target.DisplayName : "?")} with aim + E");
+        }
+
+        /// <summary>WalkTo through a sequence of points (e.g. the centre of a doorway first).</summary>
+        static IEnumerator WalkVia(Action<bool> done, params Vector3[] points)
+        {
+            bool ok = true;
+            foreach (var p in points)
+            {
+                bool leg = false;
+                yield return WalkTo(p, 15f, r => leg = r, 0.6f);
+                if (!leg) { ok = false; break; }
+            }
+            done(ok);
+        }
+
+        /// <summary>Chase a moving point along NavMesh paths (sprinting), holding position once within <paramref name="stop"/> m.</summary>
+        static IEnumerator Approach(Func<Vector3> target, float stop, float timeout, Func<bool> until)
+        {
+            var path = new NavMeshPath();
+            Vector3[] corners = Array.Empty<Vector3>();
+            int ci = 0; float repath = 0f, stuckT = 0f;
+            Vector3 lastPos = PM.ActiveBody.Root.position;
+            for (float t = 0; t < timeout && !until(); t += Time.deltaTime)
+            {
+                Calm();
+                Cam.SetYaw(0f);
+                Vector3 pos = PM.ActiveBody.Root.position, goal = target();
+                if (Flat(goal - pos).magnitude <= stop) { GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false; yield return null; continue; }
+                repath -= Time.deltaTime;
+                if (repath <= 0f)
+                {
+                    repath = 0.4f;
+                    NavMesh.SamplePosition(pos, out var a, 3f, NavMesh.AllAreas);
+                    NavMesh.SamplePosition(goal, out var b, 3f, NavMesh.AllAreas);
+                    if (NavMesh.CalculatePath(a.position, b.position, NavMesh.AllAreas, path) && path.corners.Length > 0) { corners = path.corners; ci = 0; }
+                    else { corners = new[] { goal }; ci = 0; }
+                }
+                while (ci < corners.Length - 1 && Flat(corners[ci] - pos).magnitude < 0.5f) ci++;
+                Vector3 dir = Flat((ci < corners.Length ? corners[ci] : goal) - pos).normalized;
+                GameInput.SimMove = new Vector2(dir.x, dir.z);
+                GameInput.SimSprint = true;
+                if ((pos - lastPos).magnitude < 0.02f) { stuckT += Time.deltaTime; if (stuckT > 0.8f) { GameInput.SimJump = true; stuckT = 0f; } }
+                else stuckT = 0f;
+                lastPos = pos;
+                yield return null;
+                GameInput.SimJump = false;
+            }
+            GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false;
+        }
+
+        /// <summary>THE TAIL for real: follow Petrov from the café to the alley, then take her envelope from the dead drop.</summary>
+        static IEnumerator TailPetrov()
+        {
+            var tail = TailTarget.Instance;
+            Check(tail && tail.Target, "Petrov's tail controller and its target exist");
+            if (!current.pass) yield break;
+            for (float t = 0; t < 2f && tail.State == TailState.Dormant; t += Time.deltaTime) yield return null;
+            Check(tail.State == TailState.Preparing && RunState.MissionIndex == 2, $"THE TAIL starts as mission 3 once both leads are in ({tail.State})");
+            if (!current.pass) yield break;
+            yield return BackOff(tail, 9f);
+            int failures = tail.Failures;
+            float peak = 0f;
+            bool done = false;
+            yield return FollowTail(() => { peak = Mathf.Max(peak, tail.Alertness); return RunState.Has(MissionFlags.TailDone); }, 150f, ok => done = ok);
+            Check(done && RunState.Has(MissionFlags.TailLeg1) && RunState.Has(MissionFlags.TailLeg2),
+                $"tailed Petrov via the bus stop and the alley mouth to her dead drop ({tail.State}, {tail.Distance:0} m)");
+            Check(tail.Failures == failures, $"Petrov never made the careful follower (peak alertness {peak:0}%)");
+            if (!current.pass) yield break;
+            var drop = PropFor(MissionFlags.DeadDrop);
+            for (float t = 0; t < 8f && Flat(tail.TargetPosition - MissionLayout.DeadDrop).magnitude < 6f; t += Time.deltaTime) { Calm(); yield return null; }
+            Check(drop && drop.Revealed && drop.IsAvailable, "her envelope appears in the junction box once she walks off");
+            if (!current.pass) yield break;
+            bool reached = false;
+            yield return WalkTo(Ground(new Vector3(-34.5f, 0f, MissionLayout.DeadDrop.z)), 25f, ok => reached = ok, 0.6f);
+            Check(reached, "walked up to the dead drop behind the dumpster");
+            yield return AimSettle(drop.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Interact && tg.interactable == (IInteractable)drop && tg.allowed, $"dead drop prompt: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+            for (float t = 0; t < 1f && !RunState.Has(MissionFlags.DeadDrop); t += Time.deltaTime) yield return null;
+            Check(RunState.Has(MissionFlags.DeadDrop), $"took Petrov's envelope (tail peak alertness {peak:0}%)");
+            Note($"tail complete: peak alertness {peak:0}%, failures {tail.Failures - failures}");
+        }
+
+        // ---------------------------------------------------------------- 14
+        static IEnumerator ScenarioTail()
+        {
+            var tail = TailTarget.Instance;
+            Check(tail && tail.Target && tail.State == TailState.Dormant, "Petrov stays at the café until the tail begins");
+            if (!current.pass) yield break;
+            var civ = NearestHost(CityLayout.CafeSpot + new Vector3(10f, 0, 0), h => h.CanBePossessed && h.Profession == Profession.Civilian && h != tail.Target);
+            Check(civ != null, "a civilian follower is available");
+            if (!civ) yield break;
+            PM.ForcePossessImmediate(civ);
+            TeleportBody(PM.ActiveBody, Ground(new Vector3(-46.2f, 0f, 7f)), 270f);
+            // Prerequisites only (mission 2 is covered by scenario 12): both leads are in.
+            MissionManager.SetFlag(MissionFlags.NewsRead);
+            MissionManager.SetFlag(MissionFlags.Eavesdropped);
+            yield return null; yield return null;
+            Check(RunState.MissionIndex == 2 && tail.State == TailState.Preparing, $"THE TAIL is mission 3; Petrov packs up first ({tail.State})");
+            bool ok = false;
+            yield return FollowTail(() => RunState.Has(MissionFlags.TailLeg1), 70f, r => ok = r);
+            Check(ok && tail.Failures == 0 && tail.ResumeWaypoint == 1, $"followed her unnoticed to the Market St bus stop checkpoint ({tail.State})");
+            if (!current.pass) yield break;
+
+            // Failure 1: wander off. Beyond 26 m for 5 s the trail goes cold and she doubles back to the bus stop.
+            yield return WalkTo(Ground(new Vector3(-40f, 0f, 2f)), 20f, r => ok = r, 1.5f);
+            GameInput.SimMove = Vector2.zero;
+            for (float t = 0; t < 30f && tail.Failures == 0; t += Time.deltaTime) { Calm(); yield return null; }
+            Check(tail.Failures == 1 && tail.LastFailure == TailFailure.Lost && tail.ResumeWaypoint == 1, $"losing her counts as a failure ({tail.LastFailure})");
+            for (float t = 0; t < 25f && tail.State != TailState.WaitingForFollower; t += Time.deltaTime) { Calm(); yield return null; }
+            Check(tail.State == TailState.WaitingForFollower && Flat(tail.TargetPosition - tail.ResumePosition).magnitude < 1.6f,
+                "she doubled back and waits at the last checkpoint (bus stop)");
+            if (!current.pass) yield break;
+
+            // Failure 2: crowd her. Staying at arm's length fills her alertness until she makes you.
+            yield return Approach(() => tail.TargetPosition, 1.4f, 30f, () => tail.Failures >= 2);
+            Check(tail.Failures == 2 && tail.LastFailure == TailFailure.Spotted, $"crowding her gets the follower spotted ({tail.LastFailure}, {tail.Failures})");
+            Check(!RunState.Has(MissionFlags.TailDone) && RunState.MissionIndex == 2, "a failed tail keeps the mission open (retry from the checkpoint)");
+            if (!current.pass) yield break;
+
+            // A checkpoint reload resumes her at the furthest checkpoint reached, waiting for the follower.
+            yield return ReloadCheckpoint();
+            tail = TailTarget.Instance;
+            for (float t = 0; t < 2f && tail && tail.State == TailState.Dormant; t += Time.deltaTime) yield return null;
+            Check(tail && tail.State == TailState.WaitingForFollower && tail.ResumeWaypoint == 1 &&
+                  Flat(tail.TargetPosition - MissionLayout.TailRoute[1]).magnitude < 2f && RunState.Has(MissionFlags.TailLeg1),
+                  $"reload: leg-1 progress persists, Petrov waits at the bus stop; 2 failures (lost, spotted) each sent her back");
+        }
+
+        // ---------------------------------------------------------------- HUNTER PROTOCOL
+        static IEnumerator HunterProtocolRoute()
+        {
+            var squad = HunterSquad.Instance;
+            for (float t = 0; t < 1f && (!squad || squad.Hunters.Count < 2); t += Time.deltaTime) yield return null;
+            Check(squad && squad.Hunters.Count == 2 && squad.Officer && squad.Hunters.All(h => squad.ScannerOf(h) && squad.ScannerOf(h).Active),
+                "Protocol Hound deployed two scanner hunters and a duty officer");
+            if (!current.pass) yield break;
+            var coolant = CooperativeConsole.Find("coolant");
+            Check(coolant && !coolant.CanInteract(ActiveContext(), out _), "the coolant co-op stays locked while Protocol Hound runs");
+            int burns = BioScanTracker.BurnCount;
+            bool ok = false;
+            // Park the other amoeba's body deep in Vale's office, out of every scanner sweep.
+            if (PM.Agents.Count == 2)
+            {
+                int me = PM.ActiveIndex;
+                yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+                if (PM.Active.Host)
+                {
+                    var parked = PM.Active.Host;
+                    Vector3 from = parked.transform.position, park = new Vector3(3.6f, CityLayout.LabFloor, 96.6f);
+                    // Line up on the office doorway's centre first, like a player would, then walk in.
+                    yield return WalkVia(r => ok = r, new Vector3(0f, CityLayout.LabFloor, 86.9f), new Vector3(0f, CityLayout.LabFloor, 90.2f), park);
+                    if (!ok) Note($"park failed: {parked.DisplayName} ({parked.State}) from {from} now {parked.transform.position}, path {PathComplete(parked.transform.position, park)}, active host {(PM.Active.Host ? PM.Active.Host.DisplayName : "none")}");
+                    Check(ok, "parked the second body in Vale's office, away from the scanner sweep");
+                }
+                yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+                Check(PM.ActiveIndex == me, "switched back to the first amoeba");
+                if (!current.pass) yield break;
+            }
+            // Time the corridor crossing: wait until Hunter Kade's sweep heads away to the far west end.
+            var kade = squad.Hunters.FirstOrDefault(h => h && h.DisplayName == "Hunter Kade");
+            bool gap = false;
+            for (float t = 0; t < 70f && kade && !gap; t += Time.deltaTime)
+            {
+                Calm();
+                gap = kade.transform.position.x < -8f && kade.Velocity.x < -0.3f;
+                yield return null;
+            }
+            Check(gap, "waited for a gap in Hunter Kade's corridor sweep");
+            Note($"hunter gap found at Kade x={(kade ? kade.transform.position.x : 0f):0.0}");
+            if (!current.pass) yield break;
+            yield return WalkVia(r => ok = r, new Vector3(0f, CityLayout.LabFloor, 90.2f), new Vector3(0f, CityLayout.LabFloor, 86.9f),
+                new Vector3(16.75f, CityLayout.LabFloor, 86.4f));
+            Check(ok && BioScanTracker.BurnCount == burns, "reached the security office doorway without a scanner burn");
+            if (!current.pass) yield break;
+            // Leave the body outside the arch and slip through as a free amoeba.
+            yield return Press(() => GameInput.SimLeave = true, () => GameInput.SimLeave = false);
+            yield return null;
+            Check(PM.Active.IsFree, "left the host outside the bio-scan arch");
+            yield return WalkTo(new Vector3(17.3f, CityLayout.LabFloor, 79.7f), 15f, r => ok = r, 0.6f);
+            Check(ok && RunState.Has(MissionFlags.HunterGate) && BioScanTracker.BurnCount == burns, "a free amoeba crosses the arch unread");
+            if (!current.pass) yield break;
+            var officer = squad.Officer;
+            yield return AimSettle(officer.ChestPosition);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable from behind: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+            for (float t = 0; t < 2f && PM.Active.Host != officer; t += Time.deltaTime) yield return null;
+            Check(PM.Active.Host == officer, "possessed Officer Duarte without crossing the arch in a body");
+            if (!current.pass) yield break;
+            Calm();
+            yield return UseProp(MissionFlags.HuntersDown, 4f);
+            yield return null;
+            Check(RunState.Has(MissionFlags.HuntersDown) && RunState.MissionIndex == 7 && squad.StoodDown &&
+                  BioScanner.All.All(sc => !sc.Active) && !ScanGate.All.Any(g => g.Live) && BioScanTracker.BurnCount == burns,
+                  "the officer's badge released Protocol Hound with no body burned → THE PART HE HID");
+        }
+
+        /// <summary>
+        /// Test housekeeping after a deliberate burn: clear suspicion and put the officer and hunters back on their posts
+        /// (a burn alerts every guard nearby), so the next step starts from a known state.
+        /// </summary>
+        static IEnumerator CalmLab(HunterSquad squad)
+        {
+            Calm();
+            yield return null;
+            Calm();
+            var posts = new[] { MissionLayout.HunterCorridorRoute[0], MissionLayout.HunterLobbyRoute[0] };
+            float[] yaws = { 270f, 0f };
+            for (int i = 0; i < squad.Hunters.Count && i < posts.Length; i++)
+            {
+                var h = squad.Hunters[i];
+                if (!h || !h.IsAwakeNpc) continue;
+                TeleportNpc(h, posts[i], yaws[i]);
+                if (h.Brain is GuardAI g) g.OrderInvestigate(posts[i]);
+            }
+            var o = squad.Officer;
+            if (o && o.IsAwakeNpc)
+            {
+                TeleportNpc(o, MissionLayout.DutyOfficer, MissionLayout.DutyOfficerYaw);
+                if (o.Brain is GuardAI g) g.OrderInvestigate(MissionLayout.DutyOfficer);
+            }
+            yield return null;
+            Calm();
+        }
+
+        // ---------------------------------------------------------------- 15
+        static IEnumerator ScenarioHunters()
+        {
+            // Prerequisites only: earlier chapters complete up to Vale's reveal (each is covered by the route scenarios).
+            AdvanceCampaignTo(MissionFlags.Confronted);
+            yield return null; yield return null;
+            var squad = HunterSquad.Instance;
+            Check(RunState.MissionIndex == 6 && squad && squad.Hunters.Count == 2 && squad.Officer, $"HUNTER PROTOCOL deployed after the reveal (mission {RunState.MissionIndex + 1})");
+            if (!current.pass) yield break;
+            var kade = squad.Hunters.First(h => h.DisplayName == "Hunter Kade");
+            var scanner = squad.ScannerOf(kade);
+            Check(scanner && scanner.Active, "Hunter Kade carries a live bio-scanner");
+            var archive = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.SignedArchive);
+            var ss = SuspicionSystem.Instance;
+            bool ok = false;
+            yield return new WaitForSeconds(0.5f);
+
+            // 1) A possessed body in the cone fills the meter and is burned: pursuit locks onto that body.
+            var sci = NearestHost(CityLayout.LabCorridor, h => h.CanBePossessed && h.Profession == Profession.Scientist && !squad.Hunters.Contains(h));
+            Check(sci != null, "a scientist host is available");
+            if (!sci) yield break;
+            PM.ForcePossessImmediate(sci);
+            Check(!archive.CanInteract(ActiveContext(), out _), "the signed archive stays locked until the hunters are down");
+            TeleportNpc(kade, Ground(new Vector3(-9f, 0f, 86f)), 90f);
+            TeleportBody(PM.ActiveBody, Ground(new Vector3(-4.6f, 0f, 86f)), 270f);
+            Calm();
+            float rose = 0f;
+            for (float t = 0; t < 6f && !BioScanTracker.IsBurned(sci); t += Time.deltaTime)
+            {
+                rose = Mathf.Max(rose, BioScanTracker.Meter(sci));
+                Vector3 front = kade.transform.position + kade.transform.forward * 3.5f;
+                if (Flat(front - sci.transform.position).magnitude > 1.5f) TeleportBody(PM.ActiveBody, Ground(front), 270f);
+                yield return null;
+            }
+            Check(BioScanTracker.IsBurned(sci) && ss.Level == SuspicionLevel.Pursuing && ss.Suspect == (Component)sci,
+                $"the scanner read rose ({rose * 100f:0}%) and burned {sci.DisplayName}: pursuit locks onto that body");
+            if (!current.pass) yield break;
+            // 2) Leaving the burned body breaks the trail.
+            yield return Press(() => GameInput.SimLeave = true, () => GameInput.SimLeave = false);
+            yield return null;
+            Check(PM.Active.IsFree && ss.Suspect != (Component)sci && BioScanTracker.IsBurned(sci), "leaving the burned body [Q] breaks the trail (it stays burned)");
+            TeleportBody(PM.ActiveBody, Ground(new Vector3(12.5f, 0f, 86.6f)), 90f);
+            yield return CalmLab(squad);
+            if (!current.pass) yield break;
+
+            // 3) The doorway arch burns any possessed body on the spot.
+            var worker = NearestHost(CityLayout.ServiceRoom, h => h.CanBePossessed && !squad.Hunters.Contains(h) && h != squad.Officer && h != sci);
+            Check(worker != null, "a second staff body is available");
+            if (!worker) yield break;
+            PM.ForcePossessImmediate(worker);
+            var gate = ScanGate.All.First();
+            TeleportBody(PM.ActiveBody, Ground(new Vector3(16.75f, 0f, 86.5f)), 180f);
+            Calm();
+            int gateBurns = gate.Burns;
+            for (float t = 0; t < 3f && !BioScanTracker.IsBurned(worker); t += Time.deltaTime)
+            {
+                Cam.SetYaw(180f);
+                GameInput.SimMove = new Vector2(0f, 1f); // camera faces south: walk into the doorway
+                yield return null;
+            }
+            GameInput.SimMove = Vector2.zero;
+            Check(BioScanTracker.IsBurned(worker) && gate.Burns == gateBurns + 1, $"the arch burned {worker.DisplayName} in the doorway");
+            Cam.SetYaw(0f);
+            yield return WalkTo(new Vector3(16.75f, CityLayout.LabFloor, 86.6f), 6f, r => ok = r, 0.6f);
+            yield return Press(() => GameInput.SimLeave = true, () => GameInput.SimLeave = false);
+            yield return null;
+            yield return CalmLab(squad);
+            if (!current.pass) yield break;
+
+            // 4) A free amoeba walks through unread.
+            int burns = BioScanTracker.BurnCount;
+            bool ok2 = false;
+            for (int i = 0; i < 4 && !ok2; i++) { yield return WalkTo(new Vector3(17.3f, CityLayout.LabFloor, 79.7f), 12f, r => ok2 = r, 0.6f); Calm(); }
+            Check(ok2 && BioScanTracker.BurnCount == burns && RunState.Has(MissionFlags.HunterGate), "a free amoeba slips through the arch unread");
+            if (!current.pass) yield break;
+
+            // 5) Possess the duty officer from behind and release the lockdown with her badge.
+            var officer = squad.Officer;
+            yield return AimSettle(officer.ChestPosition);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+            for (float t = 0; t < 2f && PM.Active.Host != officer; t += Time.deltaTime) yield return null;
+            Check(PM.Active.Host == officer, "possessed the duty officer");
+            if (!current.pass) yield break;
+            Calm();
+            yield return UseProp(MissionFlags.HuntersDown, 4f);
+            yield return null;
+            Check(RunState.MissionIndex == 7 && squad.StoodDown && BioScanner.All.All(sc => !sc.Active) && !gate.Live,
+                "breaker pulled: scanners and arch dark, hunters recalled → THE PART HE HID");
+            Check(archive.requiredFlag == MissionFlags.HuntersDown && RunState.Has(archive.requiredFlag), "the signed-archive co-op unlocks after the hunters stand down");
+            if (!current.pass) yield break;
+            yield return ReloadCheckpoint();
+            Check(RunState.MissionIndex == 7 && HunterSquad.Instance && !HunterSquad.Instance.Deployed &&
+                  !HostCharacter.All.Any(h => h && h.DisplayName.StartsWith("Hunter ")) && BioScanner.All.Count == 0,
+                  "reload: Protocol Hound stays down (no hunters redeployed); burned bodies, trail breaks and the arch verified");
+        }
+
+        // ---------------------------------------------------------------- BLACKOUT
+        static Vector3 FrontOf(BlackoutSwitch s)
+        {
+            Vector3 ip = s.InteractPoint, c = s.transform.position;
+            Vector3 outward = Flat(ip - c).normalized;
+            return Ground(new Vector3(ip.x, 0f, ip.z) + outward * 0.45f, 1.2f);
+        }
+
+        static IEnumerator CutTransformer(BlackoutSwitch s, bool teleport = true)
+        {
+            if (teleport) TeleportBody(PM.ActiveBody, FrontOf(s), 0f);
+            Calm();
+            yield return AimSettle(s.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.kind == TargetKind.Interact && tg.interactable == (IInteractable)s && tg.allowed, $"{s.switchName}: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return PressInteract();
+            for (float t = 0; t < BlackoutRules.HoldSeconds + 1.5f && !s.Cut; t += Time.deltaTime) { Calm(); yield return null; }
+            Check(s.Cut, $"{s.switchName} isolator pulled through real input");
+        }
+
+        static IEnumerator BlackoutRoute()
+        {
+            var grid = BlackoutGrid.Instance;
+            var master = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).FirstOrDefault(o => o.flag == MissionFlags.MasterBroadcast);
+            Check(grid && grid.Live && grid.switches.Length == 3 && master, "BLACKOUT: three live transformers and the master antenna exist");
+            if (!current.pass) yield break;
+            Check(!master.CanInteract(ActiveContext(), out _), "the master antenna refuses to broadcast before the blackout");
+            if (PM.Agents.Count < 2)
+            {
+                yield return Press(() => GameInput.SimSplit = true, () => GameInput.SimSplit = false);
+                Check(PM.Agents.Count == 2, "split for the body chain");
+                if (!current.pass) yield break;
+            }
+            BlackoutSwitch s1 = grid.switches[0], s2 = grid.switches[1], s3 = grid.switches[2];
+            // Amoeba A: the first body cuts P-1 and opens the reroute window.
+            TakeProfession(Profession.Civilian);
+            var bodyA = PM.Active.Host;
+            yield return CutTransformer(s1);
+            if (!current.pass) yield break;
+            float windowStart = Time.time;
+            Check(grid.WindowOpen && grid.DarkLights >= 0, $"P-1 dark: {grid.Remaining:0}s reroute window open");
+            // Run A to P-3 under the clock: the grid refuses its logged palm print, so it leaves the body there.
+            bool ok = false;
+            yield return WalkTo(FrontOf(s3), 20f, r => ok = r, 0.8f);
+            Check(ok, "body A ran to transformer P-3 under the clock");
+            yield return AimSettle(s3.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.interactable == (IInteractable)s3 && !tg.allowed, $"P-3 refuses body A's logged palm print: {tg.prompt}");
+            if (!current.pass) yield break;
+            yield return Press(() => GameInput.SimLeave = true, () => GameInput.SimLeave = false);
+            yield return null;
+            // Amoeba B: a different body cuts P-2.
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            TakeProfession(Profession.Civilian);
+            Check(PM.Active.Host && PM.Active.Host != bodyA, "amoeba B wears a second body");
+            yield return CutTransformer(s2);
+            if (!current.pass) yield break;
+            // Back to A: hop into a third body beside P-3 and finish inside the window.
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            var third = NearestHost(PM.Active.Position, h => h.CanBePossessed && h != bodyA);
+            Check(third != null, "a third body is near P-3");
+            if (!third) yield break;
+            yield return PossessNearby(third, s3.InteractPoint);
+            Check(PM.Active.Host == third, $"hopped into {third.DisplayName}");
+            yield return CutTransformer(s3);
+            float elapsed = Time.time - windowStart;
+            Note($"blackout chain finished in {elapsed:0.0}s, {grid.DarkLights} lights dark, third body {third.DisplayName}");
+            Check(RunState.Has(MissionFlags.DistrictBlackout) && elapsed < grid.windowSeconds && RunState.MissionIndex == 13 && grid.DarkLights > 0,
+                $"three different bodies blacked out the plaza in {elapsed:0.0}s ({grid.DarkLights} lights dark) → THE FINAL CONVERGENCE");
+        }
+
+        // ---------------------------------------------------------------- 16
+        static IEnumerator ScenarioBlackout()
+        {
+            // Prerequisites only: every earlier chapter complete (each is covered by the route scenarios).
+            AdvanceCampaignTo(MissionFlags.ProtocolEpsilonBreached);
+            yield return null; yield return null;
+            var grid = BlackoutGrid.Instance;
+            Check(RunState.MissionIndex == 12 && grid && grid.Live && grid.switches.Length == 3, $"BLACKOUT is mission 13 (now {RunState.MissionIndex + 1})");
+            if (!current.pass) yield break;
+            yield return new WaitForSeconds(0.3f);
+            BlackoutSwitch s1 = grid.switches[0], s2 = grid.switches[1], s3 = grid.switches[2];
+            var civA = NearestHost(s1.transform.position, h => h.CanBePossessed && h.Profession == Profession.Civilian);
+            PM.ForcePossessImmediate(civA);
+            yield return CutTransformer(s1);
+            if (!current.pass) yield break;
+            int dark = grid.DarkLights;
+            Check(grid.WindowOpen && grid.CutCount == 1, $"first cut opens the {grid.windowSeconds:0}s reroute window ({dark} street lights dark)");
+            // The same body is refused at the next isolator.
+            TeleportBody(PM.ActiveBody, FrontOf(s2), 0f);
+            yield return AimSettle(s2.InteractPoint);
+            var tg = PM.ComputeTarget();
+            Check(tg.interactable == (IInteractable)s2 && !tg.allowed && !s2.CanInteract(ActiveContext(), out _), $"palm-print lockout: {tg.prompt}");
+            if (!current.pass) yield break;
+            // Failure: let the window expire. The grid reroutes, every isolator re-arms and the lights return.
+            float wait = grid.Remaining + 2f;
+            for (float t = 0; t < wait && grid.Reroutes == 0; t += Time.deltaTime) { Calm(); yield return null; }
+            Check(grid.Reroutes == 1 && !s1.Cut && grid.CutCount == 0 && !grid.WindowOpen && grid.DarkLights == 0 && !RunState.Has(MissionFlags.DistrictBlackout),
+                "timeout: the grid rerouted, all transformers live again and the lights restored");
+            Check(s2.CanInteract(ActiveContext(), out _), "the palm-print log clears with the reroute");
+            if (!current.pass) yield break;
+            // Success: a three-body chain (split + a hop) inside one window.
+            yield return Press(() => GameInput.SimSplit = true, () => GameInput.SimSplit = false);
+            Check(PM.Agents.Count == 2, "split for the chain");
+            yield return CutTransformer(s2);
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            var civB = NearestHost(s1.transform.position, h => h.CanBePossessed && h != civA);
+            PM.ForcePossessImmediate(civB);
+            yield return CutTransformer(s1);
+            var civC = NearestHost(s3.transform.position, h => h.CanBePossessed && h != civA && h != civB);
+            PM.ForcePossessImmediate(civC);
+            yield return CutTransformer(s3);
+            Check(RunState.Has(MissionFlags.DistrictBlackout) && RunState.MissionIndex == 13 && grid.DarkLights > 0, "three bodies inside one window → district blackout");
+            if (!current.pass) yield break;
+            yield return ReloadCheckpoint();
+            grid = BlackoutGrid.Instance;
+            Check(grid && grid.switches.All(sw => sw.Cut) && !grid.Live && grid.DarkLights > 0 && RunState.MissionIndex == 13,
+                $"reload: blackout persists ({grid.DarkLights} lights dark); lockout, reroute-on-timeout and the chain verified");
         }
 
         // ---------------------------------------------------------------- 09

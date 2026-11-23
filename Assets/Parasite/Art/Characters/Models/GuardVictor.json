@@ -1,0 +1,100 @@
+{
+ "id": "GuardVictor",
+ "profession": "Guard",
+ "names": [
+  "Victor Hale"
+ ],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.7538461538461538,
+ "height": 1.775,
+ "skin": "middleage_caucasian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "grey",
+ "hairColor": [
+  0.36,
+  0.33,
+  0.3
+ ],
+ "tints": {
+  "A": [
+   0.03996535832706764,
+   0.04947596536614792,
+   0.07214892632459273
+  ],
+  "B": [
+   0.010874653768394109,
+   0.013080744165605333,
+   0.02117351073789841
+  ],
+  "C": [
+   0.013080744165605333,
+   0.018223319227034615,
+   0.04457275218822681
+  ]
+ },
+ "palettes": {
+  "A": "uniform",
+  "B": "uniform_pants",
+  "C": "uniform"
+ },
+ "lodTris": [
+  19995,
+  7010,
+  2516
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow004"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short02"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes grey"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_shirt_tie_tucked1"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_male_trousers_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_male"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_patrol_cap"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_caucasian_male.jpg",
+  "eyes": "Eyes/grey.png",
+  "clothA": "GuardVictor_Cloth_A.jpg",
+  "clothN": "GuardVictor_Cloth_N.jpg",
+  "clothM": "GuardVictor_Cloth_M.png",
+  "hairA": "GuardVictor_Hair_A.png"
+ }
+}

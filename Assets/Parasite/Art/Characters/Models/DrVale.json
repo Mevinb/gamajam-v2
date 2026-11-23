@@ -1,0 +1,76 @@
+{
+ "id": "DrVale",
+ "profession": "Scientist",
+ "names": [
+  "Dr. Vale"
+ ],
+ "unique": true,
+ "gender": 1.0,
+ "age": 0.8153846153846154,
+ "height": 1.784,
+ "skin": "old_caucasian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "grey",
+ "hairColor": [
+  0.8,
+  0.8,
+  0.81
+ ],
+ "tints": {},
+ "palettes": {},
+ "lodTris": [
+  18913,
+  6994,
+  2497
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "old_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow004"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short02"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes grey"
+  },
+  {
+   "kind": "clothes",
+   "name": "male_elegantsuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_male"
+  },
+  {
+   "kind": "clothes",
+   "name": "frankyaye_glasses_library_male"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/old_caucasian_male.jpg",
+  "eyes": "Eyes/grey.png",
+  "clothA": "DrVale_Cloth_A.jpg",
+  "clothN": "DrVale_Cloth_N.jpg",
+  "clothM": "DrVale_Cloth_M.png",
+  "hairA": "DrVale_Hair_A.png"
+ }
+}

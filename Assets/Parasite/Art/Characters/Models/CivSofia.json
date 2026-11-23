@@ -1,0 +1,84 @@
+{
+ "id": "CivSofia",
+ "profession": "Civilian",
+ "names": [],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.47767857142857145,
+ "height": 1.624,
+ "skin": "young_caucasian_female",
+ "skinTint": [
+  0.95,
+  0.87,
+  0.8
+ ],
+ "eyes": "brownlight",
+ "hairColor": [
+  0.12,
+  0.075,
+  0.05
+ ],
+ "tints": {
+  "A": [
+   0.08848537504673004,
+   0.15352128446102142,
+   0.4087246060371399
+  ],
+  "B": [
+   0.09035947918891907,
+   0.09035947918891907,
+   0.09035947918891907
+  ]
+ },
+ "palettes": {
+  "A": "top",
+  "B": "trousers"
+ },
+ "lodTris": [
+  18095,
+  6997,
+  2499
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_caucasian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow009"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "long01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brownlight"
+  },
+  {
+   "kind": "clothes",
+   "name": "female_sportsuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "punkduck_running_shoes_01"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_caucasian_female.jpg",
+  "eyes": "Eyes/brownlight.png",
+  "clothA": "CivSofia_Cloth_A.jpg",
+  "clothN": "CivSofia_Cloth_N.jpg",
+  "clothM": "CivSofia_Cloth_M.png",
+  "hairA": "CivSofia_Hair_A.png"
+ }
+}

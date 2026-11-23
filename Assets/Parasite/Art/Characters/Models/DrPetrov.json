@@ -1,0 +1,90 @@
+{
+ "id": "DrPetrov",
+ "profession": "Scientist",
+ "names": [
+  "Dr. Hana Petrov"
+ ],
+ "unique": true,
+ "gender": 0.0,
+ "age": 0.6,
+ "height": 1.636,
+ "skin": "middleage_caucasian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "green",
+ "hairColor": [
+  0.3,
+  0.13,
+  0.07
+ ],
+ "tints": {
+  "A": [
+   1.2919390731353129,
+   1.225199164970603,
+   1.0978678888278868
+  ],
+  "B": [
+   0.03996535832706764,
+   0.03996535832706764,
+   0.05468018935743871
+  ]
+ },
+ "palettes": {
+  "A": "shirt",
+  "B": "trousers"
+ },
+ "lodTris": [
+  19996,
+  7045,
+  2562
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_caucasian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow007"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes04"
+  },
+  {
+   "kind": "hair",
+   "name": "rehmanpolanski_hair_bun_brown"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes green"
+  },
+  {
+   "kind": "clothes",
+   "name": "punkduck_lace_up_blouse"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_female_trousers_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_caucasian_female.jpg",
+  "eyes": "Eyes/green.png",
+  "clothA": "DrPetrov_Cloth_A.jpg",
+  "clothN": "DrPetrov_Cloth_N.jpg",
+  "clothM": "DrPetrov_Cloth_M.png",
+  "hairA": "DrPetrov_Hair_A.png"
+ }
+}

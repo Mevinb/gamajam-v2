@@ -22,3 +22,5 @@
 .idea/
 crashlytics-buildid.txt
 /Builds/*.zip
+__pycache__/
+*.pyc

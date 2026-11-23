@@ -22,6 +22,7 @@ namespace Parasite.EditorTools
             var soft = BakeTexture(FxTextures.SoftDot(), "SoftDot");
             var ring = BakeTexture(FxTextures.Ring(), "Ring");
             var streak = BakeTexture(FxTextures.Streak(), "Streak");
+            var splat = BakeTexture(FxTextures.Splat(), "Splat");
 
             var amoebaShader = LoadShader("Assets/Parasite/Shaders/Amoeba.shader", FxMaterials.AmoebaShader);
             var nucleusShader = LoadShader("Assets/Parasite/Shaders/AmoebaNucleus.shader", FxMaterials.NucleusShader);
@@ -33,12 +34,29 @@ namespace Parasite.EditorTools
             if (amoebaShader)
             {
                 var m = Ensure("AmoebaMaterial", amoebaShader);
-                m.renderQueue = 3000;
+                m.renderQueue = 3050;   // after the other transparents: the jelly refracts the scene behind it
+                m.SetFloat("_Alpha", 0.34f);
+                m.SetFloat("_Emission", 0.42f);
+                m.SetFloat("_Refraction", 0.07f);
+                m.SetFloat("_RefractWeight", 0.85f);
+                m.SetColor("_AbsorbColor", new Color(0.16f, 0.7f, 0.22f, 1f));
+                m.SetColor("_BaseColor", new Color(0.26f, 0.9f, 0.32f, 1f));
+                m.SetColor("_DeepColor", new Color(0.015f, 0.16f, 0.05f, 1f));
+                m.SetFloat("_Gloss", 96f);
+                m.SetFloat("_PodAmount", 0.09f);
                 EditorUtility.SetDirty(m);
             }
             if (nucleusShader)
             {
                 var m = Ensure("AmoebaNucleus", nucleusShader);
+                EditorUtility.SetDirty(m);
+            }
+            var water = LoadShader("Assets/Parasite/Shaders/GroundWater.shader", FxMaterials.SlimeShader);
+            if (water)
+            {
+                // glossy, faintly glowing slime decals left by the amoeba (vertex alpha fades them)
+                var m = Ensure("SlimeTrail", water);
+                FxMaterials.ConfigureSlime(m, splat);
                 EditorUtility.SetDirty(m);
             }
             if (particleShader)

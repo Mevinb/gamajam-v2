@@ -1,0 +1,245 @@
+[
+ {
+  "name": "Idle_Neutral",
+  "frames": 75,
+  "seconds": 2.5,
+  "loop": true,
+  "source": "UAL1 Idle_Loop"
+ },
+ {
+  "name": "Walk",
+  "frames": 26,
+  "seconds": 0.8667,
+  "loop": true,
+  "source": "CMU 07_12 (brisk walk), retargeted, in-place, foot-locked",
+  "speed": 2.0236
+ },
+ {
+  "name": "Run",
+  "frames": 28,
+  "seconds": 0.9333,
+  "loop": true,
+  "source": "UAL1 Jog_Fwd_Loop (in-place; speed from the root-motion version)",
+  "speed": 5.3571
+ },
+ {
+  "name": "Jump_Takeoff",
+  "frames": 38,
+  "seconds": 1.2667,
+  "loop": false,
+  "source": "UAL1 Jump_Start f3-41"
+ },
+ {
+  "name": "Fall_Loop",
+  "frames": 75,
+  "seconds": 2.5,
+  "loop": true,
+  "source": "UAL1 Jump_Loop"
+ },
+ {
+  "name": "Land",
+  "frames": 33,
+  "seconds": 1.1,
+  "loop": false,
+  "source": "UAL1 Jump_Land f1-34, crouch depth softened 35%"
+ },
+ {
+  "name": "Collapse",
+  "frames": 72,
+  "seconds": 2.4,
+  "loop": false,
+  "source": "UAL1 Death01"
+ },
+ {
+  "name": "Unconscious_Loop",
+  "frames": 120,
+  "seconds": 4.0,
+  "loop": true,
+  "source": "UAL1 Death01 final pose + authored breathing"
+ },
+ {
+  "name": "GetUp",
+  "frames": 64,
+  "seconds": 2.1333,
+  "loop": false,
+  "source": "Death01 final pose -> UAL2 LayToIdle (blended, re-anchored)"
+ },
+ {
+  "name": "Sit_Enter",
+  "frames": 39,
+  "seconds": 1.3,
+  "loop": false,
+  "source": "UAL1 Sitting_Enter"
+ },
+ {
+  "name": "Sit_Exit",
+  "frames": 31,
+  "seconds": 1.0333,
+  "loop": false,
+  "source": "UAL1 Sitting_Exit"
+ },
+ {
+  "name": "Sit_Loop",
+  "frames": 240,
+  "seconds": 8.0,
+  "loop": true,
+  "source": "UAL1 Sitting_Idle_Loop pose + authored calm breathing/hands in lap"
+ },
+ {
+  "name": "Talk_Loop",
+  "frames": 88,
+  "seconds": 2.9333,
+  "loop": true,
+  "source": "UAL1 Idle_Talking_Loop"
+ },
+ {
+  "name": "Idle_FoldArms",
+  "frames": 75,
+  "seconds": 2.5,
+  "loop": true,
+  "source": "UAL2 Idle_FoldArms_Loop"
+ },
+ {
+  "name": "Idle_Shift",
+  "frames": 210,
+  "seconds": 7.0,
+  "loop": true,
+  "source": "authored: slow weight shift between legs (UAL Idle_Loop upper-body base)"
+ },
+ {
+  "name": "Idle_LookAround",
+  "frames": 270,
+  "seconds": 9.0,
+  "loop": true,
+  "source": "authored: idle glancing around and checking a wristwatch"
+ },
+ {
+  "name": "Idle_Guard",
+  "frames": 150,
+  "seconds": 5.0,
+  "loop": true,
+  "source": "authored: parade rest (UAL Idle_Loop upper-body base)"
+ },
+ {
+  "name": "Idle_GuardBelt",
+  "frames": 180,
+  "seconds": 6.0,
+  "loop": true,
+  "source": "authored: guard, thumbs hooked in the belt, scanning"
+ },
+ {
+  "name": "Idle_Clipboard",
+  "frames": 210,
+  "seconds": 7.0,
+  "loop": true,
+  "source": "authored: scientist reading/writing on a held clipboard"
+ },
+ {
+  "name": "Idle_HandsOnHips",
+  "frames": 150,
+  "seconds": 5.0,
+  "loop": true,
+  "source": "authored: hands on hips (maintenance), UAL Idle_Loop base"
+ },
+ {
+  "name": "Idle_Possessed",
+  "frames": 180,
+  "seconds": 6.0,
+  "loop": true,
+  "source": "authored: uncanny stiff idle with twitches (possessed host)"
+ },
+ {
+  "name": "Walk_Possessed",
+  "frames": 26,
+  "seconds": 0.8667,
+  "loop": true,
+  "source": "Walk + authored stiff arms, head tilt and right-step lurch (same timing/speed as Walk)",
+  "speed": 2.0236
+ },
+ {
+  "name": "Run_Possessed",
+  "frames": 28,
+  "seconds": 0.9333,
+  "loop": true,
+  "source": "Run + authored damped arm swing and head tilt (same timing/speed as Run)",
+  "speed": 5.3571
+ },
+ {
+  "name": "Captured_Loop",
+  "frames": 180,
+  "seconds": 6.0,
+  "loop": true,
+  "source": "authored: double kneel, hands behind head, nervous breathing"
+ },
+ {
+  "name": "Captured_Enter",
+  "frames": 42,
+  "seconds": 1.4,
+  "loop": false,
+  "source": "authored: raise hands behind head and drop to both knees"
+ },
+ {
+  "name": "Captured_Exit",
+  "frames": 42,
+  "seconds": 1.4,
+  "loop": false,
+  "source": "Captured_Enter reversed"
+ },
+ {
+  "name": "Captured_Collapse",
+  "frames": 60,
+  "seconds": 2.0,
+  "loop": false,
+  "source": "authored: kneel -> fall back into UAL1 Death01 (from its falling phase)",
+  "death01_from_frame": 25
+ },
+ {
+  "name": "Console_Loop",
+  "frames": 180,
+  "seconds": 6.0,
+  "loop": true,
+  "source": "authored: standing at a terminal, typing and using a mouse"
+ },
+ {
+  "name": "Panic_Loop",
+  "frames": 90,
+  "seconds": 3.0,
+  "loop": true,
+  "source": "authored: cowering crouch, arms shielding the head, trembling, peeking"
+ },
+ {
+  "name": "Panic_Flee_Loop",
+  "frames": 56,
+  "seconds": 1.8667,
+  "loop": true,
+  "source": "authored upper body over Run: arms up by the head, glancing back (used on an upper-body mask)"
+ },
+ {
+  "name": "Alert_Loop",
+  "frames": 180,
+  "seconds": 6.0,
+  "loop": true,
+  "source": "authored: guard investigating, scanning left/right, hand at the holster"
+ },
+ {
+  "name": "Point_Loop",
+  "frames": 90,
+  "seconds": 3.0,
+  "loop": true,
+  "source": "authored: point forward with the right arm"
+ },
+ {
+  "name": "Gesture_Explain",
+  "frames": 66,
+  "seconds": 2.2,
+  "loop": false,
+  "source": "authored: two-handed explaining gesture (palms up, open outward, beat)"
+ },
+ {
+  "name": "Gesture_Shrug",
+  "frames": 54,
+  "seconds": 1.8,
+  "loop": false,
+  "source": "authored: shrug (shoulders up, palms up, head tilt)"
+ }
+]

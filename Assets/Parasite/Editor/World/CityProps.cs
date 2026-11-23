@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static Parasite.EditorTools.CityAssets;
 
@@ -369,9 +370,81 @@ namespace Parasite.EditorTools
             }
         }
 
+        // ================================================================== lamps: registry + light cones
+        /// <summary>Every lamp placed this build: head position, outward direction, pole (true) or wall lamp.
+        /// CityBuilder turns these into (culled) real lights; CityProps adds the fake volumetric cones.</summary>
+        internal struct LampSite { public Vector3 head; public Vector3 outward; public bool pole; public Transform root; }
+        public static readonly List<LampSite> Lamps = new();
+        public static void ResetLamps() => Lamps.Clear();
+
+        static Mesh coneMesh;
+        /// <summary>Open unit cone: apex ring radius 0.08 at y = 0, radius 1 at y = -1; uv.y 0 (lamp) .. 1 (ground).</summary>
+        static Mesh ConeMesh()
+        {
+            if (coneMesh) return coneMesh;
+            const int seg = 20, rings = 5;
+            var v = new List<Vector3>(); var n = new List<Vector3>(); var uv = new List<Vector2>(); var t = new List<int>();
+            for (int r = 0; r <= rings; r++)
+            {
+                float f = r / (float)rings, rad = Mathf.Lerp(0.08f, 1f, f);
+                for (int i = 0; i <= seg; i++)
+                {
+                    float a = i / (float)seg * Mathf.PI * 2f;
+                    var d = new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a));
+                    v.Add(d * rad + Vector3.down * f);
+                    n.Add((d + Vector3.up * 0.92f).normalized);
+                    uv.Add(new Vector2(i / (float)seg, f));
+                }
+            }
+            for (int r = 0; r < rings; r++)
+                for (int i = 0; i < seg; i++)
+                {
+                    int a0 = r * (seg + 1) + i, a1 = a0 + 1, b0 = a0 + seg + 1, b1 = b0 + 1;
+                    t.AddRange(new[] { a0, b0, a1, a1, b0, b1 });
+                }
+            coneMesh = new Mesh { name = "LampCone" };
+            coneMesh.SetVertices(v); coneMesh.SetNormals(n); coneMesh.SetUVs(0, uv); coneMesh.SetTriangles(t, 0);
+            return coneMesh;
+        }
+
+        /// <summary>Fake volumetric light cone hanging from <paramref name="head"/> down to the ground at <paramref name="groundY"/>.</summary>
+        public static void LightCone(WorldKit k, Vector3 head, float groundY, float groundRadius, string mat = "LightCone")
+        {
+            float h = Mathf.Max(0.5f, head.y - groundY);
+            k.Mesh(M(mat), ConeMesh(), Matrix4x4.TRS(head, Quaternion.identity, new Vector3(groundRadius, h, groundRadius)));
+        }
+
+        /// <summary>String of festoon bulbs hanging between two points (catenary-ish sag). Bulbs are emissive (bloom),
+        /// a few points along the string are registered as small lamp lights.</summary>
+        public static void Festoon(WorldKit k, Vector3 a, Vector3 b, float sag, float spacing = 0.65f, int lights = 1)
+        {
+            float len = Vector3.Distance(a, b);
+            int n = Mathf.Max(2, Mathf.RoundToInt(len / spacing));
+            Vector3 P(float t) => Vector3.Lerp(a, b, t) + Vector3.down * (sag * 4f * t * (1f - t));
+            var wire = M("Rail"); var bulb = Has("FestoonBulb") ? M("FestoonBulb") : M("LampHead");
+            var prev = P(0f);
+            for (int i = 1; i <= n; i++)
+            {
+                var cur = P(i / (float)n);
+                var d = cur - prev;
+                k.Box(wire, (prev + cur) * 0.5f, new Vector3(0.018f, 0.018f, d.magnitude + 0.01f), Quaternion.LookRotation(d.normalized, Vector3.up));
+                var bp = cur + Vector3.down * 0.07f;
+                k.Box(bulb, bp, new Vector3(0.055f, 0.08f, 0.055f), Quaternion.Euler(0f, 45f, 0f));
+                prev = cur;
+            }
+            for (int i = 0; i < lights; i++)
+            {
+                float t = (i + 1f) / (lights + 1f);
+                Lamps.Add(new LampSite { head = P(t) + Vector3.down * 0.25f, outward = Vector3.down, pole = false, root = k.Root });
+            }
+        }
+
         // ================================================================== street furniture
         public static void Lamp(WorldKit k, Vector3 p, Vector3 toRoad)
         {
+            var head = p + Vector3.up * 4.72f;
+            Lamps.Add(new LampSite { head = head, outward = toRoad, pole = true, root = k.Root });
+            if (Has("LightCone")) LightCone(k, head + Vector3.down * 0.25f, p.y, 2.3f);
             float yaw = Mathf.Atan2(toRoad.x, toRoad.z) * Mathf.Rad2Deg;
             var pm = Prop("street_lamp_01");
             if (pm != null)
@@ -384,9 +457,9 @@ namespace Parasite.EditorTools
                 var md = M("MetalDark");
                 k.Box(md, p + Vector3.up * 0.25f, new Vector3(0.36f, 0.5f, 0.36f));
                 k.Cylinder(md, p, 0.08f, 6.1f);
-                var head = p + Vector3.up * 5.98f + toRoad * 1.55f;
-                k.Box(md, head, new Vector3(0.55f, 0.14f, 0.55f));
-                k.Box(M("LampHead"), head + Vector3.down * 0.09f, new Vector3(0.44f, 0.04f, 0.44f));
+                var lantern = p + Vector3.up * 5.98f + toRoad * 1.55f;
+                k.Box(md, lantern, new Vector3(0.55f, 0.14f, 0.55f));
+                k.Box(M("LampHead"), lantern + Vector3.down * 0.09f, new Vector3(0.44f, 0.04f, 0.44f));
             }
             k.Solid(p + Vector3.up * 1.5f, new Vector3(0.32f, 3f, 0.32f));
         }
@@ -399,9 +472,16 @@ namespace Parasite.EditorTools
                 float s = 0.9f / Mathf.Max(0.2f, pm.Bounds.size.y);
                 k.Prop("street_lamp_02", p + Vector3.down * 0.45f, yaw + 180f, Mathf.Clamp(s, 0.2f, 1.5f));
             }
+            var outward = -(Quaternion.Euler(0f, yaw, 0f) * Vector3.forward);
+            var head = p + outward * 0.32f + Vector3.down * 0.12f;
+            Lamps.Add(new LampSite { head = head, outward = outward, pole = false, root = k.Root });
+            if (Has("LightCone")) LightCone(k, head + Vector3.down * 0.1f, Sidewalk, 1.25f);
             else k.Box(M("LampHead"), p, new Vector3(0.2f, 0.25f, 0.2f));
         }
 
+        /// <summary>Street tree: steel-grated pit + a wind-animated Blender tree (3 species, LOD0..2, see
+        /// Tools/blender/environment/trees.py). The old card tree's random draws are replayed exactly (without geometry)
+        /// so every later ShopSeed-independent decoration keeps its place; species/yaw/size come from a position hash.</summary>
         public static void Tree(WorldKit k, Vector3 p, float scale = 1f)
         {
             // tree pit: steel grate + soil + low weeds
@@ -414,33 +494,60 @@ namespace Parasite.EditorTools
             if (Prop("shrub_04") != null && k.Chance(0.5f)) k.Prop("shrub_04", p + new Vector3(k.Rand(-0.4f, 0.4f), 0f, k.Rand(-0.4f, 0.4f)), k.Rand(0f, 360f), k.Rand(0.6f, 0.9f));
 
             float hgt = k.Rand(3.0f, 3.6f) * scale;
-            var trunk = M("Trunk");
-            k.Cylinder(trunk, p, 0.15f * scale, hgt);
-            k.Cylinder(trunk, p, 0.2f * scale, 0.35f);
             bool autumn = k.Chance(0.18f);
-            var leaves = M(autumn ? "LeavesAutumn" : "LeavesGreen");
             var crown = p + Vector3.up * (hgt + 1.6f * scale);
             float rx = k.Rand(2.0f, 2.6f) * scale, ry = k.Rand(1.9f, 2.4f) * scale;
-            // main limbs
-            for (int i = 0; i < 4; i++)
-            {
-                float a = i * 90f + k.Rand(-25f, 25f);
-                var d = Quaternion.Euler(0f, a, 0f) * new Vector3(0.75f, 1f, 0f);
-                k.Pipe(trunk, p + Vector3.up * (hgt - 0.3f), p + Vector3.up * (hgt - 0.3f) + d.normalized * rx * 0.85f, 0.07f * scale);
-            }
-            // leaf cluster cards: random orientation inside an ellipsoid, normals pointing out from the crown centre
+            for (int i = 0; i < 4; i++) k.Rand(-25f, 25f);                       // (old main limbs)
             int cards = (int)(44 * scale * scale);
-            for (int i = 0; i < cards; i++)
+            for (int i = 0; i < cards; i++)                                       // (old leaf cards)
             {
                 var dir = new Vector3(k.Rand(-1f, 1f), k.Rand(-1f, 1f), k.Rand(-1f, 1f)); if (dir.sqrMagnitude < 0.01f) dir = Vector3.up; dir.Normalize();
                 float rr = Mathf.Pow((float)k.Rng.NextDouble(), 0.4f);
                 var pos = crown + new Vector3(dir.x * rx, dir.y * ry * 0.85f, dir.z * rx) * rr * 0.82f;
-                if (pos.y < p.y + hgt * 0.8f) pos.y = p.y + hgt * 0.8f + k.Rand(0f, 0.6f);
-                float size = k.Rand(1.3f, 1.9f) * scale;
-                var q = Quaternion.Euler(k.Rand(-70f, 70f), k.Rand(0f, 360f), k.Rand(0f, 360f));
-                LeafCard(k, leaves, pos, q * Vector3.right * (size * 0.5f), q * Vector3.up * (size * 0.5f), crown, k.Rand(0.6f, 1f));
+                if (pos.y < p.y + hgt * 0.8f) k.Rand(0f, 0.6f);
+                k.Rand(1.3f, 1.9f); k.Rand(-70f, 70f); k.Rand(0f, 360f); k.Rand(0f, 360f); k.Rand(0.6f, 1f);
             }
+
+            uint h = PosHash(p);
+            float h0 = (h & 0xffff) / 65535f, h1 = ((h >> 16) & 0xffff) / 65535f;
+            string species = autumn ? "Maple" : h0 < 0.58f ? "Plane" : "Linden";
+            string leaves = species == "Linden" && h1 > 0.78f ? "Yellow" : null;
+            if (Trees.TryGetValue(species, out var model))
+            {
+                float s = scale * (0.66f + 0.14f * h1) * (species == "Linden" ? 0.95f : 1f);   // ~7-8 m street trees
+                k.Instance(model, "Trees", p, h0 * 360f * 7.31f % 360f, s, m => TreeMaterial(m, leaves), new[] { 0.32f, 0.11f, 0.018f });
+            }
+            else
+            {
+                var trunk = M("Trunk");
+                k.Cylinder(trunk, p, 0.15f * scale, hgt);
+                k.Sphere(M(autumn ? "FoliageAutumn" : "Foliage"), crown, new Vector3(rx, ry, rx) * 1.6f);
+            }
+            // a few grass tufts in the pit soil (hash placed: no shared RNG)
+            if (Has("GrassCard"))
+                for (int i = 0; i < 3; i++)
+                {
+                    float a = (h0 * 6.283f) + i * 2.1f, r = 0.32f + 0.18f * ((h >> (i * 5)) & 7) / 7f;
+                    var c = p + new Vector3(Mathf.Cos(a) * r, 0.17f, Mathf.Sin(a) * r);
+                    float sz = 0.34f + 0.06f * i;
+                    for (int j = 0; j < 2; j++)
+                    {
+                        var q = Quaternion.Euler(0f, a * 57.3f + j * 90f, 0f);
+                        k.Quad(M("GrassCard"), c, q * Vector3.right * sz * 0.5f, Vector3.up * sz * 0.5f, new Vector2(0, 0), new Vector2(1, 1));
+                        k.Quad(M("GrassCard"), c, q * Vector3.left * sz * 0.5f, Vector3.up * sz * 0.5f, new Vector2(1, 0), new Vector2(0, 1));
+                    }
+                }
             k.Solid(p + Vector3.up * 1.4f, new Vector3(0.42f, 2.8f, 0.42f));
+        }
+
+        static uint PosHash(Vector3 p)
+        {
+            unchecked
+            {
+                uint h = (uint)Mathf.RoundToInt(p.x * 10f) * 73856093u ^ (uint)Mathf.RoundToInt(p.z * 10f) * 19349663u ^ (uint)Mathf.RoundToInt(p.y * 10f) * 83492791u;
+                h ^= h >> 13; h *= 0x5bd1e995u; h ^= h >> 15;
+                return h;
+            }
         }
 
         static void LeafCard(WorldKit k, Material m, Vector3 c, Vector3 right, Vector3 up, Vector3 crown, float bend)

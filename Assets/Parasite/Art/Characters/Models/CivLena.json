@@ -1,0 +1,90 @@
+{
+ "id": "CivLena",
+ "profession": "Civilian",
+ "names": [
+  "Lena Fischer"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5461538461538462,
+ "height": 1.645,
+ "skin": "young_caucasian_female2",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "bluegreen",
+ "hairColor": [
+  0.55,
+  0.42,
+  0.25
+ ],
+ "tints": {
+  "A": [
+   0.1937076799105882,
+   0.35635305327543293,
+   0.1720538665355803
+  ],
+  "B": [
+   0.09083428978919983,
+   0.10922324657440186,
+   0.19199448823928833
+  ]
+ },
+ "palettes": {
+  "A": "hoodie",
+  "B": "denim"
+ },
+ "lodTris": [
+  19998,
+  6995,
+  2498
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_caucasian_female2"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow008"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes03"
+  },
+  {
+   "kind": "hair",
+   "name": "ponytail01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes bluegreen"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_hooded_sweat_jacket1"
+  },
+  {
+   "kind": "clothes",
+   "name": "punkduck_female_tight_jeans"
+  },
+  {
+   "kind": "clothes",
+   "name": "punkduck_comfortable_sneakers"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_caucasian_female2.jpg",
+  "eyes": "Eyes/bluegreen.png",
+  "clothA": "CivLena_Cloth_A.jpg",
+  "clothN": "CivLena_Cloth_N.jpg",
+  "clothM": "CivLena_Cloth_M.png",
+  "hairA": "CivLena_Hair_A.png"
+ }
+}

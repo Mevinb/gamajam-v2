@@ -73,6 +73,7 @@ namespace Parasite.Characters
             CameraTarget.localPosition = new Vector3(0, 1.55f, 0);
 
             Rig = gameObject.AddComponent<HumanoidRig>();
+            Rig.Identity = displayName; // named NPCs get their own authored variant
             Rig.Build(profession, seed, isVale);
             Glow = gameObject.AddComponent<HostGlow>();
             Glow.Init(Rig.UniqueMaterials);

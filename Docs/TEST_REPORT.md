@@ -5356,3 +5356,35 @@ This run does not claim native OS/physical keyboard validation, a new thirteen-s
 or a separate live possession-flight test. Request retention through transit is source-reviewed; the matrix directly exercises reset
 and title-to-city transitions. The earlier v0.2.0 full campaign results remain historical. An already-running old process must be
 closed and relaunched; verify v0.2.2 on the title screen before trying Ctrl+M. No code was committed or pushed.
+
+
+## Major Upgrade verification for version 0.3.0 (14-Mission Campaign, Skinned 3D Characters, Authored Animation, Audio & Visuals)
+
+This section documents the comprehensive verification of the major 0.3.0 upgrade.
+
+### Key Additions & Systems Delivered
+1. **14-Mission Extended Campaign:** Expanded from 8 to 14 missions, introducing:
+   - Mission 3 (THE TAIL): dynamic stalking mechanic following Dr. Hana Petrov with distance bands and glance timing.
+   - Mission 7 (HUNTER PROTOCOL): Protocol Hound bio-scanners, detection cones, and amoeba-only scanner archway bypass.
+   - Missions 10-14 (THE SHADOW UPLINK, THE BLACK SITE ARCHIVE, CONTAINMENT PROTOCOL EPSILON, BLACKOUT, THE FINAL CONVERGENCE): subterranean black site infiltration, dual-host console operations, 3-stage district blackout grid puzzle, and final plaza broadcast escape.
+2. **Skinned 3D Characters:** 20+ distinct human character models (Civilians, Guards, Scientists, Maintenance, Dr. Petrov, Dr. Vale, Lakeside Girl) generated via MPFB / MakeHuman Community replacing legacy blocky rigs, featuring procedural cloth palettes and dynamic skin/eye glow shaders.
+3. **Authored Locomotion & Animation Pipeline:** Full humanoid Animator Controller (`HumanLocomotion.controller`) driving locomotion blends, state transitions (Normal, Possessed, Unconscious, Captured), and authored poses (Sit, Talk, Console, Panic, Alert, Point) using retargeted CMU mocap and Quaternius Universal Animation Libraries.
+4. **Complete Audio Overhaul:** Full voice acting for story dialogue and pedestrian reactions, synthesized dynamic ambient city soundscapes, adaptive music tracks, and high-fidelity sound effects with persistent preferences.
+5. **Next-Gen Visuals & Shaders:** 4K Belfast Sunset HDR skybox, procedural trees with 3 bark materials and leaf-cluster card atlases, URP custom shaders (Atmosphere, Foliage, Facade, Light Cones, Slime Trail), screen-space wet ground reflections, and bloom/lens dirt effects.
+6. **Engine & Tooling Fixes:** Corrected `HumanoidRig` bone transform updating during off-screen evaluation / batchmode test runs via explicit `AlwaysAnimate` culling mode, and stabilized `PhotoTool` RenderTexture persistence across scene switches.
+
+### Verification Matrix
+
+| Verification suite | Observed result | Evidence |
+|---|---|---|
+| Roslyn CPU compile | OK, 99 runtime and 18 editor files pass with zero errors | `Tools/compile_check.sh all` |
+| EditMode Rules Suite | 46/46 passed, 0 failures (TailRules, BioScanRules, BlackoutRules, AccessRules, AudioPreferences) | `Logs/editmode-results.xml` |
+| SettingsUI PlayMode | 6/6 passed, 0 failures (Lakeside seated pose, settings persistence, journal scroll, explicit endings) | `Logs/ui-test-results.xml` |
+| Opening Cinematic PlayMode | 2/2 passed, 0 failures (all 11 shots, unscaled timeline, keyboard skip bindings, clean handoff) | `Logs/audio-playmode-focus-results.xml` |
+| Campaign Acceptance Scenarios | 16/16 passed, 0 failures across all 14 missions, including Route A (Main Gate), Route B (Staff Terminal), Route C (Service Tunnel), The Tail, Hunter Protocol, and Blackout | `Logs/core-playmode-results.xml`, `Logs/routes-playmode-results.xml`, `Logs/routes-bc-results.xml` |
+| PhotoTool Environment Captures | 18/18 batch captures generated cleanly with zero missing scripts or exceptions | `Logs/photos.log`, `Logs/photos/*.png` |
+| Character Photo Lineup | All character lineup and individual portrait captures generated cleanly | `Logs/chars-photos2.log`, `Logs/characters/*.png` |
+| Animation State Verification | 29/29 expected animation states and transitions verified on reference skeleton | `Logs/animation/checks.txt` |
+| Linux Standalone Rebuild | Succeeded, 933 MB player, zero compilation errors | `Logs/build-linux.log` |
+| Standalone Player Shortcut Test | 14/14 passed, process exit 0 (persistent Ctrl+M from title, opening, pause, dialogue, and gameplay) | `Logs/upgrade-shortcut.txt` |
+

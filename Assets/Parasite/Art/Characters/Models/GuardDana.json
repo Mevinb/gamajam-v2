@@ -1,0 +1,90 @@
+{
+ "id": "GuardDana",
+ "profession": "Guard",
+ "names": [
+  "Dana Kowalski"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5692307692307692,
+ "height": 1.654,
+ "skin": "young_caucasian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "blue",
+ "hairColor": [
+  0.78,
+  0.64,
+  0.42
+ ],
+ "tints": {
+  "A": [
+   0.018223319227034615,
+   0.027864006037506325,
+   0.08538945579840525
+  ],
+  "B": [
+   0.010874653768394109,
+   0.013080744165605333,
+   0.02117351073789841
+  ]
+ },
+ "palettes": {
+  "A": "uniform",
+  "B": "uniform_pants"
+ },
+ "lodTris": [
+  19997,
+  7012,
+  2516
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_caucasian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow008"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "rehmanpolanski_hair_bun_brown"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes blue"
+  },
+  {
+   "kind": "clothes",
+   "name": "namuhekam_male_polo_shirt"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_female_trousers_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_caucasian_female.jpg",
+  "eyes": "Eyes/blue.png",
+  "clothA": "GuardDana_Cloth_A.jpg",
+  "clothN": "GuardDana_Cloth_N.jpg",
+  "clothM": "GuardDana_Cloth_M.png",
+  "hairA": "GuardDana_Hair_A.png"
+ }
+}

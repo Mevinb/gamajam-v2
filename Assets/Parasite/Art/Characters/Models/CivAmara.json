@@ -1,0 +1,86 @@
+{
+ "id": "CivAmara",
+ "profession": "Civilian",
+ "names": [
+  "Amara Diallo"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5230769230769231,
+ "height": 1.654,
+ "skin": "young_african_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   1.2583110124824943,
+   0.8145243862579695,
+   0.0925019784937396
+  ],
+  "B": [
+   0.08606031537055969,
+   0.09778212010860443,
+   0.08379527926445007
+  ]
+ },
+ "palettes": {
+  "A": "top",
+  "B": "skirt"
+ },
+ "lodTris": [
+  19998,
+  6997,
+  2498
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_african_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow006"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes04"
+  },
+  {
+   "kind": "hair",
+   "name": "braid01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "female_elegantsuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ballet_flats"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_african_female.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "CivAmara_Cloth_A.jpg",
+  "clothN": "CivAmara_Cloth_N.jpg",
+  "clothM": "CivAmara_Cloth_M.png",
+  "hairA": "CivAmara_Hair_A.png"
+ }
+}

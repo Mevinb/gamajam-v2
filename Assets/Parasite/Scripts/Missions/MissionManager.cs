@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Parasite.FX;
+using Parasite.Stealth;
 using Parasite.World;
 using UnityEngine;
 
@@ -22,6 +23,12 @@ namespace Parasite.Missions
         public const string SubVaultDiversion = "subvault_diversion", BlackSiteArchive = "blacksite_archive";
         public const string BackupGenerator = "backup_generator", GridOverride = "grid_override";
         public const string ProtocolEpsilonBreached = "epsilon_breached", MasterBroadcast = "master_broadcast";
+        // THE TAIL (city, before CREDENTIALS): leg checkpoints persist so a reload resumes Petrov at the last one.
+        public const string TailLeg1 = "tail_leg1", TailLeg2 = "tail_leg2", TailDone = "tail_done", DeadDrop = "dead_drop";
+        // HUNTER PROTOCOL (lab, after CREATOR).
+        public const string HunterGate = "hunter_gate", HuntersDown = "hunters_down";
+        // BLACKOUT (district, before THE FINAL CONVERGENCE).
+        public const string DistrictBlackout = "district_blackout";
     }
 
     public class Objective
@@ -33,6 +40,7 @@ namespace Parasite.Missions
         public string[] waypointFlags = Array.Empty<string>(); // props to point at (by their flag)
         public Vector3[] waypoints = Array.Empty<Vector3>();
         public string waypointLabel = "";
+        public Func<Vector3?> liveWaypoint;  // moving or conditional target (e.g. Petrov during THE TAIL)
         public bool optional;
         public bool IsDone => doneWhen != null ? doneWhen() : RunState.Has(flag);
     }
@@ -106,13 +114,20 @@ namespace Parasite.Missions
                 RestoreCampaignState();
             if (flag == MissionFlags.Confronted || flag == MissionFlags.SignedArchive || flag == MissionFlags.ContainmentOffline ||
                 flag == MissionFlags.EvidenceBroadcast || flag == MissionFlags.BlackSiteArchive || flag == MissionFlags.GridOverride ||
-                flag == MissionFlags.ProtocolEpsilonBreached || flag == MissionFlags.MasterBroadcast)
+                flag == MissionFlags.ProtocolEpsilonBreached || flag == MissionFlags.MasterBroadcast ||
+                flag == MissionFlags.DeadDrop || flag == MissionFlags.HuntersDown || flag == MissionFlags.DistrictBlackout)
             {
                 var pm = Possession.PossessionManager.Instance;
                 if (GameManager.Instance && pm && pm.ActiveBody != null)
                     GameManager.Instance.SetCheckpoint(pm.ActiveBody.Root.position, "After " + flag.Replace('_', ' '));
             }
             if (flag == MissionFlags.Eavesdropped) GameEvents.RaiseToast("Overheard: Dr. Vale works nights at VALE BIOTECH. Three ways in.", Palette.Amoeba);
+            if (flag == MissionFlags.DeadDrop)
+            {
+                Say(DeadDropNote);
+                GameEvents.RaiseToast("Petrov's dead drop: Vale freed you on purpose, and his signed orders exist. Vale Biotech is north, past Campus Road.", Palette.Amoeba);
+            }
+            if (flag == MissionFlags.HuntersDown) GameEvents.RaiseToast("Protocol Hound offline: scanners dark, hunters recalled. Now the coolant and the signed archive.", Palette.Amoeba);
             if (flag == MissionFlags.EvidenceBroadcast) GameEvents.RaiseToast("Independent News: 'Kill-switch and human trials are locked in the subterranean Black Site Vault!'", Palette.Warning);
             if (flag == MissionFlags.BlackSiteArchive) GameEvents.RaiseToast("Black Site Archive acquired! Vale Biotech initiates Containment Protocol Epsilon!", Palette.Warning);
             if (flag == MissionFlags.ProtocolEpsilonBreached) GameEvents.RaiseToast("Protocol Epsilon collapsed. Campus lockdown dropped. Reach the Plaza Master Antenna!", Palette.Amoeba);
@@ -185,6 +200,8 @@ namespace Parasite.Missions
                 foreach (var w in o.waypoints) Waypoints.Add((w, o.waypointLabel));
                 foreach (var f in o.waypointFlags)
                     if (propsByFlag.TryGetValue(f, out var t) && t) Waypoints.Add((t.position, o.waypointLabel));
+                var live = o.liveWaypoint != null ? o.liveWaypoint() : null;
+                if (live.HasValue) Waypoints.Add((live.Value, o.waypointLabel));
             }
             var prop = MissionProp.Current;
             if (prop) sb.Append($"\n<color=#ffd45a>  {prop.verb}… {prop.Progress01 * 100f:0}%</color>");
@@ -194,7 +211,48 @@ namespace Parasite.Missions
             if (ez && ez.Listening) sb.Append($"\n<color=#ffd45a>  Listening… {ez.Progress01 * 100f:0}%</color>");
             var dr = DualAuthReader.ArmedAny();
             if (dr) sb.Append($"\n<color=#ffd45a>  {dr.readerName} armed — {dr.ArmedRemaining:0.0}s</color>");
+            AppendMechanicStatus(sb);
             SetObjective(sb.ToString());
+        }
+
+        /// <summary>Live lines for the new mechanics: tail distance/alertness, bio-scan meter, blackout reroute timer.</summary>
+        static void AppendMechanicStatus(StringBuilder sb)
+        {
+            var tail = TailTarget.Instance;
+            if (tail && tail.Engaged)
+            {
+                string line = tail.StatusLine();
+                bool hot = tail.Glancing || tail.Band == TailBand.TooClose || tail.Band == TailBand.Lost || tail.Alertness >= TailRules.WaryAt;
+                if (line.Length > 0) sb.Append(hot ? "\n<color=#ff8a5a>  " : "\n<color=#ffd45a>  ").Append(line).Append("</color>");
+            }
+            var squad = HunterSquad.Instance;
+            if (squad && squad.Active)
+            {
+                var burned = BioScanTracker.WornBurnedBody();
+                if (burned) sb.Append($"\n<color=#ff5a4a>  BODY BURNED — hunters know {burned.DisplayName}: leave it [Q] or hop bodies</color>");
+                else
+                {
+                    var read = BioScanTracker.HighestPossessed(out float meter);
+                    if (read && meter > 0.02f) sb.Append($"\n<color=#ff8a5a>  BIO-SCAN {meter * 100f:0}% on {read.DisplayName} — break line of sight</color>");
+                }
+            }
+            var grid = BlackoutGrid.Instance;
+            if (grid && grid.WindowOpen) sb.Append("\n<color=#ff8a5a>  ").Append(grid.StatusLine()).Append("</color>");
+            var isolator = BlackoutSwitch.Current;
+            if (isolator) sb.Append($"\n<color=#ffd45a>  Pulling {isolator.switchName}… {isolator.Progress01 * 100f:0}%</color>");
+        }
+
+        static readonly (string who, string line)[] DeadDropNote =
+        {
+            ("PETROV'S NOTE", "Vale opened Specimen 7's cell himself. I watched him do it."),
+            ("PETROV'S NOTE", "His signed orders are in the office archive. It takes two people to open, and he trusts no one."),
+            ("PETROV'S NOTE", "To the press: when you can, broadcast from the Plaza uplink. They will come for me first."),
+        };
+
+        static bool SwitchCut(int i)
+        {
+            var g = BlackoutGrid.Instance;
+            return g && i < g.switches.Length && g.switches[i] && g.switches[i].Cut;
         }
 
         void SetObjective(string text)
@@ -232,6 +290,21 @@ namespace Parasite.Missions
                     {
                         new() { text = "Read the headlines at the City Plaza newsstand", flag = MissionFlags.NewsRead, waypointFlags = new[] { MissionFlags.NewsRead }, waypointLabel = "NEWSSTAND" },
                         new() { text = "Eavesdrop on Dr. Hana Petrov at the café — stay close, as a host", flag = MissionFlags.Eavesdropped, waypointFlags = new[] { MissionFlags.Eavesdropped }, waypointLabel = "EAVESDROP" },
+                    },
+                },
+                new()
+                {
+                    title = "THE TAIL",
+                    briefing = "Petrov hung up in a hurry. Follow her to wherever she's going: close enough to keep her in sight, far enough that she never makes you.",
+                    completeWhen = () => Has(MissionFlags.DeadDrop) || Has(MissionFlags.LabEntered),
+                    objectives =
+                    {
+                        new() { text = "Tail Dr. Petrov — stay 4–20 m behind, freeze when she glances back, never let her see a free amoeba",
+                            doneWhen = () => Has(MissionFlags.TailDone) || Has(MissionFlags.DeadDrop),
+                            liveWaypoint = () => TailTarget.Instance && TailTarget.Instance.Target ? TailTarget.Instance.TargetPosition : (Vector3?)null,
+                            waypointLabel = "DR. PETROV" },
+                        new() { text = "Take what she left at the dead drop [E]", flag = MissionFlags.DeadDrop,
+                            liveWaypoint = () => Has(MissionFlags.TailDone) ? MissionLayout.DeadDrop : (Vector3?)null, waypointLabel = "DEAD DROP" },
                     },
                 },
                 new()
@@ -274,6 +347,22 @@ namespace Parasite.Missions
                     objectives =
                     {
                         new() { text = "Confront Dr. Vale in his office", flag = MissionFlags.Confronted, waypointFlags = new[] { "vale" }, waypointLabel = "DR. VALE" },
+                    },
+                },
+                new()
+                {
+                    title = "HUNTER PROTOCOL",
+                    briefing = "Vale unleashed Protocol Hound: hunters whose bio-scanners read any body you wear, even one you left parked. Reach the security office and kill the lockdown.",
+                    completeWhen = () => Has(MissionFlags.HuntersDown),
+                    objectives =
+                    {
+                        new() { text = "Slip through the security office's scanner arch as a FREE amoeba — it burns any possessed body on the spot",
+                            doneWhen = () => Has(MissionFlags.HunterGate) || Has(MissionFlags.HuntersDown),
+                            waypoints = new[] { MissionLayout.ScanGate }, waypointLabel = "SCANNER ARCH" },
+                        new() { text = "Possess the duty officer and hold the Protocol Hound breaker (4 s)", flag = MissionFlags.HuntersDown,
+                            waypoints = new[] { MissionLayout.HoundBreaker }, waypointLabel = "LOCKDOWN BREAKER" },
+                        new() { text = "Keep worn bodies out of the scanner cones; a full scan burns that body — leave it [Q] or hop to break the trail",
+                            optional = true, doneWhen = () => Has(MissionFlags.HuntersDown) },
                     },
                 },
                 new()
@@ -345,6 +434,21 @@ namespace Parasite.Missions
                 },
                 new()
                 {
+                    title = "BLACKOUT",
+                    briefing = "Vale's grid can triangulate the Plaza Master Antenna. Black out the three plaza transformers inside one 35-second reroute. Each isolator logs a palm print, so every box needs a different body: park your other amoeba first.",
+                    completeWhen = () => Has(MissionFlags.DistrictBlackout),
+                    objectives =
+                    {
+                        new() { text = "Cut transformer P-1 by the west plaza [hold E]", doneWhen = () => Has(MissionFlags.DistrictBlackout) || SwitchCut(0),
+                            waypoints = new[] { MissionLayout.Transformers[0].pos }, waypointLabel = "TRANSFORMER P-1" },
+                        new() { text = "Cut transformer P-2 at the Market St corner", doneWhen = () => Has(MissionFlags.DistrictBlackout) || SwitchCut(1),
+                            waypoints = new[] { MissionLayout.Transformers[1].pos }, waypointLabel = "TRANSFORMER P-2" },
+                        new() { text = "Cut transformer P-3 on Campus Road — with a third, different body", doneWhen = () => Has(MissionFlags.DistrictBlackout) || SwitchCut(2),
+                            waypoints = new[] { MissionLayout.Transformers[2].pos }, waypointLabel = "TRANSFORMER P-3" },
+                    },
+                },
+                new()
+                {
                     title = "THE FINAL CONVERGENCE",
                     briefing = "District-wide high alert: broadcast the unredacted Black Site Archive at the Plaza Master Antenna for 12 s, eject to free amoeba [Q], and extract through the South Alley Storm Drain.",
                     completeWhen = () => Has(MissionFlags.Escaped),
@@ -410,6 +514,11 @@ namespace Parasite.Missions
             RunState.Flags.Add(MissionFlags.GridOverride);
             RunState.Flags.Add(MissionFlags.ProtocolEpsilonBreached);
             RunState.Flags.Add(MissionFlags.MasterBroadcast);
+            RunState.Flags.Add(MissionFlags.TailDone);
+            RunState.Flags.Add(MissionFlags.DeadDrop);
+            RunState.Flags.Add(MissionFlags.HunterGate);
+            RunState.Flags.Add(MissionFlags.HuntersDown);
+            RunState.Flags.Add(MissionFlags.DistrictBlackout);
             RunState.LabEntered = true;
             RunState.MissionIndex = Missions.Count - 1;
             RestoreCampaignState();
@@ -439,6 +548,7 @@ namespace Parasite.Missions
             ("DR. VALE", "The files you stole were bait. I needed to know if you could plan. Hide. Divide yourself and still be one."),
             ("DR. VALE", "The real orders are in my signed archive. Its coolant interlock takes two operators. You cannot carry it out alone."),
             ("DR. VALE", "And even if you do, the containment relay will trace you. My guards control its dispatch lock."),
+            ("DR. VALE", "But first, meet my hunters. Their scanners can smell you inside any body you steal."),
             ("SPECIMEN 7", "Two bodies. One choice. This time, I choose where the experiment ends."),
         };
 
@@ -449,7 +559,7 @@ namespace Parasite.Missions
             DialoguePlaying = false;
             if (GameManager.Instance) GameManager.Instance.ResumeAfterDialogue();
             SetFlag(MissionFlags.Confronted);
-            GameEvents.RaiseToast("Vale's reveal is only the beginning. Keep both amoebas: maintenance at coolant, scientist at the signed archive.", Palette.Amoeba);
+            GameEvents.RaiseToast("Vale's hunters are in the building. Their bio-scanners read possessed bodies — reach the security office breaker.", Palette.Amoeba);
         }
 
         public void CompleteEscape(Transform drain)
@@ -498,6 +608,38 @@ namespace Parasite.Missions
                 }
             }
             GameEvents.RaiseSubtitle("", "");
+        }
+
+        // ------------------------------------------------------------ gameplay dialogue
+        Coroutine ambient;
+
+        /// <summary>Non-blocking gameplay dialogue (scaled time); replaces any ambient lines, never protected story dialogue.</summary>
+        public static void Say(params (string who, string line)[] lines)
+        {
+            var mm = Instance;
+            if (!mm || mm.EndingStarted || mm.DialoguePlaying || lines == null || lines.Length == 0) return;
+            if (mm.ambient != null) mm.StopCoroutine(mm.ambient);
+            mm.ambient = mm.StartCoroutine(mm.AmbientLines(lines));
+        }
+
+        /// <summary>A one-line bark that never interrupts a running ambient sequence.</summary>
+        public static void Bark(string who, string line)
+        {
+            var mm = Instance;
+            if (!mm || mm.ambient != null) return;
+            Say((who, line));
+        }
+
+        IEnumerator AmbientLines((string who, string line)[] lines)
+        {
+            foreach (var (who, line) in lines)
+            {
+                if (EndingStarted || DialoguePlaying) { ambient = null; yield break; }
+                GameEvents.RaiseSubtitle(who, line);
+                yield return new WaitForSeconds(1.6f + line.Length * 0.045f);
+            }
+            if (!EndingStarted && !DialoguePlaying) GameEvents.RaiseSubtitle("", "");
+            ambient = null;
         }
 
         public static string RouteName(EntryRoute r) => r switch

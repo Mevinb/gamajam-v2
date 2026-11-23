@@ -1,0 +1,78 @@
+{
+ "id": "CivGrace",
+ "profession": "Civilian",
+ "names": [],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.7076923076923077,
+ "height": 1.63,
+ "skin": "middleage_caucasian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "green",
+ "hairColor": [
+  0.3,
+  0.13,
+  0.07
+ ],
+ "tints": {
+  "A": [
+   0.07214892632459273,
+   0.08538945579840525,
+   0.15188204986509943
+  ]
+ },
+ "palettes": {
+  "A": "suit"
+ },
+ "lodTris": [
+  19215,
+  6998,
+  2498
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_caucasian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow007"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes03"
+  },
+  {
+   "kind": "hair",
+   "name": "toigo_curled_under_bob"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes green"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_female_suit"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_caucasian_female.jpg",
+  "eyes": "Eyes/green.png",
+  "clothA": "CivGrace_Cloth_A.jpg",
+  "clothN": "CivGrace_Cloth_N.jpg",
+  "clothM": "CivGrace_Cloth_M.png",
+  "hairA": "CivGrace_Hair_A.png"
+ }
+}

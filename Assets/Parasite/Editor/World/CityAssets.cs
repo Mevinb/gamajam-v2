@@ -38,7 +38,9 @@ namespace Parasite.EditorTools
         public const string CityArt = "Assets/Parasite/Art/City";
         public const string GenDir = "Assets/Parasite/Art/City/Generated";
         public const string SettingsDir = "Assets/Parasite/Settings";
-        public const string HdriPath = "Assets/Parasite/Art/City/sky/sunset_jhbcentral_1k.hdr";
+        // Poly Haven "Belfast Sunset (Pure Sky)" (CC0): cloudy dusk, sun ~2 deg up at the same azimuth as the old HDRI
+        public const string HdriPath = "Assets/Parasite/Art/City/sky/belfast_sunset_puresky_4k.hdr";
+        public const string TreeDir = "Assets/Parasite/Art/City/Foliage/Trees";
         public const string VolumePath = SettingsDir + "/CityVolume.asset";
 
         static readonly (string name, string folder, float metal)[] Sets =
@@ -52,6 +54,9 @@ namespace Parasite.EditorTools
         public static readonly HashSet<Material> NoShadow = new();
         public static readonly Dictionary<string, FacadeStyle> Facades = new();
         public static readonly Dictionary<string, PropModel> Props = new();
+        /// <summary>Blender street trees (Tools/blender/environment/trees.py): species -> model with LOD0..2 children.</summary>
+        public static readonly Dictionary<string, GameObject> Trees = new();
+        public static Material Atmosphere { get; private set; }
         public static Material SkyMaterial { get; private set; }
         public static VolumeProfile Profile { get; private set; }
         public static Font Font { get; private set; }
@@ -64,7 +69,7 @@ namespace Parasite.EditorTools
         public static void Prepare()
         {
             foreach (var d in new[] { MatDir, MatDir + "/Props", GenDir, SettingsDir }) Directory.CreateDirectory(d);
-            mats.Clear(); Tile.Clear(); NoShadow.Clear(); Facades.Clear(); Props.Clear();
+            mats.Clear(); Tile.Clear(); NoShadow.Clear(); Facades.Clear(); Props.Clear(); Trees.Clear();
             Font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             GenerateTextures();
             AssetDatabase.Refresh();
@@ -72,6 +77,7 @@ namespace Parasite.EditorTools
             CreateMaterials();
             CreateFacades();
             LoadProps();
+            LoadTrees();
             SkyMaterial = CreateSkybox();
             Profile = CreateVolumeProfile();
             ConfigurePipeline();
@@ -144,12 +150,23 @@ namespace Parasite.EditorTools
                     else if (n.Contains("_emissive")) Configure(p, TexKind.Color, 512);
                 }
 
+            // Blender trees: bark (opaque), leaf-cluster atlases (alpha coverage), FBX models with LOD0..2
+            if (Directory.Exists(TreeDir))
+                foreach (var f in Directory.GetFiles(TreeDir))
+                {
+                    if (f.EndsWith(".meta")) continue;
+                    string p = f.Replace('\\', '/'), n = Path.GetFileNameWithoutExtension(p);
+                    if (p.EndsWith(".fbx")) ConfigureTreeModel(p);
+                    else if (n.EndsWith("_normal")) Configure(p, TexKind.Normal, n.StartsWith("Bark") ? 1024 : 2048);
+                    else if (n.EndsWith("_albedo")) Configure(p, n.StartsWith("Bark") ? TexKind.Color : TexKind.ColorAlpha, n.StartsWith("Bark") ? 1024 : 2048);
+                }
+
             if (AssetImporter.GetAtPath(HdriPath) is TextureImporter hi)
             {
                 var st = new TextureImporterSettings();
                 hi.ReadTextureSettings(st);
                 bool dirty = st.textureShape != TextureImporterShape.TextureCube || st.generateCubemap != TextureImporterGenerateCubemap.AutoCubemap
-                             || !hi.mipmapEnabled || hi.maxTextureSize != 2048;
+                             || !hi.mipmapEnabled || hi.maxTextureSize != 1024;
                 if (dirty)
                 {
                     st.textureShape = TextureImporterShape.TextureCube;
@@ -157,7 +174,7 @@ namespace Parasite.EditorTools
                     st.cubemapConvolution = TextureImporterCubemapConvolution.None;
                     st.mipmapEnabled = true;
                     hi.SetTextureSettings(st);
-                    hi.maxTextureSize = 2048;
+                    hi.maxTextureSize = 1024;   // 4k equirect -> 1024 faces (no upscaling)
                     hi.textureCompression = TextureImporterCompression.Compressed;
                     hi.SaveAndReimport();
                 }
@@ -208,6 +225,56 @@ namespace Parasite.EditorTools
             mi.SaveAndReimport();
         }
 
+        /// <summary>URP Lit occlusion only scales indirect (sky) light: a constant occlusion map darkens the ambient of
+        /// interior surfaces without touching direct light from the fixtures.</summary>
+        static void DimAmbient(Material m, float ambient)
+        {
+            // occlusion = lerp(1, tex.g, strength): a black map with strength (1 - ambient) leaves `ambient` of the sky light
+            var tex = BlackOcclusion();
+            if (!tex) return;
+            m.SetTexture("_OcclusionMap", tex);
+            m.SetFloat("_OcclusionStrength", 1f - ambient);
+            m.EnableKeyword("_OCCLUSIONMAP");
+        }
+
+        static Texture2D BlackOcclusion()
+        {
+            string path = $"{ArtDir}/Lab/AmbientDimBlack.png";
+            var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            if (tex) return tex;
+            var t = new Texture2D(4, 4, TextureFormat.RGBA32, false, true);
+            var px = new Color32[16];
+            for (int i = 0; i < 16; i++) px[i] = new Color32(0, 0, 0, 255);
+            t.SetPixels32(px); t.Apply();
+            File.WriteAllBytes(path, t.EncodeToPNG());
+            Object.DestroyImmediate(t);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+            if (AssetImporter.GetAtPath(path) is TextureImporter ti) { ti.sRGBTexture = false; ti.mipmapEnabled = false; ti.textureCompression = TextureImporterCompression.Uncompressed; ti.SaveAndReimport(); }
+            return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        }
+
+        static void ConfigureTreeModel(string path)
+        {
+            if (!(AssetImporter.GetAtPath(path) is ModelImporter mi)) return;
+            if (!mi.isReadable && !mi.importAnimation && mi.materialImportMode == ModelImporterMaterialImportMode.ImportStandard
+                && mi.importNormals == ModelImporterNormals.Import && mi.importTangents == ModelImporterTangents.CalculateMikk && !mi.generateMeshLods
+                && mi.meshCompression == ModelImporterMeshCompression.Off && !mi.importCameras && !mi.importLights) return;
+            mi.isReadable = false;
+            mi.importAnimation = false;
+            mi.animationType = ModelImporterAnimationType.None;
+            mi.importCameras = false;
+            mi.importLights = false;
+            mi.importBlendShapes = false;
+            mi.addCollider = false;
+            mi.materialImportMode = ModelImporterMaterialImportMode.ImportStandard;
+            mi.materialLocation = ModelImporterMaterialLocation.InPrefab;
+            mi.meshCompression = ModelImporterMeshCompression.Off;
+            mi.importNormals = ModelImporterNormals.Import;
+            mi.importTangents = ModelImporterTangents.CalculateMikk;
+            mi.generateMeshLods = false;
+            mi.SaveAndReimport();
+        }
+
         static Texture2D T2(string path) => AssetDatabase.LoadAssetAtPath<Texture2D>(path);
 
         // ------------------------------------------------------------------ materials
@@ -243,6 +310,10 @@ namespace Parasite.EditorTools
             T("Stone", "concrete", c(0.62f, 0.6f, 0.57f), 3f, 0.75f, bumpScale: 1.3f);
             T("LabWhite", "plaster", c(0.96f, 0.97f, 0.98f), 6f, 0.9f, bumpScale: 1.1f);
             T("LabFloor", "labfloor", c(0.95f, 0.97f, 1f), 2.4f, 1f, bumpScale: 1.1f);
+            // interior lab walls/ceiling + floor: the sky ambient is dimmed (constant occlusion) so the fixtures dominate
+            T("LabInterior", "plaster", c(0.94f, 0.96f, 0.98f), 6f, 0.9f, bumpScale: 1.1f);
+            DimAmbient(M("LabInterior"), 0.8f);
+            DimAmbient(M("LabFloor"), 0.88f);
             T("Concrete", "concrete", c(0.85f, 0.85f, 0.85f), 4f, 0.78f, bumpScale: 1.3f);
             T("TunnelConcrete", "concrete", c(0.55f, 0.58f, 0.56f), 3f, 0.82f, bumpScale: 1.3f);
             T("RustyMetal", "metal", Color.white, 2f, 0.9f, bumpScale: 1.2f);
@@ -324,6 +395,7 @@ namespace Parasite.EditorTools
             E("Taillight", c(0.6f, 0.05f, 0.03f), c(1f, 0.05f, 0.02f) * 1.6f);
             E("WarningLight", c(1f, 0.6f, 0.1f), c(1f, 0.5f, 0.05f) * 4f);
             E("AviationLight", c(1f, 0.1f, 0.05f), c(1f, 0.08f, 0.03f) * 6f);
+            E("FestoonBulb", c(1f, 0.8f, 0.5f), c(1f, 0.55f, 0.22f) * 3.2f);   // amber filament bulbs (stay coloured under ACES)
 
             // signs (text atlas rendered by Tools/gen_city_art.py) and shop interiors behind the glass
             var signs = Lit("Signs", $"{CityArt}/Signs/signs", Color.white, 0.55f, emission: 1.35f, tile: 1f);
@@ -353,6 +425,7 @@ namespace Parasite.EditorTools
             water.SetFloat("_Coverage", 0.92f);
             water.SetFloat("_EdgeSoftness", 0.08f);
             water.SetFloat("_RippleStrength", 0.008f);
+            water.SetFloat("_BedOpacity", 0.6f); water.SetFloat("_BedOpacityDeep", 0.78f);
             water.SetOverrideTag("RenderType", "Transparent");
             water.SetShaderPassEnabled("ShadowCaster", false);
             Done(water, 1f, false);
@@ -369,6 +442,135 @@ namespace Parasite.EditorTools
             Glass("GlassShop", new Color(0.55f, 0.62f, 0.66f, 0.16f), 0.97f);
             Glass("GlassCar", new Color(0.05f, 0.06f, 0.07f, 0.72f), 0.95f);
             Glass("LampGlass", new Color(1f, 0.92f, 0.75f, 0.4f), 0.9f);
+            CreateAtmosphereMaterials();
+        }
+
+        // ------------------------------------------------------------------ trees, wet film, light cones, atmosphere
+        static void CreateAtmosphereMaterials()
+        {
+            // wind-animated Blender trees (Parasite/Foliage): bark per species, leaf-cluster atlases shared
+            foreach (var (n, tint) in new[] { ("Plane", new Color(0.92f, 0.9f, 0.88f)), ("Linden", new Color(0.82f, 0.8f, 0.78f)), ("Maple", new Color(0.9f, 0.86f, 0.82f)) })
+                Foliage("TreeBark" + n, $"{TreeDir}/Bark{n}", tint, false);
+            Foliage("TreeLeavesGreen", $"{TreeDir}/TreeLeavesGreen", new Color(0.88f, 0.95f, 0.85f), true);
+            Foliage("TreeLeavesLight", $"{TreeDir}/TreeLeavesLight", new Color(0.9f, 0.97f, 0.82f), true);
+            Foliage("TreeLeavesYellow", $"{TreeDir}/TreeLeavesYellow", new Color(0.95f, 0.9f, 0.8f), true);
+            Foliage("TreeLeavesMaple", $"{TreeDir}/TreeLeavesMaple", new Color(0.95f, 0.88f, 0.84f), true);
+
+            // street-wide wet film: procedural puddles + gutters + damp sheen with screen-space reflections
+            var film = Mat("WetFilm", "Parasite/GroundWater");
+            film.SetTexture("_BaseMap", Texture2D.whiteTexture);
+            film.SetColor("_BaseColor", new Color(0.02f, 0.022f, 0.026f));
+            film.SetFloat("_Smoothness", 0.95f);
+            film.SetFloat("_Coverage", 0.9f);
+            film.SetFloat("_DampCoverage", 0.26f);
+            film.SetFloat("_PuddleThreshold", 0.6f);
+            film.SetFloat("_PuddleScale", 0.12f);
+            film.SetFloat("_Gutter", 0.7f);
+            film.SetFloat("_RippleStrength", 0.006f);
+            film.SetFloat("_ReflectionBoost", 1.15f);
+            film.SetFloat("_BedOpacity", 0.42f); film.SetFloat("_BedOpacityDeep", 0.68f);
+            film.SetFloat("_WetFilm", 1f); film.EnableKeyword("_WETFILM");
+            film.SetOverrideTag("RenderType", "Transparent");
+            film.SetShaderPassEnabled("ShadowCaster", false);
+            film.renderQueue = (int)RenderQueue.Transparent - 11;
+            Done(film, 1f, false);
+            var pave = Mat("WetFilmPaving", "Parasite/GroundWater");
+            pave.CopyPropertiesFromMaterial(film);
+            pave.SetFloat("_DampCoverage", 0.16f);
+            pave.SetFloat("_PuddleThreshold", 0.66f);
+            pave.SetFloat("_PuddleScale", 0.16f);
+            pave.SetFloat("_Coverage", 0.82f);
+            pave.SetFloat("_Gutter", 0.45f);
+            pave.SetFloat("_WetFilm", 1f); pave.EnableKeyword("_WETFILM");
+            pave.SetOverrideTag("RenderType", "Transparent");
+            pave.SetShaderPassEnabled("ShadowCaster", false);
+            pave.renderQueue = (int)RenderQueue.Transparent - 11;
+            Done(pave, 1f, false);
+
+            // fake volumetric lamp cones
+            foreach (var (n, col, inten) in new[] { ("LightCone", new Color(1f, 0.7f, 0.42f), 0.32f), ("LightConeCool", new Color(0.75f, 0.88f, 1f), 0.22f),
+                                                     ("LightConeGreen", new Color(0.45f, 1f, 0.6f), 0.25f) })
+            {
+                var c = Mat(n, "Parasite/LightCone");
+                c.SetColor("_Color", col); c.SetFloat("_Intensity", inten);
+                c.SetFloat("_EdgePower", 2.2f); c.SetFloat("_LengthFalloff", 1.4f); c.SetFloat("_DepthFade", 0.9f); c.SetFloat("_Dust", 0.4f);
+                c.SetOverrideTag("RenderType", "Transparent");
+                c.SetShaderPassEnabled("ShadowCaster", false);
+                c.renderQueue = (int)RenderQueue.Transparent + 5;
+                Done(c, 1f, false);
+            }
+
+            // full-screen atmospheric perspective (bound to the PC renderer's FullScreenPass feature)
+            var at = Mat("Atmosphere", "Parasite/Atmosphere", SettingsDir);
+            at.SetColor("_FogColor", new Color(0.4f, 0.41f, 0.48f));
+            at.SetColor("_FogColorLow", new Color(0.47f, 0.41f, 0.38f));
+            at.SetColor("_SunColor", new Color(1.5f, 0.72f, 0.36f));
+            at.SetFloat("_SunPower", 7f); at.SetFloat("_SunStrength", 0.45f);
+            at.SetFloat("_Density", 0.0038f); at.SetFloat("_HeightFalloff", 0.045f); at.SetFloat("_BaseHeight", 0f);
+            at.SetFloat("_DistanceDensity", 0.0007f); at.SetFloat("_StartDistance", 18f); at.SetFloat("_MaxOpacity", 0.8f);
+            at.SetFloat("_SkyHaze", 0.6f); at.SetFloat("_SkyHazeFalloff", 8f); at.SetFloat("_LowLayerHeight", 16f);
+            at.SetFloat("_ShaftStrength", 0.7f); at.SetFloat("_ShaftDecay", 0.955f); at.SetFloat("_ShaftLength", 0.55f);
+            at.enableInstancing = false;
+            Done(at, 1f, false);
+            Atmosphere = at;
+        }
+
+        static Material Foliage(string name, string prefix, Color tint, bool leaves)
+        {
+            Texture2D Find(string kind) => T2($"{prefix}_{kind}.png") ?? T2($"{prefix}_{kind}.jpg");
+            var m = Mat(name, "Parasite/Foliage");
+            var alb = Find("albedo");
+            if (alb) m.SetTexture("_BaseMap", alb);
+            var nor = Find("normal");
+            if (nor) m.SetTexture("_BumpMap", nor);
+            m.SetColor("_BaseColor", tint);
+            if (leaves)
+            {
+                m.SetFloat("_AlphaClip", 1f); m.EnableKeyword("_ALPHATEST_ON"); m.SetFloat("_Cutoff", 0.42f);
+                m.SetFloat("_Cull", 0f); m.SetFloat("_BumpScale", 0.8f);
+                m.SetFloat("_Smoothness", 0.32f); m.SetFloat("_Translucency", 0.75f); m.SetFloat("_AmbientBoost", 1.05f);
+                m.SetFloat("_FlutterAmp", 0.035f); m.SetFloat("_BranchAmp", 0.11f);
+                m.renderQueue = (int)RenderQueue.AlphaTest;
+                m.doubleSidedGI = true;
+            }
+            else
+            {
+                m.SetFloat("_AlphaClip", 0f); m.SetFloat("_Cull", 2f); m.SetFloat("_BumpScale", 1.2f);
+                m.SetFloat("_Smoothness", 0.18f); m.SetFloat("_Translucency", 0f); m.SetFloat("_AmbientBoost", 1f);
+            }
+            m.SetFloat("_WindStrength", 0.6f); m.SetFloat("_WindSpeed", 1.1f);
+            m.SetVector("_WindDir", new Vector4(0.8f, 0f, 0.6f, 0f));
+            Done(m, 1f, true);
+            return m;
+        }
+
+        static void LoadTrees()
+        {
+            foreach (var n in new[] { "Plane", "Linden", "Maple" })
+            {
+                var go = AssetDatabase.LoadAssetAtPath<GameObject>($"{TreeDir}/Tree{n}.fbx");
+                if (!go) { Debug.LogWarning("[Parasite] tree model missing: " + n); continue; }
+                Trees[n] = go;
+                var lg = go.GetComponent<LODGroup>();
+                var b = new Bounds(); bool first = true; int tris = 0;
+                foreach (var mf in go.GetComponentsInChildren<MeshFilter>(true))
+                {
+                    if (!mf.sharedMesh) continue;
+                    if (mf.name.EndsWith("_LOD0")) for (int s = 0; s < mf.sharedMesh.subMeshCount; s++) tris += (int)mf.sharedMesh.GetIndexCount(s) / 3;
+                    var mb = mf.GetComponent<MeshRenderer>().bounds;
+                    if (first) { b = mb; first = false; } else b.Encapsulate(mb);
+                }
+                Debug.Log($"[Parasite] tree {n}: size {b.size.x:F1} x {b.size.y:F1} x {b.size.z:F1} m, min y {b.min.y:F2}, LOD0 {tris} tris, lodgroup {(lg ? lg.lodCount : 0)}");
+            }
+        }
+
+        /// <summary>Scene material for an imported tree submesh (FBX material names BarkPlane / LeavesGreen ...).</summary>
+        public static Material TreeMaterial(Material src, string leavesOverride = null)
+        {
+            string n = src ? src.name : "";
+            if (n.StartsWith("Bark")) return M("TreeBark" + n.Substring(4));
+            if (n.StartsWith("Leaves")) return M("TreeLeaves" + (leavesOverride ?? n.Substring(6)));
+            return src;
         }
 
         static void LegacySkyline()
@@ -531,7 +733,8 @@ namespace Parasite.EditorTools
                 var st = new FacadeStyle { Name = d.name, Wall = M(d.wall), Trim = M(d.trim), Residential = d.res, BayWidth = d.res ? 2.9f : 3.1f, FloorHeight = 3.2f };
                 if (alb)
                 {
-                    var m = Mat("Facade" + d.name);
+                    // Parasite/Facade = URP Lit inputs + interior-mapped rooms behind the lit windows
+                    var m = Mat("Facade" + d.name, Shader.Find("Parasite/Facade") ? "Parasite/Facade" : "Universal Render Pipeline/Lit");
                     m.SetTexture("_BaseMap", alb);
                     m.SetColor("_BaseColor", Color.white);
                     var nor = T2($"{F}/{d.bas}_normal.jpg");
@@ -678,11 +881,25 @@ namespace Parasite.EditorTools
         {
             string path = $"{MatDir}/SkyEvening.mat";
             var cube = AssetDatabase.LoadAssetAtPath<Cubemap>(HdriPath);
-            var shader = Shader.Find(cube ? "Skybox/Cubemap" : "Skybox/Procedural");
+            var custom = Shader.Find("Parasite/Sky");
+            var shader = cube ? (custom ? custom : Shader.Find("Skybox/Cubemap")) : Shader.Find("Skybox/Procedural");
             var m = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (!m) { m = new Material(shader); AssetDatabase.CreateAsset(m, path); }
             else m.shader = shader;
-            if (cube)
+            if (cube && custom)
+            {
+                m.SetTexture("_Tex", cube);
+                m.SetColor("_Tint", new Color(1.0f, 0.95f, 0.92f));
+                m.SetFloat("_Exposure", 0.62f);
+                m.SetFloat("_Rotation", 0f);
+                m.SetFloat("_DriftSpeed", 0.12f);
+                m.SetColor("_ZenithColor", new Color(0.5f, 0.58f, 0.82f));
+                m.SetFloat("_ZenithAmount", 0.3f);
+                m.SetColor("_HorizonColor", new Color(0.4f, 0.38f, 0.44f));
+                m.SetFloat("_HorizonHeight", 0.05f);
+                m.SetFloat("_Saturation", 0.95f);
+            }
+            else if (cube)
             {
                 m.SetTexture("_Tex", cube);
                 m.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
@@ -709,19 +926,28 @@ namespace Parasite.EditorTools
             foreach (var c in p.components.ToArray()) { AssetDatabase.RemoveObjectFromAsset(c); Object.DestroyImmediate(c, true); }
             p.components.Clear();
 
+            // filmic dusk grade: ACES, warm highlights / cool shadows, lifted blue blacks, bloom on every emissive
             var tm = p.Add<Tonemapping>(); tm.mode.Override(TonemappingMode.ACES);
             var bl = p.Add<Bloom>();
-            bl.threshold.Override(0.88f); bl.intensity.Override(0.82f); bl.scatter.Override(0.72f);
-            bl.tint.Override(new Color(1f, 0.94f, 0.88f)); bl.highQualityFiltering.Override(true);
+            bl.threshold.Override(0.95f); bl.intensity.Override(0.95f); bl.scatter.Override(0.74f);
+            bl.tint.Override(new Color(1f, 0.92f, 0.84f)); bl.highQualityFiltering.Override(true);
+            var dirt = AssetDatabase.LoadAssetAtPath<Texture2D>($"{CityArt}/Generated/LensDirt.png");
+            if (dirt) { bl.dirtTexture.Override(dirt); bl.dirtIntensity.Override(1.6f); }
             var ca = p.Add<ColorAdjustments>();
-            ca.postExposure.Override(0.25f); ca.contrast.Override(18f); ca.saturation.Override(10f);
-            var vg = p.Add<Vignette>(); vg.intensity.Override(0.26f); vg.smoothness.Override(0.45f);
-            var wb = p.Add<WhiteBalance>(); wb.temperature.Override(3f); wb.tint.Override(1f);
+            ca.postExposure.Override(0.4f); ca.contrast.Override(14f); ca.saturation.Override(2f);
+            var vg = p.Add<Vignette>(); vg.intensity.Override(0.3f); vg.smoothness.Override(0.42f);
+            var wb = p.Add<WhiteBalance>(); wb.temperature.Override(4f); wb.tint.Override(-3f);
             var sp = p.Add<SplitToning>();
-            sp.shadows.Override(new Color(0.32f, 0.54f, 0.62f)); sp.highlights.Override(new Color(0.82f, 0.64f, 0.42f)); sp.balance.Override(-10f);
+            sp.shadows.Override(new Color(0.4f, 0.5f, 0.6f)); sp.highlights.Override(new Color(0.8f, 0.66f, 0.5f)); sp.balance.Override(-12f);
+            var lgg = p.Add<LiftGammaGain>();
+            lgg.lift.Override(new Vector4(0.99f, 1.0f, 1.02f, -0.015f));
+            lgg.gamma.Override(new Vector4(1.0f, 0.99f, 1.01f, 0f));
+            lgg.gain.Override(new Vector4(1.03f, 1.0f, 0.96f, 0f));
             var smh = p.Add<ShadowsMidtonesHighlights>();
-            smh.shadows.Override(new Vector4(0.96f, 1.0f, 1.05f, 0f));
-            smh.highlights.Override(new Vector4(1.04f, 1.0f, 0.95f, 0f));
+            smh.shadows.Override(new Vector4(0.95f, 0.98f, 1.06f, 0f));
+            smh.highlights.Override(new Vector4(1.05f, 1.0f, 0.94f, 0f));
+            var fg = p.Add<FilmGrain>(); fg.type.Override(FilmGrainLookup.Thin2); fg.intensity.Override(0.14f); fg.response.Override(0.85f);
+            var chr = p.Add<ChromaticAberration>(); chr.intensity.Override(0.04f);
             foreach (var c in p.components)
             {
                 c.name = c.GetType().Name;
@@ -732,7 +958,10 @@ namespace Parasite.EditorTools
             return p;
         }
 
-        /// <summary>PC quality: shadow distance/cascades, SSAO strength (PC_RPAsset / PC_Renderer).</summary>
+        public const string AtmosphereFeature = "ParasiteAtmosphere";
+
+        /// <summary>PC quality: shadow distance/cascades, full-res opaque texture (water reflections), SSAO strength,
+        /// and the full-screen atmosphere pass (PC_RPAsset / PC_Renderer).</summary>
         static void ConfigurePipeline()
         {
             var rp = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
@@ -740,9 +969,15 @@ namespace Parasite.EditorTools
             {
                 rp.shadowDistance = 160f;
                 rp.shadowCascadeCount = 4;
-                rp.cascade4Split = new Vector3(0.065f, 0.18f, 0.45f);
-                rp.cascadeBorder = 0.1f;
+                rp.cascade4Split = new Vector3(0.06f, 0.17f, 0.42f);
+                rp.cascadeBorder = 0.12f;
                 rp.mainLightShadowmapResolution = 4096;
+                rp.supportsCameraDepthTexture = true;
+                rp.supportsCameraOpaqueTexture = true;
+                var so = new SerializedObject(rp);
+                var ds = so.FindProperty("m_OpaqueDownsampling");
+                if (ds != null) ds.intValue = (int)Downsampling.None;   // sharp screen-space reflections in the wet streets
+                so.ApplyModifiedPropertiesWithoutUndo();
                 EditorUtility.SetDirty(rp);
             }
             var rd = AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/Settings/PC_Renderer.asset");
@@ -758,15 +993,45 @@ namespace Parasite.EditorTools
                     void Set(string n, float v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.floatValue = v; }
                     void SetInt(string n, int v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.intValue = v; }
                     void SetBool(string n, bool v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.boolValue = v; }
-                    Set("Intensity", 0.85f);
-                    Set("Radius", 0.45f);
-                    Set("DirectLightingStrength", 0.35f);
+                    Set("Intensity", 1.15f);
+                    Set("Radius", 0.55f);
+                    Set("DirectLightingStrength", 0.3f);
+                    Set("Falloff", 120f);
                     SetInt("Samples", 0);
                     SetInt("NormalSamples", 2);
                     SetInt("BlurQuality", 0);
                     SetBool("Downsample", false);
                     so.ApplyModifiedPropertiesWithoutUndo();
                 }
+
+                FullScreenPassRendererFeature atmo = null;
+                foreach (var f in rd.rendererFeatures)
+                    if (f is FullScreenPassRendererFeature fs && f.name == AtmosphereFeature) atmo = fs;
+                if (!atmo)
+                {
+                    atmo = ScriptableObject.CreateInstance<FullScreenPassRendererFeature>();
+                    atmo.name = AtmosphereFeature;
+                    AssetDatabase.AddObjectToAsset(atmo, rd);
+                    rd.rendererFeatures.Add(atmo);
+                    var so = new SerializedObject(rd);
+                    var map = so.FindProperty("m_RendererFeatureMap");
+                    AssetDatabase.TryGetGUIDAndLocalFileIdentifier(atmo, out string _, out long localId);
+                    if (map != null)
+                    {
+                        map.arraySize = rd.rendererFeatures.Count;
+                        map.GetArrayElementAtIndex(map.arraySize - 1).longValue = localId;
+                    }
+                    so.ApplyModifiedPropertiesWithoutUndo();
+                }
+                atmo.injectionPoint = FullScreenPassRendererFeature.InjectionPoint.BeforeRenderingPostProcessing;
+                atmo.fetchColorBuffer = true;
+                atmo.requirements = ScriptableRenderPassInput.Depth;
+                atmo.passMaterial = Atmosphere;
+                atmo.passIndex = 0;
+                atmo.bindDepthStencilAttachment = false;
+                atmo.SetActive(Atmosphere);
+                EditorUtility.SetDirty(atmo);
+                rd.SetDirty();
                 EditorUtility.SetDirty(rd);
             }
         }

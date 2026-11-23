@@ -24,6 +24,9 @@ namespace Parasite.Missions
         public float range = 2.3f;
         public string doneToast = "";
         public bool hideWhenDone;
+        [Tooltip("When set, the prop (glow + reveal objects) stays hidden and unusable until this flag is set.")]
+        public string visibleWhenFlag = "";
+        public GameObject[] revealObjects = new GameObject[0];
         public Renderer glow;
         public Transform interactPoint;
 
@@ -37,7 +40,8 @@ namespace Parasite.Missions
 
         public Vector3 InteractPoint => interactPoint ? interactPoint.position : transform.position + Vector3.up * 1.1f;
         public float InteractRange => range;
-        public bool IsAvailable => isActiveAndEnabled && !RunState.Has(flag) && !Busy;
+        public bool IsAvailable => isActiveAndEnabled && !RunState.Has(flag) && !Busy && Revealed;
+        public bool Revealed => string.IsNullOrEmpty(visibleWhenFlag) || RunState.Has(visibleWhenFlag);
 
         void OnEnable() => Interactables.Register(this);
         void OnDisable() { Interactables.Unregister(this); if (Current == this) Current = null; }
@@ -47,6 +51,9 @@ namespace Parasite.Missions
         void RefreshVisual()
         {
             bool done = RunState.Has(flag);
+            bool revealed = Revealed;
+            foreach (var o in revealObjects) if (o && o.activeSelf != revealed) o.SetActive(revealed);
+            if (glow && glow.enabled != revealed) glow.enabled = revealed;
             if (glow)
             {
                 var m = glow.material;

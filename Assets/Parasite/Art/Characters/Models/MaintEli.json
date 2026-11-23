@@ -1,0 +1,84 @@
+{
+ "id": "MaintEli",
+ "profession": "Maintenance",
+ "names": [],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.5615384615384615,
+ "height": 1.775,
+ "skin": "young_african_male",
+ "skinTint": [
+  1.0,
+  0.95,
+  0.9
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.13316173796073713,
+   0.15188204986509943,
+   0.07214892632459273
+  ],
+  "B": [
+   1.5130066871643066,
+   1.5206730365753174,
+   1.5423097610473633
+  ]
+ },
+ "palettes": {
+  "A": "coverall",
+  "B": "tshirt"
+ },
+ "lodTris": [
+  17881,
+  6996,
+  2494
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_african_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow001"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "male_worksuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_male"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_african_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "MaintEli_Cloth_A.jpg",
+  "clothN": "MaintEli_Cloth_N.jpg",
+  "clothM": "MaintEli_Cloth_M.png",
+  "hairA": "MaintEli_Hair_A.png"
+ }
+}

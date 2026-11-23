@@ -1,13 +1,23 @@
-# PARASITE 0.2.0 — Developer handoff (read this first)
+# PARASITE 0.3.0 — Developer handoff (read this first)
 
-**Current local override — v0.2.2:** The user explicitly prohibited commits and pushes for the Ctrl+M fixes and reiterated
-“NO PUSHING OF CODE TO GIT.” Keep this work local; this overrides the historical Git/delivery instructions below.
-The local player is now v0.2.2. `PresentationShortcut` starts before the first scene and persists across loads, handling
-Ctrl+M from title/overlays, the opening, pause, Vale dialogue and gameplay. Requests wait through reset/loading/body transitions.
-An existing ending is preserved and Peace/Dominion is never selected automatically. Restart an already-running player to use it.
-Focused PlayMode checks passed 8/8, including an 11-phase startup/pause/dialogue/reset matrix. The Linux rebuild succeeded
-(425 MB, 23.54 seconds, zero errors/warnings). See the appended v0.2.2 section of `Docs/TEST_REPORT.md` for built-player evidence.
-Everything below describes the committed v0.2.0 baseline unless explicitly marked otherwise.
+**Version 0.3.0 (Major Upgrade):**
+The game has undergone a major upgrade:
+1. **14-Mission Expanded Campaign:** Follow Dr. Hana Petrov through high-tension tailing sequences, evade Hunter Squad bio-scanners, breach the subterranean Black Site Vault, override Containment Protocol Epsilon, trigger the 3-stage district blackout, and execute the final convergence broadcast and escape.
+2. **Skinned 3D Character Models:** Replaced procedural humanoids with high-fidelity, textured character models generated via MPFB / MakeHuman Community across 20+ variants (Civilians, Guards, Scientists, Maintenance, Dr. Petrov, Dr. Vale, and Lakeside Girl).
+3. **Authored Locomotion & Animation Controller:** Full humanoid Animator Controller supporting locomotion blends, state transitions (Normal, Possessed, Unconscious, Captured), and authored pose states (sitting, gestures, panic, console use, and captured sequences).
+4. **Complete Audio Overhaul:** Full voice acting for story characters and pedestrians, synthesized ambient city audio, dynamic music tracks, and high-fidelity sound effects with persistent in-game volume controls.
+5. **Next-Gen Visuals & Shaders:** 4K Belfast Sunset HDR skybox, realistic 3D trees with bark and leaf-cluster atlases, custom URP shaders (Atmosphere, Foliage, Facade, Light Cones, Amoeba Slime Trail), and wet asphalt reflections.
+6. **Persistent Shortcut:** Judges' shortcut **Ctrl + M** remains available at any point (title, opening, pause, dialogue, gameplay) to jump directly to the final escape sequence and explicit lakeside choice.
+
+All verification passes cleanly:
+- Roslyn compilation: 99 runtime and 18 editor files pass with zero errors (`Tools/compile_check.sh all`)
+- EditMode Rules Suite: 46/46 passed (`Logs/editmode-results.xml`)
+- SettingsUI PlayMode: 6/6 passed (`Logs/ui-test-results.xml`)
+- Opening Cinematic PlayMode: 2/2 passed (`Logs/audio-playmode-focus-results.xml`)
+- Campaign Acceptance: 16/16 passed across all 14 missions and all routes (`Logs/core-playmode-results.xml`, `Logs/routes-playmode-results.xml`, `Logs/routes-bc-results.xml`)
+- PhotoTool & Character captures: 18/18 photo tool renders + full character lineup renders generated cleanly (`Logs/photos/*.png`, `Logs/characters/*.png`)
+- Linux standalone build: Succeeded, 933 MB player, zero compilation errors (`Logs/build-linux.log`)
+- Standalone built player: 14/14 shortcut test matrix passed (`Logs/upgrade-shortcut.txt`)
 
 Unity 6.3 LTS (6000.3.29f1) URP third-person stealth game. You are an amoeba (Specimen 7) that escaped Vale Biotech,
 possesses humans, splits in two, and works through an 8-mission campaign: infiltrate, meet Dr. Vale, secure signed evidence,
@@ -106,22 +116,26 @@ Commit + push after every working step (`git push origin main`). Don't commit `L
   `MissionPlacement.cs` (mission props, cameras, extra NPCs, door flag wiring — called at end of `CityBuilder.Gameplay()`),
   `ProjectSetup.cs`, `FxSetup.cs`, `PhotoTool.cs`, `BuildAutomation.cs`.
 
-## 5. Fixed release scope and campaign
+## 5. Campaign Missions (14-Mission Expanded Arc)
 
-Version **0.2.0** contains the existing eight missions, opening backstory, lakeside choices and Ctrl+M presentation shortcut. The user froze scope:
-finish validation, package Linux, push and stop. The user subsequently requested Ctrl+M for judges; that addition is implemented.
-No additional missions, art systems or feature backlog is authorized for this delivery.
+Version **0.3.0** expands the campaign from 8 to 14 missions:
 
-| Mission | Existing behavior |
+| Mission | Behavior & Mechanics |
 |---|---|
 | 1 — OUT OF THE DRAIN | Leave the alley and take the first host. |
 | 2 — WORD ON THE STREET | Read the Plaza newsstand and overhear Dr. Petrov at the café. |
-| 3 — CREDENTIALS | Guard badge/main gate, scientist plus café keycard/staff terminal, or maintenance plus power/service tunnel. |
-| 4 — VALE'S RESEARCH | Copy both lab terminals; two separate staff hosts badge the office readers within 8 seconds. |
-| 5 — CREATOR | Vale reveals the experiment; protected dialogue ends by restoring gameplay. |
-| 6 — THE PART HE HID | Maintenance holds service-room coolant while a different scientist host copies the signed archive for 8 seconds. |
-| 7 — BREAK THE LEASH | Guard holds lobby dispatch while a different maintenance host overloads the east-alley relay for 7 seconds; CCTV turns off permanently and exits open. |
-| 8 — OUTSIDE THE EXPERIMENT | Any host broadcasts at the Plaza uplink for 10 seconds without pursuit, then a free amoeba escapes through the original drain. |
+| 3 — THE TAIL | Tail Dr. Petrov through Market St & Avenue North. Stay within 4–20 m; freeze during glances; take the dead drop. |
+| 4 — CREDENTIALS | Infiltrate Vale Biotech: Guard badge/main gate, Scientist plus café keycard/staff terminal, or Maintenance plus power/service tunnel. |
+| 5 — VALE'S RESEARCH | Copy both lab terminals; two separate staff hosts badge the office readers within 8 seconds. |
+| 6 — CREATOR | Vale reveals the experiment; protected dialogue ends by restoring gameplay. |
+| 7 — HUNTER PROTOCOL | Evade Protocol Hound bio-scanners; slip through the scanner arch as a free amoeba; possess duty officer and trip the breaker. |
+| 8 — THE PART HE HID | Maintenance holds service-room coolant while a different scientist host copies the signed archive for 8 seconds. |
+| 9 — BREAK THE LEASH | Guard holds lobby dispatch while a different maintenance host overloads the east-alley relay for 7 seconds; CCTV turns off permanently and exits open. |
+| 10 — THE SHADOW UPLINK | Broadcast preliminary findings to independent journalist at the Plaza uplink (10 s) without pursuit. |
+| 11 — THE BLACK SITE ARCHIVE | Guard triggers the Sub-Vault Evacuation Alarm at the Lobby Security Console; scientist breaches Lab A and downloads the Black Site Mainframe (10 s). |
+| 12 — CONTAINMENT PROTOCOL EPSILON | Maintenance overloads the East Service Alley Auxiliary Generator; guard/scientist overrides Forecourt Security Grid Pylon (8 s). |
+| 13 — BLACKOUT | Cut all three plaza transformers (P-1, P-2, P-3) within a single 35-second reroute window; each requires a distinct human palm print. |
+| 14 — THE FINAL CONVERGENCE | Broadcast unredacted Black Site Archive at the Plaza Master Antenna (12 s), eject to free amoeba [Q], and extract through South Alley storm drain. |
 
 New-game entry alone requests the **80-second opening**. Space/Enter/Escape or gamepad South/East skips it after release;
 checkpoint reloads and Restart do not replay it. At the end, the **sunset lake/seated girl** presents **Live quietly (Peace)** and

@@ -9,8 +9,9 @@ namespace Parasite.UI
     public class SettingsOverlay : MonoBehaviour
     {
         public Button FirstSelection { get; private set; }
-        Text graphicsLabel, graphicsDetail, sensitivityValue, masterValue, ambienceValue;
-        Slider sensitivity, master, ambience;
+        Text graphicsLabel, graphicsDetail, sensitivityValue, masterValue, ambienceValue, musicValue, effectsValue, voiceValue;
+        Slider sensitivity, master, ambience, music, effects, voice;
+        const float PanelW = 1120f, ColW = 488f;
 
         public static SettingsOverlay Create(Transform parent, UnityAction onBack)
         {
@@ -26,42 +27,50 @@ namespace Parasite.UI
             var dim = UIKit.Img(transform, "Dim", UIKit.White, new Color(0, 0, 0, 0.7f));
             dim.rectTransform.Stretch(); dim.raycastTarget = true;
             var panel = UIKit.Panel(transform, "Panel", 14, UIKit.PanelBgLight, UIKit.AccentSoft);
-            panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(820, 760));
+            panel.rectTransform.Place(new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(PanelW, 760));
             var title = UIKit.Txt(panel.transform, "Title", "SETTINGS", 44, UIKit.TextMain, TextAnchor.MiddleLeft, Weight.Bold);
-            title.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(48, -32), new Vector2(724, 60));
+            title.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(48, -32), new Vector2(PanelW - 96, 60));
             var items = new List<Selectable>();
-            FirstSelection = UIKit.Btn(panel.transform, "Graphics", () => { GraphicsPreset.Cycle(); RefreshGraphics(); }, 724, 60, 26);
-            ((RectTransform)FirstSelection.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, -120), new Vector2(724, 60));
+            FirstSelection = UIKit.Btn(panel.transform, "Graphics", () => { GraphicsPreset.Cycle(); RefreshGraphics(); }, PanelW - 96, 60, 26);
+            ((RectTransform)FirstSelection.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, -120), new Vector2(PanelW - 96, 60));
             graphicsLabel = FirstSelection.GetComponentInChildren<Text>();
             graphicsDetail = UIKit.Txt(panel.transform, "GraphicsDetail", "", 20, UIKit.TextDim, TextAnchor.UpperLeft, Weight.Medium);
-            graphicsDetail.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(48, -192), new Vector2(724, 54));
+            graphicsDetail.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(48, -192), new Vector2(PanelW - 96, 54));
             items.Add(FirstSelection);
 
-            sensitivity = AddSlider(panel.transform, "MOUSE SENSITIVITY", "Sensitivity", -270, UIKit.SensMin, UIKit.SensMax,
+            // left column: input + master/music; right column: ambience, effects, dialogue
+            const float left = 48f, right = PanelW - 48f - ColW;
+            sensitivity = AddSlider(panel.transform, "MOUSE SENSITIVITY", "Sensitivity", left, -270, UIKit.SensMin, UIKit.SensMax,
                 GameInput.MouseSensitivity, value => { UIKit.SaveSensitivity(value); RefreshValues(); }, out sensitivityValue);
-            master = AddSlider(panel.transform, "MASTER VOLUME", "MasterVolume", -376, 0, 1,
+            master = AddSlider(panel.transform, "MASTER VOLUME", "MasterVolume", left, -376, 0, 1,
                 AudioPreferences.MasterVolume, value => { AudioPreferences.SetMaster(value); RefreshValues(); }, out masterValue);
-            ambience = AddSlider(panel.transform, "AMBIENCE & MUSIC", "AmbienceVolume", -482, 0, 1,
+            music = AddSlider(panel.transform, "MUSIC", "MusicVolume", left, -482, 0, 1,
+                AudioPreferences.MusicVolume, value => { AudioPreferences.SetMusic(value); RefreshValues(); }, out musicValue);
+            ambience = AddSlider(panel.transform, "AMBIENCE", "AmbienceVolume", right, -270, 0, 1,
                 AudioPreferences.AmbienceVolume, value => { AudioPreferences.SetAmbience(value); RefreshValues(); }, out ambienceValue);
-            items.Add(sensitivity); items.Add(master); items.Add(ambience);
+            effects = AddSlider(panel.transform, "SOUND EFFECTS", "EffectsVolume", right, -376, 0, 1,
+                AudioPreferences.EffectsVolume, value => { AudioPreferences.SetEffects(value); RefreshValues(); }, out effectsValue);
+            voice = AddSlider(panel.transform, "DIALOGUE", "VoiceVolume", right, -482, 0, 1,
+                AudioPreferences.VoiceVolume, value => { AudioPreferences.SetVoice(value); RefreshValues(); }, out voiceValue);
+            items.Add(sensitivity); items.Add(master); items.Add(music); items.Add(ambience); items.Add(effects); items.Add(voice);
 
             var note = UIKit.Txt(panel.transform, "Note", "Changes apply immediately and are saved when you return.", 20, UIKit.TextDim, TextAnchor.MiddleCenter, Weight.Medium);
-            note.rectTransform.Place(new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 114), new Vector2(724, 36));
+            note.rectTransform.Place(new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 114), new Vector2(PanelW - 96, 36));
             var back = UIKit.Btn(panel.transform, "Back", onBack, 240, 56, 24, TextAnchor.MiddleCenter);
             ((RectTransform)back.transform).Place(new Vector2(0.5f, 0), new Vector2(0.5f, 0), new Vector2(0, 38), new Vector2(240, 56));
             items.Add(back);
             UIKit.LinkVertical(items);
         }
 
-        static Slider AddSlider(Transform parent, string label, string name, float y, float min, float max, float value,
+        static Slider AddSlider(Transform parent, string label, string name, float x, float y, float min, float max, float value,
             UnityAction<float> onChange, out Text readout)
         {
             var heading = UIKit.Txt(parent, name + "Label", label, 21, UIKit.TextMain, TextAnchor.MiddleLeft);
-            heading.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(48, y), new Vector2(580, 30));
+            heading.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(x, y), new Vector2(ColW - 120, 30));
             readout = UIKit.Txt(parent, name + "Value", "", 22, UIKit.Accent, TextAnchor.MiddleRight, Weight.Bold);
-            readout.rectTransform.Place(new Vector2(1, 1), new Vector2(1, 1), new Vector2(-48, y), new Vector2(120, 30));
-            var slider = UIKit.Sld(parent, name, min, max, value, onChange, 724);
-            ((RectTransform)slider.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, y - 40), new Vector2(724, 30));
+            readout.rectTransform.Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(x + ColW - 120, y), new Vector2(120, 30));
+            var slider = UIKit.Sld(parent, name, min, max, value, onChange, ColW);
+            ((RectTransform)slider.transform).Place(new Vector2(0, 1), new Vector2(0, 1), new Vector2(x, y - 40), new Vector2(ColW, 30));
             return slider;
         }
 
@@ -70,6 +79,9 @@ namespace Parasite.UI
             sensitivity.SetValueWithoutNotify(GameInput.MouseSensitivity);
             master.SetValueWithoutNotify(AudioPreferences.MasterVolume);
             ambience.SetValueWithoutNotify(AudioPreferences.AmbienceVolume);
+            music.SetValueWithoutNotify(AudioPreferences.MusicVolume);
+            effects.SetValueWithoutNotify(AudioPreferences.EffectsVolume);
+            voice.SetValueWithoutNotify(AudioPreferences.VoiceVolume);
             RefreshGraphics(); RefreshValues();
             gameObject.SetActive(true);
             UIKit.Select(FirstSelection);
@@ -84,10 +96,10 @@ namespace Parasite.UI
             graphicsLabel.text = "Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current];
             string[] detail =
             {
-                "70% render scale · short shadows · FXAA",
-                "85% render scale · medium shadows · FXAA",
-                "Native resolution · long shadows · SMAA",
-                "Native resolution · longest shadows · SMAA + 4x MSAA",
+                "70% render scale · short shadows · 6 lamp lights · no water reflections · FXAA",
+                "85% render scale · medium shadows · 14 lamp lights · water reflections · FXAA",
+                "Native resolution · long shadows · 32 lamp lights · SSAO · film grain · SMAA",
+                "Native resolution · longest shadows · 56 lamp lights · SSAO · SMAA + 4x MSAA",
             };
             graphicsDetail.text = detail[GraphicsPreset.Current];
         }
@@ -98,6 +110,9 @@ namespace Parasite.UI
             if (sensitivityValue) sensitivityValue.text = Mathf.RoundToInt(Mathf.InverseLerp(UIKit.SensMin, UIKit.SensMax, GameInput.MouseSensitivity) * 100f) + "%";
             if (masterValue) masterValue.text = Mathf.RoundToInt(AudioPreferences.MasterVolume * 100f) + "%";
             if (ambienceValue) ambienceValue.text = Mathf.RoundToInt(AudioPreferences.AmbienceVolume * 100f) + "%";
+            if (musicValue) musicValue.text = Mathf.RoundToInt(AudioPreferences.MusicVolume * 100f) + "%";
+            if (effectsValue) effectsValue.text = Mathf.RoundToInt(AudioPreferences.EffectsVolume * 100f) + "%";
+            if (voiceValue) voiceValue.text = Mathf.RoundToInt(AudioPreferences.VoiceVolume * 100f) + "%";
         }
     }
 }

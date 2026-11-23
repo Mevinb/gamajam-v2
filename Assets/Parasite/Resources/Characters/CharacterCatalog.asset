@@ -1,0 +1,458 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc50b2ae04bc6e678761c54e33a1d43, type: 3}
+  m_Name: CharacterCatalog
+  m_EditorClassIdentifier: Parasite.Runtime::Parasite.Characters.CharacterCatalog
+  entries:
+  - id: CivAmara
+    profession: 0
+    names:
+    - Amara Diallo
+    unique: 0
+    gender: 0
+    height: 1.654
+    prefab: {fileID: 7299944421268690344, guid: 547672d597a65f9e188d5c39851560fb, type: 3}
+    tintA: {r: 1.11009, g: 0.9135658, b: 0.3362749, a: 1}
+    tintB: {r: 0.32468224, g: 0.34543052, b: 0.32048613, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: top
+    paletteB: skirt
+    paletteC: 
+    lodTriangles: 1e4e0000551b0000c2090000
+  - id: CivGrace
+    profession: 0
+    names: []
+    unique: 0
+    gender: 0
+    height: 1.63
+    prefab: {fileID: 1381664478435467788, guid: a6f4e53c936467d1b96f83559d848df7, type: 3}
+    tintA: {r: 0.29778886, g: 0.3234462, b: 0.42607573, a: 1}
+    tintB: {r: 1, g: 1, b: 1, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 0
+    hasTintC: 0
+    paletteA: suit
+    paletteB: 
+    paletteC: 
+    lodTriangles: 0f4b0000561b0000c2090000
+  - id: CivKenji
+    profession: 0
+    names: []
+    unique: 0
+    gender: 1
+    height: 1.754
+    prefab: {fileID: 4932017752379229174, guid: ce5f512e2a5487b229ed233aaf7ee154, type: 3}
+    tintA: {r: 1, g: 1, b: 1, a: 1}
+    tintB: {r: 1, g: 1, b: 1, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 0
+    hasTintB: 0
+    hasTintC: 0
+    paletteA: 
+    paletteB: 
+    paletteC: 
+    lodTriangles: d2410000551b0000c1090000
+  - id: CivLena
+    profession: 0
+    names:
+    - Lena Fischer
+    unique: 0
+    gender: 0
+    height: 1.645
+    prefab: {fileID: 7400232383475933233, guid: 9e43a5eadd3feaafeaf0c32bb22fa85e, type: 3}
+    tintA: {r: 0.4773904, g: 0.63133466, b: 0.4517331, a: 1}
+    tintB: {r: 0.33332005, g: 0.36432463, b: 0.47542346, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: hoodie
+    paletteB: denim
+    paletteC: 
+    lodTriangles: 1e4e0000531b0000c2090000
+  - id: CivLeo
+    profession: 0
+    names:
+    - Leo Park
+    unique: 0
+    gender: 1
+    height: 1.76
+    prefab: {fileID: 5459821176175874913, guid: f0d0837cd4aa335b4a94e280f84d7cb4, type: 3}
+    tintA: {r: 0.27213147, g: 0.46456176, b: 0.7211355, a: 1}
+    tintB: {r: 0.22091538, g: 0.21941572, b: 0.28095734, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: denim
+    paletteC: 
+    lodTriangles: 1c4e0000541b0000c2090000
+  - id: CivMaya
+    profession: 0
+    names:
+    - Maya Chen
+    unique: 0
+    gender: 0
+    height: 1.606
+    prefab: {fileID: 6908100424761825338, guid: 5ffa3c26518075776a655fa865fc805a, type: 3}
+    tintA: {r: 1.0167583, g: 0.40041834, b: 0.374761, a: 1}
+    tintB: {r: 0.3714843, g: 0.5011432, b: 0.6214203, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: top
+    paletteB: denim
+    paletteC: 
+    lodTriangles: f0440000551b0000c1090000
+  - id: CivOmar
+    profession: 0
+    names:
+    - Omar Haddad
+    unique: 0
+    gender: 1
+    height: 1.766
+    prefab: {fileID: 6591378464400187287, guid: 005fa5281ec2f2da1af3faca70a7494a, type: 3}
+    tintA: {r: 0.81093633, g: 0.9135658, b: 1.0433544, a: 1}
+    tintB: {r: 0.374761, g: 0.3234462, b: 0.27213147, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: 0e4c0000541b0000c1090000
+  - id: CivSofia
+    profession: 0
+    names: []
+    unique: 0
+    gender: 0
+    height: 1.624
+    prefab: {fileID: 7867170592597016003, guid: 4389f648ad38f5ef0b72810e0f49f22c, type: 3}
+    tintA: {r: 0.32910404, g: 0.42823234, b: 0.67168903, a: 1}
+    tintB: {r: 0.332473, g: 0.332473, b: 0.332473, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: top
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: af460000551b0000c3090000
+  - id: CivTheo
+    profession: 0
+    names:
+    - Theo Brooks
+    unique: 0
+    gender: 1
+    height: 1.79
+    prefab: {fileID: 6442222052362276272, guid: 174ea4949c1a0bc91ac979dd710749f7, type: 3}
+    tintA: {r: 0.29855815, g: 0.3014444, b: 0.28202328, a: 1}
+    tintB: {r: 0.3582311, g: 0.48503578, b: 0.60262865, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: jacket
+    paletteB: denim
+    paletteC: 
+    lodTriangles: 8a490000561b0000c0090000
+  - id: CivWalter
+    profession: 0
+    names: []
+    unique: 0
+    gender: 1
+    height: 1.745
+    prefab: {fileID: 7849611897298557379, guid: 4722da5a200ff162b9274390ab665304, type: 3}
+    tintA: {r: 0.59284866, g: 0.27213147, b: 0.23364541, a: 1}
+    tintB: {r: 0.40041834, g: 0.374761, b: 0.3234462, a: 1}
+    tintC: {r: 0.40041834, g: 0.36193228, b: 0.29778886, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 1
+    paletteA: sweater
+    paletteB: trousers
+    paletteC: cap
+    lodTriangles: 9c470000551b0000c1090000
+  - id: DrPetrov
+    profession: 2
+    names:
+    - Dr. Hana Petrov
+    unique: 1
+    gender: 0
+    height: 1.636
+    prefab: {fileID: 1751553427609952660, guid: f1a39412bcd66787bbeacd6bf4ff40ee, type: 3}
+    tintA: {r: 1.1234779, g: 1.0967155, b: 1.0433544, a: 1}
+    tintB: {r: 0.22081673, g: 0.22081673, b: 0.2593028, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: 1c4e0000851b0000020a0000
+  - id: DrVale
+    profession: 2
+    names:
+    - Dr. Vale
+    unique: 1
+    gender: 1
+    height: 1.784
+    prefab: {fileID: 2027675735147257867, guid: 31f988a9186325f9fb27e635eb7dfa9e, type: 3}
+    tintA: {r: 1, g: 1, b: 1, a: 1}
+    tintB: {r: 1, g: 1, b: 1, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 0
+    hasTintB: 0
+    hasTintC: 0
+    paletteA: 
+    paletteB: 
+    paletteC: 
+    lodTriangles: e1490000521b0000c1090000
+  - id: GuardDana
+    profession: 1
+    names:
+    - Dana Kowalski
+    unique: 0
+    gender: 0
+    height: 1.654
+    prefab: {fileID: 4466313730382878681, guid: b41fa7b892db58f798fd003ca87fc7fc, type: 3}
+    tintA: {r: 0.1438446, g: 0.18233067, b: 0.3234462, a: 1}
+    tintB: {r: 0.10535858, g: 0.118187256, b: 0.15667331, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: uniform
+    paletteB: uniform_pants
+    paletteC: 
+    lodTriangles: 1d4e0000641b0000d4090000
+  - id: GuardJonas
+    profession: 1
+    names: []
+    unique: 0
+    gender: 1
+    height: 1.784
+    prefab: {fileID: 6102786169871070889, guid: 2d60512a74d14ee8cba521dcf544a1ea, type: 3}
+    tintA: {r: 0.1438446, g: 0.18233067, b: 0.3234462, a: 1}
+    tintB: {r: 0.10535858, g: 0.118187256, b: 0.15667331, a: 1}
+    tintC: {r: 0.118187256, g: 0.1438446, b: 0.23364541, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 1
+    paletteA: uniform
+    paletteB: uniform_pants
+    paletteC: uniform
+    lodTriangles: e64d0000611b0000d0090000
+  - id: GuardMarcus
+    profession: 1
+    names:
+    - Sgt. Marcus Reed
+    unique: 0
+    gender: 1
+    height: 1.796
+    prefab: {fileID: 6328570606355217831, guid: 29842da4427357aef9d898266d323892, type: 3}
+    tintA: {r: 0.1438446, g: 0.18233067, b: 0.3234462, a: 1}
+    tintB: {r: 0.10535858, g: 0.118187256, b: 0.15667331, a: 1}
+    tintC: {r: 0.118187256, g: 0.1438446, b: 0.23364541, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 1
+    paletteA: uniform
+    paletteB: uniform_pants
+    paletteC: uniform
+    lodTriangles: 1c4e0000611b0000d7090000
+  - id: GuardPriya
+    profession: 1
+    names:
+    - Priya Nair
+    unique: 0
+    gender: 0
+    height: 1.63
+    prefab: {fileID: 1783647413493382489, guid: 4384fd550960ace828e8f974c0d67144, type: 3}
+    tintA: {r: 0.1438446, g: 0.18233067, b: 0.3234462, a: 1}
+    tintB: {r: 0.10535858, g: 0.118187256, b: 0.15667331, a: 1}
+    tintC: {r: 0.118187256, g: 0.1438446, b: 0.23364541, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 1
+    paletteA: uniform
+    paletteB: uniform_pants
+    paletteC: uniform
+    lodTriangles: 1d4e0000631b0000d5090000
+  - id: GuardVictor
+    profession: 1
+    names:
+    - Victor Hale
+    unique: 0
+    gender: 1
+    height: 1.775
+    prefab: {fileID: 4312729400015072648, guid: b7fb415d04b89f0b093e17411173006d, type: 3}
+    tintA: {r: 0.22081673, g: 0.24647409, b: 0.29778886, a: 1}
+    tintB: {r: 0.10535858, g: 0.118187256, b: 0.15667331, a: 1}
+    tintC: {r: 0.118187256, g: 0.1438446, b: 0.23364541, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 1
+    paletteA: uniform
+    paletteB: uniform_pants
+    paletteC: uniform
+    lodTriangles: 1b4e0000621b0000d4090000
+  - id: LakeGirl
+    profession: 0
+    names:
+    - Lakeside Girl
+    unique: 1
+    gender: 0
+    height: 1.6
+    prefab: {fileID: 2670896595318675744, guid: fd80f951b2848a02e917326997690bdc, type: 3}
+    tintA: {r: 0.9520518, g: 0.8494224, b: 0.69547814, a: 1}
+    tintB: {r: 0.22081673, g: 0.29778886, b: 0.38758966, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: sweater
+    paletteB: denim
+    paletteC: 
+    lodTriangles: 1d4e0000531b0000c1090000
+  - id: MaintEli
+    profession: 3
+    names: []
+    unique: 0
+    gender: 1
+    height: 1.775
+    prefab: {fileID: 5187193988981292673, guid: cd1515108ee66379e99e74eb9e794938, type: 3}
+    tintA: {r: 0.40041834, g: 0.42607573, b: 0.29778886, a: 1}
+    tintB: {r: 1.2071072, g: 1.2098836, b: 1.2176783, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: coverall
+    paletteB: tshirt
+    paletteC: 
+    lodTriangles: d9450000541b0000be090000
+  - id: MaintGus
+    profession: 3
+    names:
+    - Gus Romero
+    unique: 0
+    gender: 1
+    height: 1.76
+    prefab: {fileID: 1841250031208552947, guid: e571ae722e4d4165c80f03fba7c92a3e, type: 3}
+    tintA: {r: 0.22081673, g: 0.29778886, b: 0.4773904, a: 1}
+    tintB: {r: 1, g: 1, b: 1, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 0
+    hasTintC: 0
+    paletteA: coverall
+    paletteB: 
+    paletteC: 
+    lodTriangles: 1c4e0000541b0000c0090000
+  - id: MaintNoor
+    profession: 3
+    names:
+    - Engineer Noor Patel
+    unique: 0
+    gender: 0
+    height: 1.63
+    prefab: {fileID: 7970271618274390455, guid: bc98052f0dc07c0f6b5c854a5a5244c6, type: 3}
+    tintA: {r: 0.3234462, g: 0.3491036, b: 0.374761, a: 1}
+    tintB: {r: 1, g: 1, b: 1, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 0
+    hasTintC: 0
+    paletteA: coverall
+    paletteB: 
+    paletteC: 
+    lodTriangles: 1e4e0000541b0000c0090000
+  - id: MaintRita
+    profession: 3
+    names:
+    - Rita Okafor
+    unique: 0
+    gender: 0
+    height: 1.645
+    prefab: {fileID: 8851126117177697775, guid: ad0bc65a82b35536a898b7b1f83bcb72, type: 3}
+    tintA: {r: 0.27213147, g: 0.40041834, b: 0.63133466, a: 1}
+    tintB: {r: 1.1837187, g: 1.1890998, b: 1.2047802, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: coverall
+    paletteB: tshirt
+    paletteC: 
+    lodTriangles: 4d4b0000531b0000c2090000
+  - id: SciFelix
+    profession: 2
+    names:
+    - Dr. Felix Moreau
+    unique: 0
+    gender: 1
+    height: 1.778
+    prefab: {fileID: 2960666505679919104, guid: 16831226d489e6b14be1d1736191c265, type: 3}
+    tintA: {r: 0.81093633, g: 0.9392232, b: 1.11009, a: 1}
+    tintB: {r: 0.27213147, g: 0.28496015, b: 0.3234462, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: 1b4e0000861b0000010a0000
+  - id: SciIngrid
+    profession: 2
+    names:
+    - Dr. Ingrid Sato
+    unique: 0
+    gender: 0
+    height: 1.63
+    prefab: {fileID: 2389673163005563111, guid: 4f496c618ac97738aba08aa37bdfdfb1, type: 3}
+    tintA: {r: 0.7211355, g: 0.81093633, b: 0.9135658, a: 1}
+    tintB: {r: 0.24647409, g: 0.24647409, b: 0.27213147, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: 1b4b0000811b0000ff090000
+  - id: SciSamuel
+    profession: 2
+    names: []
+    unique: 0
+    gender: 1
+    height: 1.775
+    prefab: {fileID: 4129241442066334111, guid: 2d154c9205c055163989ebb4c647026a, type: 3}
+    tintA: {r: 0.32527712, g: 0.20909578, b: 0.22643057, a: 1}
+    tintB: {r: 0.29778886, g: 0.27213147, b: 0.24647409, a: 1}
+    tintC: {r: 1, g: 1, b: 1, a: 1}
+    hasTintA: 1
+    hasTintB: 1
+    hasTintC: 0
+    paletteA: shirt
+    paletteB: trousers
+    paletteC: 
+    lodTriangles: 4b470000821b0000010a0000

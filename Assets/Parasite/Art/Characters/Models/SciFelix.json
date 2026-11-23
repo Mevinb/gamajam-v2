@@ -1,0 +1,90 @@
+{
+ "id": "SciFelix",
+ "profession": "Scientist",
+ "names": [
+  "Dr. Felix Moreau"
+ ],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.6,
+ "height": 1.778,
+ "skin": "middleage_caucasian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "blue",
+ "hairColor": [
+  0.26,
+  0.16,
+  0.09
+ ],
+ "tints": {
+  "A": [
+   0.6225302538047335,
+   0.8672723355755307,
+   1.2583110124824943
+  ],
+  "B": [
+   0.06019048467433646,
+   0.0660117893058071,
+   0.08538945579840525
+  ]
+ },
+ "palettes": {
+  "A": "shirt",
+  "B": "trousers"
+ },
+ "lodTris": [
+  19995,
+  7046,
+  2561
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow003"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "cortu_short_messy_hair"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes blue"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_shirt_tie_tucked1"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_trouser"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_male"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_caucasian_male.jpg",
+  "eyes": "Eyes/blue.png",
+  "clothA": "SciFelix_Cloth_A.jpg",
+  "clothN": "SciFelix_Cloth_N.jpg",
+  "clothM": "SciFelix_Cloth_M.png",
+  "hairA": "SciFelix_Hair_A.png"
+ }
+}

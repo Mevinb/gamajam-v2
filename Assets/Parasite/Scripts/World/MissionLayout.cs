@@ -35,6 +35,43 @@ namespace Parasite.World
         public static readonly Vector3 GridOverride = new(-4.5f, L.Sidewalk, 61.0f);
         public static readonly Vector3 MasterUplink = new(-36.0f, L.Sidewalk, 15.0f);
 
+        // THE TAIL — Dr. Petrov's walk from the café terrace to her dead drop in the storm-drain alley.
+        public static readonly Vector3[] TailRoute =
+        {
+            new(-45f, L.Sidewalk, -6f),        // across the plaza
+            new(-26f, L.Sidewalk, -20.3f),     // Market St bus stop (checkpoint 1, pause)
+            new(-27f, L.Sidewalk, -36.2f),     // jaywalks Market St to the south sidewalk
+            new(-33f, L.Sidewalk, -41.5f),     // storm-drain alley mouth (checkpoint 2, pause)
+            new(-34.5f, L.Sidewalk, -54.1f),   // the dead drop, behind the dumpster
+        };
+        public static readonly float[] TailPauses = { 0f, 3f, 0f, 2f, 0f };
+        public static readonly Vector3 DeadDrop = new(-35.5f, L.Sidewalk + 0.55f, -54.1f);   // envelope in a wall junction box
+        public static readonly Vector3 PetrovRest = new(-28.2f, L.Sidewalk, -20.3f);          // waits for the night bus afterwards
+
+        // HUNTER PROTOCOL — Protocol Hound team, security-office scanner arch and lockdown breaker.
+        public static readonly Vector3 HunterEntry = new(0f, L.LabFloor, 74.8f);
+        public static readonly Vector3 HunterExit = new(0f, L.Sidewalk, 66.5f);
+        public static readonly Vector3[] HunterCorridorRoute = { new(-20f, L.LabFloor, 86f), new(20.5f, L.LabFloor, 86f) };
+        public static readonly Vector3[] HunterLobbyRoute = { new(0f, L.LabFloor, 76.8f), new(-6f, L.LabFloor, 81.6f), new(4.5f, L.LabFloor, 80.5f) };
+        public static readonly Vector3 ScanGate = new(16.75f, L.LabFloor, 84f);          // the security office doorway
+        public static readonly Vector3 HoundBreaker = new(22.75f, L.LabFloor + 1.2f, 76f); // on the security office's east wall, 10 m from the arch
+        public static readonly Vector3 DutyOfficer = new(17.5f, L.LabFloor, 75.4f);
+        public const float DutyOfficerYaw = 180f;                                          // watching the monitors, back to the door
+
+        // BLACKOUT — the three transformers that feed Vale's plaza triangulation grid (front faces the player).
+        public static readonly (string name, Vector3 pos, float yaw)[] Transformers =
+        {
+            ("TRANSFORMER P-1", new(-57.5f, L.Sidewalk, 18f), -90f),
+            ("TRANSFORMER P-2", new(-14.5f, L.Sidewalk, -15f), 90f),
+            ("TRANSFORMER P-3", new(-44f, L.Sidewalk, 36.5f), 0f),
+        };
+        public static readonly (string name, Profession profession, Vector3 pos)[] BlackoutExtras =
+        {
+            ("Iris Novak", Profession.Civilian, new(-41.5f, L.Sidewalk, 33.5f)),
+            ("Ben Ortiz", Profession.Civilian, new(-18f, L.Sidewalk, -12.5f)),
+            ("Sam Reyes", Profession.Maintenance, new(-55f, L.Sidewalk, 21.5f)),
+        };
+
         // security cameras: name, mount position, yaw of the view centre, range
         public static readonly (string name, Vector3 pos, float yaw, float range)[] Cameras =
         {

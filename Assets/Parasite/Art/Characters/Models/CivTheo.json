@@ -1,0 +1,86 @@
+{
+ "id": "CivTheo",
+ "profession": "Civilian",
+ "names": [
+  "Theo Brooks"
+ ],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.5307692307692308,
+ "height": 1.79,
+ "skin": "young_african_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.07252708077430725,
+   0.0739561915397644,
+   0.06465140730142593
+  ],
+  "B": [
+   0.10545261204242706,
+   0.20045103132724762,
+   0.32162362337112427
+  ]
+ },
+ "palettes": {
+  "A": "jacket",
+  "B": "denim"
+ },
+ "lodTris": [
+  18826,
+  6998,
+  2496
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_african_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow001"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "male_casualsuit05"
+  },
+  {
+   "kind": "clothes",
+   "name": "shoes05"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_african_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "CivTheo_Cloth_A.jpg",
+  "clothN": "CivTheo_Cloth_N.jpg",
+  "clothM": "CivTheo_Cloth_M.png",
+  "hairA": "CivTheo_Hair_A.png"
+ }
+}

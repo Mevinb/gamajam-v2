@@ -92,6 +92,26 @@ All other sounds and the city ambience are synthesized at runtime by `SfxSynth.c
 
 Licence text: `Assets/Parasite/Audio/KENNEY_LICENSE.txt`.
 
+## Character Models, Clothing & Animation
+
+### Character Models & Clothing (MPFB / MakeHuman Community)
+Character base models and clothing assets generated with MPFB 2.0.18 (MakeHuman Plugin for Blender, GPL-3.0) and CC0 / CC-BY MakeHuman Community asset packs (Elvaerwyn, Mindfront, MargaretToigo, punkduck, makehuman_system, etc.).
+See full itemized attribution table in [Art/Characters/CREDITS.md](file:///home/mevlec/Data/Parasite/Assets/Parasite/Art/Characters/CREDITS.md).
+
+### Humanoid Animations
+- **Universal Animation Library [Standard] & UAL 2** — Quaternius (with Gonzalo Furnier), CC0 1.0. https://quaternius.itch.io/universal-animation-library
+- **CMU Graphics Lab Motion Capture Database** (subject 07 trial 12 brisk walk) — Carnegie Mellon University, http://mocap.cs.cmu.edu/ (free for commercial and non-commercial products).
+See full animation details in [Art/Characters/Animations/CREDITS.md](file:///home/mevlec/Data/Parasite/Assets/Parasite/Art/Characters/Animations/CREDITS.md).
+
+### Foliage & Skybox Upgrade
+| Asset | Author(s) | Source URL | License | Local path | Used for |
+|---|---|---|---|---|---|
+| Belfast Sunset (Pure Sky) 4k HDR | Greg Zaal, Dimitrios Savva, Jarod Guest | https://polyhaven.com/a/belfast_sunset_puresky | CC0 | Assets/Parasite/Art/City/sky/belfast_sunset_puresky_4k.hdr | Dusk skybox + ambient/reflection bake |
+| Bark Platanus 1k | Dimitrios Savva | https://polyhaven.com/a/bark_platanus | CC0 | Art/City/Foliage/Trees/BarkPlane_* | Plane tree bark |
+| Bark Brown 02 1k | Rob Tuytel | https://polyhaven.com/a/bark_brown_02 | CC0 | Art/City/Foliage/Trees/BarkLinden_* | Linden bark |
+| Japanese Zelkova Bark 1k | Charlotte Baglioni | https://polyhaven.com/a/japanese_zelkova_bark | CC0 | Art/City/Foliage/Trees/BarkMaple_* | Maple bark |
+| LeafSet 024 / 014 / 007 / 027 (2K) | ambientCG (Lennart Demes) | https://ambientcg.com/ | CC0 | Art/City/Foliage/Trees/TreeLeaves*_albedo/_normal.png | Leaf cluster card atlases |
+
 ## Fonts
 
 | Asset | Author(s) | Source URL | License | Local path | Used for |

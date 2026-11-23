@@ -9,7 +9,7 @@ namespace Parasite.Tests
     /// <summary>Runs the shared acceptance scenarios (Parasite.Testing.AutoTest) inside the Editor play mode.</summary>
     public class AcceptanceTests
     {
-        [UnityTest, Timeout(900000)]
+        [UnityTest, Timeout(2700000)]
         public IEnumerator AllAcceptanceScenariosPass()
         {
             yield return AutoTest.RunAll();

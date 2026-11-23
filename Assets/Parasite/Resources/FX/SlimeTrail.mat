@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SlimeTrail
+  m_Shader: {fileID: 4800000, guid: 5d074ca24429d57258c0f16f74e12a02, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _VERTEX_COVERAGE
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2991
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 25dea6e72d8716b6d9f50cb953115894, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BedOpacity: 0.55
+    - _BedOpacityDeep: 0.7
+    - _Coverage: 0.92
+    - _DampCoverage: 0.3
+    - _EdgeSoftness: 0.12
+    - _Gutter: 0.75
+    - _PuddleScale: 0.11
+    - _PuddleThreshold: 0.62
+    - _ReflectionBoost: 1.1
+    - _RippleStrength: 0.004
+    - _SSRStrength: 1
+    - _Smoothness: 0.93
+    - _VertexCoverage: 1
+    - _WetFilm: 0
+    m_Colors:
+    - _BaseColor: {r: 0.08, g: 0.36, b: 0.1, a: 1}
+    - _GlowColor: {r: 0.16, g: 1, b: 0.3, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

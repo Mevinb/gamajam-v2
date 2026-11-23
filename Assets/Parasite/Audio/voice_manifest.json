@@ -1,0 +1,774 @@
+{
+ "generator": "Tools/audio/gen_voice.sh",
+ "tts": "Kokoro-82M v1.0 (Apache-2.0)",
+ "key": "fnv1a64(SPEAKER|line)",
+ "lines": [
+  {
+   "key": "vo_9952deaa3e9c7a32",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "…no, Vale's pulling another all-nighter. Says Specimen 7 is 'progressing'.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 4.0,
+   "window": 2.25,
+   "sources": [
+    "Assets/Parasite/Editor/MissionPlacement.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a8f2377fd089aa57",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "The campus? North block, past Campus Road. Badge at the main gate, like always.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 4.3,
+   "window": 2.25,
+   "sources": [
+    "Assets/Parasite/Editor/MissionPlacement.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_642562b5970698dc",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "If you forgot your card, use the staff terminal on the west side — I left mine on this table again, ugh.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 5.27,
+   "window": 2.25,
+   "sources": [
+    "Assets/Parasite/Editor/MissionPlacement.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_f04c9341f87a4b1c",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "Maintenance keeps the service tunnel shut since the substation tripped. Anyway, his office needs two of us to open. Paranoid.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 6.64,
+   "window": 2.25,
+   "sources": [
+    "Assets/Parasite/Editor/MissionPlacement.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_237839ffc7cdd141",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "Before faces, there was a rhythm.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 3.52,
+   "window": 4.5,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @0.5s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_6a4d306189fef8fa",
+   "speaker": "DR. HANA PETROV",
+   "line": "You remembered.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.05,
+   "window": 3.5,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @16s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_3ec0ca73036fdca5",
+   "speaker": "DR. VALE",
+   "line": "It anticipated a stimulus.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 2.43,
+   "window": 2.5,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @19.5s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_f184735d74499abd",
+   "speaker": "DR. HANA PETROV",
+   "line": "It knew I was here.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.34,
+   "window": 4.8,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @22s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_6a84b34cb86c6b78",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "Two places. The same remembering.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 3.42,
+   "window": 6.2,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @26.8s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_1f161ef37d6d3b13",
+   "speaker": "MAINTENANCE WORKER",
+   "line": "That wasn't me.",
+   "profile": "worker",
+   "voice": "am_fenrir",
+   "duration": 0.94,
+   "window": 2.6,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @34.8s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_44b36262e2afb8b6",
+   "speaker": "DR. HANA PETROV",
+   "line": "End contact.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.23,
+   "window": 1.6,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @37.4s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_28d88030e3a6eb4f",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "A hand that wasn't mine. A heart that was.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 4.22,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @39s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_9020865eafc9a290",
+   "speaker": "DR. HANA PETROV",
+   "line": "Seven. Stay with the rhythm.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.6,
+   "window": 6.0,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @44s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0cc04ef9053efca3",
+   "speaker": "DR. HANA PETROV",
+   "line": "Who released the interlock?",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.44,
+   "window": 3.5,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @53s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_6cedc8ffc81f027d",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "Then the wall stopped.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 2.55,
+   "window": 2.5,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @56.5s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_56e9e9913664a7a8",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "Outside, nobody knew the rhythm.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 3.35,
+   "window": 7.6,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @67.6s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_c19d6ed7905bf5a3",
+   "speaker": "DR. HANA PETROV",
+   "line": "Four taps. Then we begin.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.6,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @6s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a2b5d663dc6f3a86",
+   "speaker": "SPECIMEN 7 · MEMORY",
+   "line": "I could make the next beat.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 2.89,
+   "window": 6.0,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @75.2s"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_dec587ef03fce34e",
+   "speaker": "CITY GRID",
+   "line": "Fault detected. Rerouting plaza circuits in thirty-five seconds.",
+   "profile": "system",
+   "voice": "af_nova",
+   "duration": 4.42,
+   "window": 4.48,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_3eaacac127976a6e",
+   "speaker": "CITY GRID",
+   "line": "Reroute complete. All plaza circuits restored.",
+   "profile": "system",
+   "voice": "af_nova",
+   "duration": 3.6,
+   "window": 3.67,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_4ab9d6c3401c33b9",
+   "speaker": "CITY GRID",
+   "line": "Plaza district offline. Emergency power only.",
+   "profile": "system",
+   "voice": "af_nova",
+   "duration": 4.04,
+   "window": 3.62,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_f760b8d37469af19",
+   "speaker": "DR. PETROV (radio)",
+   "line": "Vale has the city grid triangulating every transmitter near the plaza. The antenna won't last a minute.",
+   "profile": "petrov+radio",
+   "voice": "bf_emma",
+   "duration": 6.13,
+   "window": 6.23,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_dd6abd8a3de4aadb",
+   "speaker": "DR. PETROV (radio)",
+   "line": "Three transformers feed that grid. Kill all three inside one reroute — and every isolator logs a palm print.",
+   "profile": "petrov+radio",
+   "voice": "bf_emma",
+   "duration": 6.52,
+   "window": 6.46,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_e71ae6759a6c26bb",
+   "speaker": "DR. PETROV (radio)",
+   "line": "The antenna's on its own battery now. They're blind — go!",
+   "profile": "petrov+radio",
+   "voice": "bf_emma",
+   "duration": 3.34,
+   "window": 4.17,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_7de6e551b72edbaf",
+   "speaker": "DR. VALE (PA)",
+   "line": "Protocol Hound is live. Hunter team, scanners on. Sweep every corridor.",
+   "profile": "vale+pa",
+   "voice": "bm_george",
+   "duration": 5.97,
+   "window": 4.79,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/HunterSquad.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_846e0c06c2b8f9a1",
+   "speaker": "DR. VALE (PA)",
+   "line": "Specimen 7 is wearing my staff. Any body that reads positive, bring it down.",
+   "profile": "vale+pa",
+   "voice": "bm_george",
+   "duration": 6.51,
+   "window": 5.02,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/HunterSquad.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0c628bbbd1baec4d",
+   "speaker": "DR. VALE (PA)",
+   "line": "All-clear? I gave no all-clear! …Fine. Let it come to me.",
+   "profile": "vale+pa",
+   "voice": "bm_george",
+   "duration": 4.48,
+   "window": 4.17,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/HunterSquad.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_5ff69446b5b8a338",
+   "speaker": "SECURITY RADIO",
+   "line": "All-clear on Protocol Hound. Hunter team, stand down and leave the building.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 4.31,
+   "window": 5.02,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/HunterSquad.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_ac3be18a324c70fa",
+   "speaker": "DR. PETROV",
+   "line": "Protocol Epsilon breached. The entire district knows what Vale did.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 3.95,
+   "window": 4.62,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_12d6ccc867d54c64",
+   "speaker": "DR. VALE",
+   "line": "There you are. Specimen 7. You took longer than I predicted.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 4.16,
+   "window": 4.3,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_96449dcf2513f438",
+   "speaker": "DR. VALE",
+   "line": "Did you really think a containment door fails by accident? I opened it.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 4.73,
+   "window": 4.79,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_7e91de27bdfaa90e",
+   "speaker": "DR. VALE",
+   "line": "The files you stole were bait. I needed to know if you could plan. Hide. Divide yourself and still be one.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 6.71,
+   "window": 6.37,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_e0369a2435d666c9",
+   "speaker": "DR. VALE",
+   "line": "The real orders are in my signed archive. Its coolant interlock takes two operators. You cannot carry it out alone.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 7.48,
+   "window": 6.78,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_6591791d1db698d5",
+   "speaker": "DR. VALE",
+   "line": "And even if you do, the containment relay will trace you. My guards control its dispatch lock.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 5.89,
+   "window": 5.83,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0deedea77de22727",
+   "speaker": "DR. VALE",
+   "line": "But first, meet my hunters. Their scanners can smell you inside any body you steal.",
+   "profile": "vale",
+   "voice": "bm_george",
+   "duration": 5.36,
+   "window": 5.33,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_973002585f83e58f",
+   "speaker": "INDEPENDENT NEWS",
+   "line": "The unredacted Black Site files and neural kill-switch are broadcasting across every frequency.",
+   "profile": "news",
+   "voice": "am_michael",
+   "duration": 5.83,
+   "window": 5.88,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_07d4d19e4581bf5e",
+   "speaker": "PETROV'S NOTE",
+   "line": "Vale opened Specimen 7's cell himself. I watched him do it.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 3.61,
+   "window": 4.25,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_4196bfdd55346511",
+   "speaker": "PETROV'S NOTE",
+   "line": "His signed orders are in the office archive. It takes two people to open, and he trusts no one.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 5.1,
+   "window": 5.88,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_4cccbb197548c80b",
+   "speaker": "PETROV'S NOTE",
+   "line": "To the press: when you can, broadcast from the Plaza uplink. They will come for me first.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 4.57,
+   "window": 5.61,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_c09efa7e2c03822f",
+   "speaker": "SPECIMEN 7",
+   "line": "Two bodies. One choice. This time, I choose where the experiment ends.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 6.02,
+   "window": 4.75,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a656b78c45780852",
+   "speaker": "SPECIMEN 7",
+   "line": "He opened the first door. We chose the last one.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 4.28,
+   "window": 3.76,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/MissionManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_cbd913758555a8e2",
+   "speaker": "DR. PETROV",
+   "line": "Hello? …Is somebody following me?",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.91,
+   "window": 3.08,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_820f6d9c4e38544d",
+   "speaker": "DR. PETROV",
+   "line": "Who are you? Stay away from me!",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 1.78,
+   "window": 3.0,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_4be587be63ec055f",
+   "speaker": "DR. PETROV",
+   "line": "There. If I disappear, at least someone will know what he did.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 2.7,
+   "window": 4.39,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_3663e071a93f4e26",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "I have to go. If anything happens to me, you know where to look.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 3.1,
+   "window": 4.48,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0637c71f73e16aa4",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "No, not the bus. Vale's people pull the bus-camera footage every morning.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 4.17,
+   "window": 4.88,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a982f3cd32346fb6",
+   "speaker": "DR. PETROV (on the phone)",
+   "line": "The old storm-drain alley. Same place as always. Don't call me again tonight.",
+   "profile": "petrov",
+   "voice": "bf_emma",
+   "duration": 4.24,
+   "window": 5.06,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/TailTarget.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_d0ef9fe47a99a578",
+   "speaker": "HUNTER",
+   "line": "Scanner's twitching. Hold still, you.",
+   "profile": "guard_a",
+   "voice": "am_onyx",
+   "duration": 2.69,
+   "window": null,
+   "sources": [
+    "Assets/Parasite/Scripts/Stealth/BioScanTracker.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_7913ad22ab80298b",
+   "speaker": "HUNTER",
+   "line": "Positive read! Parasite in that body — take it down!",
+   "profile": "guard_a",
+   "voice": "am_onyx",
+   "duration": 3.39,
+   "window": null,
+   "sources": [
+    "Assets/Parasite/Scripts/Stealth/BioScanTracker.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_f42036ed0a9be8e0",
+   "speaker": "SPECIMEN 7",
+   "line": "No body, no signature. Their arch can't read me like this.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 5.29,
+   "window": null,
+   "sources": [
+    "Assets/Parasite/Scripts/Stealth/ScanGate.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_82c91c18362d33e7",
+   "speaker": "NARRATOR",
+   "line": "What will you become?",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 1.41,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0874c5f719c416b5",
+   "speaker": "NARRATOR",
+   "line": "No one was writing the answer now.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 2.0,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_4f515745300c7fb5",
+   "speaker": "NARRATOR",
+   "line": "A small life. An ordinary name. A promise to leave every borrowed heart free.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 5.05,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a69396450a31fdc9",
+   "speaker": "NARRATOR",
+   "line": "One mind had learned to live in two bodies. Next: a city of hosts. Then the world.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 5.26,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_b5d5fe7d73cb3ce1",
+   "speaker": "NARRATOR",
+   "line": "For once, there was nothing to prove.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 2.23,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_22a5248286dc31be",
+   "speaker": "NARRATOR",
+   "line": "What began as escape would become conquest.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 2.77,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_95653e008332e4e5",
+   "speaker": "NARRATOR",
+   "line": "A girl sat at the edge of the lake. Behind her eyes, another heartbeat listened.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 4.85,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_0ff4711a62e92433",
+   "speaker": "NARRATOR",
+   "line": "Vale had written the beginning. What came next belonged to you.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 3.71,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_dc5db403f231532a",
+   "speaker": "NARRATOR",
+   "line": "The city kept moving. Somewhere beyond it, the water was still.",
+   "profile": "narrator",
+   "voice": "af_heart",
+   "duration": 3.97,
+   "window": 5.0,
+   "sources": [
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
+   ],
+   "render": 3
+  }
+ ]
+}

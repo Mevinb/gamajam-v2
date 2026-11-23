@@ -1,0 +1,88 @@
+{
+ "id": "SciSamuel",
+ "profession": "Scientist",
+ "names": [],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.7076923076923077,
+ "height": 1.775,
+ "skin": "middleage_african_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.2,
+  0.19,
+  0.18
+ ],
+ "tints": {
+  "A": [
+   0.08638427406549454,
+   0.036009885370731354,
+   0.04194549098610878
+  ],
+  "B": [
+   0.07214892632459273,
+   0.06019048467433646,
+   0.04947596536614792
+  ]
+ },
+ "palettes": {
+  "A": "shirt",
+  "B": "trousers"
+ },
+ "lodTris": [
+  18251,
+  7042,
+  2561
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_african_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow002"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "male_casualsuit03"
+  },
+  {
+   "kind": "clothes",
+   "name": "shoes01"
+  },
+  {
+   "kind": "clothes",
+   "name": "spamrakuen_tbm_glasses_frames_01"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_african_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "SciSamuel_Cloth_A.jpg",
+  "clothN": "SciSamuel_Cloth_N.jpg",
+  "clothM": "SciSamuel_Cloth_M.png",
+  "hairA": "SciSamuel_Hair_A.png"
+ }
+}

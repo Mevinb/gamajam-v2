@@ -1,0 +1,84 @@
+{
+ "id": "MaintGus",
+ "profession": "Maintenance",
+ "names": [
+  "Gus Romero"
+ ],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.7307692307692308,
+ "height": 1.76,
+ "skin": "middleage_caucasian_male",
+ "skinTint": [
+  0.93,
+  0.85,
+  0.78
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.22,
+  0.2,
+  0.19
+ ],
+ "tints": {
+  "A": [
+   0.03996535832706764,
+   0.07214892632459273,
+   0.1937076799105882
+  ]
+ },
+ "palettes": {
+  "A": "coverall"
+ },
+ "lodTris": [
+  19996,
+  6996,
+  2496
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_caucasian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow004"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short04"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_coveralls_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_male"
+  },
+  {
+   "kind": "clothes",
+   "name": "wdg_scruffy_beard"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_caucasian_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "MaintGus_Cloth_A.jpg",
+  "clothN": "MaintGus_Cloth_N.jpg",
+  "clothM": "MaintGus_Cloth_M.png",
+  "hairA": "MaintGus_Hair_A.png"
+ }
+}

@@ -19,7 +19,6 @@ namespace Parasite.UI
         float intent;
         GameObject root;
         Material water, sky;
-        Transform spine;
         HumanoidRig girl;
         public Camera Camera { get; private set; }
         public Transform Girl => girl ? girl.transform : null;
@@ -104,34 +103,24 @@ namespace Parasite.UI
             foreach (float x in new[] { -0.57f, 0.57f }) LocalShape("Leg", PrimitiveType.Cube, bench, new Vector3(x, 0.23f, 0), new Vector3(0.08f, 0.46f, 0.3f), wood);
             var actor = new GameObject("SeatedGirl") { layer = Layer };
             actor.transform.SetParent(root.transform, false); actor.transform.localPosition = new Vector3(-1.7f, 0, 0.12f); actor.transform.localRotation = Quaternion.Euler(0, 15, 0);
-            girl = actor.AddComponent<HumanoidRig>(); girl.Build(Profession.Civilian, 71, false); girl.enabled = false;
+            girl = actor.AddComponent<HumanoidRig>();
+            girl.Identity = "Lakeside Girl";
+            girl.UseUnscaledTime = true; // the epilogue runs while gameplay time is frozen
+            girl.AmbientGestures = false;
+            girl.Build(Profession.Civilian, 71, false);
+            girl.SetPose(ActorPose.Sit);
+            girl.FastForward(3f); // start already seated (skip the sit-down transition)
             materials.AddRange(girl.UniqueMaterials);
-            var hips = girl.Model.Find("Hips"); hips.localPosition = new Vector3(0, 0.59f, 0);
-            spine = hips.Find("Spine"); spine.localRotation = Quaternion.Euler(6, 0, 0);
-            foreach (string side in new[] { "L", "R" })
+            // rest the pelvis on the bench: seat top is 0.52 above the bench root; the hips bone sits ~0.1 above contact
+            var hips = girl.Animator && girl.Animator.isHuman ? girl.Animator.GetBoneTransform(HumanBodyBones.Hips) : null;
+            if (hips)
             {
-                var thigh = hips.Find(side + "Thigh"); thigh.localRotation = Quaternion.Euler(-90, 0, 0);
-                thigh.Find(side + "Shin").localRotation = Quaternion.Euler(90, 0, 0);
-                var upper = spine.Find(side + "UpperArm"); upper.localRotation = Quaternion.Euler(-20, 0, side == "L" ? 3 : -3);
-                upper.Find(side + "Forearm").localRotation = Quaternion.Euler(-35, 0, 0);
+                var seat = bench.TransformPoint(new Vector3(0f, 0.52f + 0.1f, -0.03f));
+                var offset = seat - hips.position;
+                offset = bench.InverseTransformVector(offset);
+                offset.x = 0f; // keep her left/right placement on the bench
+                actor.transform.position += bench.TransformVector(offset);
             }
-            var sweater = Lit(new Color(0.73f, 0.65f, 0.53f), 0.15f);
-            var denim = Lit(new Color(0.16f, 0.22f, 0.29f), 0.13f);
-            foreach (Transform child in spine) if (child.TryGetComponent<Renderer>(out var renderer)) renderer.sharedMaterial = sweater;
-            foreach (Transform child in hips) if (child.TryGetComponent<Renderer>(out var renderer)) renderer.sharedMaterial = denim;
-            foreach (string side in new[] { "L", "R" })
-            {
-                var thigh = hips.Find(side + "Thigh");
-                foreach (Transform child in thigh) if (child.TryGetComponent<Renderer>(out var renderer)) renderer.sharedMaterial = denim;
-                foreach (Transform child in thigh.Find(side + "Shin")) if (child.localPosition.y > -0.4f && child.TryGetComponent<Renderer>(out var renderer)) renderer.sharedMaterial = denim;
-                var upper = spine.Find(side + "UpperArm");
-                foreach (Transform child in upper) if (child.TryGetComponent<Renderer>(out var renderer)) renderer.sharedMaterial = sweater;
-                foreach (Transform child in upper.Find(side + "Forearm")) if (child.GetComponent<Renderer>() && child.name == "Capsule") child.GetComponent<Renderer>().sharedMaterial = sweater;
-            }
-            var hair = Lit(new Color(0.055f, 0.04f, 0.035f), 0.2f);
-            LocalShape("Long hair", PrimitiveType.Capsule, girl.Head, new Vector3(0, -0.01f, -0.08f), new Vector3(0.24f, 0.27f, 0.15f), hair);
-            LocalShape("Hair crown", PrimitiveType.Sphere, girl.Head, new Vector3(0, 0.18f, -0.025f), new Vector3(0.24f, 0.18f, 0.25f), hair);
-            foreach (float x in new[] { -0.11f, 0.11f }) LocalShape("Hair lock", PrimitiveType.Capsule, girl.Head, new Vector3(x, 0.015f, -0.01f), new Vector3(0.065f, 0.22f, 0.09f), hair);
             girl.SetEyesGlow(true);
             foreach (Transform item in actor.GetComponentsInChildren<Transform>()) item.gameObject.layer = Layer;
         }
@@ -147,7 +136,6 @@ namespace Parasite.UI
             intent = Mathf.MoveTowards(intent, world ? 1f : 0f, Time.unscaledDeltaTime * 0.5f);
             if (water) { water.SetFloat("_QuietTime", age); water.SetFloat("_Intent", intent); }
             if (sky) sky.SetColor("_BaseColor", Color.Lerp(Color.white, new Color(0.64f, 0.48f, 0.62f), intent));
-            if (spine) spine.localRotation = Quaternion.Euler(6f + Mathf.Sin(age * 0.9f) * 0.5f, 0, 0);
             for (int i = 0; i < distantPulses.Count; i++)
             {
                 distantPulses[i].SetActive(world && intent > 0.2f);

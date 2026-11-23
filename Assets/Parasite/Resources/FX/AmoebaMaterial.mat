@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 3050
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -26,21 +26,28 @@ Material:
     m_Ints: []
     m_Floats:
     - _Activity: 1
-    - _Alpha: 0.62
-    - _Emission: 0.35
-    - _Gloss: 72
+    - _Alpha: 0.34
+    - _Emission: 0.42
+    - _Flatten: 0
+    - _Gloss: 96
+    - _Impact: 0
     - _InfectPulse: 0
+    - _PodAmount: 0.09
     - _PulsePhase: 0
     - _PulseRate: 3
+    - _RefractWeight: 0.85
+    - _Refraction: 0.07
     - _RimPower: 2.6
     - _WobbleAmp: 0.045
     - _WobbleFreq: 4.5
     - _WobbleSpeed: 2.2
     - _WobbleTime: 0
     m_Colors:
-    - _BaseColor: {r: 0.3, g: 0.95, b: 0.35, a: 1}
+    - _AbsorbColor: {r: 0.16, g: 0.7, b: 0.22, a: 1}
+    - _BaseColor: {r: 0.26, g: 0.9, b: 0.32, a: 1}
     - _CoreColor: {r: 0.8, g: 1.6, b: 0.5, a: 1}
-    - _DeepColor: {r: 0.02, g: 0.21999997, b: 0.059999965, a: 1}
+    - _DeepColor: {r: 0.015, g: 0.16, b: 0.05, a: 1}
+    - _MoveDir: {r: 0, g: 0, b: 1, a: 0}
     - _RimColor: {r: 0.55, g: 1.4, b: 0.55, a: 1}
     - _SSSColor: {r: 0.45, g: 1.2, b: 0.3, a: 1}
   m_BuildTextureStacks: []

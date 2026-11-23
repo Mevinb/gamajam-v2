@@ -50,8 +50,8 @@ namespace Parasite.EditorTools
         public const string CityPath = SceneDir + "/City.unity";
         const string LightingPath = SettingsDir + "/CityLighting.lighting";
         const float GY = L.Sidewalk, LY = L.LabFloor;
-        static readonly Vector3 SunEuler = new(11f, 220f, 0f);   // matches the HDRI sun (azimuth +40° from +Z, ~8° up)
-        static readonly Color SunColor = new(1f, 0.74f, 0.52f);
+        static readonly Vector3 SunEuler = new(7f, 220f, 0f);    // HDRI sun azimuth (+40° from +Z); a little higher than its ~2° so streets keep a key light
+        static readonly Color SunColor = new(1f, 0.6f, 0.34f);
 
         [MenuItem("Parasite/Setup/Build Scenes")]
         public static void BuildAll()
@@ -87,6 +87,7 @@ namespace Parasite.EditorTools
             var gameplay = new GameObject("Gameplay").transform;
             var lighting = new GameObject("Lighting").transform;
             var k = new WorldKit(world, 1337);
+            CityProps.ResetLamps();
 
             Ground(k);
             Streets(k);
@@ -100,14 +101,16 @@ namespace Parasite.EditorTools
             Skyline(k, new Rect(-104f, -104f, 208f, 228f), new Rect(-200f, -190f, 400f, 400f));
             k.Root = world;
             Gameplay(k, gameplay);
+            PlazaDressing(k);   // last: its random draws cannot shift any earlier decoration
             int renderers = k.Flush();
 
             Environment(lighting);
             CityLights(lighting);
+            LampLights(lighting);
             Probe(lighting, "Probe_Plaza", new Vector3(-36f, 5f, 9f), new Vector3(54f, 14f, 58f), false);
             Probe(lighting, "Probe_South", new Vector3(-12f, 5f, -60f), new Vector3(64f, 14f, 60f), false);
             Probe(lighting, "Probe_Campus", new Vector3(10f, 5f, 58f), new Vector3(100f, 14f, 30f), false);
-            Probe(lighting, "Probe_Lab", new Vector3(0f, 2.3f, 88f), new Vector3(47f, 4.4f, 31f), true);
+            Probe(lighting, "Probe_Lab", new Vector3(0f, 2.3f, 88f), new Vector3(47f, 4.4f, 31f), true, 256);
             Probe(lighting, "Probe_Market", new Vector3(0f, 3f, -28f), new Vector3(180f, 14f, 22f), false);
             Probe(lighting, "Probe_Avenue", new Vector3(0f, 3f, 8f), new Vector3(24f, 14f, 60f), false);
             Probe(lighting, "Probe_Alley", new Vector3(-33f, 2.5f, -64f), new Vector3(6f, 8f, 48f), true);
@@ -213,10 +216,59 @@ namespace Parasite.EditorTools
                 CityProps.Puddle(k, p, sx, sz, R(0f, 180f));
         }
 
+        /// <summary>Street-wide water film (Parasite/GroundWater, _WETFILM): world-noise puddles, curb gutters (uv.y = 0/1
+        /// at the curbs) and a damp sheen with screen-space reflections. Above the paint so the markings get wet too.
+        /// RNG-free (does not shift any later decoration).</summary>
+        static void WetStreets(WorldKit k)
+        {
+            if (!Has("WetFilm")) return;
+            var film = M("WetFilm");
+            const float y = 0.011f;
+            // avenue segments (across = x -> yaw 90 puts uv.y across the road)
+            foreach (var (z0, z1) in new[] { (-100f, -34f), (-22f, 40f) })
+                k.FloorQuad(film, new Vector3(0f, y, (z0 + z1) * 0.5f), z1 - z0, 14f, 90f, new Rect(0, 0, 1, 1));
+            // Market St / Campus Rd either side of the avenue (across = z)
+            foreach (var (z0, z1) in new[] { (-34f, -22f), (40f, 52f) })
+            {
+                k.FloorQuad(film, new Vector3(-53.5f, y, (z0 + z1) * 0.5f), 93f, z1 - z0, 0f, new Rect(0, 0, 1, 1));
+                k.FloorQuad(film, new Vector3(53.5f, y, (z0 + z1) * 0.5f), 93f, z1 - z0, 0f, new Rect(0, 0, 1, 1));
+                k.FloorQuad(film, new Vector3(0f, y, (z0 + z1) * 0.5f), 14f, z1 - z0, 0f, new Rect(0f, 0.5f, 1f, 0f));   // intersection: no gutter
+            }
+            if (!Has("WetFilmPaving")) return;
+            var pave = M("WetFilmPaving");
+            k.FloorQuad(pave, new Vector3(-36.05f, GY + 0.012f, 9f), 46.9f, 58.8f, 0f, new Rect(0f, 0.5f, 1f, 0f));       // plaza cobbles
+            k.FloorQuad(pave, new Vector3(-33f, GY + 0.009f, -64f), 48f, 6f, 90f, new Rect(0, 0, 1, 1));                // start alley (gutters at the walls)
+        }
+
+        /// <summary>Evening life for the plaza: a festoon-light canopy from a mast on the fountain to perimeter poles,
+        /// and planters with shrubs along the edges (kept clear of mission props, NPC posts and the bus stop).</summary>
+        static void PlazaDressing(WorldKit k)
+        {
+            var f = L.Fountain;
+            var mastTop = new Vector3(f.x, 6.4f, f.z);
+            k.Cylinder(M("MetalDark"), new Vector3(f.x, 2.7f, f.z), 0.06f, 3.75f);
+            k.Box(M("MetalDark"), mastTop, new Vector3(0.22f, 0.12f, 0.22f));
+            foreach (var p in new[] { new Vector3(-56.5f, GY, -17.5f), new Vector3(-15.5f, GY, -17.5f), new Vector3(-56.5f, GY, 35.5f), new Vector3(-15.5f, GY, 35.5f),
+                                      new Vector3(-36f, GY, -17.5f), new Vector3(-36f, GY, 35.5f), new Vector3(-58.2f, GY, 13.5f), new Vector3(-14.2f, GY, 4f) })
+            {
+                k.Cylinder(M("MetalDark"), p, 0.07f, 4.9f);
+                k.Box(M("MetalDark"), p + Vector3.up * 0.15f, new Vector3(0.22f, 0.3f, 0.22f));
+                k.Solid(p + Vector3.up * 1.5f, new Vector3(0.22f, 3f, 0.22f));
+                var top = p + Vector3.up * 4.85f;
+                float d = Vector3.Distance(new Vector3(top.x, 0, top.z), new Vector3(mastTop.x, 0, mastTop.z));
+                CityProps.Festoon(k, mastTop + (top - mastTop).normalized * 0.12f, top, 0.9f + d * 0.035f, 0.7f, d > 25f ? 2 : 1);
+            }
+            foreach (var (p, yaw) in new[] { (new Vector3(-50.5f, GY, -18.9f), 0f), (new Vector3(-21.5f, GY, -18.9f), 0f), (new Vector3(-50f, GY, 37.3f), 0f),
+                                            (new Vector3(-27.5f, GY, 37.3f), 0f), (new Vector3(-58.7f, GY, 27f), 90f), (new Vector3(-13.6f, GY, 25f), 90f),
+                                            (new Vector3(-13.6f, GY, -6f), 90f) })
+                CityProps.Planter(k, p, yaw);
+        }
+
         static void Streets(WorldKit k)
         {
             Markings(k);
             RoadSurface(k);
+            WetStreets(k);
 
             // lamps (curb side, lantern posts)
             foreach (float z in new[] { -80f, -63f, -46f, -12f, 6f, 24f })
@@ -561,7 +613,8 @@ namespace Parasite.EditorTools
             var white = M("LabWhite"); var glass = M("GlassClear"); var md = M("MetalDark");
             k.BoxMM(M("LabFloor"), -23.5f, 23.5f, GY - 0.05f, LY, 72.5f, 103.5f);
             k.BoxMM(M("LabFloor"), -2f, 2f, GY - 0.05f, LY, 72f, 72.5f, false);
-            k.BoxMM(white, -23.5f, 23.5f, 4.35f, 4.55f, 72.5f, 103.5f);
+            var inner = Has("LabInterior") ? M("LabInterior") : white;   // same look, ambient dimmed (interior)
+            k.BoxMM(inner, -23.5f, 23.5f, 4.35f, 4.55f, 72.5f, 103.5f);
             k.BoxMM(M("Concrete"), -24.4f, 24.4f, 9.15f, 9.5f, 71.6f, 104.4f);
 
             // shell
@@ -601,11 +654,11 @@ namespace Parasite.EditorTools
             k.Text("RESEARCH CENTRE — VISITORS REPORT TO SECURITY", new Vector3(0f, 4.05f, 68.36f), 0f, 0.13f, Color.white, null, false);
 
             // interior walls
-            k.WallX(white, -23.5f, 23.5f, 83.85f, 84.15f, GY, 4.35f, new Vector3(-18f, -15.5f, GY + 2.6f), new Vector3(-4f, 4f, 3.4f), new Vector3(15.5f, 18f, GY + 2.6f));
-            k.WallX(white, -23.5f, 23.5f, 87.85f, 88.15f, GY, 4.35f, new Vector3(-16f, -13f, GY + 2.6f), new Vector3(-1.2f, 1.2f, GY + 2.6f), new Vector3(9.5f, 12f, GY + 2.6f), new Vector3(18f, 20.5f, GY + 2.6f));
-            k.WallZ(white, 72.5f, 83.85f, -10.15f, -9.85f, GY, 4.35f);
-            k.WallZ(white, 88.15f, 103.5f, -6.15f, -5.85f, GY, 4.35f);
-            k.WallZ(white, 88.15f, 103.5f, 5.85f, 6.15f, GY, 4.35f);
+            k.WallX(inner, -23.5f, 23.5f, 83.85f, 84.15f, GY, 4.35f, new Vector3(-18f, -15.5f, GY + 2.6f), new Vector3(-4f, 4f, 3.4f), new Vector3(15.5f, 18f, GY + 2.6f));
+            k.WallX(inner, -23.5f, 23.5f, 87.85f, 88.15f, GY, 4.35f, new Vector3(-16f, -13f, GY + 2.6f), new Vector3(-1.2f, 1.2f, GY + 2.6f), new Vector3(9.5f, 12f, GY + 2.6f), new Vector3(18f, 20.5f, GY + 2.6f));
+            k.WallZ(inner, 72.5f, 83.85f, -10.15f, -9.85f, GY, 4.35f);
+            k.WallZ(inner, 88.15f, 103.5f, -6.15f, -5.85f, GY, 4.35f);
+            k.WallZ(inner, 88.15f, 103.5f, 5.85f, 6.15f, GY, 4.35f);
             GlassPartition(k, 10f, 72.5f, 83.85f);
             GlassPartition(k, 16f, 88.15f, 103.5f);
             k.Box(M("ValeAccent"), new Vector3(0f, LY + 0.004f, 86f), new Vector3(47f, 0.008f, 0.25f));
@@ -1016,20 +1069,22 @@ namespace Parasite.EditorTools
         // ------------------------------------------------------------------ lighting & camera
         static void Environment(Transform lighting)
         {
-            var sun = WorldKit.AddLight(lighting, "Sun", LightType.Directional, Vector3.zero, SunColor, 1.3f, 0f, LightShadows.Soft, SunEuler);
-            sun.shadowStrength = 0.82f;
+            // low dusk key light; distance/height haze comes from the full-screen atmosphere pass (CityAssets.Atmosphere),
+            // so the per-material URP fog stays off (it would double the haze on opaque surfaces)
+            var sun = WorldKit.AddLight(lighting, "Sun", LightType.Directional, Vector3.zero, SunColor, 1.8f, 0f, LightShadows.Soft, SunEuler);
+            sun.shadowStrength = 0.86f;
             sun.shadowBias = 0.04f;
             sun.shadowNormalBias = 0.35f;
             RenderSettings.sun = sun;
             RenderSettings.skybox = SkyMaterial;
             RenderSettings.ambientMode = AmbientMode.Skybox;
-            RenderSettings.ambientIntensity = 1.2f;
+            RenderSettings.ambientIntensity = 1.0f;
             RenderSettings.defaultReflectionMode = DefaultReflectionMode.Skybox;
-            RenderSettings.reflectionIntensity = 0.9f;
-            RenderSettings.fog = true;
+            RenderSettings.reflectionIntensity = 1.0f;
+            RenderSettings.fog = false;
             RenderSettings.fogMode = FogMode.ExponentialSquared;
-            RenderSettings.fogDensity = 0.0036f;
-            RenderSettings.fogColor = new Color(0.56f, 0.55f, 0.58f);
+            RenderSettings.fogDensity = 0.0025f;
+            RenderSettings.fogColor = new Color(0.36f, 0.37f, 0.5f);
 
             var vol = new GameObject("PostProcess");
             vol.transform.SetParent(lighting, false);
@@ -1049,18 +1104,67 @@ namespace Parasite.EditorTools
             WorldKit.AddLight(lighting, "Light_StaffEntrance", LightType.Point, new Vector3(-25.2f, 3f, 80f), cool, 2.5f, 9f);
             WorldKit.AddLight(lighting, "Light_ServiceAlley", LightType.Point, new Vector3(55.3f, 3.5f, 90f), new Color(1f, 0.6f, 0.25f), 3f, 11f);
             WorldKit.AddLight(lighting, "Light_Tunnel", LightType.Point, new Vector3(39f, 2.7f, 90f), new Color(0.6f, 1f, 0.8f), 2f, 18f);
-            WorldKit.AddLight(lighting, "Light_Lobby", LightType.Point, new Vector3(0f, 3.9f, 79f), cool, 3f, 13f);
+            WorldKit.AddLight(lighting, "Light_Lobby", LightType.Point, new Vector3(0f, 3.3f, 79f), cool, 2.4f, 13f);
             WorldKit.AddLight(lighting, "Light_LabA", LightType.Point, new Vector3(-14f, 3.9f, 94f), cool, 3f, 11f);
             WorldKit.AddLight(lighting, "Light_ValeOffice", LightType.Point, new Vector3(0f, 3.9f, 96f), new Color(1f, 0.92f, 0.82f), 2.5f, 9f);
             WorldKit.AddLight(lighting, "Light_LabB", LightType.Point, new Vector3(13f, 3.9f, 94f), cool, 3f, 11f);
-            // a few real street-lamp lights where the camera spends time (rest of the lamps are emissive only); total <= 16
-            WorldKit.AddLight(lighting, "Light_Lamp_Market", LightType.Point, new Vector3(-26f, 4.6f, -34.2f), warm, 2.6f, 13f);
-            WorldKit.AddLight(lighting, "Light_Lamp_MarketN", LightType.Point, new Vector3(30f, 4.6f, -21.8f), warm, 2.6f, 13f);
-            WorldKit.AddLight(lighting, "Light_Lamp_Avenue", LightType.Point, new Vector3(-7.2f, 4.6f, -46f), warm, 2.6f, 13f);
-            WorldKit.AddLight(lighting, "Light_Lamp_Campus", LightType.Point, new Vector3(-22f, 4.6f, 39.8f), warm, 2.6f, 13f);
+            // every street lamp gets its own light in LampLights() (budgeted at runtime by FX.LampLights)
+
+            // lab: clinical down-lights under the ceiling panels (soft spots, no shadows) so fixtures light the floor
+            var labCool = new Color(0.82f, 0.91f, 1f);
+            var lab = new GameObject("LabFixtures").transform;
+            lab.SetParent(lighting, false);
+            int n = 0;
+            foreach (var (x, z) in new[] { (-3f, 75.5f), (3f, 75.5f), (-3f, 79.5f), (3f, 79.5f), (-8f, 82.5f), (8f, 82.5f),          // lobby
+                                          (-17.5f, 86f), (-8f, 86f), (3f, 86f), (12f, 86f), (19.5f, 86f),                          // corridor
+                                          (-17.5f, 91f), (-13.5f, 99f), (-3f, 95f), (3f, 99f), (12f, 91f), (12f, 99f), (19.5f, 95f), // labs, office, service
+                                          (-17.5f, 79.5f), (17.5f, 79.5f) })                                                       // staff room, security
+            {
+                var l = WorldKit.AddLight(lab, "LabSpot" + n++, LightType.Spot, new Vector3(x, 4.25f, z), labCool, 17f, 9f, LightShadows.None, new Vector3(90f, 0f, 0f), 135f);
+                l.innerSpotAngle = 70f;
+            }
+            // Dr. Vale's office: two more down-lights over the desk and shelves
+            foreach (var (x, z) in new[] { (-2.5f, 101f), (2.5f, 101f) })
+                WorldKit.AddLight(lab, "LabSpot" + n++, LightType.Spot, new Vector3(x, 4.25f, z), new Color(1f, 0.93f, 0.84f), 14f, 8f, LightShadows.None, new Vector3(90f, 0f, 0f), 130f);
+            // service tunnel: cool-green strip lights every 5 m (the strips themselves are emissive)
+            for (float x = 26.5f; x < 53f; x += 5f)
+                WorldKit.AddLight(lab, "TunnelStrip" + n++, LightType.Point, new Vector3(x, 2.95f, 90f), new Color(0.7f, 1f, 0.85f), 3.2f, 6.5f);
         }
 
-        static void Probe(Transform parent, string name, Vector3 center, Vector3 size, bool box)
+        /// <summary>Real lights for every lamp registered by CityProps (pole lamps: soft downward spots; wall lamps: small
+        /// points). FX.LampLights keeps the nearest ones on, within the graphics preset's budget.</summary>
+        static void LampLights(Transform lighting)
+        {
+            var root = new GameObject("Lamps").transform;
+            root.SetParent(lighting, false);
+            var warm = new Color(1f, 0.7f, 0.43f);
+            var list = new System.Collections.Generic.List<Light>();
+            int i = 0;
+            foreach (var lamp in CityProps.Lamps)
+            {
+                if (lamp.root && lamp.root.name == "Skyline") continue;
+                Light l = lamp.pole
+                    ? WorldKit.AddLight(root, "Lamp" + i++, LightType.Spot, lamp.head, warm, 20f, 15f, LightShadows.None, new Vector3(90f, 0f, 0f), 132f)
+                    : WorldKit.AddLight(root, "WallLamp" + i++, LightType.Point, lamp.head, warm, 4.5f, 7.5f);
+                if (lamp.pole) l.innerSpotAngle = 52f;
+                l.renderMode = LightRenderMode.ForcePixel;
+                list.Add(l);
+                // dust motes / moths in every third pole lamp's light (runtime particles, paused off-screen)
+                if (lamp.pole && list.Count % 3 == 1)
+                {
+                    var motes = new GameObject("Motes" + i);
+                    motes.transform.SetParent(root, false);
+                    motes.transform.position = lamp.head;
+                    motes.AddComponent<FX.LampMotes>();
+                }
+            }
+            var ll = root.gameObject.AddComponent<FX.LampLights>();
+            ll.lights = list.ToArray();
+            ll.baseIntensity = list.ConvertAll(x => x.intensity).ToArray();
+            Debug.Log($"[Parasite] Lamp lights: {list.Count}");
+        }
+
+        static void Probe(Transform parent, string name, Vector3 center, Vector3 size, bool box, int res = 0)
         {
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);
@@ -1071,7 +1175,7 @@ namespace Parasite.EditorTools
             rp.timeSlicingMode = ReflectionProbeTimeSlicingMode.NoTimeSlicing;
             rp.size = size;
             rp.boxProjection = box;
-            rp.resolution = box ? 128 : 256;
+            rp.resolution = res > 0 ? res : box ? 128 : 256;
             rp.hdr = true;
             rp.farClipPlane = 250f;
             rp.clearFlags = ReflectionProbeClearFlags.Skybox;
@@ -1125,6 +1229,7 @@ namespace Parasite.EditorTools
             var backdrop = new GameObject("Backdrop").transform;
             var lighting = new GameObject("Lighting").transform;
             var k = new WorldKit(backdrop, 4242);
+            CityProps.ResetLamps();
 
             k.BoxMM(M("Asphalt"), -60f, 60f, -1f, 0f, -40f, 200f, false);
             Slab(k, M("Sidewalk"), -60f, -7f, -40f, 200f, Faces.E);
@@ -1164,11 +1269,13 @@ namespace Parasite.EditorTools
             Band(k, M("ValeAccent"), -20f, 20f, 160f, 182f, 70f, 71.5f, 0.2f);
             k.Text("VALE BIOTECH", new Vector3(0f, 74.5f, 159.7f), 0f, 6f, new Color(0.45f, 1f, 0.6f));
             k.Box(M("NeonGreen"), new Vector3(0f, 71.8f, 159.75f), new Vector3(36f, 0.4f, 0.1f));
+            if (Has("WetFilm")) k.FloorQuad(M("WetFilm"), new Vector3(0f, 0.011f, 80f), 240f, 14f, 90f, new Rect(0, 0, 1, 1));
             k.Root = new GameObject("Skyline").transform;
             Skyline(k, new Rect(-80f, -60f, 160f, 280f), new Rect(-200f, -150f, 400f, 450f));
             k.Flush();
 
             Environment(lighting);
+            LampLights(lighting);
             WorldKit.AddLight(lighting, "Light_Street1", LightType.Point, new Vector3(-6.3f, 5.8f, 16f), new Color(1f, 0.76f, 0.48f), 4f, 22f);
             WorldKit.AddLight(lighting, "Light_Street2", LightType.Point, new Vector3(6.3f, 5.8f, 43f), new Color(1f, 0.76f, 0.48f), 4f, 22f);
             Probe(lighting, "Probe_Street", new Vector3(0f, 5f, 20f), new Vector3(60f, 16f, 80f), false);

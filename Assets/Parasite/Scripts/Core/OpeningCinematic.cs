@@ -37,7 +37,6 @@ namespace Parasite
         Text speaker, caption, skip, title, location;
         Transform stage, lab, duct, subject, lobeA, lobeB, latch;
         HumanoidRig petrov, vale, worker;
-        Transform petrovArm;
         Material statusMaterial;
         readonly List<Material> owned = new();
         bool oldPlayerEnabled, oldBrainEnabled, oldHudEnabled, oldInputLock;
@@ -266,11 +265,13 @@ namespace Parasite
         Transform Box(Transform parent, string name, Vector3 pos, Vector3 size, Material material) =>
             Prim.Make(PrimitiveType.Cube, parent, pos, size, material, name: name).transform;
 
-        HumanoidRig Actor(string name, Profession profession, Vector3 p, float yaw, int seed, bool doctor = false)
+        HumanoidRig Actor(string name, Profession profession, Vector3 p, float yaw, int seed, bool doctor = false, string identity = null)
         {
             var go = new GameObject(name); go.transform.SetParent(lab, false);
             go.transform.localPosition = p; go.transform.localRotation = Quaternion.Euler(0, yaw, 0);
-            var rig = go.AddComponent<HumanoidRig>(); rig.Build(profession, seed, doctor);
+            var rig = go.AddComponent<HumanoidRig>();
+            rig.Identity = identity; rig.UseUnscaledTime = true; rig.AmbientGestures = false; // story runs at timeScale 0
+            rig.Build(profession, seed, doctor);
             foreach (var m in rig.UniqueMaterials) if (m) owned.Add(m);
             return rig;
         }
@@ -299,10 +300,10 @@ namespace Parasite
             subject = VisualBlob("Historical Specimen 7", lab, new Vector3(0, 1.28f, 0), 0.2f);
             lobeA = VisualBlob("First Lobe", lab, new Vector3(-0.17f, 1.3f, 0), 0.15f);
             lobeB = VisualBlob("Second Lobe", lab, new Vector3(0.17f, 1.3f, 0), 0.15f);
-            petrov = Actor("Historical Dr Hana Petrov", Profession.Scientist, new Vector3(-0.8f, 0, 0.4f), 150f, 490);
+            petrov = Actor("Historical Dr Hana Petrov", Profession.Scientist, new Vector3(-0.8f, 0, 0.4f), 150f, 490, identity: "Dr. Hana Petrov");
             vale = Actor("Historical Dr Vale", Profession.Scientist, new Vector3(0.9f, 0, 1.05f), 220f, 491, true);
             worker = Actor("Historical Contact Volunteer", Profession.Maintenance, new Vector3(1.5f, 0, -0.9f), 210f, 492);
-            petrovArm = petrov.Model.Find("Hips/Spine/RUpperArm");
+            petrov.SetPose(ActorPose.Point); // Petrov points at the specimen throughout the historical lab shots
             statusMaterial = Own(MatFactory.LitUnique(new Color(1f, 0.46f, 0.08f)));
             Box(lab, "Interlock Housing", new Vector3(1.35f, 1.05f, -0.2f), new Vector3(0.42f, 0.55f, 0.16f), metal);
             Box(lab, "Interlock Lamp", new Vector3(1.35f, 1.14f, -0.3f), new Vector3(0.22f, 0.14f, 0.04f), statusMaterial);
@@ -350,7 +351,6 @@ namespace Parasite
             petrov.Animate(Vector3.zero, true, HostState.Normal, 4.6f, dt);
             vale.Animate(Vector3.zero, true, HostState.Normal, 4.6f, dt);
             worker.Animate(Vector3.zero, true, shot == 5 && t > 0.3f ? HostState.Unconscious : HostState.Normal, 5f, dt);
-            if (petrovArm) petrovArm.localRotation = Quaternion.Euler(-66f + Mathf.Sin(elapsed * 16f) * 4f, 0, -14f);
             statusMaterial.SetColor("_EmissionColor", shot >= 7 ? Palette.Amoeba * 2f : Palette.Warning * 1.8f);
             latch.localPosition = new Vector3(shot >= 7 ? Mathf.Lerp(0, 0.38f, Mathf.Clamp01(t * 2f)) : 0, 0.65f, -0.49f);
             switch (shot)

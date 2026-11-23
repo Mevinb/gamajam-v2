@@ -1,0 +1,80 @@
+{
+ "id": "MaintNoor",
+ "profession": "Maintenance",
+ "names": [
+  "Engineer Noor Patel"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5461538461538462,
+ "height": 1.63,
+ "skin": "cutoff3d_indian_female_enhanced",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.08538945579840525,
+   0.099948604886494,
+   0.11586144597253044
+  ]
+ },
+ "palettes": {
+  "A": "coverall"
+ },
+ "lodTris": [
+  19998,
+  6996,
+  2496
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "cutoff3d_indian_female_enhanced"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow005"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes03"
+  },
+  {
+   "kind": "hair",
+   "name": "braid01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "elvs_male_coveralls_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_female"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/cutoff3d_indian_female_enhanced.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "MaintNoor_Cloth_A.jpg",
+  "clothN": "MaintNoor_Cloth_N.jpg",
+  "clothM": "MaintNoor_Cloth_M.png",
+  "hairA": "MaintNoor_Hair_A.png"
+ }
+}

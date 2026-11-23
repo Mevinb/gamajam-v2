@@ -1,0 +1,86 @@
+{
+ "id": "CivMaya",
+ "profession": "Civilian",
+ "names": [
+  "Maya Chen"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5076923076923077,
+ "height": 1.606,
+ "skin": "young_asian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   1.037239264499835,
+   0.13316173796073713,
+   0.11586144597253044
+  ],
+  "B": [
+   0.11375265568494797,
+   0.21510080993175507,
+   0.34412336349487305
+  ]
+ },
+ "palettes": {
+  "A": "top",
+  "B": "denim"
+ },
+ "lodTris": [
+  17648,
+  6997,
+  2497
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "young_asian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow005"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "toigo_inverted_bob"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "female_casualsuit01"
+  },
+  {
+   "kind": "clothes",
+   "name": "shoes06"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/young_asian_female.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "CivMaya_Cloth_A.jpg",
+  "clothN": "CivMaya_Cloth_N.jpg",
+  "clothM": "CivMaya_Cloth_M.png",
+  "hairA": "CivMaya_Hair_A.png"
+ }
+}

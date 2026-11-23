@@ -1,0 +1,94 @@
+{
+ "id": "SciIngrid",
+ "profession": "Scientist",
+ "names": [
+  "Dr. Ingrid Sato"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.6230769230769231,
+ "height": 1.63,
+ "skin": "middleage_asian_female",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.4786789244656768,
+   0.6225302538047335,
+   0.8145243862579695
+  ],
+  "B": [
+   0.04947596536614792,
+   0.04947596536614792,
+   0.06019048467433646
+  ]
+ },
+ "palettes": {
+  "A": "shirt",
+  "B": "trousers"
+ },
+ "lodTris": [
+  19227,
+  7041,
+  2559
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_asian_female"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow005"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes02"
+  },
+  {
+   "kind": "hair",
+   "name": "toigo_blunt_bob"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_basic_tucked_t-shirt"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_wool_pants"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_female"
+  },
+  {
+   "kind": "clothes",
+   "name": "spamrakuen_tbm_glasses_frames_01"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_asian_female.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "SciIngrid_Cloth_A.jpg",
+  "clothN": "SciIngrid_Cloth_N.jpg",
+  "clothM": "SciIngrid_Cloth_M.png",
+  "hairA": "SciIngrid_Hair_A.png"
+ }
+}

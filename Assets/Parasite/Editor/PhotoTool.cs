@@ -34,6 +34,13 @@ namespace Parasite.EditorTools
             ("15_street_level_detail", new Vector3(-28, 1.6f, -18), new Vector3(-40, 3f, -17)),
         };
 
+        static readonly (string name, Vector3 at, Vector3 cam)[] AmoebaShots =
+        {
+            // (start of the slide, camera); the blob slides ~3.5 m towards +z, leaving its trail behind
+            ("16_amoeba_alley", L.PlayerSpawn + new Vector3(0.4f, 0f, 7f), L.PlayerSpawn + new Vector3(1.4f, 1.05f, 11.6f)),
+            ("17_amoeba_street", new Vector3(-20.5f, 0f, -30.8f), new Vector3(-21.6f, 1.15f, -26.6f)),
+        };
+
         [MenuItem("Parasite/Debug/Capture Photos")]
         public static void Capture()
         {
@@ -42,7 +49,7 @@ namespace Parasite.EditorTools
             string filter = fi >= 0 && fi + 1 < args.Length ? args[fi + 1] : null;
             var scene = EditorSceneManager.OpenScene(CityBuilder.CityPath, OpenSceneMode.Single);
             int missing = 0, meshCount = 0;
-            long triangles = 0;
+            long triangles = 0, lowerLods = 0;
             foreach (var root in scene.GetRootGameObjects())
             {
                 foreach (var t in root.GetComponentsInChildren<Transform>(true))
@@ -50,12 +57,15 @@ namespace Parasite.EditorTools
                 foreach (var mf in root.GetComponentsInChildren<MeshFilter>(true))
                 {
                     if (!mf.sharedMesh) continue;
+                    long tris = 0;
+                    for (int s = 0; s < mf.sharedMesh.subMeshCount; s++) tris += mf.sharedMesh.GetIndexCount(s) / 3;
+                    // LODGroup children beyond LOD0 never render together with LOD0: report them separately
+                    if (mf.GetComponentInParent<LODGroup>() && System.Text.RegularExpressions.Regex.IsMatch(mf.name, "_LOD[1-9]$")) { lowerLods += tris; continue; }
                     meshCount++;
-                    for (int s = 0; s < mf.sharedMesh.subMeshCount; s++)
-                        triangles += mf.sharedMesh.GetIndexCount(s) / 3;
+                    triangles += tris;
                 }
             }
-            Debug.Log($"[Parasite] Photo audit: {meshCount} mesh instances, {triangles} triangles, {missing} missing scripts; " +
+            Debug.Log($"[Parasite] Photo audit: {meshCount} mesh instances, {triangles} triangles (LOD0; +{lowerLods} in lower LODs), {missing} missing scripts; " +
                       $"quality {QualitySettings.names[QualitySettings.GetQualityLevel()]}, " +
                       $"GPU {SystemInfo.graphicsDeviceName}, pipeline {GraphicsSettings.currentRenderPipeline}.");
             if (missing != 0) throw new System.InvalidOperationException($"City scene has {missing} missing scripts; regenerate the scenes before capturing.");
@@ -69,14 +79,25 @@ namespace Parasite.EditorTools
             data.renderPostProcessing = true;
             data.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
             data.renderShadows = true;
-            var rt = new RenderTexture(1600, 900, 24, RenderTextureFormat.ARGB32) { antiAliasing = 1 };
-            var tex = new Texture2D(1600, 900, TextureFormat.RGB24, false);
+            var rt = new RenderTexture(1600, 900, 24, RenderTextureFormat.ARGB32) { antiAliasing = 1, hideFlags = HideFlags.DontSave };
+            var tex = new Texture2D(1600, 900, TextureFormat.RGB24, false) { hideFlags = HideFlags.DontSave };
             foreach (var probe in Object.FindObjectsByType<ReflectionProbe>(FindObjectsSortMode.None)) probe.RenderProbe();
-            foreach (var (name, pos, look) in Shots)
+            // photos show the High preset's runtime lamp-light budget and light rain on the water
+            var lamps = Object.FindObjectsByType<FX.LampLights>(FindObjectsSortMode.None);
+            FX.LampLights.Budget = 32; FX.LampLights.MaxDistance = 70f;
+            Shader.SetGlobalFloat("_ParasiteRain", 0.5f);
+            Shader.DisableKeyword("_PARASITE_SSR_OFF");
+            void Shoot(string name, Vector3 pos, Vector3 look)
             {
-                if (filter != null && !name.Contains(filter)) continue;
+                if (!rt || !rt.IsCreated())
+                {
+                    rt = new RenderTexture(1600, 900, 24, RenderTextureFormat.ARGB32) { antiAliasing = 1, hideFlags = HideFlags.DontSave };
+                    rt.Create();
+                }
+                if (!tex) tex = new Texture2D(1600, 900, TextureFormat.RGB24, false) { hideFlags = HideFlags.DontSave };
                 go.transform.position = pos;
                 go.transform.rotation = Quaternion.LookRotation(look - pos);
+                foreach (var ll in lamps) ll.Select(pos, instant: true);
                 cam.targetTexture = rt;
                 for (int i = 0; i < 2; i++)
                 {
@@ -91,9 +112,63 @@ namespace Parasite.EditorTools
                 File.WriteAllBytes(Path.Combine(dir, name + ".png"), tex.EncodeToPNG());
                 Debug.Log("[Parasite] photo " + name);
             }
+            foreach (var (name, pos, look) in Shots)
+                if (filter == null || name.Contains(filter)) Shoot(name, pos, look);
+            // free amoeba close-ups: a real AmoebaVisual stepped through a short slide in edit mode (trail, squash, pods)
+            foreach (var (name, at, camPos) in AmoebaShots)
+            {
+                if (filter != null && !name.Contains(filter)) continue;
+                var blob = new GameObject("PhotoAmoeba");
+                int layer = LayerMask.NameToLayer("Amoeba");
+                if (layer >= 0) blob.layer = layer;
+                var vis = blob.AddComponent<FX.AmoebaVisual>();
+                blob.transform.position = at - Vector3.forward * 1.8f;
+                vis.Build(0.38f);
+                float t = 20f, dt = 1f / 30f;
+                for (int i = 0; i < 54; i++)
+                {
+                    float speed = i < 40 ? 2.4f : 0.6f;
+                    blob.transform.position += Vector3.forward * (speed * dt);
+                    vis.SetMotion(Vector3.forward * speed, true);
+                    FX.SlimeTrail.ClockOverride = t;
+                    vis.Step(dt, t);
+                    t += dt;
+                }
+                FX.SlimeTrail.ClockOverride = -1f;
+                Shoot(name, camPos, blob.transform.position + Vector3.up * 0.32f);
+                Object.DestroyImmediate(blob);
+            }
             cam.targetTexture = null;
             Object.DestroyImmediate(go);
-            Object.DestroyImmediate(rt);
+            // title-menu backdrop (Bootstrap scene), from its own main camera
+            if (filter == null || "00_menu_backdrop".Contains(filter))
+            {
+                EditorSceneManager.OpenScene(CityBuilder.BootstrapPath, OpenSceneMode.Single);
+                var main = Camera.main;
+                foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsSortMode.None)) c.enabled = false;
+                go = new GameObject("PhotoCam");
+                cam = go.AddComponent<Camera>();
+                cam.fieldOfView = main ? main.fieldOfView : 55f; cam.nearClipPlane = 0.08f; cam.farClipPlane = 900f;
+                data = go.AddComponent<UniversalAdditionalCameraData>();
+                data.renderPostProcessing = true;
+                data.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+                data.renderShadows = true;
+                foreach (var probe in Object.FindObjectsByType<ReflectionProbe>(FindObjectsSortMode.None)) probe.RenderProbe();
+                lamps = Object.FindObjectsByType<FX.LampLights>(FindObjectsSortMode.None);
+                var mp = main ? main.transform.position : new Vector3(1.2f, 2.1f, -22f);
+                Shoot("00_menu_backdrop", mp, mp + (main ? main.transform.forward : Vector3.forward) * 10f);
+                cam.targetTexture = null;
+                Object.DestroyImmediate(go);
+            }
+            if (rt) Object.DestroyImmediate(rt);
+            if (tex) Object.DestroyImmediate(tex);
+        }
+
+        /// <summary>Regenerate both scenes, then capture (one Unity session instead of two queued batch runs).</summary>
+        public static void BuildAndCaptureBatch()
+        {
+            try { CityBuilder.BuildAll(); Capture(); EditorApplication.Exit(0); }
+            catch (System.Exception e) { Debug.LogException(e); EditorApplication.Exit(1); }
         }
 
         public static void CaptureBatch()

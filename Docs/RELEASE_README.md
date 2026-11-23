@@ -1,9 +1,14 @@
-# PARASITE — 0.2.2
+# PARASITE — 0.3.0 (Major Upgrade)
 
-**Local hotfix:** Ctrl+M is available from the title screen, opening cinematic, pause menus, Vale dialogue and gameplay. A request during loading or a body change waits for the game to be ready. The title shows v0.2.2. The appended hotfix section in TEST_REPORT.md records the checks run for this build.
+**Major Upgrade Release (v0.3.0):**
+- **14-Mission Expanded Campaign:** Follow Dr. Hana Petrov through high-tension tailing sequences, evade Hunter Squad bio-scanners, breach the subterranean Black Site Vault, override Containment Protocol Epsilon, trigger the 3-stage district blackout, and execute the final convergence broadcast and escape.
+- **Skinned 3D Character Models:** Replaced procedural humanoids with high-fidelity, textured character models generated via MPFB / MakeHuman Community across 20+ variants (Civilians, Guards, Scientists, Maintenance, Dr. Petrov, Dr. Vale, and Lakeside Girl).
+- **Authored Locomotion & Animation Controller:** Full humanoid Animator Controller supporting locomotion blends, state transitions, knockout/recovery, and authored pose states (sitting, gestures, panic, console use, and captured sequences).
+- **Audio Overhaul:** Full voice acting for story characters and pedestrians, synthesized ambient city audio, dynamic music tracks, and high-fidelity sound effects with persistent in-game volume controls.
+- **Next-Gen Visuals & Shaders:** 4K Belfast Sunset HDR skybox, realistic 3D trees with bark and leaf-cluster atlases, custom URP shaders (Atmosphere, Foliage, Facade, Light Cones, Amoeba Slime Trail), and wet asphalt reflections.
+- **Persistent Shortcut:** Judges' shortcut **Ctrl + M** remains available at any point (title, opening, pause, dialogue, gameplay) to jump directly to the final escape sequence and explicit lakeside choice.
 
-You are Specimen 7, an escaped amoeba. Possess people, borrow their credentials and split into two bodies through eight missions.
-Meeting Dr. Vale is the midpoint: secure his signed evidence, disable containment, broadcast the truth and escape.
+You are Specimen 7, an escaped amoeba. Possess people, borrow their credentials, split into two bodies, and navigate a 14-mission stealth-action campaign. Meeting Dr. Vale reveals the truth behind your creation; work with your dual form to secure the Black Site archives, shut down the containment grid, broadcast the truth to the city, and escape to the sunset lake.
 
 ## Start playing
 

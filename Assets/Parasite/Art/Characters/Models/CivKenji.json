@@ -1,0 +1,70 @@
+{
+ "id": "CivKenji",
+ "profession": "Civilian",
+ "names": [],
+ "unique": false,
+ "gender": 1.0,
+ "age": 0.6538461538461539,
+ "height": 1.754,
+ "skin": "middleage_asian_male",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {},
+ "palettes": {},
+ "lodTris": [
+  16850,
+  6997,
+  2497
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "middleage_asian_male"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow002"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes01"
+  },
+  {
+   "kind": "hair",
+   "name": "short03"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_male_suit_3"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_shoes_oxford_male"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/middleage_asian_male.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "CivKenji_Cloth_A.jpg",
+  "clothN": "CivKenji_Cloth_N.jpg",
+  "clothM": "CivKenji_Cloth_M.png",
+  "hairA": "CivKenji_Hair_A.png"
+ }
+}

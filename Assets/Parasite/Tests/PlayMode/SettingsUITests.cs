@@ -198,7 +198,7 @@ namespace Parasite.Tests
         {
             yield return AutoTest.LoadCity();
             var missionManager = MissionManager.Instance;
-            Assert.AreEqual(11, missionManager.Missions.Count, "The extended campaign has eleven missions.");
+            Assert.AreEqual(14, missionManager.Missions.Count, "The extended campaign has fourteen missions.");
             // UI fixture: show the last mission without bypassing any gameplay in acceptance tests.
             RunState.MissionIndex = missionManager.Missions.Count - 1;
             var gm = GameManager.Instance;
@@ -208,7 +208,7 @@ namespace Parasite.Tests
             var scroll = journal.Find("ScrollView").GetComponent<ScrollRect>();
             Assert.IsNotNull(scroll.viewport.GetComponent<RectMask2D>(), "Journal entries are clipped to their viewport.");
             var entries = scroll.content.GetComponentsInChildren<Text>();
-            Assert.AreEqual(11, entries.Length);
+            Assert.AreEqual(14, entries.Length);
             for (int i = 0; i < entries.Length; i++) StringAssert.Contains(missionManager.Missions[i].title, entries[i].text);
             var current = entries[entries.Length - 1];
             StringAssert.Contains(missionManager.Current.briefing, current.text);
@@ -272,9 +272,14 @@ namespace Parasite.Tests
                 var epilogue = LakesideEpilogue.Instance;
                 Assert.IsNotNull(epilogue); Assert.IsNotNull(epilogue.SeatedGirl);
                 Assert.IsNull(epilogue.SeatedGirl.GetComponent<HostCharacter>(), "The seated girl is visual staging, not a new gameplay possession.");
-                var thigh = epilogue.SeatedGirl.Find("Model/Hips/LThigh");
-                Assert.That(Quaternion.Angle(thigh.localRotation, Quaternion.Euler(-90, 0, 0)), Is.LessThan(1f), "The girl is visibly posed seated.");
-                Assert.IsNotNull(epilogue.SeatedGirl.Find("Model/Hips/Spine/Neck/Head/Long hair"));
+                var girlRig = epilogue.SeatedGirl.GetComponent<HumanoidRig>();
+                Assert.IsNotNull(girlRig); Assert.AreEqual(ActorPose.Sit, girlRig.Pose, "The girl holds the seated pose.");
+                Assert.IsTrue(girlRig.Animator && girlRig.Animator.isHuman, "The girl is a skinned humanoid character.");
+                var upperLeg = girlRig.Animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
+                var lowerLeg = girlRig.Animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
+                var thighDir = (lowerLeg.position - upperLeg.position).normalized;
+                Assert.That(Mathf.Abs(Vector3.Dot(thighDir, Vector3.up)), Is.LessThan(0.6f), "The girl is visibly posed seated (thighs roughly horizontal).");
+                Assert.IsTrue(girlRig.Renderers.Any(r => r && r.sharedMaterials.Any(m => m && m.name.Contains("_Hair"))), "The girl has real hair.");
                 var lake = GameObject.Find("Lakeside film set/Lake").GetComponent<Renderer>();
                 Assert.AreEqual("Parasite/LakesideWater", lake.sharedMaterial.shader.name);
                 Assert.IsTrue(lake.sharedMaterial.shader.isSupported, "The lake shader compiled for this GPU.");

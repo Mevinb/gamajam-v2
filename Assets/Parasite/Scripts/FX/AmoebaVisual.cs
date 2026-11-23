@@ -5,9 +5,10 @@ namespace Parasite.FX
 {
     /// <summary>
     /// CONTRACT — the visible body of a free amoeba, built procedurally under the owner (owner pivot = feet).
-    /// Translucent jelly shell ("Parasite/Amoeba"), pulsing nucleus, orbiting organelles with bioluminescent
-    /// synaptic energy pulses, enhanced point light emission, sliding ground luminescence wake, and spring-damped
-    /// squash &amp; stretch (velocity stretch + Squash impulses).
+    /// Refractive jelly shell ("Parasite/Amoeba" on a smooth icosphere) with pseudopods reaching along the motion,
+    /// a flattened ground-contact patch and impact jiggle; pulsing nucleus, orbiting organelles with bioluminescent
+    /// synaptic energy pulses, point light, sliding luminescence wake, a fading glossy slime trail (+ landing splats),
+    /// and spring-damped squash &amp; stretch (velocity stretch + Squash impulses).
     /// </summary>
     public class AmoebaVisual : MonoBehaviour
     {
@@ -18,7 +19,10 @@ namespace Parasite.FX
         LineRenderer[] tendrils;
         Vector3[] orbitAxes, orbitStart;
         float[] orbitSpeed;
-        Material shellMat, nucleusMat, organelleMat;
+        Material shellMat, nucleusMat, organelleMat, organelleMat2;
+        SlimeTrail trail;
+        float trailAccum, impact, flatten = 1f, airTime;
+        bool wasGrounded = true;
         bool shellIsShader, nucleusIsShader;
         Light glow;
         ParticleSystem drips;
@@ -39,6 +43,9 @@ namespace Parasite.FX
         static readonly int IdPulsePhase = Shader.PropertyToID("_PulsePhase");
         static readonly int IdWobbleTime = Shader.PropertyToID("_WobbleTime");
         static readonly int IdWobbleSpeed = Shader.PropertyToID("_WobbleSpeed");
+        static readonly int IdMoveDir = Shader.PropertyToID("_MoveDir");
+        static readonly int IdImpact = Shader.PropertyToID("_Impact");
+        static readonly int IdFlatten = Shader.PropertyToID("_Flatten");
 
         public void Build(float r)
         {
@@ -46,6 +53,7 @@ namespace Parasite.FX
             if (pivot) Destroy(pivot.gameObject);
             if (drips) Destroy(drips.gameObject);
             if (wake) Destroy(wake.gameObject);
+            if (trail) Destroy(trail.gameObject);
             DestroyMats();
             phase = Random.value * 10f;
 
@@ -56,6 +64,11 @@ namespace Parasite.FX
             shellMat = FxAssets.NewShell(out shellIsShader);
             if (shellIsShader) { shellMat.SetFloat(IdPulseRate, 0f); shellMat.SetFloat(IdWobbleSpeed, 0f); }
             body = FxPrim.Make(PrimitiveType.Sphere, pivot, new Vector3(0f, 0.5f, 0f), Vector3.one, shellMat, "AmoebaBody", null, true).transform;
+            if (shellIsShader)
+            {
+                body.GetComponent<MeshFilter>().sharedMesh = FxPrim.Icosphere();
+                body.GetComponent<MeshRenderer>().reflectionProbeUsage = ReflectionProbeUsage.BlendProbes;
+            }
 
             nucleusMat = FxAssets.NewNucleus(out nucleusIsShader);
             if (nucleusIsShader) { nucleusMat.SetFloat(IdPulseRate, 0f); nucleusMat.SetFloat(IdPhase, phase); }
@@ -69,7 +82,15 @@ namespace Parasite.FX
                 organelleMat.SetFloat(IdPulseRate, 5f);
                 organelleMat.SetFloat(IdPhase, phase + 1.7f);
             }
-            int count = 3;
+            organelleMat2 = FxAssets.NewNucleus(out _);
+            if (nucleusIsShader)
+            {
+                organelleMat2.SetColor(IdColor, new Color(0.35f, 1.5f, 1.25f, 1f));   // cyan vacuoles
+                organelleMat2.SetFloat(IdIntensity, 1.1f);
+                organelleMat2.SetFloat(IdPulseRate, 3.6f);
+                organelleMat2.SetFloat(IdPhase, phase + 0.6f);
+            }
+            int count = 5;
             organelles = new Transform[count];
             orbitAxes = new Vector3[count];
             orbitStart = new Vector3[count];
@@ -78,10 +99,10 @@ namespace Parasite.FX
 
             for (int i = 0; i < count; i++)
             {
-                float s = Random.Range(0.09f, 0.14f);
-                organelles[i] = FxPrim.Make(PrimitiveType.Sphere, body, Vector3.zero, Vector3.one * s, organelleMat, "Organelle" + i).transform;
+                float s = i < 3 ? Random.Range(0.09f, 0.14f) : Random.Range(0.05f, 0.08f);
+                organelles[i] = FxPrim.Make(PrimitiveType.Sphere, body, Vector3.zero, Vector3.one * s, i < 3 ? organelleMat : organelleMat2, "Organelle" + i).transform;
                 orbitAxes[i] = Random.onUnitSphere;
-                orbitStart[i] = Vector3.Cross(orbitAxes[i], Random.onUnitSphere).normalized * Random.Range(0.22f, 0.3f);
+                orbitStart[i] = Vector3.Cross(orbitAxes[i], Random.onUnitSphere).normalized * (i < 3 ? Random.Range(0.22f, 0.3f) : Random.Range(0.14f, 0.34f));
                 orbitSpeed[i] = Random.Range(40f, 110f) * (Random.value < 0.5f ? -1f : 1f);
 
                 // Bioluminescent synaptic energy pulses connecting nucleus to organelles
@@ -147,6 +168,9 @@ namespace Parasite.FX
             FxParticles.FadeOut(wake, 0.45f, 0.3f);
             wake.Play();
 
+            // glossy slime trail (world space, fades over a few seconds)
+            trail = SlimeTrail.Create("AmoebaSlimeTrail", 6f);
+
             ApplyLayer();
             lastPos = transform.position;
             infect = 1f;
@@ -174,7 +198,11 @@ namespace Parasite.FX
         }
 
         /// <summary>Short squash used for hops / landing / spawn.</summary>
-        public void Squash(float amount = 1f) => squashVel -= Mathf.Clamp(amount, 0f, 2f) * 4.2f;
+        public void Squash(float amount = 1f)
+        {
+            squashVel -= Mathf.Clamp(amount, 0f, 2f) * 4.2f;
+            impact = Mathf.Max(impact, Mathf.Clamp01(amount * 0.8f));
+        }
 
         void OnEnable()
         {
@@ -183,12 +211,14 @@ namespace Parasite.FX
             if (pivot) { infect = Mathf.Max(infect, 0.8f); squash = -0.25f; squashVel = 0f; }
         }
 
-        void LateUpdate()
+        void LateUpdate() => Step(Time.deltaTime, Time.time);
+
+        /// <summary>Advance the procedural animation by <paramref name="dt"/> (LateUpdate; also used by PhotoTool in edit mode).</summary>
+        public void Step(float dt, float time)
         {
             if (!pivot) return;
-            float dt = Time.deltaTime;
             if (dt <= 0f) return;
-            float t = Time.time + phase;
+            float t = time + phase;
 
             var p = transform.position;
             float moved = (p - lastPos).magnitude;
@@ -213,6 +243,32 @@ namespace Parasite.FX
                 if (nw > 0) { wakeAccum -= nw; wake.Emit(nw); }
             }
 
+            // glossy slime trail + splat on landing
+            if (trail && moved < 1f)
+            {
+                if (grounded && hs > 0.25f)
+                {
+                    trailAccum += moved;
+                    if (trailAccum > radius * 0.4f)
+                    {
+                        trailAccum = 0f;
+                        trail.Drop(p + faceDir * (-radius * 0.3f), radius * Random.Range(1.15f, 1.45f), radius * Random.Range(1.5f, 2.0f), faceDir,
+                                   Mathf.Clamp01(0.6f + hs * 0.08f), 0.6f);
+                    }
+                }
+                if (grounded && !wasGrounded && airTime > 0.18f)
+                {
+                    trail.Drop(p, radius * 2.6f, radius * 2.6f, Random.insideUnitSphere, 1f, 0.8f);
+                    impact = Mathf.Max(impact, Mathf.Clamp01(airTime * 1.5f));
+                    if (drips) drips.Emit(6);
+                }
+            }
+            airTime = grounded ? 0f : airTime + dt;
+            wasGrounded = grounded;
+            impact = Mathf.MoveTowards(impact, 0f, dt * 2.2f);
+            if (trail && !Application.isPlaying) trail.Tick(time);
+            flatten = Mathf.MoveTowards(flatten, grounded ? 1f : 0f, dt * (grounded ? 6f : 3f));
+
             // Smooth spring-damped squash response (underdamped viscoelastic jelly)
             squashVel += (-135f * squash - 13.5f * squashVel) * dt;
             squash = Mathf.Clamp(squash + squashVel * dt, -0.55f, 0.6f);
@@ -231,7 +287,8 @@ namespace Parasite.FX
             wobbleTime += dt * Mathf.Lerp(1.1f, 2.2f, activity) * (1f + infect);
             float breathe = Mathf.Sin(pulsePhase * 0.75f + phase) * 0.03f;
             // volume-preserving: vertical squash q, then stretch along travel direction (local z)
-            float q = Mathf.Max(0.4f, (1f + squash + breathe) * (1f + airStretch));
+            // rest shape is a soft dome (slime, not a ball); airborne it stretches tall along the fall
+            float q = Mathf.Max(0.4f, (0.8f + squash + breathe + airStretch * 0.6f) * (1f + airStretch));
             float xz = 1f / Mathf.Sqrt(q), st = 1f + stretch, inv = 1f / Mathf.Sqrt(st);
             pivot.localScale = new Vector3(xz * inv, q * inv, xz * st) * radius * 2f;
             pivot.rotation = Quaternion.LookRotation(faceDir, Vector3.up) * Quaternion.Euler(stretch * 18f, 0f, 0f);
@@ -276,6 +333,9 @@ namespace Parasite.FX
                 shellMat.SetFloat(IdInfect, infect);
                 shellMat.SetFloat(IdPulsePhase, pulsePhase + phase);
                 shellMat.SetFloat(IdWobbleTime, wobbleTime + phase);
+                shellMat.SetVector(IdMoveDir, new Vector4(0f, 0.12f, 1f, Mathf.Clamp(hs * 0.03f, 0f, 0.13f) * (grounded ? 1f : 0.4f)));
+                shellMat.SetFloat(IdImpact, impact * impact);
+                shellMat.SetFloat(IdFlatten, flatten);
             }
             else shellMat.SetColor(IdEmissionColor, Palette.Amoeba * (0.15f + 0.35f * activity * (0.7f + 0.3f * pulse01) + infect * 0.6f));
 
@@ -294,13 +354,28 @@ namespace Parasite.FX
             }
         }
 
-        void DestroyMats()
+        static void Kill(Object o)
         {
-            if (shellMat) Destroy(shellMat);
-            if (nucleusMat) Destroy(nucleusMat);
-            if (organelleMat) Destroy(organelleMat);
+            if (!o) return;
+            if (Application.isPlaying) Destroy(o); else DestroyImmediate(o);
         }
 
-        void OnDestroy() => DestroyMats();
+        void DestroyMats()
+        {
+            Kill(shellMat);
+            Kill(nucleusMat);
+            Kill(organelleMat);
+            Kill(organelleMat2);
+        }
+
+        void OnDestroy()
+        {
+            // contained by a guard: PossessionManager splats at the blob's centre and destroys it in the same frame
+            if (Application.isPlaying && pivot && FxBackend.LastSplatFrame == Time.frameCount &&
+                (FxBackend.LastSplatPos - transform.position).sqrMagnitude < 4f)
+                FxBackend.Containment(transform.position + Vector3.up * radius);
+            DestroyMats();
+            if (trail) Kill(trail.gameObject);
+        }
     }
 }

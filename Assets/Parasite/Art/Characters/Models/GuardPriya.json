@@ -1,0 +1,100 @@
+{
+ "id": "GuardPriya",
+ "profession": "Guard",
+ "names": [
+  "Priya Nair"
+ ],
+ "unique": false,
+ "gender": 0.0,
+ "age": 0.5384615384615384,
+ "height": 1.63,
+ "skin": "cutoff3d_indian_female_skin",
+ "skinTint": [
+  1,
+  1,
+  1
+ ],
+ "eyes": "brown",
+ "hairColor": [
+  0.045,
+  0.038,
+  0.034
+ ],
+ "tints": {
+  "A": [
+   0.018223319227034615,
+   0.027864006037506325,
+   0.08538945579840525
+  ],
+  "B": [
+   0.010874653768394109,
+   0.013080744165605333,
+   0.02117351073789841
+  ],
+  "C": [
+   0.013080744165605333,
+   0.018223319227034615,
+   0.04457275218822681
+  ]
+ },
+ "palettes": {
+  "A": "uniform",
+  "B": "uniform_pants",
+  "C": "uniform"
+ },
+ "lodTris": [
+  19997,
+  7011,
+  2517
+ ],
+ "assets": [
+  {
+   "kind": "skins",
+   "name": "cutoff3d_indian_female_skin"
+  },
+  {
+   "kind": "eyebrows",
+   "name": "eyebrow006"
+  },
+  {
+   "kind": "eyelashes",
+   "name": "eyelashes03"
+  },
+  {
+   "kind": "hair",
+   "name": "ponytail01"
+  },
+  {
+   "kind": "eyes",
+   "name": "low-poly"
+  },
+  {
+   "kind": "material",
+   "name": "eyes brown"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_basic_tucked_t-shirt"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_female_trousers_1"
+  },
+  {
+   "kind": "clothes",
+   "name": "toigo_ankle_boots_female"
+  },
+  {
+   "kind": "clothes",
+   "name": "mindfront_patrol_cap"
+  }
+ ],
+ "textures": {
+  "skin": "Skins/cutoff3d_indian_female_skin.jpg",
+  "eyes": "Eyes/brown.png",
+  "clothA": "GuardPriya_Cloth_A.jpg",
+  "clothN": "GuardPriya_Cloth_N.jpg",
+  "clothM": "GuardPriya_Cloth_M.png",
+  "hairA": "GuardPriya_Hair_A.png"
+ }
+}
