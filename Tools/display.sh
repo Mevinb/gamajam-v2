@@ -4,6 +4,12 @@
 if [[ -z "${XDG_RUNTIME_DIR:-}" && -d "/run/user/$(id -u)" ]]; then
   export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 fi
+if [[ -z "${XDG_CACHE_HOME:-}" ]]; then
+  export XDG_CACHE_HOME="$HOME/.cache"
+fi
+if [[ -z "${XDG_CONFIG_HOME:-}" ]]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
 if [[ -z "${DISPLAY:-}" && -S /tmp/.X11-unix/X0 ]]; then
   export DISPLAY=:0
 fi

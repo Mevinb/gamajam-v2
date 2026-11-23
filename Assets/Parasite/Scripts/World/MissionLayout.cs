@@ -28,6 +28,13 @@ namespace Parasite.World
         public static readonly Vector3 JournalistUplink = new(-24f, L.Sidewalk, 15.5f);
         public static readonly Vector3 Extraction = L.StormDrain + Vector3.forward * 1.4f;
 
+        // Expanded campaign (Missions 9-11)
+        public static readonly Vector3 SubVaultDiversion = new(6.9f, L.LabFloor, 76.5f);
+        public static readonly Vector3 BlackSiteVault = new(-21.5f, L.LabFloor, 101.2f);
+        public static readonly Vector3 BackupGenerator = new(58.5f, L.Sidewalk, 74.0f);
+        public static readonly Vector3 GridOverride = new(-4.5f, L.Sidewalk, 61.0f);
+        public static readonly Vector3 MasterUplink = new(-36.0f, L.Sidewalk, 15.0f);
+
         // security cameras: name, mount position, yaw of the view centre, range
         public static readonly (string name, Vector3 pos, float yaw, float range)[] Cameras =
         {

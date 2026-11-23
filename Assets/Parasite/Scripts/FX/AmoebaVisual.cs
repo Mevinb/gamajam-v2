@@ -5,8 +5,9 @@ namespace Parasite.FX
 {
     /// <summary>
     /// CONTRACT — the visible body of a free amoeba, built procedurally under the owner (owner pivot = feet).
-    /// Translucent jelly shell ("Parasite/Amoeba"), pulsing nucleus, orbiting organelles, a small green point
-    /// light and drip particles. Spring-damped squash &amp; stretch (velocity stretch + Squash impulses).
+    /// Translucent jelly shell ("Parasite/Amoeba"), pulsing nucleus, orbiting organelles with bioluminescent
+    /// synaptic energy pulses, enhanced point light emission, sliding ground luminescence wake, and spring-damped
+    /// squash &amp; stretch (velocity stretch + Squash impulses).
     /// </summary>
     public class AmoebaVisual : MonoBehaviour
     {
@@ -14,15 +15,17 @@ namespace Parasite.FX
 
         Transform pivot, body, nucleus;
         Transform[] organelles;
+        LineRenderer[] tendrils;
         Vector3[] orbitAxes, orbitStart;
         float[] orbitSpeed;
         Material shellMat, nucleusMat, organelleMat;
         bool shellIsShader, nucleusIsShader;
         Light glow;
         ParticleSystem drips;
+        ParticleSystem wake;
 
         Vector3 vel, faceDir = Vector3.forward, lastPos;
-        float dripAccum;
+        float dripAccum, wakeAccum;
         bool grounded = true, active = true;
         float squash, squashVel, stretch, airStretch, activity = 1f, infect, phase, pulsePhase, wobbleTime, orbitTime;
 
@@ -42,6 +45,7 @@ namespace Parasite.FX
             radius = r;
             if (pivot) Destroy(pivot.gameObject);
             if (drips) Destroy(drips.gameObject);
+            if (wake) Destroy(wake.gameObject);
             DestroyMats();
             phase = Random.value * 10f;
 
@@ -61,7 +65,7 @@ namespace Parasite.FX
             if (nucleusIsShader)
             {
                 organelleMat.SetColor(IdColor, new Color(0.95f, 1.6f, 0.35f, 1f));
-                organelleMat.SetFloat(IdIntensity, 1.2f);
+                organelleMat.SetFloat(IdIntensity, 1.4f);
                 organelleMat.SetFloat(IdPulseRate, 5f);
                 organelleMat.SetFloat(IdPhase, phase + 1.7f);
             }
@@ -70,24 +74,43 @@ namespace Parasite.FX
             orbitAxes = new Vector3[count];
             orbitStart = new Vector3[count];
             orbitSpeed = new float[count];
+            tendrils = new LineRenderer[count];
+
             for (int i = 0; i < count; i++)
             {
-                float s = Random.Range(0.08f, 0.13f);
+                float s = Random.Range(0.09f, 0.14f);
                 organelles[i] = FxPrim.Make(PrimitiveType.Sphere, body, Vector3.zero, Vector3.one * s, organelleMat, "Organelle" + i).transform;
                 orbitAxes[i] = Random.onUnitSphere;
                 orbitStart[i] = Vector3.Cross(orbitAxes[i], Random.onUnitSphere).normalized * Random.Range(0.22f, 0.3f);
                 orbitSpeed[i] = Random.Range(40f, 110f) * (Random.value < 0.5f ? -1f : 1f);
+
+                // Bioluminescent synaptic energy pulses connecting nucleus to organelles
+                var tgo = new GameObject("Tendril" + i);
+                tgo.transform.SetParent(body, false);
+                var lr = tgo.AddComponent<LineRenderer>();
+                lr.useWorldSpace = false;
+                lr.positionCount = 3;
+                lr.startWidth = r * 0.045f;
+                lr.endWidth = r * 0.02f;
+                lr.sharedMaterial = FxAssets.Additive;
+                lr.shadowCastingMode = ShadowCastingMode.Off;
+                lr.receiveShadows = false;
+                lr.lightProbeUsage = LightProbeUsage.Off;
+                lr.reflectionProbeUsage = ReflectionProbeUsage.Off;
+                tendrils[i] = lr;
             }
 
+            // Enhanced bioluminescent glow light
             glow = new GameObject("AmoebaLight").AddComponent<Light>();
             glow.transform.SetParent(body, false);
             glow.type = LightType.Point;
-            glow.color = Palette.Amoeba;
-            glow.range = 3f;
-            glow.intensity = 1.2f;
+            glow.color = new Color(0.28f, 1.0f, 0.42f);
+            glow.range = 4.2f;
+            glow.intensity = 1.6f;
             glow.shadows = LightShadows.None;
             glow.renderMode = LightRenderMode.Auto;
 
+            // Drips particle system
             drips = FxParticles.Make("Drips", transform, new Vector3(0f, r * 0.25f, 0f), FxAssets.Alpha);
             var m = drips.main;
             m.loop = true; m.duration = 5f;
@@ -97,11 +120,32 @@ namespace Parasite.FX
             m.startColor = FxParticles.TwoTone(new Color(0.35f, 1f, 0.4f, 0.85f), new Color(0.1f, 0.6f, 0.2f, 0.8f));
             m.gravityModifier = 0.9f;
             m.maxParticles = 60;
-            var em = drips.emission; em.rateOverTime = 0.5f; // movement drips are emitted manually (teleport-safe)
+            var em = drips.emission; em.rateOverTime = 0.5f; // movement drips emitted manually
             var sh = drips.shape; sh.radius = r * 0.6f;
             FxParticles.SizeCurve(drips, 1f, 0.2f);
             FxParticles.FadeOut(drips, 1f, 0.6f);
             drips.Play();
+
+            // Bioluminescent ground wake / luminescence trail while sliding
+            wake = FxParticles.Make("LumWake", transform, new Vector3(0f, 0.03f, 0f), FxAssets.Additive);
+            var wm = wake.main;
+            wm.loop = true;
+            wm.duration = 4f;
+            wm.startLifetime = new ParticleSystem.MinMaxCurve(0.5f, 0.9f);
+            wm.startSpeed = new ParticleSystem.MinMaxCurve(0.04f, 0.18f);
+            wm.startSize = new ParticleSystem.MinMaxCurve(r * 0.4f, r * 0.75f);
+            wm.startColor = FxParticles.TwoTone(new Color(0.25f, 1.0f, 0.5f, 0.4f), new Color(0.12f, 0.75f, 0.85f, 0.25f));
+            wm.gravityModifier = 0f;
+            wm.maxParticles = 80;
+            var wem = wake.emission;
+            wem.rateOverTime = 0f; // emitted manually while moving on ground
+            var wsh = wake.shape;
+            wsh.shapeType = ParticleSystemShapeType.Circle;
+            wsh.radius = r * 0.45f;
+            wsh.rotation = new Vector3(90f, 0f, 0f);
+            FxParticles.SizeCurve(wake, 1.0f, 0.15f);
+            FxParticles.FadeOut(wake, 0.45f, 0.3f);
+            wake.Play();
 
             ApplyLayer();
             lastPos = transform.position;
@@ -116,6 +160,7 @@ namespace Parasite.FX
             int layer = gameObject.layer;
             if (pivot) foreach (var t in pivot.GetComponentsInChildren<Transform>(true)) t.gameObject.layer = layer;
             if (drips) drips.gameObject.layer = layer;
+            if (wake) wake.gameObject.layer = layer;
         }
 
         /// <summary>World velocity + grounded, every frame.</summary>
@@ -129,7 +174,7 @@ namespace Parasite.FX
         }
 
         /// <summary>Short squash used for hops / landing / spawn.</summary>
-        public void Squash(float amount = 1f) => squashVel -= Mathf.Clamp(amount, 0f, 2f) * 4.5f;
+        public void Squash(float amount = 1f) => squashVel -= Mathf.Clamp(amount, 0f, 2f) * 4.2f;
 
         void OnEnable()
         {
@@ -145,10 +190,14 @@ namespace Parasite.FX
             if (dt <= 0f) return;
             float t = Time.time + phase;
 
-            // drips while sliding along (skip teleports)
             var p = transform.position;
             float moved = (p - lastPos).magnitude;
             lastPos = p;
+
+            var h = new Vector3(vel.x, 0f, vel.z);
+            float hs = h.magnitude;
+
+            // drips while sliding along (skip teleports)
             if (drips && moved < 1f)
             {
                 dripAccum += moved * (grounded ? 5f : 2f);
@@ -156,15 +205,21 @@ namespace Parasite.FX
                 if (n > 0) { dripAccum -= n; drips.Emit(n); }
             }
 
-            // spring-damped squash (negative = flattened)
-            squashVel += (-170f * squash - 11f * squashVel) * dt;
+            // Bioluminescent wake emitted when sliding along the ground
+            if (wake && moved < 1f && grounded && hs > 0.2f)
+            {
+                wakeAccum += moved * 10f;
+                int nw = (int)wakeAccum;
+                if (nw > 0) { wakeAccum -= nw; wake.Emit(nw); }
+            }
+
+            // Smooth spring-damped squash response (underdamped viscoelastic jelly)
+            squashVel += (-135f * squash - 13.5f * squashVel) * dt;
             squash = Mathf.Clamp(squash + squashVel * dt, -0.55f, 0.6f);
 
-            var h = new Vector3(vel.x, 0f, vel.z);
-            float hs = h.magnitude;
-            if (hs > 0.2f) faceDir = Vector3.Slerp(faceDir, h / hs, 1f - Mathf.Exp(-10f * dt));
-            stretch = Mathf.Lerp(stretch, Mathf.Clamp(hs * 0.05f, 0f, 0.3f), 1f - Mathf.Exp(-8f * dt));
-            airStretch = Mathf.Lerp(airStretch, grounded ? 0f : Mathf.Clamp(Mathf.Abs(vel.y) * 0.035f, 0f, 0.3f), 1f - Mathf.Exp(-10f * dt));
+            if (hs > 0.15f) faceDir = Vector3.Slerp(faceDir, h / hs, 1f - Mathf.Exp(-11f * dt));
+            stretch = Mathf.Lerp(stretch, Mathf.Clamp(hs * 0.052f, 0f, 0.32f), 1f - Mathf.Exp(-9f * dt));
+            airStretch = Mathf.Lerp(airStretch, grounded ? 0f : Mathf.Clamp(Mathf.Abs(vel.y) * 0.038f, 0f, 0.32f), 1f - Mathf.Exp(-11f * dt));
 
             activity = Mathf.MoveTowards(activity, active ? 1f : 0f, dt * 2f);
             infect = Mathf.MoveTowards(infect, 0f, dt * 1.1f);
@@ -185,10 +240,36 @@ namespace Parasite.FX
             nucleus.localPosition = new Vector3(Mathf.Sin(t * 1.1f) * 0.03f, 0.04f + Mathf.Sin(t * 1.7f) * 0.03f, 0.03f - stretch * 0.25f);
             float np = 1f + Mathf.Sin(pulsePhase + phase) * Mathf.Lerp(0.04f, 0.09f, activity) + infect * 0.15f;
             nucleus.localScale = Vector3.one * 0.4f * np;
-            for (int i = 0; i < organelles.Length; i++)
-                organelles[i].localPosition = Quaternion.AngleAxis(orbitTime * orbitSpeed[i], orbitAxes[i]) * orbitStart[i];
 
+            Vector3 nPos = nucleus.localPosition;
             float pulse01 = 0.5f + 0.5f * Mathf.Sin(pulsePhase + phase);
+
+            for (int i = 0; i < organelles.Length; i++)
+            {
+                Vector3 oPos = Quaternion.AngleAxis(orbitTime * orbitSpeed[i], orbitAxes[i]) * orbitStart[i];
+                organelles[i].localPosition = oPos;
+
+                // Update energy tendril from nucleus to organelle
+                if (tendrils != null && i < tendrils.Length && tendrils[i])
+                {
+                    float energyPulse = Mathf.Sin(pulsePhase * 2.8f + i * 2.1f) * 0.5f + 0.5f;
+                    Vector3 mid = Vector3.Lerp(nPos, oPos, 0.5f) + Vector3.Cross(orbitAxes[i], (oPos - nPos).normalized) * (0.02f * Mathf.Sin(t * 5f + i));
+                    tendrils[i].SetPosition(0, nPos);
+                    tendrils[i].SetPosition(1, mid);
+                    tendrils[i].SetPosition(2, oPos);
+
+                    Color tendrilCol = Color.Lerp(
+                        new Color(0.25f, 0.85f, 0.35f, 0.35f),
+                        new Color(0.55f, 1.8f, 0.75f, 0.85f),
+                        energyPulse * activity + infect * 0.4f
+                    );
+                    tendrils[i].startColor = tendrilCol;
+                    tendrils[i].endColor = tendrilCol * 0.7f;
+                    tendrils[i].startWidth = radius * (0.03f + 0.025f * energyPulse * activity + infect * 0.03f);
+                    tendrils[i].endWidth = radius * 0.018f;
+                }
+            }
+
             if (shellIsShader)
             {
                 shellMat.SetFloat(IdActivity, activity);
@@ -200,12 +281,17 @@ namespace Parasite.FX
 
             if (nucleusIsShader)
             {
-                nucleusMat.SetFloat(IdIntensity, Mathf.Lerp(0.6f, 1.8f, activity) + infect * 2f);
+                nucleusMat.SetFloat(IdIntensity, Mathf.Lerp(0.8f, 2.2f, activity) + infect * 2.2f);
                 nucleusMat.SetFloat(IdPhase, pulsePhase + phase);
             }
-            else nucleusMat.SetColor(IdEmissionColor, Palette.Amoeba * (Mathf.Lerp(0.6f, 2f, activity) * (0.8f + 0.2f * pulse01) + infect * 2f));
+            else nucleusMat.SetColor(IdEmissionColor, Palette.Amoeba * (Mathf.Lerp(0.8f, 2.2f, activity) * (0.8f + 0.2f * pulse01) + infect * 2.2f));
 
-            if (glow) glow.intensity = Mathf.Lerp(0.35f, 1.2f, activity) * (0.9f + 0.15f * pulse01) + infect * 1.5f;
+            // Enhanced light emission response
+            if (glow)
+            {
+                glow.intensity = Mathf.Lerp(0.55f, 1.85f, activity) * (0.9f + 0.2f * pulse01) + infect * 2.2f;
+                glow.range = Mathf.Lerp(3.4f, 4.5f, activity) + infect * 1.5f;
+            }
         }
 
         void DestroyMats()

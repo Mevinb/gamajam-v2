@@ -116,8 +116,50 @@ namespace Parasite.EditorTools
                 Profession.Maintenance, 7f, "Containment relay destroyed. CCTV is permanently offline and campus exits are unlocked.");
             relay.controlId = dispatch.controlId;
             var uplink = Operation(k, root, World.MissionLayout.JournalistUplink, "BROADCAST TO JOURNALIST", MissionFlags.EvidenceBroadcast, MissionFlags.ContainmentOffline,
-                Profession.Civilian, 10f, "Evidence received by Independent News. Return to the storm drain, leave your host and escape.");
+                Profession.Civilian, 10f, "Evidence received by Independent News! But the neural kill-switch and trial files are in the Black Site Vault.");
             uplink.anyHost = true; uplink.requireCalm = true;
+
+            // M9: THE BLACK SITE ARCHIVE
+            var subvault = Control(k, root, World.MissionLayout.SubVaultDiversion, "SUB-VAULT DIVERSION", MissionFlags.SubVaultDiversion, Profession.Guard,
+                MissionFlags.EvidenceBroadcast, MissionFlags.BlackSiteArchive, MissionFlags.SubVaultDiversion);
+            k.Text("SUB-VAULT SECURITY & EVACUATION ALARM", World.MissionLayout.SubVaultDiversion + new Vector3(0, 2.2f, 0.45f), 0f, 0.11f, new Color(1f, 0.8f, 0.2f));
+            k.Box(M("PaintYellow"), World.MissionLayout.SubVaultDiversion + new Vector3(0, 1.8f, 0.58f), new Vector3(1.1f, 0.08f, 0.52f));
+
+            var blackSiteVault = Operation(k, root, World.MissionLayout.BlackSiteVault, "BLACK SITE VAULT", MissionFlags.BlackSiteArchive, MissionFlags.EvidenceBroadcast,
+                Profession.Scientist, 10f, "Black Site Archive downloaded! Containment Protocol Epsilon initiated — facility lockdown active!");
+            blackSiteVault.controlId = subvault.controlId;
+            k.Text("SUBTERRANEAN BLACK SITE VAULT", World.MissionLayout.BlackSiteVault + new Vector3(0, 2.2f, 0.45f), 0f, 0.11f, new Color(1f, 0.35f, 0.35f));
+            k.Box(M("MetalDark"), World.MissionLayout.BlackSiteVault + new Vector3(0, 1.2f, 0.8f), new Vector3(1.6f, 2.4f, 0.2f));
+            k.Box(M("DoorStaff"), World.MissionLayout.BlackSiteVault + new Vector3(0, 1.1f, 0.7f), new Vector3(1.2f, 2.2f, 0.1f));
+            k.Text("CLASSIFIED — AUTHORIZED SCIENTISTS ONLY", World.MissionLayout.BlackSiteVault + new Vector3(0, 1.8f, 0.62f), 0f, 0.08f, new Color(0.9f, 0.9f, 0.9f));
+
+            // M10: CONTAINMENT PROTOCOL EPSILON
+            var backupGen = Control(k, root, World.MissionLayout.BackupGenerator, "BACKUP GENERATOR", MissionFlags.BackupGenerator, Profession.Maintenance,
+                MissionFlags.BlackSiteArchive, MissionFlags.GridOverride, MissionFlags.BackupGenerator);
+            k.Text("AUXILIARY BACKUP GENERATOR — GRID EPSILON", World.MissionLayout.BackupGenerator + new Vector3(0, 2.2f, 0.45f), 0f, 0.11f, new Color(1f, 0.85f, 0.1f));
+            k.Box(M("MetalDark"), World.MissionLayout.BackupGenerator + new Vector3(0, 1.0f, 0.8f), new Vector3(1.8f, 2.0f, 0.8f));
+            k.Solid(World.MissionLayout.BackupGenerator + new Vector3(0, 1.0f, 0.8f), new Vector3(1.8f, 2.0f, 0.8f));
+            k.Box(M("PaintYellow"), World.MissionLayout.BackupGenerator + new Vector3(0, 1.7f, 0.38f), new Vector3(0.6f, 0.3f, 0.02f));
+            k.Text("HIGH VOLTAGE — 10,000V", World.MissionLayout.BackupGenerator + new Vector3(0, 1.7f, 0.36f), 0f, 0.09f, new Color(1f, 0.2f, 0.2f));
+
+            var gridOverride = Operation(k, root, World.MissionLayout.GridOverride, "GRID OVERRIDE", MissionFlags.GridOverride, MissionFlags.BlackSiteArchive,
+                Profession.Guard, 8f, "Campus security grid disabled! Containment Protocol Epsilon breached.");
+            gridOverride.controlId = backupGen.controlId;
+            gridOverride.allowedProfessions = new[] { Profession.Guard, Profession.Scientist };
+            k.Text("SECURITY GRID PYLON — PROTOCOL EPSILON", World.MissionLayout.GridOverride + new Vector3(0, 2.2f, 0.45f), 0f, 0.11f, new Color(1f, 0.4f, 0.4f));
+            k.Cylinder(M("MetalDark"), World.MissionLayout.GridOverride + new Vector3(0, 0f, 0.8f), 0.35f, 3.2f);
+            k.Box(M("NeonRed"), World.MissionLayout.GridOverride + new Vector3(0, 3.2f, 0.8f), new Vector3(0.4f, 0.4f, 0.4f));
+            k.Text("PERIMETER LOCKDOWN PYLON", World.MissionLayout.GridOverride + new Vector3(0, 2.8f, 0.6f), 0f, 0.10f, new Color(1f, 0.2f, 0.2f));
+
+            // M11: THE FINAL CONVERGENCE
+            var masterUplink = Operation(k, root, World.MissionLayout.MasterUplink, "PLAZA MASTER ANTENNA", MissionFlags.MasterBroadcast, MissionFlags.GridOverride,
+                Profession.Civilian, 12f, "The Black Site Archive has been broadcast worldwide! Eject from your host [Q] and escape through the storm drain.");
+            masterUplink.anyHost = true; masterUplink.requireCalm = true;
+            k.Text("METROPOLITAN BROADCAST MAST", World.MissionLayout.MasterUplink + new Vector3(0, 2.2f, 0.45f), 0f, 0.12f, new Color(0.4f, 0.9f, 1f));
+            k.Cylinder(M("MetalDark"), World.MissionLayout.MasterUplink + new Vector3(0, 0f, 0.8f), 0.25f, 4.5f);
+            k.Box(M("NeonBlue"), World.MissionLayout.MasterUplink + new Vector3(0, 4.5f, 0.8f), new Vector3(0.5f, 0.2f, 0.5f));
+            k.Text("EMERGENCY CIVIL DEFENSE UPLINK", World.MissionLayout.MasterUplink + new Vector3(0, 1.8f, 0.45f), 0f, 0.09f, new Color(0.8f, 0.95f, 1f));
+
             var extraction = new GameObject("StormDrain_Extraction");
             extraction.transform.SetParent(root, false);
             extraction.transform.position = World.MissionLayout.Extraction;
@@ -148,12 +190,12 @@ namespace Parasite.EditorTools
             return lamp.GetComponent<Renderer>();
         }
 
-        static CooperativeConsole Control(WorldKit k, Transform root, Vector3 pos, string label, string id, Profession profession, string required, string retire)
+        static CooperativeConsole Control(WorldKit k, Transform root, Vector3 pos, string label, string id, Profession profession, string required, string retire, string flag = null)
         {
             var go = new GameObject("Cooperative_" + id);
             go.transform.SetParent(root, false); go.transform.position = pos;
             var c = go.AddComponent<CooperativeConsole>();
-            c.controlId = id; c.displayName = label; c.profession = profession; c.requiredFlag = required; c.retireWhenFlag = retire;
+            c.controlId = id; c.displayName = label; c.profession = profession; c.requiredFlag = required; c.retireWhenFlag = retire; c.flag = flag;
             c.lamp = CampaignTerminal(k, pos, label);
             c.lamp.transform.SetParent(go.transform, true);
             return c;

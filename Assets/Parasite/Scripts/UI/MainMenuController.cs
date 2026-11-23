@@ -156,6 +156,14 @@ namespace Parasite.UI
         }
 
         // ------------------------------------------------------------------ actions
+        /// <summary>Stop the title fade/load before the persistent presentation shortcut takes ownership.</summary>
+        public void CancelForPresentationShortcut()
+        {
+            loading = true;
+            StopAllCoroutines();
+            gameObject.SetActive(false);
+        }
+
         void Begin()
         {
             if (loading) return;

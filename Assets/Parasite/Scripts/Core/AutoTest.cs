@@ -11,6 +11,8 @@ using Parasite.Stealth;
 using Parasite.World;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Profiling;
 using UnityEngine.SceneManagement;
 
@@ -34,12 +36,12 @@ namespace Parasite.Testing
         static void Boot()
         {
             var args = Environment.GetCommandLineArgs();
-            bool auto = args.Contains("-autotest"), bench = args.Contains("-benchmark");
-            if (!auto && !bench) return;
+            bool auto = args.Contains("-autotest"), bench = args.Contains("-benchmark"), shortcut = args.Contains("-shortcuttest");
+            if (!auto && !bench && !shortcut) return;
             var go = new GameObject("AutoTestRunner");
             DontDestroyOnLoad(go);
             var r = go.AddComponent<AutoTest>();
-            r.StartCoroutine(bench ? r.BenchmarkMain() : r.AutoMain());
+            r.StartCoroutine(shortcut ? r.ShortcutMain() : bench ? r.BenchmarkMain() : r.AutoMain());
         }
 
         static string OutPath()
@@ -64,6 +66,206 @@ namespace Parasite.Testing
             File.WriteAllText(OutPath(), Log.ToString());
             yield return null;
             Application.Quit(failed == 0 ? 0 : 1);
+        }
+
+        // Built-player input regression mode. These are queued Input System events, not native OS key injection.
+        IEnumerator ShortcutMain()
+        {
+            Running = true; Results.Clear(); Log.Clear();
+            Application.runInBackground = true;
+            var oldBackground = InputSystem.settings.backgroundBehavior;
+            var oldUpdate = InputSystem.settings.updateMode;
+            var keyboard = InputSystem.AddDevice<Keyboard>("Standalone shortcut regression keyboard");
+            InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+            InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+            Write($"PARASITE shortcut input regression — {DateTime.Now:yyyy-MM-dd HH:mm:ss} — {SystemInfo.graphicsDeviceName}");
+            Write("Queued KeyboardState events in the built player; GameInput.Simulated=false. This does not claim native OS key injection.");
+            try
+            {
+                foreach (string phase in new[] { "Title", "Opening", "PausedSettings", "ValeDialogue" })
+                {
+                    current = new Result { name = "Global shortcut from " + phase, pass = true };
+                    yield return Guard(ShortcutPresentationPhaseCase(keyboard, phase));
+                    Results.Add(current);
+                    Write($"{(current.pass ? "PASS" : "FAIL")} {current.name}: {current.detail}");
+                }
+                foreach (var control in new[] { Key.LeftCtrl, Key.RightCtrl })
+                foreach (bool letterFirst in new[] { false, true })
+                foreach (bool possessed in new[] { false, true })
+                {
+                    current = new Result { name = $"{control} {(letterFirst ? "M-first" : "Ctrl-first")} {(possessed ? "host" : "free")}", pass = true };
+                    yield return Guard(ShortcutKeyboardCase(keyboard, control, letterFirst, possessed, false));
+                    Results.Add(current);
+                    Write($"{(current.pass ? "PASS" : "FAIL")} {current.name}: {current.detail}");
+                }
+                foreach (var control in new[] { Key.LeftCtrl, Key.RightCtrl })
+                {
+                    current = new Result { name = $"{control} fast down/up in one input update", pass = true };
+                    yield return Guard(ShortcutKeyboardCase(keyboard, control, false, false, true));
+                    Results.Add(current);
+                    Write($"{(current.pass ? "PASS" : "FAIL")} {current.name}: {current.detail}");
+                }
+            }
+            finally
+            {
+                if (keyboard != null && keyboard.added) InputSystem.RemoveDevice(keyboard);
+                InputSystem.settings.backgroundBehavior = oldBackground;
+                InputSystem.settings.updateMode = oldUpdate;
+                ClearSim(); GameInput.Simulated = false; Running = false;
+            }
+            int failed = Results.Count(result => !result.pass);
+            Write($"SUMMARY: {Results.Count - failed}/{Results.Count} passed");
+            string report = Path.GetFullPath(OutPath());
+            Directory.CreateDirectory(Path.GetDirectoryName(report));
+            File.WriteAllText(report, Log.ToString());
+            yield return null;
+            Application.Quit(failed == 0 ? 0 : 1);
+        }
+
+        static IEnumerator ShortcutKeyboardCase(Keyboard keyboard, Key control, bool letterFirst, bool possessed, bool fastTap)
+        {
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return null; yield return null;
+            yield return LoadCity();
+            GameInput.Simulated = false;
+            if (possessed)
+            {
+                var host = NearestHost(PM.Active.Position, h => h.CanBePossessed && h.Profession == Profession.Civilian);
+                Check(host, "an ordinary civilian host is available");
+                if (!host) yield break;
+                PM.ForcePossessImmediate(host);
+            }
+            var gm = GameManager.Instance;
+            var originalBlob = PM.Active.Blob;
+            int captures = RunState.Captures, resets = RunState.Resets;
+            int performed = 0;
+            void OnChord(InputAction.CallbackContext ctx) { if (ctx.control.device == keyboard) performed++; }
+            GameInput.PresentationEnding.performed += OnChord;
+            try
+            {
+                if (!fastTap)
+                {
+                    InputSystem.QueueStateEvent(keyboard, new KeyboardState(letterFirst ? Key.M : control));
+                    yield return null; yield return null; yield return null;
+                    Check(gm.IsPlaying && !MissionManager.Instance.EndingStarted, "a lone first key does not activate presentation");
+                }
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                if (fastTap) InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                for (float t = 0; t < 3f && !MissionManager.Instance.EndingStarted; t += Time.unscaledDeltaTime) yield return null;
+                Check(performed > 0, "the named PresentationEnding action received the actual queued chord");
+                Check(MissionManager.Instance.EndingStarted && gm.State == GameState.Ending && Time.timeScale == 0f,
+                    "queued chord starts the real protected drain sequence");
+                Check(PM.Active.Host == null && PM.Active.Blob == originalBlob && Vector3.Distance(PM.Active.Position, MissionLayout.Extraction) < 0.5f,
+                    "free and possessed forms reach extraction using the same amoeba");
+                Check(!RunState.Has(MissionFlags.Escaped), "shortcut leaves the final outcome unchosen");
+                Vector3 position = PM.Active.Position;
+                yield return new WaitForSecondsRealtime(0.25f);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                yield return null; yield return null;
+                Check(GameManager.Instance == gm && PM.Active.Position == position && RunState.Captures == captures && RunState.Resets == resets,
+                    "held/repeated chord does not reload, recapture or relocate the player");
+                Check(!RunState.Has(MissionFlags.Escaped), "repeated input never chooses an ending");
+            }
+            finally { GameInput.PresentationEnding.performed -= OnChord; }
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return null; yield return null;
+        }
+
+        /// <summary>Shared phase fixtures for queued-key PlayMode and built-player shortcut regression.</summary>
+        public static IEnumerator PreparePresentationPhase(string phase)
+        {
+            ClearSim(); GameInput.Simulated = false; Time.timeScale = 1f;
+            bool title = phase.StartsWith("Title") || phase == "BeginTransition" || phase.StartsWith("Opening");
+            if (title)
+            {
+                if (phase != "Title" || SceneManager.GetActiveScene().name != GameManager.MenuScene)
+                { SceneManager.LoadScene(GameManager.MenuScene); yield return null; }
+                if (phase == "Title") yield break;
+                yield return new WaitForSecondsRealtime(0.7f);
+                var menu = FindFirstObjectByType<UI.MainMenuController>();
+                if (!menu) throw new InvalidOperationException("Presentation fixture has no title menu.");
+                if (phase == "TitleControls" || phase == "TitleSettings")
+                { PresentationFixtureClick(menu.transform, phase == "TitleControls" ? "Btn_Controls" : "Btn_Settings"); yield break; }
+                PresentationFixtureClick(menu.transform, "Btn_Begin Infiltration");
+                if (phase == "BeginTransition") { yield return new WaitForSecondsRealtime(0.1f); yield break; }
+                float deadline = Time.realtimeSinceStartup + 20f;
+                while ((!OpeningCinematic.Instance || !OpeningCinematic.Instance.Running) && Time.realtimeSinceStartup < deadline) yield return null;
+                if (!OpeningCinematic.Instance || !OpeningCinematic.Instance.Running)
+                    throw new InvalidOperationException("Requested opening did not start in presentation phase fixture.");
+                if (phase == "OpeningFinish")
+                {
+                    var opening = OpeningCinematic.Instance; opening.PlaybackSpeed = 80f;
+                    while (opening && opening.Running && opening.ElapsedSeconds < OpeningCinematic.Duration && Time.realtimeSinceStartup < deadline) yield return null;
+                }
+                else yield return new WaitForSecondsRealtime(0.3f);
+                yield break;
+            }
+            yield return LoadCity();
+            GameInput.Simulated = false;
+            var gm = GameManager.Instance;
+            if (phase.StartsWith("Paused"))
+            {
+                gm.SetPaused(true); yield return null;
+                if (phase == "PausedSettings") PresentationFixtureClick(UI.HUDController.Instance.transform.Find("HUD Canvas/Pause"), "Btn_Settings");
+                else if (phase == "PausedControls") PresentationFixtureClick(UI.HUDController.Instance.transform.Find("HUD Canvas/Pause"), "Btn_Controls");
+            }
+            else if (phase == "ValeDialogue")
+            {
+                MissionManager.SetFlag(MissionFlags.Research); MissionManager.SetFlag(MissionFlags.OfficeOpen);
+                var vale = FindFirstObjectByType<DrValeInteraction>();
+                vale.Interact(ActiveContext());
+                yield return null;
+                if (!MissionManager.Instance.DialoguePlaying) throw new InvalidOperationException("Vale reveal fixture failed to start.");
+            }
+            else if (phase == "ResetPending") { gm.ResetToCheckpoint("Presentation regression reset setup"); yield return null; }
+            else if (phase != "Normal") throw new ArgumentException("Unknown presentation fixture phase: " + phase);
+        }
+
+        static void PresentationFixtureClick(Transform root, string buttonName)
+        {
+            var button = root.GetComponentsInChildren<UnityEngine.UI.Button>(true).Single(b => b.name == buttonName);
+            if (!button.gameObject.activeInHierarchy || !button.IsInteractable()) throw new InvalidOperationException(buttonName + " is not actionable.");
+            button.onClick.Invoke();
+        }
+
+        static IEnumerator ShortcutPresentationPhaseCase(Keyboard keyboard, string phase)
+        {
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return null; yield return null;
+            yield return PreparePresentationPhase(phase);
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.M));
+            yield return null; yield return null;
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.M, Key.RightCtrl));
+            yield return null; yield return null;
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            float deadline = Time.realtimeSinceStartup + 15f;
+            while ((!GameManager.Instance || !MissionManager.Instance || !MissionManager.Instance.EndingStarted) && Time.realtimeSinceStartup < deadline) yield return null;
+            Check(GameManager.Instance && MissionManager.Instance && MissionManager.Instance.EndingStarted,
+                phase + " queued chord reaches the real final escape");
+            if (!current.pass) yield break;
+            var gm = GameManager.Instance;
+            var director = CityDirector.Instance;
+            float stableUntil = Time.realtimeSinceStartup + 4.8f, nextPulse = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup < stableUntil)
+            {
+                bool pulse = Time.realtimeSinceStartup >= nextPulse;
+                InputSystem.QueueStateEvent(keyboard, pulse ? new KeyboardState(Key.E) : new KeyboardState());
+                if (pulse) nextPulse = Time.realtimeSinceStartup + 0.65f;
+                yield return null;
+                Check(gm && gm == GameManager.Instance && director == CityDirector.Instance && gm.State == GameState.Ending && Time.timeScale == 0f,
+                    phase + " remains protected after old intro/reveal/reload timing");
+                if (!current.pass) yield break;
+            }
+            InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+            yield return null; yield return null;
+            Check(!OpeningCinematic.Instance && !MissionManager.Instance.DialoguePlaying && !RunState.Has(MissionFlags.Escaped),
+                phase + " has no stale intro/reveal and no automatically chosen outcome");
+            Check(FindObjectsByType<UI.LakesideEpilogue>(FindObjectsSortMode.None).Length <= 1,
+                phase + " creates no duplicate lakeside controller");
+            if (UI.LakesideEpilogue.Instance) Check(UI.LakesideEpilogue.Instance.Outcome == EndingOutcome.Unchosen,
+                phase + " preserves explicit ending choice");
         }
 
         // ================================================================ scenarios
@@ -668,7 +870,7 @@ namespace Parasite.Testing
             yield return SkipStoryUntil(() => RunState.Has(MissionFlags.Confronted), 20f);
             Check(RunState.Has(MissionFlags.Confronted) && !ended && !MissionManager.Instance.EndingStarted && GameManager.Instance.IsPlaying && Time.timeScale == 1f,
                 "meeting Vale resumes gameplay instead of ending the campaign");
-            Check(MissionManager.Instance.Missions.Count == 8 && RunState.MissionIndex == 5, "three new missions follow the original five");
+            Check(MissionManager.Instance.Missions.Count == 11 && RunState.MissionIndex == 5, "six new missions follow the original five");
             if (!current.pass) yield break;
             Calm();
             yield return PostValeCampaign();
@@ -695,7 +897,7 @@ namespace Parasite.Testing
             for (float t = 0; t < 5f && !ended; t += Time.unscaledDeltaTime) yield return null;
             Check(ended && data.route == route && data.outcome == outcome && RunState.Has(MissionFlags.Escaped) &&
                 GameManager.Instance.State == GameState.Ended && Time.timeScale == 0f,
-                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
+                $"{prof} → {door.doorName} → Vale reveal → signed evidence → relay sabotage → shadow uplink → black site vault → protocol epsilon → master broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
         }
 
         // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.
@@ -790,7 +992,7 @@ namespace Parasite.Testing
             TakeProfession(Profession.Maintenance);
             Check(PathComplete(PM.Active.Position, relay.transform.position + Vector3.back), "containment relay can be reached from the service room");
             yield return FinishCampaignOperation(relay);
-            Check(RunState.MissionIndex == 7 && SecurityCamera.All.All(c => !c || c.Disabled), "relay overload permanently disables all CCTV and starts extraction mission");
+            Check(RunState.MissionIndex == 7 && SecurityCamera.All.All(c => !c || c.Disabled), "relay overload permanently disables all CCTV and starts shadow uplink mission");
             Check(FindObjectsByType<AccessDoor>(FindObjectsSortMode.None).Where(d => d.route != EntryRoute.None).All(d => d.IsOpen), "relay overload unlocks all campus escape routes");
             if (!current.pass) yield break;
 
@@ -812,6 +1014,51 @@ namespace Parasite.Testing
             Check(!uplink.CanInteract(ActiveContext(), out _), "journalist uplink refuses to expose a contact during pursuit");
             Calm();
             yield return FinishCampaignOperation(uplink);
+            Check(RunState.Has(MissionFlags.EvidenceBroadcast) && RunState.MissionIndex == 8, "shadow uplink broadcast complete → mission 9");
+
+            // M9: THE BLACK SITE ARCHIVE
+            var subvault = CooperativeConsole.Find(MissionFlags.SubVaultDiversion);
+            var blacksite = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.BlackSiteArchive);
+            Check(subvault && blacksite, "Mission 9 sub-vault diversion and black site vault exist");
+            if (!current.pass) yield break;
+            if (PM.Agents.Count < 2)
+            {
+                yield return Press(() => GameInput.SimSplit = true, () => GameInput.SimSplit = false);
+                Check(PM.Agents.Count == 2, "split for dual-amoeba campaign operations");
+                if (!current.pass) yield break;
+            }
+            TakeProfession(Profession.Guard);
+            yield return UseCampaignInteractable(subvault, subvault.transform.position);
+            Check(subvault.Held, "guard holds sub-vault diversion at lobby console");
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            TakeProfession(Profession.Scientist);
+            yield return FinishCampaignOperation(blacksite);
+            Check(RunState.Has(MissionFlags.BlackSiteArchive) && RunState.MissionIndex == 9, "black site archive downloaded → mission 10");
+
+            // M10: CONTAINMENT PROTOCOL EPSILON
+            var backupGen = CooperativeConsole.Find(MissionFlags.BackupGenerator);
+            var gridOverride = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.GridOverride);
+            Check(backupGen && gridOverride, "Mission 10 backup generator and grid override exist");
+            if (!current.pass) yield break;
+            TakeProfession(Profession.Maintenance);
+            yield return UseCampaignInteractable(backupGen, backupGen.transform.position);
+            Check(backupGen.Held, "maintenance holds auxiliary backup generator");
+            yield return Press(() => GameInput.SimSwitch = true, () => GameInput.SimSwitch = false);
+            TakeProfession(Profession.Guard);
+            yield return FinishCampaignOperation(gridOverride);
+            Check((RunState.Has(MissionFlags.GridOverride) || RunState.Has(MissionFlags.ProtocolEpsilonBreached)) && RunState.MissionIndex == 10, "grid override completed → mission 11");
+
+            // M11: THE FINAL CONVERGENCE
+            var masterUplink = FindObjectsByType<CampaignOperation>(FindObjectsSortMode.None).First(o => o.flag == MissionFlags.MasterBroadcast);
+            exit = FindFirstObjectByType<CampaignExtraction>();
+            Check(masterUplink && exit, "Mission 11 master uplink and storm drain extraction exist");
+            if (!current.pass) yield break;
+            TakeProfession(Profession.Civilian);
+            SuspicionSystem.Instance.SetValue(95f);
+            Check(!masterUplink.CanInteract(ActiveContext(), out _), "master antenna refuses to broadcast during pursuit");
+            Calm();
+            yield return FinishCampaignOperation(masterUplink);
+            Check(RunState.Has(MissionFlags.MasterBroadcast), "master broadcast completed");
             Check(!exit.CanInteract(ActiveContext(), out _), "a human disguise cannot fit through the final drain");
             PM.LeaveHost();
             TeleportBody(PM.ActiveBody, CityLayout.AlleyMouth + Vector3.back * 3f, 180f);

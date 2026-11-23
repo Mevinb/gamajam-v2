@@ -6,7 +6,8 @@ namespace Parasite.FX
     {
         PossessLaunch, PossessHit, Release, Split, Switch, DoorOpen, Denied, TerminalBeep,
         AlertCurious, AlertPursuit, Capture, Eject, BlobContained, Footstep, Jump, Land,
-        UiClick, EndingSting, Heartbeat, BlobHop
+        UiClick, EndingSting, Heartbeat, BlobHop,
+        AlarmSiren, RainAmbience, BioSquelch, LaserHum
     }
 
     /// <summary>CONTRACT — sound effects (Kenney CC0 clips where available, procedural synth otherwise).</summary>

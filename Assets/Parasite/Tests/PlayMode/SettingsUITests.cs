@@ -198,7 +198,7 @@ namespace Parasite.Tests
         {
             yield return AutoTest.LoadCity();
             var missionManager = MissionManager.Instance;
-            Assert.AreEqual(8, missionManager.Missions.Count, "The extended campaign has eight missions.");
+            Assert.AreEqual(11, missionManager.Missions.Count, "The extended campaign has eleven missions.");
             // UI fixture: show the last mission without bypassing any gameplay in acceptance tests.
             RunState.MissionIndex = missionManager.Missions.Count - 1;
             var gm = GameManager.Instance;
@@ -208,7 +208,7 @@ namespace Parasite.Tests
             var scroll = journal.Find("ScrollView").GetComponent<ScrollRect>();
             Assert.IsNotNull(scroll.viewport.GetComponent<RectMask2D>(), "Journal entries are clipped to their viewport.");
             var entries = scroll.content.GetComponentsInChildren<Text>();
-            Assert.AreEqual(8, entries.Length);
+            Assert.AreEqual(11, entries.Length);
             for (int i = 0; i < entries.Length; i++) StringAssert.Contains(missionManager.Missions[i].title, entries[i].text);
             var current = entries[entries.Length - 1];
             StringAssert.Contains(missionManager.Current.briefing, current.text);
@@ -325,6 +325,130 @@ namespace Parasite.Tests
             finally { GameEvents.Ending -= OnEnding; }
         }
 
+        [UnityTest, Timeout(240000)]
+        public IEnumerator CtrlMWorksFromEveryPresentationPhase()
+        {
+            var phases = new[] { "Title", "TitleControls", "TitleSettings", "BeginTransition", "Opening", "OpeningFinish", "Paused", "PausedSettings", "PausedControls", "ValeDialogue", "ResetPending" };
+            foreach (string phase in phases)
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+                yield return AutoTest.PreparePresentationPhase(phase);
+                Assert.AreEqual(1, Object.FindObjectsByType<PresentationShortcut>(FindObjectsSortMode.None).Length,
+                    "The real startup created exactly one persistent listener without a test Ensure call: " + phase);
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.M));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(Key.RightCtrl, Key.M));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return WaitForPresentationEnding(phase);
+                var manager = GameManager.Instance;
+                var director = Parasite.World.CityDirector.Instance;
+                Vector3 finalPosition = PossessionManager.Instance.Active.Position;
+                Assert.That(Vector3.Distance(finalPosition, Parasite.World.MissionLayout.Extraction), Is.LessThan(0.5f), phase);
+
+                // Exercise enough real-time skip pulses to expose a stale Vale coroutine or the old pending reset.
+                float deadline = Time.realtimeSinceStartup + 4.8f, nextPulse = Time.realtimeSinceStartup;
+                while (Time.realtimeSinceStartup < deadline)
+                {
+                    bool pulse = Time.realtimeSinceStartup >= nextPulse;
+                    InputSystem.QueueStateEvent(keyboard, pulse ? new KeyboardState(Key.E) : new KeyboardState());
+                    if (pulse) nextPulse = Time.realtimeSinceStartup + 0.65f;
+                    yield return null;
+                    Assert.AreSame(manager, GameManager.Instance, "No stale scene reload: " + phase);
+                    Assert.AreSame(director, Parasite.World.CityDirector.Instance, "No late title/reset scene replacement: " + phase);
+                    Assert.AreEqual(GameState.Ending, manager.State, "No stale intro or Vale resume: " + phase);
+                    Assert.That(Time.timeScale, Is.Zero, phase);
+                }
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+                Assert.IsFalse(OpeningCinematic.Instance, "Opening controller is fully retired: " + phase);
+                Assert.IsFalse(MissionManager.Instance.DialoguePlaying, "Vale reveal is retired: " + phase);
+                Assert.IsFalse(RunState.Has(MissionFlags.Escaped), "Global shortcut cannot select a future: " + phase);
+                Assert.That(Object.FindObjectsByType<LakesideEpilogue>(FindObjectsSortMode.None).Length, Is.LessThanOrEqualTo(1));
+                if (LakesideEpilogue.Instance) Assert.AreEqual(EndingOutcome.Unchosen, LakesideEpilogue.Instance.Outcome);
+                Assert.IsFalse(HUDController.Instance.transform.Find("HUD Canvas/EndScreen").gameObject.activeSelf);
+            }
+            Debug.Log("[SettingsUI] PASS persistent Ctrl+M from initial title, both title overlays, Begin fade, opening/finish window, pause/overlays, Vale and pending reset; stable protected unchosen finale");
+        }
+
+        static IEnumerator WaitForPresentationEnding(string phase)
+        {
+            float deadline = Time.realtimeSinceStartup + 15f;
+            while ((!GameManager.Instance || !MissionManager.Instance || !MissionManager.Instance.EndingStarted) && Time.realtimeSinceStartup < deadline) yield return null;
+            Assert.IsTrue(GameManager.Instance && MissionManager.Instance && MissionManager.Instance.EndingStarted,
+                "Real queued keyboard input reaches the final escape from " + phase);
+            Assert.AreEqual(GameState.Ending, GameManager.Instance.State, phase);
+            Assert.That(Time.timeScale, Is.Zero, phase);
+        }
+
+        [UnityTest, Timeout(180000)]
+        public IEnumerator CtrlMRecognizesBothKeyOrdersDuringNormalGameplay()
+        {
+            foreach (var control in new[] { Key.LeftCtrl, Key.RightCtrl })
+            foreach (bool letterFirst in new[] { false, true })
+            foreach (bool possessed in new[] { false, true })
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+                yield return AutoTest.LoadCity();
+                // The shortcut must work with ordinary physical input routing, independently of simulated gameplay flags.
+                GameInput.Simulated = false;
+                var gm = GameManager.Instance;
+                var pm = PossessionManager.Instance;
+                if (possessed)
+                {
+                    var host = HostCharacter.All.First(h => h && h.CanBePossessed && h.Profession == Profession.Civilian);
+                    pm.ForcePossessImmediate(host);
+                    Assert.AreSame(host, pm.Active.Host);
+                }
+                var originalBlob = pm.Active.Blob;
+                int hostCount = RunState.HostsPossessed;
+                string configuration = $"{control}, {(letterFirst ? "M then Ctrl" : "Ctrl then M")}, {(possessed ? "possessed host" : "free amoeba")}";
+                Assert.AreEqual(GameState.Playing, gm.State, configuration);
+                Assert.That(Time.timeScale, Is.EqualTo(1f));
+
+                Key first = letterFirst ? Key.M : control;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(first));
+                yield return null; yield return null; yield return null;
+                Assert.IsTrue(keyboard[first].isPressed, "The first key reached the actual test keyboard: " + configuration);
+                Assert.AreEqual(GameState.Playing, gm.State, "A lone M or Ctrl cannot activate the shortcut: " + configuration);
+                Assert.IsFalse(MissionManager.Instance.EndingStarted);
+
+                // Complete the chord on a later input update. M-first specifically catches an M-WasPressed-only implementation.
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                yield return null; yield return null; yield return null;
+                Assert.IsTrue(keyboard[control].isPressed && keyboard.mKey.isPressed,
+                    "Both physical key states were processed on separate frames: " + configuration);
+                yield return WaitForPresentationEnding(configuration);
+                Assert.IsTrue(MissionManager.Instance.EndingStarted, "Either key order must start the real final escape: " + configuration);
+                Assert.AreEqual(GameState.Ending, gm.State, configuration);
+                Assert.That(Time.timeScale, Is.Zero);
+                Assert.IsNull(pm.Active.Host, "A possessed host is released safely for the real drain escape: " + configuration);
+                Assert.AreSame(originalBlob, pm.Active.Blob, "The shortcut reuses the player amoeba: " + configuration);
+                Assert.That(Vector3.Distance(pm.Active.Position, Parasite.World.MissionLayout.Extraction), Is.LessThan(0.5f));
+                Assert.AreEqual(hostCount, RunState.HostsPossessed, "The shortcut does not manufacture extra possession statistics.");
+                Assert.IsFalse(RunState.Has(MissionFlags.Escaped), "A chord cannot commit an unchosen final outcome.");
+
+                Vector3 firstEscapePosition = pm.Active.Position;
+                yield return new WaitForSecondsRealtime(0.25f); // keep the complete chord held over multiple updates
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control));
+                yield return null; yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
+                yield return null; yield return null;
+                Assert.AreSame(gm, GameManager.Instance, "Held/repeated input cannot reload the city: " + configuration);
+                Assert.AreEqual(GameState.Ending, gm.State);
+                Assert.AreEqual(firstEscapePosition, pm.Active.Position, "Repeated input cannot relocate the frozen player.");
+                Assert.IsFalse(RunState.Has(MissionFlags.Escaped));
+                Assert.IsFalse(HUDController.Instance.transform.Find("HUD Canvas/EndScreen").gameObject.activeSelf,
+                    "Holding or repeating the chord cannot publish ending statistics.");
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+                Assert.IsFalse(keyboard[control].isPressed || keyboard.mKey.isPressed);
+            }
+            Debug.Log("[SettingsUI] PASS normal gameplay left/right Ctrl, both separate-frame key orders, free/possessed hosts, lone-key isolation and held/repeated-chord safety");
+        }
+
         [UnityTest, Timeout(180000)]
         public IEnumerator CtrlMStartsFinalDrainSequenceWithoutChoosingFuture()
         {
@@ -340,6 +464,7 @@ namespace Parasite.Tests
                 InputSystem.QueueStateEvent(keyboard, new KeyboardState(control, Key.M));
                 yield return null; yield return null;
                 InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return WaitForPresentationEnding(control + "+M normal gameplay");
                 Assert.IsTrue(MissionManager.Instance.EndingStarted, control + "+M starts the existing drain ending.");
                 Assert.AreEqual(GameState.Ending, GameManager.Instance.State);
                 Assert.That(Time.timeScale, Is.Zero);

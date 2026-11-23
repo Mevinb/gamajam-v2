@@ -1,3 +1,4 @@
+using System.Linq;
 using Parasite.FX;
 using Parasite.Possession;
 using Parasite.Stealth;
@@ -11,6 +12,7 @@ namespace Parasite.Missions
         public static CampaignOperation Current { get; private set; }
         public string flag, displayName, requiredFlag, controlId, doneToast;
         public Profession profession;
+        public Profession[] allowedProfessions;
         public bool anyHost, requireCalm;
         public float seconds = 7f, range = 2.4f;
         public Renderer screen;
@@ -29,8 +31,22 @@ namespace Parasite.Missions
         {
             deniedReason = null;
             if (!RunState.Has(requiredFlag)) { deniedReason = "Not yet — complete the current mission first."; return false; }
-            if (!ctx.host || ctx.host.State != HostState.Possessed || (!anyHost && ctx.host.Profession != profession))
-            { deniedReason = anyHost ? "You need a human host to operate this terminal." : $"This operation needs a {profession} host."; return false; }
+            bool match = anyHost;
+            if (!match && ctx.host)
+            {
+                if (allowedProfessions != null && allowedProfessions.Length > 0)
+                    match = allowedProfessions.Contains(ctx.host.Profession);
+                else
+                    match = ctx.host.Profession == profession;
+            }
+            if (!ctx.host || ctx.host.State != HostState.Possessed || !match)
+            {
+                deniedReason = anyHost ? "You need a human host to operate this terminal." :
+                    (allowedProfessions != null && allowedProfessions.Length > 0) ?
+                    $"This operation needs a {string.Join(" or ", allowedProfessions)} host." :
+                    $"This operation needs a {profession} host.";
+                return false;
+            }
             if (!string.IsNullOrEmpty(controlId))
             {
                 var control = CooperativeConsole.Find(controlId);

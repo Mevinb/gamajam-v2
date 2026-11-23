@@ -1,4 +1,6 @@
-# PARASITE — 0.2.0
+# PARASITE — 0.2.2
+
+**Local hotfix:** Ctrl+M is available from the title screen, opening cinematic, pause menus, Vale dialogue and gameplay. A request during loading or a body change waits for the game to be ready. The title shows v0.2.2. The appended hotfix section in TEST_REPORT.md records the checks run for this build.
 
 You are Specimen 7, an escaped amoeba. Possess people, borrow their credentials and split into two bodies through eight missions.
 Meeting Dr. Vale is the midpoint: secure his signed evidence, disable containment, broadcast the truth and escape.
@@ -18,7 +20,7 @@ Release the skip key/button to begin playing. The opening does not replay after 
 
 **WASD** move · **Mouse** look · **Shift** sprint · **Space** hop/jump · **E** possess/interact/eject · **Q** leave host · **V** split · **Tab** switch body · **F** host ability · **Esc** pause · **F1** controls · **F3** FPS.
 
-**Judges' presentation shortcut:** press **Ctrl + M during gameplay** to skip ahead to the final escape and sunset-lake choices.
+**Judges' presentation shortcut:** press **Ctrl + M at any point** to skip ahead to the final escape and sunset-lake choices.
 You must still explicitly select **Live quietly (Peace)** or **Become the world (Dominion)**; no outcome is chosen automatically.
 
 Aim at someone within 5 metres and press **E** to possess them. Follow yellow mission waypoints. Guards use the main gate, scientists use the staff entrance and maintenance workers use the service tunnel. Being seen as a free amoeba raises suspicion. When a guard captures your host, press **E** to eject and escape.

@@ -7,7 +7,8 @@ namespace Parasite
     public static class GameInput
     {
         static InputActionMap map;
-        public static InputAction Move, Look, Sprint, Jump, Interact, Leave, Split, Switch, Pause, Ability;
+        public static InputAction Move, Look, Sprint, Jump, Interact, Leave, Split, Switch, Pause, Ability, PresentationEnding;
+        static bool presentationPending, presentationArmed = true;
 
         /// <summary>Set by automated tests / autoplay to drive input without devices.</summary>
         public static bool Simulated;
@@ -46,7 +47,21 @@ namespace Parasite
             Ability.AddBinding("<Gamepad>/leftShoulder");
             Pause = map.AddAction("Pause", InputActionType.Button, "<Keyboard>/escape");
             Pause.AddBinding("<Gamepad>/start");
+            PresentationEnding = map.AddAction("PresentationEnding", InputActionType.Button);
+            PresentationEnding.AddCompositeBinding("ButtonWithOneModifier(modifiersOrder=2)")
+                .With("Modifier", "<Keyboard>/leftCtrl").With("Button", "<Keyboard>/m");
+            PresentationEnding.AddCompositeBinding("ButtonWithOneModifier(modifiersOrder=2)")
+                .With("Modifier", "<Keyboard>/rightCtrl").With("Button", "<Keyboard>/m");
+            PresentationEnding.performed += OnPresentationEnding;
             map.Enable();
+        }
+
+        static void OnPresentationEnding(InputAction.CallbackContext context)
+        {
+            if (!presentationArmed) return;
+            // Buffer the performed event: a quick press/release between game frames must survive.
+            presentationPending = true;
+            presentationArmed = false;
         }
 
         public static Vector2 MoveValue
@@ -75,14 +90,28 @@ namespace Parasite
         public static bool SwitchPressed { get { Ensure(); return Simulated ? SimSwitch : Switch.WasPressedThisFrame(); } }
         public static bool AbilityPressed { get { Ensure(); return Simulated ? SimAbility : Ability.WasPressedThisFrame(); } }
         public static bool PausePressed { get { Ensure(); return Pause.WasPressedThisFrame(); } }
-        /// <summary>Presentation shortcut. Raw chord remains separate from normal gameplay actions.</summary>
+        /// <summary>One buffered Ctrl+M request, either key order; release all chord keys to rearm.</summary>
         public static bool PresentationEndingPressed
         {
             get
             {
-                var keyboard = Keyboard.current;
-                return keyboard != null && keyboard.mKey.wasPressedThisFrame &&
-                    (keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed);
+                Ensure();
+                if (!PresentationEnding.enabled) PresentationEnding.Enable();
+                bool anyHeld = false, chordHeld = false;
+                foreach (var device in InputSystem.devices)
+                {
+                    if (device is not Keyboard keyboard) continue;
+                    bool modifier = keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed;
+                    bool letter = keyboard.mKey.isPressed;
+                    anyHeld |= modifier || letter;
+                    chordHeld |= modifier && letter;
+                }
+                if (!anyHeld) presentationArmed = true;
+                // Fallback covers a keyboard already held when the action was enabled.
+                if (chordHeld && presentationArmed) { presentationPending = true; presentationArmed = false; }
+                bool pressed = presentationPending;
+                presentationPending = false;
+                return pressed;
             }
         }
     }

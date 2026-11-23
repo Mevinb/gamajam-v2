@@ -82,6 +82,21 @@ namespace Parasite
 
         public static void RequestForNewGame() => requested = true;
 
+        /// <summary>Restore the live scene synchronously before a presentation shortcut starts another story.</summary>
+        public static void CancelForPresentationShortcut()
+        {
+            requested = false;
+            var opening = Instance;
+            if (!opening) return;
+            // A disabled component can retain coroutines; stop them and deactivate its whole object.
+            opening.StopAllCoroutines();
+            opening.gameObject.SetActive(false);
+            opening.Cleanup(true);
+            LastExitReason = "Presentation";
+            if (Instance == opening) Instance = null;
+            Destroy(opening.gameObject);
+        }
+
         /// <summary>Called by CityDirector only after managers, player, camera and HUD exist.</summary>
         public static void StartIfRequested()
         {

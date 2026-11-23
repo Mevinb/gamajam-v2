@@ -5297,3 +5297,62 @@ Each case requires an isolated execution record before its status can change. Re
 - Failure triage: Inspect GameInput chord detection and mission-state guards.
 - Result discipline: preserve the observed failure or uncertainty; do not mark this designed case passed from a different scenario.
 - Review criterion: compare the collected artifact with both expected fields and the cited source before assigning a later execution result.
+
+
+## Local Ctrl M hotfix verification for version 0.2.1
+
+This section records a local, uncommitted hotfix. The user requested that this fix not be pushed.
+All earlier report content, including the designed procedure catalogue, remains unchanged above.
+The prior release results describe version 0.2.0; the checks below identify what was rerun for 0.2.1.
+
+The old handler required M's press frame while Ctrl was already held and silently rejected a request during possession transit.
+The local handler uses an unordered named Input System action, buffers quick presses and retries a gameplay request for up to two seconds.
+A received request now produces a visible toast and a `[PresentationShortcut]` log entry; ending choices remain explicit.
+
+| Local hotfix check | Observed result | Evidence |
+|---|---|---|
+| CPU compilation | 66 runtime and 11 editor files pass | `Tools/compile_check.sh all` |
+| Focused PlayMode | 2/2 cases pass: eight key-order/Ctrl-side/free-or-host combinations plus the existing drain-to-lake explicit-choice test | `Logs/ctrlm-fix-results.xml` |
+| Linux rebuild | Succeeded, 425 MB, 12.20 seconds, zero errors and warnings | `Logs/ctrlm-fix-linux.log` |
+| Built-player shortcut input | 10/10 pass, process exit 0: both Ctrl keys, both orders, free/possessed forms and same-update down/up fast taps | `Logs/ctrlm-fix-standalone.txt`, `Logs/ctrlm-local-verification.json` |
+| Build identity | Player data contains version 0.2.1 | `Builds/Linux/Parasite_Data/globalgamemanagers` |
+
+The ten standalone cases inject queued KeyboardState events through the actual built player's named input action with GameInput.Simulated false.
+They verify key recognition, protected drain entry, safe host release and no automatic outcome; they do not finish the lakeside choice.
+The focused Editor end-to-end case checks the later explicit choice. No fresh full thirteen-scenario campaign benchmark is claimed for this hotfix.
+Native X11/Xvfb synthetic input could not reliably advance the title, so a physical desktop keypress pass is not claimed.
+The exact user's native-input failure was not directly reproduced; the two source-proven missed-input conditions are addressed and regression-checked.
+The two-second possession-transit retry is source-reviewed; it was not isolated as a separate executed transit-flight case.
+
+
+## Local global Ctrl M verification for version 0.2.2
+
+This is a local, uncommitted and unpushed fix. The user explicitly prohibited Git pushes.
+All earlier report content remains intact. This section supersedes the v0.2.1 gameplay-only availability and two-second retry description;
+the historical designed procedures above remain proposed tests, not additional executed passes.
+
+The earlier listener lived on the gameplay manager, so it was unavailable at the initial title and ignored opening/pause/dialogue states.
+The persistent PresentationShortcut now enables input before the first scene, retains requests across scene loads and resets,
+and waits for a stable active body instead of expiring a request after two seconds. Title fade and opening/dialogue coroutines
+are cancelled safely before starting the protected drain escape. Repeated presses preserve an existing finale and never choose a future.
+
+| Local v0.2.2 check | Observed result | Evidence |
+|---|---|---|
+| CPU compilation | 67 runtime and 11 editor files pass | `Tools/compile_check.sh all` |
+| Focused PlayMode | 8/8 test cases passed, zero failures | `Logs/ctrlm-global-results.xml`, `Logs/ctrlm-global.log` |
+| Global phase matrix within PlayMode | Initial title, title controls/settings, Begin fade, opening, opening finish, pause, pause settings/controls, Vale dialogue and pending checkpoint reset all passed | `CtrlMWorksFromEveryPresentationPhase` |
+| Other focused coverage | Both opening tests, eight Ctrl-side/key-order/free-or-host combinations, explicit drain-to-lake choice, settings/menu and journal/lakeside regressions passed | `Logs/ctrlm-global-results.xml` |
+| Linux rebuild | Succeeded, 425 MB, 23.54 seconds, zero errors/warnings | `Logs/ctrlm-global-linux.log` |
+| Actual built-player shortcut checks | 14/14 passed and process exited 0 | `Logs/ctrlm-global-standalone.txt`, `Logs/ctrlm-global-standalone-player.log` |
+| Build identity | Built player data contains version 0.2.2 | `Builds/Linux/Parasite_Data/globalgamemanagers` |
+| Recorded run state | Editor tests, build and standalone process all exit 0 | `Logs/ctrlm-global-verification.json` |
+
+The fourteen standalone cases cover initial title, opening, paused settings, Vale dialogue, eight Ctrl-side/key-order/free-or-host
+combinations and two same-update down/up fast taps. They queue KeyboardState events through the real built player's Input System
+with GameInput.Simulated false. They check the protected escape, safe host release, no stale scene/dialogue reset and no automatic
+ending selection. The focused Editor end-to-end test also exercises the later explicit lakeside choice.
+
+This run does not claim native OS/physical keyboard validation, a new thirteen-scenario campaign run, a performance benchmark,
+or a separate live possession-flight test. Request retention through transit is source-reviewed; the matrix directly exercises reset
+and title-to-city transitions. The earlier v0.2.0 full campaign results remain historical. An already-running old process must be
+closed and relaunched; verify v0.2.2 on the title screen before trying Ctrl+M. No code was committed or pushed.

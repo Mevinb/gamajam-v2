@@ -14,7 +14,7 @@ namespace Parasite.Missions
         public bool CanInteract(in InteractContext ctx, out string deniedReason)
         {
             deniedReason = null;
-            if (!RunState.Has(MissionFlags.EvidenceBroadcast)) { deniedReason = "The evidence must reach the journalist before you disappear."; return false; }
+            if (!RunState.Has(MissionFlags.MasterBroadcast)) { deniedReason = "The unredacted Black Site Archive must be broadcast at the Plaza Master Antenna before you disappear."; return false; }
             if (!ctx.IsBlob) { deniedReason = "Leave your host [Q]. Only a free amoeba fits through the drain."; return false; }
             var ss = SuspicionSystem.Instance;
             if (ss && ss.Level == SuspicionLevel.Pursuing) { deniedReason = "Break line of sight and lose the pursuit before escaping."; return false; }

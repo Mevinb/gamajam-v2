@@ -326,6 +326,86 @@ namespace Parasite.FX
                     Thump(b, SR, 0.29f, 62f, 34f, 0.06f, 0.75f);
                     NoiseBand(b, SR, 0.01f, 0.06f, 200f, 90f, 0.7f, 0.4f, 0.002f, ref r, 2f);
                     return Finish(b, 0.9f, 0.05f);
+                case SfxId.AlarmSiren: // dual-tone wailing siren (640 Hz ↔ 980 Hz) for containment alerts and high suspicion
+                    b = new float[N(1.5f, SR)];
+                    {
+                        float ph1 = 0f, ph2 = 0f;
+                        for (int i = 0; i < b.Length; i++)
+                        {
+                            float t = (float)i / SR;
+                            float wail = Mathf.Sin(TAU * 1.6f * t);
+                            float f1 = 810f + 170f * wail;
+                            float f2 = f1 * 1.333f;
+                            ph1 += TAU * f1 / SR;
+                            ph2 += TAU * f2 / SR;
+                            float s1 = Mathf.Sin(ph1) + 0.3f * Mathf.Sin(ph1 * 2f);
+                            float s2 = Mathf.Sin(ph2) * 0.45f;
+                            float env = Mathf.Min(1f, t / 0.05f) * Mathf.Clamp01((1.5f - t) / 0.15f);
+                            float val = (s1 + s2) * env * 0.85f;
+                            b[i] = (float)System.Math.Tanh(val * 1.5f);
+                        }
+                    }
+                    return Finish(b, 0.85f);
+                case SfxId.BioSquelch: // deep viscous amoeba squelch with low-frequency impact and bubble cavitation on launch/eject
+                    b = new float[N(0.65f, SR)];
+                    Thump(b, SR, 0f, 160f, 45f, 0.08f, 0.9f);
+                    Blob(b, SR, 0f, 0.45f, 280f, 75f, 0.85f, 0.18f);
+                    Blob(b, SR, 0.04f, 0.38f, 180f, 320f, 0.6f, 0.12f);
+                    NoiseBand(b, SR, 0f, 0.35f, 2200f, 380f, 0.45f, 1.1f, 0.005f, ref r, 2.0f);
+                    Bubbles(b, SR, 0.03f, 0.45f, 16, 300f, 1600f, 0.38f, ref r);
+                    return Finish(b, 0.9f);
+                case SfxId.RainAmbience: // smooth filtered pink noise loop with gentle droplet texture for ambient rain
+                    b = new float[N(2.5f, SR)];
+                    {
+                        float b0 = 0f, b1 = 0f, b2 = 0f, lp = 0f;
+                        float lpAlpha = 1f - Mathf.Exp(-TAU * 2200f / SR);
+                        for (int i = 0; i < b.Length; i++)
+                        {
+                            float white = r.Next();
+                            b0 = 0.99886f * b0 + white * 0.0555179f;
+                            b1 = 0.99332f * b1 + white * 0.0750759f;
+                            b2 = 0.96900f * b2 + white * 0.1538520f;
+                            float pink = b0 + b1 + b2 + white * 0.5362f;
+                            lp += lpAlpha * (pink - lp);
+                            b[i] = lp * 0.4f;
+                        }
+                        int drops = Mathf.RoundToInt(2.5f * 35f);
+                        for (int k = 0; k < drops; k++)
+                        {
+                            float st = r.Range(0f, 2.45f);
+                            float freq = r.Range(1800f, 4200f);
+                            float dur = r.Range(0.006f, 0.016f);
+                            int s0 = N(st, SR), n = N(dur, SR);
+                            float ph = 0f, a = r.Range(0.08f, 0.22f);
+                            for (int j = 0; j < n && s0 + j < b.Length; j++)
+                            {
+                                float x = (float)j / n;
+                                ph += TAU * freq / SR;
+                                b[s0 + j] += Mathf.Sin(ph) * Mathf.Exp(-x * 6f) * a;
+                            }
+                        }
+                    }
+                    return Finish(b, 0.75f, 0.1f);
+                case SfxId.LaserHum: // sci-fi containment field / laser grid hum
+                    b = new float[N(0.8f, SR)];
+                    {
+                        float ph1 = 0f, ph2 = 0f, ph3 = 0f;
+                        var svf = new Svf();
+                        for (int i = 0; i < b.Length; i++)
+                        {
+                            float t = (float)i / SR;
+                            ph1 += TAU * 120f / SR;
+                            ph2 += TAU * 240f / SR;
+                            float laserF = 1850f + 120f * Mathf.Sin(TAU * 60f * t);
+                            ph3 += TAU * laserF / SR;
+                            float buzz = Mathf.Sin(ph1) * 0.5f + Mathf.Sin(ph2) * 0.3f;
+                            float beam = Mathf.Sin(ph3) * 0.25f;
+                            float hiss = svf.Band(r.Next(), 4500f, 0.4f, SR) * 0.15f;
+                            float env = Mathf.Min(1f, t / 0.02f) * Mathf.Clamp01((0.8f - t) / 0.08f);
+                            b[i] = (buzz + beam + hiss) * env * 0.8f;
+                        }
+                    }
+                    return Finish(b, 0.8f);
                 default:
                     b = new float[N(0.1f, SR)];
                     Tone(b, SR, 0f, 0.08f, 800f, 600f, 0.5f, 0);

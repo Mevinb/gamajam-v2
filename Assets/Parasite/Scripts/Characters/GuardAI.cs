@@ -16,16 +16,59 @@ namespace Parasite.Characters
 
         public GuardState GState { get; private set; } = GuardState.Patrol;
         Vector3 investigatePoint;
-        float lookAroundT, lostT, stunT, sightCheckT;
+        float lookAroundT, lostT, stunT, sightCheckT, baseInvestigateYaw;
         bool seesSuspect;
+        GameObject flashlightGo;
+
+        void TransitionTo(GuardState next)
+        {
+            if (GState == next) return;
+            var prev = GState;
+            GState = next;
+            UpdateFlashlight();
+            if (next == GuardState.Investigate && prev != GuardState.Investigate)
+                Sfx.Play(SfxId.AlertCurious, transform.position, 0.6f);
+            else if (next == GuardState.Pursue && prev != GuardState.Pursue)
+                Sfx.Play(SfxId.AlertPursuit, transform.position, 0.75f);
+        }
+
+        void UpdateFlashlight()
+        {
+            bool active = (GState == GuardState.Investigate || GState == GuardState.Pursue) && host && host.IsAwakeNpc && host.State == HostState.Normal;
+            if (!flashlightGo && active)
+            {
+                flashlightGo = new GameObject("SearchFlashlight");
+                flashlightGo.transform.SetParent(transform, false);
+                flashlightGo.transform.localPosition = new Vector3(0.2f, 1.15f, 0.25f);
+                flashlightGo.transform.localRotation = Quaternion.identity;
+                var light = flashlightGo.AddComponent<Light>();
+                light.type = LightType.Spot;
+                light.spotAngle = 48f;
+                light.innerSpotAngle = 26f;
+                light.range = 20f;
+                light.intensity = 3.5f;
+                light.color = new Color(0.95f, 0.97f, 1.0f);
+                light.shadows = LightShadows.None;
+            }
+            if (flashlightGo) flashlightGo.SetActive(active);
+        }
+
+        void OnDisable()
+        {
+            if (flashlightGo) flashlightGo.SetActive(false);
+        }
+
+        void OnDestroy()
+        {
+            if (flashlightGo) Destroy(flashlightGo);
+        }
 
         public void OrderInvestigate(Vector3 point)
         {
             if (GState == GuardState.Pursue || GState == GuardState.Stunned) return;
             investigatePoint = point;
             lookAroundT = 0f;
-            if (GState != GuardState.Investigate) Sfx.Play(SfxId.AlertCurious, transform.position, 0.5f);
-            GState = GuardState.Investigate;
+            TransitionTo(GuardState.Investigate);
             SetIcon('?', 6f);
         }
 
@@ -33,12 +76,12 @@ namespace Parasite.Characters
         {
             if (!host || !host.IsAwakeNpc) return;
             stunT = Mathf.Max(stunT, seconds);
-            GState = GuardState.Stunned;
+            TransitionTo(GuardState.Stunned);
             SetIcon('?', seconds);
         }
 
-        public override void OnPossessed() { base.OnPossessed(); GState = GuardState.Patrol; stunT = 0f; }
-        public override void OnRecovered() { base.OnRecovered(); GState = GuardState.Patrol; }
+        public override void OnPossessed() { base.OnPossessed(); TransitionTo(GuardState.Patrol); stunT = 0f; UpdateFlashlight(); }
+        public override void OnRecovered() { base.OnRecovered(); TransitionTo(GuardState.Patrol); UpdateFlashlight(); }
 
         public override void Tick(float dt)
         {
@@ -51,9 +94,9 @@ namespace Parasite.Characters
                 Stop();
                 if (stunT <= 0f)
                 {
-                    GState = GuardState.Investigate;
                     investigatePoint = ss != null ? ss.LastKnownPosition : transform.position;
                     lookAroundT = 0f;
+                    TransitionTo(GuardState.Investigate);
                 }
                 return;
             }
@@ -68,13 +111,13 @@ namespace Parasite.Characters
 
             if (ss != null && ss.Level == SuspicionLevel.Pursuing && ss.HasValidSuspect && (seesSuspect || GState == GuardState.Pursue))
             {
-                if (GState != GuardState.Pursue) { GState = GuardState.Pursue; lostT = 0f; Sfx.Play(SfxId.AlertPursuit, transform.position, 0.7f); }
+                if (GState != GuardState.Pursue) { lostT = 0f; TransitionTo(GuardState.Pursue); }
             }
             else if (GState == GuardState.Pursue)
             {
-                GState = GuardState.Investigate;
                 investigatePoint = ss != null ? ss.LastKnownPosition : transform.position;
                 lookAroundT = 0f;
+                TransitionTo(GuardState.Investigate);
             }
 
             switch (GState)
@@ -99,9 +142,9 @@ namespace Parasite.Characters
                 TryCapture(ss);
             else if (lostT > LoseTrackSeconds)
             {
-                GState = GuardState.Investigate;
                 investigatePoint = ss.LastKnownPosition;
                 lookAroundT = 0f;
+                TransitionTo(GuardState.Investigate);
             }
         }
 
@@ -112,14 +155,28 @@ namespace Parasite.Characters
             {
                 GoTo(investigatePoint, (host.Profile.walkSpeed + host.Profile.runSpeed) * 0.5f);
                 host.Rig.LookAt(investigatePoint + Vector3.up);
-                if (Arrived(1.2f) || (!NavReady)) lookAroundT = 0.001f;
+                if (Arrived(1.2f) || (!NavReady))
+                {
+                    lookAroundT = 0.001f;
+                    baseInvestigateYaw = transform.eulerAngles.y;
+                }
             }
             else
             {
                 Stop();
                 lookAroundT += dt;
-                transform.Rotate(0, Mathf.Sin(lookAroundT * 1.6f) * 70f * dt, 0);
-                if (lookAroundT > 4.5f) { GState = GuardState.Patrol; AlertIcon = ' '; }
+                float scanAngle = Mathf.Sin(lookAroundT * 1.8f) * 50f;
+                float targetBodyYaw = baseInvestigateYaw + scanAngle * 0.35f;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, targetBodyYaw, 0), 1f - Mathf.Exp(-6f * dt));
+                Vector3 lookTarget = transform.position + Vector3.up * 1.5f + (Quaternion.Euler(0, baseInvestigateYaw + scanAngle, 0) * Vector3.forward) * 10f;
+                host.Rig.LookAt(lookTarget);
+
+                if (lookAroundT > 4.8f)
+                {
+                    host.Rig.LookAt(null);
+                    TransitionTo(GuardState.Patrol);
+                    AlertIcon = ' ';
+                }
             }
         }
 

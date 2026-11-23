@@ -48,6 +48,8 @@ namespace Parasite.World
 
             UI.HUDController.Create();
             FX.Sfx.StartAmbience();
+            FX.RainSystem.Ensure();
+            FX.SteamVent.EnsureCityVents();
             Ready = true;
             OpeningCinematic.StartIfRequested();
         }

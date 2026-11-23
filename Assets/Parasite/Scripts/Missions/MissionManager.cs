@@ -19,6 +19,9 @@ namespace Parasite.Missions
         public const string OfficeOpen = "office_open", Confronted = "confronted";
         public const string SignedArchive = "signed_archive", ContainmentOffline = "containment_offline";
         public const string EvidenceBroadcast = "evidence_broadcast", Escaped = "escaped_with_evidence";
+        public const string SubVaultDiversion = "subvault_diversion", BlackSiteArchive = "blacksite_archive";
+        public const string BackupGenerator = "backup_generator", GridOverride = "grid_override";
+        public const string ProtocolEpsilonBreached = "epsilon_breached", MasterBroadcast = "master_broadcast";
     }
 
     public class Objective
@@ -97,14 +100,23 @@ namespace Parasite.Missions
         {
             if ((flag == MissionFlags.DataA || flag == MissionFlags.DataB) && RunState.Has(MissionFlags.DataA) && RunState.Has(MissionFlags.DataB))
                 SetFlag(MissionFlags.Research);
-            if (flag == MissionFlags.ContainmentOffline) RestoreCampaignState();
-            if (flag == MissionFlags.Confronted || flag == MissionFlags.SignedArchive || flag == MissionFlags.ContainmentOffline || flag == MissionFlags.EvidenceBroadcast)
+            if (flag == MissionFlags.GridOverride && !RunState.Has(MissionFlags.ProtocolEpsilonBreached))
+                SetFlag(MissionFlags.ProtocolEpsilonBreached);
+            if (flag == MissionFlags.ContainmentOffline || flag == MissionFlags.ProtocolEpsilonBreached || flag == MissionFlags.GridOverride)
+                RestoreCampaignState();
+            if (flag == MissionFlags.Confronted || flag == MissionFlags.SignedArchive || flag == MissionFlags.ContainmentOffline ||
+                flag == MissionFlags.EvidenceBroadcast || flag == MissionFlags.BlackSiteArchive || flag == MissionFlags.GridOverride ||
+                flag == MissionFlags.ProtocolEpsilonBreached || flag == MissionFlags.MasterBroadcast)
             {
                 var pm = Possession.PossessionManager.Instance;
                 if (GameManager.Instance && pm && pm.ActiveBody != null)
                     GameManager.Instance.SetCheckpoint(pm.ActiveBody.Root.position, "After " + flag.Replace('_', ' '));
             }
             if (flag == MissionFlags.Eavesdropped) GameEvents.RaiseToast("Overheard: Dr. Vale works nights at VALE BIOTECH. Three ways in.", Palette.Amoeba);
+            if (flag == MissionFlags.EvidenceBroadcast) GameEvents.RaiseToast("Independent News: 'Kill-switch and human trials are locked in the subterranean Black Site Vault!'", Palette.Warning);
+            if (flag == MissionFlags.BlackSiteArchive) GameEvents.RaiseToast("Black Site Archive acquired! Vale Biotech initiates Containment Protocol Epsilon!", Palette.Warning);
+            if (flag == MissionFlags.ProtocolEpsilonBreached) GameEvents.RaiseToast("Protocol Epsilon collapsed. Campus lockdown dropped. Reach the Plaza Master Antenna!", Palette.Amoeba);
+            if (flag == MissionFlags.MasterBroadcast) GameEvents.RaiseToast("Master broadcast transmitting worldwide! Eject from your host [Q] and extract through the storm drain.", Palette.Amoeba);
         }
 
         public void RegisterRouteUsed(EntryRoute route)
@@ -292,13 +304,57 @@ namespace Parasite.Missions
                 },
                 new()
                 {
-                    title = "OUTSIDE THE EXPERIMENT",
-                    briefing = "The relay is dead. Get the signed evidence to the independent journalist's Plaza uplink, then abandon your disguise and vanish through the storm drain where it began.",
+                    title = "THE SHADOW UPLINK",
+                    briefing = "Broadcast preliminary findings to independent journalist; journalist alerts Specimen 7 that Vale's primary neural network kill-switch and unredacted human trial archives are locked in the subterranean Black Site Vault.",
+                    completeWhen = () => Has(MissionFlags.EvidenceBroadcast),
                     objectives =
                     {
-                        new() { text = "As any host, broadcast the evidence at the City Plaza uplink (10 s); lose any pursuit first", flag = MissionFlags.EvidenceBroadcast,
+                        new() { text = "As any host, broadcast preliminary evidence at the City Plaza uplink (10 s); lose any pursuit first", flag = MissionFlags.EvidenceBroadcast,
                             waypoints = new[] { MissionLayout.JournalistUplink }, waypointLabel = "JOURNALIST UPLINK" },
-                        new() { text = "After the broadcast, leave your host [Q] and escape through the south-alley storm drain [E]", flag = MissionFlags.Escaped,
+                    },
+                },
+                new()
+                {
+                    title = "THE BLACK SITE ARCHIVE",
+                    briefing = "Dual-amoeba cooperative hack: amoeba 1 as GUARD triggers the Sub-Vault Evacuation Alarm at the Lobby Security Console to draw sentries away; amoeba 2 as SCIENTIST breaches the vault in Lab A and downloads the Black Site Mainframe for 10 s.",
+                    completeWhen = () => Has(MissionFlags.BlackSiteArchive),
+                    objectives =
+                    {
+                        new() { text = "As a GUARD, trigger the Sub-Vault Evacuation Alarm at the Lobby Security Console [E]; keep this host at the console and [Tab]",
+                            doneWhen = () => Has(MissionFlags.BlackSiteArchive) || Has(MissionFlags.SubVaultDiversion) || (CooperativeConsole.Find(MissionFlags.SubVaultDiversion) && CooperativeConsole.Find(MissionFlags.SubVaultDiversion).Held),
+                            waypoints = new[] { MissionLayout.SubVaultDiversion }, waypointLabel = "LOBBY SECURITY CONSOLE" },
+                        new() { text = "As your OTHER amoeba in a SCIENTIST, breach the vault in Lab A and download the Black Site Mainframe (10 s)",
+                            flag = MissionFlags.BlackSiteArchive,
+                            waypoints = new[] { MissionLayout.BlackSiteVault }, waypointLabel = "BLACK SITE VAULT" },
+                    },
+                },
+                new()
+                {
+                    title = "CONTAINMENT PROTOCOL EPSILON",
+                    briefing = "Vale Biotech triggers emergency facility lockdown with red beacons and laser perimeter grids: amoeba 1 as MAINTENANCE overloads the East Service Alley Auxiliary Backup Generator; amoeba 2 as GUARD/SCIENTIST overrides the Forecourt Security Grid Pylon to drop campus lockdown.",
+                    completeWhen = () => Has(MissionFlags.ProtocolEpsilonBreached) || Has(MissionFlags.GridOverride),
+                    objectives =
+                    {
+                        new() { text = "As MAINTENANCE, overload the East Service Alley Auxiliary Backup Generator [E]; keep this host at the console and [Tab]",
+                            doneWhen = () => Has(MissionFlags.ProtocolEpsilonBreached) || Has(MissionFlags.GridOverride) || Has(MissionFlags.BackupGenerator) || (CooperativeConsole.Find(MissionFlags.BackupGenerator) && CooperativeConsole.Find(MissionFlags.BackupGenerator).Held),
+                            waypoints = new[] { MissionLayout.BackupGenerator }, waypointLabel = "AUXILIARY GENERATOR" },
+                        new() { text = "As your OTHER amoeba in a GUARD or SCIENTIST, override the Forecourt Security Grid Pylon (8 s)",
+                            flag = MissionFlags.GridOverride,
+                            waypoints = new[] { MissionLayout.GridOverride }, waypointLabel = "SECURITY GRID PYLON" },
+                    },
+                },
+                new()
+                {
+                    title = "THE FINAL CONVERGENCE",
+                    briefing = "District-wide high alert: broadcast the unredacted Black Site Archive at the Plaza Master Antenna for 12 s, eject to free amoeba [Q], and extract through the South Alley Storm Drain.",
+                    completeWhen = () => Has(MissionFlags.Escaped),
+                    objectives =
+                    {
+                        new() { text = "As any host, broadcast the unredacted Black Site Archive at the Plaza Master Antenna (12 s); lose any pursuit first",
+                            flag = MissionFlags.MasterBroadcast,
+                            waypoints = new[] { MissionLayout.MasterUplink }, waypointLabel = "MASTER ANTENNA" },
+                        new() { text = "After the broadcast, leave your host [Q] and escape through the south-alley storm drain [E]",
+                            flag = MissionFlags.Escaped,
                             waypoints = new[] { MissionLayout.Extraction }, waypointLabel = "STORM-DRAIN EXTRACTION" },
                     },
                 },
@@ -309,7 +365,7 @@ namespace Parasite.Missions
         // Restore persistent world changes after checkpoint reload; transient paired controls deliberately reset.
         void RestoreCampaignState()
         {
-            bool escapedLab = RunState.Has(MissionFlags.ContainmentOffline);
+            bool escapedLab = RunState.Has(MissionFlags.ContainmentOffline) || RunState.Has(MissionFlags.ProtocolEpsilonBreached) || RunState.Has(MissionFlags.GridOverride);
             foreach (var d in FindObjectsByType<AccessDoor>(FindObjectsSortMode.None))
             {
                 bool office = d.doorName == "Dr. Vale's Office" && RunState.Has(MissionFlags.OfficeOpen);
@@ -323,13 +379,24 @@ namespace Parasite.Missions
         }
 
         // ------------------------------------------------------------ ending
-        /// <summary>Ctrl+M demo jump. Reuses the real drain story and still requires an explicit lakeside choice.</summary>
+        /// <summary>Ctrl+M demo jump. Interrupts Vale safely; an existing ending remains untouched and unchosen.</summary>
         public bool TryPresentationEscape()
         {
             var gm = GameManager.Instance;
             var pm = Possession.PossessionManager.Instance;
-            if (!gm || !gm.IsPlaying || EndingStarted || DialoguePlaying || UI.LakesideEpilogue.Instance ||
-                !pm || pm.Active == null || pm.Active.InTransit || !pm.Active.Blob) return false;
+            if (!gm) return false;
+            // Repeated requests must never stop the escape coroutine, replace the lake or reset its outcome.
+            if (EndingStarted || UI.LakesideEpilogue.Instance || gm.State == GameState.Ended || RunState.Has(MissionFlags.Escaped)) return true;
+            if (DialoguePlaying)
+            {
+                // Only RevealSequence can be active here: EscapeSequence is protected by EndingStarted above.
+                StopAllCoroutines();
+                DialoguePlaying = false;
+                GameEvents.RaiseSubtitle("", "");
+                gm.ResumeAfterDialogue();
+            }
+            if (!gm.IsPlaying || !pm || pm.Active == null || pm.Active.InTransit || !pm.Active.Blob ||
+                Missions == null || Missions.Count == 0) return false;
             if (pm.Active.Host && !pm.LeaveHost()) return false;
             foreach (var mission in Missions)
                 foreach (var objective in mission.objectives)
@@ -337,6 +404,12 @@ namespace Parasite.Missions
             RunState.Flags.Add(MissionFlags.Research);
             RunState.Flags.Add(MissionFlags.ContainmentOffline);
             RunState.Flags.Add(MissionFlags.EvidenceBroadcast);
+            RunState.Flags.Add(MissionFlags.SubVaultDiversion);
+            RunState.Flags.Add(MissionFlags.BlackSiteArchive);
+            RunState.Flags.Add(MissionFlags.BackupGenerator);
+            RunState.Flags.Add(MissionFlags.GridOverride);
+            RunState.Flags.Add(MissionFlags.ProtocolEpsilonBreached);
+            RunState.Flags.Add(MissionFlags.MasterBroadcast);
             RunState.LabEntered = true;
             RunState.MissionIndex = Missions.Count - 1;
             RestoreCampaignState();
@@ -381,7 +454,7 @@ namespace Parasite.Missions
 
         public void CompleteEscape(Transform drain)
         {
-            if (EndingStarted || !RunState.Has(MissionFlags.EvidenceBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
+            if (EndingStarted || !RunState.Has(MissionFlags.MasterBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
             EndingStarted = true;
             Waypoints.Clear(); SetObjective("");
             if (GameManager.Instance) GameManager.Instance.BeginEnding();
@@ -393,8 +466,8 @@ namespace Parasite.Missions
             Sfx.Play(SfxId.EndingSting, drain ? drain.position : Vector3.zero);
             yield return Dialogue(new[]
             {
-                ("INDEPENDENT NEWS", "The signed orders are public. Vale Biotech cannot call this a lab accident anymore."),
-                ("DR. PETROV", "The containment relay is gone. Whatever you are… keep going."),
+                ("INDEPENDENT NEWS", "The unredacted Black Site files and neural kill-switch are broadcasting across every frequency."),
+                ("DR. PETROV", "Protocol Epsilon breached. The entire district knows what Vale did."),
                 ("SPECIMEN 7", "He opened the first door. We chose the last one."),
             });
             // GameManager commits Escaped only after the lakeside player's explicit final choice.

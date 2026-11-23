@@ -1,6 +1,6 @@
 # PARASITE Complete Game Guide
 
-**Version 0.2.0 · Linux x86-64 · Player handbook, judges guide and verification record**
+**Local version 0.2.2 · Linux x86-64 · Player handbook, judges guide and verification record**
 
 PARASITE is a third-person stealth game about **Specimen 7**, an escaped amoeba that can possess people and divide into two controllable bodies. Your host changes what you can do and where you can go. Your two bodies turn the city into a planning problem: one can hold a control while the other acts somewhere else.
 
@@ -202,7 +202,7 @@ Waiting never chooses. Skipping earlier dialogue does not select a future, and h
 
 ## A short judges presentation
 
-For a compact demonstration, use the implemented **Ctrl + M** shortcut from gameplay. Either Ctrl key works; **M alone does nothing**. The shortcut advances presentation progress and starts the real final escape sequence. It does not select an ending and is not a substitute for completing or testing the campaign.
+For a compact demonstration in local v0.2.2, use **Ctrl + M** from the title, opening, pause menus, Vale dialogue or gameplay. Loading or body-change requests wait for readiness; an ending already underway is preserved. Either Ctrl key works; **M alone does nothing**. The shortcut advances presentation progress and starts the real final escape sequence. It does not select an ending and is not a substitute for completing or testing the campaign.
 
 | Approximate time | Presenter action | What to explain |
 |---|---|---|
@@ -212,7 +212,7 @@ For a compact demonstration, use the implemented **Ctrl + M** shortcut from game
 | 0:45 onward | Press Ctrl + M during gameplay | Jump to the final escape for presentation; skip the escape dialogue with E/Space if needed. |
 | Final scene | Show the lake and select an ending deliberately | Peace and Dominion represent different futures; then show the summary. |
 
-These timings are a presentation plan, not a measured speedrun. The opening naturally lasts 80 seconds. Ctrl + M starts three protected escape-dialogue lines; E/Space can advance each after 0.5 seconds. The lake's arrival presentation lasts up to 15 seconds, or E/Space/Esc reveals the choices after 0.6 seconds. Release confirm input, select an ending, then watch its seven-second resolution or advance after 0.8 seconds. Leave enough time to read both choices. To show the other ending, start a fresh game, skip the opening and use Ctrl + M again.
+These timings are a presentation plan, not a measured speedrun. The opening naturally lasts 80 seconds. Ctrl + M starts three protected escape-dialogue lines; E/Space can advance each after 0.5 seconds. The lake's arrival presentation lasts up to 15 seconds, or E/Space/Esc reveals the choices after 0.6 seconds. Release confirm input, select an ending, then watch its seven-second resolution or advance after 0.8 seconds. Leave enough time to read both choices. To show the other ending, start a fresh game or return to the title and use Ctrl + M again.
 
 ## How the game is built
 
@@ -245,7 +245,9 @@ Packaging copies player documentation, verification notes, screenshots and licen
 
 ## Testing and evidence
 
-The current release build comes from **runtime source `3f71476`**, with generated city source **`8e86791`**. The final Linux rebuild succeeded at **425 MB**, **6.56 seconds cached**, **zero errors and zero warnings**. The development machine is Ubuntu 26.04 with an Intel i5-12500H, 16 GB RAM and an NVIDIA RTX 4050 Laptop GPU with 6 GB VRAM.
+The local v0.2.2 build uses `8ffd786` plus uncommitted global Ctrl+M fixes. It passed 8/8 focused PlayMode tests, including an 11-phase title/opening/pause/dialogue/reset matrix, and 14/14 queued-keyboard shortcut cases in the built Linux player. Its rebuild succeeded at 425 MB in 23.54 seconds with zero errors and warnings. Restart an older running player to load this version. These checks do not claim physical desktop keyboard verification or a fresh full campaign run.
+
+The remaining evidence in this section describes the **historical v0.2.0 baseline**, built from **runtime source `3f71476`**, with generated city source **`8e86791`**. That Linux rebuild succeeded at **425 MB**, **6.56 seconds cached**, **zero errors and zero warnings**. The development machine is Ubuntu 26.04 with an Intel i5-12500H, 16 GB RAM and an NVIDIA RTX 4050 Laptop GPU with 6 GB VRAM.
 
 | Check | Verified result and scope |
 |---|---|
@@ -256,7 +258,7 @@ The current release build comes from **runtime source `3f71476`**, with generate
 | Final opening and Ctrl + M focus | 3/3 pass; both Ctrl keys work, M alone is ignored, and no duplicate or automatic ending choice occurs. |
 | Pure rules and audio | Earlier 22/22 EditMode tests pass; the relevant rules/audio sources are unchanged. |
 | Environment inspection | 15 RTX scene renders; zero missing scripts. |
-| Current standalone Linux campaign | **13/13 pass** on the rebuilt executable, including Peace through the Main Gate/staff routes and Dominion through the service route. |
+| v0.2.0 standalone Linux campaign | **13/13 pass** on that executable, including Peace through the Main Gate/staff routes and Dominion through the service route. |
 
 **The earlier test failure is documented, not hidden.** The initial combined PlayMode run passed five cases and failed one opening capture assertion because its accelerated 20× test clock skipped past the first five-second shot. Runtime code was unchanged for that correction. The test was slowed to 2×, and both affected opening cases passed on rerun. All six original unique cases therefore passed across the combined run and targeted rerun; the initial XML itself was not wholly successful. A later three-case focused run passed after the presentation shortcut and release-shot camera correction.
 
@@ -276,4 +278,4 @@ The automated tests do not replace an extended human playthrough or prove physic
 
 External textures, HDRI and model sources include **Poly Haven** and **ambientCG**, generally under **CC0**. Selected **Kenney** interface/impact sounds are CC0; other effects and ambience are synthesized in the project. **Rajdhani** UI fonts use **SIL OFL 1.1**. The archive includes the actual font/audio licence texts. The complete per-asset attribution, author names, source links and Unity-package notes are in [third-party assets](THIRD_PARTY_ASSETS.md).
 
-For quick reference, use [controls](CONTROLS.md), [verification](TEST_REPORT.md), [known issues](KNOWN_ISSUES.md) and [third-party credits](THIRD_PARTY_ASSETS.md). This handbook describes the fixed 0.2.0 release: eight missions, its implemented opening, its lakeside choices and the judges presentation shortcut.
+For quick reference, use [controls](CONTROLS.md), [verification](TEST_REPORT.md), [known issues](KNOWN_ISSUES.md) and [third-party credits](THIRD_PARTY_ASSETS.md). This handbook describes the eight-mission release and local v0.2.2 global presentation-shortcut fix. No commits or pushes were made for this fix.

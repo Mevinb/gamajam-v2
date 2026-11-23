@@ -47,14 +47,13 @@ namespace Parasite
             Instance = this;
             Time.timeScale = 1f;
             SetCursorLocked(true);
+            PresentationShortcut.Ensure();
         }
 
         void OnDestroy() { if (Instance == this) Instance = null; }
 
         void Update()
         {
-            if (State == GameState.Playing && GameInput.PresentationEndingPressed && Missions.MissionManager.Instance &&
-                Missions.MissionManager.Instance.TryPresentationEscape()) return;
             if (State == GameState.Playing) RunState.PlayTime += Time.deltaTime;
             if (GameInput.PausePressed)
             {

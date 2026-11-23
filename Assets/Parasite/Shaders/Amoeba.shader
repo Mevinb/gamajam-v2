@@ -1,7 +1,7 @@
 // PARASITE — translucent amoeba jelly (hand-written URP shader).
-// Vertex wobble (sum-of-sines noise), wrap + fake subsurface lighting from the main light, Fresnel rim,
-// wet specular, an inner "nucleus" glow computed from view-facing, and an _InfectPulse ripple used
-// while possessing. Squash/stretch is done by the transform. One UniversalForward pass + ShadowCaster.
+// Enhanced bioluminescent inner glow, dynamic subsurface scattering, dual-tier Fresnel rim,
+// wet dual-lobe specular, organic breathing pulse, and an _InfectPulse ripple used
+// while possessing. One UniversalForward pass + ShadowCaster.
 Shader "Parasite/Amoeba"
 {
     Properties
@@ -68,8 +68,9 @@ Shader "Parasite/Amoeba"
             float n = WobbleNoise(positionOS * _WobbleFreq, t);
             // infection ripple: rings travelling up the body
             float ripple = sin(positionOS.y * 26.0 - _Time.y * 14.0) * _InfectPulse * 0.035;
-            // slow "breathing"
-            float breathe = sin((_Time.y * _PulseRate + _PulsePhase) * 0.5) * 0.012;
+            // organic multi-frequency breathing
+            float breathe = (sin((_Time.y * _PulseRate + _PulsePhase) * 0.5) * 0.012) +
+                            (sin((_Time.y * _PulseRate * 0.8 + _PulsePhase) * 0.3) * 0.006);
             return positionOS + normalOS * (n * _WobbleAmp * (1.0 + _InfectPulse) + ripple + breathe);
         }
         ENDHLSL
@@ -90,6 +91,7 @@ Shader "Parasite/Amoeba"
             #pragma fragment Frag
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
@@ -140,39 +142,80 @@ Shader "Parasite/Amoeba"
                 half3 lightCol = mainLight.color * mainLight.distanceAttenuation;
 
                 half NdotV = saturate(dot(N, V));
-                half fres = pow(1.0h - NdotV, _RimPower);
 
-                // wrap diffuse: soft, light bleeds past the terminator
-                half wrap = saturate((dot(N, L) + 0.6h) / 1.6h);
-                // fake subsurface: light shining through the blob towards the viewer
-                half3 sssDir = normalize(L + N * 0.45h);
-                half sss = pow(saturate(dot(V, -sssDir)), 3.0h) * 0.9h + wrap * 0.15h;
-                // wet specular highlight
-                half3 H = normalize(L + V);
-                half spec = pow(saturate(dot(N, H)), _Gloss) * 1.4h;
-
-                half act = lerp(0.35h, 1.0h, _Activity);
+                // Enhanced organic breathing pulse with harmonic complexity
                 float t = _Time.y;
-                half pulse = 0.5h + 0.5h * sin(t * _PulseRate + _PulsePhase);
+                float pulseTime = t * _PulseRate + _PulsePhase;
+                half pulse1 = sin(pulseTime);
+                half pulse2 = sin(pulseTime * 1.618f + 1.2f);
+                half pulse = 0.5h + 0.35h * pulse1 + 0.15h * pulse2;
+                half act = lerp(0.35h, 1.0h, _Activity);
 
-                // inner nucleus glow: bright where we look straight through the middle
-                half core = pow(NdotV, 2.5h) * (0.55h + 0.45h * pulse);
+                // Subtle cellular micro-shimmer across the cytoplasm
+                half microShimmer = sin(input.positionOS.x * 14.0 + input.positionOS.y * 16.0 + t * 3.5) * 0.08h;
 
-                // infection ripple bands
-                half band = saturate(sin(input.positionOS.y * 26.0 - t * 14.0) * 0.5 + 0.5);
+                // Multi-tier Fresnel rim: soft luminous inner halo + sharp electric outer edge
+                half rimBase = 1.0h - NdotV;
+                half fresSoft = pow(rimBase, _RimPower);
+                half fresSharp = pow(rimBase, _RimPower * 2.2h) * 1.6h;
+                half fresnel = fresSoft + fresSharp;
+                // Chromatic rim shift: extreme grazing edge shifts towards electric cyan/aurora
+                half3 rimShiftColor = lerp(_RimColor.rgb, half3(_RimColor.r * 0.4h, _RimColor.g * 1.15h, _RimColor.b * 1.5h + 0.25h), fresSharp * 0.45h);
+
+                // Dynamic subsurface scattering (SSS): forward and wrap transmission through translucent jelly
+                half wrap = saturate((dot(N, L) + 0.65h) / 1.65h);
+                half3 sssFwdDir = normalize(L + N * 0.4h);
+                half sssForward = pow(saturate(dot(V, -sssFwdDir)), 2.8h) * 1.1h;
+                half3 sssBackDir = normalize(-L + N * 0.25h);
+                half sssBack = saturate(dot(V, sssBackDir)) * wrap * 0.5h;
+                half sss = sssForward + sssBack + wrap * 0.2h;
+
+                // Wet dual-lobe specular highlight (sharp primary highlight + soft broad sheen)
+                half3 H = normalize(L + V);
+                half NdotH = saturate(dot(N, H));
+                half specSharp = pow(NdotH, _Gloss) * 1.8h;
+                half specBroad = pow(NdotH, max(4.0h, _Gloss * 0.22h)) * 0.45h;
+                half spec = specSharp + specBroad;
+
+                // Enhanced bioluminescent inner glow: layered deep core + radiant cellular halo
+                half coreSharp = pow(NdotV, 3.4h);
+                half coreHalo = pow(NdotV, 1.5h) * 0.55h;
+                half core = (coreSharp * 2.0h + coreHalo) * (0.65h + 0.35h * pulse + microShimmer);
+
+                // Infection ripple bands travelling through the jelly
+                half band = saturate(sin(input.positionOS.y * 28.0 - t * 15.0) * 0.5 + 0.5);
                 band = band * band * _InfectPulse;
+
+                // Additional lights support (streetlights, headlights, amoeba's own light)
+                half3 additionalLighting = half3(0, 0, 0);
+                #if defined(_ADDITIONAL_LIGHTS)
+                uint pixelLightCount = GetAdditionalLightsCount();
+                for (uint lightIndex = 0u; lightIndex < pixelLightCount; ++lightIndex)
+                {
+                    Light addLight = GetAdditionalLight(lightIndex, input.positionWS);
+                    half3 addL = addLight.direction;
+                    half3 addCol = addLight.color * addLight.distanceAttenuation;
+                    half addWrap = saturate((dot(N, addL) + 0.5h) / 1.5h);
+                    half3 addH = normalize(addL + V);
+                    half addSpec = pow(saturate(dot(N, addH)), _Gloss) * 1.2h;
+                    half3 addSssDir = normalize(addL + N * 0.4h);
+                    half addSss = pow(saturate(dot(V, -addSssDir)), 2.5h) * 0.6h;
+                    additionalLighting += addCol * (addWrap * _BaseColor.rgb * 0.6h + addSpec + _SSSColor.rgb * addSss * 0.5h);
+                }
+                #endif
 
                 half3 ambient = SampleSH(N);
                 half3 body = lerp(_DeepColor.rgb, _BaseColor.rgb, wrap * 0.7h + 0.3h);
-                half3 col = body * (ambient * 0.8h + lightCol * wrap * 0.85h);
-                col += _SSSColor.rgb * lightCol * sss * 0.6h;
-                col += _RimColor.rgb * fres * (0.8h + 0.6h * act);
+                half3 col = body * (ambient * 0.85h + lightCol * wrap * 0.9h);
+                col += _SSSColor.rgb * lightCol * sss * 0.85h;
+                col += rimShiftColor * fresnel * (0.9h + 0.8h * act);
                 col += lightCol * spec;
-                col += _CoreColor.rgb * core * _Emission * act * 1.6h;
-                col += _BaseColor.rgb * _Emission * act * 0.35h;
-                col += _RimColor.rgb * (band * 1.2h + _InfectPulse * 0.5h);
+                col += _CoreColor.rgb * core * (_Emission * 2.2h) * act;
+                col += _BaseColor.rgb * _Emission * act * 0.4h * (0.8h + 0.2h * pulse);
+                col += _RimColor.rgb * (band * 1.5h + _InfectPulse * 0.6h);
+                col += additionalLighting;
 
-                half alpha = saturate(_Alpha + fres * 0.45h + spec * 0.5h + _InfectPulse * 0.15h);
+                half alpha = saturate(_Alpha + fresnel * 0.48h + specSharp * 0.5h + _InfectPulse * 0.18h);
                 col = MixFog(col, input.fogFactor);
                 return half4(col, alpha);
             }

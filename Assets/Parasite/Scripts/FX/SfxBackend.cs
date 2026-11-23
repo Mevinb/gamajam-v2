@@ -35,6 +35,10 @@ namespace Parasite.FX
             SfxId.EndingSting => new Spec(null, Mode.SynthOnly, 1f, 0f),
             SfxId.Heartbeat => new Spec(null, Mode.SynthOnly, 1f, 0f),
             SfxId.AlertPursuit => new Spec(null, Mode.SynthOnly, 1f, 0.01f),
+            SfxId.AlarmSiren => new Spec(null, Mode.SynthOnly, 1f, 0.01f),
+            SfxId.RainAmbience => new Spec(null, Mode.SynthOnly, 0.8f, 0.02f),
+            SfxId.BioSquelch => new Spec(null, Mode.SynthOnly, 1f, 0.05f),
+            SfxId.LaserHum => new Spec(null, Mode.SynthOnly, 0.9f, 0.02f),
             _ => new Spec(null, Mode.SynthOnly),
         };
 

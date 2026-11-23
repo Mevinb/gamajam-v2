@@ -1,4 +1,4 @@
-# PARASITE 0.2.0 — Controls & How It Plays
+# PARASITE 0.2.2 (local) — Controls & How It Plays
 
 ## Opening and final choice
 
@@ -26,13 +26,13 @@ chooses an outcome. Your first choice is locked; the final statistics follow its
 | Esc | Start | Pause (Resume · Restart · Controls · Settings · Quit); return from a submenu before resuming |
 | F1 | — | Show / hide the controls card |
 | F3 | — | FPS counter (launch with `-showfps` to start with it on) |
-| Ctrl + M | — | Judges' presentation shortcut: from gameplay, jump to the final escape and sunset-lake choices |
+| Ctrl + M | — | Judges' presentation shortcut: jump to the final escape and sunset-lake choices, including from the initial title |
 
 Menus work with the mouse, or with arrows/WASD/D-pad + Enter/A.
 Settings in both the title and pause menus save graphics quality, mouse sensitivity, master volume and ambience/music.
 Sliders apply immediately. Gamepad B returns from controls/settings; Esc/Start also returns from pause submenus.
 
-For a short judges' presentation, press **Ctrl + M during gameplay** to jump to the final escape and sunset-lake epilogue.
+For a short judges' presentation in local v0.2.2, press **Ctrl + M** from the title screen, opening, pause menus, Vale dialogue or gameplay to jump to the final escape and sunset-lake epilogue. Requests wait safely through loading or body changes. An ending already underway continues without restarting or choosing for you.
 This skips the remaining campaign for the presentation. You still choose **Live quietly (Peace)** or **Become the world (Dominion)**;
 the shortcut never chooses an outcome automatically.
 
@@ -68,9 +68,9 @@ future, original infiltration route, total time, hosts possessed, peak suspicion
 
 ## Missions
 
-This describes version 0.2.0. Focused UI and opening checks passed; the final combined PlayMode run is running, and the Linux
-rebuild/standalone verification are pending. The existing Linux artifact is still the earlier five-mission version until replaced.
-Check `TEST_REPORT.md` for the artifact's actual results.
+The eight-mission campaign shipped in v0.2.0. Local v0.2.2 adds global presentation-shortcut handling; its Linux rebuild,
+8/8 focused PlayMode tests and 14/14 built-player queued-keyboard checks passed. Check `TEST_REPORT.md` for each version's
+actual coverage; the full campaign suite was not rerun for this shortcut fix.
 
 1. **Out of the Drain** — leave the storm-drain alley, take your first host.
 2. **Word on the Street** — read the newsstand on City Plaza, eavesdrop on Dr. Petrov at the café.

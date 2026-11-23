@@ -1,4 +1,4 @@
-# PARASITE — 0.2.0
+# PARASITE — 0.2.2 (local)
 
 You are Specimen 7: an escaped amoeba looking for the scientist who created it. Possess people, borrow their credentials,
 split into two bodies and infiltrate Vale Biotech. Meeting Dr. Vale is the turning point of an **eight-mission campaign**:
@@ -14,7 +14,7 @@ waiting or skipping never chooses for you.
 
 ## Play on Linux
 
-**Linux x86-64 is the release target.** The player is version **0.2.0**, built from runtime source `3f71476`.
+**Linux x86-64 is the release target.** The local player is version **0.2.2**, built from `8ffd786` plus uncommitted Ctrl+M fixes.
 Local build and archive files are generated artifacts and are not stored in Git.
 
 - Player: `Builds/Linux/Parasite.x86_64`
@@ -42,17 +42,18 @@ mouse sensitivity, master volume and ambience/music. The pause journal scrolls t
 | V / Tab | Split / switch amoebas |
 | F | Use the current host's profession ability |
 | Esc / F1 / F3 | Pause / controls / FPS |
-| Ctrl + M | Jump from gameplay to the final escape and lakeside choices |
+| Ctrl + M | Jump to the final escape and lakeside choices, including from the initial title |
 
-**For a short presentation:** begin the game, skip the opening with **Space** and release it, then press **Ctrl + M**.
-Either Ctrl key works. This shortcut operates during gameplay; it does not interrupt the opening or Vale's dialogue.
+**Local v0.2.2 presentation fix:** press **Ctrl + M** from the title screen, opening, pause menus, Vale dialogue or gameplay.
+Either Ctrl key and either press order work. Loading and body-change requests wait for readiness. The local fix is uncommitted and unpushed; the release checks below describe the earlier committed 0.2.0 baseline.
+Local v0.2.2 passed 8/8 focused PlayMode tests (including 11 startup/pause/dialogue/reset phases) and 14/14 queued-keyboard shortcut checks in the built Linux player. Restart the player and confirm v0.2.2 on the title screen.
 It bypasses the remaining missions, plays the protected drain escape and reaches the lake. You still explicitly choose
 **Live quietly (Peace)** or **Become the world (Dominion)** before the final statistics appear.
 
 Read the [complete game guide](Docs/COMPLETE_GAME_GUIDE.md) for the full walkthrough, paired-body puzzles and screenshots.
 The shorter [controls reference](Docs/CONTROLS.md) includes keyboard/gamepad mappings and infiltration routes.
 
-## Verified release checks
+## Verified release checks — historical v0.2.0 baseline
 
 | Check | Result |
 |---|---|

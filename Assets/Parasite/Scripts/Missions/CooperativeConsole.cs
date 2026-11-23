@@ -9,7 +9,7 @@ namespace Parasite.Missions
     public class CooperativeConsole : MonoBehaviour, IInteractable
     {
         public static readonly List<CooperativeConsole> All = new();
-        public string controlId, displayName, requiredFlag, retireWhenFlag;
+        public string controlId, displayName, requiredFlag, retireWhenFlag, flag;
         public Profession profession;
         public Renderer lamp;
         public float range = 2.4f;
@@ -46,6 +46,7 @@ namespace Parasite.Missions
         {
             if (!CanInteract(ctx, out var why)) { GameEvents.RaiseToast(why, Palette.Warning); return; }
             operatorAgent = ctx.agent; operatorHost = ctx.host;
+            if (!string.IsNullOrEmpty(flag)) MissionManager.SetFlag(flag);
             Sfx.Play(SfxId.TerminalBeep, InteractPoint);
             GameEvents.RaiseToast($"{displayName} held. Leave this body at the console and [Tab] to your other amoeba.", Palette.Info);
         }

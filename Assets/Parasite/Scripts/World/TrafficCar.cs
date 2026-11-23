@@ -8,6 +8,8 @@ namespace Parasite.World
         public const float CruiseSpeed = 9f;
         public float Speed { get; private set; }
         public float Distance { get; private set; }
+        public float IntersectionEnterTime { get; private set; } = -999f;
+        public TrafficSystem.Lane Lane => lane;
         TrafficSystem.Lane lane;
         Transform[] wheels;
         Renderer[] renderers;
@@ -43,7 +45,75 @@ namespace Parasite.World
             return best;
         }
 
-        /// <summary>People, the amoeba, or another lane's car in front of the bumper.</summary>
+        public bool IsInIntersection(out TrafficSystem.Intersection inter)
+        {
+            foreach (var it in TrafficSystem.Intersections)
+            {
+                if (it.bounds.Contains(transform.position))
+                {
+                    inter = it;
+                    return true;
+                }
+            }
+            inter = default;
+            return false;
+        }
+
+        public bool ApproachingIntersection(out TrafficSystem.Intersection inter, out float distToStopLine)
+        {
+            inter = default;
+            distToStopLine = float.MaxValue;
+            Ray ray = new Ray(transform.position, transform.forward);
+            foreach (var it in TrafficSystem.Intersections)
+            {
+                if (it.bounds.Contains(transform.position)) continue;
+                if (it.bounds.IntersectRay(ray, out float hitDist))
+                {
+                    if (hitDist > 0f && hitDist < 20f && hitDist < distToStopLine)
+                    {
+                        distToStopLine = hitDist;
+                        inter = it;
+                    }
+                }
+            }
+            return distToStopLine < 20f;
+        }
+
+        public bool HasRightOfWayOver(TrafficCar other, float myDistToStop = float.MaxValue, float otherDistToStop = float.MaxValue)
+        {
+            if (!other) return true;
+
+            bool myIn = IsInIntersection(out _);
+            bool otherIn = other.IsInIntersection(out _);
+
+            // Car already inside intersection conflict zone has right of way
+            if (otherIn && !myIn) return false;
+            if (myIn && !otherIn) return true;
+
+            // Both inside: earlier entry time proceeds first
+            if (myIn && otherIn)
+            {
+                if (Mathf.Abs(IntersectionEnterTime - other.IntersectionEnterTime) > 0.05f)
+                    return IntersectionEnterTime < other.IntersectionEnterTime;
+            }
+
+            // Priority by street
+            int myPrio = lane != null ? lane.priority : 1;
+            int otherPrio = other.lane != null ? other.lane.priority : 1;
+            if (myPrio != otherPrio) return myPrio > otherPrio;
+
+            // Equal priority: closer car has right of way
+            if (myDistToStop < float.MaxValue && otherDistToStop < float.MaxValue)
+            {
+                if (Mathf.Abs(myDistToStop - otherDistToStop) > 0.6f)
+                    return myDistToStop < otherDistToStop;
+            }
+
+            // Deterministic tie-breaker
+            return GetInstanceID() < other.GetInstanceID();
+        }
+
+        /// <summary>People, the amoeba, or another car immediately in front of the bumper.</summary>
         bool Blocked(out float dist)
         {
             dist = 0f;
@@ -56,7 +126,16 @@ namespace Parasite.World
                 int l = c.gameObject.layer;
                 bool person = l == Layers.Characters || l == Layers.Amoeba;
                 var other = person ? null : c.GetComponentInParent<TrafficCar>();
-                if (!person && (!other || other == this || (waitT > 4f))) continue;
+                if (!person && (!other || other == this)) continue;
+
+                if (other != null)
+                {
+                    // If car is on the same lane, follow distance is handled by CarAheadGap(), but brake if very close
+                    if (other.lane == lane && hits[i].distance > 4f) continue;
+                    // If crossing car, don't emergency brake from afar if we have right of way
+                    if (other.lane != lane && hits[i].distance > 3f && HasRightOfWayOver(other)) continue;
+                }
+
                 if (hits[i].distance < best) best = hits[i].distance;
             }
             if (best == float.MaxValue) return false;
@@ -67,11 +146,61 @@ namespace Parasite.World
         void Update()
         {
             float dt = Time.deltaTime;
+            bool inside = IsInIntersection(out _);
+            if (inside && IntersectionEnterTime < 0f) IntersectionEnterTime = Time.time;
+            else if (!inside) IntersectionEnterTime = -999f;
+
             float target = cruise;
             float gap = CarAheadGap();
             if (gap < 16f) target = Mathf.Min(target, Mathf.Max(0f, (gap - 7f) * 1.2f));
-            if (Blocked(out float pd)) { target = Mathf.Min(target, Mathf.Max(0f, (pd - 1.5f) * 1.4f)); waitT += dt; }
+
+            // Intersection approach right-of-way logic:
+            if (ApproachingIntersection(out var appInter, out float distToStop))
+            {
+                bool yield = false;
+                if (TrafficSystem.Instance != null)
+                {
+                    foreach (var l in TrafficSystem.Instance.Lanes)
+                    {
+                        if (!TrafficSystem.LanesConflict(lane, l)) continue;
+                        foreach (var other in l.cars)
+                        {
+                            if (!other || other == this) continue;
+                            // Crossing car already inside the intersection conflict zone
+                            if (appInter.bounds.Contains(other.transform.position))
+                            {
+                                yield = true;
+                                break;
+                            }
+                            // Crossing car approaching the same intersection with right of way
+                            if (other.ApproachingIntersection(out var otherInter, out float otherDist) && otherInter.bounds == appInter.bounds)
+                            {
+                                if (!HasRightOfWayOver(other, distToStop, otherDist))
+                                {
+                                    yield = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (yield) break;
+                    }
+                }
+                if (yield)
+                {
+                    // Smoothly decelerate to a full stop before the stop line
+                    float stopTarget = Mathf.Max(0f, (distToStop - 1.5f) * 1.4f);
+                    target = Mathf.Min(target, stopTarget);
+                }
+            }
+
+            // Pedestrian / amoeba emergency braking and close proximity bumper safety
+            if (Blocked(out float pd))
+            {
+                target = Mathf.Min(target, Mathf.Max(0f, (pd - 1.5f) * 1.4f));
+                waitT += dt;
+            }
             else waitT = 0f;
+
             Speed = Mathf.MoveTowards(Speed, target, (target < Speed ? 14f : 4f) * dt);
             Distance += Speed * dt;
             if (Distance >= lane.Length) Distance -= lane.Length;

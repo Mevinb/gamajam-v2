@@ -1,5 +1,14 @@
 # PARASITE 0.2.0 — Developer handoff (read this first)
 
+**Current local override — v0.2.2:** The user explicitly prohibited commits and pushes for the Ctrl+M fixes and reiterated
+“NO PUSHING OF CODE TO GIT.” Keep this work local; this overrides the historical Git/delivery instructions below.
+The local player is now v0.2.2. `PresentationShortcut` starts before the first scene and persists across loads, handling
+Ctrl+M from title/overlays, the opening, pause, Vale dialogue and gameplay. Requests wait through reset/loading/body transitions.
+An existing ending is preserved and Peace/Dominion is never selected automatically. Restart an already-running player to use it.
+Focused PlayMode checks passed 8/8, including an 11-phase startup/pause/dialogue/reset matrix. The Linux rebuild succeeded
+(425 MB, 23.54 seconds, zero errors/warnings). See the appended v0.2.2 section of `Docs/TEST_REPORT.md` for built-player evidence.
+Everything below describes the committed v0.2.0 baseline unless explicitly marked otherwise.
+
 Unity 6.3 LTS (6000.3.29f1) URP third-person stealth game. You are an amoeba (Specimen 7) that escaped Vale Biotech,
 possesses humans, splits in two, and works through an 8-mission campaign: infiltrate, meet Dr. Vale, secure signed evidence,
 sabotage containment, broadcast the truth and escape. An 80-second skippable new-game backstory opens the campaign;
