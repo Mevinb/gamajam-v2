@@ -8,8 +8,9 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - Humans use skinned Blender/MakeHuman models and authored/retargeted humanoid animations. Skin, hair, facial acting and some
   environment geometry remain stylized; further realism work is still possible.
 - Dialogue voices are synthesized. They are not recordings of human actors; captions remain available.
-- New Blender cinematic exports and the riverside chapter require fresh final-player visual/interaction verification. Consult
-  `TEST_REPORT.md` for the exact completed suites and any failed or outstanding checks.
+- The player includes two three-second RTX-rendered establishing inserts and Blender-designed live sets. The complete 80-second
+  Blender opening and branching lake films are authored separately and still require production rendering and runtime integration.
+  `TEST_REPORT.md` records actual-player checks for the current inserts and riverside chapter.
 - Screen-space reflections cannot reflect objects outside the camera's depth/color buffers. Reflection probes provide fallback;
   puddles are not a complete fluid simulation.
 - Traffic follows kinematic lanes with right-of-way, bumper clearance and pedestrian braking. It is not a full road simulator;

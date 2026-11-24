@@ -1,40 +1,90 @@
 # Current upgrade verification — 25 November 2026
 
-The **0.4.0 upgrade remains in progress**. This section supersedes earlier current-state claims below; prior release
-records are preserved as historical evidence, not reused to certify changed source or a new executable.
+The **identity-corrected 0.4.0 Linux milestone is verified** within the scope below. The broader cinematic and mission
+expansion remains active. The current build is source
+`229d6656dd04c9ddd0db74b5790eb6c52d4faa88`, with runtime DLL SHA-256
+`ec07d2464893d3fe4839a6c4b5ed8e363cbcfe2b41a12b850b5369318892640c`.
+Earlier campaign and performance results below identify their own pre-identity runtime; they do not certify a different executable.
+
+## Current identity-corrected candidate
 
 | Check | Result and scope | Evidence |
 |---|---|---|
-| Fast Roslyn compile | PASS: 106 runtime / 19 editor files | `Tools/compile_check.sh all` |
-| First expanded EditMode run | 52/53; failed the new traffic intersection fixture | `Logs/upgrade-editmode.xml` |
-| Corrected expanded EditMode | PASS 53/53, including traffic frame-hitch/stop-line safety and continuation state rules | `Logs/upgrade-editmode-fix.xml` |
-| Shared continuation logic, no graphics | PASS both Peace and Dominion flows; actual choice/Continue buttons, E targeting, timed work, pursuit cancellation, checkpoint reload/rearm, navigation reachability and ferry extraction | `Logs/afterlake-logic2.xml`, `Logs/afterlake-logic2.log` |
-| Expanded asset/stealth rules | PASS 63/63, including Blender PBR/scale, permanent CCTV outages, live-cover capture checks and ejection-grace body discovery | `Logs/upgrade-stealth-rules.xml` |
-| Full shared campaign logic, no graphics | Incomplete: scenarios01–06 PASS, then Editor exited139 during RouteB. No final XML; this is not a full-suite pass. OS apport confirms SIGSEGV; initiating cause remains unproven. | `Logs/upgrade-campaign-logic.log` |
-| RTX Blender probes | OptiX on NVIDIA RTX 4050, CPU rendering disabled; opening and revised sunset-lake frames rendered and visually reviewed | `Logs/cinematic-films/*/probe.png`, Blender render logs |
-| Full path-traced film renders | PASS: both 72-frame, 3-second 720p/24fps VP8 clips rendered with RTX 4050 OptiX, atomically encoded and fully decoded by ffmpeg; final-player decode is a separate gate | `ArtSource/Cinematics/*.render.json`, `Logs/blender-film-*-render.log` |
-| First GPU film/graphics focus |4/5 PASS: real lake-arrival composition and three graphics-policy cases pass. Decoder-image test hit an async fixture-update race; its real-tick fix is being rerun. | `Logs/upgrade-films-graphics.xml`, `Logs/ui/05a-lakeside-rtx-arrival.png` |
-| First riverside import rules |72/75 PASS; three triangle-count mismatches exposed collapsed bevel/near-collinear export faces. Cleaning source geometry and rerunning, with existing bounds/maps passing. | `Logs/upgrade-art-rules.xml` |
-| Corrected imported assets/rules | PASS 84/84, including cleaned FBX geometry, physical texture density, owned mesh disposal and asymmetric front/back anchors | `Logs/upgrade-frozen-rules-final.xml` |
-| Full GPU PlayMode before final ferry safeguard | PASS 17/17, including all 18 shared campaign scenarios; complete test order checked against source, no native exit in the frozen private-display run | `Logs/playmode-results.xml`, `Logs/playmode.log`, `Logs/upgrade-full-playmode-signals.log` |
-| Final ferry-host safeguard | PASS 2/2 Peace/Dominion continuations after requiring all hosts released, rejecting direct-call/transit bypasses and checking cleared ownership links | `Logs/upgrade-ferry-host-release.xml` |
-| Generated scenes | PASS: CityBuilder regenerated Bootstrap/City and environment/reflections;594,213 city LOD0 triangles | `Logs/upgrade-buildscenes.log` |
-| City shader/serialization audit | PASS: regenerated city render reviewed; zero missing scripts, NVIDIA RTX 4050, 714,291 LOD0 triangles | `Logs/upgrade-city-photo.log`, `Logs/photos/02_market_st.png` |
-| Initial Linux build | PASS: 968 MB, zero errors, two GroundWater implicit-derivative warnings on GL/Vulkan; not the final release candidate | `Logs/upgrade-linux.log` |
-| Initial actual-player cinematic backend | PASS 2/2: RTX 4050/OpenGLCore, both VP8 clips advance at timeScale=0, populated pixel readback, clean exit0; PNGs reviewed | `Logs/standalone-0.4/films-initial.txt`, `films-initial-player.log` |
-| Reflection sampling correction | PASS: explicit LOD preserves URP stereo/dynamic-resolution clamping; both target APIs rebuilt with zero warnings | commit `5fc21fa`, `Logs/upgrade-reflection-photo.log`, `Logs/upgrade-linux-final.log` |
-| Final Linux candidate | PASS: 968 MB, 0 errors/0 warnings, source 846643bb0055a242262e25f48dd0b335a705f470; runtime DLL SHA 6d5baaf9b2c1b92481cfca58a760b794a31ca5154d5610a9e53559e52f69ec9b | `Logs/upgrade-linux-verified.log`, `Logs/standalone-0.4/final-build-info.json` |
-| Final actual-player media | PASS 2/2 on RTX 4050/OpenGLCore: advancing frozen-time playback and nonempty pixel readbacks | `Logs/standalone-0.4/films-final.txt` |
-| Actual-player shortcut regression | PASS 14/14 queued-keyboard cases, exit 0; performed before the benchmark-only walker update, which does not run in shortcut mode. This is not physical key validation. | `Logs/standalone-0.4/shortcut.txt`, `shortcut-player.log` |
-| Benchmark route correction | A 35 s budget was shorter than the 193.7 m final leg at 4.6 m/s. Complete paths are now required and budgets derive from path length; waypoint coordinates unchanged. Runtime movement regression pending actual acceptance. | commit `846643b` |
-| Final standalone campaign acceptance | Running all 18 shared scenarios on the final 968 MB candidate, including all-host ferry ownership and the corrected time-normalized diagnostic walker | `Logs/standalone-0.4/campaign-final-player.log` |
-| Performance benchmark and release archive | Pending standalone campaign result; no fresh FPS or archive-checksum claim yet | Do not apply historical release results below to this artifact |
+| Fast Roslyn compile | PASS: 110 runtime / 20 editor files | `Tools/compile_check.sh all` |
+| Identity, gameplay and asset rules | PASS 96/96; includes decorated character-name identity plus the accumulated stealth, imported geometry/PBR, texture-density and mesh-cleanup regressions | `Logs/upgrade-character-identity.xml`, `Logs/upgrade-character-identity.log` |
+| Linux identity build | PASS: 968 MB, 0 errors / 0 warnings; source and runtime DLL hash recorded above | `Logs/upgrade-linux-identity.log`, `Builds/Linux/BUILD_INFO.json`, `Logs/standalone-0.4/final-build-info.json` |
+| Actual-player identity continuation regression | PASS 2/2, clean exit 0, RTX 4050 / Vulkan through the default NVIDIA launcher: Peace and Dominion, lake choice → Continue → three missions → checkpoint recovery → ferry, including the riverside Dr. Petrov identity assertion | `Logs/standalone-0.4/campaign-identity.txt`, `Logs/standalone-0.4/campaign-identity-player.log` |
+| Native riverside performance on this runtime | PASS 2/2: exact 1920x1080, default NVIDIA launcher selected Vulkan, complete 7/7 original waypoints. High: 225.9 FPS average / p99 10.34 ms, 100% scale. Ultra: 144.4 FPS / p99 12.93 ms, 125% scale with 4x MSAA. Normal graphical player, live traffic/NPCs; startup/capture encoding excluded. | `Logs/benchmarks/0.4-identity-native-vulkan-1080p/matrix.json`, raw GPU telemetry and screenshots |
+| Linux release archive | PASS: gzip/tar integrity, portable SHA-256, all 205 extracted files byte-identical to package inputs, executable bits, all 37 local guide links. Included runtime matches the source/hash above; debug folders excluded. | `Logs/release-0.4-verification.json`, `Builds/Releases/PARASITE-Linux.tar.gz.sha256` |
+| Extracted player, default launcher | PASS: RTX 4050 / Vulkan selected automatically. Both short films decoded with advancing frozen-time frames and populated readbacks (2/2); shortcut regression passed 14/14 queued-keyboard cases, both clean exit 0. The final documentation-only repack retains these exact player/film bytes, verified against the extracted copy. | `Logs/release-0.4-extracted-player.json`, `Logs/standalone-0.4/extracted-films.txt`, `Logs/standalone-0.4/extracted-shortcut.txt` |
 
-The first continuation run used source before the headless film guard landed and failed on missing in-progress footage;
-`afterlake-logic2` is the successful rerun with Null-device bypass. This validates gameplay logic only, not video decode,
-image quality, physical controls or performance. Later asset and scene checks supersede these earlier partial runs. The stable imported-asset/rules run is 84/84. The full GPU suite finished 17/17 with 18/18 campaign scenarios. The final ferry safeguard then passed both updated branch scenarios. Final-player coverage remains pending the new build.
+Current player captures: [Petrov at the shelter](Screenshots/upgrade/04-petrov-riverside.png),
+[riverside ferry](Screenshots/upgrade/05-riverside-ferry.png). These are actual native-player frames, with Petrov’s authored
+variant confirmed by the runtime assertion above.
 
-Pushed feature commits: traffic `0cf6edf`, Blender set assets `910a2b1`, post-lake missions `acced2a`, stealth corrections `4c4b757`. Graphics and film integration are still being verified; the final Linux player has not yet been rebuilt for this upgrade. Compiler failure propagation is fixed and pushed in `e3f8175`; an isolated malformed-source fixture correctly returned exit 1, and the real test sources compile.
+The current executable has the focused two-branch regression above; the full 18-scenario player runs were completed on the
+pre-identity runtime recorded next. This distinction preserves the scope of actual testing. Simulated and queued input does
+not establish physical keyboard/gamepad operation or an extended human playthrough.
+
+## Verified pre-identity 0.4.0 evidence
+
+The complete player runs and native performance matrix used source `846643bb0055a242262e25f48dd0b335a705f470`,
+runtime DLL SHA-256 `6d5baaf9b2c1b92481cfca58a760b794a31ca5154d5610a9e53559e52f69ec9b`.
+Their immutable build metadata is embedded in `Logs/benchmarks/0.4-native-vulkan-exact1080p/matrix.json`.
+Earlier focused runs below preceded this candidate and retain their original scope.
+
+| Check | Observed result and scope | Evidence |
+|---|---|---|
+| Continuation logic without graphics | PASS both Peace and Dominion flows, actual choice/Continue buttons, E targeting, timed work, pursuit cancellation, checkpoint reload/rearm, navigation and ferry extraction | `Logs/afterlake-logic2.xml`, `Logs/afterlake-logic2.log` |
+| Corrected imported assets/rules | PASS 84/84, including physical texture density, owned mesh disposal and asymmetric front/back anchors; superseded by the current 96-rule run for changed identity source | `Logs/upgrade-frozen-rules-final.xml` |
+| Full GPU PlayMode before final ferry safeguard | PASS 17/17, including all 18 shared campaign scenarios; frozen test order completed without the earlier native Editor exit | `Logs/playmode-results.xml`, `Logs/playmode.log`, `Logs/upgrade-full-playmode-signals.log` |
+| Final ferry-host safeguard | PASS 2/2 updated continuations, requiring all hosts released and rejecting direct-call/transit bypasses | `Logs/upgrade-ferry-host-release.xml` |
+| Generated scenes and city render audit | Bootstrap/City and environment/reflections regenerated; 594,213 saved-city LOD0 triangles; photo audit including gameplay geometry reported 714,291 LOD0 triangles, zero missing scripts, RTX 4050 | `Logs/upgrade-buildscenes.log`, `Logs/upgrade-city-photo.log`, `Logs/photos/02_market_st.png` |
+| RTX Blender footage | Both 72-frame, 3-second 720p/24fps VP8 clips rendered using RTX 4050 OptiX with CPU rendering disabled; atomically encoded and fully decoded by ffmpeg; probe images reviewed | `ArtSource/Cinematics/*.render.json`, `Logs/blender-film-*-render.log`, `Logs/cinematic-films/*/probe.png` |
+| Linux pre-identity candidate | PASS: 968 MB, 0 errors / 0 warnings; explicit-LOD reflection sampling rebuilt for GL/Vulkan without the original gradient warnings | `Logs/upgrade-linux-verified.log`, `Logs/upgrade-linux-final.log`, commit `5fc21fa` |
+| Actual-player media | PASS 2/2 on OpenGLCore and 2/2 on Vulkan: both VP8 clips advance at timeScale 0 and produce populated image readbacks | `Logs/standalone-0.4/films-final.txt`, `Logs/standalone-0.4/films-vulkan.txt`, associated PNGs/player logs |
+| Actual-player shortcut regression | PASS 14/14 queued-keyboard cases, exit 0; performed before the benchmark walker and identity updates. This is not physical key validation. | `Logs/standalone-0.4/shortcut.txt`, `Logs/standalone-0.4/shortcut-player.log` |
+| Benchmark travel-budget correction | Complete paths required; travel budgets derive from path length rather than a 35-second cap; original waypoint coordinates retained. Subsequent full campaign and complete native-route runs passed. | commit `846643b`, campaign and benchmark reports below |
+| Full standalone campaign, OpenGLCore | PASS 18/18, exit 0, on the pre-identity runtime: all three routes, both post-lake branches, checkpoint recovery and all-host ferry safeguards | `Logs/standalone-0.4/campaign-final.txt`, `Logs/standalone-0.4/campaign-final-player.log` |
+| Full standalone campaign, Vulkan | PASS 18/18, exit 0, on the same pre-identity runtime | `Logs/standalone-0.4/campaign-vulkan.txt`, `Logs/standalone-0.4/campaign-vulkan-player.log` |
+
+Earlier unsuccessful attempts remain recorded: `upgrade-editmode.xml` was 52/53 before its traffic fixture correction;
+`upgrade-art-rules.xml` was 72/75 before cleaning degenerate export faces; `upgrade-films-graphics.xml` was 4/5 before
+correcting an asynchronous image-test race. Later successful runs supersede these attempts, without changing their records.
+The initial continuation run failed while footage was still missing; `afterlake-logic2` reran successfully with the Null-device
+film guard and validates gameplay logic only. The early `upgrade-campaign-logic.log` run passed scenarios 01–06 then the Editor
+exited 139 during Route B, with no final XML. OS apport confirms SIGSEGV; its initiating cause remains unproven. The later frozen
+GPU suite and both full standalone API runs completed, so that incomplete run is not represented as a pass.
+
+Feature/source history includes traffic `0cf6edf`, Blender sets `910a2b1`, post-lake missions `acced2a`, stealth `4c4b757`,
+reflection sampling `5fc21fa`, benchmark route budgets `846643b`, NVIDIA Vulkan launch/package support `5abc7f1`, full Blender
+film sources `4cee67d`, and character identity `229d665`. Compiler failure propagation is fixed in `e3f8175`; a malformed-source
+fixture returned exit 1 and the real runtime/editor/test sources compile. Full Blender scene sources are authoring artifacts;
+the packaged clips are the short rendered inserts measured above.
+
+## Native RTX 4050 performance — pre-identity runtime
+
+These completed measurements belong to source `846643b` and the historical DLL hash above, not to the rebuilt identity
+candidate. Hardware: RTX 4050 Laptop GPU, NVIDIA 595.99.02, i5-12500H, 16 GB RAM, balanced platform profile. The native desktop
+is 1920x1200 at 143.89 Hz; each accepted benchmark client was 1920x1080 borderless, normal graphical player, vSync 0, uncapped,
+with live NPCs/traffic. Startup and screenshot encoding are excluded from frame samples. Whole-GPU telemetry also includes
+the desktop baseline, startup and captures.
+
+| District | Vulkan preset | Average FPS | p99 frame ms | Route complete |
+|---|---|---:|---:|---|
+| City | High | 174.7 | 11.80 | 5/5 |
+| City | Ultra | 110.9 | 13.60 | 5/5 |
+| Riverside | High | 218.9 | 12.48 | 7/7 |
+| Riverside | Ultra | 143.2 | 11.57 | 7/7 |
+
+The same exact 1080p city High route on OpenGL averaged 138.5 FPS with p99 12.36 ms. Vulkan High was 26.1% faster in these runs.
+Ultra uses 125% render scale and 4x MSAA. These are sampled routes, not a constant FPS guarantee for every view or machine.
+Commands, timings, complete route plans, raw telemetry and artifact hashes are retained in
+`Logs/benchmarks/0.4-native-glcore-1080p` and `Logs/benchmarks/0.4-native-vulkan-exact1080p`.
+
+The Xvfb/private-display baseline completed its routes but produced only 24–27 FPS on both APIs because of its presentation
+path. Those diagnostic values are not native desktop performance claims. The first native Vulkan exploration rendered a
+1920x1042 decorated client; it was correctly rejected against requested 1080p and is excluded from the accepted table.
 
 ---
 

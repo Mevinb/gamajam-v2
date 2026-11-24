@@ -11,7 +11,8 @@ The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Ne
 - Blender: `~/Data/Blender/current/blender` (not on PATH). Existing pipelines live in `Tools/blender/`.
 - Linux x86-64 remains the target. The user selected RTX-rendered Blender cinematics plus improved real-time shaders.
 - GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. There were 26 GB free on 25 Nov.
-- Launch the built Linux player using `./play.sh`; it sources `Tools/display.sh` to select NVIDIA offload.
+- Launch the built Linux player using `./play.sh`; it selects NVIDIA offload and prefers Vulkan on NVIDIA systems.
+  Use `PARASITE_GRAPHICS_API=glcore ./play.sh` for OpenGL; explicit Unity API flags take priority.
 
 ```bash
 Tools/compile_check.sh all
