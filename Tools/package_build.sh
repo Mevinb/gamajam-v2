@@ -19,9 +19,15 @@ release_dir="$project_dir/Builds/Releases"
 for file in "$build_dir/$executable" "$build_dir/$player_library" \
   "$project_dir/Docs/RELEASE_README.md" "$project_dir/Docs/CONTROLS.md" \
   "$project_dir/Docs/KNOWN_ISSUES.md" "$project_dir/Docs/THIRD_PARTY_ASSETS.md" \
-  "$project_dir/Docs/TEST_REPORT.md" \
+  "$project_dir/Docs/AFTERLAKE_GUIDE.md" \
+  "$project_dir/Docs/COMPLETE_GAME_GUIDE.md" "$project_dir/Docs/HANDOFF.md" \
+  "$project_dir/Docs/UPGRADE_TRACKER.md" "$project_dir/Docs/TEST_REPORT.md" \
+  "$project_dir/Tools/package_docs.py" \
   "$project_dir/Assets/Parasite/Resources/UI/OFL-Rajdhani.txt" \
-  "$project_dir/Assets/Parasite/Audio/KENNEY_LICENSE.txt"; do
+  "$project_dir/Assets/Parasite/Audio/KENNEY_LICENSE.txt" \
+  "$project_dir/Assets/Parasite/Audio/AUDIO_CREDITS.txt" \
+  "$project_dir/Assets/Parasite/Art/Characters/CREDITS.md" \
+  "$project_dir/Assets/Parasite/Art/Characters/Animations/CREDITS.md"; do
   if [[ ! -s "$file" ]]; then
     echo "Missing or empty package input: $file" >&2
     exit 1
@@ -32,34 +38,28 @@ if [[ ! -s "$build_dir/Parasite_Data/globalgamemanagers" ]]; then
   exit 1
 fi
 if [[ "$platform" == linux ]]; then
+  if [[ ! -s "$build_dir/BUILD_INFO.json" ]]; then
+    echo "Missing build provenance: $build_dir/BUILD_INFO.json" >&2
+    exit 1
+  fi
+  if [[ ! -s "$project_dir/play.sh" ]]; then
+    echo "Missing portable launcher source: $project_dir/play.sh" >&2
+    exit 1
+  fi
   command -v tar >/dev/null
   command -v gzip >/dev/null
 else
   command -v zip >/dev/null
 fi
+command -v sha256sum >/dev/null
+command -v python3 >/dev/null
 
 # Call only after the target's build has finished and TEST_REPORT reflects its actual validation.
-mkdir -p "$build_dir/Licenses" "$release_dir"
-cp "$project_dir/Docs/RELEASE_README.md" "$build_dir/README.md"
-for doc in CONTROLS KNOWN_ISSUES THIRD_PARTY_ASSETS TEST_REPORT; do
-  cp "$project_dir/Docs/$doc.md" "$build_dir/$doc.md"
-done
-if [[ -s "$project_dir/Docs/COMPLETE_GAME_GUIDE.md" ]]; then
-  cp "$project_dir/Docs/COMPLETE_GAME_GUIDE.md" "$build_dir/COMPLETE_GAME_GUIDE.md"
-  if [[ -d "$project_dir/Docs/Screenshots/guide" ]]; then
-    mkdir -p "$build_dir/Screenshots"
-    cp -R "$project_dir/Docs/Screenshots/guide" "$build_dir/Screenshots/"
-  fi
-fi
-cp "$project_dir/Assets/Parasite/Resources/UI/OFL-Rajdhani.txt" "$build_dir/Licenses/"
-cp "$project_dir/Assets/Parasite/Audio/KENNEY_LICENSE.txt" "$build_dir/Licenses/"
+mkdir -p "$release_dir"
+python3 "$project_dir/Tools/package_docs.py" "$project_dir" "$build_dir"
 if [[ "$platform" == linux ]]; then
-  cat > "$build_dir/play.sh" <<'LAUNCHER'
-#!/usr/bin/env bash
-set -euo pipefail
-cd "$(dirname "$0")"
-exec ./Parasite.x86_64 "$@"
-LAUNCHER
+  # The same self-contained launcher runs from the project root and an extracted build.
+  cp "$project_dir/play.sh" "$build_dir/play.sh"
   chmod +x "$build_dir/play.sh" "$build_dir/Parasite.x86_64"
 fi
 
@@ -84,5 +84,11 @@ else
   zip -T "$temp_dir/$archive_name" >/dev/null
 fi
 mv -f -- "$temp_dir/$archive_name" "$release_dir/$archive_name"
+(
+  cd "$release_dir"
+  sha256sum "$archive_name" > "$temp_dir/$archive_name.sha256"
+)
+mv -f -- "$temp_dir/$archive_name.sha256" "$release_dir/$archive_name.sha256"
 echo "Package: $release_dir/$archive_name"
+echo "Checksum: $release_dir/$archive_name.sha256"
 echo "Bytes: $(wc -c < "$release_dir/$archive_name")"
