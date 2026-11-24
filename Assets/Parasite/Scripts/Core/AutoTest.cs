@@ -442,7 +442,10 @@ namespace Parasite.Testing
                 GameInput.SimMove = new Vector2(dir.x, dir.z);
                 GameInput.SimSprint = true;
                 Cam.SetYaw(0f);
-                if ((pos - lastPos).magnitude < 0.02f) { stuckT += Time.deltaTime; if (stuckT > 0.8f) { GameInput.SimJump = true; stuckT = 0f; } }
+                // Measure planar metres per simulated second: an uncapped high frame rate is not a stall.
+                float progressSpeed = Time.deltaTime > 0f ? Flat(pos - lastPos).magnitude / Time.deltaTime : 0f;
+                if (Time.deltaTime > 0f && progressSpeed < 0.15f)
+                { stuckT += Time.deltaTime; if (stuckT > 0.8f) { GameInput.SimJump = true; stuckT = 0f; } }
                 else { stuckT = 0f; GameInput.SimJump = false; }
                 lastPos = pos;
                 t += Time.deltaTime;
@@ -1855,7 +1858,36 @@ namespace Parasite.Testing
             {
                 bool reached = false;
                 int firstFrame = frameTimes.Count;
-                var walk = WalkTo(wp, 35f, r => reached = r);
+                if (!PM || PM.ActiveBody == null)
+                { interrupted = true; Write("ERROR: gameplay lost the touring body; samples are incomplete"); break; }
+                var touristBody = PM.ActiveBody;
+                var plannedPath = new NavMeshPath();
+                bool sampledStart = NavMesh.SamplePosition(touristBody.Root.position, out var pathStart, 3f, NavMesh.AllAreas);
+                bool sampledTarget = NavMesh.SamplePosition(wp, out var pathTarget, 3f, NavMesh.AllAreas);
+                bool calculated = sampledStart && sampledTarget && NavMesh.CalculatePath(pathStart.position, pathTarget.position, NavMesh.AllAreas, plannedPath);
+                string pathStatus = calculated ? plannedPath.status.ToString() : "not calculated";
+                float targetPlanarOffset = sampledTarget ? Flat(pathTarget.position - wp).magnitude : float.PositiveInfinity;
+                // Keep the original waypoint. A proxy outside the arrival tolerance is not route coverage.
+                if (!calculated || plannedPath.status != NavMeshPathStatus.PathComplete || targetPlanarOffset > 0.9f)
+                {
+                    Write($"Waypoint {shot}: PATH FAILED {wp}; body {touristBody.Root.position}; sampled start={sampledStart}, target={sampledTarget}; path={pathStatus}; target planar offset={targetPlanarOffset:0.00}m");
+                    Write("ERROR: route INCOMPLETE — benchmark requires a complete path to the original waypoint; no target was moved or skipped.");
+                    break;
+                }
+                float sprintSpeed = touristBody is HostCharacter human ? human.Profile.runSpeed :
+                    touristBody is AmoebaController blob ? blob.sprintSpeed : 0f;
+                if (sprintSpeed <= 0f || float.IsNaN(sprintSpeed) || float.IsInfinity(sprintSpeed))
+                {
+                    Write($"ERROR: route INCOMPLETE — touring body's sprint speed {sprintSpeed} cannot define a travel budget.");
+                    break;
+                }
+                float pathLength = 0f;
+                var plannedCorners = plannedPath.corners;
+                for (int point = 1; point < plannedCorners.Length; point++)
+                    pathLength += Vector3.Distance(plannedCorners[point - 1], plannedCorners[point]);
+                float travelBudget = Mathf.Max(35f, pathLength / sprintSpeed * 1.5f + 10f);
+                Write($"Waypoint {shot} plan: {pathStatus}, {pathLength:0.00}m at {sprintSpeed:0.00}m/s, budget {travelBudget:0.0}s; original target {wp}; target planar offset {targetPlanarOffset:0.00}m");
+                var walk = WalkTo(wp, travelBudget, r => reached = r);
                 while (true)
                 {
                     if (CityDirector.Instance != tourDirector || !PM || PM.ActiveBody == null ||
