@@ -40,3 +40,14 @@ Primary references: [Unity render-pipeline feature comparison](https://docs.unit
 
 `TEST_REPORT.md` records completed verification. `KNOWN_ISSUES.md` records remaining limits. `HANDOFF.md` describes the
 architecture and supported commands. Build output and captures remain ignored in `Builds/` and `Logs/`.
+
+## Current delivery boundary
+
+The 0.4candidate now has 84 passing rule/asset cases and a complete 17-method GPU PlayMode pass including 18 shared campaign
+scenarios. The final ferry ownership safeguard additionally passed both branch scenarios. The Linux rebuild and actual-player
+media/gameplay/performance checks remain in progress. These are current evidence gates, not proof the open-ended goal is complete.
+
+The currently integrated RTX films are two three-second establishing inserts. Full-length Blender story scenes are being
+authored separately under `Tools/blender/cinematics/full_story` and `ArtSource/FullCinematics`: the 80-second opening with
+all eleven beats, full lake arrival, neutral choice hold, and separate explicit Peace/Dominion resolutions. Long RTX renders
+will begin only after the current player verification/benchmark phase releases the GPU. The full cinematic objective remains active.

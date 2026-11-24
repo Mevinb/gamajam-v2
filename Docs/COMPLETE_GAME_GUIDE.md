@@ -127,6 +127,15 @@ The current upgrade also adds RTX/OptiX path-traced Blender film inserts. Real-t
 reflections and probes; this is distinct from hardware ray tracing. See the current test report for actual footage/player-decode
 verification, and the handoff for rebuild instructions.
 
+![Blender-authored laboratory rendered in Unity](Screenshots/upgrade/01-blender-laboratory.png)
+
+![The corrected, illuminated service conduit](Screenshots/upgrade/02-blender-conduit.png)
+
+![RTX-rendered lake arrival playing beneath Unity story captions](Screenshots/upgrade/03-rtx-lake-arrival.png)
+
+These are real Editor/GPU verification captures. The lake image shows the decoded Blender film; the laboratory and conduit
+show the authored game sets. They are not a claim of an extended human playthrough or final-player benchmark.
+
 ## Verification and credits
 
 [TEST_REPORT.md](TEST_REPORT.md) names exact tested artifacts, suites and remaining checks. Automated scenarios use simulated

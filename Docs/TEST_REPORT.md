@@ -10,16 +10,24 @@ records are preserved as historical evidence, not reused to certify changed sour
 | Corrected expanded EditMode | PASS 53/53, including traffic frame-hitch/stop-line safety and continuation state rules | `Logs/upgrade-editmode-fix.xml` |
 | Shared continuation logic, no graphics | PASS both Peace and Dominion flows; actual choice/Continue buttons, E targeting, timed work, pursuit cancellation, checkpoint reload/rearm, navigation reachability and ferry extraction | `Logs/afterlake-logic2.xml`, `Logs/afterlake-logic2.log` |
 | Expanded asset/stealth rules | PASS 63/63, including Blender PBR/scale, permanent CCTV outages, live-cover capture checks and ejection-grace body discovery | `Logs/upgrade-stealth-rules.xml` |
-| Full shared campaign logic | Running all 18 scenarios without graphics; final render/player validation remains separate | `Logs/upgrade-campaign-logic.log` |
+| Full shared campaign logic, no graphics | Incomplete: scenarios01–06 PASS, then Editor exited139 during RouteB. No final XML; this is not a full-suite pass. OS apport confirms SIGSEGV; initiating cause remains unproven. | `Logs/upgrade-campaign-logic.log` |
 | RTX Blender probes | OptiX on NVIDIA RTX 4050, CPU rendering disabled; opening and revised sunset-lake frames rendered and visually reviewed | `Logs/cinematic-films/*/probe.png`, Blender render logs |
-| Full path-traced film renders | Running; encoded footage and final-player decode not yet verified | live Blender render session, `Logs/blender-film-*-render.log` |
-| Integrated graphics/cinematic PlayMode, generated scenes, Linux build, full player acceptance and benchmark | Pending current upgrade integration | Do not apply the old release results below to these changes |
+| Full path-traced film renders | PASS: both 72-frame, 3-second 720p/24fps VP8 clips rendered with RTX 4050 OptiX, atomically encoded and fully decoded by ffmpeg; final-player decode is a separate gate | `ArtSource/Cinematics/*.render.json`, `Logs/blender-film-*-render.log` |
+| First GPU film/graphics focus |4/5 PASS: real lake-arrival composition and three graphics-policy cases pass. Decoder-image test hit an async fixture-update race; its real-tick fix is being rerun. | `Logs/upgrade-films-graphics.xml`, `Logs/ui/05a-lakeside-rtx-arrival.png` |
+| First riverside import rules |72/75 PASS; three triangle-count mismatches exposed collapsed bevel/near-collinear export faces. Cleaning source geometry and rerunning, with existing bounds/maps passing. | `Logs/upgrade-art-rules.xml` |
+| Corrected imported assets/rules | PASS 84/84, including cleaned FBX geometry, physical texture density, owned mesh disposal and asymmetric front/back anchors | `Logs/upgrade-frozen-rules-final.xml` |
+| Full GPU PlayMode before final ferry safeguard | PASS 17/17, including all 18 shared campaign scenarios; complete test order checked against source, no native exit in the frozen private-display run | `Logs/playmode-results.xml`, `Logs/playmode.log`, `Logs/upgrade-full-playmode-signals.log` |
+| Final ferry-host safeguard | PASS 2/2 Peace/Dominion continuations after requiring all hosts released, rejecting direct-call/transit bypasses and checking cleared ownership links | `Logs/upgrade-ferry-host-release.xml` |
+| Generated scenes | PASS: CityBuilder regenerated Bootstrap/City and environment/reflections;594,213 city LOD0 triangles | `Logs/upgrade-buildscenes.log` |
+| City shader/serialization audit | PASS: regenerated city render reviewed; zero missing scripts, NVIDIA RTX 4050, 714,291 LOD0 triangles | `Logs/upgrade-city-photo.log`, `Logs/photos/02_market_st.png` |
+| Linux build | Running from committed runtime/art source 5da30056a2b323d0038b47112d8ba04df51b9c96; new graphics shader variants compiling | `Logs/upgrade-linux.log` |
+| Full player acceptance, media decode and benchmark | Pending the current Linux rebuild | Do not apply historical release results below to this artifact |
 
 The first continuation run used source before the headless film guard landed and failed on missing in-progress footage;
 `afterlake-logic2` is the successful rerun with Null-device bypass. This validates gameplay logic only, not video decode,
-image quality, physical controls or performance. More asset/stealth regression cases are being run separately.
+image quality, physical controls or performance. Later asset and scene checks supersede these earlier partial runs. The stable imported-asset/rules run is 84/84. The full GPU suite finished 17/17 with 18/18 campaign scenarios. The final ferry safeguard then passed both updated branch scenarios. Final-player coverage remains pending the new build.
 
-Pushed feature commits: traffic `0cf6edf`, Blender set assets `910a2b1`, post-lake missions `acced2a`, stealth corrections `4c4b757`. Graphics and film integration are still being verified; the final Linux player has not yet been rebuilt for this upgrade.
+Pushed feature commits: traffic `0cf6edf`, Blender set assets `910a2b1`, post-lake missions `acced2a`, stealth corrections `4c4b757`. Graphics and film integration are still being verified; the final Linux player has not yet been rebuilt for this upgrade. Compiler failure propagation is fixed and pushed in `e3f8175`; an isolated malformed-source fixture correctly returned exit 1, and the real test sources compile.
 
 ---
 

@@ -18,6 +18,9 @@ all bugs are fixed or every new cinematic has been verified in the final player.
   camera distance. Preset LOD bias only affects assets supporting runtime LODs.
 - Automated tests use queued keyboard/simulated movement. They do not establish physical keyboard/gamepad behavior, an extended
   human playthrough, or constant frame rate in all camera views.
+- Two long Editor verification attempts exited natively with SIGSEGV and no final XML. The subsequent complete run passed all seventeen PlayMode tests
+  and eighteen campaign scenarios with source/art writes frozen on a private NVIDIA-backed display. The initiating cause
+  of the earlier exits remains unproven; no claim is made that a specific native engine defect was repaired.
 - Campaign checkpoints survive scene reloads within the current process. There is no persistent on-disk campaign-save claim.
 - Historical benchmark numbers describe their original build and route. A fresh measured result must include resolution, preset,
   render scale, route coverage and frame-time percentiles; a successful build alone is not a performance result.

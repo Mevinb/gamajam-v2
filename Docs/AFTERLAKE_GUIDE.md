@@ -39,7 +39,9 @@ takes ten seconds and must remain free of pursuit. The radio cordon is guarded, 
 Peace sends an anonymous relief call and the antidote formula. Dominion seeds a neural relay. Completing the transmission
 creates another checkpoint. A cancelled attempt can be rearmed and retried without replaying earlier completed objectives.
 
-Go to the south ferry waypoint. **Q** leaves a borrowed body; only the free amoeba can use the ferry intake with **E**.
+Go to the south ferry waypoint. Release every borrowed host before leaving: **Q** frees the active body, then **Tab** and
+**Q** free any other occupied host. Switch back to the free amoeba at the ferry and use its intake with **E**. A pending
+possession leap must also finish before departure.
 The final chapter summary reflects the original chosen future. The old presentation shortcut does not replay the lake from here.
 
 ## Quick recovery checks
@@ -48,6 +50,7 @@ The final chapter summary reflects the original chosen future. The old presentat
 - Console refuses: inspect its prompt for profession, prerequisite, range, pursuit or paired-host requirements.
 - Paired work cancels: leave the supporting host in range and use a different amoeba and host for the working terminal.
 - After a checkpoint reload: completed flags remain; find new hosts and rearm transient supporting controls.
-- Ferry refuses: finish the radio transmission, eject with Q, then target the intake at the front of the ferry deck.
+- Ferry refuses: finish the radio transmission, release all hosts with Tab/Q, lose pursuit, then use the gangway to reach
+  the intake at the front of the ferry deck. The prompt identifies any remaining occupied host or pending leap.
 
 For current verification and remaining limits, see [TEST_REPORT.md](TEST_REPORT.md) and [KNOWN_ISSUES.md](KNOWN_ISSUES.md).

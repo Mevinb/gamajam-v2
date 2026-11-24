@@ -96,12 +96,12 @@ Licence text: `Assets/Parasite/Audio/KENNEY_LICENSE.txt`.
 
 ### Character Models & Clothing (MPFB / MakeHuman Community)
 Character base models and clothing assets generated with MPFB 2.0.18 (MakeHuman Plugin for Blender, GPL-3.0) and CC0 / CC-BY MakeHuman Community asset packs (Elvaerwyn, Mindfront, MargaretToigo, punkduck, makehuman_system, etc.).
-See full itemized attribution table in [Art/Characters/CREDITS.md](file:///home/mevlec/Data/Parasite/Assets/Parasite/Art/Characters/CREDITS.md).
+See full itemized attribution table in [Art/Characters/CREDITS.md](../Assets/Parasite/Art/Characters/CREDITS.md).
 
 ### Humanoid Animations
 - **Universal Animation Library [Standard] & UAL 2** — Quaternius (with Gonzalo Furnier), CC0 1.0. https://quaternius.itch.io/universal-animation-library
 - **CMU Graphics Lab Motion Capture Database** (subject 07 trial 12 brisk walk) — Carnegie Mellon University, http://mocap.cs.cmu.edu/ (free for commercial and non-commercial products).
-See full animation details in [Art/Characters/Animations/CREDITS.md](file:///home/mevlec/Data/Parasite/Assets/Parasite/Art/Characters/Animations/CREDITS.md).
+See full animation details in [Art/Characters/Animations/CREDITS.md](../Assets/Parasite/Art/Characters/Animations/CREDITS.md).
 
 ### Foliage & Skybox Upgrade
 | Asset | Author(s) | Source URL | License | Local path | Used for |

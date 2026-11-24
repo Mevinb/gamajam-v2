@@ -11,6 +11,10 @@ The current **0.4.0 upgrade is being verified**. It includes Blender-authored ci
 revised shots, graphics fixes and the post-lake chapter. Follow [the upgrade tracker](Docs/UPGRADE_TRACKER.md) for the full
 active scope and [the test report](Docs/TEST_REPORT.md) for completed artifact-specific checks.
 
+![Current regenerated Market Street environment](Docs/Screenshots/upgrade/00-market-street.png)
+
+*Unity environment capture; runtime gameplay adds NPCs and the playable amoeba.*
+
 ## Play on Linux
 
 ```bash

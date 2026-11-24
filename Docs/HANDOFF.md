@@ -22,7 +22,8 @@ grep -E '\[AutoTest\] (PASS|FAIL)' Logs/playmode.log
 Tools/unity.sh photos -executeMethod Parasite.EditorTools.PhotoTool.CaptureBatch
 Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux
 ./play.sh -autotest -autotestOut /tmp/parasite-acceptance.txt
-./play.sh -benchmark -autotestOut /tmp/parasite-benchmark.txt
+./play.sh -benchmark -benchmarkPreset High -benchmarkDistrict city -autotestOut /tmp/parasite-benchmark.txt
+./play.sh -benchmark -benchmarkPreset Ultra -benchmarkDistrict riverside -autotestOut /tmp/parasite-riverside-benchmark.txt
 Tools/package_build.sh linux
 ```
 
@@ -105,6 +106,12 @@ checks do not establish a native physical keyboard or physical gamepad pass. Do 
 - `Tools/blender/environment/`: tree meshes, bark and leaf atlases, HDR environment assets.
 - `Tools/blender/cinematics/build_sets.sh`: deterministic original laboratory, conduit, bench and shoreline sets.
   Editable sources: `ArtSource/Cinematics`; runtime exports/textures: `Resources/Cinematics`; importer: `CinematicArtImporter`.
+- `Tools/blender/cinematics/build_films.sh`: two RTX/OptiX establishing inserts, three seconds each; packed film scenes and
+  derived device/codec/SHA evidence in `ArtSource/Cinematics`. Verify built-player decode with `-cinematicTestOut <absolute-path>`.
+- `Tools/blender/riverside/build_props.sh`: eight original ferry/clinic/radio/floodgate/bank assemblies; editable source and
+  CPU export verification in `ArtSource/Riverside`, game assets in `Resources/Riverside`.
+- Asset generation must finish before a frozen Unity test run. Publish verified FBX/PNG/video files atomically from staging.
+  Blender-to-Unity export needs the verified handedness conversion; size-only bounds checks miss front/back reflection.
 - Consult `Docs/THIRD_PARTY_ASSETS.md` for external licences; keep source provenance alongside new assets.
 
 ## Verification and remaining work
