@@ -67,6 +67,9 @@ Shader "Parasite/Atmosphere"
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
                 float2 uv = input.texcoord;
                 half4 col = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, uv);
+                // Historical and lakeside film sets are isolated far below the city and supply their own atmosphere.
+                // Applying street-level exponential fog there washes out the set and even the camera-rendered mattes.
+                if (_WorldSpaceCameraPos.y < _BaseHeight - 100.0) return col;
                 float raw = SampleSceneDepth(uv);
                 #if UNITY_REVERSED_Z
                     bool sky = raw < 1e-6;

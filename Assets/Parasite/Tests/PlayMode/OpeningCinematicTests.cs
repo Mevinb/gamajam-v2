@@ -101,7 +101,11 @@ namespace Parasite.Tests
             var opening = OpeningCinematic.Instance;
             int realNpcs = HostCharacter.All.Count;
             Assert.That(realNpcs, Is.GreaterThan(0));
-            Assert.That(Object.FindObjectsByType<HumanoidRig>(FindObjectsSortMode.None).Length, Is.GreaterThan(realNpcs), "Historical rigs are visual stand-ins, not gameplay hosts.");
+            // Macro shots deliberately hide actors that could cross the lens; they still belong to the authored set.
+            var historicalActors = opening.GetComponentsInChildren<HumanoidRig>(true);
+            Assert.That(historicalActors.Length, Is.EqualTo(3), "Petrov, Vale and the worker remain authored visual stand-ins.");
+            foreach (var actor in historicalActors)
+                Assert.IsNull(actor.GetComponentInParent<HostCharacter>(), "Historical actors never register as possessable gameplay hosts.");
             // Render each scheduled shot through the same real-camera path as the settings UI QA.
             float[] shotStarts = { 0f, 5f, 12f, 19f, 26f, 34f, 43f, 51f, 59f, 67f, 75f, OpeningCinematic.Duration };
             string[] shotNames = { "subject", "petrov", "recognition", "vale", "two-bodies", "contact", "restraint", "release", "service-conduit", "storm-drain", "handoff" };

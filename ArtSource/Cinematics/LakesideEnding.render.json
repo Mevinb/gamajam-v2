@@ -1,0 +1,37 @@
+{
+  "film": "LakesideEnding",
+  "renderer": "Blender Cycles",
+  "enabled_render_devices": [
+    {
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "backend": "OPTIX"
+    }
+  ],
+  "samples": 32,
+  "adaptive_threshold": 0.04,
+  "denoising": true,
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "vp8",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_read_frames": "72"
+      }
+    ],
+    "format": {
+      "duration": "3.000000",
+      "size": "1111618"
+    }
+  },
+  "video_sha256": "af586fdd6e31745723fe3774856d039fb3db81bacd0600007a4a82d6baa75c17",
+  "editable_source": "ArtSource/Cinematics/EndingFilm.blend",
+  "source_sha256": "a4ba739c264018d559532290b8993d3b981a0b6331a4564a437e087bd1a70e56",
+  "render_log": "Logs/blender-film-ending-render.log",
+  "render_log_sha256": "2926a9e91aadbac2cf742cb63d90461c18ca0be65cdf2296b31ff18bee48e42a",
+  "source_frame_1_sha256": "e8814aeb99cd7584e9e1bf254c9909a84585d19859880ec029474b4c75918ee0",
+  "source_frame_72_sha256": "d20fc1a5406623a8b9e8c8ae6e2d17044de54135abf566f5a7edc18fe62eb52a"
+}

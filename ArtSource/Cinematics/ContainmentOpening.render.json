@@ -1,0 +1,37 @@
+{
+  "film": "ContainmentOpening",
+  "renderer": "Blender Cycles",
+  "enabled_render_devices": [
+    {
+      "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "backend": "OPTIX"
+    }
+  ],
+  "samples": 32,
+  "adaptive_threshold": 0.04,
+  "denoising": true,
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "vp8",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_read_frames": "72"
+      }
+    ],
+    "format": {
+      "duration": "3.000000",
+      "size": "921754"
+    }
+  },
+  "video_sha256": "ca66e05b0be289067bdc4da9d6a62daab8e91557154c6da881aa83679578f7c2",
+  "editable_source": "ArtSource/Cinematics/OpeningFilm.blend",
+  "source_sha256": "c48682f7d9ecf5e915e08f87d8f3e5a3e44c3466780f0656b1e9d66403fd9fb5",
+  "render_log": "Logs/blender-film-opening-render.log",
+  "render_log_sha256": "918d4d8035be175c70d007b45551593b28364f525536d4725c122f7ea829b168",
+  "source_frame_1_sha256": "d435454aefb219ee4b1df72ff613b11a3be9987b3b7185dfeb089c819af5735c",
+  "source_frame_72_sha256": "dba66a518dc10b6155d9db92302d652caf7bb44fa59cd47d5745d81ebeac98e4"
+}

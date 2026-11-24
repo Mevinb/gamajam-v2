@@ -60,31 +60,16 @@ namespace Parasite.UI
             if (!shader) throw new System.InvalidOperationException("Lakeside water shader is missing from Resources/Shaders.");
             water = new Material(shader); materials.Add(water);
             Shape("Lake", PrimitiveType.Plane, new Vector3(0, -0.025f, 48), new Vector3(24, 1, 24), water);
-            var hill = Unlit(new Color(0.24f, 0.28f, 0.35f));
-            var farHill = Unlit(new Color(0.39f, 0.36f, 0.43f));
-            for (int i = 0; i < 7; i++)
-                Shape("Distant headland", PrimitiveType.Sphere, new Vector3(-70 + i * 25, -4f + (i % 3) * 0.4f, 93 + (i % 2) * 14), new Vector3(55, 13 + (i % 3) * 3, 26), i % 2 == 0 ? hill : farHill);
             Shape("Setting sun", PrimitiveType.Sphere, new Vector3(16, 4.7f, 70), new Vector3(5.2f, 5.2f, 3), Unlit(new Color(1f, 0.86f, 0.58f)));
-
-            var earth = Lit(new Color(0.22f, 0.21f, 0.17f), 0.12f);
-            Shape("Quiet shoreline", PrimitiveType.Cube, new Vector3(0, -0.24f, -10), new Vector3(50, 0.44f, 22), earth);
-            var stone = Lit(new Color(0.34f, 0.33f, 0.29f), 0.1f);
-            var reeds = Lit(new Color(0.31f, 0.30f, 0.19f), 0.05f);
-            for (int i = 0; i < 27; i++)
-            {
-                float x = -12 + i * 0.9f;
-                Shape("Shore pebble", PrimitiveType.Sphere, new Vector3(x, 0.015f, 0.8f + Mathf.Sin(i * 2.3f) * 0.3f), new Vector3(0.4f + (i % 3) * 0.2f, 0.12f, 0.28f), stone);
-                if (i > 10 && i < 17) continue;
-                var reed = Shape("Reed", PrimitiveType.Cylinder, new Vector3(x, 0.31f, 1.15f), new Vector3(0.025f, 0.31f + (i % 3) * 0.06f, 0.025f), reeds);
-                reed.transform.localRotation = Quaternion.Euler(7, 0, (i % 5 - 2) * 5);
-            }
+            CinematicArt.Instantiate("LakesideShore", root.transform, Layer, materials);
             BuildGirl();
             var warm = new GameObject("Sunset key light").AddComponent<Light>();
             warm.transform.SetParent(root.transform, false); warm.type = LightType.Directional;
-            warm.transform.rotation = Quaternion.Euler(28, -125, 0); warm.color = new Color(1f, 0.73f, 0.48f); warm.intensity = 2f; warm.cullingMask = 1 << Layer;
+            warm.transform.rotation = Quaternion.Euler(12, 195, 0); warm.color = new Color(1f, 0.74f, 0.48f); warm.intensity = 2.3f; warm.cullingMask = 1 << Layer;
+            warm.shadows = LightShadows.Soft; warm.shadowStrength = 0.82f; warm.shadowBias = 0.025f; warm.shadowNormalBias = 0.12f;
             var fill = new GameObject("Lake fill light").AddComponent<Light>();
             fill.transform.SetParent(root.transform, false); fill.type = LightType.Directional;
-            fill.transform.rotation = Quaternion.Euler(24, 45, 0); fill.color = new Color(0.65f, 0.72f, 1f); fill.intensity = 0.7f; fill.cullingMask = 1 << Layer;
+            fill.transform.rotation = Quaternion.Euler(24, 45, 0); fill.color = new Color(0.65f, 0.72f, 1f); fill.intensity = 0.48f; fill.cullingMask = 1 << Layer;
             var pulseMaterial = Unlit(new Color(0.38f, 1f, 0.58f));
             for (int i = 0; i < 11; i++)
             {
@@ -95,12 +80,9 @@ namespace Parasite.UI
 
         void BuildGirl()
         {
-            var wood = Lit(new Color(0.28f, 0.15f, 0.10f), 0.18f);
-            var bench = new GameObject("Lakeside bench").transform; bench.SetParent(root.transform, false);
+            var bench = CinematicArt.Instantiate("LakesideBench", root.transform, Layer, materials).transform;
+            bench.name = "Lakeside bench";
             bench.localPosition = new Vector3(-1.7f, 0, 0.05f); bench.localRotation = Quaternion.Euler(0, 15, 0);
-            LocalShape("Seat", PrimitiveType.Cube, bench, new Vector3(0, 0.46f, 0), new Vector3(1.6f, 0.12f, 0.48f), wood);
-            LocalShape("Back", PrimitiveType.Cube, bench, new Vector3(0, 0.85f, -0.23f), new Vector3(1.6f, 0.18f, 0.06f), wood);
-            foreach (float x in new[] { -0.57f, 0.57f }) LocalShape("Leg", PrimitiveType.Cube, bench, new Vector3(x, 0.23f, 0), new Vector3(0.08f, 0.46f, 0.3f), wood);
             var actor = new GameObject("SeatedGirl") { layer = Layer };
             actor.transform.SetParent(root.transform, false); actor.transform.localPosition = new Vector3(-1.7f, 0, 0.12f); actor.transform.localRotation = Quaternion.Euler(0, 15, 0);
             girl = actor.AddComponent<HumanoidRig>();
@@ -129,9 +111,12 @@ namespace Parasite.UI
         {
             if (Camera)
             {
-                float t = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 24f));
-                Camera.transform.localPosition = Vector3.Lerp(new Vector3(0.6f, 2f, -6f), new Vector3(0.35f, 1.9f, -5.65f), t);
-                Camera.transform.localRotation = Quaternion.LookRotation(new Vector3(3.1f, 1.15f, 18f) - Camera.transform.localPosition);
+                // Slow lateral dolly: bench left, jetty right, a clean horizon for the final decision.
+                float t = Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / 18f));
+                float widen = Mathf.SmoothStep(0, 1, intent);
+                Camera.transform.localPosition = Vector3.Lerp(new Vector3(2.7f, 1.9f, -7.2f), new Vector3(0.55f, 1.74f, -5.85f), t)
+                    + new Vector3(0f, widen * 0.9f, -widen * 1.25f);
+                Camera.transform.localRotation = Quaternion.LookRotation(new Vector3(2.3f, 1.05f, 20f) - Camera.transform.localPosition);
             }
             intent = Mathf.MoveTowards(intent, world ? 1f : 0f, Time.unscaledDeltaTime * 0.5f);
             if (water) { water.SetFloat("_QuietTime", age); water.SetFloat("_Intent", intent); }

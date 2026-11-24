@@ -4,7 +4,7 @@ Unity coordinates in this script are converted to Blender Z-up at construction.
 """
 import bpy, math, os, sys, random, json
 bpy.context.preferences.filepaths.save_version = 0
-from mathutils import Vector
+from mathutils import Vector, Matrix
 import numpy as np
 
 ARGS = sys.argv[sys.argv.index('--') + 1:]
@@ -12,6 +12,9 @@ OUT, SOURCE = map(os.path.abspath, ARGS[:2])
 os.makedirs(OUT, exist_ok=True)
 os.makedirs(SOURCE, exist_ok=True)
 TEX = os.path.join(OUT, 'Textures'); os.makedirs(TEX, exist_ok=True)
+PROJECT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+FINAL_SOURCE = os.path.join(PROJECT, 'ArtSource', 'Cinematics')
+FINAL_TEXTURES = os.path.join(PROJECT, 'Assets', 'Parasite', 'Resources', 'Cinematics', 'Textures')
 RNG = random.Random(70194)
 MATS = {}
 
@@ -74,7 +77,7 @@ def finish(obj,name,mat,bevel=0):
     obj.name=name; obj.data.materials.clear(); obj.data.materials.append(MATS[mat])
     bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
     if bevel:
-        mod=obj.modifiers.new('Machined edge radii','BEVEL'); mod.width=bevel; mod.segments=2
+        mod=obj.modifiers.new('Machined edge radii','BEVEL'); mod.width=min(bevel, min(obj.dimensions)*.4); mod.segments=2
         bpy.ops.object.modifier_apply(modifier=mod.name)
     for p in obj.data.polygons: p.use_smooth = len(p.vertices)<5 and name.startswith(('Pipe','Tank','Ring','Bolt','Rock','Reed','Cable','Bench'))
     return obj
@@ -127,9 +130,25 @@ def uv_and_join():
 
 def export(name):
     uv_and_join()
-    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SOURCE,name+'.blend'),compress=True)
+    # Portable paths resolve from the final source directory, never from the disposable staging folder.
+    for im in bpy.data.images:
+        if im.filepath:
+            im.filepath = bpy.path.relpath(os.path.join(FINAL_TEXTURES, os.path.basename(im.filepath)), start=FINAL_SOURCE)
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SOURCE,name+'.blend'),compress=True,relative_remap=False)
+    # Unity's FBX handedness conversion preserves X/Y but reverses this author's +Z convention.
+    # Reflect Blender world Y only at the export boundary (with face winding corrected).
+    # The saved .blend remains in its native film-authoring coordinates; packed movie scenes stay untouched.
+    reflection = Matrix.Diagonal((1.0, -1.0, 1.0, 1.0))
+    for ob in bpy.context.scene.objects:
+        if ob.type != 'MESH': continue
+        ob.data.transform(reflection @ ob.matrix_world)
+        ob.matrix_world = Matrix.Identity(4)
+        ob.data.flip_normals()
+        ob.data.update()
     bpy.ops.object.select_all(action='SELECT')
-    bpy.ops.export_scene.fbx(filepath=os.path.join(OUT,name+'.fbx'),use_selection=True,object_types={'MESH'},apply_unit_scale=True,apply_scale_options='FBX_SCALE_ALL',bake_space_transform=True,axis_forward='-Z',axis_up='Y',use_mesh_modifiers=True,add_leaf_bones=False,bake_anim=False,path_mode='STRIP')
+    temporary = os.path.join(SOURCE, '.' + name + '.export.fbx')
+    bpy.ops.export_scene.fbx(filepath=temporary,use_selection=True,object_types={'MESH'},apply_unit_scale=True,apply_scale_options='FBX_SCALE_ALL',bake_space_transform=True,axis_forward='-Z',axis_up='Y',use_mesh_modifiers=True,add_leaf_bones=False,bake_anim=False,path_mode='STRIP')
+    os.replace(temporary, os.path.join(OUT,name+'.fbx'))
     tris=sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH')
     print('[cinematics] EXPORTED',name,'triangles',tris,flush=True)
     return tris

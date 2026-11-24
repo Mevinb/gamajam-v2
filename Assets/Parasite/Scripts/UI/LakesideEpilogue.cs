@@ -21,6 +21,7 @@ namespace Parasite.UI
         Phase phase;
         float age, phaseAge;
         LakesideSet set;
+        CinematicFilm film;
         Canvas canvas, hudCanvas;
         bool oldHudEnabled, oldPlayerCameraEnabled;
         PlayerCamera playerCamera;
@@ -54,6 +55,7 @@ namespace Parasite.UI
             foreach (var state in audioSnapshot) state.source.mute = true;
             set = new LakesideSet(); set.Build();
             BuildUI(); BuildSound();
+            film = new CinematicFilm("LakesideEnding", canvas.transform);
             GameManager.SetCursorLocked(false);
             UIKit.Select(continueToChoice);
         }
@@ -146,7 +148,10 @@ namespace Parasite.UI
 
         void Update()
         {
-            float dt = Time.unscaledDeltaTime; age += dt; phaseAge += dt;
+            float dt = Time.unscaledDeltaTime;
+            if (phase == Phase.Arrival && film != null && !film.Ready) dt = 0f;
+            age += dt; phaseAge += dt;
+            film?.Tick(phase == Phase.Arrival ? age : CinematicFilm.Duration);
             if (set != null) set.Tick(age, ending.outcome == EndingOutcome.Dominion);
             if (shore) shore.volume = Sfx.Volume * Sfx.AmbienceVolume * 0.35f;
             var keyboard = Keyboard.current;
@@ -191,6 +196,7 @@ namespace Parasite.UI
 
         void OnDestroy()
         {
+            film?.Dispose(); film = null;
             if (set != null) set.Dispose();
             if (hudCanvas) hudCanvas.enabled = oldHudEnabled;
             if (playerCamera) playerCamera.enabled = oldPlayerCameraEnabled;

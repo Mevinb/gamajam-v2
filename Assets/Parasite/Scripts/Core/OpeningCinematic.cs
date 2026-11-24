@@ -38,6 +38,7 @@ namespace Parasite
         Transform stage, lab, duct, subject, lobeA, lobeB, latch;
         HumanoidRig petrov, vale, worker;
         Material statusMaterial;
+        CinematicFilm film;
         readonly List<Material> owned = new();
         bool oldPlayerEnabled, oldBrainEnabled, oldHudEnabled, oldInputLock;
         bool capturedState, cleaned, finishing, skipArmed;
@@ -137,6 +138,7 @@ namespace Parasite
                 cam.nearClipPlane = 0.025f; cam.farClipPlane = 80f;
                 cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(0.002f, 0.009f, 0.014f);
                 BuildOverlay(); BuildStage();
+                film = new CinematicFilm("ContainmentOpening", overlay.transform);
                 LastExitReason = ""; Running = true;
                 EvaluateShot();
             }
@@ -156,7 +158,7 @@ namespace Parasite
                 bool held = SkipHeld();
                 if (realElapsed > 0.25f && !held) skipArmed = true;
                 if (skipArmed && held) { StartCoroutine(Finish(true)); return; }
-                elapsed = Mathf.Min(Duration, elapsed + Time.unscaledDeltaTime * Mathf.Clamp(PlaybackSpeed, 0.05f, 80f));
+                elapsed = Mathf.Min(Duration, elapsed + (film == null || film.Ready ? Time.unscaledDeltaTime : 0f) * Mathf.Clamp(PlaybackSpeed, 0f, 80f));
                 EvaluateShot();
                 if (elapsed >= Duration) StartCoroutine(Finish(false));
             }
@@ -193,6 +195,7 @@ namespace Parasite
         {
             if (cleaned) return;
             cleaned = true; Running = false;
+            film?.Dispose(); film = null;
             if (stage) { stage.gameObject.SetActive(false); Destroy(stage.gameObject); }
             if (overlay) { overlay.gameObject.SetActive(false); Destroy(overlay.gameObject); }
             foreach (var m in owned) if (m) Destroy(m);
@@ -240,10 +243,10 @@ namespace Parasite
         void BuildOverlay()
         {
             overlay = UIKit.CreateCanvas("Opening Canvas", 100, transform);
-            var top = UIKit.Img(overlay.transform, "Top Letterbox", UIKit.White, new Color(0, 0, 0, 0.96f));
+            var top = UIKit.Img(overlay.transform, "Top Letterbox", UIKit.White, Color.black);
             top.rectTransform.anchorMin = new Vector2(0, 1); top.rectTransform.anchorMax = Vector2.one;
             top.rectTransform.pivot = new Vector2(0.5f, 1); top.rectTransform.sizeDelta = new Vector2(0, 112); top.rectTransform.anchoredPosition = Vector2.zero;
-            var bottom = UIKit.Img(overlay.transform, "Bottom Letterbox", UIKit.White, new Color(0, 0, 0, 0.96f));
+            var bottom = UIKit.Img(overlay.transform, "Bottom Letterbox", UIKit.White, Color.black);
             bottom.rectTransform.anchorMin = Vector2.zero; bottom.rectTransform.anchorMax = new Vector2(1, 0);
             bottom.rectTransform.pivot = new Vector2(0.5f, 0); bottom.rectTransform.sizeDelta = new Vector2(0, 112); bottom.rectTransform.anchoredPosition = Vector2.zero;
             location = UIKit.Txt(overlay.transform, "Chapter", "VALE BIOTECH  /  SUBJECT 07", 24, UIKit.Accent, TextAnchor.MiddleLeft, Weight.Semi);
@@ -287,16 +290,10 @@ namespace Parasite
         {
             stage = new GameObject("Opening Historical Set").transform; stage.SetParent(transform, false); stage.position = StageOrigin;
             lab = new GameObject("Historical Laboratory").transform; lab.SetParent(stage, false);
-            var wall = MatFactory.Lit(new Color(0.19f, 0.25f, 0.27f), 0.24f);
+            CinematicArt.Instantiate("ContainmentLaboratory", lab, 0, owned);
             var metal = MatFactory.Lit(new Color(0.08f, 0.12f, 0.14f), 0.65f, 0.7f);
-            Box(lab, "Floor", new Vector3(0, -0.18f, 0), new Vector3(12, 0.3f, 12), wall);
-            Box(lab, "Back Wall", new Vector3(0, 2.5f, 3f), new Vector3(12, 5, 0.2f), wall);
-            for (int i = -3; i <= 3; i++)
-                Box(lab, "Wall Panel", new Vector3(i * 1.3f, 2.5f, 2.86f), new Vector3(0.035f, 5, 0.03f), metal);
-            var glass = MatFactory.Transparent(new Color(0.25f, 0.6f, 0.64f, 0.08f));
-            Prim.Make(PrimitiveType.Cylinder, lab, new Vector3(0, 1.4f, 0), new Vector3(0.9f, 1.05f, 0.9f), glass, name: "Observation Glass");
-            Prim.Make(PrimitiveType.Cylinder, lab, new Vector3(0, 0.32f, 0), new Vector3(1.02f, 0.13f, 1.02f), metal, name: "Tank Base");
-            Prim.Make(PrimitiveType.Cylinder, lab, new Vector3(0, 2.5f, 0), new Vector3(1.02f, 0.1f, 1.02f), metal, name: "Tank Cap");
+            var glass = MatFactory.Transparent(new Color(0.25f, 0.6f, 0.64f, 0.055f));
+            Prim.Make(PrimitiveType.Cylinder, lab, new Vector3(0, 1.4f, 0), new Vector3(0.9f, 0.92f, 0.9f), glass, name: "Observation Glass");
             subject = VisualBlob("Historical Specimen 7", lab, new Vector3(0, 1.28f, 0), 0.2f);
             lobeA = VisualBlob("First Lobe", lab, new Vector3(-0.17f, 1.3f, 0), 0.15f);
             lobeB = VisualBlob("Second Lobe", lab, new Vector3(0.17f, 1.3f, 0), 0.15f);
@@ -309,14 +306,19 @@ namespace Parasite
             Box(lab, "Interlock Lamp", new Vector3(1.35f, 1.14f, -0.3f), new Vector3(0.22f, 0.14f, 0.04f), statusMaterial);
             latch = Box(lab, "Containment Latch", new Vector3(0, 0.65f, -0.49f), new Vector3(0.5f, 0.07f, 0.05f), metal);
             var lightGo = new GameObject("Lab Key Light"); lightGo.transform.SetParent(lab, false); lightGo.transform.localPosition = new Vector3(-1, 3.6f, -1.5f);
-            var light = lightGo.AddComponent<Light>(); light.type = LightType.Point; light.color = new Color(0.7f, 0.88f, 1f); light.intensity = 8f; light.range = 12f;
+            var light = lightGo.AddComponent<Light>(); light.type = LightType.Point; light.color = new Color(0.7f, 0.88f, 1f); light.intensity = 3.8f; light.range = 12f; light.shadows = LightShadows.Soft; light.shadowStrength = 0.75f;
             var rimGo = new GameObject("Green Rim Light"); rimGo.transform.SetParent(lab, false); rimGo.transform.localPosition = new Vector3(0, 2.4f, 1.4f);
-            var rim = rimGo.AddComponent<Light>(); rim.type = LightType.Point; rim.color = Palette.Amoeba; rim.intensity = 2f; rim.range = 5f;
+            var rim = rimGo.AddComponent<Light>(); rim.type = LightType.Point; rim.color = Palette.Amoeba; rim.intensity = 1.4f; rim.range = 5f;
             duct = new GameObject("Historical Service Pipe").transform; duct.SetParent(stage, false); duct.localPosition = new Vector3(0, -4f, 0);
-            Box(duct, "Pipe Floor", new Vector3(0, -0.35f, 5f), new Vector3(1.3f, 0.12f, 12f), metal);
-            Box(duct, "Pipe Ceiling", new Vector3(0, 0.5f, 5f), new Vector3(1.3f, 0.12f, 12f), metal);
-            Box(duct, "Pipe Left", new Vector3(-0.64f, 0.075f, 5f), new Vector3(0.12f, 0.85f, 12f), metal);
-            Box(duct, "Pipe Right", new Vector3(0.64f, 0.075f, 5f), new Vector3(0.12f, 0.85f, 12f), metal);
+            CinematicArt.Instantiate("ServiceConduit", duct, 0, owned);
+            // Lab lights turn off with the historical room; recessed duct fixtures light the escape shot independently.
+            for (int i = 0; i < 4; i++)
+            {
+                var fixture = new GameObject("Service conduit guide light " + (i + 1));
+                fixture.transform.SetParent(duct, false); fixture.transform.localPosition = new Vector3(0.43f, 0.26f, i * 3f);
+                var guide = fixture.AddComponent<Light>(); guide.type = LightType.Point;
+                guide.color = new Color(1f, 0.65f, 0.31f); guide.intensity = 0.65f; guide.range = 3.4f;
+            }
             VisualBlob("Escaping Culture", duct, new Vector3(0, -0.25f, 5f), 0.18f);
         }
 
@@ -328,6 +330,7 @@ namespace Parasite
 
         void EvaluateShot()
         {
+            film?.Tick(elapsed, PlaybackSpeed);
             int index = 0;
             while (index < ShotStarts.Length - 2 && elapsed >= ShotStarts[index + 1]) index++;
             bool changed = index != shot;
@@ -337,10 +340,14 @@ namespace Parasite
             // Temporary scene gain only: saved preferences/master gain are never changed.
             Sfx.AmbienceVolume = oldAmbienceGain * Mathf.Lerp(0.12f, 1f, Mathf.Clamp01((elapsed - 67f) / 8f));
             lab.gameObject.SetActive(shot < 8); duct.gameObject.SetActive(shot == 8);
+            // The macro specimen shots exclude actors: an arm can otherwise cross a close lens.
+            petrov.gameObject.SetActive(shot > 0 && shot < 7);
+            vale.gameObject.SetActive(shot == 3 || shot == 6 || shot == 7);
+            worker.gameObject.SetActive(shot == 5);
             subject.gameObject.SetActive(shot != 4); lobeA.gameObject.SetActive(shot == 4); lobeB.gameObject.SetActive(shot == 4);
             title.gameObject.SetActive(shot == 10 && t > 0.15f && t < 0.87f);
             location.text = shot < 8 ? "VALE BIOTECH  /  SUBJECT 07" : shot == 8 ? "SERVICE CONDUIT" : "THE CITY  /  OUTSIDE CONTAINMENT";
-            fade.color = new Color(0, 0, 0, shot == 0 ? Mathf.Clamp01(1f - elapsed / 1.2f) : 0f);
+            fade.color = new Color(0, 0, 0, shot == 0 ? Mathf.Clamp01(1f - elapsed / 0.65f) : 0f);
             float pulse = 1f + 0.045f * Mathf.Sin(elapsed * 5f);
             subject.localScale = Vector3.one * pulse;
             subject.localPosition = shot == 5 ? Vector3.Lerp(new Vector3(1.47f, 1.1f, -1.03f), new Vector3(0, 1.28f, 0), Mathf.Clamp01((t - 0.18f) / 0.25f)) : new Vector3(0, 1.28f + Mathf.Sin(elapsed * 1.2f) * 0.015f, 0);
@@ -355,13 +362,13 @@ namespace Parasite
             latch.localPosition = new Vector3(shot >= 7 ? Mathf.Lerp(0, 0.38f, Mathf.Clamp01(t * 2f)) : 0, 0.65f, -0.49f);
             switch (shot)
             {
-                case 0: SetCamera(Vector3.Lerp(new Vector3(0, 1.48f, -0.31f), new Vector3(0.02f, 1.5f, -0.4f), e), new Vector3(0, 1.48f, 0), 37f); break;
-                case 1: SetCamera(Vector3.Lerp(new Vector3(0.02f, 1.5f, -0.5f), new Vector3(-0.55f, 1.65f, -1.35f), e), new Vector3(0, 1.5f, 0), Mathf.Lerp(40f, 52f, e)); break;
-                case 2: SetCamera(new Vector3(-0.55f, 1.62f, -1.4f), new Vector3(-0.1f, 1.5f, 0.1f), 48f); break;
-                case 3: SetCamera(Vector3.Lerp(new Vector3(-0.2f, 1.55f, -0.5f), new Vector3(-0.15f, 1.58f, -0.4f), e), new Vector3(0.75f, 1.52f, 1.05f), 50f); break;
-                case 4: SetCamera(Vector3.Lerp(new Vector3(-0.5f, 1.6f, -1.3f), new Vector3(0.8f, 1.2f, -0.9f), e), Vector3.Lerp(new Vector3(0, 1.48f, 0), new Vector3(1.35f, 1.14f, -0.2f), Mathf.Clamp01((t - 0.6f) / 0.4f)), 42f); break;
+                case 0: SetCamera(Vector3.Lerp(new Vector3(0.12f, 1.42f, -1.26f), new Vector3(-0.08f, 1.39f, -1.10f), e), new Vector3(0, 1.29f, 0), 36f); break;
+                case 1: SetCamera(Vector3.Lerp(new Vector3(-0.65f, 1.5f, -2.2f), new Vector3(-1.55f, 1.72f, -2.85f), e), new Vector3(-0.12f, 1.3f, 0.3f), Mathf.Lerp(42f, 48f, e)); break;
+                case 2: SetCamera(Vector3.Lerp(new Vector3(-2.3f, 1.59f, -1.8f), new Vector3(-1.85f, 1.61f, -1.7f), e), new Vector3(-0.74f, 1.47f, 0.4f), 40f); break;
+                case 3: SetCamera(Vector3.Lerp(new Vector3(2.5f, 1.62f, -1.35f), new Vector3(2.1f, 1.6f, -1.1f), e), new Vector3(0.84f, 1.5f, 1.05f), 39f); break;
+                case 4: SetCamera(Vector3.Lerp(new Vector3(-0.55f, 1.55f, -1.7f), new Vector3(0.75f, 1.35f, -1.55f), e), Vector3.Lerp(new Vector3(0, 1.48f, 0), new Vector3(1.35f, 1.14f, -0.2f), Mathf.Clamp01((t - 0.6f) / 0.4f)), 42f); break;
                 case 5: SetCamera(Vector3.Lerp(new Vector3(2.4f, 1.7f, -2f), new Vector3(2.2f, 1.5f, -1.9f), e), new Vector3(1.5f, 1.15f, -0.9f), 45f); break;
-                case 6: SetCamera(new Vector3(-1.4f, 1.6f, -0.9f), new Vector3(-0.1f, 1.5f, 0.1f), 43f); break;
+                case 6: SetCamera(Vector3.Lerp(new Vector3(-2.8f, 1.55f, -2.5f), new Vector3(-2.2f, 1.6f, -2.2f), e), new Vector3(0, 1.35f, 0.65f), 44f); break;
                 case 7: SetCamera(Vector3.Lerp(new Vector3(2.15f, 1.35f, -0.75f), new Vector3(2.05f, 1.25f, -0.65f), e), new Vector3(1.35f, 1.14f, -0.2f), 36f); break;
                 case 8:
                     SetCamera(new Vector3(0, -3.82f, Mathf.Lerp(1.1f, 4.3f, e)), new Vector3(0, -3.82f, Mathf.Lerp(5f, 8f, e)), 48f);

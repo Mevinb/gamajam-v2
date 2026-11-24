@@ -36,6 +36,30 @@ namespace Parasite.Tests
                 }
                 Assert.IsTrue(textured, "PBR textures are assigned to the exported material slots.");
                 foreach (var item in set.GetComponentsInChildren<Transform>()) Assert.AreEqual(30, item.gameObject.layer);
+                foreach (var renderer in set.GetComponentsInChildren<MeshRenderer>())
+                    if ((asset == "ServiceConduit" && renderer.name.Contains("Warm")) ||
+                        (asset == "LakesideShore" && renderer.name.Contains("Timber")))
+                        Debug.Log("[CinematicArt] Axis anchor " + asset + "/" + renderer.name + " " + renderer.bounds);
+                if (asset == "ServiceConduit")
+                {
+                    var renderers = set.GetComponentsInChildren<MeshRenderer>();
+                    var bounds = renderers[0].bounds;
+                    foreach (var renderer in renderers) bounds.Encapsulate(renderer.bounds);
+                    Debug.Log("[CinematicArt] ServiceConduit world bounds " + bounds);
+                    Assert.That(bounds.center.z, Is.EqualTo(5f).Within(0.1f),
+                        "The authored escape duct must extend along the same positive-Z direction as its camera and creature.");
+                    var lamps = BoundsForMaterial(set, "CinemaWarm");
+                    Assert.That(lamps.center.x, Is.EqualTo(.53f).Within(.02f), "Handedness correction preserves the guide lamps' authored +X side.");
+                    Assert.That(lamps.center.z, Is.EqualTo(5f).Within(.1f), "Guide lamps follow the forward-moving escape subject.");
+                }
+                if (asset == "LakesideShore")
+                {
+                    var jetty = BoundsForMaterial(set, "CinemaTimber");
+                    Assert.That(jetty.center.x, Is.EqualTo(6f).Within(.05f), "The jetty remains on the authored right side of the shore.");
+                    Assert.That(jetty.center.z, Is.EqualTo(5.22f).Within(.1f), "The jetty projects forward over the water.");
+                    var shore = BoundsForMaterial(set, "CinemaShore");
+                    Assert.That(shore.center.z, Is.InRange(-12.3f, -11.5f), "Land extends behind the bench; open water lies ahead.");
+                }
                 if (asset == "LakesideBench")
                 {
                     var renderers = set.GetComponentsInChildren<MeshRenderer>();
@@ -52,5 +76,21 @@ namespace Parasite.Tests
                 foreach (var material in materials) Object.DestroyImmediate(material);
             }
         }
+
+        static Bounds BoundsForMaterial(GameObject root, string materialName)
+        {
+            bool found = false; Bounds bounds = default;
+            foreach (var renderer in root.GetComponentsInChildren<MeshRenderer>())
+                foreach (var material in renderer.sharedMaterials)
+                    if (material && material.name.StartsWith(materialName, System.StringComparison.Ordinal))
+                    {
+                        if (found) bounds.Encapsulate(renderer.bounds);
+                        else { bounds = renderer.bounds; found = true; }
+                        break;
+                    }
+            Assert.IsTrue(found, "Expected exported asymmetric surface " + materialName);
+            return bounds;
+        }
+
     }
 }
