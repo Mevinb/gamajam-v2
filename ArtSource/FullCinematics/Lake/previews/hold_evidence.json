@@ -1,0 +1,32 @@
+{
+  "source": "ArtSource/FullCinematics/Lake/Lake_Hold.blend",
+  "source_sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e",
+  "engine": "CYCLES",
+  "device": "CPU",
+  "threads": 2,
+  "samples": 8,
+  "resolution": [
+    480,
+    270
+  ],
+  "frames": [
+    {
+      "frame": 1,
+      "png": "hold_0001_cpu.png",
+      "seconds": 18.275,
+      "sha256": "6cfc46943a976079c21ef5e3edf37b01d2749048c7177b9fadfc94fe9eee9bb6"
+    },
+    {
+      "frame": 73,
+      "png": "hold_0073_cpu.png",
+      "seconds": 16.753,
+      "sha256": "e3bd29f327e628cc6c5afc66c02f2e66023d79595b225e8f19c3346047976140"
+    },
+    {
+      "frame": 144,
+      "png": "hold_0144_cpu.png",
+      "seconds": 16.262,
+      "sha256": "8e5bc0c1e27e0538a0a32725de8c07626e107b867ba30bb7c216bda0b7d0a180"
+    }
+  ]
+}

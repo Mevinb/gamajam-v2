@@ -1,0 +1,158 @@
+{
+  "arrival": {
+    "source": "ArtSource/FullCinematics/Lake/Lake_Arrival.blend",
+    "bytes": 32343483,
+    "sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9",
+    "frame_count": 360,
+    "packed_external_images": true,
+    "camera_cuts": 3,
+    "heartbeat_count": 0,
+    "hold_endpoint_matrix_max_delta": 0,
+    "hold_environment_endpoint_max_delta": 0,
+    "bone_euler_range_degrees_xyz": {
+      "Head": [
+        1.8,
+        1.1986,
+        7.9905
+      ],
+      "Chest": [
+        1.1,
+        0.0,
+        0.0
+      ],
+      "LeftHand": [
+        0.0,
+        3.9956,
+        1.9978
+      ],
+      "RightHand": [
+        0.0,
+        3.9956,
+        1.9978
+      ],
+      "LeftIndexProximal": [
+        1.4984,
+        0.0,
+        0.0
+      ]
+    },
+    "saved_quality_samples": 48
+  },
+  "hold": {
+    "source": "ArtSource/FullCinematics/Lake/Lake_Hold.blend",
+    "bytes": 32257460,
+    "sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e",
+    "frame_count": 144,
+    "packed_external_images": true,
+    "camera_cuts": 1,
+    "heartbeat_count": 0,
+    "hold_endpoint_matrix_max_delta": 0.0,
+    "hold_environment_endpoint_max_delta": 0.0,
+    "bone_euler_range_degrees_xyz": {
+      "Head": [
+        0.0,
+        0.5,
+        1.2
+      ],
+      "Chest": [
+        1.1,
+        0.0,
+        0.0
+      ],
+      "LeftHand": [
+        0.0,
+        0.96,
+        0.48
+      ],
+      "RightHand": [
+        0.0,
+        0.96,
+        0.48
+      ],
+      "LeftIndexProximal": [
+        0.36,
+        0.0,
+        0.0
+      ]
+    },
+    "saved_quality_samples": 48
+  },
+  "peace": {
+    "source": "ArtSource/FullCinematics/Lake/Lake_Peace.blend",
+    "bytes": 32339451,
+    "sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60",
+    "frame_count": 168,
+    "packed_external_images": true,
+    "camera_cuts": 3,
+    "heartbeat_count": 0,
+    "hold_endpoint_matrix_max_delta": 0,
+    "hold_environment_endpoint_max_delta": 0,
+    "bone_euler_range_degrees_xyz": {
+      "Head": [
+        3.4,
+        2.0,
+        4.0
+      ],
+      "Chest": [
+        1.4889,
+        0.0,
+        0.0
+      ],
+      "LeftHand": [
+        0.0,
+        3.2,
+        1.6
+      ],
+      "RightHand": [
+        0.0,
+        3.2,
+        1.6
+      ],
+      "LeftIndexProximal": [
+        3.2,
+        0.0,
+        0.0
+      ]
+    },
+    "saved_quality_samples": 48
+  },
+  "dominion": {
+    "source": "ArtSource/FullCinematics/Lake/Lake_Dominion.blend",
+    "bytes": 32414168,
+    "sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c",
+    "frame_count": 168,
+    "packed_external_images": true,
+    "camera_cuts": 3,
+    "heartbeat_count": 42,
+    "hold_endpoint_matrix_max_delta": 0,
+    "hold_environment_endpoint_max_delta": 0,
+    "bone_euler_range_degrees_xyz": {
+      "Head": [
+        3.5,
+        0.0,
+        10.0
+      ],
+      "Chest": [
+        0.715,
+        0.0,
+        0.0
+      ],
+      "LeftHand": [
+        0.0,
+        4.0,
+        2.0
+      ],
+      "RightHand": [
+        0.0,
+        4.0,
+        2.0
+      ],
+      "LeftIndexProximal": [
+        29.0,
+        0.0,
+        0.0
+      ]
+    },
+    "saved_quality_samples": 48
+  }
+}

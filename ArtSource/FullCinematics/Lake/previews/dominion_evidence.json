@@ -1,0 +1,32 @@
+{
+  "source": "ArtSource/FullCinematics/Lake/Lake_Dominion.blend",
+  "source_sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c",
+  "engine": "CYCLES",
+  "device": "CPU",
+  "threads": 2,
+  "samples": 8,
+  "resolution": [
+    480,
+    270
+  ],
+  "frames": [
+    {
+      "frame": 48,
+      "png": "dominion_0048_cpu.png",
+      "seconds": 3.678,
+      "sha256": "7b2e959fb3b29fb3be43cb86747fdc0f79ab38f5f0edc3e30da9e1291636049d"
+    },
+    {
+      "frame": 96,
+      "png": "dominion_0096_cpu.png",
+      "seconds": 3.355,
+      "sha256": "17fb65d56cd07d01bfe5bbd9a86665b1a421ab239693c92438573edc9af62632"
+    },
+    {
+      "frame": 168,
+      "png": "dominion_0168_cpu.png",
+      "seconds": 2.43,
+      "sha256": "e0e6e3e4cab9dff70817bbee84f73800c6301bd524fe5396114ae1f1225b612c"
+    }
+  ]
+}

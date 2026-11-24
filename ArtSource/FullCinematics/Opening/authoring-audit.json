@@ -1,0 +1,259 @@
+{
+  "status": "passed",
+  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+  "file_bytes": 57026794,
+  "frame_count": 1920,
+  "fps": 24,
+  "shots": 11,
+  "captions": 19,
+  "packed_images": [
+    "asphalt_albedo.jpg",
+    "asphalt_normal.jpg",
+    "belfast_sunset_puresky_4k.hdr",
+    "brick_albedo.jpg",
+    "brick_normal.jpg",
+    "brown.png",
+    "CivKenji_Cloth_A.jpg",
+    "CivKenji_Cloth_M.png",
+    "CivKenji_Cloth_N.jpg",
+    "CivKenji_Hair_A.png",
+    "DrPetrov_Cloth_A.jpg",
+    "DrPetrov_Cloth_M.png",
+    "DrPetrov_Cloth_N.jpg",
+    "DrPetrov_Hair_A.png",
+    "DrVale_Cloth_A.jpg",
+    "DrVale_Cloth_M.png",
+    "DrVale_Cloth_N.jpg",
+    "DrVale_Hair_A.png",
+    "green.png",
+    "grey.png",
+    "MaintEli_Cloth_A.jpg",
+    "MaintEli_Cloth_M.png",
+    "MaintEli_Cloth_N.jpg",
+    "MaintEli_Hair_A.png",
+    "middleage_asian_male.jpg",
+    "middleage_caucasian_female.jpg",
+    "old_caucasian_male.jpg",
+    "Steel_A",
+    "Steel_A.001",
+    "Steel_N.png",
+    "young_african_male.jpg"
+  ],
+  "care_contact_error_m": 0.10000002216575904,
+  "escape_fit_samples": [
+    {
+      "seconds": 57.25,
+      "radial_extent_m": 0.16201459765434265,
+      "port_radius_m": 0.17,
+      "volume_scale": 1.0659894385231892
+    },
+    {
+      "seconds": 57.5,
+      "radial_extent_m": 0.15972466015815734,
+      "port_radius_m": 0.17,
+      "volume_scale": 1.0214247028403827
+    },
+    {
+      "seconds": 57.75,
+      "radial_extent_m": 0.15683120965957642,
+      "port_radius_m": 0.17,
+      "volume_scale": 0.9669141992036606
+    },
+    {
+      "seconds": 58.0,
+      "radial_extent_m": 0.15488692831993103,
+      "port_radius_m": 0.17,
+      "volume_scale": 0.931396805522372
+    }
+  ],
+  "actual_pose_samples": [
+    {
+      "seconds": 7,
+      "actor": "Dr Hana Petrov",
+      "head_unity": [
+        -0.6219096779823303,
+        1.432094931602478,
+        0.11623072624206543
+      ],
+      "right_wrist_unity": [
+        -0.5799999833106995,
+        1.399999976158142,
+        0.10000009089708328
+      ]
+    },
+    {
+      "seconds": 16.5,
+      "actor": "Dr Hana Petrov",
+      "head_unity": [
+        -0.6344308257102966,
+        1.4360287189483643,
+        0.10514988750219345
+      ],
+      "right_wrist_unity": [
+        -0.4487333297729492,
+        1.0515990257263184,
+        0.30605262517929077
+      ]
+    },
+    {
+      "seconds": 21,
+      "actor": "Dr Vale",
+      "head_unity": [
+        0.874807596206665,
+        1.5578125715255737,
+        0.9702988862991333
+      ],
+      "right_wrist_unity": [
+        0.9372924566268921,
+        1.1263211965560913,
+        0.6970862150192261
+      ]
+    },
+    {
+      "seconds": 35.2,
+      "actor": "Contact volunteer",
+      "head_unity": [
+        0.8676924109458923,
+        1.5635727643966675,
+        -0.47683942317962646
+      ],
+      "right_wrist_unity": [
+        0.649999737739563,
+        1.1999999284744263,
+        -0.25
+      ]
+    },
+    {
+      "seconds": 39,
+      "actor": "Contact volunteer",
+      "head_unity": [
+        0.8391374945640564,
+        0.2629740834236145,
+        -1.6268874406814575
+      ],
+      "right_wrist_unity": [
+        0.31409627199172974,
+        0.16167642176151276,
+        -1.8554456233978271
+      ]
+    },
+    {
+      "seconds": 39,
+      "actor": "Dr Hana Petrov",
+      "head_unity": [
+        0.9838975071907043,
+        0.5747736096382141,
+        -1.2442749738693237
+      ],
+      "right_wrist_unity": [
+        0.9107406735420227,
+        0.1988876461982727,
+        -1.221290111541748
+      ]
+    },
+    {
+      "seconds": 45,
+      "actor": "Dr Hana Petrov",
+      "head_unity": [
+        -0.6219096779823303,
+        1.432094931602478,
+        0.11623072624206543
+      ],
+      "right_wrist_unity": [
+        -0.5199999809265137,
+        1.3999998569488525,
+        0.10000007599592209
+      ]
+    },
+    {
+      "seconds": 52.4,
+      "actor": "Dr Vale",
+      "head_unity": [
+        0.9574244022369385,
+        1.5173259973526,
+        0.1504809409379959
+      ],
+      "right_wrist_unity": [
+        0.8299999237060547,
+        1.0500003099441528,
+        -0.3399999439716339
+      ]
+    }
+  ],
+  "camera_action_samples": [
+    {
+      "seconds": 2.5,
+      "target": "Specimen07",
+      "screen": [
+        0.50714111328125,
+        0.48400601744651794,
+        1.626051425933838
+      ]
+    },
+    {
+      "seconds": 29,
+      "target": "Specimen lobe 0",
+      "screen": [
+        0.6411576271057129,
+        0.48592641949653625,
+        1.4852008819580078
+      ]
+    },
+    {
+      "seconds": 35.2,
+      "target": "Contact volunteer Rig",
+      "screen": [
+        0.5309039354324341,
+        0.7452384829521179,
+        3.0710084438323975
+      ]
+    },
+    {
+      "seconds": 39,
+      "target": "Contact volunteer Rig",
+      "screen": [
+        0.5769364833831787,
+        0.25730863213539124,
+        2.7880890369415283
+      ]
+    },
+    {
+      "seconds": 39,
+      "target": "Dr Hana Petrov Rig",
+      "screen": [
+        0.495284765958786,
+        0.5045268535614014,
+        2.8950133323669434
+      ]
+    },
+    {
+      "seconds": 53.2,
+      "target": "Interlock controller",
+      "screen": [
+        0.3765164017677307,
+        0.4186493158340454,
+        1.3085020780563354
+      ]
+    },
+    {
+      "seconds": 63.5,
+      "target": "Escaping free culture",
+      "screen": [
+        0.48950523138046265,
+        0.3646615445613861,
+        3.5912516117095947
+      ]
+    },
+    {
+      "seconds": 71,
+      "target": "Specimen in the city",
+      "screen": [
+        0.4937311112880707,
+        0.35514894127845764,
+        1.9113131761550903
+      ]
+    }
+  ],
+  "gpu_rendered": false,
+  "runtime_candidate_modified": false
+}

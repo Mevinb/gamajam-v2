@@ -1,0 +1,49 @@
+{
+  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+  "source_bytes": 57026794,
+  "cpu_only": true,
+  "image_size": [
+    480,
+    270
+  ],
+  "samples": 8,
+  "previews": [
+    {
+      "path": "Review/02-petrov.png",
+      "sha256": "609a0b672a667bdb7c259c342740300645bf558709cb9102dffa906013580b8e"
+    },
+    {
+      "path": "Review/03-recognition.png",
+      "sha256": "35d7214f5f467d198498b25933694b1e1d01902f6eb77e24b1da67839f79f32f"
+    },
+    {
+      "path": "Review/05-two-bodies.png",
+      "sha256": "4323a9592e71c0052d17e5e3df36d1e6287248aa4a2e12a22ef60fcf3ec92475"
+    },
+    {
+      "path": "Review/06-contact-fall.png",
+      "sha256": "a719941cb28b19aadbab1ee086fd4f74020a3b06532a4aad3552efab6c43edc0"
+    },
+    {
+      "path": "Review/06-contact.png",
+      "sha256": "34da97db733054e5bee9b9ba21f69e7fb17a58aaa6b3a8214b79296222d5053a"
+    },
+    {
+      "path": "Review/08-interlock-escape.png",
+      "sha256": "a7474cba5f84d7c22bbdef16208a414f155257d1ed28e835b93bc989dcc8f8c7"
+    },
+    {
+      "path": "Review/08-interlock.png",
+      "sha256": "010dcbef15a3429da9994e912a7f6497b347e258b8deae88f0f60c181de7b00b"
+    },
+    {
+      "path": "Review/09-conduit.png",
+      "sha256": "72e103028fc08481a1b9d15157f66d7aac5417aa0426033b897341169f85b4df"
+    },
+    {
+      "path": "Review/10-outside.png",
+      "sha256": "ff390bc502948da0957cd2362fed486b958115389bb5b684fff601ac72b7e2a9"
+    }
+  ],
+  "status": "audited full-opening authoring candidate; final RTX movies not rendered"
+}

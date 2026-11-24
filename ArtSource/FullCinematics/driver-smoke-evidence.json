@@ -1,0 +1,272 @@
+{
+  "status": "passed",
+  "cpu_only": true,
+  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+  "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+  "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+  "output_directory": "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z",
+  "checks": [
+    "Actual CPU renderer exits cleanly after graceful stop",
+    "Checkpoint distinguishes stopped from completed",
+    "Only atomic frame120 was published before stop",
+    "No partial second frame was published",
+    "Resume completes the remaining CPU frame",
+    "Both requested frames are verified complete",
+    "Exact packed camera boundary120/121 is respected",
+    "Checkpoint records actual packed cut markers",
+    "Resume preserves and verifies the existing image",
+    "Smoke used CPU backend and two render threads",
+    "Actual resume rejects a changed image",
+    "Restored hashes resume without rerendering",
+    "Actual Blender resume rejects changed sampling provenance",
+    "Rejected provenance left both original frames unchanged",
+    "Actual Blender resume rejects a stale driver fingerprint"
+  ],
+  "provenance": {
+    "schema": 2,
+    "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+    "scene": "Scene",
+    "view_layer": "ViewLayer",
+    "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+    "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+    "blender": {
+      "version": [
+        4,
+        5,
+        16
+      ],
+      "version_string": "4.5.16 LTS",
+      "build_hash": "3f6797307da5"
+    },
+    "engine": "CYCLES",
+    "backend": "CPU",
+    "devices": [
+      {
+        "name": "CPU",
+        "type": "CPU"
+      }
+    ],
+    "device_mode": "CPU",
+    "scene_frame_range": [
+      1,
+      1920
+    ],
+    "camera_schedule": [
+      {
+        "frame": 1,
+        "marker": "01-rhythm",
+        "camera": "Camera 01-rhythm"
+      },
+      {
+        "frame": 121,
+        "marker": "02-petrov",
+        "camera": "Camera 02-petrov"
+      },
+      {
+        "frame": 289,
+        "marker": "03-recognition",
+        "camera": "Camera 03-recognition"
+      },
+      {
+        "frame": 457,
+        "marker": "04-disagreement",
+        "camera": "Camera 04-disagreement"
+      },
+      {
+        "frame": 625,
+        "marker": "05-two-bodies",
+        "camera": "Camera 05-two-bodies"
+      },
+      {
+        "frame": 817,
+        "marker": "06-contact",
+        "camera": "Camera 06-contact"
+      },
+      {
+        "frame": 1033,
+        "marker": "07-restraint",
+        "camera": "Camera 07-restraint"
+      },
+      {
+        "frame": 1225,
+        "marker": "08-interlock",
+        "camera": "Camera 08-interlock"
+      },
+      {
+        "frame": 1417,
+        "marker": "09-conduit",
+        "camera": "Camera 09-conduit"
+      },
+      {
+        "frame": 1609,
+        "marker": "10-outside",
+        "camera": "Camera 10-outside"
+      },
+      {
+        "frame": 1801,
+        "marker": "11-next-beat",
+        "camera": "Camera 11-next-beat"
+      }
+    ],
+    "sampling": {
+      "samples": 4,
+      "use_adaptive_sampling": true,
+      "adaptive_threshold": 0.03999999910593033,
+      "adaptive_min_samples": 0,
+      "use_denoising": true,
+      "denoiser": "OPENIMAGEDENOISE",
+      "denoising_use_gpu": false,
+      "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+      "denoising_prefilter": "ACCURATE",
+      "denoising_quality": "HIGH",
+      "seed": 0,
+      "use_animated_seed": false,
+      "sample_offset": 0,
+      "max_bounces": 6,
+      "diffuse_bounces": 4,
+      "glossy_bounces": 4,
+      "transmission_bounces": 4,
+      "volume_bounces": 0,
+      "transparent_max_bounces": 6,
+      "sample_clamp_direct": 0.0,
+      "sample_clamp_indirect": 10.0,
+      "light_sampling_threshold": 0.009999999776482582,
+      "use_light_tree": true,
+      "use_fast_gi": false,
+      "use_guiding": false,
+      "volume_step_rate": 1.0,
+      "volume_max_steps": 1024,
+      "rolling_shutter_type": "NONE",
+      "rolling_shutter_duration": 0.10000000149011612
+    },
+    "render": {
+      "fps": 24,
+      "fps_base": 1.0,
+      "resolution_x": 480,
+      "resolution_y": 270,
+      "resolution_percentage": 100,
+      "threads_mode": "FIXED",
+      "threads": 2,
+      "use_motion_blur": false,
+      "motion_blur_shutter": 0.5,
+      "use_persistent_data": true,
+      "image": {
+        "file_format": "PNG",
+        "color_mode": "RGB",
+        "color_depth": "8",
+        "compression": 15,
+        "color_management": "FOLLOW_SCENE"
+      }
+    },
+    "color": {
+      "view_transform": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0,
+      "use_curve_mapping": false,
+      "display_device": "sRGB"
+    }
+  },
+  "frames": [
+    {
+      "camera": "Camera 01-rhythm",
+      "camera_marker": "01-rhythm",
+      "camera_marker_frame": 1,
+      "camera_world_matrix": [
+        [
+          -0.996901273727417,
+          0.006172227207571268,
+          -0.07842578738927841,
+          -0.11994397640228271
+        ],
+        [
+          -0.07866829633712769,
+          -0.07821745425462723,
+          0.9938278198242188,
+          1.5200413465499878
+        ],
+        [
+          -1.1758259432781415e-07,
+          0.9969174265861511,
+          0.07846017926931381,
+          1.4100041389465332
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_lens_mm": 50.0,
+      "camera_sensor_mm": [
+        36.0,
+        24.0
+      ],
+      "dof": {
+        "enabled": true,
+        "fstop": 5.599999904632568,
+        "focus_object": "Focus 01-rhythm",
+        "focus_distance": 10.0
+      },
+      "frame": 120,
+      "seconds": 4.861868253001376,
+      "bytes": 169268,
+      "sha256": "363dfdee397e7c115f2ff3d217104e1cc780c207f77b4b3232e33cf4891267bc"
+    },
+    {
+      "camera": "Camera 02-petrov",
+      "camera_marker": "02-petrov",
+      "camera_marker_frame": 121,
+      "camera_world_matrix": [
+        [
+          -0.8775622248649597,
+          0.04851314052939415,
+          -0.47700217366218567,
+          -1.899999976158142
+        ],
+        [
+          -0.4794628322124481,
+          -0.08879385888576508,
+          0.8730584383010864,
+          2.9000000953674316
+        ],
+        [
+          -5.4740400656783095e-08,
+          0.9948679208755493,
+          0.10118237137794495,
+          1.649999976158142
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "camera_lens_mm": 38.0,
+      "camera_sensor_mm": [
+        36.0,
+        24.0
+      ],
+      "dof": {
+        "enabled": true,
+        "fstop": 5.599999904632568,
+        "focus_object": "Focus 02-petrov",
+        "focus_distance": 10.0
+      },
+      "frame": 121,
+      "seconds": 3.8239438290002,
+      "bytes": 173239,
+      "sha256": "f5e17ea008af482091f1036df6a935a95812b8a08afd8d52ab26689c6fa82719"
+    }
+  ],
+  "raw_logs": [
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/01-stop.log",
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/02-resume.log",
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/03-image-mismatch.log",
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/04-restored-resume.log",
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/05-provenance-mismatch.log",
+    "Logs/full-cinematic-renders/driver-smoke-20261124T233341Z/06-driver-mismatch.log"
+  ]
+}

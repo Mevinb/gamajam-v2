@@ -1,0 +1,22 @@
+{
+  "arrival": {
+    "source_sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9",
+    "verified_cpu_frames": 4,
+    "cpu_preview_seconds": 54.347
+  },
+  "hold": {
+    "source_sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e",
+    "verified_cpu_frames": 3,
+    "cpu_preview_seconds": 51.29
+  },
+  "peace": {
+    "source_sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60",
+    "verified_cpu_frames": 3,
+    "cpu_preview_seconds": 46.037
+  },
+  "dominion": {
+    "source_sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c",
+    "verified_cpu_frames": 3,
+    "cpu_preview_seconds": 9.463
+  }
+}

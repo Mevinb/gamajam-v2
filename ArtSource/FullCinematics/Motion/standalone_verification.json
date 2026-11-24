@@ -1,0 +1,105 @@
+{
+  "source_path": "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Motion/UAL_story_source.blend",
+  "actors": {
+    "DrPetrov": {
+      "clips": 34,
+      "max_blender_fk_error": 1.0728836059570312e-06
+    },
+    "DrVale": {
+      "clips": 34,
+      "max_blender_fk_error": 2.1457672119140625e-06
+    },
+    "MaintEli": {
+      "clips": 34,
+      "max_blender_fk_error": 1.430511474609375e-06
+    },
+    "LakeGirl": {
+      "clips": 34,
+      "max_blender_fk_error": 1.1920928955078125e-06
+    }
+  },
+  "baked_actions": {
+    "MaintEli__Walk": {
+      "frame": 17,
+      "max_blender_fk_error": 1.0728836059570312e-06
+    },
+    "MaintEli__Unconscious_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 1.1324882507324219e-06
+    },
+    "MaintEli__Talk_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 1.3113021850585938e-06
+    },
+    "MaintEli__Point_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 1.1920928955078125e-06
+    },
+    "MaintEli__Idle_Neutral": {
+      "frame": 17,
+      "max_blender_fk_error": 1.2516975402832031e-06
+    },
+    "MaintEli__Gesture_Shrug": {
+      "frame": 17,
+      "max_blender_fk_error": 1.2516975402832031e-06
+    },
+    "MaintEli__Gesture_Explain": {
+      "frame": 17,
+      "max_blender_fk_error": 1.2516975402832031e-06
+    },
+    "MaintEli__Console_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 1.1324882507324219e-06
+    },
+    "MaintEli__Collapse": {
+      "frame": 17,
+      "max_blender_fk_error": 1.3709068298339844e-06
+    },
+    "DrPetrov__Walk": {
+      "frame": 17,
+      "max_blender_fk_error": 6.556510925292969e-07
+    },
+    "DrPetrov__Unconscious_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 5.960464477539062e-07
+    },
+    "DrPetrov__Talk_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 9.834766387939453e-07
+    },
+    "DrPetrov__Point_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 6.556510925292969e-07
+    },
+    "DrPetrov__Idle_Neutral": {
+      "frame": 17,
+      "max_blender_fk_error": 6.854534149169922e-07
+    },
+    "DrPetrov__Gesture_Shrug": {
+      "frame": 17,
+      "max_blender_fk_error": 7.152557373046875e-07
+    },
+    "DrPetrov__Gesture_Explain": {
+      "frame": 17,
+      "max_blender_fk_error": 8.940696716308594e-07
+    },
+    "DrPetrov__Console_Loop": {
+      "frame": 17,
+      "max_blender_fk_error": 7.748603820800781e-07
+    },
+    "DrPetrov__Collapse": {
+      "frame": 17,
+      "max_blender_fk_error": 5.364418029785156e-07
+    }
+  },
+  "cpu_only": true,
+  "performance": {
+    "actor_frames": 4248,
+    "seconds": 5.449,
+    "method": "apply_pose, no depsgraph or key insertion; 3 real actors at 24fps"
+  },
+  "sha256": {
+    "Actors_story_actions.blend": "764c2e15a6d698a81f6332251d4c1d876c7e7d2d9f56c64d67d47bd72d416271",
+    "UAL_story_source.blend": "326146b9efc7b6aa74119b68fb47914ba770a1aa0a27d94b3c70ece15b1f0eb1"
+  }
+}

@@ -1,0 +1,815 @@
+{
+  "version": 1,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 80,
+  "frame_count": 1920,
+  "shots": [
+    {
+      "id": "01-rhythm",
+      "start": 0,
+      "end": 5,
+      "beat": "A living specimen answers a four-tap rhythm behind real glass.",
+      "eye": [
+        0.15,
+        1.43,
+        -1.72
+      ],
+      "end_eye": [
+        -0.12,
+        1.41,
+        -1.52
+      ],
+      "target": [
+        0,
+        1.29,
+        0
+      ],
+      "lens": 50
+    },
+    {
+      "id": "02-petrov",
+      "start": 5,
+      "end": 12,
+      "beat": "Petrov approaches and physically taps the vessel four times.",
+      "eye": [
+        -1.9,
+        1.65,
+        -2.9
+      ],
+      "end_eye": [
+        -1.5,
+        1.62,
+        -2.55
+      ],
+      "target": [
+        -0.25,
+        1.3,
+        0.12
+      ],
+      "lens": 38
+    },
+    {
+      "id": "03-recognition",
+      "start": 12,
+      "end": 19,
+      "beat": "The specimen repeats the rhythm; Petrov recognizes the response.",
+      "eye": [
+        -0.15,
+        1.64,
+        1.45
+      ],
+      "end_eye": [
+        -0.2,
+        1.63,
+        1.3
+      ],
+      "target": [
+        -0.68,
+        1.48,
+        0.08
+      ],
+      "lens": 55
+    },
+    {
+      "id": "04-disagreement",
+      "start": 19,
+      "end": 26,
+      "beat": "Vale dismisses the response; Petrov turns to challenge him.",
+      "eye": [
+        -1.5,
+        1.6,
+        -2.2
+      ],
+      "end_eye": [
+        -1.3,
+        1.58,
+        -2.0
+      ],
+      "target": [
+        0.7,
+        1.45,
+        0.95
+      ],
+      "lens": 55
+    },
+    {
+      "id": "05-two-bodies",
+      "start": 26,
+      "end": 34,
+      "beat": "One culture pinches into two synchronized, independently moving bodies.",
+      "eye": [
+        -0.4,
+        1.45,
+        -1.5
+      ],
+      "end_eye": [
+        0.55,
+        1.38,
+        -1.45
+      ],
+      "target": [
+        -0.02,
+        1.29,
+        0
+      ],
+      "lens": 52
+    },
+    {
+      "id": "06-contact",
+      "start": 34,
+      "end": 43,
+      "beat": "A living filament touches the worker wrist; he recoils and collapses while Petrov intervenes.",
+      "eye": [
+        0.2,
+        1.7,
+        -3.4
+      ],
+      "end_eye": [
+        1.9,
+        2.0,
+        -3.4
+      ],
+      "target": [
+        0.95,
+        1.2,
+        -0.5
+      ],
+      "end_target": [
+        0.85,
+        0.4,
+        -1.1
+      ],
+      "lens": 36,
+      "end_lens": 38,
+      "keys": [
+        [
+          34,
+          [
+            0.2,
+            1.7,
+            -3.4
+          ],
+          [
+            0.95,
+            1.2,
+            -0.5
+          ],
+          36
+        ],
+        [
+          36,
+          [
+            0.6,
+            1.8,
+            -3.6
+          ],
+          [
+            0.95,
+            1.0,
+            -0.6
+          ],
+          34
+        ],
+        [
+          38.5,
+          [
+            1.65,
+            2.1,
+            -3.6
+          ],
+          [
+            0.95,
+            0.45,
+            -1.0
+          ],
+          32
+        ],
+        [
+          43,
+          [
+            1.9,
+            2.0,
+            -3.4
+          ],
+          [
+            0.85,
+            0.4,
+            -1.1
+          ],
+          38
+        ]
+      ]
+    },
+    {
+      "id": "07-restraint",
+      "start": 43,
+      "end": 51,
+      "beat": "Mechanical restraint closes; Petrov returns to the familiar rhythm.",
+      "eye": [
+        -1.65,
+        1.48,
+        -1.55
+      ],
+      "end_eye": [
+        -1.3,
+        1.44,
+        -1.42
+      ],
+      "target": [
+        -0.1,
+        1.3,
+        0
+      ],
+      "lens": 40
+    },
+    {
+      "id": "08-interlock",
+      "start": 51,
+      "end": 59,
+      "beat": "Vale secretly releases a physical interlock; the hatch opens and the culture finds a floor drain.",
+      "eye": [
+        1.85,
+        1.28,
+        -0.9
+      ],
+      "end_eye": [
+        1.65,
+        1.1,
+        -1.2
+      ],
+      "target": [
+        0.78,
+        1.15,
+        -0.17
+      ],
+      "end_target": [
+        0.1,
+        0.7,
+        -0.4
+      ],
+      "lens": 64,
+      "end_lens": 44
+    },
+    {
+      "id": "09-conduit",
+      "start": 59,
+      "end": 67,
+      "beat": "The culture crawls through a lit corrugated service duct, leaving a wet trace.",
+      "eye": [
+        0,
+        -3.82,
+        1.0
+      ],
+      "end_eye": [
+        0,
+        -3.82,
+        4.0
+      ],
+      "target": [
+        0,
+        -3.85,
+        5.1
+      ],
+      "end_target": [
+        0,
+        -3.85,
+        8.5
+      ],
+      "lens": 31
+    },
+    {
+      "id": "10-outside",
+      "start": 67,
+      "end": 75,
+      "beat": "The creature squeezes through a real street grate into a wet, inhabited city alley.",
+      "eye": [
+        0,
+        0.18,
+        36.8
+      ],
+      "end_eye": [
+        0.2,
+        0.55,
+        36.4
+      ],
+      "target": [
+        0,
+        0.09,
+        38.2
+      ],
+      "end_target": [
+        0.3,
+        0.45,
+        38.9
+      ],
+      "lens": 36
+    },
+    {
+      "id": "11-next-beat",
+      "start": 75,
+      "end": 80,
+      "beat": "Ordinary people pass beyond the alley as the creature chooses its next movement; gameplay receives control afterward.",
+      "eye": [
+        0.3,
+        0.55,
+        36.4
+      ],
+      "end_eye": [
+        1.0,
+        1.4,
+        35.0
+      ],
+      "target": [
+        0.3,
+        0.45,
+        39.0
+      ],
+      "end_target": [
+        0,
+        1.25,
+        46
+      ],
+      "lens": 36,
+      "end_lens": 30
+    }
+  ],
+  "captions": [
+    {
+      "at": 0.5,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "Before faces, there was a rhythm."
+    },
+    {
+      "at": 5,
+      "speaker": "",
+      "text": ""
+    },
+    {
+      "at": 6,
+      "speaker": "DR. HANA PETROV",
+      "text": "Four taps. Then we begin."
+    },
+    {
+      "at": 11,
+      "speaker": "",
+      "text": ""
+    },
+    {
+      "at": 16,
+      "speaker": "DR. HANA PETROV",
+      "text": "You remembered."
+    },
+    {
+      "at": 19.5,
+      "speaker": "DR. VALE",
+      "text": "It anticipated a stimulus."
+    },
+    {
+      "at": 22,
+      "speaker": "DR. HANA PETROV",
+      "text": "It knew I was here."
+    },
+    {
+      "at": 26.8,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "Two places. The same remembering."
+    },
+    {
+      "at": 33,
+      "speaker": "",
+      "text": ""
+    },
+    {
+      "at": 34.8,
+      "speaker": "MAINTENANCE WORKER",
+      "text": "That wasn't me."
+    },
+    {
+      "at": 37.4,
+      "speaker": "DR. HANA PETROV",
+      "text": "End contact."
+    },
+    {
+      "at": 39,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "A hand that wasn't mine. A heart that was."
+    },
+    {
+      "at": 44,
+      "speaker": "DR. HANA PETROV",
+      "text": "Seven. Stay with the rhythm."
+    },
+    {
+      "at": 50,
+      "speaker": "",
+      "text": ""
+    },
+    {
+      "at": 53,
+      "speaker": "DR. HANA PETROV",
+      "text": "Who released the interlock?"
+    },
+    {
+      "at": 56.5,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "Then the wall stopped."
+    },
+    {
+      "at": 59,
+      "speaker": "",
+      "text": ""
+    },
+    {
+      "at": 67.6,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "Outside, nobody knew the rhythm."
+    },
+    {
+      "at": 75.2,
+      "speaker": "SPECIMEN 7 \u00b7 MEMORY",
+      "text": "I could make the next beat."
+    }
+  ],
+  "taps": [
+    1,
+    1.3,
+    1.6,
+    2.3,
+    6,
+    6.3,
+    6.6,
+    7.3,
+    12.5,
+    12.8,
+    13.1,
+    13.8,
+    14.5,
+    14.8,
+    15.1,
+    15.8,
+    16.5,
+    16.8,
+    17.1,
+    17.8,
+    45,
+    45.3,
+    45.6
+  ],
+  "caption_policy": "Live runtime overlay; no baked subtitles or automatic gameplay actions",
+  "render_profile": {
+    "engine": "Cycles",
+    "device": "RTX4050 OptiX after explicit GPU release",
+    "samples": 48,
+    "adaptive_threshold": 0.04,
+    "denoising": true
+  },
+  "actions": "Actual existing humanoid clips retargeted at24fps with physical hand IK and measured shipped-voice RMS jaw layer",
+  "speech_performance": {
+    "cache": "ArtSource/FullCinematics/Motion/opening_speech_envelopes.json",
+    "actor_cues": [
+      {
+        "at": 6,
+        "speaker": "DR. HANA PETROV",
+        "line": "Four taps. Then we begin.",
+        "clip": {
+          "key": "vo_c19d6ed7905bf5a3",
+          "speaker": "DR. HANA PETROV",
+          "line": "Four taps. Then we begin.",
+          "cue_seconds": 6,
+          "next_cue_seconds": 11,
+          "duration_seconds": 1.6,
+          "ffprobe_duration_seconds": 1.6,
+          "catalogue_duration_seconds": 1.6,
+          "decoded_samples": 38400,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_c19d6ed7905bf5a3.ogg",
+          "source_sha256": "5d859c8be4997d9c54d6c8d09f74f723063d3d754c1fc65ead093e04ee3714ba",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @6s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.600000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.05,
+            "last_aperture_above_0_1_seconds": 1.54,
+            "rms_p95": 0.20705587423243094,
+            "rms_gate": 0.007246955598135083,
+            "max_aperture": 0.98994,
+            "frames_below_0_05": 8,
+            "frames_above_0_1": 150,
+            "distinct_aperture_values": 157
+          }
+        }
+      },
+      {
+        "at": 16,
+        "speaker": "DR. HANA PETROV",
+        "line": "You remembered.",
+        "clip": {
+          "key": "vo_6a4d306189fef8fa",
+          "speaker": "DR. HANA PETROV",
+          "line": "You remembered.",
+          "cue_seconds": 16,
+          "next_cue_seconds": 19.5,
+          "duration_seconds": 1.05,
+          "ffprobe_duration_seconds": 1.05,
+          "catalogue_duration_seconds": 1.05,
+          "decoded_samples": 25200,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_6a4d306189fef8fa.ogg",
+          "source_sha256": "10cec60eed9a1bca0b7d2cc185d60aa76c3ead81cb04487f8ae60dc4b2e7ef73",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @16s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.050000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.06,
+            "last_aperture_above_0_1_seconds": 0.94,
+            "rms_p95": 0.18509627822540423,
+            "rms_gate": 0.0064783697378891485,
+            "max_aperture": 0.9861,
+            "frames_below_0_05": 12,
+            "frames_above_0_1": 89,
+            "distinct_aperture_values": 102
+          }
+        }
+      },
+      {
+        "at": 19.5,
+        "speaker": "DR. VALE",
+        "line": "It anticipated a stimulus.",
+        "clip": {
+          "key": "vo_3ec0ca73036fdca5",
+          "speaker": "DR. VALE",
+          "line": "It anticipated a stimulus.",
+          "cue_seconds": 19.5,
+          "next_cue_seconds": 22,
+          "duration_seconds": 2.43,
+          "ffprobe_duration_seconds": 2.43,
+          "catalogue_duration_seconds": 2.43,
+          "decoded_samples": 58320,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_3ec0ca73036fdca5.ogg",
+          "source_sha256": "c2888358eb7a12afbec330483722dbbceed1512f2d64000989cc77f0e188d855",
+          "catalogue_profile": "vale",
+          "catalogue_voice": "bm_george",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @19.5s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "2.430000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.02,
+            "last_aperture_above_0_1_seconds": 2.22,
+            "rms_p95": 0.23712829003817967,
+            "rms_gate": 0.008299490151336289,
+            "max_aperture": 0.95806,
+            "frames_below_0_05": 23,
+            "frames_above_0_1": 214,
+            "distinct_aperture_values": 241
+          }
+        }
+      },
+      {
+        "at": 22,
+        "speaker": "DR. HANA PETROV",
+        "line": "It knew I was here.",
+        "clip": {
+          "key": "vo_f184735d74499abd",
+          "speaker": "DR. HANA PETROV",
+          "line": "It knew I was here.",
+          "cue_seconds": 22,
+          "next_cue_seconds": 26.8,
+          "duration_seconds": 1.34,
+          "ffprobe_duration_seconds": 1.34,
+          "catalogue_duration_seconds": 1.34,
+          "decoded_samples": 32160,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_f184735d74499abd.ogg",
+          "source_sha256": "3ebc3d32f600f84b87def03eb7144d5577cec8feff1e916ff6495d006b2cb5ef",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @22s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.340000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.03,
+            "last_aperture_above_0_1_seconds": 1.25,
+            "rms_p95": 0.17792998583745753,
+            "rms_gate": 0.006227549504311015,
+            "max_aperture": 0.99605,
+            "frames_below_0_05": 8,
+            "frames_above_0_1": 123,
+            "distinct_aperture_values": 132
+          }
+        }
+      },
+      {
+        "at": 34.8,
+        "speaker": "MAINTENANCE WORKER",
+        "line": "That wasn't me.",
+        "clip": {
+          "key": "vo_1f161ef37d6d3b13",
+          "speaker": "MAINTENANCE WORKER",
+          "line": "That wasn't me.",
+          "cue_seconds": 34.8,
+          "next_cue_seconds": 37.4,
+          "duration_seconds": 0.94,
+          "ffprobe_duration_seconds": 0.94,
+          "catalogue_duration_seconds": 0.94,
+          "decoded_samples": 22560,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_1f161ef37d6d3b13.ogg",
+          "source_sha256": "9084f9a58fae5a86f86923955558eb2892cc0539e9168a4d01ea27f7a81b9bf5",
+          "catalogue_profile": "worker",
+          "catalogue_voice": "am_fenrir",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @34.8s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "0.940000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.04,
+            "last_aperture_above_0_1_seconds": 0.84,
+            "rms_p95": 0.21636007853374878,
+            "rms_gate": 0.007572602748681208,
+            "max_aperture": 0.97857,
+            "frames_below_0_05": 10,
+            "frames_above_0_1": 81,
+            "distinct_aperture_values": 91
+          }
+        }
+      },
+      {
+        "at": 37.4,
+        "speaker": "DR. HANA PETROV",
+        "line": "End contact.",
+        "clip": {
+          "key": "vo_44b36262e2afb8b6",
+          "speaker": "DR. HANA PETROV",
+          "line": "End contact.",
+          "cue_seconds": 37.4,
+          "next_cue_seconds": 39,
+          "duration_seconds": 1.23,
+          "ffprobe_duration_seconds": 1.23,
+          "catalogue_duration_seconds": 1.23,
+          "decoded_samples": 29520,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_44b36262e2afb8b6.ogg",
+          "source_sha256": "28478cefc9a6dec6d32b81a6e0928d3c7e2a60a72d1c47900b98a9cffa3a53c8",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @37.4s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.230000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.03,
+            "last_aperture_above_0_1_seconds": 1.18,
+            "rms_p95": 0.17066299267678786,
+            "rms_gate": 0.005973204743687576,
+            "max_aperture": 0.99337,
+            "frames_below_0_05": 6,
+            "frames_above_0_1": 116,
+            "distinct_aperture_values": 121
+          }
+        }
+      },
+      {
+        "at": 44,
+        "speaker": "DR. HANA PETROV",
+        "line": "Seven. Stay with the rhythm.",
+        "clip": {
+          "key": "vo_9020865eafc9a290",
+          "speaker": "DR. HANA PETROV",
+          "line": "Seven. Stay with the rhythm.",
+          "cue_seconds": 44,
+          "next_cue_seconds": 50,
+          "duration_seconds": 1.6,
+          "ffprobe_duration_seconds": 1.6,
+          "catalogue_duration_seconds": 1.6,
+          "decoded_samples": 38400,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_9020865eafc9a290.ogg",
+          "source_sha256": "4903f57cc83ed1c586c20a1744a464a5a53c00046e57a2a395891b7d56e2d122",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @44s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.600000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.04,
+            "last_aperture_above_0_1_seconds": 1.53,
+            "rms_p95": 0.2058902559937143,
+            "rms_gate": 0.007206158959780001,
+            "max_aperture": 0.99656,
+            "frames_below_0_05": 8,
+            "frames_above_0_1": 150,
+            "distinct_aperture_values": 158
+          }
+        }
+      },
+      {
+        "at": 53,
+        "speaker": "DR. HANA PETROV",
+        "line": "Who released the interlock?",
+        "clip": {
+          "key": "vo_0cc04ef9053efca3",
+          "speaker": "DR. HANA PETROV",
+          "line": "Who released the interlock?",
+          "cue_seconds": 53,
+          "next_cue_seconds": 56.5,
+          "duration_seconds": 1.44,
+          "ffprobe_duration_seconds": 1.44,
+          "catalogue_duration_seconds": 1.44,
+          "decoded_samples": 34560,
+          "decode_sample_rate": 24000,
+          "source": "Assets/Parasite/Resources/Audio/Voice/vo_0cc04ef9053efca3.ogg",
+          "source_sha256": "ccb747a8c4dca24410b398e1570d6a7add6031788f2f17bcddde62a1773b542f",
+          "catalogue_profile": "petrov",
+          "catalogue_voice": "bf_emma",
+          "catalogue_sources": [
+            "Assets/Parasite/Scripts/Core/OpeningCinematic.cs @53s"
+          ],
+          "audio_stream": {
+            "codec_name": "vorbis",
+            "sample_rate": "24000",
+            "channels": 1,
+            "start_time": "0.000000",
+            "duration": "1.440000"
+          },
+          "envelope_hz": 100,
+          "analysis": {
+            "first_aperture_above_0_1_seconds": 0.06,
+            "last_aperture_above_0_1_seconds": 1.34,
+            "rms_p95": 0.18032867453474982,
+            "rms_gate": 0.0063115036087162445,
+            "max_aperture": 0.98277,
+            "frames_below_0_05": 11,
+            "frames_above_0_1": 129,
+            "distinct_aperture_values": 141
+          }
+        }
+      }
+    ]
+  },
+  "remaining_verification": [
+    "GPU quality/timing calibration",
+    "Full frame render/encode",
+    "80s player decode/skip/end handoff"
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "blender": "4.5.16 LTS",
+  "fps": 30,
+  "method": "armature-space world-rotation delta; target rest proportions",
+  "source_blend": "/home/mevlec/Data/parasite-work/animation/dev.blend",
+  "available_clips": [
+    "Alert_Loop",
+    "Captured_Collapse",
+    "Captured_Enter",
+    "Captured_Exit",
+    "Captured_Loop",
+    "Collapse",
+    "Console_Loop",
+    "Fall_Loop",
+    "Gesture_Explain",
+    "Gesture_Shrug",
+    "GetUp",
+    "Idle_Clipboard",
+    "Idle_FoldArms",
+    "Idle_Guard",
+    "Idle_GuardBelt",
+    "Idle_HandsOnHips",
+    "Idle_LookAround",
+    "Idle_Neutral",
+    "Idle_Possessed",
+    "Idle_Shift",
+    "Jump_Takeoff",
+    "Land",
+    "Panic_Flee_Loop",
+    "Panic_Loop",
+    "Point_Loop",
+    "Run",
+    "Run_Possessed",
+    "Sit_Enter",
+    "Sit_Exit",
+    "Sit_Loop",
+    "Talk_Loop",
+    "Unconscious_Loop",
+    "Walk",
+    "Walk_Possessed"
+  ],
+  "actors": {
+    "DrPetrov": {
+      "source": "/home/mevlec/Data/parasite-work/characters/out/DrPetrov.blend",
+      "mapped_bones": 53,
+      "target_bones": 56,
+      "leg_scale": 0.931175199686587,
+      "clips": {
+        "Idle_Neutral": {
+          "frames": 76,
+          "seconds": 2.5,
+          "loop": true,
+          "action": "DrPetrov__Idle_Neutral",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.39293795824050903,
+              -0.4091169536113739,
+              0.00305147934705019
+            ],
+            "max": [
+              0.318912148475647,
+              0.2827473282814026,
+              1.5966275930404663
+            ]
+          },
+          "ground_offset_m": 0.0,
+          "head_height_m": 1.4245431423187256,
+          "hips_height_m": 0.8081904053688049,
+          "torso_up_axis": [
+            -0.05078013613820076,
+            -0.21216686069965363,
+            0.9759132266044617
+          ]
+        },
+        "Walk": {
+          "frames": 27,
+          "seconds": 0.8666666666666667,
+          "loop": true,
+          "action": "DrPetrov__Walk",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.24609464406967163,
+              -0.4850183129310608,
+              0.011844605207443237
+            ],
+            "max": [
+              0.2725388705730438,
+              0.27377650141716003,
+              1.6346752643585205
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Point_Loop": {
+          "frames": 91,
+          "seconds": 3.0,
+          "loop": true,
+          "action": "DrPetrov__Point_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.4218391180038452,
+              -0.4938993453979492,
+              0.0015696901828050613
+            ],
+            "max": [
+              0.31354647874832153,
+              0.2760452628135681,
+              1.5966517925262451
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Gesture_Explain": {
+          "frames": 67,
+          "seconds": 2.2,
+          "loop": false,
+          "action": "DrPetrov__Gesture_Explain",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.3929336965084076,
+              -0.4091024100780487,
+              0.0031162062659859657
+            ],
+            "max": [
+              0.3296913206577301,
+              0.2827490568161011,
+              1.592064619064331
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Gesture_Shrug": {
+          "frames": 55,
+          "seconds": 1.8,
+          "loop": false,
+          "action": "DrPetrov__Gesture_Shrug",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.3929494619369507,
+              -0.40906989574432373,
+              0.0035187341272830963
+            ],
+            "max": [
+              0.31891965866088867,
+              0.28272199630737305,
+              1.5897958278656006
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Talk_Loop": {
+          "frames": 89,
+          "seconds": 2.933333333333333,
+          "loop": true,
+          "action": "DrPetrov__Talk_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.39281487464904785,
+              -0.4127795696258545,
+              0.002901611849665642
+            ],
+            "max": [
+              0.3190166652202606,
+              0.28269925713539124,
+              1.6026382446289062
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Console_Loop": {
+          "frames": 181,
+          "seconds": 6.0,
+          "loop": true,
+          "action": "DrPetrov__Console_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.2935244143009186,
+              -0.4777885973453522,
+              0.005312941037118435
+            ],
+            "max": [
+              0.29248762130737305,
+              0.1680692732334137,
+              1.567172884941101
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Collapse": {
+          "frames": 73,
+          "seconds": 2.4,
+          "loop": false,
+          "action": "DrPetrov__Collapse",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.565220296382904,
+              -0.4424380660057068,
+              -0.105327308177948
+            ],
+            "max": [
+              0.44574490189552307,
+              1.4132142066955566,
+              0.2977771759033203
+            ]
+          },
+          "ground_offset_m": 0.105327308177948,
+          "head_height_m": 0.1615416258573532,
+          "hips_height_m": 0.05625492334365845,
+          "torso_up_axis": [
+            -0.019358530640602112,
+            0.9859241843223572,
+            0.16606895625591278
+          ]
+        },
+        "Unconscious_Loop": {
+          "frames": 121,
+          "seconds": 4.0,
+          "loop": true,
+          "action": "DrPetrov__Unconscious_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.5652202367782593,
+              -0.4424380660057068,
+              -0.105327308177948
+            ],
+            "max": [
+              0.4457448124885559,
+              1.412479281425476,
+              0.2993316054344177
+            ]
+          },
+          "ground_offset_m": 0.105327308177948,
+          "head_height_m": 0.16743852198123932,
+          "hips_height_m": 0.05625492334365845,
+          "torso_up_axis": [
+            -0.01937764324247837,
+            0.9842810034751892,
+            0.1755431443452835
+          ]
+        }
+      },
+      "max_limb_length_error_m": 2.666442388554735e-07,
+      "max_blender_fk_error": 9.5367431640625e-07
+    },
+    "MaintEli": {
+      "source": "/home/mevlec/Data/parasite-work/characters/out/MaintEli.blend",
+      "mapped_bones": 53,
+      "target_bones": 56,
+      "leg_scale": 1.0653902369891433,
+      "clips": {
+        "Idle_Neutral": {
+          "frames": 76,
+          "seconds": 2.5,
+          "loop": true,
+          "action": "MaintEli__Idle_Neutral",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.4320937693119049,
+              -0.4260106682777405,
+              -0.002925444394350052
+            ],
+            "max": [
+              0.37923333048820496,
+              0.3779619336128235,
+              1.7330716848373413
+            ]
+          },
+          "ground_offset_m": 0.002925444394350052,
+          "head_height_m": 1.5397510528564453,
+          "hips_height_m": 0.9109407663345337,
+          "torso_up_axis": [
+            -0.056963056325912476,
+            -0.23845140635967255,
+            0.9694824814796448
+          ]
+        },
+        "Walk": {
+          "frames": 27,
+          "seconds": 0.8666666666666667,
+          "loop": true,
+          "action": "MaintEli__Walk",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.28995466232299805,
+              -0.5174384117126465,
+              0.00678679347038269
+            ],
+            "max": [
+              0.30552545189857483,
+              0.36399585008621216,
+              1.7876942157745361
+            ]
+          },
+          "ground_offset_m": 0.0
+        },
+        "Point_Loop": {
+          "frames": 91,
+          "seconds": 3.0,
+          "loop": true,
+          "action": "MaintEli__Point_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.4844364523887634,
+              -0.5568628311157227,
+              -0.002843462862074375
+            ],
+            "max": [
+              0.37307947874069214,
+              0.37163835763931274,
+              1.7432349920272827
+            ]
+          },
+          "ground_offset_m": 0.002843462862074375
+        },
+        "Gesture_Explain": {
+          "frames": 67,
+          "seconds": 2.2,
+          "loop": false,
+          "action": "MaintEli__Gesture_Explain",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.4320816993713379,
+              -0.45675981044769287,
+              -0.00285347830504179
+            ],
+            "max": [
+              0.3792303204536438,
+              0.37796443700790405,
+              1.7348185777664185
+            ]
+          },
+          "ground_offset_m": 0.00285347830504179
+        },
+        "Gesture_Shrug": {
+          "frames": 55,
+          "seconds": 1.8,
+          "loop": false,
+          "action": "MaintEli__Gesture_Shrug",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.4319887161254883,
+              -0.42583727836608887,
+              -0.0024375366047024727
+            ],
+            "max": [
+              0.37925440073013306,
+              0.3779498338699341,
+              1.732480525970459
+            ]
+          },
+          "ground_offset_m": 0.0024375366047024727
+        },
+        "Talk_Loop": {
+          "frames": 89,
+          "seconds": 2.933333333333333,
+          "loop": true,
+          "action": "MaintEli__Talk_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.43210506439208984,
+              -0.47260940074920654,
+              -0.0030299779027700424
+            ],
+            "max": [
+              0.3793935775756836,
+              0.3779023289680481,
+              1.7360813617706299
+            ]
+          },
+          "ground_offset_m": 0.0030299779027700424
+        },
+        "Console_Loop": {
+          "frames": 181,
+          "seconds": 6.0,
+          "loop": true,
+          "action": "MaintEli__Console_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.34167465567588806,
+              -0.5314041376113892,
+              -0.001292198896408081
+            ],
+            "max": [
+              0.33727991580963135,
+              0.18035341799259186,
+              1.674279808998108
+            ]
+          },
+          "ground_offset_m": 0.001292198896408081
+        },
+        "Collapse": {
+          "frames": 73,
+          "seconds": 2.4,
+          "loop": false,
+          "action": "MaintEli__Collapse",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.662648618221283,
+              -0.48414188623428345,
+              -0.07706010341644287
+            ],
+            "max": [
+              0.4951099455356598,
+              1.6092405319213867,
+              0.3337143659591675
+            ]
+          },
+          "ground_offset_m": 0.07706010341644287,
+          "head_height_m": 0.18237873911857605,
+          "hips_height_m": 0.050624966621398926,
+          "torso_up_axis": [
+            -0.03265683352947235,
+            0.9784327149391174,
+            0.20396795868873596
+          ]
+        },
+        "Unconscious_Loop": {
+          "frames": 121,
+          "seconds": 4.0,
+          "loop": true,
+          "action": "MaintEli__Unconscious_Loop",
+          "deformed_mesh_bounds_m": {
+            "min": [
+              -0.6626485586166382,
+              -0.48414188623428345,
+              -0.07706010341644287
+            ],
+            "max": [
+              0.4951099753379822,
+              1.6082980632781982,
+              0.34130406379699707
+            ]
+          },
+          "ground_offset_m": 0.07706010341644287,
+          "head_height_m": 0.18829873204231262,
+          "hips_height_m": 0.050624966621398926,
+          "torso_up_axis": [
+            -0.03270365670323372,
+            0.9764090776443481,
+            0.21343818306922913
+          ]
+        }
+      },
+      "max_limb_length_error_m": 2.1316876525068196e-07,
+      "max_blender_fk_error": 1.3113021850585938e-06
+    }
+  },
+  "pose_diagrams": [
+    "DrPetrov_pose_verification.png",
+    "MaintEli_pose_verification.png"
+  ],
+  "root_motion": "false strips source root only; preserves pelvis sway/crouch/collapse; in-place Walk remains in-place",
+  "verification": "CPU-only numeric transforms and 2-view pose diagrams; no GPU renderer or Unity started",
+  "elapsed_seconds": 5.78,
+  "files": {
+    "Actors_story_actions.blend": 4412668,
+    "UAL_story_source.blend": 8510637
+  }
+}

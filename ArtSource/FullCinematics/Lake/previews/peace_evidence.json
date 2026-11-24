@@ -1,0 +1,32 @@
+{
+  "source": "ArtSource/FullCinematics/Lake/Lake_Peace.blend",
+  "source_sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60",
+  "engine": "CYCLES",
+  "device": "CPU",
+  "threads": 2,
+  "samples": 8,
+  "resolution": [
+    480,
+    270
+  ],
+  "frames": [
+    {
+      "frame": 40,
+      "png": "peace_0040_cpu.png",
+      "seconds": 17.601,
+      "sha256": "e18ecc642dde755c1e5c63bd6a37eb77c5f26cd913aaa1c68b5da9d66478a695"
+    },
+    {
+      "frame": 102,
+      "png": "peace_0102_cpu.png",
+      "seconds": 16.085,
+      "sha256": "8a0c0b83693ae9e76127470eb0542cc30c3adaab41139fdc029e47706995effc"
+    },
+    {
+      "frame": 168,
+      "png": "peace_0168_cpu.png",
+      "seconds": 12.351,
+      "sha256": "22c7b1cb5d5e7f88b7157e359ac32cfc854fa65648415eaef2ddaddfb3cfa8ad"
+    }
+  ]
+}

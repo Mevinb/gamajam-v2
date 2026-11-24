@@ -1,0 +1,172 @@
+{
+  "format": "PARASITE full lake cinematic authoring v1",
+  "fps": 24,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "render_profile": {
+    "engine": "Cycles",
+    "saved_device": "GPU",
+    "samples": 48,
+    "adaptive_threshold": 0.025,
+    "denoise": true,
+    "preview_device": "CPU",
+    "preview_threads": 2,
+    "preview_samples": 8,
+    "preview_resolution": [
+      480,
+      270
+    ]
+  },
+  "trigger_contract": {
+    "arrival": "After original campaign extraction only; skip may advance to explicit choice screen.",
+    "hold": "Repeat while awaiting a deliberate player choice. Waiting, timeout or skip NEVER chooses.",
+    "peace": "Only after explicit Peace. Then original summary.",
+    "dominion": "Only after explicit Dominion. Then original summary.",
+    "continuation": "Later Continue is a separate runtime action; these sources do not alter campaign state."
+  },
+  "source_provenance": {
+    "read_only_source": "ArtSource/Cinematics/EndingFilm.blend",
+    "source_sha256": "a4ba739c264018d559532290b8993d3b981a0b6331a4564a437e087bd1a70e56",
+    "reused": "Project original lakeside shore, bench, jetty, textured LakeGirl humanoid rig, sun and water; detailed procedural city trees and the existing CC0 shrub_04; all images packed.",
+    "new": "Original keyed performance/cameras/periodic wind, park planting/ground layout, procedural distant bank and 42 distant human silhouettes.",
+    "existing_foliage_credits": "Docs/THIRD_PARTY_ASSETS.md: CC0 Poly Haven Bark Platanus (Dimitrios Savva), Bark Brown 02 (Rob Tuytel), Shrub 04 (Rico Cilliers), and CC0 ambientCG LeafSet atlases (Lennart Demes)."
+  },
+  "films": {
+    "arrival": {
+      "source": "Lake_Arrival.blend",
+      "seconds": 15.0,
+      "frames": 360,
+      "shots": [
+        {
+          "start": 1,
+          "end": 120,
+          "description": "01 Shore arrival - human scale"
+        },
+        {
+          "start": 121,
+          "end": 240,
+          "description": "02 A person at the water"
+        },
+        {
+          "start": 241,
+          "end": 360,
+          "description": "03 Neutral attention - choice approach"
+        }
+      ],
+      "preview_frames": [
+        1,
+        144,
+        264,
+        360
+      ]
+    },
+    "hold": {
+      "source": "Lake_Hold.blend",
+      "seconds": 6.0,
+      "frames": 144,
+      "shots": [
+        {
+          "start": 1,
+          "end": 144,
+          "description": "CHOICE HOLD - no automatic outcome"
+        }
+      ],
+      "preview_frames": [
+        1,
+        73,
+        144
+      ]
+    },
+    "peace": {
+      "source": "Lake_Peace.blend",
+      "seconds": 7.0,
+      "frames": 168,
+      "shots": [
+        {
+          "start": 1,
+          "end": 72,
+          "description": "PEACE chosen - the breath releases"
+        },
+        {
+          "start": 73,
+          "end": 120,
+          "description": "PEACE - open hands"
+        },
+        {
+          "start": 121,
+          "end": 168,
+          "description": "PEACE - a quiet human shore"
+        }
+      ],
+      "preview_frames": [
+        40,
+        102,
+        168
+      ]
+    },
+    "dominion": {
+      "source": "Lake_Dominion.blend",
+      "seconds": 7.0,
+      "frames": 168,
+      "shots": [
+        {
+          "start": 1,
+          "end": 60,
+          "description": "DOMINION chosen - deliberate gaze"
+        },
+        {
+          "start": 61,
+          "end": 108,
+          "description": "DOMINION - the deliberate finger curl"
+        },
+        {
+          "start": 109,
+          "end": 168,
+          "description": "DOMINION - crane toward many distant hearts"
+        }
+      ],
+      "preview_frames": [
+        48,
+        96,
+        168
+      ]
+    }
+  },
+  "render_estimate": {
+    "unique_frames": 840,
+    "first_play_with_one_branch_frames": 672,
+    "encoded_h264_at_12_to_20_mbps_MB": {
+      "all_four": [
+        52.5,
+        87.5
+      ],
+      "arrival": [
+        22.5,
+        37.5
+      ],
+      "hold": [
+        9,
+        15
+      ],
+      "each_branch": [
+        10.5,
+        17.5
+      ]
+    },
+    "unmeasured_RTX4050_seconds_per_frame_range": [
+      1,
+      5
+    ],
+    "unmeasured_RTX4050_total_minutes_range": [
+      14,
+      70
+    ],
+    "notes": "840 unique frames. GPU timing is an estimate, not a measured benchmark; no GPU or final movie render performed by author script. PNG intermediate size depends on content (reserve 1-3 GB)."
+  },
+  "verification_limits": [
+    "CPU still previews validate composition and pose; real-time motion is not visually certified by stills.",
+    "Full quality RTX render, final codec encode/decode, audio mix and runtime branch wiring remain with integrating agent."
+  ]
+}
