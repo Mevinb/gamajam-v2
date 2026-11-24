@@ -58,6 +58,9 @@ namespace Parasite.Testing
             Require.AreEqual(GameState.Paused, GameManager.Instance.State, "Ignored presentation input must not unpause a later chapter.");
             GameManager.Instance.SetPaused(false);
             Require.IsNotNull(GameObject.Find(AfterlakeDistrict.RootName));
+            var shorePetrov = HostCharacter.All.Single(host => host && host.DisplayName == "Dr. Hana Petrov · riverside");
+            Require.AreEqual("DrPetrov", shorePetrov.Rig.VariantId,
+                "Petrov keeps her authored identity when the display label includes a location.");
             if (capture != null) yield return capture("afterlake-" + outcome + "-landing.png");
             foreach (var p in new[] { AfterlakeCampaign.Receiver, AfterlakeCampaign.FloodgatePanel, AfterlakeCampaign.Analysis, AfterlakeCampaign.Dispatch, AfterlakeCampaign.Records, AfterlakeCampaign.RadioPower, AfterlakeCampaign.Radio, AfterlakeCampaign.Ferry })
             {

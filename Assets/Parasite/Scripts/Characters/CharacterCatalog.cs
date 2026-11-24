@@ -46,9 +46,20 @@ namespace Parasite.Characters
             return cached;
         }
 
+        /// <summary>Prefer full aliases, then an exact alias before a non-empty " · " display-label suffix.</summary>
         public Entry FindByName(string displayName)
         {
             if (string.IsNullOrEmpty(displayName)) return null;
+            var exact = FindExactName(displayName);
+            if (exact != null) return exact;
+            const string separator = " · ";
+            int suffix = displayName.IndexOf(separator, System.StringComparison.Ordinal);
+            if (suffix <= 0 || string.IsNullOrWhiteSpace(displayName.Substring(suffix + separator.Length))) return null;
+            return FindExactName(displayName.Substring(0, suffix));
+        }
+
+        Entry FindExactName(string displayName)
+        {
             foreach (var e in entries)
                 if (e != null && e.prefab && e.names != null)
                     foreach (var n in e.names)
