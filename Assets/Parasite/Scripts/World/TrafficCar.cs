@@ -11,16 +11,17 @@ namespace Parasite.World
         public float IntersectionEnterTime { get; private set; } = -999f;
         public TrafficSystem.Lane Lane => lane;
         TrafficSystem.Lane lane;
+        TrafficSystem system;
         Transform[] wheels;
         Renderer[] renderers;
         BoxCollider box;
         bool shown = true;
-        float cruise, waitT;
-        static readonly RaycastHit[] hits = new RaycastHit[8];
+        float cruise;
+        static readonly RaycastHit[] hits = new RaycastHit[32];
 
         public void Init(TrafficSystem sys, TrafficSystem.Lane l, float startDistance)
         {
-            lane = l; Distance = startDistance;
+            system = sys; lane = l; Distance = startDistance;
             cruise = CruiseSpeed * Random.Range(0.85f, 1.1f);
             Speed = cruise;
             Place();
@@ -114,11 +115,11 @@ namespace Parasite.World
         }
 
         /// <summary>People, the amoeba, or another car immediately in front of the bumper.</summary>
-        bool Blocked(out float dist)
+        bool Blocked(out float dist, float lookAhead)
         {
             dist = 0f;
             Vector3 o = transform.position + Vector3.up * 0.8f + transform.forward * 2.5f;
-            int n = Physics.SphereCastNonAlloc(o, 1.0f, transform.forward, hits, 9f, ~0, QueryTriggerInteraction.Collide);
+            int n = Physics.SphereCastNonAlloc(o, 1.0f, transform.forward, hits, lookAhead, ~0, QueryTriggerInteraction.Collide);
             float best = float.MaxValue;
             for (int i = 0; i < n; i++)
             {
@@ -145,22 +146,32 @@ namespace Parasite.World
 
         void Update()
         {
-            float dt = Time.deltaTime;
+            if (GameManager.Instance && !GameManager.Instance.IsPlaying) return;
+            Tick(Time.deltaTime);
+        }
+
+        // Keep the displacement bounded by the measured clearance as well as braking the speed. A frame hitch must
+        // never let the kinematic car step through a person while its speed is still catching up to the stop target.
+        void Tick(float dt)
+        {
+            if (dt <= 0f || lane == null) return;
             bool inside = IsInIntersection(out _);
             if (inside && IntersectionEnterTime < 0f) IntersectionEnterTime = Time.time;
             else if (!inside) IntersectionEnterTime = -999f;
 
             float target = cruise;
+            float safeTravel = float.MaxValue;
             float gap = CarAheadGap();
             if (gap < 16f) target = Mathf.Min(target, Mathf.Max(0f, (gap - 7f) * 1.2f));
+            safeTravel = Mathf.Min(safeTravel, Mathf.Max(0f, gap - 7f));
 
             // Intersection approach right-of-way logic:
             if (ApproachingIntersection(out var appInter, out float distToStop))
             {
                 bool yield = false;
-                if (TrafficSystem.Instance != null)
+                if (system)
                 {
-                    foreach (var l in TrafficSystem.Instance.Lanes)
+                    foreach (var l in system.Lanes)
                     {
                         if (!TrafficSystem.LanesConflict(lane, l)) continue;
                         foreach (var other in l.cars)
@@ -187,22 +198,26 @@ namespace Parasite.World
                 }
                 if (yield)
                 {
-                    // Smoothly decelerate to a full stop before the stop line
-                    float stopTarget = Mathf.Max(0f, (distToStop - 1.5f) * 1.4f);
+                    // Stop the bumper, rather than the car's centre, behind the intersection boundary.
+                    float clearance = Mathf.Max(0f, distToStop - box.size.z * 0.5f - 0.6f);
+                    float stopTarget = clearance * 1.4f;
                     target = Mathf.Min(target, stopTarget);
+                    safeTravel = Mathf.Min(safeTravel, clearance);
                 }
             }
 
             // Pedestrian / amoeba emergency braking and close proximity bumper safety
-            if (Blocked(out float pd))
+            if (Blocked(out float pd, Mathf.Max(9f, Speed * dt + 2f)))
             {
                 target = Mathf.Min(target, Mathf.Max(0f, (pd - 1.5f) * 1.4f));
-                waitT += dt;
+                safeTravel = Mathf.Min(safeTravel, Mathf.Max(0f, pd - 0.5f));
             }
-            else waitT = 0f;
 
             Speed = Mathf.MoveTowards(Speed, target, (target < Speed ? 14f : 4f) * dt);
-            Distance += Speed * dt;
+            float travel = Mathf.Min(Speed * dt, safeTravel);
+            // Clamp the reported/wheel speed too, so a blocked car does not spin its tyres while standing still.
+            Speed = travel / dt;
+            Distance += travel;
             if (Distance >= lane.Length) Distance -= lane.Length;
             Vector3 prev = transform.position;
             lane.Sample(Distance, out var p, out var d);
