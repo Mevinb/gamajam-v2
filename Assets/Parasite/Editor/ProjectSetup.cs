@@ -24,6 +24,15 @@ namespace Parasite.EditorTools
             m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             EditorUtility.SetDirty(m);
 
+            // Cinematic PBR materials add packed metallic/smoothness maps at runtime. Keep that complete variant
+            // in Resources without enabling it on LitTemplate (which would make every unmapped runtime prop metallic).
+            var pbr = Ensure($"{MatDir}/NormalMetalTemplate.mat", lit);
+            pbr.EnableKeyword("_EMISSION");
+            pbr.EnableKeyword("_NORMALMAP");
+            pbr.EnableKeyword("_METALLICSPECGLOSSMAP");
+            pbr.SetColor("_EmissionColor", Color.black);
+            EditorUtility.SetDirty(pbr);
+
             var t = Ensure($"{MatDir}/TransparentTemplate.mat", lit);
             t.SetFloat("_Surface", 1f);
             t.SetFloat("_Blend", 0f);

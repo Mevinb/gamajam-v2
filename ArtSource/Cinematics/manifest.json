@@ -1,0 +1,13 @@
+{
+  "generator": "Tools/blender/cinematics/build_sets.py",
+  "seed": 70194,
+  "units": "meters",
+  "assets": [
+    "ContainmentLaboratory",
+    "ServiceConduit",
+    "LakesideBench",
+    "LakesideShore"
+  ],
+  "texture_resolution": 1024,
+  "licence": "Original PARASITE project artwork"
+}
