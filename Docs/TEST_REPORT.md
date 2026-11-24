@@ -1,3 +1,28 @@
+# Current upgrade verification — 25 November 2026
+
+The **0.4.0 upgrade remains in progress**. This section supersedes earlier current-state claims below; prior release
+records are preserved as historical evidence, not reused to certify changed source or a new executable.
+
+| Check | Result and scope | Evidence |
+|---|---|---|
+| Fast Roslyn compile | PASS: 106 runtime / 19 editor files | `Tools/compile_check.sh all` |
+| First expanded EditMode run | 52/53; failed the new traffic intersection fixture | `Logs/upgrade-editmode.xml` |
+| Corrected expanded EditMode | PASS 53/53, including traffic frame-hitch/stop-line safety and continuation state rules | `Logs/upgrade-editmode-fix.xml` |
+| Shared continuation logic, no graphics | PASS both Peace and Dominion flows; actual choice/Continue buttons, E targeting, timed work, pursuit cancellation, checkpoint reload/rearm, navigation reachability and ferry extraction | `Logs/afterlake-logic2.xml`, `Logs/afterlake-logic2.log` |
+| Expanded asset/stealth rules | PASS 63/63, including Blender PBR/scale, permanent CCTV outages, live-cover capture checks and ejection-grace body discovery | `Logs/upgrade-stealth-rules.xml` |
+| Full shared campaign logic | Running all 18 scenarios without graphics; final render/player validation remains separate | `Logs/upgrade-campaign-logic.log` |
+| RTX Blender probes | OptiX on NVIDIA RTX 4050, CPU rendering disabled; opening and revised sunset-lake frames rendered and visually reviewed | `Logs/cinematic-films/*/probe.png`, Blender render logs |
+| Full path-traced film renders | Running; encoded footage and final-player decode not yet verified | live Blender render session, `Logs/blender-film-*-render.log` |
+| Integrated graphics/cinematic PlayMode, generated scenes, Linux build, full player acceptance and benchmark | Pending current upgrade integration | Do not apply the old release results below to these changes |
+
+The first continuation run used source before the headless film guard landed and failed on missing in-progress footage;
+`afterlake-logic2` is the successful rerun with Null-device bypass. This validates gameplay logic only, not video decode,
+image quality, physical controls or performance. More asset/stealth regression cases are being run separately.
+
+Pushed feature commits: traffic `0cf6edf`, Blender set assets `910a2b1`, post-lake missions `acced2a`, stealth corrections `4c4b757`. Graphics and film integration are still being verified; the final Linux player has not yet been rebuilt for this upgrade.
+
+---
+
 # Verification report — PARASITE 0.2.0 — 21 November 2026
 
 Linux x86-64 is the sole delivery target. Unity 6000.3.29f1, Ubuntu 26.04,

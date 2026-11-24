@@ -127,3 +127,14 @@ Universal RP 17.3, Shader Graph 17.3, Cinemachine 3.1.7, Input System 1.20.1, AI
 - Unity Starter Assets Third Person controller, Demo City, Bubba/Scavenger (Asset Store) and Mixamo characters: require an
   Asset Store / Adobe login and manual "Add to My Assets", unavailable to the build agent. Replaced by original
   procedural code: character controller, humanoid rig + animation, and a scripted city.
+
+## Original cinematic sets and RTX films (0.4.0 upgrade)
+
+The containment laboratory, corrugated service conduit, slatted bench and shoreline meshes, plus their timber/steel/shore/stone
+PBR textures, are original PARASITE project artwork generated with the deterministic Blender source in
+`Tools/blender/cinematics/build_sets.py`. Editable sets are in `ArtSource/Cinematics` and runtime exports in
+`Assets/Parasite/Resources/Cinematics`. These meshes/textures introduce no downloaded third-party art pack.
+
+The film source uses the existing credited LakeGirl character and its textures. Additional Blender-generated film geometry,
+lighting, camera animation and procedural sky/water remain original project work. Render scripts and source provenance live
+in `Tools/blender/cinematics` and `ArtSource/Cinematics/README.md`; encoded footage is bundled only after rendering/verification.
