@@ -218,6 +218,9 @@ namespace Parasite.Stealth
 
         void Scan(float interval)
         {
+            // Grace suppresses reports, so defer discovery too. Consuming KnockoutDiscovered here would otherwise
+            // make an unconscious host permanently unreportable once the forced-ejection escape window ends.
+            if (Time.time < graceUntil) return;
             var pm = PossessionManager.Instance;
             if (pm != null)
             {

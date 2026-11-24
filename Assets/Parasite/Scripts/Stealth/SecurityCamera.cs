@@ -40,7 +40,8 @@ namespace Parasite.Stealth
 
         public void DisableFor(float seconds)
         {
-            disabledUntil = Time.time + seconds;
+            // A maintenance pulse may extend a previous outage, but must never undo a permanent campaign sabotage.
+            disabledUntil = Mathf.Max(disabledUntil, Time.time + seconds);
             Sfx.Play(SfxId.Release, transform.position, 0.6f);
         }
 
@@ -91,7 +92,7 @@ namespace Parasite.Stealth
             var ss = SuspicionSystem.Instance;
             var pm = PossessionManager.Instance;
             SeesSomething = false;
-            if (ss == null || pm == null) return;
+            if (ss == null || pm == null || ss.GraceRemaining > 0f) return;
             foreach (var a in pm.Agents)
             {
                 if (a.InTransit) continue;

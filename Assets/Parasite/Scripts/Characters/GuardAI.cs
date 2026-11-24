@@ -182,6 +182,15 @@ namespace Parasite.Characters
 
         void TryCapture(SuspicionSystem ss)
         {
+            var manager = GameManager.Instance;
+            if (!ss || !ss.HasValidSuspect || ss.GraceRemaining > 0f || (manager && !manager.IsPlaying)) return;
+            // Vision is throttled during pursuit, but a grab must use the current target and current cover.
+            // Otherwise the previous visible sample can capture a host/blob through a newly crossed doorway or wall.
+            if (!ss.CanSee(host, ss.SuspectAimPoint, ss.SuspectRoot, SightRange))
+            {
+                seesSuspect = false;
+                return;
+            }
             var pm = PossessionManager.Instance;
             if (pm == null) return;
             if (ss.SuspectRoot.TryGetComponent<HostCharacter>(out var h) && h.State == HostState.Possessed)
