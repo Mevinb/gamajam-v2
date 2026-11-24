@@ -216,7 +216,13 @@ Shader "Parasite/GroundWater"
                         // Rough damp patches use the filtered probe instead of sharp mirror copies of the scene.
                         confidence *= saturate(1.0 - roughness * 2.5);
                         hit = confidence * _SSRStrength;
-                        return lerp(fallback, SampleSceneColor(huv), hit);
+                        // The opaque camera copy is sampled at its native level. Implicit-gradient sampling inside
+                        // this divergent ray loop has undefined derivatives on GL/Vulkan; retain URP's stereo and
+                        // dynamic-resolution bilinear clamp while making the LOD explicit. Roughness still blends
+                        // towards the prefiltered probe through confidence above.
+                        float2 colorUV = ClampAndScaleUVForBilinear(UnityStereoTransformScreenSpaceTex(huv), _CameraOpaqueTexture_TexelSize.xy);
+                        half3 reflectedColor = SAMPLE_TEXTURE2D_X_LOD(_CameraOpaqueTexture, sampler_CameraOpaqueTexture, colorUV, 0).rgb;
+                        return lerp(fallback, reflectedColor, hit);
                     }
                     inFront = diff <= 0.0;
                     stepLen = stepLen * 1.14 + 0.005;
