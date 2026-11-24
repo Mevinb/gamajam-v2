@@ -52,7 +52,8 @@ namespace Parasite.Missions
                 go.transform.position = pos; go.transform.rotation = Quaternion.Euler(0, 180, 0);
                 var mesh = go.AddComponent<TextMesh>(); mesh.text = text; mesh.fontSize = 64; mesh.characterSize = size;
                 mesh.anchor = TextAnchor.MiddleCenter; mesh.alignment = TextAlignment.Center; mesh.color = new Color(0.85f, 0.88f, 0.79f);
-                mesh.font = Resources.Load<Font>("Fonts/Rajdhani-Medium") ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                var signFont = Resources.Load<Font>("UI/Rajdhani-Medium");
+                mesh.font = signFont ? signFont : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
                 go.AddComponent<WorldTextFont>().Configure(M("WorldText", Color.white));
             }
             void Shed(string name, float x, float z, float width, float depth, Material wall)
@@ -67,17 +68,29 @@ namespace Parasite.Missions
                 Sign(name.ToUpperInvariant(), new Vector3(x, 3.25f, z - depth * 0.5f - 0.18f));
             }
 
-            Box("Quayside foundation", new Vector3(230, -0.7f, -3), new Vector3(100, 1.7f, 70), concrete);
-            Box("Quayside paving", new Vector3(230, 0.08f, -3), new Vector3(100, 0.14f, 70), paving);
-            Box("River", new Vector3(230, -0.36f, -76), new Vector3(230, 0.12f, 85), M("Water", new Color(0.10f, 0.23f, 0.29f)), false);
+            // An actual water berth, rather than water drawn over an invisible floor. Each slab remains physical;
+            // the ferry retains its original deck and connects to the north quay with a shallow gangway.
+            foreach (var slab in new[]
+            {
+                (name: "west", x: 222.5f, z: -3f, width: 85f, depth: 70f),
+                (name: "east", x: 277.5f, z: -3f, width: 5f, depth: 70f),
+                (name: "berth head", x: 270f, z: 4f, width: 10f, depth: 56f),
+            })
+            {
+                Box("Quayside foundation " + slab.name, new Vector3(slab.x, -0.7f, slab.z), new Vector3(slab.width, 1.7f, slab.depth), concrete);
+                Box("Quayside paving " + slab.name, new Vector3(slab.x, 0.08f, slab.z), new Vector3(slab.width, 0.14f, slab.depth), paving);
+            }
+            AfterlakeWater.Create(root);
             // Low retaining walls establish a bounded district without invisible fall edges.
             Box("West retaining wall", new Vector3(180.5f, 0.8f, -3), new Vector3(0.7f, 1.4f, 70), brick);
             Box("East retaining wall", new Vector3(279.5f, 0.8f, -3), new Vector3(0.7f, 1.4f, 70), brick);
             Box("North retaining wall", new Vector3(230, 1.5f, 31.5f), new Vector3(100, 2.7f, 0.8f), brick);
-            Box("Sea wall", new Vector3(230, 0.65f, -37.5f), new Vector3(100, 1.0f, 0.6f), concrete);
+            Box("Sea wall west", new Vector3(222.5f, 0.65f, -37.5f), new Vector3(85, 1.0f, 0.6f), concrete);
+            Box("Sea wall east", new Vector3(277.5f, 0.65f, -37.5f), new Vector3(5, 1.0f, 0.6f), concrete);
             for (int i = 0; i < 16; i++)
             {
                 float x = 184 + i * 6;
+                if (x > 265 && x < 275) continue;
                 Cylinder("Mooring bollard", new Vector3(x, 0.6f, -34), new Vector3(0.45f, 0.45f, 0.45f), steel);
                 Box("Pier coping", new Vector3(x, 0.25f, -35.6f), new Vector3(5.8f, 0.15f, 1.6f), concrete);
             }
@@ -110,6 +123,13 @@ namespace Parasite.Missions
             Cylinder("Radio mast", new Vector3(270, 8, 19), new Vector3(0.3f, 8, 0.3f), steel);
             for (int i = 0; i < 4; i++) Box("Antenna cross arm", new Vector3(270, 7 + i * 2.2f, 19), new Vector3(3 - i * 0.5f, 0.1f, 0.1f), steel, false);
             Box("Ferry deck", new Vector3(270, 0.35f, -30), new Vector3(6, 0.4f, 8), wood);
+            var gangway = Box("Ferry gangway", new Vector3(268.2f, 0.35f, -25), new Vector3(1.8f, 0.15f, 3.6f), wood);
+            gangway.transform.localRotation = Quaternion.Euler(7, 0, 0);
+            // Visible dock barriers keep normal movement on real footing, directing boarding through the gangway.
+            Box("Berth west barrier", new Vector3(265.05f, 0.675f, -31), new Vector3(0.12f, 1.05f, 14), steel);
+            Box("Berth east barrier", new Vector3(274.95f, 0.675f, -31), new Vector3(0.12f, 1.05f, 14), steel);
+            Box("Berth head barrier west", new Vector3(266.1f, 0.675f, -24.05f), new Vector3(2.2f, 1.05f, 0.12f), steel);
+            Box("Berth head barrier east", new Vector3(272.1f, 0.675f, -24.05f), new Vector3(5.8f, 1.05f, 0.12f), steel);
             Box("Ferry cabin", new Vector3(270, 1.6f, -32), new Vector3(3.5f, 2.2f, 2.5f), white);
             Box("Ferry cabin glazing", new Vector3(270, 1.9f, -30.72f), new Vector3(2.6f, 0.8f, 0.04f), M("GlassDark", new Color(0.1f, 0.18f, 0.2f)), false);
             Sign("RIVERSIDE / SOUTH FERRY", new Vector3(270, 2.5f, -30.65f), 0.07f);
@@ -173,7 +193,9 @@ namespace Parasite.Missions
             var zoneGo = new GameObject("Radio cordon"); zoneGo.transform.SetParent(root, false); zoneGo.transform.position = new Vector3(264, 0.15f, 9);
             var zone = zoneGo.AddComponent<RestrictedZone>(); zone.zoneName = "Shore radio cordon"; zone.size = new Vector3(28, 4, 28); zone.required = AccessPermission.LabInterior;
             root.gameObject.AddComponent<AfterlakeArt>().Build();
+            root.gameObject.AddComponent<AfterlakeProps>().Build();
             Sign("RIVERSIDE RELIEF / KEEP THE WATER CLEAN", new Vector3(230, 2, 30.95f), 0.14f);
+            root.gameObject.AddComponent<AfterlakeSurfaceUV>().Apply();
         }
     }
 }

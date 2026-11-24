@@ -1,0 +1,128 @@
+{
+  "verification": "CPU Blender FBX round-trip, no Unity or GPU rendering",
+  "assets": [
+    {
+      "asset": "RiversideFerry",
+      "pass": true,
+      "bounds_max_error_metres": 2.980232238769531e-07,
+      "triangles": 17398,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaGlass",
+        "CinemaGlow",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaTimber",
+        "CinemaWarm",
+        "RiverMarinePaint",
+        "RiverRubber"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "FloodgateMachinery",
+      "pass": true,
+      "bounds_max_error_metres": 1.1920928955078125e-07,
+      "triangles": 15396,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaYellow",
+        "RiverMarinePaint"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "RadioMast",
+      "pass": true,
+      "bounds_max_error_metres": 2.991873770952225e-08,
+      "triangles": 19656,
+      "materials": [
+        "CinemaCream",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaStone"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IndustrialConsole",
+      "pass": true,
+      "bounds_max_error_metres": 8.940696716308594e-08,
+      "triangles": 6380,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaYellow",
+        "RiverMarinePaint"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "RadioConsole",
+      "pass": true,
+      "bounds_max_error_metres": 8.940696716308594e-08,
+      "triangles": 9344,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaSteel",
+        "RiverMarinePaint"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "ClinicConsole",
+      "pass": true,
+      "bounds_max_error_metres": 8.940696716308594e-08,
+      "triangles": 7020,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaGlass",
+        "CinemaRed",
+        "CinemaSteel",
+        "RiverClinicEnamel"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "ClinicScreen",
+      "pass": true,
+      "bounds_max_error_metres": 2.384185791015625e-07,
+      "triangles": 4716,
+      "materials": [
+        "CinemaSteel",
+        "RiverClinicFabric"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "RiversideBanks",
+      "pass": true,
+      "bounds_max_error_metres": 5.7220458984375e-06,
+      "triangles": 4800,
+      "materials": [
+        "CinemaReed",
+        "CinemaShore",
+        "CinemaStone"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    }
+  ],
+  "passed": 8,
+  "total_triangles": 84710
+}

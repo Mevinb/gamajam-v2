@@ -1,0 +1,200 @@
+{
+  "seed": 70725,
+  "coordinates": "Unity metres X right, Y up, Z forward; FBX export compensates Unity import with Blender world-Y reflection and corrected winding",
+  "colliders": "None. Preserve the existing tested Unity collision objects and interaction points.",
+  "assets": [
+    {
+      "asset": "RiversideFerry",
+      "triangles": 17398,
+      "meshes": 10,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaGlass",
+        "CinemaGlow",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaTimber",
+        "CinemaWarm",
+        "RiverMarinePaint",
+        "RiverRubber"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -3.0,
+          -0.75,
+          -4.0
+        ],
+        "max": [
+          3.000000238418579,
+          4.501107215881348,
+          4.197500228881836
+        ]
+      }
+    },
+    {
+      "asset": "FloodgateMachinery",
+      "triangles": 15396,
+      "meshes": 6,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaYellow",
+        "RiverMarinePaint"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -1.7000000476837158,
+          0.0,
+          -1.0499999523162842
+        ],
+        "max": [
+          1.7000000476837158,
+          2.450000047683716,
+          1.0499999523162842
+        ]
+      }
+    },
+    {
+      "asset": "RadioMast",
+      "triangles": 19656,
+      "meshes": 4,
+      "materials": [
+        "CinemaCream",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaStone"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -1.100000023841858,
+          -0.0011099744588136673,
+          -0.6949999928474426
+        ],
+        "max": [
+          1.100000262260437,
+          16.239999771118164,
+          0.815000057220459
+        ]
+      }
+    },
+    {
+      "asset": "IndustrialConsole",
+      "triangles": 6380,
+      "meshes": 6,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaRed",
+        "CinemaSteel",
+        "CinemaYellow",
+        "RiverMarinePaint"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.550000011920929,
+          0.12999999523162842,
+          -0.3800000548362732
+        ],
+        "max": [
+          0.550000011920929,
+          1.4500000476837158,
+          0.27000001072883606
+        ]
+      }
+    },
+    {
+      "asset": "RadioConsole",
+      "triangles": 9344,
+      "meshes": 4,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaSteel",
+        "RiverMarinePaint"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.550000011920929,
+          0.12999999523162842,
+          -0.36000001430511475
+        ],
+        "max": [
+          0.550000011920929,
+          1.4500000476837158,
+          0.27000001072883606
+        ]
+      }
+    },
+    {
+      "asset": "ClinicConsole",
+      "triangles": 7020,
+      "meshes": 6,
+      "materials": [
+        "CinemaCream",
+        "CinemaDark",
+        "CinemaGlass",
+        "CinemaRed",
+        "CinemaSteel",
+        "RiverClinicEnamel"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.550000011920929,
+          0.12999999523162842,
+          -0.36000001430511475
+        ],
+        "max": [
+          0.550000011920929,
+          1.7000000476837158,
+          0.27000001072883606
+        ]
+      }
+    },
+    {
+      "asset": "ClinicScreen",
+      "triangles": 4716,
+      "meshes": 2,
+      "materials": [
+        "CinemaSteel",
+        "RiverClinicFabric"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.15199999511241913,
+          0.15999998152256012,
+          -2.195000171661377
+        ],
+        "max": [
+          0.15200001001358032,
+          2.0450003147125244,
+          2.195000171661377
+        ]
+      }
+    },
+    {
+      "asset": "RiversideBanks",
+      "triangles": 4800,
+      "meshes": 1,
+      "materials": [
+        "CinemaReed",
+        "CinemaShore",
+        "CinemaStone"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -180.0,
+          -0.30000001192092896,
+          -75.38282775878906
+        ],
+        "max": [
+          180.0,
+          10.861437797546387,
+          3.3828301429748535
+        ]
+      }
+    }
+  ]
+}
