@@ -38,6 +38,7 @@ namespace Parasite
         public static void Request()
         {
             var owner = Ensure();
+            if (RunState.AfterlakeStarted) { owner.pending = false; return; }
             if (LakesideEpilogue.Instance)
             {
                 // Arrival may be skipped to the choice, but resolution/summary and its choice remain intact.
@@ -61,6 +62,7 @@ namespace Parasite
         {
             if (GameInput.PresentationEndingPressed) Request();
             if (!pending) return;
+            if (RunState.AfterlakeStarted) { pending = false; return; }
             if (LakesideEpilogue.Instance) { pending = false; return; }
             var manager = GameManager.Instance;
             if (manager && manager.State == GameState.Ended) { pending = false; return; }

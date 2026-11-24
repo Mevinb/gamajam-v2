@@ -223,7 +223,7 @@ namespace Parasite.UI
         // ================================================================== end screen
         RectTransform endRoot;
         CanvasGroup endGroup;
-        Button endPlay;
+        Button endPlay, endReplay, endContinue;
         Text[] endValues;
         Text endHeadline, endEpilogue, endOutcome;
         bool endOpen;
@@ -282,6 +282,12 @@ namespace Parasite.UI
                 }
             }
 
+            endContinue = UIKit.Btn(col, "Continue · After the lake", () =>
+            {
+                var gm = GameManager.Instance;
+                if (gm) gm.ContinueAfterLake();
+            }, 640, 62, 28, TextAnchor.MiddleCenter);
+            ((RectTransform)endContinue.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
             var row = new List<Selectable>();
             string[] labels = { "Play Again", "Main Menu", "Quit" };
             UnityEngine.Events.UnityAction[] actions =
@@ -295,11 +301,22 @@ namespace Parasite.UI
             {
                 var b = UIKit.Btn(col, labels[i], actions[i], BW, 62, 26, TextAnchor.MiddleCenter);
                 float x = (i - (labels.Length - 1) * 0.5f) * (BW + Gap);
-                ((RectTransform)b.transform).Place(top, top, new Vector2(x, -420 - (StatLabels.Length * RowH + 40) - 44), new Vector2(BW, 62));
+                ((RectTransform)b.transform).Place(top, top, new Vector2(x, -800), new Vector2(BW, 62));
                 row.Add(b);
-                if (i == 0) endPlay = b;
+                if (i == 0) endPlay = endReplay = b;
             }
             UIKit.LinkHorizontal(row);
+            var continueNavigation = endContinue.navigation;
+            continueNavigation.mode = Navigation.Mode.Explicit;
+            continueNavigation.selectOnDown = endReplay;
+            continueNavigation.selectOnUp = endReplay;
+            endContinue.navigation = continueNavigation;
+            foreach (var selectable in row)
+            {
+                var navigation = selectable.navigation;
+                navigation.selectOnUp = endContinue;
+                selectable.navigation = navigation;
+            }
 
             endRoot.gameObject.SetActive(false);
             endGroup.alpha = 0f;
@@ -325,6 +342,17 @@ namespace Parasite.UI
                     "From this borrowed body, the plan begins: more hosts, more cities, one mind. The lake keeps its silence.";
             }
             else { endHeadline.text = "THE EVIDENCE IS OUT."; endEpilogue.text = Epilogue; }
+            bool afterlakeComplete = RunState.Has(AfterlakeCampaign.Departed);
+            endContinue.gameObject.SetActive(!RunState.AfterlakeStarted && RunState.LakesideOutcome != EndingOutcome.Unchosen);
+            endPlay = endContinue.gameObject.activeSelf ? endContinue : endReplay;
+            if (afterlakeComplete)
+            {
+                endHeadline.text = d.outcome == EndingOutcome.Peace ? "THE RIVER CAN HEAL." : "THE FIRST MANY ANSWER.";
+                endOutcome.text = d.outcome == EndingOutcome.Peace ? "SHELTER EVACUATED  ·  ANTIDOTE SHARED  ·  HOSTS RELEASED" : "SHELTER RECRUITED  ·  RELAY SEEDED  ·  A WIDER MIND";
+                endEpilogue.text = d.outcome == EndingOutcome.Peace
+                    ? "The responders have Petrov's formula. The residents keep their names, their bodies and their futures. You leave the last host at the quay and cross the water alone. A quiet life can still be something you protect."
+                    : "The relay carries your signal beyond the shelter. For the first time, another shore answers. You leave this borrowed body at the quay; your next foothold is already waiting across the water.";
+            }
             int secs = Mathf.Max(0, Mathf.FloorToInt(d.timeSeconds));
             float peak = Mathf.Clamp(d.peakSuspicion, 0f, SuspicionRules.Max);
             endValues[0].text = MissionManager.RouteName(d.route);

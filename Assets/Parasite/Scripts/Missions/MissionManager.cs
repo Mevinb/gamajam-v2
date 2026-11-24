@@ -54,7 +54,7 @@ namespace Parasite.Missions
     }
 
     /// <summary>
-    /// Eight-mission campaign: infiltrate via three routes, meet Vale, steal signed evidence, break containment,
+    /// Expanded campaign: infiltrate via three routes, meet Vale, steal signed evidence, break containment,
     /// expose the experiment and escape. Completed flags persist; cooperative controls must be held again after a reload.
     /// </summary>
     public class MissionManager : MonoBehaviour
@@ -86,6 +86,7 @@ namespace Parasite.Missions
             foreach (var v in FindObjectsByType<DrValeInteraction>(FindObjectsSortMode.None)) propsByFlag["vale"] = v.transform;
             RestoreCampaignState();
             Advance(announce: true);
+            if (RunState.AfterlakeStarted) AfterlakeCampaign.AnnounceArrival();
             Refresh();
         }
 
@@ -121,6 +122,7 @@ namespace Parasite.Missions
                 if (GameManager.Instance && pm && pm.ActiveBody != null)
                     GameManager.Instance.SetCheckpoint(pm.ActiveBody.Root.position, "After " + flag.Replace('_', ' '));
             }
+            if (RunState.AfterlakeStarted) AfterlakeCampaign.OnFlag(flag);
             if (flag == MissionFlags.Eavesdropped) GameEvents.RaiseToast("Overheard: Dr. Vale works nights at VALE BIOTECH. Three ways in.", Palette.Amoeba);
             if (flag == MissionFlags.DeadDrop)
             {
@@ -144,7 +146,7 @@ namespace Parasite.Missions
         {
             int guard = 0;
             bool advanced = false;
-            while (Current != null && Current.IsComplete && guard++ < 10)
+            while (Current != null && Current.IsComplete && guard++ < Missions.Count)
             {
                 if (announce && !advanced) GameEvents.RaiseToast($"MISSION COMPLETE — {Current.title}", Palette.Amoeba);
                 RunState.MissionIndex++;
@@ -463,6 +465,7 @@ namespace Parasite.Missions
                     },
                 },
             };
+            if (RunState.AfterlakeStarted) AfterlakeCampaign.AppendMissions(list);
             return list;
         }
 
@@ -488,7 +491,7 @@ namespace Parasite.Missions
         {
             var gm = GameManager.Instance;
             var pm = Possession.PossessionManager.Instance;
-            if (!gm) return false;
+            if (!gm || RunState.AfterlakeStarted) return false;
             // Repeated requests must never stop the escape coroutine, replace the lake or reset its outcome.
             if (EndingStarted || UI.LakesideEpilogue.Instance || gm.State == GameState.Ended || RunState.Has(MissionFlags.Escaped)) return true;
             if (DialoguePlaying)
@@ -564,7 +567,7 @@ namespace Parasite.Missions
 
         public void CompleteEscape(Transform drain)
         {
-            if (EndingStarted || !RunState.Has(MissionFlags.MasterBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
+            if (RunState.AfterlakeStarted || EndingStarted || !RunState.Has(MissionFlags.MasterBroadcast) || !RunState.Has(MissionFlags.ContainmentOffline)) return;
             EndingStarted = true;
             Waypoints.Clear(); SetObjective("");
             if (GameManager.Instance) GameManager.Instance.BeginEnding();

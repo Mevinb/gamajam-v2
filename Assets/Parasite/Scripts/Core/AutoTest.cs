@@ -296,6 +296,8 @@ namespace Parasite.Testing
                 ("16 Blackout: palm-print lockout, grid reroute on timeout, three-body chain, blackout persists", ScenarioBlackout),
                 ("10 Guard pursues + captures; amoeba ejects and survives", ScenarioCapture),
                 ("11 Pause + restart", ScenarioPauseRestart),
+                ("17 Peace: explicit lake choice → Continue → riverside missions → checkpoint recovery → ferry", () => AfterlakeAcceptance.RunChapter(EndingOutcome.Peace)),
+                ("18 Dominion: explicit lake choice → Continue → branch relay → checkpoint recovery → ferry", () => AfterlakeAcceptance.RunChapter(EndingOutcome.Dominion)),
             };
             // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
             var args = Environment.GetCommandLineArgs();

@@ -22,6 +22,27 @@ namespace Parasite
         public static int Resets;
         public static readonly HashSet<string> Flags = new();
         public static int MissionIndex;
+        public static EndingOutcome LakesideOutcome { get; private set; }
+        public static bool AfterlakeStarted => Has(Missions.AfterlakeCampaign.Started);
+
+        /// <summary>The first resolved lakeside choice stays true through later chapters and reloads.</summary>
+        public static bool RecordLakesideOutcome(EndingOutcome outcome)
+        {
+            if ((outcome != EndingOutcome.Peace && outcome != EndingOutcome.Dominion) || LakesideOutcome != EndingOutcome.Unchosen) return false;
+            LakesideOutcome = outcome;
+            return true;
+        }
+
+        public static bool BeginAfterlake()
+        {
+            if (LakesideOutcome == EndingOutcome.Unchosen || !Has(Missions.MissionFlags.Escaped) || AfterlakeStarted) return false;
+            Flags.Add(Missions.AfterlakeCampaign.Started);
+            MissionIndex = Missions.AfterlakeCampaign.FirstMissionIndex;
+            HasCheckpoint = true;
+            CheckpointPosition = Missions.AfterlakeCampaign.Spawn;
+            CheckpointName = "Riverside landing";
+            return true;
+        }
         public static bool Has(string flag) => Flags.Contains(flag);
 
         public static void NewGame()
@@ -29,7 +50,7 @@ namespace Parasite
             HasCheckpoint = false; CheckpointPosition = Vector3.zero; CheckpointName = "";
             Route = EntryRoute.None; LabEntered = false; PlayTime = 0; HostsPossessed = 0;
             PeakSuspicion = 0; Captures = 0; Resets = 0;
-            Flags.Clear(); MissionIndex = 0;
+            Flags.Clear(); MissionIndex = 0; LakesideOutcome = EndingOutcome.Unchosen;
         }
     }
 
@@ -48,6 +69,8 @@ namespace Parasite
             Time.timeScale = 1f;
             SetCursorLocked(true);
             PresentationShortcut.Ensure();
+            // CityDirector adds this manager before baking its NavMesh and spawning markers.
+            if (RunState.AfterlakeStarted) Missions.AfterlakeDistrict.Build();
         }
 
         void OnDestroy() { if (Instance == this) Instance = null; }
@@ -109,12 +132,39 @@ namespace Parasite
         /// <summary>Publish the final summary only after the player explicitly chooses their future.</summary>
         public void PublishFinalEnding(EndingData data)
         {
-            if (State != GameState.Ending || data.outcome == EndingOutcome.Unchosen) return;
+            if (State != GameState.Ending || (data.outcome != EndingOutcome.Peace && data.outcome != EndingOutcome.Dominion) || RunState.AfterlakeStarted) return;
+            RunState.RecordLakesideOutcome(data.outcome);
+            data.outcome = RunState.LakesideOutcome;
             Missions.MissionManager.SetFlag(Missions.MissionFlags.Escaped);
             State = GameState.Ended;
             Time.timeScale = 0f;
             SetCursorLocked(false);
             GameEvents.RaiseEnding(data);
+        }
+
+        /// <summary>Continue deliberately from the resolved lake summary; checkpoint reloads keep this chapter.</summary>
+        public bool ContinueAfterLake()
+        {
+            if (State != GameState.Ended || !RunState.BeginAfterlake()) return false;
+            State = GameState.Resetting;
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(CityScene);
+            return true;
+        }
+
+        public void FinishAfterlake()
+        {
+            if (!IsPlaying || !RunState.AfterlakeStarted || !RunState.Has(Missions.AfterlakeCampaign.ChannelOpened) ||
+                RunState.Has(Missions.AfterlakeCampaign.Departed)) return;
+            Missions.MissionManager.SetFlag(Missions.AfterlakeCampaign.Departed);
+            State = GameState.Ended;
+            Time.timeScale = 0f;
+            SetCursorLocked(false);
+            GameEvents.RaiseEnding(new EndingData
+            {
+                route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
+                peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome,
+            });
         }
 
         /// <summary>No playable amoeba left: reload the city at the last checkpoint.</summary>
