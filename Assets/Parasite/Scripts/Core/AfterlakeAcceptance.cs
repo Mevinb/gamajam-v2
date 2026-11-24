@@ -34,6 +34,8 @@ namespace Parasite.Testing
             yield return new WaitForSecondsRealtime(0.9f);
             lake.FinishResolution();
             Require.AreEqual(GameState.Ended, gm.State);
+            var banner = HUDController.Instance.GetComponentsInChildren<CanvasGroup>(true).Single(group => group.name == "MissionBanner");
+            Require.AreEqual(0f, banner.alpha, "An active mission card must be cleared before the ending summary fades in.");
             Require.AreEqual(outcome, RunState.LakesideOutcome);
             Require.IsFalse(RunState.AfterlakeStarted, "Resolving the lake does not automatically choose to continue.");
             var button = HUDController.Instance.GetComponentsInChildren<Button>(true).Single(b => b.name == "Btn_Continue · After the lake");

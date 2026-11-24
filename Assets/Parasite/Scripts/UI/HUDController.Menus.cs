@@ -325,6 +325,9 @@ namespace Parasite.UI
         void OnEnding(EndingData d)
         {
             endOpen = true;
+            // The summary fades in over the world. Old mission cards must never show through that fade.
+            ClearMissionBanner();
+            gameplay.alpha = 0f;
             pauseOpen = false;
             pauseRoot.gameObject.SetActive(false);
             if (d.outcome == EndingOutcome.Peace)

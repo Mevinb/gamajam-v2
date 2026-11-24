@@ -41,9 +41,21 @@ namespace Parasite.UI
 
         void OnBanner(string title, string sub) { pendingTitle = title; pendingSub = sub; }
 
+        void ClearMissionBanner()
+        {
+            pendingTitle = pendingSub = null;
+            bannerT = 0f;
+            if (bannerGroup) bannerGroup.alpha = 0f;
+        }
+
         void TickMission(float dt)
         {
             TickCompass();
+            if (endOpen || state == GameState.Ended)
+            {
+                ClearMissionBanner();
+                return;
+            }
             if (pendingTitle != null && state == GameState.Playing && !subActive)
             {
                 bannerTitle.text = UIKit.Clean(pendingTitle);
@@ -52,7 +64,7 @@ namespace Parasite.UI
                 bannerT = 5.5f;
             }
             if (bannerT > 0f) bannerT -= dt;
-            float target = bannerT > 0.6f ? 1f : bannerT > 0f ? bannerT / 0.6f : 0f;
+            float target = state != GameState.Playing || subActive ? 0f : bannerT > 0.6f ? 1f : bannerT > 0f ? bannerT / 0.6f : 0f;
             bannerGroup.alpha = Mathf.MoveTowards(bannerGroup.alpha, target, dt * 3f);
         }
 
