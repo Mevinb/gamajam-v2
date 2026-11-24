@@ -1779,14 +1779,54 @@ namespace Parasite.Testing
         IEnumerator BenchmarkMain()
         {
             Log.Clear();
+            string reportPath = Path.GetFullPath(OutPath());
+            Directory.CreateDirectory(Path.GetDirectoryName(reportPath));
+            var arguments = Environment.GetCommandLineArgs();
+            string Option(string flag)
+            {
+                int index = Array.IndexOf(arguments, flag);
+                return index >= 0 && index + 1 < arguments.Length ? arguments[index + 1] : null;
+            }
+            string district = Option("-benchmarkDistrict") ?? "city";
+            string preset = Option("-benchmarkPreset");
+            int requestedPreset = GraphicsPreset.Current;
+            if (preset != null)
+            {
+                requestedPreset = Array.FindIndex(GraphicsPreset.Names, name => name.Equals(preset, StringComparison.OrdinalIgnoreCase));
+                if (requestedPreset < 0 && (!int.TryParse(preset, out requestedPreset) || requestedPreset < 0 || requestedPreset >= GraphicsPreset.Names.Length))
+                    requestedPreset = -1;
+            }
+            bool riverside = district.Equals("riverside", StringComparison.OrdinalIgnoreCase);
+            if ((!riverside && !district.Equals("city", StringComparison.OrdinalIgnoreCase)) || requestedPreset < 0 ||
+                SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
+            {
+                Write("ERROR: benchmark requires a graphics device, -benchmarkPreset Low/Medium/High/Ultra (or 0-3), and -benchmarkDistrict city/riverside.");
+                File.WriteAllText(reportPath, Log.ToString());
+                Application.Quit(2);
+                yield break;
+            }
             yield return LoadCity();
+            if (riverside)
+            {
+                // A diagnostic fixture for the later district; this benchmark never writes campaign or graphics preferences.
+                RunState.RecordLakesideOutcome(EndingOutcome.Peace);
+                RunState.Flags.Add(MissionFlags.Escaped);
+                RunState.BeginAfterlake();
+                SceneManager.LoadScene(GameManager.CityScene);
+                yield return null;
+                float readyDeadline = Time.realtimeSinceStartup + 30f;
+                while ((!CityDirector.Instance || !CityDirector.Instance.Ready) && Time.realtimeSinceStartup < readyDeadline) yield return null;
+                yield return new WaitForSecondsRealtime(0.5f);
+            }
+            GraphicsPreset.Apply(requestedPreset, save: false);
             GameInput.Simulated = true;
             // A legal staff host lets the tour exercise the live city without manufacturing a blob chase.
-            var tourHost = NearestHost(CityLayout.PlayerSpawn, h => h.CanBePossessed && h.Profession == Profession.Scientist);
+            var tourSpawn = riverside ? AfterlakeCampaign.Spawn : CityLayout.PlayerSpawn;
+            var tourHost = NearestHost(tourSpawn, h => h.CanBePossessed && h.Profession == Profession.Scientist);
             if (tourHost)
             {
                 PM.ForcePossessImmediate(tourHost);
-                TeleportBody(tourHost, CityLayout.PlayerSpawn, 0f);
+                TeleportBody(tourHost, tourSpawn, 0f);
             }
             var tourDirector = CityDirector.Instance;
             int tourCaptures = RunState.Captures;
@@ -1798,12 +1838,16 @@ namespace Parasite.Testing
             Write($"Resolution: {Screen.width}x{Screen.height} fullscreen={Screen.fullScreenMode} vSync={QualitySettings.vSyncCount} quality={QualitySettings.names[QualitySettings.GetQualityLevel()]}");
             var pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline as UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset;
             Write($"Preset: {GraphicsPreset.Names[GraphicsPreset.Current]}, render scale {(pipeline ? pipeline.renderScale : 1f):0.00}; touring as {(tourHost ? "scientist" : "free amoeba")}; traffic and NPC AI enabled; startup and screenshot encoding excluded from samples");
-            var waypoints = new[] { CityLayout.PlayerSpawn, CityLayout.MainGateOutside, CityLayout.StaffTerminalPos, CityLayout.TunnelDoorOutside, CityLayout.PlayerSpawn };
-            string reportPath = Path.GetFullPath(OutPath());
+            Write($"District: {(riverside ? "riverside (Peace chapter fixture)" : "city")}; preset override is not saved.");
+            var waypoints = riverside
+                ? new[] { tourSpawn, AfterlakeCampaign.Receiver + Vector3.back * 3f, AfterlakeCampaign.FloodgatePanel + Vector3.back * 3f,
+                    AfterlakeCampaign.Analysis + Vector3.back * 3f, AfterlakeCampaign.Radio + Vector3.back * 3f,
+                    AfterlakeCampaign.Ferry + Vector3.back * 2f, tourSpawn }
+                : new[] { tourSpawn, CityLayout.MainGateOutside, CityLayout.StaffTerminalPos, CityLayout.TunnelDoorOutside, tourSpawn };
             string shotDir = Path.GetDirectoryName(reportPath);
             Directory.CreateDirectory(shotDir);
             var frameTimes = new List<float>();
-            int shot = 0;
+            int shot = 0, reachedCount = 0;
             bool interrupted = false;
             yield return new WaitForSeconds(2f);
             float total = 0;
@@ -1828,6 +1872,7 @@ namespace Parasite.Testing
                 }
                 (walk as IDisposable)?.Dispose();
                 if (interrupted) { Write("ERROR: gameplay reset/capture interrupted the tour; samples are incomplete"); break; }
+                if (reached) reachedCount++;
                 Write($"Waypoint {shot}: {(reached ? "REACHED" : "TIMEOUT")} {wp}; body {PM.ActiveBody.Root.position}; sampled {frameTimes.Count - firstFrame} frames");
                 ScreenCapture.CaptureScreenshot(Path.Combine(shotDir, $"screenshot_{shot++}.png"));
                 yield return new WaitForSecondsRealtime(0.5f);
@@ -1847,10 +1892,11 @@ namespace Parasite.Testing
             Write($"Frames: {frameTimes.Count} over {total:0.0}s  avg {1f / avg:0.0} FPS ({avg * 1000f:0.00} ms)  p99 {p99 * 1000f:0.00} ms ({1f / p99:0.0} FPS)  worst {worst * 1000f:0.0} ms");
             Write($"Memory: allocated {Profiler.GetTotalAllocatedMemoryLong() / 1048576} MB, reserved {Profiler.GetTotalReservedMemoryLong() / 1048576} MB, mono heap {Profiler.GetMonoUsedSizeLong() / 1048576} MB, gfx driver {Profiler.GetAllocatedMemoryForGraphicsDriver() / 1048576} MB");
             Write($"Scene: {HostCharacter.All.Count} NPCs, {FindObjectsByType<Renderer>(FindObjectsSortMode.None).Length} renderers, {FindObjectsByType<Light>(FindObjectsSortMode.None).Length} lights");
-            Write($"Final vSync={QualitySettings.vSyncCount}; route {(interrupted ? "INTERRUPTED" : "finished (see waypoint coverage above)")}");
+            bool complete = !interrupted && reachedCount == waypoints.Length;
+            Write($"Final vSync={QualitySettings.vSyncCount}; route {(interrupted ? "INTERRUPTED" : complete ? "COMPLETE" : "INCOMPLETE")}, {reachedCount}/{waypoints.Length} waypoints reached");
             File.WriteAllText(reportPath, Log.ToString());
             yield return new WaitForSecondsRealtime(1f);
-            Application.Quit(interrupted ? 1 : 0);
+            Application.Quit(complete ? 0 : 1);
         }
     }
 }
