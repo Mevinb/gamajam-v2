@@ -20,8 +20,15 @@ records are preserved as historical evidence, not reused to certify changed sour
 | Final ferry-host safeguard | PASS 2/2 Peace/Dominion continuations after requiring all hosts released, rejecting direct-call/transit bypasses and checking cleared ownership links | `Logs/upgrade-ferry-host-release.xml` |
 | Generated scenes | PASS: CityBuilder regenerated Bootstrap/City and environment/reflections;594,213 city LOD0 triangles | `Logs/upgrade-buildscenes.log` |
 | City shader/serialization audit | PASS: regenerated city render reviewed; zero missing scripts, NVIDIA RTX 4050, 714,291 LOD0 triangles | `Logs/upgrade-city-photo.log`, `Logs/photos/02_market_st.png` |
-| Linux build | Running from committed runtime/art source 5da30056a2b323d0038b47112d8ba04df51b9c96; new graphics shader variants compiling | `Logs/upgrade-linux.log` |
-| Full player acceptance, media decode and benchmark | Pending the current Linux rebuild | Do not apply historical release results below to this artifact |
+| Initial Linux build | PASS: 968 MB, zero errors, two GroundWater implicit-derivative warnings on GL/Vulkan; not the final release candidate | `Logs/upgrade-linux.log` |
+| Initial actual-player cinematic backend | PASS 2/2: RTX 4050/OpenGLCore, both VP8 clips advance at timeScale=0, populated pixel readback, clean exit0; PNGs reviewed | `Logs/standalone-0.4/films-initial.txt`, `films-initial-player.log` |
+| Reflection sampling correction | PASS: explicit LOD preserves URP stereo/dynamic-resolution clamping; both target APIs rebuilt with zero warnings | commit `5fc21fa`, `Logs/upgrade-reflection-photo.log`, `Logs/upgrade-linux-final.log` |
+| Final Linux candidate | PASS: 968 MB, 0 errors/0 warnings, source 846643bb0055a242262e25f48dd0b335a705f470; runtime DLL SHA 6d5baaf9b2c1b92481cfca58a760b794a31ca5154d5610a9e53559e52f69ec9b | `Logs/upgrade-linux-verified.log`, `Logs/standalone-0.4/final-build-info.json` |
+| Final actual-player media | PASS 2/2 on RTX 4050/OpenGLCore: advancing frozen-time playback and nonempty pixel readbacks | `Logs/standalone-0.4/films-final.txt` |
+| Actual-player shortcut regression | PASS 14/14 queued-keyboard cases, exit 0; performed before the benchmark-only walker update, which does not run in shortcut mode. This is not physical key validation. | `Logs/standalone-0.4/shortcut.txt`, `shortcut-player.log` |
+| Benchmark route correction | A 35 s budget was shorter than the 193.7 m final leg at 4.6 m/s. Complete paths are now required and budgets derive from path length; waypoint coordinates unchanged. Runtime movement regression pending actual acceptance. | commit `846643b` |
+| Final standalone campaign acceptance | Running all 18 shared scenarios on the final 968 MB candidate, including all-host ferry ownership and the corrected time-normalized diagnostic walker | `Logs/standalone-0.4/campaign-final-player.log` |
+| Performance benchmark and release archive | Pending standalone campaign result; no fresh FPS or archive-checksum claim yet | Do not apply historical release results below to this artifact |
 
 The first continuation run used source before the headless film guard landed and failed on missing in-progress footage;
 `afterlake-logic2` is the successful rerun with Null-device bypass. This validates gameplay logic only, not video decode,
