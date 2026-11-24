@@ -156,6 +156,7 @@ namespace Parasite
         {
             if (!IsPlaying || !RunState.AfterlakeStarted || !RunState.Has(Missions.AfterlakeCampaign.ChannelOpened) ||
                 RunState.Has(Missions.AfterlakeCampaign.Departed)) return;
+            if (!Missions.AfterlakeDeparture.AllAmoebaeFree(out _)) return;
             Missions.MissionManager.SetFlag(Missions.AfterlakeCampaign.Departed);
             State = GameState.Ended;
             Time.timeScale = 0f;

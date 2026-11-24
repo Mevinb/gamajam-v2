@@ -49,12 +49,12 @@ namespace Parasite.Missions
             {
                 title = Peace ? "THE OPEN CHANNEL" : "THE FIRST MANY",
                 briefing = Peace ? "Get the antidote formula to independent responders. Maintenance must keep the mast powered while a different civilian or scientist sends an anonymous call. Leave every host behind before boarding the ferry."
-                    : "Turn the mast into your first relay. Maintenance holds the amplifier while a different guard or scientist seeds the network. Leave this body behind and carry the new signal across the water.",
+                    : "Turn the mast into your first relay. Maintenance holds the amplifier while a different guard or scientist seeds the network. Leave every host behind and carry the new signal across the water.",
                 objectives =
                 {
                     new() { text = "As MAINTENANCE, hold the radio power stabiliser [E]; leave that body and [Tab]", doneWhen = () => RunState.Has(ChannelOpened) || Held(RadioControl), waypoints = new[] { RadioPower }, waypointLabel = "RADIO POWER" },
                     new() { text = Peace ? "As your OTHER CIVILIAN or SCIENTIST, transmit the antidote and evacuation call (10 s); lose pursuit" : "As your OTHER GUARD or SCIENTIST, transmit the neural relay seed (10 s); lose pursuit", flag = ChannelOpened, waypoints = new[] { Radio }, waypointLabel = "SHORE TRANSMITTER" },
-                    new() { text = "Release your host [Q] and board the ferry through its intake as a FREE amoeba [E]", flag = Departed, waypoints = new[] { Ferry }, waypointLabel = "FERRY INTAKE" },
+                    new() { text = "Release ALL hosts with [Tab]/[Q], then board the ferry intake as a FREE amoeba [E]", flag = Departed, waypoints = new[] { Ferry }, waypointLabel = "FERRY INTAKE" },
                 },
             });
         }

@@ -120,10 +120,46 @@ namespace Parasite.Testing
             Require.AreEqual(outcome, RunState.LakesideOutcome);
             Require.IsFalse(RunState.RecordLakesideOutcome(outcome == EndingOutcome.Peace ? EndingOutcome.Dominion : EndingOutcome.Peace));
             var ferry = Object.FindFirstObjectByType<AfterlakeDeparture>();
+            var departureAgent = PM.Active;
+            var transmissionHost = departureAgent.Host;
+            var supportAgent = PM.Agents.Single(agent => agent != departureAgent);
+            var supportHost = supportAgent.Host;
+            Require.IsNotNull(transmissionHost);
+            Require.IsNotNull(supportHost, "The inactive radio support host is still possessed before departure.");
+            Require.AreEqual(Profession.Maintenance, supportHost.Profession);
             ctx = Context(); Require.IsFalse(ferry.CanInteract(ctx, out _), "A human host cannot board through the intake.");
             Require.IsTrue(PM.LeaveHost()); Calm();
+            Require.IsNull(transmissionHost.Possessor, "Releasing the active host clears its ownership link.");
+            Require.AreSame(supportAgent, supportHost.Possessor, "Releasing the active host must not silently release the other body.");
+            ctx = Context();
+            Require.IsFalse(ferry.CanInteract(ctx, out var releaseReason), "An inactive possessed support host prevents boarding.");
+            Require.IsTrue(releaseReason.Contains("[Tab]") && releaseReason.Contains("[Q]"), "The denial explains how to release the other host.");
+            GameManager.Instance.FinishAfterlake();
+            Require.AreEqual(GameState.Playing, GameManager.Instance.State, "Direct finalization cannot bypass the inactive-host requirement.");
+            Require.IsFalse(RunState.Has(AfterlakeCampaign.Departed));
+            Require.IsTrue(PM.SwitchActive());
+            Require.AreSame(supportAgent, PM.Active);
+            Require.IsTrue(PM.LeaveHost()); Calm();
+            Require.IsNull(supportHost.Possessor, "Releasing the support host clears its ownership link.");
+            Require.IsTrue(PM.SwitchActive());
+            Require.AreSame(departureAgent, PM.Active);
+            Require.IsTrue(PM.Agents.All(agent => agent.IsFree), "Both surviving amoebae are free before boarding.");
+            // Controlled transition fixture: ownership-free must not mean a pending leap can be abandoned.
+            supportAgent.InTransit = true;
+            try
+            {
+                ctx = Context();
+                Require.IsFalse(ferry.CanInteract(ctx, out _), "An inactive amoeba in transit prevents boarding.");
+                GameManager.Instance.FinishAfterlake();
+                Require.AreEqual(GameState.Playing, GameManager.Instance.State, "Direct finalization also rejects a pending possession transit.");
+                Require.IsFalse(RunState.Has(AfterlakeCampaign.Departed));
+            }
+            finally { supportAgent.InTransit = false; }
             yield return Use(ferry, ferry.transform.position);
             Require.AreEqual(GameState.Ended, GameManager.Instance.State);
+            Require.IsTrue(PM.Agents.All(agent => agent.IsFree), "The final summary cannot leave a surviving agent inside a host.");
+            Require.IsNull(transmissionHost.Possessor);
+            Require.IsNull(supportHost.Possessor);
             Require.IsTrue(RunState.Has(AfterlakeCampaign.Departed));
             Require.AreEqual(17, RunState.MissionIndex);
             Require.AreEqual(outcome, RunState.LakesideOutcome);
