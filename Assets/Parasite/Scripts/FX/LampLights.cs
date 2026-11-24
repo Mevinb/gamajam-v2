@@ -21,6 +21,7 @@ namespace Parasite.FX
         float[] dist, target;
         int[] order;
         float tick;
+        DistComparer comparer;
 
         void Awake() => Allocate();
 
@@ -29,6 +30,7 @@ namespace Parasite.FX
             int n = lights.Length;
             if (dist != null && dist.Length == n) return;
             dist = new float[n]; target = new float[n]; order = new int[n];
+            comparer = new DistComparer(dist);
             if (baseIntensity == null || baseIntensity.Length != n)
             {
                 baseIntensity = new float[n];
@@ -72,13 +74,15 @@ namespace Parasite.FX
                 dist[i] = (lights[i].transform.position - camPos).magnitude;
                 if (dist[i] <= MaxDistance) order[cnt++] = i;
             }
-            System.Array.Sort(order, 0, cnt, new DistComparer(dist));
+            System.Array.Sort(order, 0, cnt, comparer);
             int keep = Mathf.Min(cnt, Mathf.Max(0, Budget));
             for (int j = 0; j < keep; j++)
             {
                 int i = order[j];
                 float fade = Mathf.Clamp01((MaxDistance - dist[i]) / (MaxDistance * 0.25f));
-                if (j > keep - 4) fade *= (keep - j) / 4f;               // the last few of the budget fade with rank too
+                // Rank fading is only needed when candidates exceed the budget. A lone nearby lamp must not
+                // lose 75% of its intensity simply because there are no other lights in range.
+                if (cnt > keep && j > keep - 4) fade *= (keep - j) / 4f;
                 target[i] = baseIntensity[i] * fade;
             }
             if (!instant) return;

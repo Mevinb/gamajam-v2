@@ -87,6 +87,7 @@ namespace Parasite.EditorTools
             FX.LampLights.Budget = 32; FX.LampLights.MaxDistance = 70f;
             Shader.SetGlobalFloat("_ParasiteRain", 0.5f);
             Shader.DisableKeyword("_PARASITE_SSR_OFF");
+            Shader.SetGlobalFloat("_ParasiteSSRSteps", 28f);
             void Shoot(string name, Vector3 pos, Vector3 look)
             {
                 if (!rt || !rt.IsCreated())

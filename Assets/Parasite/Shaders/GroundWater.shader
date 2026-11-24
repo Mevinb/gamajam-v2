@@ -50,6 +50,10 @@ Shader "Parasite/GroundWater"
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_ATLAS
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
             #pragma multi_compile_fragment _ _PARASITE_SSR_OFF
             #define _SPECULAR_SETUP 1
@@ -78,6 +82,7 @@ Shader "Parasite/GroundWater"
                 half _BedOpacityDeep;
             CBUFFER_END
             float _ParasiteRain;
+            float _ParasiteSSRSteps;
 
             struct Attributes
             {
@@ -148,32 +153,45 @@ Shader "Parasite/GroundWater"
                 return acc;
             }
 
-            half3 TraceReflection(float3 posWS, float3 R, half3 fallback, out half hit)
+            // Only accept a front-to-back depth crossing. A ray starting behind the depth buffer (the pavement
+            // under this transparent film) is not a reflection hit. Refine and recheck thickness to reject silhouettes.
+            half3 TraceReflection(float3 posWS, float3 R, half roughness, half3 fallback, out half hit)
             {
                 hit = 0;
                 #if defined(_PARASITE_SSR_OFF)
                     return fallback;
                 #else
-                float3 p = posWS + R * 0.04;
+                int steps = _ParasiteSSRSteps > 0.0 ? (int)_ParasiteSSRSteps : 36;
+                float3 p = posWS + float3(0, 0.025, 0) + R * 0.04;
                 float stepLen = 0.12;
+                float travelled = 0.04;
+                bool inFront = false;
                 float3 prev = p;
                 UNITY_LOOP
                 for (int k = 0; k < 36; k++)
                 {
+                    if (k >= steps) break;
                     prev = p;
                     p += R * stepLen;
-                    stepLen = stepLen * 1.14 + 0.005;
+                    travelled += stepLen;
                     float4 cs = TransformWorldToHClip(p);
                     if (cs.w <= 0.0) break;
                     float4 sp = ComputeScreenPos(cs);
                     float2 uv = sp.xy / sp.w;
-                    if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) break;
+                    if (any(uv <= 0.001) || any(uv >= 0.999)) break;
                     float raw = SampleSceneDepth(uv);
+                    // Sky has no reflecting geometry; never sample its colour as a geometry hit.
                     float sceneZ = LinearEyeDepth(raw, _ZBufferParams);
-                    float diff = cs.w - sceneZ;
-                    if (diff > 0.0)
+                    float rayZ = -TransformWorldToView(p).z;
+                    float diff = rayZ - sceneZ;
+                    if (sceneZ >= _ProjectionParams.z * 0.995)
                     {
-                        if (diff > stepLen * 3.5 + 0.5) break;           // passed behind a thin object: no reliable hit
+                        inFront = true;
+                        stepLen = stepLen * 1.14 + 0.005;
+                        continue;
+                    }
+                    if (diff > 0.0 && inFront)
+                    {
                         float3 a = prev, b = p;
                         UNITY_UNROLL
                         for (int j = 0; j < 6; j++)
@@ -182,15 +200,26 @@ Shader "Parasite/GroundWater"
                             float4 mcs = TransformWorldToHClip(m);
                             float4 msp = ComputeScreenPos(mcs);
                             float2 muv = msp.xy / msp.w;
-                            if (mcs.w > LinearEyeDepth(SampleSceneDepth(muv), _ZBufferParams)) b = m; else a = m;
+                            float mz = -TransformWorldToView(m).z;
+                            if (mz > LinearEyeDepth(SampleSceneDepth(muv), _ZBufferParams)) b = m; else a = m;
                         }
                         float4 hcs = TransformWorldToHClip(b);
                         float4 hsp = ComputeScreenPos(hcs);
                         float2 huv = hsp.xy / hsp.w;
+                        float hz = -TransformWorldToView(b).z;
+                        float hitZ = LinearEyeDepth(SampleSceneDepth(huv), _ZBufferParams);
+                        float thickness = 0.08 + min(hitZ * 0.0015, 0.18);
+                        if (hz - hitZ > thickness || travelled < 0.18) return fallback;
                         float2 edge = min(huv, 1.0 - huv);
-                        hit = saturate(min(edge.x, edge.y) * 10.0) * saturate(1.25 - k / 36.0) * _SSRStrength;
+                        half confidence = saturate(min(edge.x, edge.y) * 12.0);
+                        confidence *= saturate(1.0 - travelled / 90.0);
+                        // Rough damp patches use the filtered probe instead of sharp mirror copies of the scene.
+                        confidence *= saturate(1.0 - roughness * 2.5);
+                        hit = confidence * _SSRStrength;
                         return lerp(fallback, SampleSceneColor(huv), hit);
                     }
+                    inFront = diff <= 0.0;
+                    stepLen = stepLen * 1.14 + 0.005;
                 }
                 return fallback;
                 #endif
@@ -267,7 +296,7 @@ Shader "Parasite/GroundWater"
                 half3 R = reflect(-V, N);
                 half3 probe = GlossyEnvironmentReflection(R, pw, brdf.perceptualRoughness, 1.0h, inputData.normalizedScreenSpaceUV);
                 half hit;
-                half3 refl = TraceReflection(pw, R, probe, hit);
+                half3 refl = TraceReflection(pw, R, brdf.perceptualRoughness, probe, hit);
                 lit += bed * SampleSH(N);
                 lit += _GlowColor.rgb * (0.4h + 0.6h * deep);
                 lit += refl * lerp(fresnel, 1.0h, 0.04h) * _ReflectionBoost * lerp(0.75h, 1.0h, deep);
@@ -275,7 +304,7 @@ Shader "Parasite/GroundWater"
                 // Premultiply AFTER lighting/fog so every lobe vanishes at the feathered shore. Shallow water only partly
                 // hides (darkens) the ground below it; reflections and highlights are added on top.
                 half opacity = lerp(_BedOpacity, _BedOpacityDeep, deep);
-                return half4(MixFog(lit, input.fogFactor) * coverage, coverage * opacity);
+                return half4(MixFogColor(lit, unity_FogColor.rgb * opacity, input.fogFactor) * coverage, coverage * opacity);
             }
             ENDHLSL
         }

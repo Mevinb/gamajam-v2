@@ -96,10 +96,10 @@ namespace Parasite.UI
             graphicsLabel.text = "Graphics: " + GraphicsPreset.Names[GraphicsPreset.Current];
             string[] detail =
             {
-                "70% render scale · short shadows · 6 lamp lights · no water reflections · FXAA",
-                "85% render scale · medium shadows · 14 lamp lights · water reflections · FXAA",
-                "Native resolution · long shadows · 32 lamp lights · SSAO · film grain · SMAA",
-                "125% supersampling · ultra shadows · 64 lamp lights · HQ SSAO · SSR · SMAA + 4x MSAA",
+                "70% render scale · short shadows · 6 lamps · probe reflections · FXAA",
+                "85% render scale · medium shadows · 14 lamps · 16-step SSR · FXAA",
+                "Native resolution · long shadows · 32 lamps · SSAO · 28-step SSR · SMAA",
+                "125% supersampling · ultra shadows · 64 lamps · HQ SSAO · 36-step SSR · SMAA + 4x MSAA",
             };
             graphicsDetail.text = detail[GraphicsPreset.Current];
         }

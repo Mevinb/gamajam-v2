@@ -98,6 +98,11 @@ Shader "Parasite/Foliage"
             #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
             #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
             #pragma multi_compile_fragment _ _REFLECTION_PROBE_BLENDING
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_BOX_PROJECTION
+            #pragma multi_compile_fragment _ _REFLECTION_PROBE_ATLAS
+            #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+            #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
+            #pragma multi_compile_fragment _ _LIGHT_COOKIES
             #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
             #pragma multi_compile _ LOD_FADE_CROSSFADE
             #pragma multi_compile_fog
@@ -315,11 +320,12 @@ Shader "Parasite/Foliage"
             #pragma fragment Frag
             #pragma shader_feature_local _ALPHATEST_ON
             #pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma multi_compile_fragment _ _GBUFFER_NORMALS_OCT
             #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/LODCrossFade.hlsl"
 
-            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float2 uv : TEXCOORD0; float4 color : COLOR; UNITY_VERTEX_INPUT_INSTANCE_ID };
-            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; half3 normalWS : TEXCOORD1; };
+            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float4 tangentOS : TANGENT; float2 uv : TEXCOORD0; float4 color : COLOR; UNITY_VERTEX_INPUT_INSTANCE_ID };
+            struct Varyings { float4 positionCS : SV_POSITION; float2 uv : TEXCOORD0; half3 normalWS : TEXCOORD1; half4 tangentWS : TEXCOORD2; };
 
             Varyings Vert(Attributes v)
             {
@@ -331,6 +337,7 @@ Shader "Parasite/Foliage"
                 o.positionCS = TransformWorldToHClip(pw);
                 o.uv = TRANSFORM_TEX(v.uv, _BaseMap);
                 o.normalWS = nw;
+                o.tangentWS = half4(TransformObjectToWorldDir(v.tangentOS.xyz), v.tangentOS.w * GetOddNegativeScale());
                 return o;
             }
 
@@ -342,7 +349,17 @@ Shader "Parasite/Foliage"
                 #if defined(LOD_FADE_CROSSFADE)
                     LODFadeCrossFade(i.positionCS);
                 #endif
-                return half4(NormalizeNormalPerPixel(i.normalWS), 0.0);
+                half3 n = normalize(i.normalWS);
+                half3 t = normalize(i.tangentWS.xyz);
+                half3 bitangent = cross(n, t) * i.tangentWS.w;
+                half3 nTS = UnpackNormalScale(SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, i.uv), _BumpScale);
+                float3 normalWS = normalize(mul(nTS, half3x3(t, bitangent, n)));
+                #if defined(_GBUFFER_NORMALS_OCT)
+                    float2 oct = PackNormalOctQuadEncode(normalWS);
+                    return half4(PackFloat2To888(saturate(oct * 0.5 + 0.5)), 0);
+                #else
+                    return half4(normalWS, 0);
+                #endif
             }
             ENDHLSL
         }
