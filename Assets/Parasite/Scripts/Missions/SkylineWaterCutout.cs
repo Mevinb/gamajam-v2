@@ -71,7 +71,10 @@ namespace Parasite.Missions
             replacement.probeAnchor = source.probeAnchor; replacement.lightProbeProxyVolumeOverride = source.lightProbeProxyVolumeOverride;
             replacement.motionVectorGenerationMode = source.motionVectorGenerationMode; replacement.allowOcclusionWhenDynamic = source.allowOcclusionWhenDynamic;
             replacement.renderingLayerMask = source.renderingLayerMask; replacement.sortingLayerID = source.sortingLayerID; replacement.sortingOrder = source.sortingOrder;
+            // Unity exposes the authoring GI mode only in Editor builds. Runtime probe/lightmap flags are copied below.
+#if UNITY_EDITOR
             replacement.receiveGI = source.receiveGI;
+#endif
             replacement.lightmapIndex = source.lightmapIndex; replacement.lightmapScaleOffset = source.lightmapScaleOffset;
             replacement.realtimeLightmapIndex = source.realtimeLightmapIndex; replacement.realtimeLightmapScaleOffset = source.realtimeLightmapScaleOffset;
             original = source; sourceId = id; originalEnabled = source.enabled; appliedCuts = cuts;
