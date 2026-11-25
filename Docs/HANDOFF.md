@@ -4,6 +4,24 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb**. This supersedes the old eight-mission scope freeze and local-only capture session.
 The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Never present historical tests as verification of a new build.
 
+## User playtest active
+
+The user requested the current work be built and launched. `0.5.0-preview` is running on native `DISPLAY=:0`
+(PID 2531989 at launch; check the actual process). It is the live M18/full-lake working tree, not the retained 0.4.2 archive.
+The build succeeded at 1,007 MB with zero errors/warnings; `Logs/user-playtest/build-info.json` and `source-snapshot.json`
+pin this uncommitted preview. Player log: `Logs/user-playtest/player.log`. Full lake movies and the island entry mission
+are included; M19/M20 remain in ignored staging. Do not overwrite Builds/Linux while this player is running.
+The RTX render is safely stopped at opening frame 65; keep it stopped during the user's playtest. This stops the renderer,
+not the overall active development goal. Resume only after the user has finished or clearly requests it.
+
+Post-build CPU-only work has advanced the live source beyond that immutable preview: corrected M19/M20 v2 is applied
+from `Logs/island-followup-v2-apply-manifest.json`, plus the staged reflection diagnostic helper. Runtime/editor/Linux API
+compilation passes 137/22/137 sources. No Unity, player or GPU execution is claimed for M19/M20. The source-execution
+ownership harness improves from 3/9 on v1 to 9/9 on v2 using stand-ins; real motion/capture/recovery/boarding fixtures remain
+required. The current preview still contains only M18 and the full lake films. Do not overwrite its running binary.
+The four lake films and island art kit are committed; the new island runtime/camera/visual work remains uncommitted until
+its remaining execution gates pass. User playtest details are under `Logs/user-playtest/`.
+
 ## Active cinematic production — 25 November 2026
 
 The verified Linux milestone is 0.4.2, built from `8fd5ece` (DLL SHA-256
@@ -23,8 +41,12 @@ Do not restart from scratch after an observation timeout. Completed real sequenc
 publication. Full-story runtime support and the river backdrop cut are committed. Current evidence includes 105 EditMode
 cases, both headless river flows, 15 passing presentation/audio cases from the combined GPU run, its corrected water case,
 and the extra disabled-VO destruction regression. The strict built-player water test passes on Vulkan. Complete full-film
-decode remains pending actual finished movies. The island entry mission/camera package is staged under `Logs/island-entry-apply`
-and its manifest; it has compiled but has not run in Unity. Do not advertise its traversal/camera gates as passed.
+decode of the four real lake films now passes in Unity, including neutral looping and explicit branch gating; the opening
+remains unfinished. The four-film bundle was atomically published to live Resources after full frame/codec/hash gates.
+The island entry package is applied but uncommitted: 118 rules pass, all four route/outcome combinations pass headless and
+GPU traversal, and tide/arrival-cue checks pass. Its camera had a transient viewport failure; a focused damping fix is prepared
+for GPU rerun. Its visual fixture passes after synchronizing physics before snapshot. Reflection-probe readiness remains
+under diagnosis. M19/M20 are separate staged followup and still require integration/real motion and recovery tests.
 The old opaque skyline ground issue is corrected in 0.4.2; source meshes/colliders/navigation are preserved.
 
 ## Environment and commands
