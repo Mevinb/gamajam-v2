@@ -800,6 +800,10 @@ namespace Parasite.Testing
         static IEnumerator Walk(Vector3 target, IslandTraveler follower = null, string phase = null, [CallerMemberName] string caller = null)
         {
             string leg = phase ?? caller ?? "walk";
+            var expectedAgent = PM.Active; var expectedHost = expectedAgent.Host;
+            int expectedPossession = expectedHost ? expectedHost.PossessionGeneration : 0;
+            int expectedCapture = expectedHost ? expectedHost.CaptureGeneration : 0;
+            int regroupAttempts = 0;
             Check(NavMesh.SamplePosition(PM.Active.Position, out var a, 2, NavMesh.AllAreas) && NavMesh.SamplePosition(target, out _, 2, NavMesh.AllAreas), "Both ends of the human/assembly leg have actual navigation footing: " + leg);
             NavMesh.SamplePosition(target, out var b, 2, NavMesh.AllAreas);
             var path = new NavMeshPath();
@@ -822,6 +826,21 @@ namespace Parasite.Testing
                 + " from=" + PM.Active.Position + " target=" + target + " samples=" + a.position + " -> " + b.position + " corners=" + Corners(path.corners));
             while (Time.realtimeSinceStartup < deadline)
             {
+                if (follower) CheckEscortLeader(expectedAgent, expectedHost, expectedPossession, expectedCapture);
+                if (follower && follower.IsAvailable && follower.GetPrompt(Context()).StartsWith("Regroup", StringComparison.Ordinal)
+                    && follower.CanInteract(Context(), out _))
+                {
+                    Stop();
+                    yield return RegroupWithinLeg(follower, expectedAgent, expectedHost, expectedPossession, expectedCapture, deadline, leg,
+                        () => { Check(regroupAttempts < 3, "At most three fresh regroup E attempts fit within the original leg."); return ++regroupAttempts; });
+                    Check(Time.realtimeSinceStartup < deadline, "Regrouping cannot extend the original island leg deadline.");
+                    Check(NavMesh.SamplePosition(PM.Active.Position, out var resumed, 2, NavMesh.AllAreas)
+                        && NavMesh.CalculatePath(resumed.position, b.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete,
+                        "Regroup resumes a complete physical path to the same original target: " + leg);
+                    corner = 1; sidestepping = false; progressPosition = PM.Active.Position; progressReal = Time.realtimeSinceStartup;
+                    Debug.Log("[IslandRescueRegroup] RESUME phase=" + leg + " originalTarget=" + target + " originalDeadline=" + deadline.ToString("F3") + " attempts=" + regroupAttempts);
+                    continue;
+                }
                 var final = target - PM.Active.Position; final.y = 0;
                 if (final.magnitude < .45f)
                 {
@@ -894,6 +913,92 @@ namespace Parasite.Testing
             Stop(); Debug.LogError("[IslandRescueWalk] FAIL " + details);
             throw new InvalidOperationException("Physical island leg timed out: " + details);
         }
+        static void CheckEscortLeader(AmoebaAgent expected, HostCharacter host, int possession, int capture)
+        {
+            bool valid = PM && ReferenceEquals(PM.Active, expected) && PM.Agents.Contains(expected) && !expected.InTransit && !expected.CapturedPendingEject
+                && host && expected.Host == host && host.State == HostState.Possessed && host.Possessor == expected
+                && host.PossessionGeneration == possession && host.CaptureGeneration == capture;
+            if (!valid) { Stop(); GameInput.SimInteract = false; }
+            Check(valid, "The exact escort leader agent/host and ownership generations must survive every movement frame; control transfer cannot silently continue this leg.");
+        }
+        static bool SurvivorSeenByPatrol(IslandTraveler person)
+        {
+            var suspicion = SuspicionSystem.Instance;
+            if (!suspicion || !person || !person.Host) return true;
+            foreach (var guard in HostCharacter.All)
+                if (guard && guard.Profession == Profession.Guard && guard.IsAwakeNpc
+                    && !(guard.Brain is GuardAI ai && ai.GState == GuardState.Stunned)
+                    && Vector3.Distance(guard.transform.position, person.transform.position) <= 20
+                    && suspicion.CanSee(guard, person.Host.ChestPosition, person.Host.transform, 20)) return true;
+            return false;
+        }
+        static IEnumerator RegroupWithinLeg(IslandTraveler person, AmoebaAgent expected, HostCharacter host, int possession, int capture,
+            float originalDeadline, string phase, Func<int> takeAttempt)
+        {
+            float clearFor = 0;
+            try
+            {
+                while (Time.realtimeSinceStartup < originalDeadline)
+                {
+                    CheckEscortLeader(expected, host, possession, capture);
+                    Check(person && person.Host, "The naturally returning survivor remains a live scene person during regroup.");
+                    if (!person.GetPrompt(Context()).StartsWith("Regroup", StringComparison.Ordinal)) break;
+                    float gap = FlatDistance(PM.Active.Position, person.transform.position);
+                    if (gap > 1.9f)
+                    {
+                        Vector3 away = PM.Active.Position - person.transform.position; away.y = 0;
+                        if (away.sqrMagnitude < .001f) away = Vector3.back;
+                        // Walk's unchanged .45m arrival tolerance must still leave us inside the
+                        // 1.9m regroup approach boundary: 1.2 + .45 = 1.65m, with physical margin.
+                        Vector3 stand = person.transform.position + away.normalized * 1.2f;
+                        Debug.Log("[IslandRescueRegroup] APPROACH phase=" + phase + " person=" + person.StableId + " gap=" + gap.ToString("F3")
+                            + " stand=" + stand + " remainingOriginalBudget=" + (originalDeadline-Time.realtimeSinceStartup).ToString("F3"));
+                        // Reuse the unchanged path, full-body sidestep and footing driver. Flatten it so the
+                        // OUTER original deadline/leader identity is checked on every nested movement frame.
+                        var stack = new System.Collections.Generic.Stack<IEnumerator>(); stack.Push(Walk(stand, phase: phase + " regroup approach"));
+                        try
+                        {
+                            while (stack.Count > 0)
+                            {
+                                CheckEscortLeader(expected, host, possession, capture);
+                                Check(Time.realtimeSinceStartup < originalDeadline, "Regroup approach spent the original leg budget; no nested budget extension is allowed.");
+                                var current = stack.Peek();
+                                if (!current.MoveNext()) { (current as IDisposable)?.Dispose(); stack.Pop(); continue; }
+                                if (current.Current is IEnumerator nested) stack.Push(nested); else yield return current.Current;
+                            }
+                        }
+                        finally { while (stack.Count > 0) (stack.Pop() as IDisposable)?.Dispose(); Stop(); }
+                        clearFor = 0;
+                        // Even an already-satisfied/projected path must return control to Unity.
+                        // Never spin repeated replans in one frame until the real-time deadline.
+                        yield return null;
+                        continue;
+                    }
+                    Stop();
+                    bool seen = SurvivorSeenByPatrol(person);
+                    clearFor = seen ? 0 : clearFor + Time.deltaTime;
+                    Vector3 look = person.InteractPoint - PlayerCamera.Instance.Position;
+                    PlayerCamera.Instance.SetYaw(Mathf.Atan2(look.x, look.z) * Mathf.Rad2Deg);
+                    var actual = PM.ComputeTarget();
+                    if (clearFor >= .3f && !SurvivorSeenByPatrol(person) && person.CanInteract(Context(), out _)
+                        && actual.kind == TargetKind.Interact && ReferenceEquals(actual.interactable, person) && actual.allowed)
+                    {
+                        int attempt = takeAttempt();
+                        Debug.Log("[IslandRescueRegroup] FRESH_E phase=" + phase + " person=" + person.StableId + " attempt=" + attempt
+                            + " clearSeconds=" + clearFor.ToString("F3") + " remainingOriginalBudget=" + (originalDeadline-Time.realtimeSinceStartup).ToString("F3"));
+                        GameInput.SimInteract = true; yield return null; GameInput.SimInteract = false;
+                        CheckEscortLeader(expected, host, possession, capture);
+                        Check(Time.realtimeSinceStartup < originalDeadline, "Fresh regroup E must be acknowledged within the original leg budget.");
+                        clearFor = 0;
+                    }
+                    yield return null;
+                }
+                CheckEscortLeader(expected, host, possession, capture);
+                Check(person && person.Host && !person.GetPrompt(Context()).StartsWith("Regroup", StringComparison.Ordinal), "A fresh real E must restore the public follow agreement before the original leg deadline.");
+            }
+            finally { Stop(); GameInput.SimInteract = false; }
+        }
+
         static bool TryPersonBlocker(CharacterController controller, Vector3 direction, out HostCharacter person)
         {
             person = null; direction.y = 0;

@@ -6,14 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
-- **Physical regroup arrival correction is under test:** current IslandRescueAcceptance SHA
+- **Physical regroup correction is terminal with a later boarding failure:** current IslandRescueAcceptance SHA
   `ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703`.
   It uses the public Regroup prompt, normal approach/aim/fresh E after actual patrol visibility clears, maximum3attempts,
   exact leader identity/generations and the original outer leg deadline/target/3.2m wait. No gameplay rules changed.
-  Runtime/Editor/Linux-Mono API compilation passes162/31/162. Root exec87607/PID97980 is currently running only90 through
+  Runtime/Editor/Linux-Mono API compilation passes162/31/162. Root exec87607/PID97980 ran only90 through
   `Tools/unity.sh continuity_regroup_arrival -nographics -runTests -testPlatform PlayMode`
-  with exact AcceptanceTests filter, `Logs/continuity-regroup-arrival.xml` and1200s owned timeout. No result yet.
-  Do not edit live C# or launch another Editor/Blender/player until this actual process is terminal. User51569 remains open.
+  with exact AcceptanceTests filter, `Logs/continuity-regroup-arrival.xml` and1200s owned timeout. Terminal native2/chunkcbbefb;
+  one failed NUnit case558.150s, scenario555.2s. All three survivors physically reached the clinic and six normal fresh-E/resume
+  pairs were observed, but the first boarding approach to local(34,.15,38) exhausted its original101.34s budget during a second
+  retreat/regroup. No whole-case pass or native-player proof. Both test processes are gone; user51569 remains open.
+  Preserve [boarding failure evidence](verification/island-regroup-boarding-red-20261126.json). Next: focused live-patrol boarding
+  route diagnosis before another full original14-mission replay; never widen the original deadline or park guards to pass.
 - The first regroup run91361 is terminal FAIL/native2 (chunk03f370),350.747s for one NUnit case. Riley recovered with one
   normal E, but Morgan exposed a driver tolerance mismatch:1.6m stand-off plus.45m path arrival permits2.05m, outside1.9m.
   Already-satisfied paths then replanned without yielding, producing a retained210MiB log within the original deadline.

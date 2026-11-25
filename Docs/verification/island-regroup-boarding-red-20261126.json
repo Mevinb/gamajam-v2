@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "status": "ALL_THREE_CLINIC_RESCUES_COMPLETED_LATER_BOARDING_APPROACH_DEADLINE_FAILED",
+  "recordedUtc": "2026-11-25T21:56:51.180572+00:00",
+  "terminal": {
+    "rootSession": 87607,
+    "chunk": "cbbefb",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 21:45:48Z",
+      "end-time": "2026-11-25 21:55:06Z",
+      "duration": "558.1501273"
+    },
+    "testCase": [
+      {
+        "id": "1002",
+        "name": "AllAcceptanceScenariosPass",
+        "fullname": "Parasite.Tests.AcceptanceTests.AllAcceptanceScenariosPass",
+        "methodname": "AllAcceptanceScenariosPass",
+        "classname": "Parasite.Tests.AcceptanceTests",
+        "runstate": "Runnable",
+        "seed": "309155522",
+        "result": "Failed",
+        "start-time": "2026-11-25 21:45:48Z",
+        "end-time": "2026-11-25 21:55:06Z",
+        "duration": "558.100882",
+        "asserts": "0"
+      }
+    ]
+  },
+  "source": {
+    "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+    "sha256": "ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703"
+  },
+  "log": {
+    "path": "Logs/continuity_regroup_arrival.log",
+    "bytes": 1578439,
+    "sha256": "57f3a04d6b1f2fa7f063daaed2a93bebc30abb8be06856baef0d923228ee5c90"
+  },
+  "xml": {
+    "path": "Logs/continuity-regroup-arrival.xml",
+    "bytes": 195528,
+    "sha256": "da467e7824e3a2580238ee7b761f67e422888e44bde992cb61877fc3edaa7f71"
+  },
+  "observedDeliveries": [
+    "[IslandRescue] DELIVERED riley at (597.36, 0.20, -213.71) slot=(597.00, 0.15, -213.00)",
+    "[IslandRescue] DELIVERED morgan at (600.09, 0.20, -213.79) slot=(600.00, 0.15, -213.00)",
+    "[IslandRescue] DELIVERED avery at (602.65, 0.20, -213.72) slot=(603.00, 0.15, -213.00)"
+  ],
+  "normalRegroupInputAndResume": [
+    "[IslandRescueRegroup] FRESH_E phase=lead riley via cover 2 person=riley attempt=1 clearSeconds=0.301 remainingOriginalBudget=17.666",
+    "[IslandRescueRegroup] RESUME phase=lead riley via cover 2 originalTarget=(614.00, 0.15, -220.00) originalDeadline=314.499 attempts=1",
+    "[IslandRescueRegroup] FRESH_E phase=lead morgan via cover 1 person=morgan attempt=1 clearSeconds=0.302 remainingOriginalBudget=22.691",
+    "[IslandRescueRegroup] RESUME phase=lead morgan via cover 1 originalTarget=(622.00, 0.15, -220.00) originalDeadline=354.624 attempts=1",
+    "[IslandRescueRegroup] FRESH_E phase=lead morgan via cover 3 person=morgan attempt=1 clearSeconds=0.304 remainingOriginalBudget=15.781",
+    "[IslandRescueRegroup] RESUME phase=lead morgan via cover 3 originalTarget=(600.00, 0.15, -219.00) originalDeadline=368.586 attempts=1",
+    "[IslandRescueRegroup] FRESH_E phase=lead avery via cover 1 person=avery attempt=1 clearSeconds=0.303 remainingOriginalBudget=20.758",
+    "[IslandRescueRegroup] RESUME phase=lead avery via cover 1 originalTarget=(622.00, 0.15, -220.00) originalDeadline=412.775 attempts=1",
+    "[IslandRescueRegroup] FRESH_E phase=lead avery via cover 3 person=avery attempt=1 clearSeconds=0.303 remainingOriginalBudget=20.235",
+    "[IslandRescueRegroup] RESUME phase=lead avery via cover 3 originalTarget=(600.00, 0.15, -219.00) originalDeadline=430.716 attempts=1",
+    "[IslandRescueRegroup] FRESH_E phase=Branch person=riley attempt=1 clearSeconds=0.305 remainingOriginalBudget=52.154",
+    "[IslandRescueRegroup] RESUME phase=Branch originalTarget=(654.00, 0.15, -182.00) originalDeadline=561.626 attempts=1"
+  ],
+  "finalFailure": [
+    "[AutoTest] FAIL  90 Continuous 23 missions: Main Gate Peace through all three earned chapter continuations  (555.2s)  EXCEPTION: Regroup approach spent the original leg budget; no nested budget extension is allowed."
+  ],
+  "boardingLeg": {
+    "originalTarget": [
+      654,
+      0.15,
+      -182
+    ],
+    "originalNavigationLength": 70.0,
+    "originalBudgetSeconds": 101.34,
+    "publicRegroupApproachReplans": 211,
+    "observed": "One real fresh-E resume followed by a later retreat; pursuing the returning survivor consumed the original single leg deadline."
+  },
+  "limits": [
+    "Whole continuous Peace case failed; no campaign or native-player pass.",
+    "Clinic movement and six fresh-E/resume pairs are progress within this failed run, not independent whole-test passes.",
+    "No production gameplay rules, patrols, deadlines, collision or target tolerances changed.",
+    "Within-chapter pre-existing role/placement/Calm/timeScale fixtures remain declared; no human or rendered proof.",
+    "User graphical player PID51569 remains live; no restart, input injection or GPU job."
+  ]
+}
