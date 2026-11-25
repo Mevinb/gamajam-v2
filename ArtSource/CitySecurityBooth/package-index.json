@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "scope": "CPU-authored visual booth, not Unity/native acceptance",
+  "files": {
+    "Tools/blender/city_security_booth/README.md": {
+      "bytes": 2699,
+      "sha256": "1c0d99bc681b13723dc25a0d10b129d5993fd3df782305ecedb8aaa494069901"
+    },
+    "Tools/blender/city_security_booth/author_booth.py": {
+      "bytes": 17200,
+      "sha256": "c107ffc1ee7783b8d9ff4fc18dc7126ab900adfe0ca1b157d9a810cdcb6c923b"
+    },
+    "Tools/blender/city_security_booth/verify_booth.py": {
+      "bytes": 9559,
+      "sha256": "fd6edaaecbe06b620719bea871adb9bd5d3965b38566b877919dcd8b67cb22a7"
+    },
+    "ArtSource/CitySecurityBooth/CREDITS.md": {
+      "bytes": 1282,
+      "sha256": "a77a707fae67b0974a9f1e8032a3e39f8fe36217f76cdeae49f2e78c6efe8564"
+    },
+    "ArtSource/CitySecurityBooth/CitySecurityBooth.blend": {
+      "bytes": 8742374,
+      "sha256": "f10b9ef871727b3895411c44366e738230f5a920f30c4a30288c7208c2137a1b"
+    },
+    "ArtSource/CitySecurityBooth/Exports/CitySecurityBooth.fbx": {
+      "bytes": 140204,
+      "sha256": "285016f9ec4113f032bf9da396401cdcbd16503b42191fd834beade057756292"
+    },
+    "ArtSource/CitySecurityBooth/README.md": {
+      "bytes": 3707,
+      "sha256": "01b132cd5b80be6441edd79dc3b75bfcb016928848e9cbfd64137d91bc83bec9"
+    },
+    "ArtSource/CitySecurityBooth/Review/front-right-authoring-cpu.png": {
+      "bytes": 634246,
+      "sha256": "24d5489705c29677d9c8c1f9034f6e4bf549ca91967cfb7fc5314a96c125df1c"
+    },
+    "ArtSource/CitySecurityBooth/Review/rear-left-authoring-cpu.png": {
+      "bytes": 639083,
+      "sha256": "9e19565a7e9120eb0550ca78957c706f18a10236ef6a6b662891e42864315d95"
+    },
+    "ArtSource/CitySecurityBooth/authoring.log": {
+      "bytes": 12310,
+      "sha256": "5b5d6f86cacd0e502bf1896f6e7019fd162bbf4148ed9b4e06afadf7fc7fcfd9"
+    },
+    "ArtSource/CitySecurityBooth/execution-receipt.json": {
+      "bytes": 3510,
+      "sha256": "9fa42de6ef053e37766ea4570535cd1a4f5512c27ff78ca8284c45eebf7cd329"
+    },
+    "ArtSource/CitySecurityBooth/export-verification.json": {
+      "bytes": 3421,
+      "sha256": "7384abb4cf1e228bc993ca1cf6dd76d4f0d73367debaa0c03adc4045d246d454"
+    },
+    "ArtSource/CitySecurityBooth/physical-contract.json": {
+      "bytes": 1572,
+      "sha256": "954d1ded8a108ad94a4362bbc03a9a6ce53d99be0c776ebb4d7ea03a3aa1f7e8"
+    },
+    "ArtSource/CitySecurityBooth/piece-map.json": {
+      "bytes": 64679,
+      "sha256": "3710c390e635b226cd9d81639b345dcab8c52a786d836e823b3ecaa3730f8bf5"
+    },
+    "ArtSource/CitySecurityBooth/production-manifest.json": {
+      "bytes": 3699,
+      "sha256": "773e9f6d0accfb18da066250247ddb6d36498b9970e45387d4644b3e87b1c935"
+    },
+    "ArtSource/CitySecurityBooth/verification.log": {
+      "bytes": 320,
+      "sha256": "e74dd77d33f6fd75e5b72216632f6dd1c2e641e611fc1e0f5e0cbe6e6d0389fd"
+    }
+  },
+  "total_bytes": 10279865
+}

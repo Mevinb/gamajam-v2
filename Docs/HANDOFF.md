@@ -6,6 +6,13 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- The next **security-booth kit** is authored and actually imported: one 6,012-triangle mesh, 173 outward closed solids,
+  one existing shared gate material, no new runtime textures or colliders. Blender author/round-trip checks and eleven Null
+  Unity import checks pass. The CityBuilder hook and saved-scene integration are still pending while the user tests the
+  separate player. [Booth proof](verification/city-security-booth-20261125.json) preserves the initial import failure too.
+- The gate capture fixture now records schema-2 raw semantic lighting/camera fields, stages known runtime light contributions
+  and checks exact restoration. CPU compilation passes; fresh old-scene BEFORE/new-scene AFTER renders are still required.
+  [Fixture proof](verification/gate-capture-fixture-20261125.json). Historical hash-only captures remain unmatched.
 - Linux/URP remains the chosen target. The game uses real-time shaders, screen-space reflections and probes. The completed
   Blender films use offline RTX/OptiX path tracing; this does not make the Linux player hardware ray traced.
 - Local feature commit `a993723` records independent graphics settings/tests and the pre-gate probe-only scene regeneration.

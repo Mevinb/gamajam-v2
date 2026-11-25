@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "status": "BLENDER_AUTHORING_AND_UNITY_IMPORT_PASS_SCENE_INTEGRATION_PENDING",
+  "recorded_utc": "2026-11-25T17:54:34.736298+00:00",
+  "source_package": {
+    "path": "ArtSource/CitySecurityBooth/package-index.json",
+    "bytes": 2859,
+    "sha256": "6deae7ec50e33691dbc5d359e7d02bcd619afe59d2f971297b4bbf05d7d4da47"
+  },
+  "blender_verification": {
+    "path": "ArtSource/CitySecurityBooth/export-verification.json",
+    "bytes": 3421,
+    "sha256": "7384abb4cf1e228bc993ca1cf6dd76d4f0d73367debaa0c03adc4045d246d454"
+  },
+  "unity_import": {
+    "path": "Logs/city-security-booth/20261125T175319169/unity-import.json",
+    "bytes": 2954,
+    "sha256": "71493a15935063a00905556021ff7c31c8b25d81c6fab75d57eaadb9b490c4cb"
+  },
+  "native_unity_exit_code": 0,
+  "terminal_receipt": {
+    "session_id": 85518,
+    "chunk_id": "94f754",
+    "exit_code": 0
+  },
+  "import_checks": [
+    "Ready visual-only booth kit",
+    "One visual mesh, one material partition and no imported colliders",
+    "Original booth geometry budget",
+    "Reuse the exact existing gate material",
+    "_BaseMap retains its existing real 2K Texture2D",
+    "_BaseMap points into the existing gate atlas",
+    "_BumpMap retains its existing real 2K Texture2D",
+    "_BumpMap points into the existing gate atlas",
+    "_MetallicGlossMap retains its existing real 2K Texture2D",
+    "_MetallicGlossMap points into the existing gate atlas",
+    "Booth runtime asset directory introduces no textures, materials or editable Blender source"
+  ],
+  "triangles": 6012,
+  "imported_vertices": 12696,
+  "meshes": 1,
+  "material": "Assets/Parasite/Art/CityGatePilot/CityGatePilot_SharedPBR.mat",
+  "new_textures": 0,
+  "new_colliders": 0,
+  "source_texture_files_and_metas_unchanged": [
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_A.png",
+      "bytes": 3758966,
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006"
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_A.png.meta",
+      "bytes": 2652,
+      "sha256": "96f19db00cb0104d85d4ca23fec2b759d3b0d6474ab8e59b7d19426ba74e4f78"
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_N.png",
+      "bytes": 3124980,
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64"
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_N.png.meta",
+      "bytes": 2652,
+      "sha256": "eb6718f5f4207f157e72d37ce5d4f80bbdc7a6fd67130daabb1ae76a2849ee4f"
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_M.png",
+      "bytes": 1666303,
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb"
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_M.png.meta",
+      "bytes": 2652,
+      "sha256": "a4bc7d255f8c286450f73304b9cd1382ebba92e4f3dd9bb57e192a383fba7f08"
+    }
+  ],
+  "scene_unchanged": {
+    "path": "Assets/Parasite/Scenes/City.unity",
+    "bytes": 72663883,
+    "sha256": "f638cd31c8777233b02e4bc13f56059dfe271b73b87f5391adafcb3d75a086fb"
+  },
+  "scene_builder_hook_applied": false,
+  "review_images": [
+    {
+      "path": "ArtSource/CitySecurityBooth/Review/front-right-authoring-cpu.png",
+      "bytes": 634246,
+      "sha256": "24d5489705c29677d9c8c1f9034f6e4bf549ca91967cfb7fc5314a96c125df1c"
+    },
+    {
+      "path": "ArtSource/CitySecurityBooth/Review/rear-left-authoring-cpu.png",
+      "bytes": 639083,
+      "sha256": "9e19565a7e9120eb0550ca78957c706f18a10236ef6a6b662891e42864315d95"
+    }
+  ],
+  "negative_unity_attempt": {
+    "evidence": {
+      "path": "Logs/city-security-booth/20261125T175051329/unity-import.json",
+      "bytes": 1276,
+      "sha256": "99013e48c19ff506650d7dd066a5e1d0f8c2a277cf18d8c9e87b5e922255a432"
+    },
+    "native_exit_code": 1,
+    "cause": "The semantic child name/count guard rejected the initial import under the default hierarchy policy. Raw object/mesh names were not recorded in that first attempt, so its exact tree is not retrospectively measured.",
+    "correction": "Scope the booth importer to preserve its authored hierarchy; the retained guard now observes SecurityBoothShell.001 on the actual object and mesh."
+  },
+  "limits": [
+    "CPU-authoring previews and Null Unity importer validation do not certify rendered material appearance or player performance.",
+    "The model and unused Editor import/builder helpers are present. CityBuilder does not yet select this visual kit and the saved scene remains unchanged.",
+    "The running user playtest and older native binaries do not contain this model.",
+    "GPU scene regeneration, exact collider/light/door comparison, native visual/frame-pacing measurements and a rebuilt player remain required."
+  ]
+}

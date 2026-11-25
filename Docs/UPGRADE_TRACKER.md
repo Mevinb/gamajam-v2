@@ -80,6 +80,11 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
 
 ## Required next verification
 
+- The Blender security-booth package and unused Editor helpers now pass CPU round-trip and eleven actual Unity import checks:
+  one 6,012-triangle mesh, reused gate atlas, no new textures or colliders. Scene integration, exact world comparison and native
+  appearance remain pending. [Booth proof](verification/city-security-booth-20261125.json).
+- Updated gate-capture schema 2 passes CPU compilation and retains raw semantic light/camera inputs and restoration checks.
+  Fresh BEFORE/AFTER renders are required; the historical mismatch remains open. [Fixture proof](verification/gate-capture-fixture-20261125.json).
 - Verify the corrected full Route 08 and rerun camera-dependent case 21 on a real GPU. The original run is terminal 19/21,
   exit 1, with both failures retained. Scenarios 23/24 already
   pass and rendered 22 passes separately. Keep prepared Null/simulated logic separate from graphics and physical input.

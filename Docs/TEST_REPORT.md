@@ -1,3 +1,16 @@
+# Booth authoring/import and capture-fixture checkpoint — 25 November 2026
+
+The security booth passes Blender authoring/round-trip checks and eleven actual Null Unity import checks: one 6,012-triangle
+mesh, 173 outward closed solids, 896 opacity rays, one reused gate material and no new textures or colliders. Both CPU
+authoring images were reviewed. The first import's semantic-child guard failure is retained; preserving the booth hierarchy
+now exposes the expected `SecurityBoothShell.001` object/mesh. The CityBuilder hook is not applied and the generated City
+scene remains byte-identical to the user's gate build. No native appearance or performance is claimed.
+[Booth proof](verification/city-security-booth-20261125.json).
+
+The gate capture fixture now stores schema-2 raw contracts and staged/restored runtime light states, retaining exact equality
+and full restoration assertions. Its full PlayMode source compiles on the CPU. Fresh old-scene BEFORE/new-scene AFTER GPU
+renders remain unrun; historical captures cannot be promoted to schema 2. [Fixture proof](verification/gate-capture-fixture-20261125.json).
+
 # Native original/riverside result — 25 November 2026
 
 The earlier pre-gate graphics player finished its 21 selected cases in 947.161 seconds: **19 pass, 2 fail, native exit 1**,

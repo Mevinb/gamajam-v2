@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "status": "SCHEMA2_SOURCE_CPU_COMPILE_PASS_RENDER_VALIDATION_PENDING",
+  "source": {
+    "path": "Assets/Parasite/Tests/PlayMode/CityGatePilotCaptureTests.cs",
+    "bytes": 35048,
+    "sha256": "77be5abab6402966c87bf63cf77e8689ebb20ca3d362f72739b01622d207fcfe"
+  },
+  "compile_receipt": {
+    "path": "Logs/city-gate-capture-fixture/cpu-compile-20261125T173916Z/result.json",
+    "bytes": 451,
+    "sha256": "19af97e65d1aa4d095c53cd253579d217c685213a87abdceeee4992a2b73329c"
+  },
+  "changes": [
+    "Record raw sorted semantic authored-light rows and camera/settings/fog/ambient/rain values per shot.",
+    "Known runtime actor/effect light contributions are explicitly staged to zero and their original/restored states recorded.",
+    "Unknown lights fail explicitly; exact raw contract comparisons and full restoration guard remain.",
+    "Historical hash-only captures cannot be upgraded; fresh before/after captures are mandatory."
+  ],
+  "limits": [
+    "No Unity/GPU test was executed for this updated schema.",
+    "The earlier eight-image AFTER mismatch remains a failure. Dynamic AmoebaLight was identified as a plausible source, without measured retrospective raw-row proof.",
+    "The running user build retains the prior capture test source snapshot; this Editor-only fixture does not change production lighting."
+  ]
+}

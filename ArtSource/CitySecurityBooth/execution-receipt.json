@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-25T17:49:40.692920+00:00",
+  "scope": "CPU authoring only; no Unity/player/GPU launch",
+  "author": {
+    "native_exit": 0,
+    "tool_session": 74258,
+    "terminal_chunk": "64512f",
+    "log": "ArtSource/CitySecurityBooth/authoring.log",
+    "log_sha256": "5b5d6f86cacd0e502bf1896f6e7019fd162bbf4148ed9b4e06afadf7fc7fcfd9",
+    "script_sha256": "c107ffc1ee7783b8d9ff4fc18dc7126ab900adfe0ca1b157d9a810cdcb6c923b",
+    "triangles": 6012,
+    "closed_detail_solids": 173,
+    "previews": 2,
+    "cpu_threads": 2,
+    "gpu_rendering": false
+  },
+  "verifier": {
+    "native_exit": 0,
+    "tool_session": 41980,
+    "terminal_chunk": "01f1bd",
+    "log": "ArtSource/CitySecurityBooth/verification.log",
+    "log_sha256": "e74dd77d33f6fd75e5b72216632f6dd1c2e641e611fc1e0f5e0cbe6e6d0389fd",
+    "proof": "ArtSource/CitySecurityBooth/export-verification.json",
+    "proof_sha256": "7384abb4cf1e228bc993ca1cf6dd76d4f0d73367debaa0c03adc4045d246d454"
+  },
+  "guards": [
+    {
+      "name": "dry-default",
+      "argv": [
+        "/home/mevlec/Data/Blender/current/blender",
+        "-b",
+        "--factory-startup",
+        "-t",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "Tools/blender/city_security_booth/author_booth.py"
+      ],
+      "native_exit": 0,
+      "expected_exit": 0,
+      "log": "Logs/city-security-booth-authoring-20261125/dry-default.log",
+      "log_sha256": "4846a17fb628700c573ac311e7e90c6783602743757a673f46eceed805ce38e4"
+    },
+    {
+      "name": "fresh-output-guard",
+      "argv": [
+        "/home/mevlec/Data/Blender/current/blender",
+        "-b",
+        "--factory-startup",
+        "-t",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "Tools/blender/city_security_booth/author_booth.py",
+        "--",
+        "--go"
+      ],
+      "native_exit": 1,
+      "expected_exit": 1,
+      "log": "Logs/city-security-booth-authoring-20261125/fresh-output-guard.log",
+      "log_sha256": "cf09e76c13ac70f555c6d36c4499c9c9ee3396d0c4ec19563b319ad634810677"
+    }
+  ],
+  "guarded_outputs_unchanged": {
+    "ArtSource/CitySecurityBooth/CitySecurityBooth.blend": "f10b9ef871727b3895411c44366e738230f5a920f30c4a30288c7208c2137a1b",
+    "ArtSource/CitySecurityBooth/Exports/CitySecurityBooth.fbx": "285016f9ec4113f032bf9da396401cdcbd16503b42191fd834beade057756292",
+    "ArtSource/CitySecurityBooth/production-manifest.json": "773e9f6d0accfb18da066250247ddb6d36498b9970e45387d4644b3e87b1c935"
+  },
+  "initial_failed_attempt": {
+    "retained_at": "Logs/city-security-booth-authoring-20261125/initial-inward-elbow",
+    "verifier_native_exit": 1,
+    "failure": "One closed upper downpipe elbow had negative signed volume -0.0006983363531152857. Author recipe now enforces outward signed volume before joining/export; final independent import passes all 173 solids.",
+    "diagnostic": "Logs/city-security-booth-authoring-20261125/initial-inward-elbow/failed-solid-diagnostic.json"
+  },
+  "manual_image_review": {
+    "both_final_images_opened": true,
+    "observed": "Precast joints, dark opaque glazing, narrow frames and mullions, rear vent/service panel, roof coping, gutter and downpipe visible. No human door or emissive windows.",
+    "native_gameplay_claim": false
+  },
+  "pending": [
+    "Unity import/readiness and shared material reassignment",
+    "Generated scene integration and physics inventory preservation",
+    "Native appearance/culling and performance"
+  ]
+}

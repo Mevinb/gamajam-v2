@@ -3,6 +3,11 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
+- The new security-booth kit passes Blender source/export and eleven Null Unity import checks, but its CityBuilder hook,
+  generated scene, native appearance and performance remain unverified. It is outside the running user build.
+  [Booth proof](verification/city-security-booth-20261125.json).
+- Gate-capture schema 2 now records raw authored-light and camera contracts and restores staged dynamic lights; only CPU
+  compilation is verified. Fresh old/new scene renders remain required. [Fixture proof](verification/gate-capture-fixture-20261125.json).
 - Linux/URP uses screen-space reflections and probes. It has no built-in hardware ray tracing; Blender films use offline
   RTX/OptiX path tracing. SSR cannot reflect geometry outside the camera buffers; puddles are not a full fluid simulation.
 - The user-requested **gate WIP** is`Builds/Candidates/full-story-20261125T173043238618Z-0f595731`,0.5.1-preview,

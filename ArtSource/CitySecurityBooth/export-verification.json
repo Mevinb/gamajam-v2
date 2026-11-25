@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "status": "PASS_CPU_PACKED_SOURCE_AND_FBX_ROUNDTRIP",
+  "blender": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "render_calls": 0,
+  "gpu_rendering": false,
+  "verifier_sha256": "fd6edaaecbe06b620719bea871adb9bd5d3965b38566b877919dcd8b67cb22a7",
+  "fbx_sha256": "285016f9ec4113f032bf9da396401cdcbd16503b42191fd834beade057756292",
+  "blend_sha256": "f10b9ef871727b3895411c44366e738230f5a920f30c4a30288c7208c2137a1b",
+  "packed_source": {
+    "objects": 1,
+    "material": "CityGatePilot_SharedPBR",
+    "packed_original_images": [
+      {
+        "name": "CityGatePilot_A",
+        "packed_bytes": 3758966,
+        "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006",
+        "original_source_unchanged": true
+      },
+      {
+        "name": "CityGatePilot_N",
+        "packed_bytes": 3124980,
+        "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64",
+        "original_source_unchanged": true
+      },
+      {
+        "name": "CityGatePilot_M",
+        "packed_bytes": 1666303,
+        "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb",
+        "original_source_unchanged": true
+      }
+    ],
+    "opaque": true,
+    "emission_strength": 0,
+    "transmission_weight": 0,
+    "root_identity": true,
+    "cpu_threads": 2,
+    "samples": 8,
+    "resolution": [
+      960,
+      720
+    ],
+    "denoising_gpu": false
+  },
+  "mesh": {
+    "name": "SecurityBoothShell.001",
+    "vertices": 3352,
+    "triangles": 6012,
+    "bounds_min_unity": [
+      -1.5499999523162842,
+      -1.1234087793354774e-07,
+      -1.799999713897705
+    ],
+    "bounds_max_unity": [
+      1.5499999523162842,
+      3.1500003337860107,
+      1.8000001907348633
+    ],
+    "max_bounds_error": 2.384185791015625e-07,
+    "minimum_triangle_area": 8.660032269808165e-07,
+    "minimum_uv_area": 8.750612323638052e-07,
+    "atlas_tiles_used": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "closed_outward_solids": 173,
+    "minimum_solid_volume": 1.4003704560500933e-06,
+    "all_edges_two_consistently_wound_faces": true,
+    "materials": [
+      "CityGatePilot_SharedPBR"
+    ],
+    "modifiers": 0,
+    "rigid_body": false,
+    "animation": false
+  },
+  "opaque_surface_rays": {
+    "front": 208,
+    "rear": 208,
+    "sides": 480
+  },
+  "previews": [
+    {
+      "path": "Review/front-right-authoring-cpu.png",
+      "sha256": "24d5489705c29677d9c8c1f9034f6e4bf549ca91967cfb7fc5314a96c125df1c",
+      "bytes": 634246,
+      "png_crc_chunks": 94,
+      "dimensions": [
+        960,
+        720
+      ]
+    },
+    {
+      "path": "Review/rear-left-authoring-cpu.png",
+      "sha256": "9e19565a7e9120eb0550ca78957c706f18a10236ef6a6b662891e42864315d95",
+      "bytes": 639083,
+      "png_crc_chunks": 94,
+      "dimensions": [
+        960,
+        720
+      ]
+    }
+  ],
+  "new_textures": 0,
+  "new_colliders": 0,
+  "original_source_hashes_unchanged": true,
+  "limits": [
+    "CPU authoring previews are not native gameplay quality or performance evidence.",
+    "Existing collider, navigation, LOS, SECURITY text and scripts were not touched. Actual Unity import/integration remains pending.",
+    "Each manufactured detail is a closed solid; overlapping detail pieces are not claimed to be one boolean-unioned volume.",
+    "Uses the established gate project export handedness boundary; actual Unity culling/material reassignment must still be verified."
+  ]
+}

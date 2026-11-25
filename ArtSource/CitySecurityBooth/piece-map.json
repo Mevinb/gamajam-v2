@@ -1,0 +1,2943 @@
+[
+  {
+    "name": "continuous solid booth core",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.25,
+      0.0,
+      -1.5
+    ],
+    "bounds_max": [
+      1.25,
+      2.950000047683716,
+      1.5
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 22.120160812210948
+  },
+  {
+    "name": "front lower precast panel 0",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2339999675750732,
+      0.019999980926513672,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      -0.4220000207424164,
+      1.2200000286102295,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "front upper precast panel 0",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2339999675750732,
+      2.379999876022339,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      -0.4220000207424164,
+      2.930000066757202,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "front lower precast panel 1",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.4059999883174896,
+      0.019999980926513672,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      0.4059999883174896,
+      1.2200000286102295,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "front upper precast panel 1",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.4059999883174896,
+      2.379999876022339,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      0.4059999883174896,
+      2.930000066757202,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "front lower precast panel 2",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      0.4220000207424164,
+      0.019999980926513672,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2339999675750732,
+      1.2200000286102295,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "front upper precast panel 2",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      0.4220000207424164,
+      2.379999876022339,
+      -1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2339999675750732,
+      2.930000066757202,
+      -1.497999906539917
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "front vertical lower joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.4189999997615814,
+      0.009999990463256836,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      -0.4090000092983246,
+      1.2300000190734863,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "front vertical lower joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.4090000092983246,
+      0.009999990463256836,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      0.4189999997615814,
+      1.2300000190734863,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "front horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      0.006500000134110451,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      0.017500000074505806,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "front horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      1.2295000553131104,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      1.2404999732971191,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "front horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      2.359499931335449,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      2.370500087738037,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "front horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      2.934499979019165,
+      -1.5139999389648438
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      2.945500135421753,
+      -1.5099999904632568
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "rear lower precast panel 0",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2339999675750732,
+      0.019999980926513672,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      -0.4220000207424164,
+      1.2200000286102295,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "rear upper precast panel 0",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2339999675750732,
+      2.379999876022339,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      -0.4220000207424164,
+      2.930000066757202,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "rear lower precast panel 1",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.4059999883174896,
+      0.019999980926513672,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      0.4059999883174896,
+      1.2200000286102295,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "rear upper precast panel 1",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.4059999883174896,
+      2.379999876022339,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      0.4059999883174896,
+      2.930000066757202,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "rear lower precast panel 2",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      0.4220000207424164,
+      0.019999980926513672,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      1.2339999675750732,
+      1.2200000286102295,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01167665095991611
+  },
+  {
+    "name": "rear upper precast panel 2",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      0.4220000207424164,
+      2.379999876022339,
+      1.497999906539917
+    ],
+    "bounds_max": [
+      1.2339999675750732,
+      2.930000066757202,
+      1.5099999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005348250652720744
+  },
+  {
+    "name": "rear vertical lower joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.4189999997615814,
+      0.009999990463256836,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      -0.4090000092983246,
+      1.2300000190734863,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "rear vertical lower joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.4090000092983246,
+      0.009999990463256836,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      0.4189999997615814,
+      1.2300000190734863,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "rear horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      0.006500000134110451,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      0.017500000074505806,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "rear horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      1.2295000553131104,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      1.2404999732971191,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "rear horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      2.359499931335449,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      2.370500087738037,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "rear horizontal panel joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2400000095367432,
+      2.934499979019165,
+      1.5099999904632568
+    ],
+    "bounds_max": [
+      1.2400000095367432,
+      2.945500135421753,
+      1.5139999389648438
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00010912000543087721
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      0.019999980926513672,
+      -1.4804999828338623
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      1.2200000286102295,
+      -0.5054999589920044
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      2.379999876022339,
+      -1.4804999828338623
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      2.930000066757202,
+      -0.5054999589920044
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      0.019999980926513672,
+      -0.48750001192092896
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      1.2200000286102295,
+      0.48750001192092896
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      2.379999876022339,
+      -0.48750001192092896
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      2.930000066757202,
+      0.48750001192092896
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      0.019999980926513672,
+      0.5054999589920044
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      1.2200000286102295,
+      1.4804999828338623
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2599999904632568,
+      2.379999876022339,
+      0.5054999589920044
+    ],
+    "bounds_max": [
+      -1.247999906539917,
+      2.930000066757202,
+      1.4804999828338623
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      0.009999990463256836,
+      -0.5015000104904175
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      1.2300000190734863,
+      -0.49149999022483826
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "side lower compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      0.009999990463256836,
+      0.49149999022483826
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      1.2300000190734863,
+      0.5015000104904175
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      0.006500000134110451,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      0.017500000074505806,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      1.2295000553131104,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      1.2404999732971191,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      2.359499931335449,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      2.370500087738037,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2660000324249268,
+      2.934499979019165,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      -1.2620000839233398,
+      2.945500135421753,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "precast corner return",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2515000104904175,
+      0.009999990463256836,
+      -1.502500057220459
+    ],
+    "bounds_max": [
+      -1.1964999437332153,
+      2.940000057220459,
+      -1.4474999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008645521983712658
+  },
+  {
+    "name": "precast corner return",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.2515000104904175,
+      0.009999990463256836,
+      1.4474999904632568
+    ],
+    "bounds_max": [
+      -1.1964999437332153,
+      2.940000057220459,
+      1.502500057220459
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008645521983712658
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      0.019999980926513672,
+      -1.4804999828338623
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      1.2200000286102295,
+      -0.5054999589920044
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      2.379999876022339,
+      -1.4804999828338623
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      2.930000066757202,
+      -0.5054999589920044
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      0.019999980926513672,
+      -0.48750001192092896
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      1.2200000286102295,
+      0.48750001192092896
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      2.379999876022339,
+      -0.48750001192092896
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      2.930000066757202,
+      0.48750001192092896
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      0.019999980926513672,
+      0.5054999589920044
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      1.2200000286102295,
+      1.4804999828338623
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01402254776805683
+  },
+  {
+    "name": "side upper precast panel",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.247999906539917,
+      2.379999876022339,
+      0.5054999589920044
+    ],
+    "bounds_max": [
+      1.2599999904632568,
+      2.930000066757202,
+      1.4804999828338623
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00642274699221318
+  },
+  {
+    "name": "side lower compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      0.009999990463256836,
+      -0.5015000104904175
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      1.2300000190734863,
+      -0.49149999022483826
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "side lower compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      0.009999990463256836,
+      0.49149999022483826
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      1.2300000190734863,
+      0.5015000104904175
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 4.880000237151979e-05
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      0.006500000134110451,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      0.017500000074505806,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      1.2295000553131104,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      1.2404999732971191,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      2.359499931335449,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      2.370500087738037,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "side horizontal compression joint",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2620000839233398,
+      2.934499979019165,
+      -1.4900000095367432
+    ],
+    "bounds_max": [
+      1.2660000324249268,
+      2.945500135421753,
+      1.4900000095367432
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 0.00013112000635661186
+  },
+  {
+    "name": "precast corner return",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.1964999437332153,
+      0.009999990463256836,
+      -1.502500057220459
+    ],
+    "bounds_max": [
+      1.2515000104904175,
+      2.940000057220459,
+      -1.4474999904632568
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008645521983712658
+  },
+  {
+    "name": "precast corner return",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      1.1964999437332153,
+      0.009999990463256836,
+      1.4474999904632568
+    ],
+    "bounds_max": [
+      1.2515000104904175,
+      2.940000057220459,
+      1.502500057220459
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008645521983712658
+  },
+  {
+    "name": "roof precast slab",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.5399999618530273,
+      2.955000162124634,
+      -1.7899999618530273
+    ],
+    "bounds_max": [
+      1.5399999618530273,
+      3.075000047683716,
+      1.7899999618530273
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 1.3209828820755865
+  },
+  {
+    "name": "folded roof coping",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5499999523162842,
+      3.0799999237060547,
+      -1.7999999523162842
+    ],
+    "bounds_max": [
+      1.5499999523162842,
+      3.1500000953674316,
+      -1.7100000381469727
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01942602162292304
+  },
+  {
+    "name": "roof drip edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5399999618530273,
+      3.0325000286102295,
+      -1.7975000143051147
+    ],
+    "bounds_max": [
+      1.5399999618530273,
+      3.057500123977661,
+      -1.712499976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.006519522685550133
+  },
+  {
+    "name": "folded roof coping",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5499999523162842,
+      3.0799999237060547,
+      1.7100000381469727
+    ],
+    "bounds_max": [
+      1.5499999523162842,
+      3.1500000953674316,
+      1.7999999523162842
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01942602162292304
+  },
+  {
+    "name": "roof drip edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5399999618530273,
+      3.0325000286102295,
+      1.712499976158142
+    ],
+    "bounds_max": [
+      1.5399999618530273,
+      3.057500123977661,
+      1.7975000143051147
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.006519522685550133
+  },
+  {
+    "name": "side roof coping",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5499999523162842,
+      3.0799999237060547,
+      -1.7100000381469727
+    ],
+    "bounds_max": [
+      -1.4600000381469727,
+      3.1500000953674316,
+      1.7100000381469727
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.021431782784231374
+  },
+  {
+    "name": "side drip edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.5475000143051147,
+      3.0325000286102295,
+      -1.7000000476837158
+    ],
+    "bounds_max": [
+      -1.462499976158142,
+      3.057500123977661,
+      1.7000000476837158
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.007196963066595484
+  },
+  {
+    "name": "side roof coping",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.4600000381469727,
+      3.0799999237060547,
+      -1.7100000381469727
+    ],
+    "bounds_max": [
+      1.5499999523162842,
+      3.1500000953674316,
+      1.7100000381469727
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.021431782784231374
+  },
+  {
+    "name": "side drip edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.462499976158142,
+      3.0325000286102295,
+      -1.7000000476837158
+    ],
+    "bounds_max": [
+      1.5475000143051147,
+      3.057500123977661,
+      1.7000000476837158
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.007196963066595484
+  },
+  {
+    "name": "rear gutter sole",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4700000286102295,
+      2.998999834060669,
+      1.6705000400543213
+    ],
+    "bounds_max": [
+      1.4700000286102295,
+      3.0169999599456787,
+      1.7955000400543213
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.006590378516495183
+  },
+  {
+    "name": "rear gutter lip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4700000286102295,
+      3.007500171661377,
+      1.6670000553131104
+    ],
+    "bounds_max": [
+      1.4700000286102295,
+      3.0824999809265137,
+      1.680999994277954
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0030628109450191545
+  },
+  {
+    "name": "rear gutter lip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4700000286102295,
+      3.007500171661377,
+      1.7850000858306885
+    ],
+    "bounds_max": [
+      1.4700000286102295,
+      3.0824999809265137,
+      1.7990000247955322
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0030628109450191545
+  },
+  {
+    "name": "gutter end cap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.471000075340271,
+      3.007500171661377,
+      1.6725000143051147
+    ],
+    "bounds_max": [
+      -1.4490000009536743,
+      3.0824999809265137,
+      1.7975000143051147
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002045166731605926
+  },
+  {
+    "name": "gutter end cap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.4490000009536743,
+      3.007500171661377,
+      1.6725000143051147
+    ],
+    "bounds_max": [
+      1.471000075340271,
+      3.0824999809265137,
+      1.7975000143051147
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002045166731605926
+  },
+  {
+    "name": "gutter retaining strap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.2200000286102295,
+      2.9499998092651367,
+      1.5
+    ],
+    "bounds_max": [
+      -1.1800000667572021,
+      3.0399999618530273,
+      1.6800000667572021
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006455627046681247
+  },
+  {
+    "name": "gutter strap fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.2069282531738281,
+      2.952000141143799,
+      1.50600004196167
+    ],
+    "bounds_max": [
+      -1.1930718421936035,
+      2.9679999351501465,
+      1.5180001258850098
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.995316872245128e-06
+  },
+  {
+    "name": "gutter retaining strap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.42000001668930054,
+      2.9499998092651367,
+      1.5
+    ],
+    "bounds_max": [
+      -0.3799999952316284,
+      3.0399999618530273,
+      1.6800000667572021
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006455627046681247
+  },
+  {
+    "name": "gutter strap fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.4069282114505768,
+      2.952000141143799,
+      1.50600004196167
+    ],
+    "bounds_max": [
+      -0.3930718004703522,
+      2.9679999351501465,
+      1.5180001258850098
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.995316872245128e-06
+  },
+  {
+    "name": "gutter retaining strap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.3799999952316284,
+      2.9499998092651367,
+      1.5
+    ],
+    "bounds_max": [
+      0.42000001668930054,
+      3.0399999618530273,
+      1.6800000667572021
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006455627046681247
+  },
+  {
+    "name": "gutter strap fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.3930718004703522,
+      2.952000141143799,
+      1.50600004196167
+    ],
+    "bounds_max": [
+      0.4069282114505768,
+      2.9679999351501465,
+      1.5180001258850098
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.995316872245128e-06
+  },
+  {
+    "name": "gutter retaining strap",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.1800000667572021,
+      2.9499998092651367,
+      1.5
+    ],
+    "bounds_max": [
+      1.2200000286102295,
+      3.0399999618530273,
+      1.6800000667572021
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006455627046681247
+  },
+  {
+    "name": "gutter strap fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.1930718421936035,
+      2.952000141143799,
+      1.50600004196167
+    ],
+    "bounds_max": [
+      1.2069282531738281,
+      2.9679999351501465,
+      1.5180001258850098
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.995316872245128e-06
+  },
+  {
+    "name": "front observation window opaque dark reflective glazing",
+    "tile": 3,
+    "glass": true,
+    "bounds_min": [
+      -1.0579999685287476,
+      1.2919999361038208,
+      -1.5389999151229858
+    ],
+    "bounds_max": [
+      1.0579999685287476,
+      2.308000087738037,
+      -1.531000018119812
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.017192574145730388
+  },
+  {
+    "name": "front observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.100000023841858,
+      1.25,
+      -1.559999942779541
+    ],
+    "bounds_max": [
+      -1.0479999780654907,
+      2.3499999046325684,
+      -1.5
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "front observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.0479999780654907,
+      1.25,
+      -1.559999942779541
+    ],
+    "bounds_max": [
+      1.100000023841858,
+      2.3499999046325684,
+      -1.5
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "front observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.100000023841858,
+      1.25,
+      -1.559999942779541
+    ],
+    "bounds_max": [
+      1.100000023841858,
+      1.3020000457763672,
+      -1.5
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0068455468083425345
+  },
+  {
+    "name": "front observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.100000023841858,
+      2.297999858856201,
+      -1.559999942779541
+    ],
+    "bounds_max": [
+      1.100000023841858,
+      2.3499999046325684,
+      -1.5
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0068455468083425345
+  },
+  {
+    "name": "front observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.0480000972747803,
+      1.2990000247955322,
+      -1.5485000610351562
+    ],
+    "bounds_max": [
+      -1.0360000133514404,
+      2.300999879837036,
+      -1.5394999980926514
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "front observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.0360000133514404,
+      1.2990000247955322,
+      -1.5485000610351562
+    ],
+    "bounds_max": [
+      1.0480000972747803,
+      2.300999879837036,
+      -1.5394999980926514
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "front observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.0475000143051147,
+      1.305999994277954,
+      -1.5485000610351562
+    ],
+    "bounds_max": [
+      1.0475000143051147,
+      1.318000078201294,
+      -1.5394999980926514
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00022203332550115826
+  },
+  {
+    "name": "front observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.0475000143051147,
+      2.2820000648498535,
+      -1.5485000610351562
+    ],
+    "bounds_max": [
+      1.0475000143051147,
+      2.2940001487731934,
+      -1.5394999980926514
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00022203332550115826
+  },
+  {
+    "name": "front observation window vertical mullion",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.01600000075995922,
+      1.2949999570846558,
+      -1.5630000829696655
+    ],
+    "bounds_max": [
+      0.01600000075995922,
+      2.304999828338623,
+      -1.5210000276565552
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013488107044324473
+  },
+  {
+    "name": "front observation window sloping sill lip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.125,
+      1.2114999294281006,
+      -1.6330000162124634
+    ],
+    "bounds_max": [
+      1.125,
+      1.256500005722046,
+      -1.4929999113082886
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.014131314613072697
+  },
+  {
+    "name": "front observation window sill drainage groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.0549999475479126,
+      1.2064999341964722,
+      -1.5870000123977661
+    ],
+    "bounds_max": [
+      1.0549999475479126,
+      1.215499997138977,
+      -1.5749999284744263
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002236233112831414
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0625,
+      1.3385047912597656,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      -1.0474998950958252,
+      1.3514952659606934,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0625,
+      1.7935047149658203,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      -1.0474998950958252,
+      1.806495189666748,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0625,
+      2.248504877090454,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      -1.0474998950958252,
+      2.261495351791382,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.0474998950958252,
+      1.3385047912597656,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      1.0625,
+      1.3514952659606934,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.0474998950958252,
+      1.7935047149658203,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      1.0625,
+      1.806495189666748,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "front observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.0474998950958252,
+      2.248504877090454,
+      -1.5729999542236328
+    ],
+    "bounds_max": [
+      1.0625,
+      2.261495351791382,
+      -1.562000036239624
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075473080970843e-06
+  },
+  {
+    "name": "left observation window opaque dark reflective glazing",
+    "tile": 3,
+    "glass": true,
+    "bounds_min": [
+      -1.2889999151229858,
+      1.2919999361038208,
+      -1.2580000162124634
+    ],
+    "bounds_max": [
+      -1.281000018119812,
+      2.308000087738037,
+      1.2580000162124634
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.02044297518903824
+  },
+  {
+    "name": "left observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.309999942779541,
+      1.25,
+      -1.3000000715255737
+    ],
+    "bounds_max": [
+      -1.25,
+      2.3499999046325684,
+      -1.2480000257492065
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "left observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.309999942779541,
+      1.25,
+      1.2480000257492065
+    ],
+    "bounds_max": [
+      -1.25,
+      2.3499999046325684,
+      1.3000000715255737
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "left observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.309999942779541,
+      1.25,
+      -1.2999999523162842
+    ],
+    "bounds_max": [
+      -1.25,
+      1.3020000457763672,
+      1.2999999523162842
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008090346359972553
+  },
+  {
+    "name": "left observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.309999942779541,
+      2.297999858856201,
+      -1.2999999523162842
+    ],
+    "bounds_max": [
+      -1.25,
+      2.3499999046325684,
+      1.2999999523162842
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008090346359972553
+  },
+  {
+    "name": "left observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2985000610351562,
+      1.2990000247955322,
+      -1.2480000257492065
+    ],
+    "bounds_max": [
+      -1.2894999980926514,
+      2.300999879837036,
+      -1.2359999418258667
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "left observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2985000610351562,
+      1.2990000247955322,
+      1.2359999418258667
+    ],
+    "bounds_max": [
+      -1.2894999980926514,
+      2.300999879837036,
+      1.2480000257492065
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "left observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2985000610351562,
+      1.305999994277954,
+      -1.247499942779541
+    ],
+    "bounds_max": [
+      -1.2894999980926514,
+      1.318000078201294,
+      1.247499942779541
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00026443330859132123
+  },
+  {
+    "name": "left observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.2985000610351562,
+      2.2820000648498535,
+      -1.247499942779541
+    ],
+    "bounds_max": [
+      -1.2894999980926514,
+      2.2940001487731934,
+      1.247499942779541
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00026443330859132123
+  },
+  {
+    "name": "left observation window vertical mullion",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3130000829696655,
+      1.2949999570846558,
+      -0.4493333399295807
+    ],
+    "bounds_max": [
+      -1.2710000276565552,
+      2.304999828338623,
+      -0.41733333468437195
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013488107044324475
+  },
+  {
+    "name": "left observation window vertical mullion",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3130000829696655,
+      1.2949999570846558,
+      0.41733333468437195
+    ],
+    "bounds_max": [
+      -1.2710000276565552,
+      2.304999828338623,
+      0.4493333399295807
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013488107044324475
+  },
+  {
+    "name": "left observation window sloping sill lip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3830000162124634,
+      1.2114999294281006,
+      -1.3250000476837158
+    ],
+    "bounds_max": [
+      -1.2429999113082886,
+      1.256500005722046,
+      1.3250000476837158
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.016644115325145575
+  },
+  {
+    "name": "left observation window sill drainage groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -1.3370000123977661,
+      1.2064999341964722,
+      -1.2549999952316284
+    ],
+    "bounds_max": [
+      -1.3249999284744263,
+      1.215499997138977,
+      1.2549999952316284
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002660233196456726
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      1.337499976158142,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      1.352500081062317,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      1.7924998998641968,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      1.8075000047683716,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      2.24750018119812,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      2.262500047683716,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      1.337499976158142,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      1.352500081062317,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      1.7924998998641968,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      1.8075000047683716,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "left observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3229999542236328,
+      2.24750018119812,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      -1.312000036239624,
+      2.262500047683716,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window opaque dark reflective glazing",
+    "tile": 3,
+    "glass": true,
+    "bounds_min": [
+      1.281000018119812,
+      1.2919999361038208,
+      -1.2580000162124634
+    ],
+    "bounds_max": [
+      1.2889999151229858,
+      2.308000087738037,
+      1.2580000162124634
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.02044297518903824
+  },
+  {
+    "name": "right observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.25,
+      1.25,
+      -1.3000000715255737
+    ],
+    "bounds_max": [
+      1.309999942779541,
+      2.3499999046325684,
+      -1.2480000257492065
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "right observation window manufactured jamb",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.25,
+      1.25,
+      1.2480000257492065
+    ],
+    "bounds_max": [
+      1.309999942779541,
+      2.3499999046325684,
+      1.3000000715255737
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0034223467429323985
+  },
+  {
+    "name": "right observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.25,
+      1.25,
+      -1.2999999523162842
+    ],
+    "bounds_max": [
+      1.309999942779541,
+      1.3020000457763672,
+      1.2999999523162842
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008090346359972553
+  },
+  {
+    "name": "right observation window manufactured head/sill",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.25,
+      2.297999858856201,
+      -1.2999999523162842
+    ],
+    "bounds_max": [
+      1.309999942779541,
+      2.3499999046325684,
+      1.2999999523162842
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008090346359972553
+  },
+  {
+    "name": "right observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2894999980926514,
+      1.2990000247955322,
+      -1.2480000257492065
+    ],
+    "bounds_max": [
+      1.2985000610351562,
+      2.300999879837036,
+      -1.2359999418258667
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "right observation window EPDM glazing gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2894999980926514,
+      1.2990000247955322,
+      1.2359999418258667
+    ],
+    "bounds_max": [
+      1.2985000610351562,
+      2.300999879837036,
+      1.2480000257492065
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00010617532669664433
+  },
+  {
+    "name": "right observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2894999980926514,
+      1.305999994277954,
+      -1.247499942779541
+    ],
+    "bounds_max": [
+      1.2985000610351562,
+      1.318000078201294,
+      1.247499942779541
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00026443330859132123
+  },
+  {
+    "name": "right observation window EPDM horizontal gasket",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.2894999980926514,
+      2.2820000648498535,
+      -1.247499942779541
+    ],
+    "bounds_max": [
+      1.2985000610351562,
+      2.2940001487731934,
+      1.247499942779541
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00026443330859132123
+  },
+  {
+    "name": "right observation window vertical mullion",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.2710000276565552,
+      1.2949999570846558,
+      -0.4493333399295807
+    ],
+    "bounds_max": [
+      1.3130000829696655,
+      2.304999828338623,
+      -0.41733333468437195
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013488107044324475
+  },
+  {
+    "name": "right observation window vertical mullion",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.2710000276565552,
+      1.2949999570846558,
+      0.41733333468437195
+    ],
+    "bounds_max": [
+      1.3130000829696655,
+      2.304999828338623,
+      0.4493333399295807
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013488107044324475
+  },
+  {
+    "name": "right observation window sloping sill lip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.2429999113082886,
+      1.2114999294281006,
+      -1.3250000476837158
+    ],
+    "bounds_max": [
+      1.3830000162124634,
+      1.256500005722046,
+      1.3250000476837158
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.016644115325145575
+  },
+  {
+    "name": "right observation window sill drainage groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      1.3249999284744263,
+      1.2064999341964722,
+      -1.2549999952316284
+    ],
+    "bounds_max": [
+      1.3370000123977661,
+      1.215499997138977,
+      1.2549999952316284
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002660233196456726
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      1.337499976158142,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      1.352500081062317,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      1.7924998998641968,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      1.8075000047683716,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      2.24750018119812,
+      -1.2614952325820923
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      2.262500047683716,
+      -1.2485047578811646
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      1.337499976158142,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      1.352500081062317,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      1.7924998998641968,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      1.8075000047683716,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "right observation window visible frame screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.312000036239624,
+      2.24750018119812,
+      1.2485047578811646
+    ],
+    "bounds_max": [
+      1.3229999542236328,
+      2.262500047683716,
+      1.2614952325820923
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.6075478877739514e-06
+  },
+  {
+    "name": "rear vent recessed backing",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.5899999737739563,
+      1.5299999713897705,
+      1.5074999332427979
+    ],
+    "bounds_max": [
+      0.5899999737739563,
+      2.2899999618530273,
+      1.5425000190734863
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0313525923047672
+  },
+  {
+    "name": "rear vent side frame",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.6284999847412109,
+      1.4900000095367432,
+      1.5184999704360962
+    ],
+    "bounds_max": [
+      -0.5835000276565552,
+      2.3299999237060547,
+      1.5635000467300415
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0016844040816484085
+  },
+  {
+    "name": "rear vent side frame",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5835000276565552,
+      1.4900000095367432,
+      1.5184999704360962
+    ],
+    "bounds_max": [
+      0.6284999847412109,
+      2.3299999237060547,
+      1.5635000467300415
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0016844040816484085
+  },
+  {
+    "name": "rear vent cross frame",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.625,
+      1.4824999570846558,
+      1.5184999704360962
+    ],
+    "bounds_max": [
+      0.625,
+      1.527500033378601,
+      1.5635000467300415
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.002507274183184327
+  },
+  {
+    "name": "rear vent cross frame",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.625,
+      2.2925000190734863,
+      1.5184999704360962
+    ],
+    "bounds_max": [
+      0.625,
+      2.3375000953674316,
+      1.5635000467300415
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.002507274183184327
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.5485039949417114,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.6014961004257202,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.6145039796829224,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.6674960851669312,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.6805039644241333,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.733496069908142,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.7465039491653442,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.799496054649353,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.8125039339065552,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.865496039390564,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.8785039186477661,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.931496024131775,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      1.944503903388977,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      1.9974960088729858,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      2.0105040073394775,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      2.0634958744049072,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      2.0765039920806885,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      2.129495859146118,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      2.1425039768218994,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      2.195495843887329,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "rear angled ventilation louver",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5699999928474426,
+      2.2085039615631104,
+      1.5167001485824585
+    ],
+    "bounds_max": [
+      0.5699999928474426,
+      2.26149582862854,
+      1.5972999334335327
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0027335115241577564
+  },
+  {
+    "name": "flush rear service plate",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.45500001311302185,
+      0.36500000953674316,
+      1.5094999074935913
+    ],
+    "bounds_max": [
+      0.45500001311302185,
+      1.0950000286102295,
+      1.534500002861023
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0164787252366741
+  },
+  {
+    "name": "rear service plate inset",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.4000000059604645,
+      0.42000001668930054,
+      1.5339999198913574
+    ],
+    "bounds_max": [
+      0.4000000059604645,
+      1.0399999618530273,
+      1.5460000038146973
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.005926368260605764
+  },
+  {
+    "name": "rear service plate fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.3936602473258972,
+      0.4399999976158142,
+      1.5440000295639038
+    ],
+    "bounds_max": [
+      -0.37633973360061646,
+      0.4599999785423279,
+      1.5579999685287476
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 3.6372907701439233e-06
+  },
+  {
+    "name": "rear service plate fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.3936602473258972,
+      1.0,
+      1.5440000295639038
+    ],
+    "bounds_max": [
+      -0.37633973360061646,
+      1.0199999809265137,
+      1.5579999685287476
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 3.6372907701439233e-06
+  },
+  {
+    "name": "rear service plate fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.37633973360061646,
+      0.4399999976158142,
+      1.5440000295639038
+    ],
+    "bounds_max": [
+      0.3936602473258972,
+      0.4599999785423279,
+      1.5579999685287476
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 3.6372907701439233e-06
+  },
+  {
+    "name": "rear service plate fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.37633973360061646,
+      1.0,
+      1.5440000295639038
+    ],
+    "bounds_max": [
+      0.3936602473258972,
+      1.0199999809265137,
+      1.5579999685287476
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 3.6372907701439233e-06
+  },
+  {
+    "name": "small physical inspection marker",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.2849999964237213,
+      0.4449999928474426,
+      1.5499999523162842
+    ],
+    "bounds_max": [
+      0.41499999165534973,
+      0.5149999856948853,
+      1.555999994277954
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 5.419333213758967e-05
+  },
+  {
+    "name": "downpipe upper elbow",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3953481912612915,
+      2.87703013420105,
+      1.5787642002105713
+    ],
+    "bounds_max": [
+      -1.2746518850326538,
+      3.017969846725464,
+      1.7562358379364014
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0006983356304411537
+  },
+  {
+    "name": "downpipe vertical",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3990000486373901,
+      0.13999998569488525,
+      1.560999870300293
+    ],
+    "bounds_max": [
+      -1.3209999799728394,
+      2.9100003242492676,
+      1.6390001773834229
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.011916658235390684
+  },
+  {
+    "name": "downpipe discharge elbow",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3990000486373901,
+      0.03537757694721222,
+      1.582047700881958
+    ],
+    "bounds_max": [
+      -1.3209999799728394,
+      0.17462243139743805,
+      1.7529523372650146
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0006542068585698754
+  },
+  {
+    "name": "downpipe retaining clip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4199999570846558,
+      0.35749998688697815,
+      1.5500000715255737
+    ],
+    "bounds_max": [
+      -1.3000000715255737,
+      0.4025000035762787,
+      1.649999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0005353740192164181
+  },
+  {
+    "name": "downpipe wall bracket",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3015000820159912,
+      0.3474999964237213,
+      1.4849998950958252
+    ],
+    "bounds_max": [
+      -1.246500015258789,
+      0.4124999940395355,
+      1.6150000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0004627926311881155
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4040621519088745,
+      0.37299999594688416,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.3919378519058228,
+      0.3869999945163727,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3280621767044067,
+      0.37299999594688416,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.315937876701355,
+      0.3869999945163727,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe retaining clip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4199999570846558,
+      1.1274999380111694,
+      1.5500000715255737
+    ],
+    "bounds_max": [
+      -1.3000000715255737,
+      1.1725000143051147,
+      1.649999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0005353740192164181
+  },
+  {
+    "name": "downpipe wall bracket",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3015000820159912,
+      1.1174999475479126,
+      1.4849998950958252
+    ],
+    "bounds_max": [
+      -1.246500015258789,
+      1.1825000047683716,
+      1.6150000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0004627926311881155
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4040621519088745,
+      1.1430000066757202,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.3919378519058228,
+      1.156999945640564,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3280621767044067,
+      1.1430000066757202,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.315937876701355,
+      1.156999945640564,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe retaining clip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4199999570846558,
+      1.897499918937683,
+      1.5500000715255737
+    ],
+    "bounds_max": [
+      -1.3000000715255737,
+      1.9424999952316284,
+      1.649999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0005353740192164181
+  },
+  {
+    "name": "downpipe wall bracket",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3015000820159912,
+      1.8874999284744263,
+      1.4849998950958252
+    ],
+    "bounds_max": [
+      -1.246500015258789,
+      1.9524999856948853,
+      1.6150000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0004627926311881155
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4040621519088745,
+      1.9129999876022339,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.3919378519058228,
+      1.9269999265670776,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3280621767044067,
+      1.9129999876022339,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.315937876701355,
+      1.9269999265670776,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe retaining clip",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4199999570846558,
+      2.6675000190734863,
+      1.5500000715255737
+    ],
+    "bounds_max": [
+      -1.3000000715255737,
+      2.7125000953674316,
+      1.649999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0005353740192164181
+  },
+  {
+    "name": "downpipe wall bracket",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3015000820159912,
+      2.6575000286102295,
+      1.4849998950958252
+    ],
+    "bounds_max": [
+      -1.246500015258789,
+      2.7225000858306885,
+      1.6150000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0004627926311881155
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4040621519088745,
+      2.683000087738037,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.3919378519058228,
+      2.697000026702881,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  },
+  {
+    "name": "downpipe clip screw",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.3280621767044067,
+      2.683000087738037,
+      1.6499998569488525
+    ],
+    "bounds_max": [
+      -1.315937876701355,
+      2.697000026702881,
+      1.6610000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.4003678825628893e-06
+  }
+]

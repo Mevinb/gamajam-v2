@@ -1,0 +1,84 @@
+{
+  "schema": 1,
+  "unity_root": [
+    4.25,
+    0,
+    55.1
+  ],
+  "existing_body_local_bounds": [
+    [
+      -1.25,
+      0,
+      -1.5
+    ],
+    [
+      1.25,
+      2.95,
+      1.5
+    ]
+  ],
+  "allowed_visual_local_bounds": [
+    [
+      -1.55,
+      0,
+      -1.8
+    ],
+    [
+      1.55,
+      3.15,
+      1.8
+    ]
+  ],
+  "actual_visual_local_bounds": [
+    [
+      -1.5499999523162842,
+      0.0,
+      -1.7999999523162842
+    ],
+    [
+      1.5499999523162842,
+      3.1500000953674316,
+      1.7999999523162842
+    ]
+  ],
+  "window_modules": [
+    {
+      "name": "front",
+      "center": [
+        0,
+        1.8,
+        -1.53
+      ],
+      "overall_width": 2.2,
+      "overall_height": 1.1
+    },
+    {
+      "name": "left",
+      "center": [
+        -1.28,
+        1.8,
+        0
+      ],
+      "overall_depth": 2.6,
+      "overall_height": 1.1
+    },
+    {
+      "name": "right",
+      "center": [
+        1.28,
+        1.8,
+        0
+      ],
+      "overall_depth": 2.6,
+      "overall_height": 1.1
+    }
+  ],
+  "existing_security_text_world_position": [
+    4.25,
+    3.05,
+    53.27
+  ],
+  "existing_security_text_policy": "Retain the original Unity text, not included in this export.",
+  "scope": "Visual replacement only. Existing solid body collider/navigation/LOS and text remain. No new door or human entrance, no transparent interior, no new collider.",
+  "coordinate_boundary": "Unity(x,y,z) -> Blender(x,-z,y); temporary export copy mirrors BlenderY and flips face winding, FBX-Zforward/Yup/baked-space; importer proof decodesUnity(x,z,y)."
+}

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "status": "AUTHORED ONLY; actual Unity import/integration/performance pending",
+  "author_script_sha256": "c107ffc1ee7783b8d9ff4fc18dc7126ab900adfe0ca1b157d9a810cdcb6c923b",
+  "blender": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "gpu_rendering": false,
+  "new_textures": 0,
+  "shared_material": "CityGatePilot_SharedPBR",
+  "source_atlas": {
+    "gate_blend": {
+      "path": "ArtSource/CityGatePilot/CityGatePilot.blend",
+      "sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d"
+    },
+    "textures": {
+      "A": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_A.png",
+        "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006",
+        "bytes": 3758966
+      },
+      "N": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_N.png",
+        "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64",
+        "bytes": 3124980
+      },
+      "M": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_M.png",
+        "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb",
+        "bytes": 1666303
+      }
+    }
+  },
+  "mesh": {
+    "name": "SecurityBoothShell",
+    "vertices": 3352,
+    "triangles": 6012,
+    "bounds_min": [
+      -1.5499999523162842,
+      0.0,
+      -1.7999999523162842
+    ],
+    "bounds_max": [
+      1.5499999523162842,
+      3.1500000953674316,
+      1.7999999523162842
+    ],
+    "materials": [
+      "CityGatePilot_SharedPBR"
+    ]
+  },
+  "closed_solid_pieces": 173,
+  "new_colliders": 0,
+  "cpu_previews": [
+    {
+      "name": "front-right",
+      "file": "Review/front-right-authoring-cpu.png",
+      "eye_blender": [
+        5.599999904632568,
+        7.599999904632568,
+        3.9000000953674316
+      ],
+      "resolution": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    },
+    {
+      "name": "rear-left",
+      "file": "Review/rear-left-authoring-cpu.png",
+      "eye_blender": [
+        -5.199999809265137,
+        -7.199999809265137,
+        3.5
+      ],
+      "resolution": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    }
+  ],
+  "files": {
+    "CREDITS.md": {
+      "bytes": 1282,
+      "sha256": "a77a707fae67b0974a9f1e8032a3e39f8fe36217f76cdeae49f2e78c6efe8564"
+    },
+    "CitySecurityBooth.blend": {
+      "bytes": 8742374,
+      "sha256": "f10b9ef871727b3895411c44366e738230f5a920f30c4a30288c7208c2137a1b"
+    },
+    "Exports/CitySecurityBooth.fbx": {
+      "bytes": 140204,
+      "sha256": "285016f9ec4113f032bf9da396401cdcbd16503b42191fd834beade057756292"
+    },
+    "README.md": {
+      "bytes": 3707,
+      "sha256": "01b132cd5b80be6441edd79dc3b75bfcb016928848e9cbfd64137d91bc83bec9"
+    },
+    "Review/front-right-authoring-cpu.png": {
+      "bytes": 634246,
+      "sha256": "24d5489705c29677d9c8c1f9034f6e4bf549ca91967cfb7fc5314a96c125df1c"
+    },
+    "Review/rear-left-authoring-cpu.png": {
+      "bytes": 639083,
+      "sha256": "9e19565a7e9120eb0550ca78957c706f18a10236ef6a6b662891e42864315d95"
+    },
+    "physical-contract.json": {
+      "bytes": 1572,
+      "sha256": "954d1ded8a108ad94a4362bbc03a9a6ce53d99be0c776ebb4d7ea03a3aa1f7e8"
+    },
+    "piece-map.json": {
+      "bytes": 64679,
+      "sha256": "3710c390e635b226cd9d81639b345dcab8c52a786d836e823b3ecaa3730f8bf5"
+    }
+  },
+  "elapsed_seconds": 39.348,
+  "license": "Original project-authored mesh and geometry recipe. Reuses original project-authored CityGatePilot procedural atlas unchanged. No external textures/models were added."
+}
