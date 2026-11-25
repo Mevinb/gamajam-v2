@@ -77,6 +77,8 @@ namespace Parasite.Possession
 
         void Update()
         {
+            var gm = GameManager.Instance;
+            if (gm && !gm.IsPlaying) return;
             float dt = Time.deltaTime;
             if (!Controller.enabled) return;
             float speed = input.sprint ? sprintSpeed : walkSpeed;
@@ -98,7 +100,11 @@ namespace Parasite.Possession
             if (horiz.sqrMagnitude > 0.01f)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(horiz), 1f - Mathf.Exp(-10f * dt));
             Visual.SetMotion(Velocity, grounded);
-            if (transform.position.y < -30f) Place(new Vector3(transform.position.x, 2f, transform.position.z));
+            if (transform.position.y < GameManager.FallRecoveryY)
+            {
+                if (gm) gm.TryRecoverOwnedFall(this);
+                else Place(new Vector3(transform.position.x, 2f, transform.position.z)); // standalone/unit fixture fallback
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace Parasite
@@ -58,6 +59,7 @@ namespace Parasite
     {
         public const string MenuScene = "Bootstrap";
         public const string CityScene = "City";
+        public const float FallRecoveryY = -30f;
 
         public static GameManager Instance { get; private set; }
         public GameState State { get; private set; } = GameState.Playing;
@@ -166,6 +168,41 @@ namespace Parasite
                 route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
                 peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome,
             });
+        }
+
+        /// <summary>Recover a real player's current body; inactive agents count, off-stage story actors do not.</summary>
+        public bool TryRecoverOwnedFall(IControllable body)
+        {
+            if (!IsPlaying || body == null || (body is Object unityBody && !unityBody) ||
+                !body.Root || body.Root.position.y >= FallRecoveryY) return false;
+            var pm = Possession.PossessionManager.Instance;
+            if (!pm) return false;
+            foreach (var agent in pm.Agents)
+            {
+                if (agent == null || agent.InTransit) continue;
+                bool owned = body is Possession.AmoebaController blob
+                    ? agent.Host == null && agent.Blob == blob && blob.Agent == agent
+                    : body is Characters.HostCharacter host && agent.Host == host && host.Possessor == agent;
+                if (!owned) continue;
+                EnsureSafeFallCheckpoint();
+                ResetToCheckpoint("Swept beyond safe ground");
+                return State == GameState.Resetting;
+            }
+            return false;
+        }
+
+        void EnsureSafeFallCheckpoint()
+        {
+            if (RunState.HasCheckpoint && NavMesh.SamplePosition(RunState.CheckpointPosition, out var checkpoint, 2f, NavMesh.AllAreas))
+            {
+                RunState.CheckpointPosition = checkpoint.position;
+                return;
+            }
+            Vector3 fallback = RunState.AfterlakeStarted ? Missions.AfterlakeCampaign.Spawn : World.CityLayout.PlayerSpawn;
+            if (NavMesh.SamplePosition(fallback, out var landing, 2f, NavMesh.AllAreas)) fallback = landing.position;
+            RunState.HasCheckpoint = true;
+            RunState.CheckpointPosition = fallback;
+            RunState.CheckpointName = RunState.AfterlakeStarted ? "Riverside landing" : "Storm Drain";
         }
 
         /// <summary>No playable amoeba left: reload the city at the last checkpoint.</summary>

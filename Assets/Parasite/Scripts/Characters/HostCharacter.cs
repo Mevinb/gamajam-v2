@@ -202,6 +202,7 @@ namespace Parasite.Characters
                     Velocity = Vector3.zero;
                     break;
             }
+            if (gm && transform.position.y < GameManager.FallRecoveryY) gm.TryRecoverOwnedFall(this);
             Rig.Animate(Velocity, Grounded, State, Profile.runSpeed, dt);
             Footsteps(dt);
         }
@@ -224,7 +225,8 @@ namespace Parasite.Characters
                 var targetRot = Quaternion.LookRotation(new Vector3(horiz.x, 0, horiz.z));
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 1f - Mathf.Exp(-12f * dt));
             }
-            if (transform.position.y < -30f) { Controller.enabled = false; transform.position = new Vector3(transform.position.x, 2f, transform.position.z); Controller.enabled = true; }
+            if (!GameManager.Instance && transform.position.y < GameManager.FallRecoveryY)
+            { Controller.enabled = false; transform.position = new Vector3(transform.position.x, 2f, transform.position.z); Controller.enabled = true; }
         }
 
         void Footsteps(float dt)
