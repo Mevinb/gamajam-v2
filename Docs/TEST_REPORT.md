@@ -1,4 +1,38 @@
-# Current upgrade verification — 25 November 2026
+# Current 0.4.1 verification — 25 November 2026
+
+This hotfix addresses two reproduced gameplay defects: falling beside the ferry could endlessly reset a body above the same
+water, and terminal work could finish after capture, host replacement or loss of authorization. Owned falls now recover once
+to solid checkpoint ground; terminal work stays bound to its original authorized body. Normal inactive-host work, pause timing
+and the original holding-distance tolerance are preserved. Mission progress and the immutable lake choice survive recovery.
+
+Current build source: `e5bc956d47fa792b7b22d4581d464fb4de42ccdd`; runtime DLL SHA-256:
+`5ba302f317916b6bd7ed42cd6f6bc11d78eb24f9f41cdf0f3e259b52f4d99ecf`.
+
+| Check | Result and scope | Evidence |
+|---|---|---|
+| Source compilation | PASS: 112 runtime / 20 editor files and both test assemblies; Unity imported the final focused fixtures successfully | `Tools/compile_check.sh all`, isolated compile and Unity logs |
+| Fall recovery, GPU PlayMode | PASS 7/7 before the independent terminal correction. Six gravity-driven berth falls cover active/inactive blobs and hosts, simultaneous falls and invalid checkpoint; the seventh tests paused/story/unowned exclusions and no-manager fallback. Exactly one recovery and valid physical/navigable landing verified. Recovery code is unchanged by the terminal patch. | `Logs/upgrade-fall-recovery.xml`, `Logs/upgrade-fall-recovery.log` |
+| Full fall-fix player campaign | PASS 19/19, clean exit 0, RTX 4050 / Vulkan. All three original routes, both river branches, stealth/checkpoints/restart and fall recovery. This broader run used prior source `6828c23` / DLL `d6b9fd143f4fea99336a01ae02795327cc7607bf5c4ec51f4a2aaf4386278246`, before terminal ownership changed. | `Logs/standalone-0.4.1/campaign.txt`, `fall-build-info.json` |
+| Terminal defect reproduction | Original source failed 5/10 deterministic ownership/timer cases; patched source passes 10/10. These are logic stand-ins, not Unity physics. | `Logs/missionprop-harness/original.log`, `patched.log` |
+| Real-component terminal regression | PASS 10/10 headless PlayMode: actual hosts, capture/eject timing, swap/release, live authorization/prerequisites, reset, inactive work, pause and reach tolerance. A strengthened planar-distance fixture then passed 1/1. | `Logs/upgrade-missionprop-holds-final.xml`, `Logs/upgrade-missionprop-drift.xml` |
+| Final Linux build | PASS: 968 MB, zero errors / warnings, version 0.4.1, current source/hash above | `Logs/upgrade-linux-ownership.log`, `Logs/standalone-0.4.1/ownership-build-info.json` |
+| Final player affected-flow regression | PASS 3/3 shared scenarios, clean exit 0, RTX 4050 / Vulkan: both complete riverside branches and all ten terminal ownership cases | `Logs/standalone-0.4.1/campaign-ownership.txt`, `campaign-ownership-player.log` |
+| Linux archive integrity | PASS: complete 205-file input/extracted set and byte comparison, portable SHA-256, executable permissions, all 37 local documentation links and runtime provenance. Debug directories excluded. | `Logs/release-0.4.1-verification.json`, `Builds/Releases/PARASITE-Linux.tar.gz.sha256` |
+| Extracted player/media/launcher | PASS: default portable launcher selected RTX 4050 / Vulkan; both films decoded advancing frozen-time frames with populated readbacks (2/2), and queued shortcut checks passed 14/14. Both processes exited 0. Final documentation-only repack retains the exact tested runtime/film bytes. | `Logs/release-0.4.1-extracted-player.json`, `Logs/standalone-0.4.1/extracted-films.txt`, `extracted-shortcut.txt` |
+
+The first real-component terminal run was 9/10: the out-of-reach fixture placed a host inside an alley wall, which pushed it
+back into valid range. Moving the fixture along clear alley footing and measuring its actual position produced the passing
+rerun. The runtime holding-distance policy was not tightened to make that fixture pass.
+
+Graphics assets/settings are unchanged by these fixes. Native 1080p figures below belong to their recorded earlier runtimes;
+they are not new measurements of 0.4.1. Full-story Blender sources now have corrected optics, planted walking soles, natural
+seated hands and all eleven opening views. RTX calibration selects 48 samples with GPU OIDN: ~11s/frame against ~28s CPU OIDN
+on the same corrected opening frames, with closely matched output. These full films still require complete rendering,
+encoding and runtime integration; this hotfix retains the two short inserts and live story scenes. The overall expansion is active.
+
+---
+
+# Verified 0.4.0 milestone — 25 November 2026
 
 The **identity-corrected 0.4.0 Linux milestone is verified** within the scope below. The broader cinematic and mission
 expansion remains active. The current build is source
@@ -15,7 +49,7 @@ Earlier campaign and performance results below identify their own pre-identity r
 | Linux identity build | PASS: 968 MB, 0 errors / 0 warnings; source and runtime DLL hash recorded above | `Logs/upgrade-linux-identity.log`, `Builds/Linux/BUILD_INFO.json`, `Logs/standalone-0.4/final-build-info.json` |
 | Actual-player identity continuation regression | PASS 2/2, clean exit 0, RTX 4050 / Vulkan through the default NVIDIA launcher: Peace and Dominion, lake choice → Continue → three missions → checkpoint recovery → ferry, including the riverside Dr. Petrov identity assertion | `Logs/standalone-0.4/campaign-identity.txt`, `Logs/standalone-0.4/campaign-identity-player.log` |
 | Native riverside performance on this runtime | PASS 2/2: exact 1920x1080, default NVIDIA launcher selected Vulkan, complete 7/7 original waypoints. High: 225.9 FPS average / p99 10.34 ms, 100% scale. Ultra: 144.4 FPS / p99 12.93 ms, 125% scale with 4x MSAA. Normal graphical player, live traffic/NPCs; startup/capture encoding excluded. | `Logs/benchmarks/0.4-identity-native-vulkan-1080p/matrix.json`, raw GPU telemetry and screenshots |
-| Linux release archive | PASS: gzip/tar integrity, portable SHA-256, all 205 extracted files byte-identical to package inputs, executable bits, all 37 local guide links. Included runtime matches the source/hash above; debug folders excluded. | `Logs/release-0.4-verification.json`, `Builds/Releases/PARASITE-Linux.tar.gz.sha256` |
+| Linux release archive | PASS: gzip/tar integrity, portable SHA-256, all 205 extracted files byte-identical to package inputs, executable bits, all 37 local guide links. Included runtime matches the source/hash above; debug folders excluded. | `Logs/release-0.4-verification.json`, `Builds/Releases/PARASITE-Linux-0.4.0.tar.gz.sha256` |
 | Extracted player, default launcher | PASS: RTX 4050 / Vulkan selected automatically. Both short films decoded with advancing frozen-time frames and populated readbacks (2/2); shortcut regression passed 14/14 queued-keyboard cases, both clean exit 0. The final documentation-only repack retains these exact player/film bytes, verified against the extracted copy. | `Logs/release-0.4-extracted-player.json`, `Logs/standalone-0.4/extracted-films.txt`, `Logs/standalone-0.4/extracted-shortcut.txt` |
 
 Current player captures: [Petrov at the shelter](Screenshots/upgrade/04-petrov-riverside.png),
