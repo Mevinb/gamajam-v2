@@ -6,6 +6,12 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Isolated Northline preparation is terminal0:** root39401/Editor106526/chunk72c504. All eleven FBXs copied/imported
+  into that checkout's owned Resources namespace and shared material prepared; root independently matches all eleven
+  source/export byte hashes. Status is explicitly PREPARED_IMPORT_VERIFICATION_PENDING, not a mesh/physics/visual pass.
+  [Preparation proof](verification/northline-isolated-prepare-20261126.json). Native91 remains active under its existing
+  immutable lease; no replacement Editor or worktree Git HEAD/branch changes until91 is actually terminal. Then run
+  VerifyImportBatch first, followed by13selection/7mechanics/2binding cases. Do not rerun the successful preparation.
 - **Exact0.6.1 native90 passes:** root69063/native0/supervisor0/chunk290c66; case839.0s/elapsed844.145s,
   exactly PASS90/SUMMARY1/1, actual Null/nice10, no signal/watchdog/cancellation and all seven before/after integrity
   checks pass. User preview/full candidate/source unchanged. [Exact proof](verification/0.6.1-native-peace-20261126.json).

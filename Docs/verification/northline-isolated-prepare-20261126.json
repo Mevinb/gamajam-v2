@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "status": "ISOLATED_NORTHLINE_PREPARED_REAL_IMPORT_VERIFICATION_PENDING",
+  "recordedUtc": "2026-11-25T22:51:37.279500+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "branch": "codex/northline-runtime",
+  "headDuringOverlap": "623c47af54363ea841ab1d2958a23c17353704db",
+  "terminal": {
+    "rootSession": 39401,
+    "chunk": "72c504",
+    "nativeEditorExit": 0,
+    "editorPid": 106526,
+    "nice": 15,
+    "ioPriority": "idle",
+    "graphics": "actual Forcing GfxDevice: Null; NullGfxDevice logged",
+    "jobWorkers": 2
+  },
+  "report": {
+    "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-prepare-20261126a.json",
+    "sha256": "c9ddb238d2894f9d4e3c22d08766eeffc8648a7c23aef3795da7ff607d8f69f4"
+  },
+  "log": {
+    "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_prepare_20261126a.log",
+    "sha256": "fa53ec59fc02f44940c012825bfebc99defab3d97d64995d6b3878a86608ff36"
+  },
+  "copiedFbx": [
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailTram.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailTram.fbx",
+      "bytes": 54108,
+      "sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailTransferCradle.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailTransferCradle.fbx",
+      "bytes": 34348,
+      "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailControl.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailControl.fbx",
+      "bytes": 29628,
+      "sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailLowSignal.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailLowSignal.fbx",
+      "bytes": 24892,
+      "sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailPointBlade.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailPointBlade.fbx",
+      "bytes": 24812,
+      "sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailCrossingBarrier.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailCrossingBarrier.fbx",
+      "bytes": 26860,
+      "sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailServiceGate.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailServiceGate.fbx",
+      "bytes": 24540,
+      "sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailPlatformGate.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailPlatformGate.fbx",
+      "bytes": 25532,
+      "sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailPortalGate.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailPortalGate.fbx",
+      "bytes": 27212,
+      "sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailDepartureCoach.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailDepartureCoach.fbx",
+      "bytes": 68060,
+      "sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0"
+    },
+    {
+      "imported": "Assets/Parasite/Resources/NorthlineRail/RailBoardingRamp.fbx",
+      "source": "ArtSource/NorthlineRail/Exports/RailBoardingRamp.fbx",
+      "bytes": 21980,
+      "sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d"
+    }
+  ],
+  "sourceStages": {
+    "mechanics": "e97aa855aa6b123b5e66e940ec23b3c941409725323c147410c30d12b4b0ef80",
+    "art": "0797332b40097cd5efac23e7c54956ad356da316299deb8632893afb9ae691c3",
+    "native": "98fede05a4725d2a25f4eca98561370f6c1717e844e6966678bed1f207b4e4e4"
+  },
+  "limits": [
+    "Preparation and exact source FBX copies only; actual mesh/UV/normals/bounds/material verification still requires VerifyImportBatch.",
+    "13selection,7mechanics,2binding and new native rail continuations remain unrun.",
+    "No Northline GPU/pixel/performance/human acceptance, merge, new candidate or shipping claim.",
+    "Base0.6.1source/binary remain frozen and separate; active Native91 has allowed this single observed invocation only.",
+    "No next Editor or worktree Git commit/branch change until Native91 is truly terminal."
+  ]
+}
