@@ -769,6 +769,110 @@
     "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs"
    ],
    "render": 3
+  },
+  {
+   "key": "vo_4ffb1013f0db8f10",
+   "speaker": "SPECIMEN 7",
+   "line": "Two currents met beneath the hull. One specimen reached the far shore.",
+   "profile": "specimen",
+   "voice": "af_nicole,af_sky",
+   "duration": 5.5,
+   "window": 5.65,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandArrival.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_a98be4db681daf60",
+   "speaker": "ISLAND RADIO",
+   "line": "Low water opens the culvert. Maintenance can take the service gate. Find the dry refuge beyond the fence.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 5.84,
+   "window": 5.99,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandArrival.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_08e9ef6bdf74053a",
+   "speaker": "ISLAND RADIO",
+   "line": "You made it to the dry refuge. No one here belongs to Vale. Let us keep it that way.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 5.3,
+   "window": 5.38,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandCampaign.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_ea1a47d9e59b0be6",
+   "speaker": "ISLAND RADIO",
+   "line": "The island has more than one route out. From this refuge, every route can become a connection.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 5.51,
+   "window": 5.83,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandCampaign.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_fc1eae47d3a28931",
+   "speaker": "ISLAND RADIO",
+   "line": "All three reached the clinic. The rescue crew needs a mounted signal and everyone at the northern launch.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 5.91,
+   "window": 6.325,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandTravelers.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_f019e6723e34f2d3",
+   "speaker": "ISLAND RADIO",
+   "line": "Three couriers carry the relay. Mount the signal, then let the handoff routes converge at the northern launch.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 5.77,
+   "window": 6.55,
+   "sources": [
+    "Assets/Parasite/Scripts/Missions/IslandTravelers.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_6528d8124228c4ff",
+   "speaker": "RESCUE RADIO",
+   "line": "Everyone aboard. No borrowed heart left behind.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 3.17,
+   "window": 3.32,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/GameManager.cs"
+   ],
+   "render": 3
+  },
+  {
+   "key": "vo_332dc1ff69fc9f68",
+   "speaker": "RESCUE RADIO",
+   "line": "Every courier answered. The next shore is listening.",
+   "profile": "radio",
+   "voice": "am_onyx",
+   "duration": 3.21,
+   "window": 3.36,
+   "sources": [
+    "Assets/Parasite/Scripts/Core/GameManager.cs"
+   ],
+   "render": 3
   }
  ]
 }
