@@ -6,6 +6,22 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Portable0.6.1 extraction executes4/5, not a full pass:** artifact/package/extraction integrity succeeds193files/17dirs,
+  but actual extracted native01–05 returns1/SUMMARY4/5:01/03/04/05pass,02fails0.8s with targetNone/angle0/dist4.9/LOSFalse/
+  canPossessTrue. Agent93693/chunkb10fdb,26.414s, supervisor1; all10before/after integrity checks pass/no cancellation.
+  Player121236/supervisor121200 are gone. [Archive/extraction + real negative](verification/0.6.1-portable-basic-red-20261126.json).
+  Hunter is diagnosing02fixture/LOS read-only; no retry/artifact edits or false basic-pass claim. Exact target/blocker is not
+  in the available failure row. Earlier native90/91 passes remain valid separate scopes.
+- **Bounded Northline sidestep is now under test:** WORKRailAcceptance SHA
+  `c3de85c11e86fdd35dd99a85661dd099155f78eff3781638deb655aef0d2a648`, only this C# changed; actualAPI175/33/175+3classes
+  pass and independent source review finds no blocker. Max3normal-input full-capsule-cleared sidesteps,4s each within the
+  ONEoriginalrealdeadline; fresh same-target replan, unchanged target/tolerance/NPC/physics. Root50443 via
+  `northline_npc_sidestep_20261126a` runs only existing DominionPhysicalChapter in WORK,600s wrapper/Null/nice15/idle/two
+  jobworkers. Result target `Logs/northline-npc-sidestep-20261126a.xml`. No pass yet. Keep WORKC# fixed/no other Editor
+  until actual terminal; do not replay all seven yet. Base0.6.1source/artifacts remain unchanged.
+- Worktree cold import also normalized7film metadata customWidth/customHeight from-1→1; transcoding remains disabled and
+  resizeFormat0. These unrelated source diffs have not been accepted/reverted; inspect/exclude or verify separately before
+  a Northline merge. No movie byte or base metadata change was made.
 - **Northline movement blocker is now directly measured:** diagnostic-only source2ac79341…, root25143/native2/chunke39a00,
   one Dominion FAIL37.990s. The first Crossing walk stops at local(-22.650,.180,-34), unchanged20.742s budget/callbackfalse.
   Actual full-body cast hits the south maintenance worker's capsule.03002m ahead; same free body/controller (.32radius/
