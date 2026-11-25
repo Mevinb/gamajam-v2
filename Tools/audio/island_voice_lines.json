@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "render_version": 3,
+  "sample_rate": 24000,
+  "codec": "Vorbis q4",
+  "key": "FNV1a64 Upper(CollapseWs(StripTags(speaker)))|CollapseWs(StripTags(line))",
+  "generator_sha256": "7dcc92f876f1fc27c1da73d684c54f67fff1673cb6c85116b1e4f5819992ed01",
+  "dsp_sha256": "b706a2380e725f20b6b29e7b6d18a64b3c465b1ea4e192db855c987b86e753e2",
+  "cast_overrides_sha256": null,
+  "model_revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+  "cache_files_sha256": {
+    "config.json": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+    "kokoro-v1_0.pth": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+    "voices/af_nicole.pt": "c5561808bcf5250fe8c5f5de32caf2d94f27e57e95befdb098c5c85991d4c5da",
+    "voices/af_sky.pt": "c799548aed06e0cb0d655a85a01b48e7f10484d71663f9a3045a5b9362e8512c",
+    "voices/am_onyx.pt": "e8452be16cd0f6da7b4579eaf7b1e4506e92524882053d86d72b96b9a7fed584"
+  },
+  "profiles": {
+    "radio": {
+      "voice": "am_onyx",
+      "lang": "a",
+      "speed": 1.06,
+      "fx": "radio"
+    },
+    "specimen": {
+      "voice": "af_nicole,af_sky",
+      "lang": "a",
+      "speed": 0.98,
+      "fx": "specimen",
+      "pitch": -1.6
+    }
+  },
+  "render_fit_note": "Historical fit targets are generation inputs, not current presentation limits. Preserve them to reproduce the approved bounded-fit/DSP result; runtime now uses the real clip duration plus gap.",
+  "lines": [
+    {
+      "key": "vo_4ffb1013f0db8f10",
+      "speaker": "SPECIMEN 7",
+      "line": "Two currents met beneath the hull. One specimen reached the far shore.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandArrival.cs",
+      "profile": "specimen",
+      "render_fit_window_seconds": 1.5,
+      "reference_runtime_window_seconds": 5.65,
+      "reference_duration_seconds": 5.5,
+      "reference_ogg_sha256": "188a6fce3947638d0afe97208dcb19941804245712dca04288b6223e3428a227"
+    },
+    {
+      "key": "vo_a98be4db681daf60",
+      "speaker": "ISLAND RADIO",
+      "line": "Low water opens the culvert. Maintenance can take the service gate. Find the dry refuge beyond the fence.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandArrival.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 2.5,
+      "reference_runtime_window_seconds": 5.99,
+      "reference_duration_seconds": 5.84,
+      "reference_ogg_sha256": "ebdbeb9efe5098eb20d377e38a58b9d6719f939303ebf24ffa85ce102e000345"
+    },
+    {
+      "key": "vo_08e9ef6bdf74053a",
+      "speaker": "ISLAND RADIO",
+      "line": "You made it to the dry refuge. No one here belongs to Vale. Let us keep it that way.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandCampaign.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 5.38,
+      "reference_runtime_window_seconds": 5.38,
+      "reference_duration_seconds": 5.3,
+      "reference_ogg_sha256": "5837fe81be115499d0db2bd40b0d80a1c647b47f2bb99f74667b68462a0ae0df"
+    },
+    {
+      "key": "vo_ea1a47d9e59b0be6",
+      "speaker": "ISLAND RADIO",
+      "line": "The island has more than one route out. From this refuge, every route can become a connection.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandCampaign.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 5.83,
+      "reference_runtime_window_seconds": 5.83,
+      "reference_duration_seconds": 5.51,
+      "reference_ogg_sha256": "5229b1f80edee1fd95e92f4ab8d6b49b702f5741e19169296cd958f5229b5a11"
+    },
+    {
+      "key": "vo_fc1eae47d3a28931",
+      "speaker": "ISLAND RADIO",
+      "line": "All three reached the clinic. The rescue crew needs a mounted signal and everyone at the northern launch.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandTravelers.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 6.325,
+      "reference_runtime_window_seconds": 6.325,
+      "reference_duration_seconds": 5.91,
+      "reference_ogg_sha256": "c23a93f0d81a8dc0cf9b71f0f58ddfde516bea642bbd1559917b91681fe480c8"
+    },
+    {
+      "key": "vo_f019e6723e34f2d3",
+      "speaker": "ISLAND RADIO",
+      "line": "Three couriers carry the relay. Mount the signal, then let the handoff routes converge at the northern launch.",
+      "source": "Assets/Parasite/Scripts/Missions/IslandTravelers.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 6.55,
+      "reference_runtime_window_seconds": 6.55,
+      "reference_duration_seconds": 5.77,
+      "reference_ogg_sha256": "5f02c5448415864e5c013d14975560ef3e79da94b79bcf3f6b8aa94d99c5fa91"
+    },
+    {
+      "key": "vo_6528d8124228c4ff",
+      "speaker": "RESCUE RADIO",
+      "line": "Everyone aboard. No borrowed heart left behind.",
+      "source": "Assets/Parasite/Scripts/Core/GameManager.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 2.5,
+      "reference_runtime_window_seconds": 3.32,
+      "reference_duration_seconds": 3.17,
+      "reference_ogg_sha256": "5b350e3ff7dd535316fd4a373d97edd2d0e4a86faedc69dd642148f53904656b"
+    },
+    {
+      "key": "vo_332dc1ff69fc9f68",
+      "speaker": "RESCUE RADIO",
+      "line": "Every courier answered. The next shore is listening.",
+      "source": "Assets/Parasite/Scripts/Core/GameManager.cs",
+      "profile": "radio",
+      "render_fit_window_seconds": 2.5,
+      "reference_runtime_window_seconds": 3.36,
+      "reference_duration_seconds": 3.21,
+      "reference_ogg_sha256": "615ee5df9231cebbdcce3d048938824e307b3d12113cc14cbd10fd410a0b74e6"
+    }
+  ],
+  "reference_environment": {
+    "kokoro": "0.9.4",
+    "misaki": "0.9.4",
+    "torch": "2.13.0",
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "numba": "0.68.1",
+    "soundfile": "0.14.0",
+    "pyloudnorm": "0.2.0",
+    "spacy": "3.8.18",
+    "huggingface_hub": "1.28.0"
+  }
+}

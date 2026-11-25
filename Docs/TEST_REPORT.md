@@ -1,3 +1,44 @@
+# Island and full lake working tree — verification in progress
+
+The following work is newer than the pinned 0.4.2 archive below. The 0.5.0 preview includes M18 and four full lake films.
+Corrected M19/M20 runtime and eight island voices are now applied beyond that immutable preview. Do not count compilation
+or unexecuted tests as working missions.
+
+- `Logs/island-entry-rules.xml` and `lake-films-import-rules.xml`:118/118 rules pass.
+- `Logs/island-maintenance-isolated.xml` plus `island-entry-remaining.xml`:all four M18 route/outcome combinations pass headless.
+- `Logs/island-entry-logic.xml`:arrival cue and human/tide recovery pass; initial maintenance failures selected an inner host
+  behind the gate. The fixture now chooses the public jetty engineer and checks its reachable path. A subsequent combined
+  run stalled before PlayMode, produced no result XML and was intentionally terminated after native wait observations;
+  debugger attachment was denied. The isolated retry then completed. This does not establish an engine defect fix.
+- `Logs/lake-island-gpu.xml`:15/18 pass. The four real lake movies decode at their declared format, the neutral hold wraps,
+  branch images remain gated, and all real-audio cases pass. All four island entry routes, tide and arrival cue pass on GPU.
+  Camera framing, visual-snapshot timing and reflection readiness failed; targeted fixes are tracked separately.
+- `Logs/island-visual-final.xml`:1/1 passes after synchronizing physics before the floor snapshot. Metre UVs, mapped PBR,
+  separated visual floor, real western sea pixels and sign approach are verified. No collider adjustment was made.
+
+The camera's first-failure diagnostics and low-profile follow-damping correction are prepared for a GPU rerun.
+`Logs/reflection-probe-matrix.xml` passes 1/1 on GPU: quality-off capture times out, while quality-on completes with real
+six-face/mip color evidence for the tested scheduling/target combinations. The runtime quality lifecycle fix remains staged.
+The first Peace rescue run (`Logs/island-rescue-peace-logic.xml`) fails on a real physical leg. The diagnostic rerun delivered
+all three people, mounted the signal and boarded Riley/Morgan. Its trace then records 42 seconds of real capsule collision
+against Morgan's short-of-slot position at the gangway. The process exited 139 without XML; this is an incomplete run,
+not a test pass. `Logs/island-rescue-peace-diagnostic-observation.json` records the exact scope and unproven native cause.
+Eight offline CPU-generated clips pass full-stream decode, key equality and level checks. `Logs/island-voice-runtime.xml`
+passes 4/5 and exposes a shortened first cue: the scene-load frame was charged before its first yield. Arrival now uses a
+monotonic cue origin and anchors the second line to its actual start. `Logs/island-voice-runtime-fixed.xml` passes 5/5
+with unchanged thresholds: real source sample tails, 5.6508s first-to-radio and 5.9927s radio-to-control, release-aware skip,
+disabled/missing four-second fallback, and both branch departure clips completing after exactly five metres of vessel motion.
+Compilation passes runtime/editor/Linux APIs (138/22/138). These are Editor/Null-graphics FMOD source checks, not subjective
+listening, refuge/roster clip playback, full mission traversal or built-player checks. Portable audio evidence and a dry-run
+offline reproducer are retained. The boarding-clearance correction passes `Logs/island-boarding-clearance.xml` (3/3):
+actual NPCs reach the .35m arrival sphere, the occupied human walks down/up the same gangway in 2.12/2.13s after all three
+park, and both outer-slot inset gates pass unchanged. Real berth vertical deltas .073–.086m leave .339–.342m planar
+allowance against the existing .25m navigation stopping distance. No collider, body size or extraction bound changed.
+The full corrected Peace branch is running separately; this focused result does not establish both complete missions.
+Full opening render and strict built-player full-lake decode are still required.
+
+---
+
 # Current 0.4.2 verification — 25 November 2026
 
 This candidate exposes the river/berth beneath the old opaque skyline ground and adds optional full-length film playback,

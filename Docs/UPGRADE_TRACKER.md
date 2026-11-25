@@ -53,9 +53,10 @@ The 0.4.1 recovery hotfix passed seven focused GPU cases and all 19 actual-playe
 ownership defect now has ten passing real-component cases, a clean rebuild and passing affected player flows. The extracted
 release passes media and queued input checks. This is not a claim that every possible bug has been found.
 
-The currently integrated RTX films are two three-second establishing inserts. Full-length Blender story scenes are authored separately under `Tools/blender/cinematics/full_story` and `ArtSource/FullCinematics`: the 80-second opening with
-all eleven beats, full lake arrival, neutral choice hold, and separate explicit Peace/Dominion resolutions. The verified Linux milestone has released the GPU for measured final-quality RTX pilots. Full production rendering follows
-visual review and measured device/memory timing. The full cinematic objective remains active.
+The working tree and 0.5.0 preview include four complete RTX-rendered lake films: arrival, neutral choice hold and separate
+explicit Peace/Dominion resolutions. Source/provenance is retained under `ArtSource/FullCinematics` and `ArtSource/FullLakeFilms`.
+Actual Editor decode and choice gating pass. The 80-second opening with all eleven beats is still in RTX production.
+The retained 0.4.2 archive contains the earlier two three-second inserts. The full cinematic objective remains active.
 
 ## 0.4.2 presentation and water update
 
@@ -63,5 +64,9 @@ Optional full-story playback, first-image/audio synchronization and finite narra
 GPU-tested with the existing short footage. The actual river/berth backdrop occlusion is corrected without changing physics,
 and the same shared test passes in the built Vulkan player. Complete long-film decode is still gated on real rendered movies.
 The 0.4.2 player passes both river chapters, actual media readback and queued shortcuts; isolated extracted-player and archive checks pass.
-The island entry package is compiled staging only, with real traversal/camera checks pending. Later moving rescue/courier
-missions and the complete opening/ending films remain required work under the full active goal.
+The island entry package is integrated into the newer preview; all four route/outcome traversals and tide recovery pass
+headless and GPU checks. Its camera correction still needs a focused GPU rerun. M19/M20 runtime is now applied beyond the
+preview, but the first Peace rescue motion fixture failed; the later gangway obstruction now has an applied clearance fix
+with 3/3 passing focused physics cases, while full branches remain unverified. Eight island voice clips and finite spoken cue timing are integrated beyond the
+preview; five focused Editor source-tail/timing cases pass, with listening and built-player gates pending. Reflection quality lifecycle work,
+remaining mission execution, strict built-player full-lake decode and the full opening remain required work.

@@ -12,12 +12,13 @@ The build succeeded at 1,007 MB with zero errors/warnings; `Logs/user-playtest/b
 pin this uncommitted preview. Player log: `Logs/user-playtest/player.log`. Full lake movies and the island entry mission
 are included; M19/M20 remain in ignored staging. Do not overwrite Builds/Linux while this player is running.
 The preview has since exited normally with code 0 (recorded in `Logs/user-playtest/session.json`).
-The RTX render is safely stopped at opening frame 65; automated checks may now use the GPU. This stops the renderer,
-not the overall active development goal. Resume only after the user has finished or clearly requests it.
+After that normal exit and the reflection diagnostic, the frozen RTX opening render was resumed. Check its actual
+process/checkpoint before GPU work; request a safe STOP and wait for terminal completion first.
 
 Post-build CPU-only work has advanced the live source beyond that immutable preview: corrected M19/M20 v2 is applied
 from `Logs/island-followup-v2-apply-manifest.json`, plus the staged reflection diagnostic helper. Runtime/editor/Linux API
-compilation passes 137/22/137 sources. No Unity, player or GPU execution is claimed for M19/M20. The source-execution
+compilation passes 138/22/138 sources after the island voice timing helper. The first M19 Peace motion fixture failed;
+no passing Unity/player execution is claimed for M19/M20. The source-execution
 ownership harness improves from 3/9 on v1 to 9/9 on v2 using stand-ins; real motion/capture/recovery/boarding fixtures remain
 required. The current preview still contains only M18 and the full lake films. Do not overwrite its running binary.
 The four lake films and island art kit are committed; the new island runtime/camera/visual work remains uncommitted until
@@ -26,8 +27,19 @@ The first live Peace rescue test ran and failed on a physical leg at local `(9.9
 `Logs/island-rescue-peace-logic.xml` records the exact failure. Authoritative M19/M20 v2 is in the live working tree,
 not yet verified by Unity/player execution. The campaign agent owns diagnosis of that movement failure. The probe matrix
 passed its diagnostic: quality-off never completed; quality-on completed with six real face/mip proofs. Runtime quality
-policy changes remain staged until review/execution. Eight audited island voice candidates were generated offline on CPU;
-arrival/departure timing gates failed because clips exceed the old cue windows. No candidate audio is published yet. User playtest details are under `Logs/user-playtest/`.
+policy changes remain staged until review/execution. Eight audited island voice clips were generated offline on CPU and
+published with all 59 existing catalogue entries preserved. Arrival/departure now use finite audible clip windows, with
+the original silent fallback and 2.5-second vessel motion retained. Technical audio/key gates pass 8/8. Five focused Editor
+cases now pass actual FMOD source tails, skip/fallback and both departures after fixing the arrival scene-frame timing bug.
+Subjective listening, refuge/roster clip playback and built-player timing remain pending. Portable evidence is under
+`ArtSource/IslandVoices`; exact offline regeneration is in `Tools/audio/gen_island_voice.py` (dry by default).
+The diagnostic Peace fixture (`Logs/island-rescue-peace-diagnostic.*`) delivered all three people, mounted the signal and
+boarded two, then measured a sustained capsule collision with Morgan at the gangway. It exited natively (139) without XML;
+no passing result is assigned and the native cause is unproven. The physical boarding-clearance correction is now applied:
+Morgan's berth leaves the central aisle, final arrival is .35m, and all original deck/ownership gates remain. Focused gangway
+and both outer-slot checks pass 3/3 under `Logs/island-boarding-clearance.*`; the full Peace branch is now running under
+`Logs/island-rescue-peace-fixed.*`, with a detached exit/source-hash supervisor. Full branch execution remains required.
+User playtest details are under `Logs/user-playtest/`.
 
 ## Active cinematic production — 25 November 2026
 

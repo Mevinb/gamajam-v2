@@ -8,12 +8,19 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - Humans use skinned Blender/MakeHuman models and authored/retargeted humanoid animations. Skin, hair, facial acting and some
   environment geometry remain stylized; further realism work is still possible.
 - Dialogue voices are synthesized. They are not recordings of human actors; captions remain available.
-- The current island preview has four new arrival/refuge spoken lines without shipped voice clips; captions still appear.
-  Eight missing lines across the complete island arc are inventoried under `Logs/island-voice-audit`. Local generation is
-  prepared but has not run or been published. Arrival/departure cue timing must be checked against the generated durations.
-- The player includes two three-second RTX-rendered establishing inserts and Blender-designed live sets. The complete 80-second
-  Blender opening and branching lake films are authored separately and still require production rendering and runtime integration.
-  `TEST_REPORT.md` records actual-player checks for the current inserts and riverside chapter.
+- The retained 0.5.0 preview has four captioned island arrival/refuge lines without voice clips. The newer working tree now
+  contains eight offline-generated island clips and duration-aware arrival/departure timing. Technical decode/key/level gates
+  pass. Five Editor cases now pass real source-tail progression, arrival/branch departure timing and skip/fallback behavior.
+  Subjective listening, refuge/roster clip runtime playback and built-player checks remain pending. The preview is unchanged.
+- The 0.5.0 preview includes four complete RTX-rendered lake films and Blender-designed live sets. All four films pass actual
+  Editor decode/choice gates; strict automated built-player full-lake decode remains pending. The complete 80-second Blender
+  opening is still rendering. The retained 0.4.2 archive contains the earlier two three-second establishing inserts.
+- Corrected M19/M20 runtime is applied beyond the preview. Its first Peace rescue fixture timed out on a physical movement leg;
+  a later diagnostic reached two boarded passengers, then recorded a sustained collision with Morgan at the gangway. It exited
+  natively without XML. A stricter berth-arrival/off-aisle parking correction now passes the actual gangway round trip and
+  both outer-slot cases (3/3). Remaining motion/custody/capture/recovery checks and a completed full run are required.
+- The reflection diagnostic proves native probe capture completes when realtime probes are enabled in QualitySettings; both
+  saved quality levels currently disable it. The preset/lifecycle fix remains staged and needs transition/cleanup GPU checks.
 - The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after
   GPU views and the built Vulkan player confirm visible water with unchanged physical footing. The historical 0.4.1 archive
   retains the earlier rendering behavior.
