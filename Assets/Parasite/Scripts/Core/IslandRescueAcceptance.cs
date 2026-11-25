@@ -300,7 +300,9 @@ namespace Parasite.Testing
             yield return StartAtRefuge(EndingOutcome.Peace);
             var traveler = IslandTravelers.Instance.Members[0];
             UseHost("Island refuge volunteer");
-            var guard = MissionSpawner.Spawn("Island exposure acceptance sentry", Profession.Guard, IslandCampaign.At(11, .15f, -13), 0, 1960);
+            // Stationary sentries perform their ordinary +50-degree idle scan. Face this post between
+            // Holding and the short westward lead so both stay in its unchanged physical vision cone.
+            var guard = MissionSpawner.Spawn("Island exposure acceptance sentry", Profession.Guard, IslandCampaign.At(11, .15f, -13), -35, 1960);
             try
             {
                 Check(SuspicionSystem.Instance.CanSee(guard, traveler.Host.ChestPosition, traveler.transform, 20), "The exposure test uses a real unobstructed sentry cone.");
@@ -309,6 +311,7 @@ namespace Parasite.Testing
                 yield return new WaitForSeconds(2.3f);
                 Check(Vector3.Distance(before, traveler.transform.position) < .5f, "An unasked prisoner does not flee its holding point simply because the sentry is watching.");
                 Check(IslandRoster.SavedCover(traveler.StableId) == -1, "No authored cover was physically visited before this first exposed escort.");
+                LogExposureState("before ask", guard, traveler);
                 yield return AskToFollow(traveler);
                 // Move the human with real input before the two-second exposure window finishes. This short
                 // westward lead stays far from every cover, so return-to-Holding must be earned by motion.
@@ -316,8 +319,19 @@ namespace Parasite.Testing
                 yield return Walk(shortLead, phase: "exposure fixture: physical lead before regroup");
                 Check(FlatDistance(traveler.transform.position, holding) > 1.25f && IslandRoster.SavedCover(traveler.StableId) == -1,
                     "The real follower has left its initial holding pose without gaining any unvisited cover progress.");
+                LogExposureState("after physical lead", guard, traveler);
                 Check(SuspicionSystem.Instance.CanSee(guard, traveler.Host.ChestPosition, traveler.transform, 20), "The actual sentry still sees the displaced follower before exposure triggers.");
-                yield return WaitUntil(() => traveler.GetPrompt(Context()).StartsWith("Regroup", StringComparison.Ordinal), 4, "Sustained actual guard sight breaks the moving escort and asks for regrouping.");
+                float nextExposureLog = 0;
+                yield return WaitUntil(() =>
+                {
+                    if (Time.realtimeSinceStartup >= nextExposureLog)
+                    {
+                        nextExposureLog = Time.realtimeSinceStartup + .15f;
+                        LogExposureState("waiting for actual exposure", guard, traveler);
+                    }
+                    return traveler.GetPrompt(Context()).StartsWith("Regroup", StringComparison.Ordinal);
+                }, 4, "Sustained actual guard sight breaks the moving escort and asks for regrouping.");
+                LogExposureState("regroup observed", guard, traveler);
                 var retreatFrom = traveler.transform.position;
                 Check(!traveler.Delivered && IslandRoster.SavedCover(traveler.StableId) == -1, "Exposure cannot count as a rescue or invent a cover visit.");
                 yield return WaitUntil(() => FlatDistance(traveler.transform.position, holding) < 1.4f, 10, "The exposed survivor physically returns to its actually visited initial Holding safe point.");
@@ -333,6 +347,33 @@ namespace Parasite.Testing
                 Debug.Log("[IslandRescue] PASS actual sentry exposure, physical Holding retreat and renewed aimed E following with no cover progress");
             }
             finally { if (guard) UnityEngine.Object.Destroy(guard.gameObject); }
+        }
+
+        static void LogExposureState(string phase, HostCharacter guard, IslandTraveler traveler)
+        {
+            // Read-only acceptance diagnostics: observe the real vision/exposure state without changing its clock or gates.
+            const System.Reflection.BindingFlags fields = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+            object Read(string name) => typeof(IslandTraveler).GetField(name, fields)?.GetValue(traveler);
+            Vector3 eye = guard.EyePosition, chest = traveler.Host.ChestPosition, delta = chest - eye;
+            Vector3 flat = new Vector3(delta.x, 0, delta.z);
+            var ss = SuspicionSystem.Instance;
+            Debug.Log("[IslandExposure] phase=" + phase + " frame=" + Time.frameCount + " real=" + Time.realtimeSinceStartup.ToString("F3")
+                + " sim=" + Time.time.ToString("F3") + " dt=" + Time.deltaTime.ToString("F6") + " timeScale=" + Time.timeScale
+                + " guardAt=" + guard.transform.position.ToString("F3") + " guardYaw=" + guard.transform.eulerAngles.y.ToString("F3")
+                + " guardForward=" + guard.transform.forward.ToString("F3") + " guardState=" + guard.State + " guardAwake=" + guard.IsAwakeNpc
+                + " guardAI=" + (guard.Brain is GuardAI ai ? ai.GState.ToString() : "not GuardAI") + " guardRoutine=" + guard.Brain.behaviour
+                + " guardNavVelocity=" + (guard.Nav.enabled ? guard.Nav.velocity.ToString("F3") : "disabled")
+                + " travelerAt=" + traveler.transform.position.ToString("F3") + " travelerState=" + traveler.Host.State
+                + " range=" + delta.magnitude.ToString("F3") + " coneAngle=" + Vector3.Angle(guard.transform.forward, flat).ToString("F3")
+                + " halfFov=" + (ss ? (ss.fovDegrees * .5f).ToString("F3") : "missing")
+                + " actualCanSee=" + (ss && ss.CanSee(guard, chest, traveler.transform, 20))
+                + " exposure=" + Read("exposure") + " scan=" + Read("scan") + " returning=" + Read("returning")
+                + " hasLeader=" + (Read("leader") != null) + " hasLeaderHost=" + (Read("leaderHost") is HostCharacter)
+                + " delivered=" + traveler.Delivered + " savedCover=" + IslandRoster.SavedCover(traveler.StableId)
+                + " prompt=" + traveler.GetPrompt(Context()) + " actualRayHits=["
+                + string.Join("; ", Physics.RaycastAll(eye, delta.normalized, delta.magnitude, ~0, QueryTriggerInteraction.Ignore)
+                    .OrderBy(hit => hit.distance).Select(hit => DescribeCollider(hit.collider) + " distance=" + hit.distance.ToString("F3")
+                        + " self=" + hit.transform.IsChildOf(guard.transform) + " target=" + hit.transform.IsChildOf(traveler.transform))) + "]");
         }
 
         public static IEnumerator PeaceRegainedHostNeedsRegroup(bool captured)
@@ -536,6 +577,135 @@ namespace Parasite.Testing
             Debug.Log("[IslandRescue] PASS actual berth arrival and human gangway round trip after all three passengers park");
         }
 
+        public static IEnumerator DeliveredClinicPassengerRequiresPhysicalSidestep()
+        {
+            yield return StartAtRefuge(EndingOutcome.Peace);
+            UseHost("Island refuge volunteer");
+            var morgan = IslandTravelers.Instance.Members.Single(t => t.StableId == "morgan");
+            yield return AskToFollow(morgan);
+            yield return LeadThroughCover(morgan);
+            yield return WaitUntil(() => morgan.Delivered, 8, "Morgan physically reaches the unchanged clinic arrival sphere.");
+            // This focused avoidance regression deliberately aligns a head-on contact. The full-branch route
+            // retains its original waypoints; no NPC placement, body warp, collider change or rescue flag is added here.
+            Stop();
+            float settleUntil = Time.realtimeSinceStartup + 3, stableSince = Time.realtimeSinceStartup;
+            Vector3 settlingPerson = morgan.transform.position;
+            while (Time.realtimeSinceStartup < settleUntil)
+            {
+                if (FlatDistance(settlingPerson, morgan.transform.position) > .005f || morgan.Host.Nav.velocity.sqrMagnitude > .0025f)
+                { settlingPerson = morgan.transform.position; stableSince = Time.realtimeSinceStartup; }
+                if (Time.realtimeSinceStartup - stableSince >= .25f) break;
+                Calm(); yield return null;
+            }
+            Check(Time.realtimeSinceStartup - stableSince >= .25f && morgan.Host.State == HostState.Normal && morgan.Delivered,
+                "The actual delivered passenger settles before the deliberate centerline obstruction is arranged.");
+            Vector3 north = morgan.transform.position + Vector3.forward * 1.6f; north.y = PM.Active.Position.y;
+            yield return Walk(north, phase: "avoidance regression setup: safe north approach to settled Morgan");
+            Check(PM.Active.Position.z - morgan.transform.position.z > .9f, "Lateral alignment starts safely north of the unchanged person capsule.");
+            float alignBegan = Time.realtimeSinceStartup, alignUntil = alignBegan + 3, alignedSince = alignBegan;
+            Vector3 alignStart = PM.Active.Position;
+            Debug.Log("[IslandClinicAlign] BEGIN actual=" + alignStart.ToString("F6") + " person=" + morgan.transform.position.ToString("F6")
+                + " personVelocity=" + morgan.Host.Nav.velocity.ToString("F6"));
+            while (Time.realtimeSinceStartup < alignUntil)
+            {
+                float error = morgan.transform.position.x - PM.Active.Position.x;
+                if (Mathf.Abs(error) >= .003f) alignedSince = Time.realtimeSinceStartup;
+                PlayerCamera.Instance.SetYaw(0);
+                GameInput.SimMove = new Vector2(Mathf.Clamp(error * 12, -1, 1), 0);
+                GameInput.SimSprint = false; Calm();
+                if (Time.realtimeSinceStartup - alignedSince >= .2f) break;
+                yield return null;
+            }
+            Stop(); yield return null; yield return null;
+            Debug.Log("[IslandClinicAlign] END actual=" + PM.Active.Position.ToString("F6") + " actualDelta=" + (PM.Active.Position - alignStart).ToString("F6")
+                + " person=" + morgan.transform.position.ToString("F6") + " xError=" + (morgan.transform.position.x - PM.Active.Position.x).ToString("F6")
+                + " northGap=" + (PM.Active.Position.z - morgan.transform.position.z).ToString("F6") + " elapsed=" + (Time.realtimeSinceStartup - alignBegan).ToString("F6"));
+            Check(Time.realtimeSinceStartup - alignedSince >= .2f && Mathf.Abs(morgan.transform.position.x - PM.Active.Position.x) < .003f
+                && PM.Active.Position.z - morgan.transform.position.z > .9f,
+                "Ordinary lateral input aligns and settles the actor on Morgan's actual centerline while retaining safe separation.");
+            float contactBegan = Time.realtimeSinceStartup, stationarySince = contactBegan;
+            Vector3 contactStart = PM.Active.Position, personStart = morgan.transform.position;
+            LogClinicContact("BEGIN", morgan.Host, contactStart, personStart, contactStart, contactBegan, stationarySince, Vector2.down);
+            float contactUntil = Time.realtimeSinceStartup + 1.2f;
+            Vector3 stationary = PM.Active.Position;
+            Vector2 contactInput = Vector2.down;
+            while (Time.realtimeSinceStartup < contactUntil)
+            {
+                if (contactUntil - Time.realtimeSinceStartup > .4f)
+                { stationary = PM.Active.Position; stationarySince = Time.realtimeSinceStartup; }
+                // Real lateral feedback prevents the known offset-induced slide while pressing into the actual capsule.
+                contactInput = new Vector2(Mathf.Clamp((morgan.transform.position.x - PM.Active.Position.x) * 20, -.4f, .4f), -1);
+                PlayerCamera.Instance.SetYaw(0); GameInput.SimMove = contactInput;
+                GameInput.SimSprint = false; Calm(); yield return null;
+            }
+            Stop();
+            var controller = PM.Active.Host.Controller;
+            LogClinicContact("PRECHECK", morgan.Host, contactStart, personStart, stationary, contactBegan, stationarySince, contactInput);
+            Check(FlatDistance(stationary, PM.Active.Position) < .05f
+                && TryPersonBlocker(controller, Vector3.back, out var blocker) && blocker == morgan.Host,
+                "Actual input is stopped by Morgan's real capsule before the walker attempts a sidestep.");
+            int before = completedSidesteps;
+            Vector3 crossing = morgan.transform.position + Vector3.back * 1.5f; crossing.y = PM.Active.Position.y;
+            yield return Walk(crossing, phase: "avoidance regression: strict physical centerline crossing past settled Morgan");
+            Check(completedSidesteps > before && FlatDistance(PM.Active.Position, crossing) < .45f,
+                "The deliberately blocked centerline leg requires a real completed sidestep and its unchanged strict arrival sphere.");
+            var originalTarget = IslandTravelers.Instance.Members.Single(t => t.StableId == "avery").transform.position + Vector3.back * 1.5f;
+            yield return Walk(originalTarget, phase: "delivered clinic passenger: physical sidestep to original Avery approach");
+            Check(completedSidesteps > before && FlatDistance(PM.Active.Position, originalTarget) < .45f,
+                "Real lateral input recovers the blocked leg and reaches its original strict arrival target.");
+            Check(morgan.Delivered && !morgan.Boarded && morgan.Host.State == HostState.Normal && morgan.Host.Possessor == null
+                && !RunState.Has(IslandRoster.SignalMounted),
+                "Avoidance preserves the actual passenger, ownership and mission prerequisites.");
+            Debug.Log("[IslandRescue] PASS real delivered clinic capsule blocks input, bounded physical sidestep restores original route");
+        }
+
+        static void LogClinicContact(string phase, HostCharacter person, Vector3 bodyStart, Vector3 personStart, Vector3 stationary,
+            float began, float stationarySince, Vector2 requestedInput)
+        {
+            var agent = PM.Active; var body = agent.Host; var controller = body.Controller;
+            Vector3 actual = agent.Position, relative = person.transform.position - actual;
+            BodyCapsule(controller, Vector3.zero, out var bottom, out var top, out float radius);
+            bool classified = TryPersonBlocker(controller, Vector3.back, out var blocker);
+            var text = new StringBuilder("[IslandClinicContact] ");
+            text.Append("phase=").Append(phase).Append(" frame=").Append(Time.frameCount).Append(" elapsed=").Append((Time.realtimeSinceStartup - began).ToString("F6"))
+                .Append(" dt=").Append(Time.deltaTime.ToString("F6")).Append(" unscaledDt=").Append(Time.unscaledDeltaTime.ToString("F6")).Append(" timeScale=").Append(Time.timeScale)
+                .Append(" body=").Append(body.DisplayName).Append(" at=").Append(actual.ToString("F6")).Append(" rootY=").Append(actual.y.ToString("F6"))
+                .Append(" bodyStart=").Append(bodyStart.ToString("F6")).Append(" bodyDelta=").Append((actual - bodyStart).ToString("F6"))
+                .Append(" person=").Append(person.DisplayName).Append(" personAt=").Append(person.transform.position.ToString("F6"))
+                .Append(" personDelta=").Append((person.transform.position - personStart).ToString("F6")).Append(" relativePerson=").Append(relative.ToString("F6"))
+                .Append(" flatDistance=").Append(FlatDistance(actual, person.transform.position).ToString("F6")).Append(" relativeX=").Append(relative.x.ToString("F6"))
+                .Append(" stationaryFrom=").Append(stationary.ToString("F6")).Append(" stationarySeconds=").Append((Time.realtimeSinceStartup - stationarySince).ToString("F6"))
+                .Append(" stationaryDelta=").Append((actual - stationary).ToString("F6")).Append(" stationaryFlat=").Append(FlatDistance(stationary, actual).ToString("F6"))
+                .Append(" requestedInput=").Append(requestedInput).Append(" yaw=").Append(PlayerCamera.Instance.Yaw).Append(" simulated=").Append(GameInput.Simulated).Append(" inputLocked=").Append(PM.InputLocked)
+                .Append(" state=").Append(body.State).Append(" owner=").Append(body.Possessor == agent).Append(" personState=").Append(person.State)
+                .Append(" personHitBox=").Append(person.HitBox.enabled).Append(" personController=").Append(person.Controller.enabled)
+                .Append(" personNav=").Append(person.Nav.enabled).Append(" personNavVelocity=").Append(person.Nav.enabled ? person.Nav.velocity.ToString("F6") : "disabled")
+                .Append(" controller={enabled=").Append(controller.enabled).Append(" grounded=").Append(controller.isGrounded).Append(" flags=").Append(controller.collisionFlags)
+                .Append(" velocity=").Append(controller.velocity.ToString("F6")).Append(" center=").Append(controller.center.ToString("F6"))
+                .Append(" radius=").Append(controller.radius.ToString("F6")).Append(" height=").Append(controller.height.ToString("F6")).Append(" skin=").Append(controller.skinWidth.ToString("F6"))
+                .Append(" minimumMove=").Append(controller.minMoveDistance.ToString("F6")).Append(" detect=").Append(controller.detectCollisions).Append('}')
+                .Append(" capsule={bottom=").Append(bottom.ToString("F6")).Append(" top=").Append(top.ToString("F6")).Append(" radius=").Append(radius.ToString("F6"))
+                .Append(" lowestY=").Append((bottom.y - radius).ToString("F6")).Append('}')
+                .Append(" classifiedBackwardPerson=").Append(classified).Append(" classifiedName=").Append(blocker ? blocker.DisplayName : "none");
+            string Hits(Vector3 direction)
+            {
+                direction.y = 0;
+                if (direction.sqrMagnitude < .0001f) return "zero direction";
+                return string.Join("; ", Physics.CapsuleCastAll(bottom, top, radius, direction.normalized, .35f, ~0, QueryTriggerInteraction.Ignore)
+                    .OrderBy(hit => hit.distance).Select((hit, index) => index + ":" + DescribeCollider(hit.collider)
+                        + " self=" + hit.collider.transform.IsChildOf(controller.transform)
+                        + " host=" + (hit.collider.GetComponentInParent<HostCharacter>() ? hit.collider.GetComponentInParent<HostCharacter>().DisplayName : "none")
+                        + " distance=" + hit.distance.ToString("F6") + " point=" + hit.point.ToString("F6") + " normal=" + hit.normal.ToString("F6")));
+            }
+            text.Append(" orderedBackwardHits=[").Append(Hits(Vector3.back)).Append("] orderedPersonCenterlineHits=[").Append(Hits(relative)).Append(']');
+            text.Append(" capsuleOverlaps=[").Append(string.Join("; ", Physics.OverlapCapsule(bottom, top, radius, ~0, QueryTriggerInteraction.Ignore)
+                .OrderBy(c => c.GetInstanceID()).Select(c => DescribeCollider(c) + " self=" + c.transform.IsChildOf(controller.transform)))).Append(']');
+            text.Append(" groundSupport=[").Append(string.Join("; ", Physics.RaycastAll(actual + Vector3.up * .4f, Vector3.down, .8f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore)
+                .OrderBy(hit => hit.distance).Select(hit => DescribeCollider(hit.collider) + " point=" + hit.point.ToString("F6") + " normal=" + hit.normal.ToString("F6")
+                    + " rootGap=" + (actual.y - hit.point.y).ToString("F6") + " capsuleGap=" + (bottom.y - radius - hit.point.y).ToString("F6")))).Append(']');
+            Debug.Log(text.ToString());
+        }
+
         static GuardAI AnyGuard() => HostCharacter.All.Select(h => h ? h.Brain as GuardAI : null).First(g => g);
 
         static IEnumerator StartAtRefuge(EndingOutcome outcome)
@@ -620,6 +790,7 @@ namespace Parasite.Testing
             GameInput.SimLeave = true; yield return null;
             GameInput.SimLeave = false; yield return null;
         }
+        static int completedSidesteps;
         static IEnumerator Walk(Vector3 target, IslandTraveler follower = null, string phase = null, [CallerMemberName] string caller = null)
         {
             string leg = phase ?? caller ?? "walk";
@@ -637,6 +808,10 @@ namespace Parasite.Testing
             int corner = 1;
             Vector3 aim = path.corners.Length > 1 ? path.corners[1] : target;
             bool wait = false;
+            bool sidestepping = false;
+            Vector3 sidestep = default;
+            float sidestepDeadline = 0;
+            int sidestepAttempts = 0;
             Debug.Log("[IslandRescueWalk] BEGIN phase=" + leg + " length=" + length.ToString("F2") + " budget=" + budget.ToString("F2")
                 + " from=" + PM.Active.Position + " target=" + target + " samples=" + a.position + " -> " + b.position + " corners=" + Corners(path.corners));
             while (Time.realtimeSinceStartup < deadline)
@@ -651,18 +826,55 @@ namespace Parasite.Testing
                 }
                 while (corner < path.corners.Length - 1 && FlatDistance(PM.Active.Position, path.corners[corner]) < .4f) corner++;
                 aim = corner < path.corners.Length - 1 ? path.corners[corner] : target;
-                var delta = aim - PM.Active.Position; delta.y = 0;
+                float now = Time.realtimeSinceStartup;
+                if (sidestepping)
+                {
+                    if (FlatDistance(PM.Active.Position, sidestep) < .15f)
+                    {
+                        completedSidesteps++; sidestepping = false;
+                        progressPosition = PM.Active.Position; progressReal = now;
+                        Debug.Log("[IslandRescueWalk] SIDESTEP_RECOVER phase=" + leg + " actual=" + PM.Active.Position.ToString("F3")
+                            + " sidestep=" + sidestep.ToString("F3") + " resumeCorner=" + corner + " resumeAim=" + aim.ToString("F3")
+                            + " originalTarget=" + target.ToString("F3") + " remainingBudget=" + (deadline - now).ToString("F2"));
+                    }
+                    else if (now >= sidestepDeadline)
+                    {
+                        Stop();
+                        throw new InvalidOperationException("Physical NPC sidestep exceeded4s/original deadline: phase=" + leg + " actual=" + PM.Active.Position
+                            + " sidestep=" + sidestep + " originalTarget=" + target);
+                    }
+                }
+                var delta = (sidestepping ? sidestep : aim) - PM.Active.Position; delta.y = 0;
                 wait = follower && FlatDistance(follower.transform.position, PM.Active.Position) > 3.2f;
                 PlayerCamera.Instance.SetYaw(0);
                 GameInput.SimMove = wait ? Vector2.zero : new Vector2(delta.normalized.x, delta.normalized.z);
                 GameInput.SimSprint = false; Calm();
                 Check(GameManager.Instance && GameManager.Instance.IsPlaying, "Walking keeps the playable chapter active: " + leg);
-                float now = Time.realtimeSinceStartup;
                 if (now - progressReal >= 2)
                 {
                     float moved = FlatDistance(progressPosition, PM.Active.Position);
                     if (!wait && moved < .1f)
+                    {
                         Debug.Log("[IslandRescueWalk] STALL " + WalkState(leg, target, aim, path.corners, corner, follower, wait, beganReal, beganSim, budget, true));
+                        var controller = PM.Active.Host ? PM.Active.Host.Controller : PM.Active.Blob ? PM.Active.Blob.Controller : null;
+                        if (!sidestepping && sidestepAttempts < 3 && controller && controller.enabled
+                            && (controller.collisionFlags & CollisionFlags.Sides) != 0
+                            && TryPersonBlocker(controller, aim - PM.Active.Position, out var blocker))
+                        {
+                            sidestepAttempts++;
+                            Debug.Log("[IslandRescueWalk] PERSON_BLOCKED phase=" + leg + " blocker=" + blocker.DisplayName
+                                + " person=" + blocker.transform.position.ToString("F3") + " actual=" + PM.Active.Position.ToString("F3")
+                                + " movedIn2s=" + moved.ToString("F3") + " attempt=" + sidestepAttempts + "/3");
+                            if (TrySidestep(controller, aim, leg, out sidestep))
+                            {
+                                sidestepping = true; sidestepDeadline = Mathf.Min(deadline, now + 4);
+                                Debug.Log("[IslandRescueWalk] SIDESTEP_BEGIN phase=" + leg + " blocker=" + blocker.DisplayName
+                                    + " from=" + PM.Active.Position.ToString("F3") + " sidestep=" + sidestep.ToString("F3")
+                                    + " originalAim=" + aim.ToString("F3") + " originalTarget=" + target.ToString("F3")
+                                    + " deadlineUnchanged=" + deadline.ToString("F3"));
+                            }
+                        }
+                    }
                     progressPosition = PM.Active.Position; progressReal = now;
                 }
                 if (now >= nextProgress)
@@ -675,6 +887,92 @@ namespace Parasite.Testing
             string details = WalkState(leg, target, aim, path.corners, corner, follower, wait, beganReal, beganSim, budget, true);
             Stop(); Debug.LogError("[IslandRescueWalk] FAIL " + details);
             throw new InvalidOperationException("Physical island leg timed out: " + details);
+        }
+        static bool TryPersonBlocker(CharacterController controller, Vector3 direction, out HostCharacter person)
+        {
+            person = null; direction.y = 0;
+            if (direction.sqrMagnitude < .0001f) return false;
+            BodyCapsule(controller, Vector3.zero, out var bottom, out var top, out float radius);
+            // The query uses the real controller radius, with no collider or character-size changes.
+            foreach (var hit in Physics.CapsuleCastAll(bottom, top, radius, direction.normalized, .35f, ~0, QueryTriggerInteraction.Ignore).OrderBy(h => h.distance))
+            {
+                if (!hit.collider || hit.collider.transform.IsChildOf(controller.transform)) continue;
+                var host = hit.collider.GetComponentInParent<HostCharacter>();
+                if (host && host != PM.Active.Host && (hit.collider is CapsuleCollider || hit.collider is CharacterController))
+                { person = host; return true; }
+                return false; // A nearer static blocker must never be mistaken for the person behind it.
+            }
+            return false;
+        }
+        static bool TrySidestep(CharacterController controller, Vector3 originalAim, string phase, out Vector3 destination)
+        {
+            destination = default;
+            Vector3 from = PM.Active.Position, forward = originalAim - from; forward.y = 0; forward.Normalize();
+            Vector3 lateral = new Vector3(forward.z, 0, -forward.x);
+            bool found = false; float best = float.PositiveInfinity;
+            foreach (float distance in new[] { 1f, 1.4f, 1.8f })
+                foreach (int side in new[] { -1, 1 })
+                {
+                    Vector3 requested = from + lateral * (distance * side);
+                    Vector3 candidate = requested, navigationPoint = requested;
+                    string reason = null;
+                    if (!NavMesh.SamplePosition(from, out var source, .2f, NavMesh.AllAreas)
+                        || !NavMesh.SamplePosition(requested, out var sample, .18f, NavMesh.AllAreas)) reason = "no nearby navigation footing";
+                    else
+                    {
+                        navigationPoint = sample.position;
+                        candidate = new Vector3(sample.position.x, from.y, sample.position.z); // Execution uses horizontal input, not a NavMesh-surface-height root warp.
+                        if (FlatDistance(requested, navigationPoint) > .18f || Mathf.Abs(navigationPoint.y - from.y) > .15f) reason = "sample changed floor or lateral destination";
+                        else if (!SameFloorSupport(candidate, from.y)) reason = "no same-level physical floor below lateral destination";
+                        else if (NavMesh.Raycast(source.position, navigationPoint, out _, NavMesh.AllAreas)) reason = "lateral navigation edge";
+                        else
+                        {
+                            var path = new NavMeshPath();
+                            Vector3 onward = originalAim - candidate; onward.y = 0;
+                            Vector3 outgoing = candidate + Vector3.ClampMagnitude(onward, 1.4f);
+                            if (!NavMesh.CalculatePath(source.position, navigationPoint, NavMesh.AllAreas, path) || path.status != NavMeshPathStatus.PathComplete)
+                                reason = "incomplete lateral navigation path";
+                            else if (!NavMesh.SamplePosition(outgoing, out var outgoingNav, .18f, NavMesh.AllAreas)
+                                || FlatDistance(outgoing, outgoingNav.position) > .18f || Mathf.Abs(outgoingNav.position.y - from.y) > .15f)
+                                reason = "outgoing segment has no same-floor navigation footing";
+                            else if (NavMesh.Raycast(navigationPoint, outgoingNav.position, out _, NavMesh.AllAreas)) reason = "outgoing navigation edge";
+                            else if (!SameFloorSupport(outgoing, from.y)) reason = "outgoing segment lacks same-level physical support";
+                            else if (!ClearBodySweep(controller, from, candidate, out reason)) { }
+                            else if (!ClearBodySweep(controller, candidate, outgoing, out reason)) { }
+                        }
+                    }
+                    Debug.Log("[IslandRescueWalk] SIDESTEP_SAMPLE phase=" + phase + " side=" + side + " requested=" + requested.ToString("F3")
+                        + " sampledNav=" + navigationPoint.ToString("F3") + " physicalTarget=" + candidate.ToString("F3") + " accepted=" + (reason == null) + " reason=" + (reason ?? "full body lateral/outgoing sweeps and complete same-floor navigation"));
+                    if (reason != null) continue;
+                    float score = FlatDistance(from, candidate) + FlatDistance(candidate, originalAim);
+                    if (score < best) { destination = candidate; best = score; found = true; }
+                }
+            return found;
+        }
+        static bool SameFloorSupport(Vector3 position, float rootY)
+            => Physics.Raycast(position + Vector3.up * .4f, Vector3.down, out var support, .8f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore)
+                && Mathf.Abs(support.point.y - rootY) <= .15f;
+        static bool ClearBodySweep(CharacterController controller, Vector3 from, Vector3 to, out string reason)
+        {
+            reason = null;
+            BodyCapsule(controller, from - PM.Active.Position, out var bottom, out var top, out float radius);
+            radius += .005f; // A small planning margin outside the unchanged full controller capsule.
+            Vector3 travel = to - from;
+            var hit = Physics.CapsuleCastAll(bottom, top, radius, travel.normalized, travel.magnitude, ~0, QueryTriggerInteraction.Ignore)
+                .Where(h => h.collider && !h.collider.transform.IsChildOf(controller.transform)).OrderBy(h => h.distance).FirstOrDefault();
+            if (hit.collider) { reason = "body sweep hits " + DescribeCollider(hit.collider) + " at " + hit.distance.ToString("F3"); return false; }
+            var overlap = Physics.OverlapCapsule(bottom + travel, top + travel, radius, ~0, QueryTriggerInteraction.Ignore)
+                .FirstOrDefault(c => c && !c.transform.IsChildOf(controller.transform));
+            if (overlap) { reason = "destination body overlaps " + DescribeCollider(overlap); return false; }
+            return true;
+        }
+        static void BodyCapsule(CharacterController controller, Vector3 offset, out Vector3 bottom, out Vector3 top, out float radius)
+        {
+            Vector3 center = controller.transform.TransformPoint(controller.center) + offset;
+            Vector3 scale = controller.transform.lossyScale;
+            radius = controller.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z));
+            float halfLine = Mathf.Max(0, controller.height * Mathf.Abs(scale.y) * .5f - radius);
+            bottom = center - Vector3.up * halfLine; top = center + Vector3.up * halfLine;
         }
         static string Corners(Vector3[] corners) => string.Join("; ", corners.Select((p, i) => i + ":" + p.ToString("F3")));
         static string WalkState(string phase, Vector3 target, Vector3 aim, Vector3[] corners, int corner, IslandTraveler follower, bool wait,

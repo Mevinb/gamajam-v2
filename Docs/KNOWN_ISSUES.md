@@ -1,59 +1,55 @@
 # Known issues and validation limits
 
-The full realism/expansion request is active. See `UPGRADE_TRACKER.md`; do not interpret a passing focused test as proof that
-all bugs are fixed or every new cinematic has been verified in the final player.
+The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) and the current
+[handoff](HANDOFF.md). A focused pass applies to its recorded source/binary; it does not establish that all bugs are fixed.
 
-- Linux x86-64 is the target chosen for the current upgrade. URP reflections use screen-space tracing and reflection probes;
-  built-in hardware ray tracing is not enabled in this Linux player. RTX path tracing is being used for Blender cinematic footage.
-- Humans use skinned Blender/MakeHuman models and authored/retargeted humanoid animations. Skin, hair, facial acting and some
-  environment geometry remain stylized; further realism work is still possible.
-- Dialogue voices are synthesized. They are not recordings of human actors; captions remain available.
-- The retained 0.5.0 preview has four captioned island arrival/refuge lines without voice clips. The newer working tree now
-  contains eight offline-generated island clips and duration-aware arrival/departure timing. Technical decode/key/level gates
-  pass. Seven Editor cases now pass real source-tail progression across all eight clips, source cue/clearing timing and skip/fallback.
-  Subjective listening and built-player checks remain pending. The preview is unchanged.
-- The 0.5.0 preview includes four complete RTX-rendered lake films and Blender-designed live sets. All four films pass actual
-  Editor decode/choice gates; built-player decode succeeds but normal shutdown remains unresolved. The complete 80-second Blender
-  opening is still rendering. The retained 0.4.2 archive contains the earlier two three-second establishing inserts.
-- M19/M20 source now passes both full branches and all 14 rescue fixtures, including physical custody, generation/loss,
-  cover/checkpoint, boarding and all-free departure gates. A fresh built-player run is still required.
-- The centred free-body camera passes 17,347 GPU samples; human framing and canonical markers remain. Physical input and
-  extended human playthroughs remain separate from this automated camera proof.
-- Reflection lifecycle and normal water pass six actual RTX/OpenGL cases; native capture owns its RT, so publication now uses
-  an independent copied Cubemap. Null scheduling is guarded. Built-player/Vulkan checks remain pending.
-- The immutable preview decodes all four lake films and two old clips and wraps the hold on Vulkan and OpenGL, but both strict
-  test processes hang during native video cleanup and hit watchdog 137. Decode reports alone are not end-to-end passes.
-  Exact Unity symbols locate the cleanup lock; its cause/repair remains under investigation.
-- The Blender precast-wall kit is applied beyond the preview. Its explicit-2D importer and model pass 140 actual checks;
-  three 2K BC7 maps use about 16 MiB. Actual GPU appearance/aperture/route and performance checks remain pending.
-- The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after
-  GPU views and the built Vulkan player confirm visible water with unchanged physical footing. The historical 0.4.1 archive
-  retains the earlier rendering behavior.
-- Screen-space reflections cannot reflect objects outside the camera's depth/color buffers. Reflection probes provide fallback;
-  puddles are not a complete fluid simulation.
-- Traffic follows kinematic lanes with right-of-way, bumper clearance and pedestrian braking. It is not a full road simulator;
-  unexpected overlaps, complicated merges and prolonged congestion still need extended playtesting.
-- Some imported city prop detail is selected at scene generation and merged into static batches, rather than switching LOD at
-  camera distance. Preset LOD bias only affects assets supporting runtime LODs.
-- Automated tests use queued keyboard/simulated movement. They do not establish physical keyboard/gamepad behavior, an extended
-  human playthrough, or constant frame rate in all camera views.
-- Two long Editor verification attempts exited natively with SIGSEGV and no final XML. The subsequent complete run passed all seventeen PlayMode tests
-  and eighteen campaign scenarios with source/art writes frozen on a private NVIDIA-backed display. The initiating cause
-  of the earlier exits remains unproven; no claim is made that a specific native engine defect was repaired.
-- Campaign checkpoints survive scene reloads within the current process. There is no persistent on-disk campaign-save claim.
-- Historical benchmark numbers describe their original build and route. A fresh measured result must include resolution, preset,
-  render scale, route coverage and frame-time percentiles; a successful build alone is not a performance result.
+- Linux x86-64 remains the user's selected target. URP uses screen-space reflections and probes; built-in hardware ray tracing
+  is not enabled in this player. Blender cinematic footage uses RTX/OptiX offline path tracing. Screen-space reflections cannot
+  reflect objects outside the camera buffers, and puddles are not a complete fluid simulation.
+- The immutable `Builds/Linux` 0.5.0 preview was launched for the user and exited normally. It contains M18, four full lake films
+  and the earlier island presentation. It does not contain M19/M20, eight island voices or the subsequent source fixes. Do not
+  relabel it as the latest private candidate or a final release. The retained 0.4.2 archive is older and has two short film inserts.
+- All 1,920 frames of the new 80-second opening and all 840 lake frames have rendered at 1080p24. Four lake films are published;
+  the opening still needs final provenance/visual/encode/publication and actual Unity/player story verification. Render completion
+  alone does not establish that it is bundled or plays correctly.
+- The preview's strict movie tests decoded the footage but hung during native cleanup. The newer scoped lifetime fix passes
+  rendered, batch and untraced default terminal-seek stress with normal native exit 0. Actual pending-seek Quit(0)/Quit(1) probes
+  also pass after real acknowledgement and zero owned/pending/quarantined resources, preserving requested native codes. These
+  results apply to pinned private candidates, not the immutable preview. OS/window-close while media is pending remains unexercised.
+  See [cinematic retirement proof](verification/cinematic-retirement-20261125.json).
+- M19/M20 pass both complete branches and all original 14 Editor rescue fixtures, including custody, generation/loss,
+  visited-cover/checkpoint, boarding and all-free departure. The focused physical sidestep fixture and native scenario 23 now
+  pass on the latest candidate. Native scenario 24 later exits 1 at the exposure fixture: ordinary sentry idle scanning loses
+  the follower's sight cone. A fixture-only sentry-facing correction passes the focused Editor case with actual sight and
+  exposure 2.1 before Regroup; vision rules and time limits are unchanged. Native 24 and the full campaign regression remain
+  required on the final rebuilt player. See [the physical-walker proof](verification/island-walker-20261125.json).
+- The centred free-body camera passes more than 17,000 actual GPU samples; human framing and canonical markers remain. This
+  isolated proof is separate from physical input and an extended human playthrough.
+- Reflection lifecycle, fallback and normal water pass six RTX/OpenGL cases. The rendered standalone Vulkan water case passes
+  with native exit 0. Standalone batch mode does not finish that native probe; use normal rendered mode for this graphics check.
+  Null devices intentionally keep native probes disabled.
+- The integrated Blender wall kit passes 140 import checks, all four entry-route/outcome traversals, camera and 2/2 raster/visual
+  cases, plus an optional HDR staged art review. Three true 2D/2K BC7 maps use about 16 MiB; existing maps remain 512. The model
+  adds no colliders. Staged scene-only art images are not a substitute for final-player UI/gameplay captures.
+- Desktop island measurements on a profiled private candidate reach all 20 waypoints with AI active and native exit 0 at
+  1920×1080/Vulkan: High 265.6 FPS / p99 9.44 ms; Ultra 179.0 FPS / p99 11.28 ms. All sampled frames were focused. Earlier
+  private Xvfb `:97` results around 25 FPS were presentation-confounded and did not justify quality/AI cuts. These are bounded
+  route measurements, not constant-frame-rate claims or measurements of a future release binary.
+- Dialogue is synthesized rather than recorded by human actors. Eight new island clips pass technical format/key/level gates;
+  seven Editor cases exercise actual source tails for all eight clips plus timing, skip and missing/disabled fallback. Subjective
+  listening, physical speaker output and the final rebuilt-player check remain separate. Captions remain available.
+- Humans use skinned Blender/MakeHuman models and authored/retargeted animation. Skin, hair, facial acting and some environment
+  geometry remain stylized; further realism work is still possible.
+- Traffic has kinematic lanes, right-of-way, bumper clearance and pedestrian braking. Unexpected overlaps, complex merges and
+  prolonged congestion still need extended playtesting. It is not a full road simulator.
+- Some city prop detail is selected during scene generation and static batching rather than changing at camera distance.
+  Preset LOD bias affects only assets that support runtime LODs.
+- Automated tests use simulated movement or queued Input System events. They do not establish physical keyboard/gamepad behavior,
+  a complete human playthrough, or every graphical configuration. Final release media/settings/shortcut and campaign checks remain required.
+- Two historical long Editor attempts ended in native SIGSEGV without final XML; a subsequent complete run on that earlier
+  source passed. Their initiating cause remains unproven. Do not present later narrow native passes as a universal engine-crash repair.
+- Campaign checkpoints survive scene reloads within the running process. Persistent on-disk campaign saving is not implemented.
 
-Caches, footage intermediates, verification captures and builds can grow quickly on this workstation. Check free space before
-large jobs. Keep generated builds/logs out of Git; compact editable art sources and the actual shipped cinematic clips belong in it.
-
-
-Current native verification: rendered RTX/Vulkan water passes, while standalone batch scheduling does not finish that probe.
-The default forced-terminal movie stress still hangs during native cleanup even in normal rendering; bounded retirement is
-being developed. The new wall kit passes import/routes/camera/raster and staged HDR review. Its first native1080p island
-baselines are25.5FPS High/26.7FPS Ultra; performance optimization remains open. No old benchmark is a new island FPS claim.
-
-
-Performance scope correction: the25–27FPS island results were from the private :97 display; the profiled run was unfocused
-throughout and dominated by render-thread waits. They are not desktop-presentation FPS and do not yet prove a game bottleneck.
-Same-build focus and actual desktop controls are pending; no game quality/AI reduction is justified by these numbers.
+Caches, render frames, captures and builds consume substantial disk space. Check live free space before large jobs, retain
+source/provenance and the user's immutable preview, and keep generated output out of Git. The existing package shell script
+modifies `Builds/Linux`; use a reviewed explicit-candidate packaging path before shipping the newer player.

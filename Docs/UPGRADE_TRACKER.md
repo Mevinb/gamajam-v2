@@ -29,55 +29,47 @@ alongside improved real-time shaders. Do not add a Windows/DX12 target for this 
 Primary references: [Unity render-pipeline feature comparison](https://docs.unity.com/en-us/engine/6000.3/manual/render-pipelines/choose-a-render-pipeline/feature-comparison),
 [HDRP 17.3 ray-tracing requirements](https://docs.unity.cn/Packages/com.unity.render-pipelines.high-definition@17.3/manual/Ray-Tracing-Getting-Started.html).
 
-## Integration work in progress (25 November 2026)
+## Current source and delivery boundary — 25 November 2026
 
-- Preserve the existing 14 missions and all three infiltration routes.
-- Add a branch-sensitive riverside chapter after an explicit lake choice and a deliberate Continue action.
-- Author detailed containment and shoreline sets in Blender and integrate their exports into both cinematics.
-- Correct reflection hit detection, material/lighting shader variants and preset behavior; regenerate the scene assets.
-- Prevent traffic from overshooting pedestrian clearance or intersection stop lines during frame delays.
-- Replace contradictory current-state documentation with artifact-specific build and test evidence once verification finishes.
+The source now contains the original 14 missions, branch-sensitive riverside missions M15–M17 and Far Shore missions M18–M20.
+The island adds tidal culvert and maintenance-gate entry, physical Peace escorts or Dominion couriers, carried signal custody,
+individual boarding and an all-free protected departure. Both complete rescue branches and the original 14 recovery/boarding
+fixtures pass actual Editor execution. A new focused physical sidestep regression passes, and native scenario 23 passes both
+branches on the latest private candidate. Its native scenario 24 exits 1 at an exposure setup that does not sustain the ordinary
+sentry's sight cone. Facing that fixture sentry between Holding and the westward lead passes the focused Editor case with
+unchanged exposure/vision/time rules. Native 24 and the full campaign regression remain open on the final rebuilt player;
+[the physical-walker proof](verification/island-walker-20261125.json) preserves the exact pass/failure and source scopes.
 
-`TEST_REPORT.md` records completed verification. `KNOWN_ISSUES.md` records remaining limits. `HANDOFF.md` describes the
-architecture and supported commands. Build output and captures remain ignored in `Builds/` and `Logs/`.
+Blender-authored quarantine walls and 2K PBR atlases are integrated with unchanged physical colliders/navigation. Actual import,
+entry routes, camera, raster aperture and HDR staged visual review pass. Reflection ownership/fallback/cleanup passes actual GPU
+checks; the rendered Vulkan standalone water case passes. Eight island voice clips pass technical gates and actual Editor source-tail
+checks. See [HANDOFF.md](HANDOFF.md) and the portable proofs it links for exact artifacts and limits.
 
-## Current delivery boundary
+All 2,760 RTX/OptiX frames have completed, including the full 80-second opening and all four lake sequences at 1080p24.
+Four full lake films are already published. The opening is not yet a shipped verified asset: frame/source provenance, visual review,
+encoding, publication and Unity/player story gates must finish first. The scoped native movie lifetime fix passes default stress
+and actual pending-seek quit codes 0 and 1; OS/window-close pending-media routing remains separate.
 
-The verified 0.4.0 milestone has a complete 17-method GPU PlayMode pass including 18 shared campaign scenarios. Both OpenGL and Vulkan
-standalone runs passed all 18 scenarios before the final named-character identity correction. The correction has 96 passing
-rule/asset cases and a zero-warning rebuilt Linux player. Both affected branches pass on the current runtime; native 1080p
-riverside High/Ultra complete all waypoints, and the extracted release passes video and queued-shortcut checks. Artifact details
-are in `TEST_REPORT.md`. These gates do not establish that the open-ended goal is complete.
+The immutable `Builds/Linux` 0.5.0 preview was built and launched for the user, then exited normally. It contains M18 and the
+four full lake films, not M19/M20 or subsequent fixes. New private candidates preserve that preview. The latest is
+`Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2`; it is a diagnostic build rather than a final release.
+The retained 0.4.2 archive and older test rows describe historical artifacts only.
 
-The 0.4.1 recovery hotfix passed seven focused GPU cases and all 19 actual-player scenarios. A separately reproduced terminal
-ownership defect now has ten passing real-component cases, a clean rebuild and passing affected player flows. The extracted
-release passes media and queued input checks. This is not a claim that every possible bug has been found.
+Measured desktop island performance on a profiled private candidate is High 265.6 FPS / p99 9.44 ms and Ultra 179.0 FPS /
+p99 11.28 ms at 1920×1080/Vulkan, AI active, all 20 waypoints, all sampled frames focused and native exit 0. Private Xvfb results
+around 25 FPS were presentation-confounded. Neither set is a measurement of a future final binary or every camera view.
 
-The working tree and 0.5.0 preview include four complete RTX-rendered lake films: arrival, neutral choice hold and separate
-explicit Peace/Dominion resolutions. Source/provenance is retained under `ArtSource/FullCinematics` and `ArtSource/FullLakeFilms`.
-Actual Editor decode and choice gating pass. The 80-second opening with all eleven beats is still in RTX production.
-The retained 0.4.2 archive contains the earlier two three-second inserts. The full cinematic objective remains active.
+## Required next verification
 
-## 0.4.2 presentation and water update
+- Complete full-opening publication and actual title entry, all eleven beats, first-image/music timing, skip, explicit lake choice
+  and gameplay/camera/audio restoration with the final assets.
+- Run current native rescue recovery and a complete rebuilt-player campaign/settings/media/queued-shortcut regression. Keep the
+  rendered water check outside standalone batch mode. Automated movement/queued keys do not establish physical input or a human playthrough.
+- Review gameplay graphics at actual resolution, listen to the voices and measure declared desktop presets on the final player.
+- Prepare a fresh release artifact, current guides/issues/test report, checksums and an isolated extracted-player verification
+  while retaining the user's preview. The current package shell script targets `Builds/Linux` and needs a safe explicit-candidate path.
+- Continue mission and realism work from observed gameplay findings. All-bugs-fixed and the open-ended expansion request remain
+  unproven; compilation, completed renders and narrow passing suites do not close the full objective.
 
-Optional full-story playback, first-image/audio synchronization and finite narration completion are now implemented and
-GPU-tested with the existing short footage. The actual river/berth backdrop occlusion is corrected without changing physics,
-and the same shared test passes in the built Vulkan player. Complete long-film decode is still gated on real rendered movies.
-The 0.4.2 player passes both river chapters, actual media readback and queued shortcuts; isolated extracted-player and archive checks pass.
-The island entry package is integrated into the newer preview; all four route/outcome traversals and tide recovery pass
-headless and GPU checks. Its camera correction still needs a focused GPU rerun. M19/M20 runtime is now applied beyond the
-preview, but the first Peace rescue motion fixture failed; the later gangway obstruction now has an applied clearance fix
-with 3/3 passing focused physics cases and a full passing Peace branch. Dominion and remaining recovery cases are pending.
-Eight island voice clips and finite spoken cue timing are integrated beyond the
-preview; five focused Editor source-tail/timing cases pass, with listening and built-player gates pending. Reflection quality lifecycle work,
-remaining mission execution, strict built-player full-lake decode and the full opening remain required work.
-
-
-## Current Far Shore source milestone
-
-M18–M20 are integrated beyond the retained preview. Both full rescue branches and all 14 rescue fixtures pass actual Unity
-execution; the centred camera passes 17,347 samples, and reflection/fallback/quality/cleanup plus normal water pass six GPU
-cases. All current APIs compile. The source still needs a rebuilt-player campaign/rendering pass. The four lake films decode
-in the retained preview on both APIs, but normal native shutdown fails and is being diagnosed with exact Unity symbols.
-The full opening is stopped at frame 485 for GPU verification. The new Blender 2K wall kit remains staged. These are concrete
-milestones under the full active request; they do not establish that the entire upgrade or every possible bug is complete.
+`TEST_REPORT.md` retains the dated test history. `KNOWN_ISSUES.md` records validation limits; reconcile its older status paragraphs
+with the final artifact before shipping. Build output and captures remain ignored under `Builds/` and `Logs/`.

@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "scope": "Fixture-only physical steering correction and real Unity/native mission-logic execution. This does not change NPC positions, collision geometry, mission arrival rules or gameplay movement.",
+  "limitations": [
+    "Null graphics backend and acceptance-only simulated controls; not graphical, performance, physical-keyboard or gamepad proof.",
+    "Independent M19/M20 slice starts from completed M18 prerequisite, explicitly places the amoeba at refuge and parks unrelated guards. Role hosts are force-possessed by setup; later interactions use aimed simulated E/Q and actual movement.",
+    "Branch fixture intentionally places inactive amoebae for negative extraction gates; this is not a continuous human campaign playthrough.",
+    "Native recovery24 on this same DLL fails at sustained sentry exposure. The corrected fixture passes a focused Editor case, but current native24 success remains unproven until the final rebuilt-player run."
+  ],
+  "invariants_reviewed": [
+    "Existing path corners, original final target, strict horizontal .45m arrival and original route-length-derived deadline are retained.",
+    "Avoidance requires less than .1m progress over2s, actual controller side collision and nearest nonself capsule belonging to another real HostCharacter.",
+    "At most3 sidestep attempts per leg; each accepted lateral motion must finish within4s and the unchanged original deadline.",
+    "Candidates sample 1/1.4/1.8m left/right with same-floor navigation, physical support, complete lateral path and lateral/outgoing full-body sweeps; no body resize, disabled obstacle or warp.",
+    "Movement uses regular simulated directional input and existing controller. A complete sidestep resumes the original path; failed selection grants no progress.",
+    "Focused setup now uses safe approach, real lateral alignment and actual capsule contact before requiring a completed sidestep. No mission flags are granted by avoidance."
+  ],
+  "focused_editor": {
+    "case": "Parasite.Tests.IslandRescueTests.DeliveredClinicPassengerCanBeSidesteppedWithRealInput",
+    "result": "Passed",
+    "passed": 1,
+    "failed": 0,
+    "duration_seconds": 63.381615,
+    "start_utc": "2026-11-25 06:17:39Z",
+    "end_utc": "2026-11-25 06:18:42Z",
+    "xml": {
+      "path": "Logs/island-sidestep-aligned.xml",
+      "bytes": 19568,
+      "sha256": "8d50b8216d8e8479d76a05a7417d2361bdc56c0c8fa97cfa51bb23ab05d3f73a"
+    },
+    "log": {
+      "path": "Logs/island-sidestep-aligned.log",
+      "bytes": 131751,
+      "sha256": "f825b7d5ab937084c7496186cc2334a2e579b3741b2f24bc0eed768a211b024d"
+    },
+    "observed": [
+      "Morgan remains stationary, normal and delivered; actual actor is blocked0.4s by its capsule at .64m centre distance.",
+      "Full-body-clear1m lateral plan completes via normal input, then the strict crossing reaches .447m target error in3.07s of original20s budget.",
+      "Original Avery approach completes with .450m logged target error; test assertion requires actual distance less than .45m."
+    ]
+  },
+  "native_branches": {
+    "candidate": "Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2",
+    "runtime": {
+      "path": "Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "bytes": 907776,
+      "sha256": "c35c66a7fd0a9869c7aafdaf32d964a2483e22dbc7cca9e20b91e8cfa9832289"
+    },
+    "backend": "Null Device",
+    "filter": "23",
+    "native_exit_code": 0,
+    "elapsed_seconds": 516.231,
+    "scenario_seconds": 512.3,
+    "branches": [
+      "Peace",
+      "Dominion"
+    ],
+    "report": {
+      "path": "Logs/native-island-23-sidestep-retry/report.txt",
+      "bytes": 224,
+      "sha256": "98155ee87c934f269c6eea713639fcdb91f414ef38867072d43eb9c670f1c41d"
+    },
+    "execution": {
+      "path": "Logs/native-island-23-sidestep-retry/execution.json",
+      "bytes": 944,
+      "sha256": "fa246fa8f2a9dd45d8b0ecc1c8e5d92924c64987beaf199931369a1e9c0c7d9e"
+    },
+    "player_log": {
+      "path": "Logs/native-island-23-sidestep-retry/player.log",
+      "bytes": 87866,
+      "sha256": "c7799d6337f0f4558899567fba73f3e23b40a95e0afedb39ae826fcee9c53dc5"
+    },
+    "completed_sidesteps": [
+      "[IslandRescueWalk] SIDESTEP_RECOVER phase=approach person avery delivered=False boarded=False actual=(599.142, 0.190, -213.293) sidestep=(598.997, 0.190, -213.313) resumeCorner=1 resumeAim=(600.667, 0.200, -218.167) originalTarget=(637.000, 0.200, -229.500) remainingBudget=37.98",
+      "[IslandRescueWalk] SIDESTEP_RECOVER phase=Branch actual=(650.112, 0.190, -186.155) sidestep=(650.203, 0.190, -186.270) resumeCorner=3 resumeAim=(654.000, 0.150, -182.000) originalTarget=(654.000, 0.150, -182.000) remainingBudget=48.98"
+    ],
+    "passed": "1/1",
+    "watchdog_used": false
+  },
+  "build": {
+    "native_exit_code": 0,
+    "summary": {
+      "result": "Succeeded",
+      "size_mb": 1025,
+      "time": "00:00:07.9656890",
+      "errors": 0,
+      "warnings": 0
+    },
+    "source_unchanged": true,
+    "retained_preview_unchanged": true,
+    "runner_state": {
+      "path": "Logs/cinematic-native-lifetime/build-runs/20261125T061935708762Z-c08646f2/runner-state.json",
+      "bytes": 4415,
+      "sha256": "2cf116a1c0915b72f2a1587d3f19825bb2c331991307b7412944137cd52ec47f"
+    },
+    "build_log": {
+      "path": "Logs/native_lifetime_diag_20261125T061935708762Z_c08646f2.log",
+      "bytes": 167140,
+      "sha256": "41698f226a3e7d3c72da73d8527a459e62c48782efcd3b260e396366bf667132"
+    }
+  },
+  "remaining_validation": [
+    "Run native recovery scenario24 with the corrected exposure fixture in the final rebuilt player. Earlier native23 success and native24 failure remain tied to the recordedc35c66a7 DLL.",
+    "Run rendering, current full media/settings and complete campaign gates for the final rebuilt release; this proof covers only the named slices."
+  ],
+  "native_recovery_attempts": [
+    {
+      "candidate": "Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2",
+      "runtime_sha256": "c35c66a7fd0a9869c7aafdaf32d964a2483e22dbc7cca9e20b91e8cfa9832289",
+      "filter": "24",
+      "backend": "Null Device",
+      "native_exit_code": 1,
+      "elapsed_seconds": 128.893,
+      "passed": "0/1",
+      "failure": "Sustained actual guard sight breaks the moving escort and asks for regrouping.",
+      "report": {
+        "path": "Logs/native-island-24-current-recovery/report.txt",
+        "bytes": 317,
+        "sha256": "13848a39cea5ae857adac6d27f07afbb2fff7c297124868bdc0a1808b591d53f"
+      },
+      "execution": {
+        "path": "Logs/native-island-24-current-recovery/execution.json",
+        "bytes": 952,
+        "sha256": "28d52f755336069da75726a9f53e391f6a81e08eb40ed08dbcc972c37e3a43e4"
+      },
+      "player_log": {
+        "path": "Logs/native-island-24-current-recovery/player.log",
+        "bytes": 30658,
+        "sha256": "416e1a00fe50fc908532e9cf82f95ab6f88cab752c664f4b16780a4c6cc45f04"
+      },
+      "interpretation": "The fixture did not establish continuous sentry LOS during its exposure window. A focused diagnostic also fails the unchanged displaced-follower visibility prerequisite. Ordinary Stationary idle scanning changes body yaw by up to+50deg; fixture-facing correction is verified separately in the Editor, without changing runtime exposure rules."
+    }
+  ],
+  "native23_source_checkpoint": {
+    "build_base_commit": "ee0ff58216759e7734e2614701cdd3d97af63538",
+    "build_working_tree": true,
+    "files": [
+      {
+        "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+        "bytes": 84964,
+        "sha256": "edc093ed0bec50d8ac9f45456ed3e845f3129368a500920fc136ac891a3862f0"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/IslandRescueTests.cs",
+        "bytes": 3013,
+        "sha256": "eac9aa9e63d8bdc4ef2db5b3b2693508e3a7d23727d9b322c4cc96c2fea4827b"
+      }
+    ],
+    "matches_built_source_snapshot": true,
+    "build_snapshot_sha256": "930210e9cdf6b6ae14bacc737a02c6473b8ccb706e70f04829d1a03a7a904a02",
+    "note": "Source files at the verified native23 build snapshot. Later fixture-only exposure diagnostics/facing correction are recorded separately; this native binary does not contain them."
+  },
+  "focused_guard_exposure": {
+    "scope": "Fixture-only sentry home-facing correction. Ordinary idle scan, LOS/range/cone, physical escort/retreat, fresh aimed E and all runtime exposure thresholds/deadlines are retained.",
+    "fixture_change": "Spawn yaw0\u2192-35deg at the same post so the ordinary+50deg idle scan keeps Holding and the short westward lead inside the unchanged62.5deg half cone.",
+    "source_files": [
+      {
+        "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+        "bytes": 88554,
+        "sha256": "a37a4fa3db23fe9f072ca4c998f146b0bce06a4e942f89c074d222f3d68e342a"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/IslandRescueTests.cs",
+        "bytes": 3013,
+        "sha256": "eac9aa9e63d8bdc4ef2db5b3b2693508e3a7d23727d9b322c4cc96c2fea4827b"
+      }
+    ],
+    "case": "Parasite.Tests.IslandRescueTests.VisibleSentryBreaksEscortIntoCoverRegroup",
+    "result": "Passed",
+    "passed": 1,
+    "failed": 0,
+    "duration_seconds": 35.295999,
+    "start_utc": "2026-11-25 14:17:55Z",
+    "end_utc": "2026-11-25 14:18:30Z",
+    "xml": {
+      "path": "Logs/island-exposure-facing.xml",
+      "bytes": 10752,
+      "sha256": "1adb47982ba0bad70a6acd1a400b9ee86826cd863c74ef938f3402d2a39e1b0c"
+    },
+    "log": {
+      "path": "Logs/island-exposure-facing.log",
+      "bytes": 98762,
+      "sha256": "db4e54b5dee12cb4f887cc888680a2ae1bbc9f0633ce8b491ccf01ad0aeb4c6f"
+    },
+    "native_editor_exit_code": 0,
+    "native_editor_exit_note": "Root polled Tools/unity.sh execution session4806 to terminal code0, tool chunk7d1936; diagnostic session55416 earlier returned2.",
+    "read_only_diagnostics": "Acceptance-only reflection reads private exposure/scan/leader fields; it does not change runtime state. Logs also record actual CanSee, pose/cone and ordered ray hits.",
+    "observed_exposure_samples": [
+      {
+        "real": 15.875,
+        "guardYaw": 14.948,
+        "coneAngle": 14.948,
+        "actualCanSee": true,
+        "exposure": 0.0,
+        "returning": false,
+        "hasLeader": false
+      },
+      {
+        "real": 29.643,
+        "guardYaw": 9.193,
+        "coneAngle": 28.67,
+        "actualCanSee": true,
+        "exposure": 1.65,
+        "returning": false,
+        "hasLeader": true
+      },
+      {
+        "real": 29.643,
+        "guardYaw": 9.193,
+        "coneAngle": 28.67,
+        "actualCanSee": true,
+        "exposure": 1.65,
+        "returning": false,
+        "hasLeader": true
+      },
+      {
+        "real": 29.796,
+        "guardYaw": 11.339,
+        "coneAngle": 35.754,
+        "actualCanSee": true,
+        "exposure": 1.8,
+        "returning": false,
+        "hasLeader": true
+      },
+      {
+        "real": 29.946,
+        "guardYaw": 12.665,
+        "coneAngle": 41.758,
+        "actualCanSee": true,
+        "exposure": 1.95,
+        "returning": false,
+        "hasLeader": true
+      },
+      {
+        "real": 30.084,
+        "guardYaw": 13.456,
+        "coneAngle": 42.549,
+        "actualCanSee": true,
+        "exposure": 2.1,
+        "returning": true,
+        "hasLeader": false
+      }
+    ],
+    "physical_completion": "The passing focused case includes actual displacement from Holding, retreat to that same unvisited-cover-safe point, sentry navigation beyond22m, new aimed Regroup/E and renewed following with no cover flag.",
+    "api_compile": "144runtime/23editor/144LinuxMono all pass after the facing change.",
+    "earlier_diagnostic_failure": {
+      "xml": {
+        "path": "Logs/island-exposure-diagnostic.xml",
+        "bytes": 7402,
+        "sha256": "ad543346d1f9e74b515dc7971cb9b8f4d9fa65ff89745e038e9a0474f464b871"
+      },
+      "log": {
+        "path": "Logs/island-exposure-diagnostic.log",
+        "bytes": 70534,
+        "sha256": "5b61415efe701e88d604bd04e928448276f0031b7d538b7d3f928993f29748d6"
+      },
+      "failed_precondition": "The actual sentry still sees the displaced follower before exposure triggers.",
+      "native_editor_exit_code": 2
+    }
+  }
+}

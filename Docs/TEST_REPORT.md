@@ -1,3 +1,22 @@
+# Physical rescue walker and exposure fixture — 25 November 2026
+
+The focused delivered-Morgan test first establishes a real stationary capsule blockage, then completes a full-body-clear
+lateral route through ordinary simulated movement and reaches the unchanged original target. The original route deadline,
+strict arrival sphere, colliders and navigation/support gates remain. Native scenario 23 passes both Peace and Dominion on
+the pinned `c35c66a7...` runtime with normal exit 0 in 516.231 seconds.
+
+Native scenario 24 on that same player exits 1 in 128.893 seconds at sustained guard exposure. A focused diagnostic fails
+its displaced-follower visibility prerequisite: the fixture sentry's ordinary idle scan changes its sight cone. A fixture-only
+home-facing correction preserves that scanning behavior, real LOS, the 2-second exposure rule and 4-second wait. The focused
+Editor case passes 1/1 in 35.36 seconds, with actual sight true as exposure advances 1.65/1.8/1.95/2.1 and triggers Regroup,
+followed by physical Holding retreat and a new aimed E to resume. Native 24 must rerun on the final rebuilt player.
+
+[Portable hashes and exact scope](verification/island-walker-20261125.json) retain both the native failure and focused fix.
+These tests use a prepared mission slice and simulated controls; they do not prove graphics or a continuous human playthrough.
+The dated entries below preserve earlier states and apply to their named artifacts.
+
+---
+
 # Explicit quit while real seek is pending
 
 `Logs/cinematic-quit-pending-native/{0,1}` both pass:12checks (original7plus5probe),7actualPNGs, real pending terminal seek,

@@ -1,126 +1,106 @@
-<!-- PendingQuit0/1 verified on candidate20261125T061033248026Z-854e2b09: all original7media gates plus5probe gates/7PNGs, true pendingseek, immediateUIhidden/nativeRTretained, actualACK thenowned0/pending0/quarantine0 receipt, requested native0/1 exactly. ProbeAPI144/23/144; defaultstressgatesunchanged. Contactdiag nowproves earlier focusedsidestep fixture SLIDPAST Morgan (notfloorclassification): bodydelta(-.505,0,-2.173), final.4s moved1.027m. Campaign stages real-input safe-north/centerlinealignment and strict blockedcrossing beforeoriginalAverytarget; planner untouched. Packed renderer currently safelystopped822, oldPIDs7961/8277gone; resumefrozenjobwhenGPUterminal. -->
 # PARASITE — developer handoff
 
 Read this before changing the project. The active request is a full realism/cinematic upgrade and continued mission expansion,
 with frequent commits and pushes as **Mevinb**. This supersedes the old eight-mission scope freeze and local-only capture session.
-The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Never present historical tests as verification of a new build.
+The full requested upgrade is **in progress**; see [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md). Evidence applies to its named source
+or binary. Historical passing runs do not verify a newer player.
 
-## Latest verified checkpoint
+## Current checkpoint — 25 November 2026
 
-- Source commits `5092418` (Blender wall kit), `98a25b7` (isolated builds/benchmark) and `dd669d3` (movie retirement/profiler)
-  are pushed as Mevinb. Main target remains Linux/URP; offline RTX/OptiX full films are separate from screen-space reflections.
-- Retained `Builds/Linux` is the immutable0.5.0-preview (M18/full-lake working tree) launched for the user and closed normally.
-  All private diagnostic builds use a fresh `-parasiteBuildDirectory`; original full preview tree hashes remain unchanged.
-- Current APIs pass144runtime/23editor/144Linux Mono. All122EditMode rules pass. All14rescue methods have Editor success;
-  native headless recovery24 passes1/1/exit0. Native23 fails only a static test-walker collision against Morgan at the clinic.
-- Fixture-only bounded sidestep is applied from f25f25cc; its focused test fails before avoidance because contact was not
-  established. A diagnostic-only contact patch93de2ab6 is now applied; focused headless run is active under
-  `Logs/island-contact-diagnostic.*`, exec session51408. Planner/compound assertion unchanged; inspect actual hits/movement.
-- Wall import140checks, four route/outcome traversals and full camera pass. Raster/visual2/2 and optional HDR art-QA1/1 pass.
-  Geometry is correct; Atmosphere contaminated the structural background. Proof-only isolation restores exact feature state.
-  Portable original Blender source, before/after PNGs and precise data: `ArtSource/Island/QuarantineWalls.README.md`.
-- Actual desktopXwayland:0,1920x1080/Vulkan,AI active,20/20waypoints/native0: High265.6FPS/p999.44ms/all10382focused;
-  Ultra179.0FPS/p9911.28ms/all6991focused. PrivateXvfb:97 (~25FPS) was presentation-confounded, not a game bottleneck.
-  Profiler sees one game camera,1:1render/update, no recurring reflection callbacks. No quality/AI reduction was made.
-- Copied independent reflection cube fixes native capture-RT retirement. EditorGL6passes/1Nullskip; rendered nativeVulkan
-  water22 passes1/1/exit0. Standalone batch rendering does not schedule that probe; do not use it for graphics proof.
-- Movie lifetime fix preserves default forced terminalTick, immediate UI removal, actual prepare/seek acknowledgement,
-  safe native destruction-before-RTrelease and explicit quit codes. APIpasses; Editor12/0/1missingOpening skip. Native default
-  rendered+batch+untraced all7mediaPASS/6PNGs/exit0; strict unfinishedOpening negative exits1. Portable proof is in
-  `Docs/verification/cinematic-retirement-20261125.json`.
-- Optional actual pending-seek Quit0/1 probe is applied/APIpasses but not rebuilt/executed. It requires a final quitting receipt
-  (ACK+owned0), not an early PASS. OS-close path is unexercised. No experimental no-final-seek flag is a production fix.
-- Private build `Builds/Diagnostics/native-lifetime-20261125T055158369729Z-c3ce6bed` contains the verified retirement fix;
-  build1025MB/0errors/0warnings/native0/sourceunchanged/previewunchanged. Earlier044908candidate is the pinned native23/24
-  baseline;052551candidate contains profiler and measured desktop results. Their BUILD_INFO/source snapshots retain scope.
-- Packed opening is running from prior safe stop757, exec session39621, supervisorPID7961/BlenderPID8277 (verify live).
-  Production: `Logs/full-cinematic-renders/full-production-20261125T003711Z`; request its STOP then wait actual processes
-  terminal before GPUjobs. Headless logic/API work may coexist. Frozen blends/driver/policy must stay unchanged.
+- Linux/URP remains the target chosen by the user. Blender uses RTX/OptiX offline path tracing; the game's screen-space
+  reflections and probes are separate features. Do not describe the Linux player as hardware ray traced.
+- Source through `ee0ff58` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
+  Blender quarantine-wall kit, camera/reflection corrections and scoped native movie retirement. The physical rescue test
+  walker's bounded NPC sidestep and focused regression are the remaining source changes beyond that commit.
+- `Tools/compile_check.sh all` passes 144 runtime / 23 editor / 144 Linux Mono sources. All 122 EditMode rules pass.
+  These checks supplement actual Unity imports, rendering and player execution; they do not replace them.
+- The latest private player is `Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2`, built with zero errors
+  and warnings at 1,025 MB. Runtime SHA-256 is `c35c66a7fd0a9869c7aafdaf32d964a2483e22dbc7cca9e20b91e8cfa9832289`.
+  Source and retained preview trees were unchanged during its build. Its `BUILD_INFO.json` pins the working-tree snapshot.
+- Native scenario 23 now passes both full rescue branches in 516.231 seconds with native exit 0 on that player
+  (`Logs/native-island-23-sidestep-retry`). The earlier failure was the test walker blocked by delivered Morgan.
+  The focused fixture first proves real capsule blockage, then reaches a valid lateral route and the original target using
+  normal simulated movement. Collision, navigation, support checks and original time limits remain intact.
+- Native scenario 24 on that player exits 1 after 128.893 seconds: the exposure fixture fails to sustain actual sentry sight
+  during its normal idle scan. A focused diagnostic also fails the displaced-follower visibility prerequisite. The fixture
+  now faces its sentry between Holding and the westward lead, retaining ordinary scanning and unchanged vision/exposure
+  rules. `island-exposure-facing.xml` passes 1/1 in 35.36 seconds; actual sight stays true as exposure reaches 2.1 and Regroup.
+  The final rebuilt player must rerun 24. Exact source/artifact scopes are in
+  [the physical-walker proof](verification/island-walker-20261125.json). Headless runs do not prove graphics or physical input.
+- All 2,760 planned RTX frames are rendered: four lake sequences (840 frames) and the 80-second opening (1,920 frames),
+  at 1920×1080, 24 fps, 48 samples, OptiX and GPU OIDN. Every production job exits 0. The opening still needs final source/frame
+  provenance verification, visual review, encoding, publication and actual Unity/player story verification. A completed render
+  alone does not mean the movie is shipped. Four full lake films are already published and verified separately.
 
 ## User playtest build retained
 
-The user requested the current work be built and launched. `0.5.0-preview` was launched on native `DISPLAY=:0`
-(PID 2531989 at launch; check the actual process). It is the live M18/full-lake working tree, not the retained 0.4.2 archive.
-The build succeeded at 1,007 MB with zero errors/warnings; `Logs/user-playtest/build-info.json` and `source-snapshot.json`
-pin this uncommitted preview. Player log: `Logs/user-playtest/player.log`. Full lake movies and the island entry mission
-are included; M19/M20 remain in ignored staging. Do not overwrite Builds/Linux while this player is running.
-The preview has since exited normally with code 0 (recorded in `Logs/user-playtest/session.json`).
-After that normal exit and the reflection diagnostic, the frozen RTX opening render was resumed. Check its actual
-process/checkpoint before GPU work; request a safe STOP and wait for terminal completion first.
+The requested build-and-launch was completed with `0.5.0-preview` under `Builds/Linux`. It contains M18 and the four full lake
+films; it does not contain M19/M20 or the subsequent fixes. It launched on native `DISPLAY=:0` / RTX 4050 / Vulkan and later
+exited normally with code 0. This records launch and exit, not a claim that the user completed a playthrough.
 
-## Current source beyond the preview
+`Logs/user-playtest/build-info.json`, `source-snapshot.json`, `session.json` and `player.log` retain its exact provenance.
+Its build was 1,007 MB with zero errors/warnings. The runtime SHA-256 is
+`8ce33854dd55496442655cef1c61ce404b9d5d9dc077d5606c89a28c88a9fabd`.
+Keep this preview intact. New candidates use fresh `-parasiteBuildDirectory` paths; do not relabel the preview as current.
+The retained 0.4.2 archive is an earlier release containing two short film inserts.
 
-The live source now contains M18–M20 plus the four full lake films and eight island voice clips. Runtime/editor/Linux
-API compilation passes 141/23/141 sources with the wall verification helpers. The retained preview binary still contains M18 only; do not relabel it.
+## Verified source and private-player behavior
 
-- All 14 `IslandRescueTests` now have actual passing execution across focused runs: full Peace (`island-rescue-peace-fixed.xml`),
-  full Dominion (`island-rescue-dominion-fixed.xml`), three berth/inset cases (`island-boarding-clearance.xml`), six recovery cases
-  from `island-recovery-reflection-null-fixed.xml`, and the three corrected cover prerequisites (`island-first-cover-retry.xml`).
-  Full branch supervisors exit 0 with unchanged source. Morgan parks away from the gangway and must reach a .35m berth sphere;
-  physical deck, all-free, awake-passenger, pursuit, transit and checkpoint gates remain. The failed cover fixtures had stopped
-  the leader while Riley was still 3.636m from cover; real through-leading reaches 1.431m and commits the unchanged runtime rule.
-- `reflection-owner-camera-diagnostic.xml`: camera passes 17,347 post-Cinemachine samples with zero failed samples, including
-  entry, pitch/yaw, hop, tide wash, target changes, exit and owner destruction. Free bodies use a centred rig; human shoulder
-  framing and canonical markers remain. Collision shortening is immediate. This isolated camera fixture stuns unrelated
-  guards; actual entry/stealth route tests remain separate. Earlier normal-approach clipping and framing failures are retained.
-- `river-reflection-publication-final.xml`: 6 GPU passes / 1 Null-only skip, actual RTX 4050/OpenGL Core. High/Ultra enable
-  native probes only on real graphics devices; Low/Medium use verified sky fallback. Null policy controls pass separately.
-  The native capture probe destroyed its attached RT on retirement (proved by before/after gate logs); publication now copies
-  the completed image into an independent Cubemap. Six origin signatures, compressed BC6H sampling, epoch cancellation,
-  repeated retirement, no recapture High-to-Ultra, cleanup and fresh unmarked water all pass. Built-player/Vulkan remains pending.
-- Eight offline CPU voice clips pass technical/key/level gates. Seven focused Editor cases pass actual source tails across all eight arrival/refuge/roster/departure clips, finite clearing,
-  release-aware skip and disabled/missing fallback. Arrival uses a monotonic cue origin. Subjective listening and rebuilt-player
-  checks remain pending.
-- The Blender wall kit (two meshes, one material, 11,804 triangles, shared 2K PBR atlas) is now applied. Initial automatic
-  texture import produced Cubemaps and blocked World initialization; the importer now explicitly requires Texture2D.
-  `island-wall-import-verification.json` passes 140 actual Unity checks: three 2048 BC7 maps (~16 MiB), all 18 old maps 512,
-  exact model counts/bounds and no colliders. `island-wall-gpu.xml` then passes all four M18 route/outcome traversals and the full camera case (17,342 samples), but
-  both visual cases fail the first culvert aperture pixel at local (-26.62,.23,-18). Actual runtime mesh orientation versus
-  proof-camera effects is being diagnosed without changing thresholds/physics. Wall performance remains unrun.
+- **Campaign:** M15–M17 continue the original explicit Peace/Dominion lake choice. M18–M20 add island access, branch-sensitive
+  rescue/courier work, physical signal custody, boarding and protected departure. All original 14 rescue fixtures pass actual
+  Editor execution across focused suites, including both complete branches, visited-cover recovery, ownership generation,
+  checkpoints and physical boarding clearance. The additional sidestep fixture passes separately. Native 23 passes; the later
+  native 24 exposed a sight-cone setup defect, whose sentry-facing correction passes the focused Editor case. Native 24 and
+  a complete campaign regression remain required on the final rebuilt player.
+- **Island art and camera:** the editable Blender wall source, two exported meshes and shared 2K PBR maps are integrated.
+  Actual import passes 140 checks; maps are Texture2D/2048/BC7 (about 16 MiB total), existing 18 maps remain 512, and the new
+  model adds no colliders. All four entry-route/outcome traversals and the full camera case pass with the kit. Raster/visual
+  checks pass 2/2 after isolating and exactly restoring Atmosphere for structural proof; HDR staged art review passes 1/1.
+  The free-body camera passes more than 17,000 samples without changing human framing or mission markers. Portable sources,
+  before/after PNGs and exact proof are in [QuarantineWalls.README.md](../ArtSource/Island/QuarantineWalls.README.md).
+- **Reflections:** completed native capture is copied into an independent owned Cubemap before the native probe is retired.
+  Editor RTX/OpenGL verification passes six cases with one Null-only skip. Rendered standalone Vulkan water case 22 passes
+  1/1 with native exit 0. Standalone batch mode does not schedule that probe correctly; use normal rendered mode for this
+  graphics check. High/Ultra enable probes only on actual graphics devices; preserve the Null guard.
+- **Voices:** eight offline-generated island clips pass format, key and level checks. Seven Editor cases exercise actual
+  source tails for all eight arrival/refuge/roster/departure clips plus skip/fallback/timing behavior. Subjective listening
+  and verification in the final rebuilt player remain separate work.
+- **Movie lifetime:** the immutable preview's native cleanup hang was reproduced and symbolicated. The newer scoped lifetime
+  owner keeps real pending prepare/seek operations alive until acknowledgement, then retires native objects before releasing
+  targets. Default forced-terminal stress remains enabled. Editor verification passes 12 cases with one expected missing-opening
+  skip; rendered, batch and untraced native stress all pass seven checks with normal exit 0. Strict missing-opening mode
+  correctly exits 1. Optional pending-seek Quit(0)/Quit(1) probes each pass 12 checks and seven PNGs, with actual seek ACK,
+  zero owned/pending/quarantined resources and the requested native code. OS/window-close pending-media behavior is unexercised.
+  Exact proof: [cinematic-retirement-20261125.json](verification/cinematic-retirement-20261125.json).
+- **Performance:** the same profiled private candidate on actual desktop Xwayland `:0`, 1920×1080/Vulkan, AI active, reaches
+  20/20 island waypoints and exits 0: High 265.6 FPS / p99 9.44 ms; Ultra 179.0 FPS / p99 11.28 ms. All sampled frames were
+  focused. Private Xvfb `:97` results around 25 FPS were presentation-confounded; they did not justify reducing game quality
+  or AI. These measured routes do not establish performance in every view or on a newer release binary.
 
-The retained preview's strict movie checks decode all seven expected items (two old clips, four full lake films and the
-neutral wrap) on RTX/Vulkan and OpenGL, but both processes fail normal shutdown and hit their watchdogs. These are **not**
-end-to-end passes. Parent-GDB snapshots and exact matching Unity symbols locate a native `VideoMediaMemoryOutput` lock
-inside video-class engine cleanup; the lock owner/cause is unproven. Evidence lives under `Logs/standalone-0.5.0-preview*`.
-A two-file optional lifecycle trace / final-seek A/B patch is now applied from `Logs/cinematic-native-lifetime`; no new
-player build or runtime repair is claimed. Preserve the old forced-seek stress path until the native issue is understood.
+## Remaining release work
 
-The frozen RTX production resumed again after the wall GPU window (last safe stop Opening 671). That earlier resume used session50611;
-check actual processes/checkpoints before GPU work. Campaign agent is staging full aperture images/sample/camera diagnostics.
-The island benchmark patch is applied and API-compiles141/23/141: explicit20-point Maintenance route, no performance run yet.
+1. Finish and review the full opening asset, then verify its actual decoder, all eleven story beats, first-image/audio timing,
+   skip/debounce, explicit lake choice and clean restoration of gameplay/camera/audio state.
+2. Run native 24 with the corrected exposure fixture and the complete final-player campaign, settings/media and queued-shortcut
+   regressions after final asset integration. Case 22 requires normal rendered Vulkan. Preserve real process exits and hashes.
+3. Build a fresh release candidate without overwriting `Builds/Linux`, measure its declared desktop presets, update artifact-specific
+   guides/issues/test report, and verify the package and an isolated extracted player. `Tools/package_build.sh` currently targets
+   and modifies `Builds/Linux`; do not use it unchanged to package a private candidate while preserving the preview.
+4. Continue the active realism/gameplay expansion from verified playtest findings. Do not mark the broad goal complete from
+   compilation, render completion, a single route or these focused fixtures.
 
-The diagnostic build runner is being revised to use a supported optional `-parasiteBuildDirectory` override in BuildAutomation.
-The old parking/PATH-flock-adapter runner design is superseded and MUST NOT be executed. Wait for the agent's frozen new
-runner/manifest: unchanged Tools/unity.sh lock, direct fresh Builds/Diagnostics output, original preview hashes checked
-before/after, no rename/PATH adapter. Build override patch itself is still staged/unapplied. No new player build has run.
-User playtest metadata remains under `Logs/user-playtest/`. The older native exits remain unproven; do not label them repaired.
+## Cinematic production and GPU scheduling
 
-## Active cinematic production — 25 November 2026
+Production evidence is under `Logs/full-cinematic-renders/full-production-20261125T003711Z`.
+`production-summary.json` records complete jobs for all five sequences. Verify actual processes before starting any GPU job;
+old PID files and lock files are not evidence of a live renderer. Do not rerender completed frames after an observation timeout.
+The packed blends, render driver and render policy are frozen and hash pinned; preserve them and all complete frame records.
 
-The verified Linux milestone is 0.4.2, built from `8fd5ece` (DLL SHA-256
-`8cf43b0f6e174369bf561a85ecd113815347f30deb16fc9f1fe181397477a0c1`). GPU presentation/audio, built-player
-rendered-water and both river branches pass. The isolated extracted copy passes media/input checks; the archive's full
-file set, hashes and local guide links are verified. `TEST_REPORT.md` records exact scope and retained older evidence.
-
-A resumable RTX production is retained under `Logs/full-cinematic-renders/full-production-20261125T003711Z`: all four lake clips,
-then the 80-second opening, 2,760 frames total at 1080p24 / 48 samples / GPU OIDN. The approved packed blends, render driver
-and policy must stay unchanged. Check actual processes/checkpoints rather than assuming the job has finished.
-
-Before another Unity graphics/player/benchmark job, request a safe stop by creating that production directory's `STOP` file,
-then wait for the active frame and supervisor to finish. Headless logic work and small CPU-only tasks can continue. Remove
-`STOP` and rerun `python3 Logs/full-cinematic-renders/production_plan.py --go --out <same-production-directory>` to resume;
-provenance and every recorded frame hash are checked. A 4 GiB free-space guard also stops between complete frames.
-Do not restart from scratch after an observation timeout. Completed real sequences must pass encoding/decoder gates before
-publication. Full-story runtime support and the river backdrop cut are committed. Current evidence includes 105 EditMode
-cases, both headless river flows, 15 passing presentation/audio cases from the combined GPU run, its corrected water case,
-and the extra disabled-VO destruction regression. The strict built-player water test passes on Vulkan. Complete full-film
-decode of the four real lake films now passes in Unity, including neutral looping and explicit branch gating; the opening
-remains unfinished. The four-film bundle was atomically published to live Resources after full frame/codec/hash gates.
-The island entry package is applied but uncommitted: 118 rules pass, all four route/outcome combinations pass headless and
-GPU traversal, and tide/arrival-cue checks pass. Its camera had a transient viewport failure; a focused damping fix is prepared
-for GPU rerun. Its visual fixture passes after synchronizing physics before snapshot. Reflection-probe readiness remains
-under diagnosis. M19/M20 are separate staged followup and still require integration/real motion and recovery tests.
-The old opaque skyline ground issue is corrected in 0.4.2; source meshes/colliders/navigation are preserved.
+For a future render resume only, request a safe stop using that production directory's `STOP`, then wait for the active frame,
+Blender and supervisor to become terminal before another Unity graphics/player/benchmark job. Headless logic work may coexist.
+Resume the same production directory via `production_plan.py`; it verifies recorded frame/input hashes. A 4 GiB disk reserve
+stops rendering between complete frames. Check free space before encoding, imports, builds or packages; only about 5 GiB was
+free at this checkpoint. Never infer a completed asset or passing runtime decode solely from a status file.
 
 ## Environment and commands
 
@@ -128,7 +108,7 @@ The old opaque skyline ground issue is corrected in 0.4.2; source meshes/collide
 - Unity 6000.3.29f1: `~/Data/Unity/Editor/6000.3.29f1/Editor/Unity`; URP 17.3, Cinemachine 3, Input System.
 - Blender: `~/Data/Blender/current/blender` (not on PATH). Existing pipelines live in `Tools/blender/`.
 - Linux x86-64 remains the target. The user selected RTX-rendered Blender cinematics plus improved real-time shaders.
-- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. There were 26 GB free on 25 Nov.
+- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. About 5 GiB remained at the latest checkpoint; check live free space.
 - Launch the built Linux player using `./play.sh`; it selects NVIDIA offload and prefers Vulkan on NVIDIA systems.
   Use `PARASITE_GRAPHICS_API=glcore ./play.sh` for OpenGL; explicit Unity API flags take priority.
 

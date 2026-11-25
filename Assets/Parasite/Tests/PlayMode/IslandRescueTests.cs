@@ -26,6 +26,8 @@ namespace Parasite.Tests
 
         [UnityTest, Timeout(180000)] public IEnumerator ParkedPassengersLeavePhysicalGangwayUsable() => IslandRescueAcceptance.ParkedPassengersKeepGangwayClear();
 
+        [UnityTest, Timeout(180000)] public IEnumerator DeliveredClinicPassengerCanBeSidesteppedWithRealInput() => IslandRescueAcceptance.DeliveredClinicPassengerRequiresPhysicalSidestep();
+
         [UnityTearDown] public IEnumerator Cleanup()
         {
             GameInput.Simulated = false; GameInput.SimMove = Vector2.zero;
