@@ -32,8 +32,11 @@ The full request remains **in progress**. Evidence applies to its named source o
   rescue departures and all twelve recovery helpers, including the corrected sentry exposure. The report records 512.8/315.9
   seconds per scenario; runtime `80e65c6b...` is unchanged and both processes are terminal. This uses prepared fixtures, normal
   simulated movement and Null graphics. [Native rescue proof](verification/0.5.1-native-rescue-20261125.json) retains exact scope.
-  The other21cases on that earlier pre-gate binary run separately under`Logs/graphics-native-original-and-river`; their final
-  receipt is still required. Rendered case 22 passed separately; no complete 24-case or human playthrough is claimed yet.
+  The other 21 cases on that pre-gate binary finished **19/21, native exit 1**, in 947.161 seconds. Case 08 exposed a moving
+  officer that invalidated a snapshot-point aim; case 21 reached a camera assertion requiring a real GPU, so its Null invocation
+  cannot certify that case. [Original/riverside result](verification/0.5.1-native-original-river-20261125.json) retains both failures.
+  A later live-host aim fixture passes a focused moving-officer check; full Route 08 is being checked on that source. Case 21
+  still requires rendered execution. Rendered 22 and native 23/24 pass separately; no complete 24-case result is claimed.
 - Independent graphics use a versioned, checksummed data/store model and a shared staged title/pause menu: Display, Quality,
   Effects and Audio & Input. Existing four profile budgets are preserved, including Ultra1.25scale/4xrequestedMSAA. Custom
   render scale, VSync/frame cap, post AA/MSAA, shadows/distance, AO, reflection detail and three optional post effects persist
@@ -88,7 +91,8 @@ launcher selects the retained preview. No human launch/playthrough of the new0.5
 
 ## Required next work
 
-1. Observe the remaining21-case pre-gate native run to its actual terminal receipt. Its23/24 and rendered22 pass separately;
+1. Finish the corrected moving-target Route 08 check and rerun case 21 on a real GPU after the user finishes testing.
+   The pre-gate 21-case run is terminal 19/21 with exit 1; its 23/24 and rendered 22 pass separately;
    the new gate WIP needs its own campaign validation. Keep prepared headless/simulated logic separate from graphical and physical-input proof.
 2. Characterize the remaining Editor Vulkan warning with bounded controls; do not rewrite its original unexpected-log guard
    or call residual-warning controls a complete fix. Exercise native Custom settings/persistence/frame pacing on the new binary.

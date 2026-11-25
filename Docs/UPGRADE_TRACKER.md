@@ -43,7 +43,10 @@ renderedwater22 each pass on RTX4050/Vulkan with nativeexit0 and zero ring warni
 frame-pacing, continuous80s story observation and a complete human playthrough. Native 23/24 now pass 2/2 with exit 0 on
 this runtime, in 832.873 seconds, including both rescue branches and twelve recovery helpers.
 [Exact rescue proof](verification/0.5.1-native-rescue-20261125.json) distinguishes prepared Null/simulated logic from graphics
-and human testing. The remaining 21 native cases are running separately and still require their own final receipt.
+and human testing. The other native run finished 19/21 with exit 1 in 947.161 seconds. Case 08 exposed a moving-target test-driver
+failure; case 21 needs a real GPU for its camera subcheck and cannot pass under that Null invocation.
+[Original/riverside proof](verification/0.5.1-native-original-river-20261125.json) preserves both failures. A later focused live-host
+aim test passes; full corrected Route 08 and rendered 21 remain required.
 
 Independent settings now have real Display/Quality/Effects controls, staged Apply/Cancel/Defaults, Custom persistence and live
 Audio/Input. Existing profile quality is preserved.135EditMode rules pass. GPU cases verify actual Bloom pixels, owned renderer
@@ -77,7 +80,8 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
 
 ## Required next verification
 
-- Complete the active remaining 21-case native run and inspect its final report/runtime hash/exit. Scenarios 23/24 already
+- Verify the corrected full Route 08 and rerun camera-dependent case 21 on a real GPU. The original run is terminal 19/21,
+  exit 1, with both failures retained. Scenarios 23/24 already
   pass and rendered 22 passes separately. Keep prepared Null/simulated logic separate from graphics and physical input.
 - Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and
   story/audio/settings behavior on the new binary.

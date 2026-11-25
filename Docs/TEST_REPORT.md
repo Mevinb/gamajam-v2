@@ -1,3 +1,13 @@
+# Native original/riverside result — 25 November 2026
+
+The earlier pre-gate graphics player finished its 21 selected cases in 947.161 seconds: **19 pass, 2 fail, native exit 1**,
+with runtime `80e65c6b...` unchanged. Routes A/B, original recovery and the riverside branches pass. Route C (08) failed when
+the moving duty officer invalidated a snapshot-point aim. Case 21 reached a camera guard requiring a real graphics device;
+that Null invocation cannot prove the graphical case. Both failures and the terminal receipts are preserved in
+[the original/riverside proof](verification/0.5.1-native-original-river-20261125.json). A later live-host tracking source change
+passes a focused moving-officer test. The full corrected Route 08 is running; rendered 21 and a corrected native binary remain
+required. Separate passing 22/23/24 receipts do not turn this into a complete 24-case pass.
+
 # User-requested gate WIP build and launch — 25 November 2026
 
 `Builds/Candidates/full-story-20261125T173043238618Z-0f595731`, version0.5.1-preview, is a working-tree build over`4ace63c`:

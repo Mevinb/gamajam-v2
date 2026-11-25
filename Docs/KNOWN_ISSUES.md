@@ -17,8 +17,10 @@ current work; every pass applies to its recorded source or binary.
 - The earlier pre-gate0.5.1-preview candidate at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, runtime`80e65c6b...`, passes
   native strictfull-five media(8checks/7images),14queuedshortcuts and renderedwater22, all exit0/zero ring warnings. These do
   not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native 23/24
-  now pass 2/2, exit 0, on this same runtime using prepared Null-graphics fixtures. The remaining 21 cases are running separately;
-  no complete 24-case result is claimed. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json).
+  now pass 2/2, exit 0, on this same runtime using prepared Null-graphics fixtures. The other run is terminal 19/21, exit 1:
+  case 08 failed when a moving officer invalidated its snapshot aim, and case 21 requires a rendered GPU for its camera check.
+  Live-host aiming passes a later focused source test; full Route 08 and rendered 21 remain required. No complete 24-case result
+  is claimed. [Original/riverside result](verification/0.5.1-native-original-river-20261125.json).
 - The Editor Vulkan warning gate remains open after serializedIndividualFaces:13pass/1PendingDowngrade warning failure/
   1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no
   production all-green result or allocator cause is established. Narrow native gates currently have none. No allocator flag,

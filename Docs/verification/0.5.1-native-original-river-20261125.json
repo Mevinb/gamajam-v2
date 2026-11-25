@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "status": "TERMINAL_19_OF_21_WITH_TWO_OPEN_ITEMS",
+  "recorded_utc": "2026-11-25T17:41:49.217433+00:00",
+  "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+  "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+  "actual_native_exit_code": 1,
+  "elapsed_seconds": 947.161,
+  "runtime_unchanged": true,
+  "supervisor_terminal": true,
+  "child_terminal": true,
+  "root_session_receipt": {
+    "session_id": 53871,
+    "exit_code": 1,
+    "chunk_id": "542c19",
+    "observed": "Root polled the retained supervisor to terminal after inspecting actual processes"
+  },
+  "evidence": [
+    {
+      "path": "Logs/graphics-native-original-and-river/execution.json",
+      "bytes": 1036,
+      "sha256": "9948625a61e957f0bb1177fe45929149a68cd8d5be38b63b772cbc6091d71c5c"
+    },
+    {
+      "path": "Logs/graphics-native-original-and-river/report.txt",
+      "bytes": 3721,
+      "sha256": "3f3bfc33ddd004a335f425f3e74aef4b965b6c657605a4ce3f63f56ad7c7a36b"
+    },
+    {
+      "path": "Logs/graphics-native-original-and-river/player.log",
+      "bytes": 87374,
+      "sha256": "a5657172e0d98ae3d87788e6fe6e60ffb1191ea1bfec0822ef3b0863d5966e55"
+    }
+  ],
+  "cases": [
+    {
+      "result": "PASS",
+      "id": "01",
+      "name": "Start, move, camera, jump",
+      "seconds": 2.2,
+      "detail": "moved 4.6 m, camera turned 90\u00b0, hop 0.55 m"
+    },
+    {
+      "result": "PASS",
+      "id": "02",
+      "name": "Aim + E possesses host within 5 m (camera + WASD follow)",
+      "seconds": 3.9,
+      "detail": "far host (>5 m) not targetable"
+    },
+    {
+      "result": "PASS",
+      "id": "03",
+      "name": "Q release: host unconscious 8 s then recovers",
+      "seconds": 9.8,
+      "detail": "host unconscious 8.0 s, recovered, AI resumed on NavMesh"
+    },
+    {
+      "result": "PASS",
+      "id": "04",
+      "name": "V split max two, Tab switch, inactive stays put",
+      "seconds": 1.6,
+      "detail": "2 amoebas max, Tab switch OK, active moved 3.8 m, inactive drift 0.00 m, camera on active (3.2 m)"
+    },
+    {
+      "result": "PASS",
+      "id": "05",
+      "name": "Civilian denied at restricted doors",
+      "seconds": 3.9,
+      "detail": "civilian denied at Main Gate, Staff Terminal and Service Tunnel"
+    },
+    {
+      "result": "PASS",
+      "id": "06",
+      "name": "Route A: leads \u2192 tail \u2192 guard badge \u2192 Main Gate \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "seconds": 222.5,
+      "detail": "Guard \u2192 tail \u2192 Main Gate \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Peace (route MainGate, 213s)"
+    },
+    {
+      "result": "PASS",
+      "id": "07",
+      "name": "Route B: leads \u2192 tail \u2192 scientist + keycard \u2192 Staff Terminal \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "seconds": 226.3,
+      "detail": "Scientist \u2192 tail \u2192 Staff Entrance \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Peace (route StaffTerminal, 214s)"
+    },
+    {
+      "result": "FAIL",
+      "id": "08",
+      "name": "Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "seconds": 135.1,
+      "detail": "FAILED: duty officer targetable from behind: "
+    },
+    {
+      "result": "PASS",
+      "id": "09",
+      "name": "Suspicion only from observed violations; decays",
+      "seconds": 5.7,
+      "detail": "unobserved: no rise; observed: rose to 6; decayed 6 \u2192 0"
+    },
+    {
+      "result": "PASS",
+      "id": "12",
+      "name": "Missions 1-2: alley exit, first host, newsstand, eavesdrop",
+      "seconds": 18.8,
+      "detail": "alley exit, first host, newsstand read, eavesdrop done \u2192 now mission 3/14 (THE TAIL)"
+    },
+    {
+      "result": "PASS",
+      "id": "13",
+      "name": "CCTV spots a free amoeba; maintenance F-ability cuts camera power; scientist calms",
+      "seconds": 1.9,
+      "detail": "abilities reject free and inactive hosts"
+    },
+    {
+      "result": "PASS",
+      "id": "14",
+      "name": "The Tail: losing Petrov or crowding her sends her back to the last checkpoint; progress survives a reload",
+      "seconds": 50.9,
+      "detail": "reload: leg-1 progress persists, Petrov waits at the bus stop; 2 failures (lost, spotted) each sent her back"
+    },
+    {
+      "result": "PASS",
+      "id": "15",
+      "name": "Hunter Protocol: bio-scanner burns a worn body, leaving it breaks the trail, the arch passes only a free amoeba",
+      "seconds": 11.0,
+      "detail": "reload: Protocol Hound stays down (no hunters redeployed); burned bodies, trail breaks and the arch verified"
+    },
+    {
+      "result": "PASS",
+      "id": "16",
+      "name": "Blackout: palm-print lockout, grid reroute on timeout, three-body chain, blackout persists",
+      "seconds": 45.2,
+      "detail": "reload: blackout persists (22 lights dark); lockout, reroute-on-timeout and the chain verified"
+    },
+    {
+      "result": "PASS",
+      "id": "10",
+      "name": "Guard pursues + captures; amoeba ejects and survives",
+      "seconds": 1.0,
+      "detail": "captured after 0.7s, E ejected, escape window 2.7s, game continues"
+    },
+    {
+      "result": "PASS",
+      "id": "11",
+      "name": "Pause + restart",
+      "seconds": 0.2,
+      "detail": "pause/resume OK, restart reloaded the city with a fresh amoeba"
+    },
+    {
+      "result": "PASS",
+      "id": "17",
+      "name": "Peace: explicit lake choice \u2192 Continue \u2192 riverside missions \u2192 checkpoint recovery \u2192 ferry",
+      "seconds": 22.2,
+      "detail": ""
+    },
+    {
+      "result": "PASS",
+      "id": "18",
+      "name": "Dominion: explicit lake choice \u2192 Continue \u2192 branch relay \u2192 checkpoint recovery \u2192 ferry",
+      "seconds": 22.1,
+      "detail": ""
+    },
+    {
+      "result": "PASS",
+      "id": "19",
+      "name": "River falls: active/inactive bodies recover once; story/NPC fixtures are excluded",
+      "seconds": 36.0,
+      "detail": ""
+    },
+    {
+      "result": "PASS",
+      "id": "20",
+      "name": "MissionProp holds: original owner/state/authorization and pause semantics",
+      "seconds": 17.0,
+      "detail": ""
+    },
+    {
+      "result": "FAIL",
+      "id": "21",
+      "name": "Island first slice: explicit ferry handoff, both entry routes and fair recovery",
+      "seconds": 91.9,
+      "detail": "EXCEPTION: Island camera clearance requires a real graphics device."
+    }
+  ],
+  "open_items": [
+    {
+      "id": "08",
+      "classification": "MOVING_TARGET_TEST_DRIVER_FAILURE",
+      "measured": "Officer moved during the 0.8 second snapshot-point aim; range and LOS remained valid, final angle54.6736degrees exceeded unchanged15degree cone.",
+      "next": "Live-host camera tracking is a later source patch. Focused Null movement test passes; full Route08 and new native binary require their own receipts."
+    },
+    {
+      "id": "21",
+      "classification": "INVOCATION_BACKEND_INVALID_FOR_CAMERA_SUBCHECK",
+      "measured": "The -nographics run reached an explicit assertion that island camera clearance requires a real graphics device.",
+      "next": "Rerun the unmodified graphical scenario with an actual GPU after the user playtest. Do not weaken the guard or count this invocation as a camera pass."
+    }
+  ],
+  "limits": [
+    "Prepared fixtures and simulated normal game controls, Null graphics.",
+    "This exact binary predates the gate-scene integration and live-host tracking change.",
+    "Native22 water and23/24 rescue have separate passing receipts; this does not constitute a full24-case pass.",
+    "No physical-input, complete human campaign or graphics-performance claim."
+  ]
+}
