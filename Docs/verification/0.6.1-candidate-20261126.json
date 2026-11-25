@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "status": "PRIVATE_0_6_1_BUILD_READY_NATIVE90_ACTIVE",
+  "recordedUtc": "2026-11-25T22:29:02.441210+00:00",
+  "terminalBuild": {
+    "rootSession": 74129,
+    "chunk": "0c2135",
+    "supervisorExit": 0,
+    "nativeBuildExit": 0,
+    "buildReport": "[Parasite] Linux build result: Succeeded, size 1118 MB, time 00:02:07.8062910, errors 0, warnings 0"
+  },
+  "version": "0.6.1-preview",
+  "candidate": "Builds/Candidates/full-story-20261125T222359513713Z-2389d119",
+  "sourceCommit": "8f7b0e77be4ff73110d4816fdcf0bf9526bba31f",
+  "sourceSnapshotBefore": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b",
+  "sourceSnapshotAfter": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b",
+  "sourceUnchanged": true,
+  "retainedPreviewUnchanged": true,
+  "renderedUserPreviewUnchanged": true,
+  "candidateOutputTreeSha256": "8cc53631bf94103cf259b1229e8b2a67ee1f1bceb589a2c1373bd65135e644b2",
+  "files": [
+    {
+      "path": "Logs/full-story-candidate/build-runs/20261125T222359513713Z-2389d119/runner-state.json",
+      "bytes": 8126,
+      "sha256": "6574c74f6270bc924d0b7dcbaa74f84409cdf6078a0b88c1acc9af47e8c842e3"
+    },
+    {
+      "path": "Builds/Candidates/full-story-20261125T222359513713Z-2389d119/BUILD_INFO.json",
+      "bytes": 1278,
+      "sha256": "fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b"
+    },
+    {
+      "path": "Builds/Candidates/full-story-20261125T222359513713Z-2389d119/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "bytes": 1150464,
+      "sha256": "13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f"
+    },
+    {
+      "path": "Logs/full_story_candidate_20261125T222359513713Z_2389d119.log",
+      "bytes": 672077,
+      "sha256": "8271ca53b437133a8d052b040741a2fd45ce7c16fd701095bf69dca6a0bae175"
+    },
+    {
+      "path": "Logs/native-shore-continuity-stage/reviewed-061-pins.json",
+      "bytes": 639,
+      "sha256": "b4cc4e27e6a3497de826eb6bb220b33f7d4d2fb98eccfbc4c5507141d55d9816"
+    }
+  ],
+  "pins": {
+    "status": "READY_REVIEWED_FRESH_BUILD",
+    "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T222359513713Z-2389d119",
+    "state": "/home/mevlec/Data/Parasite/Logs/full-story-candidate/build-runs/20261125T222359513713Z-2389d119/runner-state.json",
+    "source_sha256": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b",
+    "runtime_sha256": "13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f",
+    "build_info_sha256": "fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b",
+    "island_driver_sha256": "5689f81b024ee8c10e2258be9b7cff0fce69ca6bebc6772c455f5a14961a4469"
+  },
+  "native90Started": {
+    "rootSession": 69063,
+    "supervisorPid": 104270,
+    "playerPid": 104273,
+    "executionReceipt": "Logs/native-shore-061-90/execution.json",
+    "initialIntegrity": {
+      "current_source_matches_rebuilt_binary": true,
+      "build_snapshot_json_unchanged": true,
+      "retained_preview_matches_build": true,
+      "user_preview_matches_build": true,
+      "candidate_matches_build": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true
+    },
+    "nativeExit": null,
+    "result": "RUNNING_NOT_PASSED"
+  },
+  "logObservations": {
+    "kestrelHeartbeatWarningLines": [
+      "\u001b[40m\u001b[1m\u001b[33mwarn\u001b[39m\u001b[22m\u001b[49m: Microsoft.AspNetCore.Server.Kestrel[22]",
+      "\u001b[40m\u001b[1m\u001b[33mwarn\u001b[39m\u001b[22m\u001b[49m: Microsoft.AspNetCore.Server.Kestrel[22]"
+    ],
+    "note": "BuildReport has0warnings; separate build-host heartbeat notices are preserved, not suppressed."
+  },
+  "limits": [
+    "23missions; Northline24\u201326 remain staged and absent from this binary.",
+    "No completed native branch/full-suite/graphics/media/settings/performance/human pass on this binary yet.",
+    "Earlier full90 Editor pass pins5689 driver before the short Peace hint/version change; native checks now target the actual fresh binary.",
+    "Existing graphical0.5.1player51569 remains open; no new rendered player was launched.",
+    "No0.6.1 portable archive published yet;0.6.0 archive/candidate retained separately."
+  ]
+}

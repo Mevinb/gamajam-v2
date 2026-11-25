@@ -6,11 +6,27 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **0.6.1 private build ready; native90 active:** candidate `Builds/Candidates/full-story-20261125T222359513713Z-2389d119`,
+  runtime `13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f`, BUILD_INFO
+  `fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b`. Root74129/native0/chunk0c2135;1,118MB,
+  build127.806s/0errors/0BuildReportwarnings. Separate Kestrel heartbeat notices remain in the raw log. Source before/after
+  `dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b` matches; both protected previews unchanged.
+  Root69063/supervisor104270/player104273 is actually running only90, Null/nice10, fresh isolated environment and3600s guard.
+  Receipt `Logs/native-shore-061-90/execution.json`; initial seven integrity checks pass, no final result yet. **Freeze Assets,
+  Packages, ProjectSettings and launch scripts until it is actually terminal.** Do not launch another Editor/player/Blender.
+  User51569 remains open. Supervisor pair is `Logs/native-shore-continuity-stage/run-native90.py`/`run-native91.py`, with
+  actual `reviewed-061-pins.json`; exact one PASS/SUMMARY1/1/native0 plus no cancellation and final integrity are required.
+  After90passes, run the reviewed91 script in fresh `Logs/native-shore-061-91`; do not rerun90 just because91 fails.
+  [Build proof and actual pins](verification/0.6.1-candidate-20261126.json). No new portable archive or rendered pass yet.
+- Northline mechanics/art/native stages remain unapplied. New third patch `Logs/rail-native-stage-20261126/feature.patch`
+  SHA `98fede05a4725d2a25f4eca98561370f6c1717e844e6966678bed1f207b4e4e4` follows mechanics then art. It provides exact opt-in
+  92/93 focused rail branches and94/95 earned26-mission continuations; default27 remains unchanged. Isolated175/33/175 API
+  and three NUnit classes compile;13selection/runtime/continuation cases remain unrun. Current AutoTest base is unchanged.
 - Source is now **0.6.1-preview** for the corrected regroup/boarding driver and a shorter Peace M20 route hint.
   Only the Peace briefing/objective copy changes: it suggests the real clinic exit/west wall/north shore and natural
   regrouping; no extra waypoint arrows, gameplay gates or voice clips change. Runtime/Editor/Linux API162/31/162 passes.
   The new hint's actual text layout remains a rendered check; the prior full Editor result below predates this copy/version.
-  Existing0.6.0 archive/candidate and the open0.5.1player remain separate. A fresh native build is next, not yet claimed.
+  Existing0.6.0 archive/candidate and the open0.5.1player remain separate; the new private build is pinned above.
 - **Full Peace continuity rerun passes:** root exec53314, timeout101415/Editor101416, source5689 below.
   `Tools/unity.sh continuity_north_shore -nographics -runTests -testPlatform PlayMode`
   uses exact AcceptanceTests filter, `Logs/continuity-north-shore.xml`, only `-autotestFilter 90` and an owned1800s wrapper.
