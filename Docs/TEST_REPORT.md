@@ -1,3 +1,11 @@
+# Native graphics harness source checkpoint — 25 November 2026
+
+The opt-in `GraphicsSettingsAcceptance` runtime harness compiles against Runtime and actual Linux-Mono APIs. Read-only review
+corrected interruption restoration, cleanup isolation, paused-action evidence and camera-specific volume-stack attribution.
+It is inert without `-graphicsSettingsTestOut`. All native UI, screenshot, normal-completion/interruption and pacing receipts
+are still missing; the existing user binary does not contain this mode. Raw cap intervals will be a bounded measurement,
+not a general performance result or proof of enforced 30 FPS. [Source/compile scope](verification/native-graphics-harness-20261125.json).
+
 # Booth authoring/import and capture-fixture checkpoint — 25 November 2026
 
 The security booth passes Blender authoring/round-trip checks and eleven actual Null Unity import checks: one 6,012-triangle

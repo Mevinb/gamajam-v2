@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "status": "SOURCE_REVIEW_AND_CPU_COMPILE_PASS_NATIVE_EXECUTION_PENDING",
+  "recorded_utc": "2026-11-25T18:01:22.018883+00:00",
+  "source": {
+    "path": "Assets/Parasite/Scripts/Core/GraphicsSettingsAcceptance.cs",
+    "sha256": "3f6fd3d5caf46f1b23ba87bf664eb78c8f0f43bff12fcefa5fcc378ce6050c5b",
+    "bytes": 50241
+  },
+  "staged_compile": {
+    "path": "Logs/graphics-settings-native-stage/compile-result-v2.json",
+    "sha256": "388fde3750b83b58580cf84f0fe24c34a9c3e9071763e237321be5f227e01327",
+    "receipt": {
+      "utc": "2026-11-25T17:55:35.812485+00:00",
+      "runtimeCompileExit": 0,
+      "linuxMonoCompileExit": 0,
+      "runtimeFiles": 149,
+      "playerCache": "/home/mevlec/Data/Parasite/Library/Bee/artifacts/2400b0aP.dag/Parasite.Runtime.rsp",
+      "sourceSha256": "3f6fd3d5caf46f1b23ba87bf664eb78c8f0f43bff12fcefa5fcc378ce6050c5b",
+      "metaSha256": "400df7374407c3856368b12b036d9fc73ec3ac2749923ed1e6254dc06fa00705",
+      "liveSourceUntouchedSha256": "04730ca756007ff29bcaf052704285fba817d332803970e76cd0034eb0604dae",
+      "scope": "CPU Roslyn compile only. No Unity/player/GPU launch. Native behavior, prequit ordering, pixels, and restoration remain unrun."
+    }
+  },
+  "current_project_compile": {
+    "command": "Tools/compile_check.sh all",
+    "root_session_id": 80645,
+    "actual_exit_code": 0,
+    "runtime_sources": 149,
+    "editor_sources": 29,
+    "player_sources": 149,
+    "player_api": "Actual cached Linux Mono references"
+  },
+  "mode": {
+    "flag": "-graphicsSettingsTestOut",
+    "argument": "Absolute output JSON path",
+    "normal_player": "No harness GameObject is created without the exact CLI flag.",
+    "graphics": "Reject Null; ordinary rendered player only."
+  },
+  "planned_coverage": [
+    "Actual title/pause widgets: staged independent Custom settings, Cancel/Back/Apply and retained frame pacing across preset changes.",
+    "Queued keyboard/gamepad through InputSystemUIInputModule; programmatic focus is disclosed separately from five queued Down-arrow navigation steps.",
+    "Saved preferences and late City cameras across scene changes.",
+    "Actual paused W/V action callbacks/held reads, body/split/mission freeze and submenu-before-resume behavior.",
+    "Three actual backbuffer UI images, target-camera render callback post-stack receipts and one raw three-second cap interval/focus sample.",
+    "Idempotent prequit interruption restoration, best-effort cleanup stages and critical raw preference restoration in finally."
+  ],
+  "read_only_review_corrections": [
+    "Mark external interruption explicitly; do not treat an OS close with native0 as PASS.",
+    "Continue cleanup after a failed stage and always attempt critical preference restoration.",
+    "Require actual gameplay-action actuation evidence for the paused negative check.",
+    "Attribute rendered post data to the exact Camera.main endCameraRendering callback and frame/stack identity.",
+    "Raw cap samples do not assert achieved30FPS enforcement."
+  ],
+  "limits": [
+    "No native UI run, screenshot, frame-pacing measurement or interruption receipt exists for this new harness yet.",
+    "The current user playtest and retained older binaries do not implement this CLI mode.",
+    "Source review and successful compilation are not a runtime pass.",
+    "All GPU validation waits until the user finishes the separate native playtest."
+  ]
+}

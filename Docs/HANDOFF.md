@@ -6,6 +6,10 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- Source now includes an opt-in `-graphicsSettingsTestOut <absolute-json-path>` native settings harness. Runtime/Editor/
+  Linux-Mono compilation and source review pass; real UI/images/pacing/interruption execution remain **unrun**. It is absent
+  from the user's current binary. [Harness scope](verification/native-graphics-harness-20261125.json). Keep the RTX reserved
+  for the live user player; check the actual process before scheduling GPU jobs.
 - The next **security-booth kit** is authored and actually imported: one 6,012-triangle mesh, 173 outward closed solids,
   one existing shared gate material, no new runtime textures or colliders. Blender author/round-trip checks and eleven Null
   Unity import checks pass. The CityBuilder hook and saved-scene integration are still pending while the user tests the
