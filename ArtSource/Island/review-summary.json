@@ -1,0 +1,43 @@
+{
+  "status": "Ignored staging only; no live publication or Unity/GPU jobs",
+  "assets": 8,
+  "triangles": 27124,
+  "fbx_roundtrip": "PASS",
+  "declared_navigation_recipe": "PASS",
+  "closed_surface_signed_volume_checks": "PASS",
+  "zero_area_triangles": 0,
+  "previews": "CPU Cycles12samples/2threads, actual exported FBX with measured target axes; clinic roof cutaway",
+  "resource_files": {
+    "Resources/Island/IslandFlareCache.fbx": "3224937c30754fe41f5fc4b7d1254743b359a53a47ef312d27196c9de85fb740",
+    "Resources/Island/IslandFlareMount.fbx": "8a614d50d258c9af6c2f8e59136deba8cb1310878eb0e255886bfb2d6edf5dc4",
+    "Resources/Island/IslandHandoffGate.fbx": "0f3e5b7fd98c0250fb83aea0d7d56704164741515af881ed1a6063c1162917bf",
+    "Resources/Island/IslandRefugeClinic.fbx": "76b34b63c7746ee3cdacca50402b9445595aaf0e62df92677f5fe3e16cd21f7f",
+    "Resources/Island/IslandServiceLatch.fbx": "e9d478596c2f4003f8b233a1427bcb5b7b78442f2c054792877628de56febfc3",
+    "Resources/Island/IslandSignalFlare.fbx": "a526db6d3ad80858847150e5055c7a991074b77ae1a387f73ca32e9f26bb9d96",
+    "Resources/Island/IslandTidalCulvert.fbx": "7d2da63a321d8f3ec8422b2f0d1322a1188e7742c93c21006be800e0da54ffd6",
+    "Resources/Island/IslandTideIndicator.fbx": "48ac01fb763880747f5d36866b362c3c9ca31fc33189472ceaf5e9a3e09aaba0",
+    "Resources/Island/Textures/IslandClinic_A.png": "f143ee9866e981e7a1f5dc2abea579ddc184ff1051c610d6d3703c0672bc6f3a",
+    "Resources/Island/Textures/IslandClinic_M.png": "6b2a5a1a502a63cc8d94f15b15a0df7b6a136562bac0424a36935c06a7def98c",
+    "Resources/Island/Textures/IslandClinic_N.png": "1cb21969f77b3a7899d81aef1bac66b7fea552cf1d64963571b24deec137a1e7",
+    "Resources/Island/Textures/IslandConcrete_A.png": "2219bf5618ec9f900b11364aadbca86459f80b795e26fbde2b594ac36dd64a6a",
+    "Resources/Island/Textures/IslandConcrete_M.png": "7e9d99abd338df2f1588388e34cc00a7b71714ac6bbcebf45016668d31ac5ba4",
+    "Resources/Island/Textures/IslandConcrete_N.png": "94ab099b8577bbab9a27c4ae21e90238e5ac9da2fac171afb2a396e05bce9aa0",
+    "Resources/Island/Textures/IslandFabric_A.png": "461632ea69aeb1eec47d753019fcb52a7fa6010379fc39323c9285025ed2cdfd",
+    "Resources/Island/Textures/IslandFabric_M.png": "c98c2a187589b1ce0c9a247373dc958506432a9d62c96c9ddbb29ccef0f266b4",
+    "Resources/Island/Textures/IslandFabric_N.png": "faf2573b4f82eede63157f1550274cf55d946d18a42cfa29a3ba12021c153d1e",
+    "Resources/Island/Textures/IslandMetal_A.png": "0617f9a55d935e46aaecbba35cbc50c39e465b1b96dd41731d917e49e51a71f8",
+    "Resources/Island/Textures/IslandMetal_M.png": "3d1c2964558434b1fecaf9dc7e93eb36ed9fb96d5a42fb982327f4c9d9828b45",
+    "Resources/Island/Textures/IslandMetal_N.png": "a5e8313cfacc2904b93416bd5efc3a5d68d78175b7e5b785ef1a33db53784c54",
+    "Resources/Island/Textures/IslandOxide_A.png": "294d14ed6dc47bb92a9839aa0c9a239419ba1b37a3129ea9950382171113874b",
+    "Resources/Island/Textures/IslandOxide_M.png": "ba17d1a0157e002eae0e3aaa75d021c02bc25138b916a5aa7e15ec4de8bc951f",
+    "Resources/Island/Textures/IslandOxide_N.png": "aaf4d3be9c3cd74596e88aff5a72b161e29860b96543aa79c843ef592fcdfab9",
+    "Resources/Island/Textures/IslandTimber_A.png": "4d82a1f86ac437959160c898b8b85fba6e3cf3bb9ab19b690f09dd9fc279b360",
+    "Resources/Island/Textures/IslandTimber_M.png": "0e0c087ec635d68066b14102070d4c355bc54ef5b59a58eaa35518a41b07a28c",
+    "Resources/Island/Textures/IslandTimber_N.png": "7af61d8883b664c8fca9eb0fa65a5d577edd0f5f222fa1c08bd519edb32caf16"
+  },
+  "limits": [
+    "No real Unity capsule/NavMesh/camera/escort validation",
+    "No runtime tide/boarding wiring",
+    "No in-game lighting or movie rendering"
+  ]
+}

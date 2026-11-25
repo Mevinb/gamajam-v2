@@ -1,0 +1,122 @@
+{
+  "verification": "CPU Blender FBX round-trip and declared navigation-recipe checks; no Unity or GPU rendering",
+  "assets": [
+    {
+      "asset": "IslandTidalCulvert",
+      "pass": true,
+      "bounds_max_error_metres": 1.043081283569336e-06,
+      "triangles": 6220,
+      "materials": [
+        "IslandConcrete",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandTideIndicator",
+      "pass": true,
+      "bounds_max_error_metres": 9.685754776000977e-08,
+      "triangles": 2108,
+      "materials": [
+        "IslandClinic",
+        "IslandGlass",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety",
+        "IslandSignal"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandRefugeClinic",
+      "pass": true,
+      "bounds_max_error_metres": 4.76837158203125e-07,
+      "triangles": 9824,
+      "materials": [
+        "IslandClinic",
+        "IslandConcrete",
+        "IslandFabric",
+        "IslandGlass",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "pass": true,
+      "bounds_max_error_metres": 6.772161498247442e-08,
+      "triangles": 1964,
+      "materials": [
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandServiceLatch",
+      "pass": true,
+      "bounds_max_error_metres": 1.043081283569336e-07,
+      "triangles": 1524,
+      "materials": [
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandFlareCache",
+      "pass": true,
+      "bounds_max_error_metres": 5.960464477539063e-08,
+      "triangles": 2996,
+      "materials": [
+        "IslandClinic",
+        "IslandDark",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSignal"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandSignalFlare",
+      "pass": true,
+      "bounds_max_error_metres": 3.3527612686157227e-08,
+      "triangles": 1124,
+      "materials": [
+        "IslandClinic",
+        "IslandDark",
+        "IslandMetal",
+        "IslandSignal"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    },
+    {
+      "asset": "IslandFlareMount",
+      "pass": true,
+      "bounds_max_error_metres": 3.306195139884949e-08,
+      "triangles": 1364,
+      "materials": [
+        "IslandDark",
+        "IslandMetal",
+        "IslandOxide"
+      ],
+      "all_faces_triangulated": true,
+      "zero_area_triangles": 0
+    }
+  ],
+  "passed": 8,
+  "total_triangles": 27124
+}

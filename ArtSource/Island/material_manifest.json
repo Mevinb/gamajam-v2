@@ -1,0 +1,22 @@
+{
+  "scope": "Original island PBR library; spatial contract and architecture not published",
+  "size": 512,
+  "channels": {
+    "A": "sRGB albedo",
+    "N": "linear tangent-space normal",
+    "M": "linear RGB metallic / alpha smoothness"
+  },
+  "export_helper_sha256": "1e8dca0aad88f90f96efc406d8fb489c080fb9e293b5b20ce4884a784da30fe9",
+  "materials": [
+    "IslandClinic",
+    "IslandConcrete",
+    "IslandDark",
+    "IslandFabric",
+    "IslandGlass",
+    "IslandMetal",
+    "IslandOxide",
+    "IslandSafety",
+    "IslandSignal",
+    "IslandTimber"
+  ]
+}

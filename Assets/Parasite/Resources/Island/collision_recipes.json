@@ -1,0 +1,398 @@
+{
+  "groups": [
+    {
+      "asset": "IslandTidalCulvert",
+      "boxes": [
+        {
+          "name": "Continuous flush culvert footing",
+          "center": [
+            0,
+            -0.1,
+            6.9
+          ],
+          "size": [
+            3.8,
+            0.2,
+            13.8
+          ]
+        },
+        {
+          "name": "Culvert west wall",
+          "center": [
+            -0.82,
+            0.6,
+            6.9
+          ],
+          "size": [
+            0.24,
+            1.2,
+            13.8
+          ]
+        },
+        {
+          "name": "Culvert east wall entry",
+          "center": [
+            0.82,
+            0.6,
+            2.65
+          ],
+          "size": [
+            0.24,
+            1.2,
+            5.3
+          ]
+        },
+        {
+          "name": "Culvert east wall exit",
+          "center": [
+            0.82,
+            0.6,
+            10.4
+          ],
+          "size": [
+            0.24,
+            1.2,
+            6.8
+          ]
+        },
+        {
+          "name": "Covered low corridor roof",
+          "center": [
+            0,
+            1.32,
+            6.9
+          ],
+          "size": [
+            1.9,
+            0.24,
+            12
+          ]
+        },
+        {
+          "name": "Dry refuge bay east wall",
+          "center": [
+            1.72,
+            0.6,
+            6.15
+          ],
+          "size": [
+            0.2,
+            1.2,
+            1.9
+          ]
+        },
+        {
+          "name": "Dry refuge bay south wall",
+          "center": [
+            1.23,
+            0.6,
+            5.25
+          ],
+          "size": [
+            1.18,
+            1.2,
+            0.2
+          ]
+        },
+        {
+          "name": "Dry refuge bay north wall",
+          "center": [
+            1.23,
+            0.6,
+            7.05
+          ],
+          "size": [
+            1.18,
+            1.2,
+            0.2
+          ]
+        },
+        {
+          "name": "Dry refuge bay roof",
+          "center": [
+            1.22,
+            1.32,
+            6.15
+          ],
+          "size": [
+            1.24,
+            0.24,
+            2.0
+          ]
+        }
+      ]
+    },
+    {
+      "asset": "IslandTideIndicator",
+      "boxes": [
+        {
+          "name": "Float gauge wall bracket",
+          "center": [
+            0,
+            0.65,
+            0.04
+          ],
+          "size": [
+            0.42,
+            1.25,
+            0.12
+          ]
+        }
+      ]
+    },
+    {
+      "asset": "IslandRefugeClinic",
+      "boxes": [
+        {
+          "name": "Clinic floor",
+          "center": [
+            0,
+            -0.1,
+            0
+          ],
+          "size": [
+            14,
+            0.2,
+            12
+          ]
+        },
+        {
+          "name": "Clinic west wall",
+          "center": [
+            -6.9,
+            1.65,
+            0
+          ],
+          "size": [
+            0.2,
+            3.3,
+            12
+          ]
+        },
+        {
+          "name": "Clinic east wall",
+          "center": [
+            6.9,
+            1.65,
+            0
+          ],
+          "size": [
+            0.2,
+            3.3,
+            12
+          ]
+        },
+        {
+          "name": "Clinic rear wall",
+          "center": [
+            0,
+            1.65,
+            5.9
+          ],
+          "size": [
+            14,
+            3.3,
+            0.2
+          ]
+        },
+        {
+          "name": "Clinic front west",
+          "center": [
+            -4.15,
+            1.65,
+            -5.9
+          ],
+          "size": [
+            5.7,
+            3.3,
+            0.2
+          ]
+        },
+        {
+          "name": "Clinic front east",
+          "center": [
+            4.15,
+            1.65,
+            -5.9
+          ],
+          "size": [
+            5.7,
+            3.3,
+            0.2
+          ]
+        },
+        {
+          "name": "Clinic entrance lintel",
+          "center": [
+            0,
+            2.98,
+            -5.9
+          ],
+          "size": [
+            2.6,
+            0.64,
+            0.2
+          ]
+        },
+        {
+          "name": "Clinic west roof",
+          "center": [
+            -4.35,
+            3.43,
+            0
+          ],
+          "size": [
+            5.3,
+            0.26,
+            12
+          ]
+        },
+        {
+          "name": "Clinic east roof",
+          "center": [
+            4.35,
+            3.43,
+            0
+          ],
+          "size": [
+            5.3,
+            0.26,
+            12
+          ]
+        },
+        {
+          "name": "Treatment bed underframe",
+          "center": [
+            -4.8,
+            0.4,
+            3.6
+          ],
+          "size": [
+            2.0,
+            0.25,
+            2.7
+          ]
+        },
+        {
+          "name": "Treatment bed underframe",
+          "center": [
+            4.8,
+            0.4,
+            3.6
+          ],
+          "size": [
+            2.0,
+            0.25,
+            2.7
+          ]
+        },
+        {
+          "name": "Supply cabinet",
+          "center": [
+            -5.85,
+            0.85,
+            -2.7
+          ],
+          "size": [
+            1.3,
+            1.7,
+            0.65
+          ]
+        },
+        {
+          "name": "Clinic handwash plinth",
+          "center": [
+            5.9,
+            0.46,
+            -3
+          ],
+          "size": [
+            1.3,
+            0.92,
+            0.7
+          ]
+        }
+      ]
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "boxes": [
+        {
+          "name": "Handoff steel upright",
+          "center": [
+            -1.65,
+            1.32,
+            0
+          ],
+          "size": [
+            0.2,
+            2.64,
+            0.28
+          ]
+        },
+        {
+          "name": "Handoff steel upright",
+          "center": [
+            1.65,
+            1.32,
+            0
+          ],
+          "size": [
+            0.2,
+            2.64,
+            0.28
+          ]
+        },
+        {
+          "name": "Handoff overhead beam",
+          "center": [
+            0,
+            2.75,
+            0
+          ],
+          "size": [
+            3.5,
+            0.22,
+            0.28
+          ]
+        }
+      ]
+    },
+    {
+      "asset": "IslandServiceLatch",
+      "boxes": [
+        {
+          "name": "Mechanical latch backplate",
+          "center": [
+            0,
+            0.75,
+            0.03
+          ],
+          "size": [
+            0.6,
+            1.45,
+            0.12
+          ]
+        }
+      ]
+    },
+    {
+      "asset": "IslandFlareCache",
+      "boxes": [
+        {
+          "name": "Waterproof rescue case",
+          "center": [
+            0,
+            0.3,
+            0
+          ],
+          "size": [
+            1.18,
+            0.6,
+            0.66
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,796 @@
+{
+  "status": "Ignored review staging; not integrated into game",
+  "units": "Unity metres X right/Y up/Z north",
+  "world_origin": [
+    620,
+    0,
+    -220
+  ],
+  "contract_source_sha256": "0e074289e386348ffbdd5797a6c01853c309e6d2294f01530b456b6303e1fedd",
+  "export_helper_sha256": "1e8dca0aad88f90f96efc406d8fb489c080fb9e293b5b20ce4884a784da30fe9",
+  "assets": [
+    {
+      "asset": "IslandTidalCulvert",
+      "triangles": 6220,
+      "meshes": 4,
+      "materials": [
+        "IslandConcrete",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -1.899999976158142,
+          -0.20000000298023224,
+          -0.0
+        ],
+        "max": [
+          1.899999976158142,
+          1.5700000524520874,
+          13.800000190734863
+        ]
+      }
+    },
+    {
+      "asset": "IslandTideIndicator",
+      "triangles": 2108,
+      "meshes": 6,
+      "materials": [
+        "IslandClinic",
+        "IslandGlass",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety",
+        "IslandSignal"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.20999999344348907,
+          0.02499997615814209,
+          -0.19900000095367432
+        ],
+        "max": [
+          0.20999999344348907,
+          1.274999976158142,
+          0.09999999403953552
+        ]
+      }
+    },
+    {
+      "asset": "IslandRefugeClinic",
+      "triangles": 9824,
+      "meshes": 7,
+      "materials": [
+        "IslandClinic",
+        "IslandConcrete",
+        "IslandFabric",
+        "IslandGlass",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -7.0,
+          -0.20000000298023224,
+          -6.060699939727783
+        ],
+        "max": [
+          7.000000476837158,
+          3.6050000190734863,
+          6.0
+        ]
+      }
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "triangles": 1964,
+      "meshes": 3,
+      "materials": [
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -1.75,
+          0.0,
+          -0.8999999761581421
+        ],
+        "max": [
+          1.7500001192092896,
+          2.859999895095825,
+          0.8999999761581421
+        ]
+      }
+    },
+    {
+      "asset": "IslandServiceLatch",
+      "triangles": 1524,
+      "meshes": 3,
+      "materials": [
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSafety"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.30000001192092896,
+          0.02499997615814209,
+          -0.27500003576278687
+        ],
+        "max": [
+          0.30000001192092896,
+          1.475000023841858,
+          0.1550000011920929
+        ]
+      }
+    },
+    {
+      "asset": "IslandFlareCache",
+      "triangles": 2996,
+      "meshes": 5,
+      "materials": [
+        "IslandClinic",
+        "IslandDark",
+        "IslandMetal",
+        "IslandOxide",
+        "IslandSignal"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.6000000238418579,
+          -0.029999999329447746,
+          -0.39000001549720764
+        ],
+        "max": [
+          0.6000000238418579,
+          0.8539999723434448,
+          0.3449999988079071
+        ]
+      }
+    },
+    {
+      "asset": "IslandSignalFlare",
+      "triangles": 1124,
+      "meshes": 4,
+      "materials": [
+        "IslandClinic",
+        "IslandDark",
+        "IslandMetal",
+        "IslandSignal"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.054999999701976776,
+          0.0,
+          -0.054999999701976776
+        ],
+        "max": [
+          0.054999999701976776,
+          0.5080000162124634,
+          0.054999999701976776
+        ]
+      }
+    },
+    {
+      "asset": "IslandFlareMount",
+      "triangles": 1364,
+      "meshes": 3,
+      "materials": [
+        "IslandDark",
+        "IslandMetal",
+        "IslandOxide"
+      ],
+      "unity_bounds_metres": {
+        "min": [
+          -0.2849999666213989,
+          0.005000000819563866,
+          -0.4497114419937134
+        ],
+        "max": [
+          0.5099999904632568,
+          1.0,
+          0.4497114419937134
+        ]
+      }
+    }
+  ],
+  "collision_recipe": {
+    "IslandTidalCulvert": [
+      {
+        "name": "Continuous flush culvert footing",
+        "center": [
+          0,
+          -0.1,
+          6.9
+        ],
+        "size": [
+          3.8,
+          0.2,
+          13.8
+        ]
+      },
+      {
+        "name": "Culvert west wall",
+        "center": [
+          -0.82,
+          0.6,
+          6.9
+        ],
+        "size": [
+          0.24,
+          1.2,
+          13.8
+        ]
+      },
+      {
+        "name": "Culvert east wall entry",
+        "center": [
+          0.82,
+          0.6,
+          2.65
+        ],
+        "size": [
+          0.24,
+          1.2,
+          5.3
+        ]
+      },
+      {
+        "name": "Culvert east wall exit",
+        "center": [
+          0.82,
+          0.6,
+          10.4
+        ],
+        "size": [
+          0.24,
+          1.2,
+          6.8
+        ]
+      },
+      {
+        "name": "Covered low corridor roof",
+        "center": [
+          0,
+          1.32,
+          6.9
+        ],
+        "size": [
+          1.9,
+          0.24,
+          12
+        ]
+      },
+      {
+        "name": "Dry refuge bay east wall",
+        "center": [
+          1.72,
+          0.6,
+          6.15
+        ],
+        "size": [
+          0.2,
+          1.2,
+          1.9
+        ]
+      },
+      {
+        "name": "Dry refuge bay south wall",
+        "center": [
+          1.23,
+          0.6,
+          5.25
+        ],
+        "size": [
+          1.18,
+          1.2,
+          0.2
+        ]
+      },
+      {
+        "name": "Dry refuge bay north wall",
+        "center": [
+          1.23,
+          0.6,
+          7.05
+        ],
+        "size": [
+          1.18,
+          1.2,
+          0.2
+        ]
+      },
+      {
+        "name": "Dry refuge bay roof",
+        "center": [
+          1.22,
+          1.32,
+          6.15
+        ],
+        "size": [
+          1.24,
+          0.24,
+          2.0
+        ]
+      }
+    ],
+    "IslandTideIndicator": [
+      {
+        "name": "Float gauge wall bracket",
+        "center": [
+          0,
+          0.65,
+          0.04
+        ],
+        "size": [
+          0.42,
+          1.25,
+          0.12
+        ]
+      }
+    ],
+    "IslandRefugeClinic": [
+      {
+        "name": "Clinic floor",
+        "center": [
+          0,
+          -0.1,
+          0
+        ],
+        "size": [
+          14,
+          0.2,
+          12
+        ]
+      },
+      {
+        "name": "Clinic west wall",
+        "center": [
+          -6.9,
+          1.65,
+          0
+        ],
+        "size": [
+          0.2,
+          3.3,
+          12
+        ]
+      },
+      {
+        "name": "Clinic east wall",
+        "center": [
+          6.9,
+          1.65,
+          0
+        ],
+        "size": [
+          0.2,
+          3.3,
+          12
+        ]
+      },
+      {
+        "name": "Clinic rear wall",
+        "center": [
+          0,
+          1.65,
+          5.9
+        ],
+        "size": [
+          14,
+          3.3,
+          0.2
+        ]
+      },
+      {
+        "name": "Clinic front west",
+        "center": [
+          -4.15,
+          1.65,
+          -5.9
+        ],
+        "size": [
+          5.7,
+          3.3,
+          0.2
+        ]
+      },
+      {
+        "name": "Clinic front east",
+        "center": [
+          4.15,
+          1.65,
+          -5.9
+        ],
+        "size": [
+          5.7,
+          3.3,
+          0.2
+        ]
+      },
+      {
+        "name": "Clinic entrance lintel",
+        "center": [
+          0,
+          2.98,
+          -5.9
+        ],
+        "size": [
+          2.6,
+          0.64,
+          0.2
+        ]
+      },
+      {
+        "name": "Clinic west roof",
+        "center": [
+          -4.35,
+          3.43,
+          0
+        ],
+        "size": [
+          5.3,
+          0.26,
+          12
+        ]
+      },
+      {
+        "name": "Clinic east roof",
+        "center": [
+          4.35,
+          3.43,
+          0
+        ],
+        "size": [
+          5.3,
+          0.26,
+          12
+        ]
+      },
+      {
+        "name": "Treatment bed underframe",
+        "center": [
+          -4.8,
+          0.4,
+          3.6
+        ],
+        "size": [
+          2.0,
+          0.25,
+          2.7
+        ]
+      },
+      {
+        "name": "Treatment bed underframe",
+        "center": [
+          4.8,
+          0.4,
+          3.6
+        ],
+        "size": [
+          2.0,
+          0.25,
+          2.7
+        ]
+      },
+      {
+        "name": "Supply cabinet",
+        "center": [
+          -5.85,
+          0.85,
+          -2.7
+        ],
+        "size": [
+          1.3,
+          1.7,
+          0.65
+        ]
+      },
+      {
+        "name": "Clinic handwash plinth",
+        "center": [
+          5.9,
+          0.46,
+          -3
+        ],
+        "size": [
+          1.3,
+          0.92,
+          0.7
+        ]
+      }
+    ],
+    "IslandHandoffGate": [
+      {
+        "name": "Handoff steel upright",
+        "center": [
+          -1.65,
+          1.32,
+          0
+        ],
+        "size": [
+          0.2,
+          2.64,
+          0.28
+        ]
+      },
+      {
+        "name": "Handoff steel upright",
+        "center": [
+          1.65,
+          1.32,
+          0
+        ],
+        "size": [
+          0.2,
+          2.64,
+          0.28
+        ]
+      },
+      {
+        "name": "Handoff overhead beam",
+        "center": [
+          0,
+          2.75,
+          0
+        ],
+        "size": [
+          3.5,
+          0.22,
+          0.28
+        ]
+      }
+    ],
+    "IslandServiceLatch": [
+      {
+        "name": "Mechanical latch backplate",
+        "center": [
+          0,
+          0.75,
+          0.03
+        ],
+        "size": [
+          0.6,
+          1.45,
+          0.12
+        ]
+      }
+    ],
+    "IslandFlareCache": [
+      {
+        "name": "Waterproof rescue case",
+        "center": [
+          0,
+          0.3,
+          0
+        ],
+        "size": [
+          1.18,
+          0.6,
+          0.66
+        ]
+      }
+    ]
+  },
+  "interaction_anchors": {
+    "IslandTidalCulvert": {
+      "Entry": [
+        0,
+        0,
+        0
+      ],
+      "Exit": [
+        0,
+        0,
+        13.8
+      ],
+      "SafeAlcove": [
+        1.2,
+        0,
+        6.15
+      ],
+      "TideGate": [
+        0,
+        0.55,
+        5
+      ],
+      "Indicator": [
+        0,
+        1.2,
+        0.8
+      ]
+    },
+    "IslandTideIndicator": {
+      "Front": [
+        0,
+        0.65,
+        -0.22
+      ]
+    },
+    "IslandRefugeClinic": {
+      "Door": [
+        0,
+        0,
+        -6
+      ],
+      "Approach": [
+        0,
+        0,
+        -9
+      ],
+      "TravelerSafe1": [
+        -3,
+        0,
+        -1
+      ],
+      "TravelerSafe2": [
+        0,
+        0,
+        -1
+      ],
+      "TravelerSafe3": [
+        3,
+        0,
+        -1
+      ]
+    },
+    "IslandHandoffGate": {
+      "Crossing": [
+        0,
+        0,
+        0
+      ],
+      "Front": [
+        0,
+        0,
+        -1
+      ],
+      "Rear": [
+        0,
+        0,
+        1
+      ]
+    },
+    "IslandServiceLatch": {
+      "Grip": [
+        0,
+        0.88,
+        -0.28
+      ]
+    },
+    "IslandFlareCache": {
+      "PickupGrip": [
+        0,
+        0.82,
+        0
+      ],
+      "Front": [
+        0,
+        0.5,
+        -0.42
+      ]
+    },
+    "IslandSignalFlare": {
+      "Grip": [
+        0,
+        0.08,
+        0
+      ],
+      "Emission": [
+        0,
+        0.44,
+        0
+      ]
+    },
+    "IslandFlareMount": {
+      "FlareSocket": [
+        0,
+        1.0,
+        0
+      ]
+    }
+  },
+  "navigation_clearances": {
+    "IslandTidalCulvert": {
+      "human_passage": false,
+      "blob_passage": true,
+      "clear_width": 1.4,
+      "clear_height": 1.2,
+      "covered_length": 12,
+      "outer_length": 13.8,
+      "max_apron_step": 0.018,
+      "lane_x": [
+        -0.7,
+        0.7
+      ],
+      "lane_y": [
+        0,
+        1.2
+      ],
+      "lane_z": [
+        0.9,
+        12.9
+      ]
+    },
+    "IslandTideIndicator": {
+      "mount": "outside culvert clear lane",
+      "no_navigation_role": true
+    },
+    "IslandRefugeClinic": {
+      "door_width": 2.6,
+      "door_height": 2.6,
+      "primary_aisle_width": 3.2,
+      "primary_aisle_x": [
+        -1.6,
+        1.6
+      ],
+      "survivor_clear_radius": 1.2,
+      "survivor_slots": [
+        [
+          -3,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1
+        ],
+        [
+          3,
+          0,
+          -1
+        ]
+      ],
+      "front": "-Z",
+      "roof_clear_height": 3.3
+    },
+    "IslandHandoffGate": {
+      "total_width": 3.5,
+      "clear_width": 3.1,
+      "clear_height": 2.64,
+      "depth": 2,
+      "human_passage": true,
+      "front": "-Z",
+      "no_console": true
+    },
+    "IslandServiceLatch": {
+      "front": "-Z",
+      "interaction": "immediate mechanical latch; no held console",
+      "floor_footprint": [
+        0.6,
+        0.6
+      ]
+    },
+    "IslandFlareCache": {
+      "reserved_space": [
+        4,
+        4
+      ],
+      "pickup": "human; carrier ownership remains gameplay state"
+    },
+    "IslandSignalFlare": {
+      "inert_until": "protected departure after all boarding gates pass",
+      "carry_axis": "+Y"
+    },
+    "IslandFlareMount": {
+      "maximum_radius": 0.51,
+      "reserved_anchor": [
+        32,
+        0.15,
+        37
+      ],
+      "main_jetty_lane_center_x": 34,
+      "no_console": true
+    }
+  },
+  "ferry_policy": "Reuse verified Resources/Riverside/RiversideFerry at contract origins/yaws; no new moving-platform mechanics",
+  "texture_channels": {
+    "A": "sRGB albedo",
+    "N": "linear tangent normal",
+    "M": "linear RGB metallic / alpha smoothness"
+  }
+}

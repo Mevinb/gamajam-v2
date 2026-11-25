@@ -1,0 +1,168 @@
+{
+  "status": "Ignored staging only; no gameplay integration or Unity navigation validation",
+  "coordinate_contract": "Logs/island-layout-contract.json",
+  "coordinate_contract_sha256": "0e074289e386348ffbdd5797a6c01853c309e6d2294f01530b456b6303e1fedd",
+  "placements": [
+    {
+      "asset": "IslandTidalCulvert",
+      "local_origin": [
+        -26,
+        0.15,
+        -30
+      ],
+      "world_origin": [
+        594,
+        0.15,
+        -250
+      ],
+      "yaw_degrees": 0
+    },
+    {
+      "asset": "IslandTideIndicator",
+      "local_origin": [
+        -26,
+        1.35,
+        -29.2
+      ],
+      "world_origin": [
+        594,
+        1.35,
+        -249.2
+      ],
+      "yaw_degrees": 0,
+      "note": "Portal-header warning gauge; outside1.2m clear tunnel height, front-Z"
+    },
+    {
+      "asset": "IslandRefugeClinic",
+      "local_origin": [
+        -20,
+        0.15,
+        8
+      ],
+      "world_origin": [
+        600,
+        0.15,
+        -212
+      ],
+      "yaw_degrees": 0
+    },
+    {
+      "asset": "IslandServiceLatch",
+      "local_origin": [
+        -9.4,
+        0.15,
+        -21.2
+      ],
+      "world_origin": [
+        610.6,
+        0.15,
+        -241.2
+      ],
+      "yaw_degrees": 0
+    },
+    {
+      "asset": "IslandFlareCache",
+      "local_origin": [
+        18,
+        0.15,
+        18
+      ],
+      "world_origin": [
+        638,
+        0.15,
+        -202
+      ],
+      "yaw_degrees": 0
+    },
+    {
+      "asset": "IslandFlareMount",
+      "local_origin": [
+        32,
+        0.15,
+        37
+      ],
+      "world_origin": [
+        652,
+        0.15,
+        -183
+      ],
+      "yaw_degrees": 0
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "local_origin": [
+        17,
+        0.15,
+        8
+      ],
+      "world_origin": [
+        637,
+        0.15,
+        -212
+      ],
+      "yaw_degrees": 0,
+      "gate_id": 1
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "local_origin": [
+        27,
+        0.15,
+        13
+      ],
+      "world_origin": [
+        647,
+        0.15,
+        -207
+      ],
+      "yaw_degrees": 0,
+      "gate_id": 2
+    },
+    {
+      "asset": "IslandHandoffGate",
+      "local_origin": [
+        34,
+        0.15,
+        22
+      ],
+      "world_origin": [
+        654,
+        0.15,
+        -198
+      ],
+      "yaw_degrees": 0,
+      "gate_id": 3
+    },
+    {
+      "asset": "Resources/Riverside/RiversideFerry",
+      "local_origin": [
+        -36,
+        0.15,
+        -46
+      ],
+      "world_origin": [
+        584,
+        0.15,
+        -266
+      ],
+      "yaw_degrees": 0,
+      "reuse": true
+    },
+    {
+      "asset": "Resources/Riverside/RiversideFerry",
+      "local_origin": [
+        34,
+        0.15,
+        47
+      ],
+      "world_origin": [
+        654,
+        0.15,
+        -173
+      ],
+      "yaw_degrees": 180,
+      "reuse": true
+    }
+  ],
+  "carried_item": "IslandSignalFlare uses human hand/flare mount attachment; no fixed world spawn outside approved cache"
+}

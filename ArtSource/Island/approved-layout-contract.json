@@ -1,0 +1,283 @@
+{
+  "status": "root-approved first-slice geometry; ignored staging only; not implemented or live",
+  "coordinates": "Unity metres, local X east, Y up, Z north; all listed anchors are local to island origin",
+  "world_origin": [
+    620,
+    0,
+    -220
+  ],
+  "walkable_floor_y": 0.15,
+  "water_y": -0.3,
+  "land_bounds_xz": [
+    -52,
+    52,
+    -38,
+    40
+  ],
+  "navigation": {
+    "human_radius": 0.3,
+    "human_height": 1.8,
+    "blob_radius": 0.32,
+    "blob_height": 0.64,
+    "primary_escort_lane_clear_width": 3.0,
+    "service_door_clear_width": 2.4,
+    "service_door_clear_height": 2.6,
+    "clinic_door_clear_width": 2.6,
+    "gangway_clear_width": 1.8,
+    "gangway_slope_degrees": 7,
+    "culvert_inner_width": 1.4,
+    "culvert_inner_height": 1.2,
+    "culvert_clear_length": 12,
+    "culvert_floor_step_max": 0.05,
+    "notes": "Culvert must pass real blob capsule and reject human height; default human-height NavMesh may omit it. Keep optional low-clearance camera allowance; no roof bars intruding into clear cross-section. All other objectives need human PathComplete routes."
+  },
+  "arrival_ferry": {
+    "origin": [
+      -36,
+      0.15,
+      -46
+    ],
+    "yaw_degrees": 0,
+    "reserved_bounds_xz": [
+      -40,
+      -32,
+      -51,
+      -41
+    ],
+    "model": "reuse RiversideFerry, authored front +Z",
+    "deck_top_y": 0.55,
+    "outer_jetty_spawn": [
+      -36,
+      0.15,
+      -38
+    ],
+    "gangway_center": [
+      -36,
+      0.35,
+      -40
+    ],
+    "gangway_length": 4.6
+  },
+  "quarantine_wall": {
+    "x_range": [
+      -53,
+      53
+    ],
+    "center_z": -18,
+    "thickness": 0.4,
+    "top_y": 3.75,
+    "culvert_opening_center_x": -26,
+    "service_gate_center": [
+      -7,
+      0.15,
+      -18
+    ],
+    "service_latch": [
+      -9.4,
+      0.15,
+      -21.2
+    ],
+    "service_latch_front": "negative Z",
+    "service_latch_role": "Maintenance; immediate physical action, no held console",
+    "maintenance_host_spawn": [
+      -13,
+      0.15,
+      -30
+    ],
+    "end_wings": "Visible fence/wall wings extend1m beyond the \u00b152m walkable shore, meeting water and preventing side bypasses without invisible gates."
+  },
+  "culvert": {
+    "entry": [
+      -26,
+      0.15,
+      -30
+    ],
+    "exit": [
+      -26,
+      0.15,
+      -16.2
+    ],
+    "reserved_bounds_xz": [
+      -28,
+      -24,
+      -30,
+      -16
+    ],
+    "floor_y": 0.15,
+    "ceiling_y": 1.35,
+    "forward": "+Z",
+    "safe_alcove": [
+      -24.8,
+      0.15,
+      -23.85
+    ],
+    "timed_gate_center_z": -25,
+    "visual_timing": "open 6s, rising-water warning 2s, closed pulse 4s; no invisible instant failure",
+    "outer_length": 13.8,
+    "covered_clear_length": 12.0,
+    "portal_apron_length": 0.9,
+    "safe_alcove_policy": "Initial retry is entry. Arm this sheltered bay point only after the actual owned blob physically visits its clear interior; never warp through the unpassed gate."
+  },
+  "safe_inner_refuge": [
+    -18,
+    0.15,
+    -8
+  ],
+  "clinic": {
+    "center": [
+      -20,
+      0.15,
+      8
+    ],
+    "reserved_bounds_xz": [
+      -27,
+      -13,
+      2,
+      14
+    ],
+    "front": "negative Z",
+    "door_center": [
+      -20,
+      0.15,
+      2
+    ],
+    "safe_approach": [
+      -20,
+      0.15,
+      -1
+    ],
+    "traveler_safe_slots": [
+      [
+        -23,
+        0.15,
+        7
+      ],
+      [
+        -20,
+        0.15,
+        7
+      ],
+      [
+        -17,
+        0.15,
+        7
+      ]
+    ]
+  },
+  "holding_court": {
+    "reserved_bounds_xz": [
+      7,
+      24,
+      -11,
+      3
+    ],
+    "center": [
+      14,
+      0.15,
+      -4
+    ],
+    "moving_escort_cover_anchors": [
+      [
+        8,
+        0.15,
+        -5
+      ],
+      [
+        2,
+        0.15,
+        0
+      ],
+      [
+        -6,
+        0.15,
+        0
+      ],
+      [
+        -15,
+        0.15,
+        1
+      ]
+    ],
+    "notes": "Three adult survivors; do not require child/injured-body art. Cover shelters must retain primary lane width and visibility cues. Gameplay gate and actors remain separate from visual export."
+  },
+  "courier_handoff_gates": {
+    "centers": [
+      [
+        17,
+        0.15,
+        8
+      ],
+      [
+        27,
+        0.15,
+        13
+      ],
+      [
+        34,
+        0.15,
+        22
+      ]
+    ],
+    "each_reserved_width": 3.5,
+    "each_reserved_depth": 2,
+    "visual_front": "negative Z; may be positioned/rotated by code for route",
+    "notes": "Dominion physically steers/releases couriers into handoff lanes. No terminal/held console.",
+    "clear_passage_width": 3.0
+  },
+  "signal_cache": {
+    "anchor": [
+      18,
+      0.15,
+      18
+    ],
+    "reserved_bounds_xz": [
+      16,
+      20,
+      16,
+      20
+    ],
+    "item": "physical flare case / relay marker, human pickup",
+    "flare_mount_at_jetty": [
+      32,
+      0.15,
+      37
+    ],
+    "notes": "Mount before releasing hosts; final boarding is free-amoeba-only. Flare is fired only in protected departure after assembly gates pass."
+  },
+  "rescue_jetty": {
+    "safe_anchor": [
+      34,
+      0.15,
+      35
+    ],
+    "jetty_end_z": 40,
+    "ferry_origin": [
+      34,
+      0.15,
+      47
+    ],
+    "ferry_yaw_degrees": 180,
+    "ferry_reserved_bounds_xz": [
+      30,
+      38,
+      42,
+      52
+    ],
+    "ferry_front": "negative Z after proper Y rotation, never negative scale",
+    "gangway_center": [
+      34,
+      0.35,
+      41.8
+    ],
+    "gangway_length": 3.6,
+    "gangway_x_rotation_degrees": -7,
+    "notes": "Keep ferry static during interactive boarding; no animated platform NavMesh. Travelers and all surviving free amoebae assemble on physical footing before protected departure."
+  },
+  "export": {
+    "origin_policy": "prefab-local metre origins; runtime places assets at this contract's anchors",
+    "materials": "reuse original Cinematics/Riverside PBR maps; named slots mapped by runtime",
+    "axes": "preserve Blender native authoring coordinates; apply verified export-only world-Y reflection with corrected winding for Unity; no runtime negative scale",
+    "publish_policy": "ignored staging only, editable packed sources and atomic FBX/PNG publish after root review",
+    "collision_policy": "visual export has no automatic mesh colliders; gameplay data owns tested simple physical footing, walls, openings and trigger volumes"
+  }
+}
