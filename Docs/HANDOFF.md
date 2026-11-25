@@ -11,6 +11,11 @@ The full request remains **in progress**. Evidence applies to its named source o
   entire existing rendered user-preview tree remain unchanged. Runtime SHA begins `0435dd5e`; see
   [candidate proof](verification/0.6.0-candidate-20261126.json). Native acceptance is pending; no second graphical player was
   launched. The reviewed exact-session guard allowed this Null build while the user continued the separate0.5.1playtest.
+- **Active native0.6logic run:** root session98029, supervisor PID76279, child PID76281 at the recorded observation; exact
+  cases08/25/26/27 with `-batchmode -nographics`, nice10 and isolated absolute configuration/cache paths. Outputs are
+  `Logs/harbor-native-0.6-selected/{execution.json,player.log,report.txt}`. The child was confirmed live after launch. Inspect
+  that process/session and final native exit/report before repeating it or claiming a pass. Source/assets are held stable
+  until its integrity checks finish. This is a separate headless player; the user's rendered0.5.1 PID51569 remains open.
 - **Active harbor expansion:** missions 21–23, runtime district and acceptance fixtures are in the working tree; the verified
   nine-model art checkpoint is pushed as `ffcc920`. Source **0.6.0-preview** compiles 162/31/162. Continuation, pressure recovery,
   initial full Peace/Dominion, actual cargo recovery red/green and arrival cancellation red/green pass their named Null Editor
