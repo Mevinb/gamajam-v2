@@ -6,6 +6,25 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Exact0.6.1 native90 passes:** root69063/native0/supervisor0/chunk290c66; case839.0s/elapsed844.145s,
+  exactly PASS90/SUMMARY1/1, actual Null/nice10, no signal/watchdog/cancellation and all seven before/after integrity
+  checks pass. User preview/full candidate/source unchanged. [Exact proof](verification/0.6.1-native-peace-20261126.json).
+- **Native91 and one isolated import are active:** root89789/supervisor111828/player111852 runs only91 on the same1333/dc5
+  candidate, fresh `Logs/native-shore-061-91-overlap`, with no final result yet. All seven initial checks pass. Its reviewed
+  supervisor `run-native91-with-northline-editor.py` (SHA00660ecb…) allows only actually observed Null Editor106526/start2538693
+  in `/home/mevlec/.local/share/parasite-work/northline`, nice15/idle I/O/two job workers/own XDG directories, using the unchanged
+  Tools/unity.sh/global flock. Exact immutable policy is `Logs/native-shore-continuity-stage/observed-northline-prepare-20261126a.json`
+  (SHA0885b971…). Unregistered workers or replacement Editors fail closed. **No new Editor invocation until91 is terminal**;
+  the one existing import may finish without affecting91. Never change these in-flight scripts/policy or base Assets/Packages/
+  ProjectSettings/launchers. Check both actual sessions/processes; no restart on observation timeout. User51569 remains open.
+- **Northline is applied only in an isolated worktree:** `/home/mevlec/.local/share/parasite-work/northline`, branch
+  `codex/northline-runtime` at623c47a. The complete3356-file689MB baseline matched actualdc5; no ignored Assets or bulk Library/
+  Logs/Builds were copied. Three patches apply there only (41paths/18unique new GUIDs), actual API175/33/175 plus three NUnit
+  classes pass. Baseline integrated snapshotc71a41af…; actual import may now generate its owned Resources namespace.
+  Root39401/timeout106459/Editor106526 is running `northline_prepare_20261126a` only, via wrapper with Null/two workers/
+  nice15/idle I/O,1800s timeout. Receipt target is that worktree's `Logs/northline-prepare-20261126a.json`; preparation/import
+  result is still unproven. Next after91 and Prepare are terminal: actual VerifyImportBatch, then13selection/7mechanics/
+  2binding cases serially in that checkout. Native0.6.1 proof never transfers to this26 source; merge/build only after review.
 - **0.6.1 private build ready; native90 active:** candidate `Builds/Candidates/full-story-20261125T222359513713Z-2389d119`,
   runtime `13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f`, BUILD_INFO
   `fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b`. Root74129/native0/chunk0c2135;1,118MB,
