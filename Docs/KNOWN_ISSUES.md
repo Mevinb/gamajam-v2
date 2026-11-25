@@ -8,6 +8,9 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - Humans use skinned Blender/MakeHuman models and authored/retargeted humanoid animations. Skin, hair, facial acting and some
   environment geometry remain stylized; further realism work is still possible.
 - Dialogue voices are synthesized. They are not recordings of human actors; captions remain available.
+- The current island preview has four new arrival/refuge spoken lines without shipped voice clips; captions still appear.
+  Eight missing lines across the complete island arc are inventoried under `Logs/island-voice-audit`. Local generation is
+  prepared but has not run or been published. Arrival/departure cue timing must be checked against the generated durations.
 - The player includes two three-second RTX-rendered establishing inserts and Blender-designed live sets. The complete 80-second
   Blender opening and branching lake films are authored separately and still require production rendering and runtime integration.
   `TEST_REPORT.md` records actual-player checks for the current inserts and riverside chapter.

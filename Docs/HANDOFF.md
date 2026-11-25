@@ -4,14 +4,15 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb**. This supersedes the old eight-mission scope freeze and local-only capture session.
 The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Never present historical tests as verification of a new build.
 
-## User playtest active
+## User playtest build retained
 
-The user requested the current work be built and launched. `0.5.0-preview` is running on native `DISPLAY=:0`
+The user requested the current work be built and launched. `0.5.0-preview` was launched on native `DISPLAY=:0`
 (PID 2531989 at launch; check the actual process). It is the live M18/full-lake working tree, not the retained 0.4.2 archive.
 The build succeeded at 1,007 MB with zero errors/warnings; `Logs/user-playtest/build-info.json` and `source-snapshot.json`
 pin this uncommitted preview. Player log: `Logs/user-playtest/player.log`. Full lake movies and the island entry mission
 are included; M19/M20 remain in ignored staging. Do not overwrite Builds/Linux while this player is running.
-The RTX render is safely stopped at opening frame 65; keep it stopped during the user's playtest. This stops the renderer,
+The preview has since exited normally with code 0 (recorded in `Logs/user-playtest/session.json`).
+The RTX render is safely stopped at opening frame 65; automated checks may now use the GPU. This stops the renderer,
 not the overall active development goal. Resume only after the user has finished or clearly requests it.
 
 Post-build CPU-only work has advanced the live source beyond that immutable preview: corrected M19/M20 v2 is applied
@@ -20,7 +21,13 @@ compilation passes 137/22/137 sources. No Unity, player or GPU execution is clai
 ownership harness improves from 3/9 on v1 to 9/9 on v2 using stand-ins; real motion/capture/recovery/boarding fixtures remain
 required. The current preview still contains only M18 and the full lake films. Do not overwrite its running binary.
 The four lake films and island art kit are committed; the new island runtime/camera/visual work remains uncommitted until
-its remaining execution gates pass. User playtest details are under `Logs/user-playtest/`.
+its remaining execution gates pass.
+The first live Peace rescue test ran and failed on a physical leg at local `(9.97,-7.30)` toward `(17,-9.50)`;
+`Logs/island-rescue-peace-logic.xml` records the exact failure. Authoritative M19/M20 v2 is in the live working tree,
+not yet verified by Unity/player execution. The campaign agent owns diagnosis of that movement failure. The probe matrix
+passed its diagnostic: quality-off never completed; quality-on completed with six real face/mip proofs. Runtime quality
+policy changes remain staged until review/execution. Eight audited island voice candidates were generated offline on CPU;
+arrival/departure timing gates failed because clips exceed the old cue windows. No candidate audio is published yet. User playtest details are under `Logs/user-playtest/`.
 
 ## Active cinematic production — 25 November 2026
 
