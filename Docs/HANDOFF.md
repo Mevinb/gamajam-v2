@@ -6,6 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Northline movement blocker is now directly measured:** diagnostic-only source2ac79341…, root25143/native2/chunke39a00,
+  one Dominion FAIL37.990s. The first Crossing walk stops at local(-22.650,.180,-34), unchanged20.742s budget/callbackfalse.
+  Actual full-body cast hits the south maintenance worker's capsule.03002m ahead; same free body/controller (.32radius/
+  .64height), grounded+side contact, zero velocity, Playing/simulated/unlocked and no ownership transfer. This supersedes
+  the unproven wall-only hypothesis. [Actual collision](verification/northline-approach-capsule-red-20261126.json).
+  Rail agent is preparing a bounded physical sidestep in WORK RailAcceptance only, same target/deadline/collision rules;
+  no NPC relocation/AI parking/warping. Editor119497 is gone. No behavioral rerun yet.
+- The0.6.1archive extraction now verifies193files/17dirs/no links or specials in a fresh root-filesystem tree:
+  `/home/mevlec/.local/share/parasite-artifacts/extractions/061-20261125T230520564657Z-5ce965f6/PARASITE-0.6.1-preview-Linux`.
+  Hunter is authorized to run only the extracted native01–05 probe now, with exact identity/Null/nice10/isolated environment/
+  strict integrity and actual exit/SUMMARY receipts. Root must wait for its real terminal result before any Editor launch.
+  No deletion of the extracted tree yet. Source/worktree edits remain editor-free until that probe completes.
 - **First Northline mechanics batch is terminal RED:** root18951/native2/chunkc600e7,225.210s,7NUnit cases:1pass/6fail.
   Continuation rules alone pass15.605s. Every gameplay/lifecycle method fails the shared Walk predicate, "Normal unwarped
   movement reaches original target." Exact physical pose/leg was not logged; first crossing approach past opaque cover is
