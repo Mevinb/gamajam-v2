@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "status": "EDITOR_CONTINUOUS_MAIN_GATE_PEACE_23_MISSIONS_PASS",
+  "recordedUtc": "2026-11-25T22:22:51.668773+00:00",
+  "terminal": {
+    "rootSession": 53314,
+    "chunk": "9aab11",
+    "nativeEditorExit": 0,
+    "scenarioSeconds": 850.1,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Passed",
+      "total": "1",
+      "passed": "1",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 22:07:25Z",
+      "end-time": "2026-11-25 22:21:38Z",
+      "duration": "853.0300414"
+    },
+    "case": [
+      {
+        "id": "1002",
+        "name": "AllAcceptanceScenariosPass",
+        "fullname": "Parasite.Tests.AcceptanceTests.AllAcceptanceScenariosPass",
+        "methodname": "AllAcceptanceScenariosPass",
+        "classname": "Parasite.Tests.AcceptanceTests",
+        "runstate": "Runnable",
+        "seed": "114916194",
+        "result": "Passed",
+        "start-time": "2026-11-25 22:07:25Z",
+        "end-time": "2026-11-25 22:21:38Z",
+        "duration": "852.979441",
+        "asserts": "0"
+      }
+    ]
+  },
+  "sourceCommit": "56a246e777d632c42bf44dac945c6f571129f3ea",
+  "files": [
+    {
+      "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+      "bytes": 114641,
+      "sha256": "5689f81b024ee8c10e2258be9b7cff0fce69ca6bebc6772c455f5a14961a4469"
+    },
+    {
+      "path": "Logs/continuity_north_shore.log",
+      "bytes": 638908,
+      "sha256": "7ff1202ce5dca6ed670caae127f4943df826147b6029356dfbcd2c56c1b72a2b"
+    },
+    {
+      "path": "Logs/continuity-north-shore.xml",
+      "bytes": 138867,
+      "sha256": "80697b102f491d3bc4e414e2baafdac0db49016697fd1b500e1941c34ec41faf"
+    },
+    {
+      "path": "Logs/continuity-north-shore-source-terminal.json",
+      "bytes": 610240,
+      "sha256": "1ad9287a04468b5c78d726f5f21ab35f188cd3dc945168ece40f9ba4248bc04a"
+    }
+  ],
+  "continuityEvidence": [
+    "[Afterlake] PASS Peace \u00b7 lake choice \u2192 summary Continue \u2192 three missions \u2192 checkpoint recovery \u2192 ferry \u2192 branch summary",
+    "[IslandRescue] PASS Peace actual people, signal custody, boarding and protected launch",
+    "[Harbor] CONTINUOUS earned M20 summary carried into the real Continue; no prior flag or summary state prepared at this boundary.",
+    "[Harbor] PASS Peace \u00b7 earned M20 summary \u2192 actual Continue \u2192 pressure \u2192 physical branch cargo \u2192 two free bodies \u2192 real E relay \u2192 summary",
+    "[AutoTest-note] 90 Continuous 23 missions: Main Gate Peace through all three earned chapter continuations :: CONTINUITY SCOPE: original and chapter driver fixtures remain; no inter-chapter LoadCity/NewGame/SeedPriorChapter, prior flag grants, fabricated summary or stat reset.",
+    "[AutoTest] PASS  90 Continuous 23 missions: Main Gate Peace through all three earned chapter continuations  (850.1s)  The same campaign reaches its implemented twenty-three-mission summary through three real Continue buttons."
+  ],
+  "boardingLegs": [
+    "[IslandRescueWalk] BEGIN phase=boarding shore riley length=70.01 budget=101.35 from=(597.70, 0.19, -215.49) target=(654.00, 0.15, -182.00) samples=(597.70, 0.20, -215.49) -> (654.00, 0.20, -182.00) corners=0:(597.700, 0.200, -215.487); 1:(599.000, 0.200, -217.167); 2:(600.000, 0.200, -220.000); 3:(591.000, 0.200, -220.000); 4:(591.000, 0.200, -190.000); 5:(654.000, 0.200, -190.000); 6:(654.000, 0.200, -182.000) plannedVia=4 budgetSource=original-direct-path",
+    "[IslandRescueWalk] END phase=boarding shore riley at=(653.98, 0.19, -182.44) real=58.29 sim=58.29 targetError=0.442",
+    "[IslandRescueWalk] END phase=boarding gangway riley at=(654.00, 0.66, -175.94) real=3.46 sim=3.46 targetError=0.441",
+    "[IslandRescueWalk] BEGIN phase=boarding shore morgan length=69.30 budget=100.40 from=(600.12, 0.19, -214.93) target=(654.00, 0.15, -182.00) samples=(600.12, 0.20, -214.93) -> (654.00, 0.20, -182.00) corners=0:(600.117, 0.200, -214.932); 1:(600.000, 0.200, -220.000); 2:(591.000, 0.200, -220.000); 3:(591.000, 0.200, -190.000); 4:(654.000, 0.200, -190.000); 5:(654.000, 0.200, -182.000) plannedVia=4 budgetSource=original-direct-path",
+    "[IslandRescueWalk] END phase=boarding shore morgan at=(653.98, 0.19, -182.44) real=57.33 sim=57.33 targetError=0.445",
+    "[IslandRescueWalk] END phase=boarding gangway morgan at=(654.00, 0.66, -175.94) real=3.46 sim=3.46 targetError=0.440",
+    "[IslandRescueWalk] BEGIN phase=boarding shore avery length=69.96 budget=101.28 from=(602.76, 0.19, -214.87) target=(654.00, 0.15, -182.00) samples=(602.76, 0.20, -214.87) -> (654.00, 0.20, -182.00) corners=0:(602.757, 0.200, -214.872); 1:(601.000, 0.200, -217.167); 2:(600.000, 0.200, -220.000); 3:(591.000, 0.200, -220.000); 4:(591.000, 0.200, -190.000); 5:(654.000, 0.200, -190.000); 6:(654.000, 0.200, -182.000) plannedVia=4 budgetSource=original-direct-path",
+    "[IslandRescueWalk] END phase=boarding shore avery at=(653.98, 0.19, -182.44) real=58.01 sim=58.01 targetError=0.443",
+    "[IslandRescueWalk] END phase=boarding gangway avery at=(654.00, 0.66, -175.94) real=3.53 sim=3.53 targetError=0.445"
+  ],
+  "actualViaArrivals": 12,
+  "limits": [
+    "MainGate/Peace only; ServiceTunnel/Dominion continuous case91 remains pending.",
+    "Actual earned M14\u2192M17\u2192M20\u2192M23 Continue boundaries preserve flags, outcome and counters; existing within-chapter role force, body placement, Calm, checkpoint and timeScale fixtures remain declared.",
+    "This is one selected Null Editor scenario, not the default27 suite or native-player/human/stealth/graphics/performance proof.",
+    "Terminal source snapshot is a reproducibility pin, not an independently recorded full before-snapshot. Tracked source remained clean and the named driver SHA matched at launch and completion.",
+    "No native candidate contains the current driver yet; earlier0435/3894 results are separate."
+  ]
+}

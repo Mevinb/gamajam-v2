@@ -6,11 +6,15 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
-- **Full Peace continuity rerun is active:** root exec53314, timeout101415/Editor101416, source5689 below.
+- **Full Peace continuity rerun passes:** root exec53314, timeout101415/Editor101416, source5689 below.
   `Tools/unity.sh continuity_north_shore -nographics -runTests -testPlatform PlayMode`
   uses exact AcceptanceTests filter, `Logs/continuity-north-shore.xml`, only `-autotestFilter 90` and an owned1800s wrapper.
-  No full-case result yet. Keep live C# frozen and do not start another Editor/Blender/player until this actual process is
-  terminal. Poll its real session/process/log/XML; do not replay it because this note ages. User51569 remains open.
+  Terminal native0/chunk9aab11; one NUnit PASS853.030s, scenario90 PASS850.1s. All three clinic rescues, twelve actual via
+  arrivals, three physical berths, partial boarding reload, island departure and earned M20→M23 harbor summary pass.
+  Both test processes are gone; user51569 remains open. This is only MainGate/Peace Null Editor: case91 and a rebuilt native
+  candidate remain pending. Existing within-chapter role/placement/Calm/checkpoint/timeScale fixtures are declared; no human,
+  stealth, rendered, performance or default27-suite claim. [Exact result](verification/continuous-peace-23-editor-20261126.json).
+  Next: add the small Peace route hint, compile, build a fresh pinned private candidate, then separate native90/91 checks.
 - **Superseded3894 packed data retired, evidence retained:** exact private204952/0c8cccab now lives as code/native/metadata
   evidence under `Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab`, not a runnable candidate.
   Every retired packed payload freshly matched the protected0435 candidate; its full original manifest and copy-based
