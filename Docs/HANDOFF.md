@@ -6,6 +6,14 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Continuous23-mission validation is active:** supervisor91136/player91215, agent exec57403, state
+  `Logs/native-continuity-3894-90-91/execution.json`. The proper rebuilt3894 player runs only opt-in90(MainGatePeace) and
+  91(ServiceTunnelDominion), actual Null/nice10 with isolated absolute user directories and3600s watchdog. All seven
+  source/artifact checks pass at launch; the exact existing user51569/start683333 is the sole coexistence exemption.
+  Source eedd is frozen until this run and its final integrity checks are terminal. Do not start an Editor, Blender, another
+  player or duplicate run, and do not apply Rail/other source changes. Agent `graphics_settings_foundation` owns monitoring.
+  These checks carry earned flags/route/choice/statistics through the actual M14/M17/M20 Continue boundaries, but existing
+  within-chapter role-force/position/calm/timeScale fixtures remain. No human/stealth/graphics or continuous-pass claim yet.
 - **New private verification player:** `Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab`, still version0.6.0-preview,
   runtime `3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3`, BUILD_INFO SHA
   `5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8`. Build0/zero errors or warnings/1,118MB,
