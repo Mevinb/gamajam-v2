@@ -11,7 +11,7 @@ Small intentional review images are still produced separately by the authoring t
 Run from the project root, only after root explicitly releases the GPU:
 
 ```bash
-~/Data/Blender/current/blender -b ArtSource/FullCinematics/Opening/OpeningFull.blend -t 2 \
+~/Data/Blender/current/blender -b ArtSource/FullCinematics/Opening/OpeningFull.blend -t 2 --python-exit-code 1 \
   --python Tools/blender/cinematics/full_story/render_story.py -- \
   --gpu-released --start 1 --end 24 --samples 48 \
   --out Logs/full-cinematic-renders/opening-pilot
@@ -25,7 +25,7 @@ sample limit. A source must preserve its 24 fps timing and pack its file images.
 A small CPU probe is available after the isolated benchmark window ends:
 
 ```bash
-~/Data/Blender/current/blender -b ArtSource/FullCinematics/Opening/OpeningFull.blend -t 2 \
+~/Data/Blender/current/blender -b ArtSource/FullCinematics/Opening/OpeningFull.blend -t 2 --python-exit-code 1 \
   --python Tools/blender/cinematics/full_story/render_story.py -- \
   --cpu-preview --start 120 --end 121 --samples 8 \
   --out Logs/full-cinematic-renders/camera-cut-cpu-probe

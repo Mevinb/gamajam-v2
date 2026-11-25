@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "created_utc": "2026-11-24T23:36:26.060088+00:00",
+  "created_utc": "2026-11-25T00:29:13.316840+00:00",
   "publication_state": "full_story_authoring_sources",
   "final_movies_rendered": false,
   "manifest_path": "ArtSource/FullCinematics/source-publication-manifest.json",
   "pathspec_path": "ArtSource/FullCinematics/source-publication.paths",
-  "opening_source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+  "opening_source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
   "driver_smoke_source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
   "excluded_categories": [
     "authoring logs",
@@ -14,9 +14,9 @@
     "render caches",
     "Python bytecode"
   ],
-  "total_bytes": 205953299,
-  "largest_file_bytes": 57026794,
-  "file_count": 81,
+  "total_bytes": 206722113,
+  "largest_file_bytes": 57040716,
+  "file_count": 91,
   "files": [
     {
       "path": "ArtSource/FullCinematics/Lake/DELIVERY.md",
@@ -27,32 +27,32 @@
     {
       "path": "ArtSource/FullCinematics/Lake/Lake_Arrival.blend",
       "category": "packed_scene_or_motion_library",
-      "bytes": 32343483,
-      "sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9"
+      "bytes": 32298898,
+      "sha256": "ec46ac1534d2edd752de2677825999bd7a6c9926a9a49a7fd91c3c6e7fd10d37"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/Lake_Dominion.blend",
       "category": "packed_scene_or_motion_library",
-      "bytes": 32414168,
-      "sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c"
+      "bytes": 32471345,
+      "sha256": "2e335ff0075b8e7008f03f9ec9c7ee9ed6ec2e8687ed23c580eb711f647601bb"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/Lake_Hold.blend",
       "category": "packed_scene_or_motion_library",
-      "bytes": 32257460,
-      "sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e"
+      "bytes": 32374498,
+      "sha256": "a86bcc0b8cfa7f52c9455e5f29f4fced8a2a2587e9e4fc965e32f395276f0a0e"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/Lake_Peace.blend",
       "category": "packed_scene_or_motion_library",
-      "bytes": 32339451,
-      "sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60"
+      "bytes": 32256969,
+      "sha256": "cc2d3b8c3fed908714397b3ce3976c4bc8396d7c1862eaad00e7f2aae0ccd8f2"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/Lake_Storyboard_CPU.png",
       "category": "intentional_small_review_image",
-      "bytes": 1901828,
-      "sha256": "dfb0c63fa6ac6f5883ebd306d51400d582699973e02502c6af38bf06871d7fa5"
+      "bytes": 1864812,
+      "sha256": "22587d3789eeab9712e72755f43a1cebc6e69113bdb27eed7f256a5afdccbe79"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/PROVENANCE.md",
@@ -63,8 +63,8 @@
     {
       "path": "ArtSource/FullCinematics/Lake/audit.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 3233,
-      "sha256": "7d91c29e3ed9c16072fba3f1871359a7e90cc855ed406e2a480191c6a6ddf552"
+      "bytes": 13387,
+      "sha256": "01c4988d7b855c76a0a45665bc92ecbd36cd4320d9e07d38d11dafa5056e8df6"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/manifest.json",
@@ -75,110 +75,116 @@
     {
       "path": "ArtSource/FullCinematics/Lake/preview_verification.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 689,
-      "sha256": "ae72b46762de39d3c98174010bf1f88818297aa9f8369f9a10f176a8164cd43f"
+      "bytes": 690,
+      "sha256": "c8643200ec949e172fd13e43c7f9b68e3f8a8b532d59f2b2768ae77d2b29f953"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/arrival_0001_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 141087,
-      "sha256": "80cd885306a4a7cbb3ce3eeb0be920e0884191b12aa66c0671ae3ffa3bbf6428"
+      "bytes": 141110,
+      "sha256": "95fc185eb44754e2d418ff947cc641ac0594e239f6715e5bbdbbee73dc52f361"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/arrival_0144_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 198368,
-      "sha256": "a9b240e82aad706d098a606ab7b4ade1690a448ffe4a854320c3bb2ef83abec4"
+      "bytes": 195852,
+      "sha256": "431481849735c9213e2cd0d864e063624c7bd044a8e4b3bc7e7113d2a6f90c53"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/arrival_0264_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 193721,
-      "sha256": "003483049c33067fd499368a162f63cb114c96d2b8c1bac25e439a1ba6d51b73"
+      "bytes": 192192,
+      "sha256": "8d4f56022b5de8b8055b75bfdb8c1e49a52b243aa06dbe12cd027b895ffe6e53"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/arrival_0360_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 195841,
-      "sha256": "59a3428e9a1d919c92be6f63d8f7ffff820e7d2928da8034f49a8daf16840cfe"
+      "bytes": 193772,
+      "sha256": "8bea6b8c2b7a96aa3450e85818c09a042c53eb8c993eea477c1cdf173d313328"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/arrival_evidence.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 995,
-      "sha256": "accca360331ee72f0cb8e0e0c1cc8c792d606426e398193b5994f0561ad94d1f"
+      "bytes": 991,
+      "sha256": "b5de2b76fcb134e4395b480807bbecbc0c3fb65b97f9452d14cb8464178d5985"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/dominion_0048_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 178720,
-      "sha256": "7b2e959fb3b29fb3be43cb86747fdc0f79ab38f5f0edc3e30da9e1291636049d"
+      "bytes": 175190,
+      "sha256": "4d63913295957ba9f087fb6c167a9bdafdc3a4cebd23653d493c145e507887de"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/dominion_0096_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 191864,
-      "sha256": "17fb65d56cd07d01bfe5bbd9a86665b1a421ab239693c92438573edc9af62632"
+      "bytes": 187313,
+      "sha256": "f79cbb60cefea3e6d00113acbb93322072e2ab2bbe98ebfbab1a05c6522b91fc"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/dominion_0168_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 128965,
-      "sha256": "e0e6e3e4cab9dff70817bbee84f73800c6301bd524fe5396114ae1f1225b612c"
+      "bytes": 129085,
+      "sha256": "c16513211f7e87d43444d1de675d72e8fc3aff2e59ca901e25360da45ba0b268"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/dominion_evidence.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 817,
-      "sha256": "fa9c68682f7ca04d4bec4af6f157c97c56c37696f383a4c0a9ae8496d6938096"
+      "bytes": 818,
+      "sha256": "595bd942b39bfa5fe6aa92afd00babfc7093038b55deb273f1cbc873950ffc59"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/hold_0001_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 198229,
-      "sha256": "6cfc46943a976079c21ef5e3edf37b01d2749048c7177b9fadfc94fe9eee9bb6"
+      "bytes": 194060,
+      "sha256": "64456201a19cb1e90de58f0fabe12579578f8c50380ca04818988c1cb0ae687d"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/hold_0073_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 198259,
-      "sha256": "e3bd29f327e628cc6c5afc66c02f2e66023d79595b225e8f19c3346047976140"
+      "bytes": 193918,
+      "sha256": "c66e4f7bc1049c70668cece58e60621b0150468bb7a2ce349ceb4740ac1b408e"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/hold_0144_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 198292,
-      "sha256": "8e5bc0c1e27e0538a0a32725de8c07626e107b867ba30bb7c216bda0b7d0a180"
+      "bytes": 194149,
+      "sha256": "d1741bec93a23a81d90576a5a511d4d41fd48c63b3bb59aa6bda0d18d4064537"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/hold_evidence.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 804,
-      "sha256": "ca7591a32c537469cd8a4269d0cfecef7055e90fa0f843f29ca9c2ba1b7db809"
+      "bytes": 801,
+      "sha256": "d2a264ef589736e77c9f8e625f91e52ec881a759cfd6275a2e574c71b87cec57"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/peace_0040_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 196923,
-      "sha256": "e18ecc642dde755c1e5c63bd6a37eb77c5f26cd913aaa1c68b5da9d66478a695"
+      "bytes": 195499,
+      "sha256": "9bfa03e3f3d4a3eb35183ddd5636b5086f2da57695c3401ed400cb4937de5473"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/peace_0102_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 190430,
-      "sha256": "8a0c0b83693ae9e76127470eb0542cc30c3adaab41139fdc029e47706995effc"
+      "bytes": 187508,
+      "sha256": "924ca8a5483de7b2c4b017745d16ae7ec7783163071c6c6612af2ac7eeceddec"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/peace_0168_cpu.png",
       "category": "intentional_small_review_image",
-      "bytes": 142777,
-      "sha256": "22c7b1cb5d5e7f88b7157e359ac32cfc854fa65648415eaef2ddaddfb3cfa8ad"
+      "bytes": 142673,
+      "sha256": "e01cd5eede0bb519fc42db9fe26bac0b3568a717b8e1d85dd36b7f1058d9a8c3"
     },
     {
       "path": "ArtSource/FullCinematics/Lake/previews/peace_evidence.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 810,
-      "sha256": "6858344b9a53d26f9b9c273d2b6988562197f7480c0b2dabee01787f19534379"
+      "bytes": 806,
+      "sha256": "f2f4ee4b312d94c17a934307a9f9727ee821b29cac83a06afb4ff9dfac11b922"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Lake/rtx-natural-pilot.json",
+      "category": "audit_manifest_or_provenance",
+      "bytes": 5262,
+      "sha256": "0de05e0aca0fd0c9aa04f60edb38c48b6e5b3ce9dd0338c3741dc3d3c4f8b272"
     },
     {
       "path": "ArtSource/FullCinematics/Motion/Actors_story_actions.blend",
@@ -267,68 +273,98 @@
     {
       "path": "ArtSource/FullCinematics/Opening/OpeningFull.blend",
       "category": "packed_scene_or_motion_library",
-      "bytes": 57026794,
-      "sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1"
+      "bytes": 57040716,
+      "sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/Review/01-rhythm.png",
+      "category": "intentional_small_review_image",
+      "bytes": 165626,
+      "sha256": "c15db60011ba3e4b4e9d2a895fafd9c42b51f7e5a6455ce464538a3e474331ae"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/02-petrov.png",
       "category": "intentional_small_review_image",
-      "bytes": 175347,
-      "sha256": "609a0b672a667bdb7c259c342740300645bf558709cb9102dffa906013580b8e"
+      "bytes": 166940,
+      "sha256": "59d119f92cdb102f686d0a166b3ff79c55cc9c551ea1f54bc735554d20eaebc2"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/03-recognition.png",
       "category": "intentional_small_review_image",
-      "bytes": 138672,
-      "sha256": "35d7214f5f467d198498b25933694b1e1d01902f6eb77e24b1da67839f79f32f"
+      "bytes": 135723,
+      "sha256": "5f410eb2ed19390a568687355b6d8fb7500482b22125cf12127a186ab6fc9e3a"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/Review/04-disagreement.png",
+      "category": "intentional_small_review_image",
+      "bytes": 144334,
+      "sha256": "8143147903194c004789a47d7bb2956753650bcd988d21cb1c8a233c389c954e"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/05-two-bodies.png",
       "category": "intentional_small_review_image",
-      "bytes": 169696,
-      "sha256": "4323a9592e71c0052d17e5e3df36d1e6287248aa4a2e12a22ef60fcf3ec92475"
+      "bytes": 158469,
+      "sha256": "49f8ccb723a073922df9abdcbe4dd36f12af15568847da295b52a945afbafe14"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/06-contact-fall.png",
       "category": "intentional_small_review_image",
-      "bytes": 174965,
-      "sha256": "a719941cb28b19aadbab1ee086fd4f74020a3b06532a4aad3552efab6c43edc0"
+      "bytes": 173649,
+      "sha256": "3c26b4dee886118eab70706f52c8abb97d8a31d815a44a91036fb97e40cc8086"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/06-contact.png",
       "category": "intentional_small_review_image",
-      "bytes": 179769,
-      "sha256": "34da97db733054e5bee9b9ba21f69e7fb17a58aaa6b3a8214b79296222d5053a"
+      "bytes": 173793,
+      "sha256": "822428b644e932677c4f1062d90ff1067b0008caa11fad5bdf8e2edbcf763c1d"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/Review/07-restraint.png",
+      "category": "intentional_small_review_image",
+      "bytes": 160408,
+      "sha256": "9bb7ea29aa1100c3cec635090d85c82019591792aa81753e799d765362790c95"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/08-interlock-escape.png",
       "category": "intentional_small_review_image",
-      "bytes": 173945,
-      "sha256": "a7474cba5f84d7c22bbdef16208a414f155257d1ed28e835b93bc989dcc8f8c7"
+      "bytes": 172040,
+      "sha256": "36dadc65a0ba1047135c2aa47e9de3161df8b24f69ed61c446956f95fead3fdd"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/08-interlock.png",
       "category": "intentional_small_review_image",
-      "bytes": 161095,
-      "sha256": "010dcbef15a3429da9994e912a7f6497b347e258b8deae88f0f60c181de7b00b"
+      "bytes": 158168,
+      "sha256": "5b77aba5b593ddec86f466d5d992ce3c88318b0392d5332136448b0becc72d2b"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/09-conduit.png",
       "category": "intentional_small_review_image",
-      "bytes": 130294,
-      "sha256": "72e103028fc08481a1b9d15157f66d7aac5417aa0426033b897341169f85b4df"
+      "bytes": 130347,
+      "sha256": "7adb5269c2552a174ad316ef35b85044d84cf9e92c4269b81db6dcbce3d8b8fd"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/Review/10-outside.png",
       "category": "intentional_small_review_image",
-      "bytes": 181215,
-      "sha256": "ff390bc502948da0957cd2362fed486b958115389bb5b684fff601ac72b7e2a9"
+      "bytes": 182671,
+      "sha256": "b7c4379009bb437d030bc54e82094b6b1acc1f761d70310ad4bb260bc3ffe8c0"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/Review/11-next-beat.png",
+      "category": "intentional_small_review_image",
+      "bytes": 180573,
+      "sha256": "8a6cea673703052f4abcf04732385750d2f3723284083a8ee2ab9e8d1d1246f5"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/authoring-audit.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 5714,
-      "sha256": "339a38d15946c6373c9c3dea98b2ff43691b09bfd7a2daa9ab7cae1267d8153d"
+      "bytes": 6950,
+      "sha256": "0966ef08cbeb54aefc424d832497156c7f7015279e0e474c376910cfb5eea40d"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/camera04-revision.json",
+      "category": "audit_manifest_or_provenance",
+      "bytes": 539,
+      "sha256": "b7a97ffd3d1886ef580ce9a2e09ccf0db1a6cd8d4456257c156225964e684d1a"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/opening-captions-review.srt",
@@ -339,14 +375,26 @@
     {
       "path": "ArtSource/FullCinematics/Opening/opening-timeline.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 20766,
-      "sha256": "b86a066cf8b125c09f534bc810df7446c3782f6dda254350beb75efe4e0822e0"
+      "bytes": 66619,
+      "sha256": "755d4cf9e734df953f5c79858ca3e63e8a9cfae942cbe283560eb1a8a6be5947"
     },
     {
       "path": "ArtSource/FullCinematics/Opening/preview-evidence.json",
       "category": "audit_manifest_or_provenance",
-      "bytes": 1538,
-      "sha256": "67bbf9db06783a767ac198212604063e1cbff729e33700c29468258e85b152c8"
+      "bytes": 4003,
+      "sha256": "d57a64e3c8f64bb16437a58722af35420ee49e7725736af14a9602ffc7a029ba"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/rtx-denoise-pilot.json",
+      "category": "audit_manifest_or_provenance",
+      "bytes": 30505,
+      "sha256": "22486fab1f6b40a26f9c4b64f614f48ddb97666436d4af0abf3c1f38fec341e9"
+    },
+    {
+      "path": "ArtSource/FullCinematics/Opening/rtx-pilot-baseline.json",
+      "category": "audit_manifest_or_provenance",
+      "bytes": 40310,
+      "sha256": "13ec0d2cfaa5661deeacca86993d37d948cb4ea0bec233b27fbdbf11426e5b83"
     },
     {
       "path": "ArtSource/FullCinematics/README.md",
@@ -357,8 +405,8 @@
     {
       "path": "ArtSource/FullCinematics/STATUS.md",
       "category": "documentation",
-      "bytes": 3379,
-      "sha256": "21d64d4b8b2c8fd1e013306be9310dc3dc8aac3d1f79a1dce314ccadcaea1174"
+      "bytes": 3924,
+      "sha256": "895df59229bb867e022f10c45d057ff17ec5d78940f20465a99ff93dbc750fb2"
     },
     {
       "path": "ArtSource/FullCinematics/driver-smoke-evidence.json",
@@ -369,14 +417,14 @@
     {
       "path": "Tools/blender/cinematics/full_story/RENDER_DRIVER.md",
       "category": "documentation",
-      "bytes": 4164,
-      "sha256": "90767c411fbb14c20f51efd4a951fb555301af7ae4a8078e1b7a77f20372f9eb"
+      "bytes": 4206,
+      "sha256": "eca07fdc5c8dd51098dda3bdee898935219fcd0f37bec37d86cd73ef7be277dc"
     },
     {
       "path": "Tools/blender/cinematics/full_story/audit_opening.py",
       "category": "authoring_or_verification_module",
-      "bytes": 5633,
-      "sha256": "34f5c342133e28dff4d4badf0f64f61b82028e0060aa41d304800b920151f5df"
+      "bytes": 8376,
+      "sha256": "f7e30acf7b5f7670229bcb1a5ac93121155c1202737d759e493bcb5e75c30639"
     },
     {
       "path": "Tools/blender/cinematics/full_story/build_opening.sh",
@@ -387,8 +435,8 @@
     {
       "path": "Tools/blender/cinematics/full_story/common.py",
       "category": "authoring_or_verification_module",
-      "bytes": 15941,
-      "sha256": "ecc55c384afa682d811128d986f8cb2094967d0d88d7744077c98ce191ca0512"
+      "bytes": 17150,
+      "sha256": "a13b43d63e24a9e1425e19057c1c020317d9e43f7301e8a20007aa0b8a36ea8c"
     },
     {
       "path": "Tools/blender/cinematics/full_story/export_captions.py",
@@ -405,14 +453,20 @@
     {
       "path": "Tools/blender/cinematics/full_story/lake_story/author_lake.py",
       "category": "authoring_or_verification_module",
-      "bytes": 31080,
-      "sha256": "cc964d1e7b2fe857c9770a48a7b323dfa3756ed89adc43342ee32713f9e4ad31"
+      "bytes": 35159,
+      "sha256": "a09f9d01cf4274f3957abf95a76778bb204ecd8c11b7651bb5381535129ee89f"
     },
     {
       "path": "Tools/blender/cinematics/full_story/lake_story/make_storyboard.py",
       "category": "authoring_or_verification_module",
       "bytes": 2148,
       "sha256": "352c5034932e07c8e31e6939f803cb95d1c085c3ad677d1221c31b9b578229d6"
+    },
+    {
+      "path": "Tools/blender/cinematics/full_story/lake_story/natural_sitting.py",
+      "category": "authoring_or_verification_module",
+      "bytes": 7139,
+      "sha256": "0d346524bd25c0f681b04a04c439a3744e13149df67f9f996f866cd8503c81d4"
     },
     {
       "path": "Tools/blender/cinematics/full_story/motion/__init__.py",
@@ -465,20 +519,26 @@
     {
       "path": "Tools/blender/cinematics/full_story/opening_scene.py",
       "category": "authoring_or_verification_module",
-      "bytes": 26050,
-      "sha256": "d87c7072966954c7a4dcea2c758b39ec4ee1b3d14b6916dc1db1118f7a96f8e8"
+      "bytes": 29634,
+      "sha256": "255e4cc6d0b564b30d8e97ab6abb296324b4271d5f638ea42b991ac161566792"
     },
     {
       "path": "Tools/blender/cinematics/full_story/plan.py",
       "category": "authoring_or_verification_module",
-      "bytes": 3776,
-      "sha256": "e4266e3139c13e4c7ba33b083415c5c37b7f13192deb0c96c66d2c61bb4ca13f"
+      "bytes": 3775,
+      "sha256": "a0a4e7b1079c95374c80d176296470c89b325499a012aa07d3218cc8bd172850"
     },
     {
       "path": "Tools/blender/cinematics/full_story/publication_manifest.py",
       "category": "authoring_or_verification_module",
-      "bytes": 6383,
-      "sha256": "2efdbf596c378ec3cb1b6ab46dab0a97e3488268f3b4af0780192fc950af6208"
+      "bytes": 6701,
+      "sha256": "9d3fec737b4b9f08a8c01c4e01e53e7cab407e1fb0f5a89246dbefc89312d224"
+    },
+    {
+      "path": "Tools/blender/cinematics/full_story/reframe_shot04.py",
+      "category": "authoring_or_verification_module",
+      "bytes": 2199,
+      "sha256": "e940e3e8741a900dca90d4b41ea36ddc8bf3ca191f84fbcf3cfc455ace8f424f"
     },
     {
       "path": "Tools/blender/cinematics/full_story/render_policy.py",

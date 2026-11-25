@@ -9,17 +9,23 @@ All full-source files below are authored at 1080p/24 fps. No full-story GPU rend
 - Motion: all 34 existing body/finger actions retargeted and independently verified on the four real actor rigs.
 - Speech: all eight opening actor lines have exact catalogue/source matches and measured 100 Hz RMS envelopes.
 
-The final opening authoring candidate is `Opening/OpeningFull.blend` (57,026,794 bytes), SHA-256:
-`8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1`.
-Its nine fresh CPU preview hashes are in `Opening/preview-evidence.json`. The source includes dressed actors,
-physical tap/contact, collapse and care, actuated mechanisms, a lit duct, detailed city skyline/sky/haze,
-varied wet pavement and bounded interior gel scattering.
+The frozen opening authoring candidate is `Opening/OpeningFull.blend` (57,040,716 bytes), SHA-256:
+`23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8`.
+Thirteen CPU views cover all eleven story beats. The speaking Vale shot now has a camera-only revision at unchanged
+19–26 second timing; actual ray-cast first hits `Dr Vale Hero` and the 21-second head projection is safely framed.
+`camera04-revision.json` records the scope, and retained view provenance identifies the unchanged base source rather
+than claiming those images were rendered again.
 
-The latest fresh-process audit passes all authoring checks. Petrov's wrist target is exactly 0.10 m above the
-patient's chest bone, allowing the hand/finger surface contact instead of the previous unreachable pose.
-The culture now aligns with and squeezes through the real 0.17 m release port: measured radial extent is
-0.155–0.162 m over the limiting samples. Actual shipped speech RMS envelopes drive all eight actor dialogue
-lines; no text-length or generic sine approximation determines speech aperture.
+The initial RTX pilot is retained as an explicitly unapproved baseline. The revised 1080p/48-sample macro and
+natural LakeArrival frame passed root visual review. GPU OpenImageDenoise preserved the CPU OIDN image (about
+61.4 dB PSNR) while reducing the same frame from ~28 s to ~11 s. OptiX denoising was only ~1.5% faster and changed
+fine gel detail more. The proposed production strategy is 48 samples with GPU OIDN; no full production render
+has started. Separate per-job source/driver/denoiser provenance, frame hashes and GPU-wide telemetry are retained.
+
+Fresh source audit passes: physical 4 mm glass thickness and radial corner normals, 12 max/transmission bounces,
+actual grounded walking soles over a full retimed cycle, care contact, physical escape squeeze, and all speaking
+face framing. The natural lake pose uses actual deformed thigh contact and preserves neutral/Peace branch
+isolation and exact hold endpoints.
 
 All current Blender authoring/render processes have finished. Heavy CPU and all GPU rendering are held for
 root's isolated player benchmarks. The complete source is ready for a measured RTX pilot after profiling.

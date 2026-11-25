@@ -1,0 +1,18 @@
+{
+  "scope": "camera 04 and focus only; actors/materials/other cameras/captions unchanged",
+  "base_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+  "revised_source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+  "timing_seconds": [
+    19,
+    26
+  ],
+  "audit": {
+    "first_hit": "Dr Vale Hero",
+    "screen": [
+      0.4502968192100525,
+      0.5624886751174927,
+      2.5387682914733887
+    ]
+  },
+  "tool": "Tools/blender/cinematics/full_story/reframe_shot04.py"
+}

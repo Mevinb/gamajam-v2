@@ -1,7 +1,7 @@
 {
   "status": "passed",
-  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
-  "file_bytes": 57026794,
+  "source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+  "file_bytes": 57040716,
   "frame_count": 1920,
   "fps": 24,
   "shots": 11,
@@ -66,6 +66,20 @@
       "volume_scale": 0.931396805522372
     }
   ],
+  "optical_wall_normal_max_error": 6.795975119466412e-07,
+  "glass_wall_thickness_m": 0.0040000248458721965,
+  "walking_sole_min_height_range_m": [
+    0.0,
+    0.0
+  ],
+  "vale_face_visibility_21s": {
+    "first_hit": "Dr Vale Hero",
+    "screen": [
+      0.4502968192100525,
+      0.5624886751174927,
+      2.5387682914733887
+    ]
+  },
   "actual_pose_samples": [
     {
       "seconds": 7,
@@ -185,9 +199,54 @@
       "seconds": 2.5,
       "target": "Specimen07",
       "screen": [
-        0.50714111328125,
-        0.48400601744651794,
-        1.626051425933838
+        0.5005864500999451,
+        0.48932117223739624,
+        2.067847967147827
+      ]
+    },
+    {
+      "seconds": 7,
+      "target": "Dr Hana Petrov Rig",
+      "screen": [
+        0.6071863174438477,
+        0.5672670602798462,
+        3.170073986053467
+      ]
+    },
+    {
+      "seconds": 16.5,
+      "target": "Dr Hana Petrov Rig",
+      "screen": [
+        0.5384005904197693,
+        0.40202489495277405,
+        1.3308022022247314
+      ]
+    },
+    {
+      "seconds": 22,
+      "target": "Dr Vale Rig",
+      "screen": [
+        0.4419630169868469,
+        0.5585386157035828,
+        2.4689860343933105
+      ]
+    },
+    {
+      "seconds": 47,
+      "target": "Specimen07",
+      "screen": [
+        0.45734184980392456,
+        0.4855765104293823,
+        2.0991714000701904
+      ]
+    },
+    {
+      "seconds": 77.5,
+      "target": "Specimen in the city",
+      "screen": [
+        0.5240338444709778,
+        0.2070770561695099,
+        4.205395221710205
       ]
     },
     {

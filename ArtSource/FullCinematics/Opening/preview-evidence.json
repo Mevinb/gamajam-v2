@@ -1,6 +1,6 @@
 {
-  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
-  "source_bytes": 57026794,
+  "source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+  "source_bytes": 57040716,
   "cpu_only": true,
   "image_size": [
     480,
@@ -9,41 +9,89 @@
   "samples": 8,
   "previews": [
     {
+      "path": "Review/01-rhythm.png",
+      "sha256": "c15db60011ba3e4b4e9d2a895fafd9c42b51f7e5a6455ce464538a3e474331ae",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
+    },
+    {
       "path": "Review/02-petrov.png",
-      "sha256": "609a0b672a667bdb7c259c342740300645bf558709cb9102dffa906013580b8e"
+      "sha256": "59d119f92cdb102f686d0a166b3ff79c55cc9c551ea1f54bc735554d20eaebc2",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/03-recognition.png",
-      "sha256": "35d7214f5f467d198498b25933694b1e1d01902f6eb77e24b1da67839f79f32f"
+      "sha256": "5f410eb2ed19390a568687355b6d8fb7500482b22125cf12127a186ab6fc9e3a",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
+    },
+    {
+      "path": "Review/04-disagreement.png",
+      "sha256": "8143147903194c004789a47d7bb2956753650bcd988d21cb1c8a233c389c954e",
+      "render_source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8"
     },
     {
       "path": "Review/05-two-bodies.png",
-      "sha256": "4323a9592e71c0052d17e5e3df36d1e6287248aa4a2e12a22ef60fcf3ec92475"
+      "sha256": "49f8ccb723a073922df9abdcbe4dd36f12af15568847da295b52a945afbafe14",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/06-contact-fall.png",
-      "sha256": "a719941cb28b19aadbab1ee086fd4f74020a3b06532a4aad3552efab6c43edc0"
+      "sha256": "3c26b4dee886118eab70706f52c8abb97d8a31d815a44a91036fb97e40cc8086",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/06-contact.png",
-      "sha256": "34da97db733054e5bee9b9ba21f69e7fb17a58aaa6b3a8214b79296222d5053a"
+      "sha256": "822428b644e932677c4f1062d90ff1067b0008caa11fad5bdf8e2edbcf763c1d",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
+    },
+    {
+      "path": "Review/07-restraint.png",
+      "sha256": "9bb7ea29aa1100c3cec635090d85c82019591792aa81753e799d765362790c95",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/08-interlock-escape.png",
-      "sha256": "a7474cba5f84d7c22bbdef16208a414f155257d1ed28e835b93bc989dcc8f8c7"
+      "sha256": "36dadc65a0ba1047135c2aa47e9de3161df8b24f69ed61c446956f95fead3fdd",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/08-interlock.png",
-      "sha256": "010dcbef15a3429da9994e912a7f6497b347e258b8deae88f0f60c181de7b00b"
+      "sha256": "5b77aba5b593ddec86f466d5d992ce3c88318b0392d5332136448b0becc72d2b",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/09-conduit.png",
-      "sha256": "72e103028fc08481a1b9d15157f66d7aac5417aa0426033b897341169f85b4df"
+      "sha256": "7adb5269c2552a174ad316ef35b85044d84cf9e92c4269b81db6dcbce3d8b8fd",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     },
     {
       "path": "Review/10-outside.png",
-      "sha256": "ff390bc502948da0957cd2362fed486b958115389bb5b684fff601ac72b7e2a9"
+      "sha256": "b7c4379009bb437d030bc54e82094b6b1acc1f761d70310ad4bb260bc3ffe8c0",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
+    },
+    {
+      "path": "Review/11-next-beat.png",
+      "sha256": "8a6cea673703052f4abcf04732385750d2f3723284083a8ee2ab9e8d1d1246f5",
+      "render_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e"
     }
   ],
-  "status": "audited full-opening authoring candidate; final RTX movies not rendered"
+  "covered_story_shots": 11,
+  "camera_only_revision": {
+    "scope": "camera 04 and focus only; actors/materials/other cameras/captions unchanged",
+    "base_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+    "revised_source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+    "timing_seconds": [
+      19,
+      26
+    ],
+    "audit": {
+      "first_hit": "Dr Vale Hero",
+      "screen": [
+        0.4502968192100525,
+        0.5624886751174927,
+        2.5387682914733887
+      ]
+    },
+    "tool": "Tools/blender/cinematics/full_story/reframe_shot04.py"
+  },
+  "status": "all 11 beats reviewed; retained views identify their unchanged base source explicitly"
 }

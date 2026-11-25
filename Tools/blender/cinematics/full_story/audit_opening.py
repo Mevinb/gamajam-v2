@@ -34,6 +34,13 @@ def main():
  s.frame_set(frame(16.5));rig=bpy.data.objects['Dr Hana Petrov Rig'];cam=bpy.data.objects['Camera 03-recognition'];target=rig.matrix_world@rig.pose.bones['Head'].matrix.translation
  hit,point,normal,index,ob,matrix=s.ray_cast(bpy.context.evaluated_depsgraph_get(),cam.matrix_world.translation,(target-cam.matrix_world.translation).normalized(),distance=(target-cam.matrix_world.translation).length)
  assert hit and ob.name.startswith('Dr Hana Petrov Hero'),'Recognition face is blocked by set geometry'
+ s.frame_set(frame(21));rig=bpy.data.objects['Dr Vale Rig'];cam=bpy.data.objects['Camera 04-disagreement'];target=rig.matrix_world@rig.pose.bones['Head'].matrix.translation
+ hit,point,normal,index,ob,matrix=s.ray_cast(bpy.context.evaluated_depsgraph_get(),cam.matrix_world.translation,(target-cam.matrix_world.translation).normalized(),distance=(target-cam.matrix_world.translation).length)
+ assert hit and ob.name.startswith('Dr Vale Hero'),'Speaking Vale face is blocked by the vessel or set'
+ vale_face_hit=ob.name
+ vale_projection=world_to_camera_view(s,cam,target)
+ assert vale_projection.z>0 and .10<vale_projection.x<.9 and .1<vale_projection.y<.9,'Speaking Vale face is outside useful framing'
+
  escape=[]
  for sec in [57.25,57.5,57.75,58.0]:
   s.frame_set(frame(sec));culture=bpy.data.objects['Specimen07'];extent=max(.244*culture.scale.x,.204*culture.scale.z)
@@ -42,15 +49,37 @@ def main():
   escape.append({'seconds':sec,'radial_extent_m':extent,'port_radius_m':.17,'volume_scale':culture.scale.x*culture.scale.y*culture.scale.z})
  s.frame_set(frame(55.5));assert abs(bpy.data.objects['Release hatch hinge'].rotation_euler[2])>math.radians(90)
  s.frame_set(frame(58));assert abs(bpy.data.objects['Floor grate hinge'].rotation_euler[0])>math.radians(60)
+ # Check actual shader corner normals and radial thickness, not only polygon face normals.
+ vessel=bpy.data.objects['Containment glass'];glass=vessel.data;normal_errors=[];radii=[]
+ for polygon in glass.polygons:
+  for li in polygon.loop_indices:
+   co=glass.vertices[glass.loops[li].vertex_index].co
+   if 1.15<co.z<1.9:
+    radius=(co.x*co.x+co.y*co.y)**.5;radii.append(radius)
+    if abs(radius-.445)<.0002 or abs(radius-.441)<.0002:
+     expected=co.copy();expected.z=0;expected.normalize()
+     if radius<.443:expected.negate()
+     normal_errors.append((glass.corner_normals[li].vector-expected).length)
+ assert normal_errors and max(normal_errors)<.01,'Optical wall normals must remain radial away from the port/caps'
+ wall_thickness=max(radii)-min(radii);assert abs(wall_thickness-.004)<.0003,'Physical glass wall must remain positive 4mm'
+ assert s.cycles.max_bounces>=12 and s.cycles.transmission_bounces>=12
+ walker=bpy.data.objects['Unaware pedestrian Hero'];groups={g.index for g in walker.vertex_groups if g.name in ('LeftFoot','LeftToes','RightFoot','RightToes')}
+ soles=[v.index for v in walker.data.vertices if sum(g.weight for g in v.groups if g.group in groups)>.2];sole_heights=[]
+ for f in range(frame(67),frame(67)+64):
+  s.frame_set(f);evaluated=walker.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=evaluated.to_mesh()
+  try:minimum=min((evaluated.matrix_world@mesh.vertices[index].co).z for index in soles)
+  finally:evaluated.to_mesh_clear()
+  sole_heights.append(minimum)
+ assert max(abs(value) for value in sole_heights)<.003,'Walking must retain a grounded sole throughout its full retimed cycle'
  frames=[]
- for sec,name in [(2.5,'Specimen07'),(29,'Specimen lobe 0'),(35.2,'Contact volunteer Rig'),(39,'Contact volunteer Rig'),(39,'Dr Hana Petrov Rig'),(53.2,'Interlock controller'),(63.5,'Escaping free culture'),(71,'Specimen in the city')]:
+ for sec,name in [(2.5,'Specimen07'),(7,'Dr Hana Petrov Rig'),(16.5,'Dr Hana Petrov Rig'),(22,'Dr Vale Rig'),(47,'Specimen07'),(77.5,'Specimen in the city'),(29,'Specimen lobe 0'),(35.2,'Contact volunteer Rig'),(39,'Contact volunteer Rig'),(39,'Dr Hana Petrov Rig'),(53.2,'Interlock controller'),(63.5,'Escaping free culture'),(71,'Specimen in the city')]:
   s.frame_set(frame(sec));shot=next(x for x in SHOTS if x['start']<=sec<x['end']);cam=bpy.data.objects['Camera '+shot['id']];obj=bpy.data.objects[name]
   point=obj.matrix_world.translation
   if name.endswith('Rig'):point=obj.matrix_world@obj.pose.bones['Head'].matrix.translation
   projected=world_to_camera_view(s,cam,point);frames.append({'seconds':sec,'target':name,'screen':[projected.x,projected.y,projected.z]})
   assert projected.z>0 and -.15<projected.x<1.15 and -.15<projected.y<1.15,f'Key action outside shot at{sec}: {tuple(projected)}'
  assert source.stat().st_size<100_000_000
- result={'status':'passed','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'file_bytes':source.stat().st_size,'frame_count':1920,'fps':24,'shots':11,'captions':len(CAPTIONS),'packed_images':images,'care_contact_error_m':care_error,'escape_fit_samples':escape,'actual_pose_samples':records,'camera_action_samples':frames,'gpu_rendered':False,'runtime_candidate_modified':False}
+ result={'status':'passed','source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'file_bytes':source.stat().st_size,'frame_count':1920,'fps':24,'shots':11,'captions':len(CAPTIONS),'packed_images':images,'care_contact_error_m':care_error,'escape_fit_samples':escape,'optical_wall_normal_max_error':max(normal_errors),'glass_wall_thickness_m':wall_thickness,'walking_sole_min_height_range_m':[min(sole_heights),max(sole_heights)],'vale_face_visibility_21s':{'first_hit':vale_face_hit,'screen':[vale_projection.x,vale_projection.y,vale_projection.z]},'actual_pose_samples':records,'camera_action_samples':frames,'gpu_rendered':False,'runtime_candidate_modified':False}
  (OUT/'authoring-audit.json').write_text(json.dumps(result,indent=2)+'\n');print('[full-opening-audit] PASS',json.dumps(result),flush=True)
 
 try:

@@ -1,22 +1,22 @@
 {
   "arrival": {
-    "source_sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9",
+    "source_sha256": "ec46ac1534d2edd752de2677825999bd7a6c9926a9a49a7fd91c3c6e7fd10d37",
     "verified_cpu_frames": 4,
-    "cpu_preview_seconds": 54.347
+    "cpu_preview_seconds": 13.649
   },
   "hold": {
-    "source_sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e",
+    "source_sha256": "a86bcc0b8cfa7f52c9455e5f29f4fced8a2a2587e9e4fc965e32f395276f0a0e",
     "verified_cpu_frames": 3,
-    "cpu_preview_seconds": 51.29
+    "cpu_preview_seconds": 11.617
   },
   "peace": {
-    "source_sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60",
+    "source_sha256": "cc2d3b8c3fed908714397b3ce3976c4bc8396d7c1862eaad00e7f2aae0ccd8f2",
     "verified_cpu_frames": 3,
-    "cpu_preview_seconds": 46.037
+    "cpu_preview_seconds": 10.951
   },
   "dominion": {
-    "source_sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c",
+    "source_sha256": "2e335ff0075b8e7008f03f9ec9c7ee9ed6ec2e8687ed23c580eb711f647601bb",
     "verified_cpu_frames": 3,
-    "cpu_preview_seconds": 9.463
+    "cpu_preview_seconds": 10.79
   }
 }

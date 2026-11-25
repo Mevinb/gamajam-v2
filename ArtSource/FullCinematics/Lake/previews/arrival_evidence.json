@@ -1,6 +1,6 @@
 {
   "source": "ArtSource/FullCinematics/Lake/Lake_Arrival.blend",
-  "source_sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9",
+  "source_sha256": "ec46ac1534d2edd752de2677825999bd7a6c9926a9a49a7fd91c3c6e7fd10d37",
   "engine": "CYCLES",
   "device": "CPU",
   "threads": 2,
@@ -13,26 +13,26 @@
     {
       "frame": 1,
       "png": "arrival_0001_cpu.png",
-      "seconds": 11.526,
-      "sha256": "80cd885306a4a7cbb3ce3eeb0be920e0884191b12aa66c0671ae3ffa3bbf6428"
+      "seconds": 3.156,
+      "sha256": "95fc185eb44754e2d418ff947cc641ac0594e239f6715e5bbdbbee73dc52f361"
     },
     {
       "frame": 144,
       "png": "arrival_0144_cpu.png",
-      "seconds": 11.601,
-      "sha256": "a9b240e82aad706d098a606ab7b4ade1690a448ffe4a854320c3bb2ef83abec4"
+      "seconds": 3.487,
+      "sha256": "431481849735c9213e2cd0d864e063624c7bd044a8e4b3bc7e7113d2a6f90c53"
     },
     {
       "frame": 264,
       "png": "arrival_0264_cpu.png",
-      "seconds": 15.493,
-      "sha256": "003483049c33067fd499368a162f63cb114c96d2b8c1bac25e439a1ba6d51b73"
+      "seconds": 3.489,
+      "sha256": "8d4f56022b5de8b8055b75bfdb8c1e49a52b243aa06dbe12cd027b895ffe6e53"
     },
     {
       "frame": 360,
       "png": "arrival_0360_cpu.png",
-      "seconds": 15.727,
-      "sha256": "59a3428e9a1d919c92be6f63d8f7ffff820e7d2928da8034f49a8daf16840cfe"
+      "seconds": 3.517,
+      "sha256": "8bea6b8c2b7a96aa3450e85818c09a042c53eb8c993eea477c1cdf173d313328"
     }
   ]
 }

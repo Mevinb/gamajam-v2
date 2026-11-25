@@ -16,7 +16,7 @@ def init():
  bpy.ops.wm.read_factory_settings(use_empty=True)
  bpy.context.preferences.filepaths.save_version=0
  s=bpy.context.scene;s.render.engine='CYCLES';s.cycles.device='GPU';s.cycles.samples=48;s.cycles.use_denoising=True
- s.cycles.max_bounces=6;s.cycles.transmission_bounces=4;s.cycles.transparent_max_bounces=6;s.cycles.use_adaptive_sampling=True;s.cycles.adaptive_threshold=.04
+ s.cycles.max_bounces=12;s.cycles.transmission_bounces=12;s.cycles.transparent_max_bounces=12;s.cycles.use_adaptive_sampling=True;s.cycles.adaptive_threshold=.04
  s.render.fps=FPS;s.render.resolution_x=1920;s.render.resolution_y=1080;s.render.resolution_percentage=100
  s.render.image_settings.file_format='PNG';s.render.image_settings.color_mode='RGB';s.view_settings.view_transform='AgX'
  s.render.film_transparent=False;s.render.threads_mode='FIXED';s.render.threads=2
@@ -118,7 +118,10 @@ def set_linear(action):
 
 _TRANSFORM_KEYS={}
 def transform_key(ob,t,property_name):
- _TRANSFORM_KEYS.setdefault(ob,{}).setdefault(property_name,[]).append((frame(t),tuple(getattr(ob,property_name))))
+ rows=_TRANSFORM_KEYS.setdefault(ob,{}).setdefault(property_name,[])
+ record=(frame(t),tuple(getattr(ob,property_name)))
+ if rows and rows[-1][0]==record[0]:rows[-1]=record
+ else:rows.append(record)
 def move(ob,t,p):ob.location=v(p);transform_key(ob,t,'location')
 def rotate(ob,t,yaw):ob.rotation_euler[2]=math.radians(yaw);transform_key(ob,t,'rotation_euler')
 def scale(ob,t,value):ob.scale=value;transform_key(ob,t,'scale')
@@ -244,3 +247,20 @@ def cpu_preview(path,seconds,camera=None,width=480,height=270,samples=8):
  if hasattr(s.cycles,'denoising_use_gpu'):s.cycles.denoising_use_gpu=False
  s.render.threads_mode='FIXED';s.render.threads=2;s.render.resolution_x=width;s.render.resolution_y=height;s.render.resolution_percentage=100;s.render.filepath=str(path)
  bpy.ops.render.render(write_still=True)
+
+
+def ground_walking_actor(actor,t,ground_height=0.0):
+ """Plant the lowest actual deformed sole for a walking pose only; callers exclude falls/kneels."""
+ if not hasattr(actor,'sole_vertices'):
+  groups={group.index for group in actor.mesh.vertex_groups if group.name in ('LeftFoot','LeftToes','RightFoot','RightToes')}
+  actor.sole_vertices=[vertex.index for vertex in actor.mesh.data.vertices if sum(group.weight for group in vertex.groups if group.group in groups)>.2]
+  if len(actor.sole_vertices)<20:raise RuntimeError('Cannot identify actual walking soles for '+actor.name)
+  actor.grounding_samples=[]
+ bpy.context.view_layer.update();evaluated=actor.mesh.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=evaluated.to_mesh()
+ try:
+  minimum=min((evaluated.matrix_world@mesh.vertices[index].co).z for index in actor.sole_vertices)
+ finally:evaluated.to_mesh_clear()
+ correction=ground_height-minimum
+ actor.rig.location.z+=correction;transform_key(actor.rig,t,'location')
+ actor.grounding_samples.append({'frame':frame(t),'posed_sole_before_m':minimum,'world_z_correction_m':correction})
+ return correction

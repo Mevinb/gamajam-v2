@@ -1,0 +1,1381 @@
+{
+  "source": "ArtSource/FullCinematics/Opening/OpeningFull.blend",
+  "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+  "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "samples": 48,
+  "backend_required": "OPTIX",
+  "planned_frames": 12,
+  "jobs": [
+    {
+      "name": "glass",
+      "start": 61,
+      "end": 61,
+      "exit_code": 0,
+      "wall_seconds": 31.270726171000206,
+      "evidence": "Logs/full-cinematic-renders/opening-rtx-pilot-20261124T235231Z/glass/render-evidence-000061-000061.json",
+      "status": "complete",
+      "frames": [
+        {
+          "camera": "Camera 01-rhythm",
+          "camera_marker": "01-rhythm",
+          "camera_marker_frame": 1,
+          "camera_world_matrix": [
+            [
+              -0.999991774559021,
+              -0.0003757868835236877,
+              0.004085672087967396,
+              0.015000000596046448
+            ],
+            [
+              0.004102622624486685,
+              -0.07964033633470535,
+              0.9968153238296509,
+              1.619999885559082
+            ],
+            [
+              -4.920619903714396e-05,
+              0.9968237280845642,
+              0.07964101433753967,
+              1.4199999570846558
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 50.0,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 01-rhythm",
+            "focus_distance": 10.0
+          },
+          "frame": 61,
+          "seconds": 29.870049531000404,
+          "bytes": 2143969,
+          "sha256": "fe0d6b804bbaf11f9cc419b7c6aad4755c809a30fd573cb8c1ca6749a13cd455"
+        }
+      ],
+      "provenance": {
+        "schema": 2,
+        "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+        "scene": "Scene",
+        "view_layer": "ViewLayer",
+        "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+        "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+        "blender": {
+          "version": [
+            4,
+            5,
+            16
+          ],
+          "version_string": "4.5.16 LTS",
+          "build_hash": "3f6797307da5"
+        },
+        "engine": "CYCLES",
+        "backend": "OPTIX",
+        "devices": [
+          {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "type": "OPTIX",
+            "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+          }
+        ],
+        "device_mode": "GPU",
+        "scene_frame_range": [
+          1,
+          1920
+        ],
+        "camera_schedule": [
+          {
+            "frame": 1,
+            "marker": "01-rhythm",
+            "camera": "Camera 01-rhythm"
+          },
+          {
+            "frame": 121,
+            "marker": "02-petrov",
+            "camera": "Camera 02-petrov"
+          },
+          {
+            "frame": 289,
+            "marker": "03-recognition",
+            "camera": "Camera 03-recognition"
+          },
+          {
+            "frame": 457,
+            "marker": "04-disagreement",
+            "camera": "Camera 04-disagreement"
+          },
+          {
+            "frame": 625,
+            "marker": "05-two-bodies",
+            "camera": "Camera 05-two-bodies"
+          },
+          {
+            "frame": 817,
+            "marker": "06-contact",
+            "camera": "Camera 06-contact"
+          },
+          {
+            "frame": 1033,
+            "marker": "07-restraint",
+            "camera": "Camera 07-restraint"
+          },
+          {
+            "frame": 1225,
+            "marker": "08-interlock",
+            "camera": "Camera 08-interlock"
+          },
+          {
+            "frame": 1417,
+            "marker": "09-conduit",
+            "camera": "Camera 09-conduit"
+          },
+          {
+            "frame": 1609,
+            "marker": "10-outside",
+            "camera": "Camera 10-outside"
+          },
+          {
+            "frame": 1801,
+            "marker": "11-next-beat",
+            "camera": "Camera 11-next-beat"
+          }
+        ],
+        "sampling": {
+          "samples": 48,
+          "use_adaptive_sampling": true,
+          "adaptive_threshold": 0.03999999910593033,
+          "adaptive_min_samples": 0,
+          "use_denoising": true,
+          "denoiser": "OPENIMAGEDENOISE",
+          "denoising_use_gpu": false,
+          "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+          "denoising_prefilter": "ACCURATE",
+          "denoising_quality": "HIGH",
+          "seed": 0,
+          "use_animated_seed": false,
+          "sample_offset": 0,
+          "max_bounces": 6,
+          "diffuse_bounces": 4,
+          "glossy_bounces": 4,
+          "transmission_bounces": 4,
+          "volume_bounces": 0,
+          "transparent_max_bounces": 6,
+          "sample_clamp_direct": 0.0,
+          "sample_clamp_indirect": 10.0,
+          "light_sampling_threshold": 0.009999999776482582,
+          "use_light_tree": true,
+          "use_fast_gi": false,
+          "use_guiding": false,
+          "volume_step_rate": 1.0,
+          "volume_max_steps": 1024,
+          "rolling_shutter_type": "NONE",
+          "rolling_shutter_duration": 0.10000000149011612
+        },
+        "render": {
+          "fps": 24,
+          "fps_base": 1.0,
+          "resolution_x": 1920,
+          "resolution_y": 1080,
+          "resolution_percentage": 100,
+          "threads_mode": "FIXED",
+          "threads": 2,
+          "use_motion_blur": false,
+          "motion_blur_shutter": 0.5,
+          "use_persistent_data": true,
+          "image": {
+            "file_format": "PNG",
+            "color_mode": "RGB",
+            "color_depth": "8",
+            "compression": 15,
+            "color_management": "FOLLOW_SCENE"
+          }
+        },
+        "color": {
+          "view_transform": "AgX",
+          "look": "None",
+          "exposure": 0.0,
+          "gamma": 1.0,
+          "use_curve_mapping": false,
+          "display_device": "sRGB"
+        }
+      },
+      "peak_host_rss_kib": 3301372
+    },
+    {
+      "name": "care",
+      "start": 937,
+      "end": 937,
+      "exit_code": 0,
+      "wall_seconds": 25.43891956799962,
+      "evidence": "Logs/full-cinematic-renders/opening-rtx-pilot-20261124T235231Z/care/render-evidence-000937-000937.json",
+      "status": "complete",
+      "frames": [
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9518646001815796,
+              -0.1617784947156906,
+              0.2603478729724884,
+              1.7244170904159546
+            ],
+            [
+              0.306518018245697,
+              -0.5026865601539612,
+              0.8083022832870483,
+              3.5931410789489746
+            ],
+            [
+              0.00010747699707280844,
+              0.8491958379745483,
+              0.5280779004096985,
+              2.0965707302093506
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 32.20576095581055,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 937,
+          "seconds": 24.30091389900008,
+          "bytes": 2192344,
+          "sha256": "c1df0eb743fdd66ddb3e51c9080f2a69103e0cd70dba679ea01db1f4a3ec016b"
+        }
+      ],
+      "provenance": {
+        "schema": 2,
+        "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+        "scene": "Scene",
+        "view_layer": "ViewLayer",
+        "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+        "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+        "blender": {
+          "version": [
+            4,
+            5,
+            16
+          ],
+          "version_string": "4.5.16 LTS",
+          "build_hash": "3f6797307da5"
+        },
+        "engine": "CYCLES",
+        "backend": "OPTIX",
+        "devices": [
+          {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "type": "OPTIX",
+            "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+          }
+        ],
+        "device_mode": "GPU",
+        "scene_frame_range": [
+          1,
+          1920
+        ],
+        "camera_schedule": [
+          {
+            "frame": 1,
+            "marker": "01-rhythm",
+            "camera": "Camera 01-rhythm"
+          },
+          {
+            "frame": 121,
+            "marker": "02-petrov",
+            "camera": "Camera 02-petrov"
+          },
+          {
+            "frame": 289,
+            "marker": "03-recognition",
+            "camera": "Camera 03-recognition"
+          },
+          {
+            "frame": 457,
+            "marker": "04-disagreement",
+            "camera": "Camera 04-disagreement"
+          },
+          {
+            "frame": 625,
+            "marker": "05-two-bodies",
+            "camera": "Camera 05-two-bodies"
+          },
+          {
+            "frame": 817,
+            "marker": "06-contact",
+            "camera": "Camera 06-contact"
+          },
+          {
+            "frame": 1033,
+            "marker": "07-restraint",
+            "camera": "Camera 07-restraint"
+          },
+          {
+            "frame": 1225,
+            "marker": "08-interlock",
+            "camera": "Camera 08-interlock"
+          },
+          {
+            "frame": 1417,
+            "marker": "09-conduit",
+            "camera": "Camera 09-conduit"
+          },
+          {
+            "frame": 1609,
+            "marker": "10-outside",
+            "camera": "Camera 10-outside"
+          },
+          {
+            "frame": 1801,
+            "marker": "11-next-beat",
+            "camera": "Camera 11-next-beat"
+          }
+        ],
+        "sampling": {
+          "samples": 48,
+          "use_adaptive_sampling": true,
+          "adaptive_threshold": 0.03999999910593033,
+          "adaptive_min_samples": 0,
+          "use_denoising": true,
+          "denoiser": "OPENIMAGEDENOISE",
+          "denoising_use_gpu": false,
+          "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+          "denoising_prefilter": "ACCURATE",
+          "denoising_quality": "HIGH",
+          "seed": 0,
+          "use_animated_seed": false,
+          "sample_offset": 0,
+          "max_bounces": 6,
+          "diffuse_bounces": 4,
+          "glossy_bounces": 4,
+          "transmission_bounces": 4,
+          "volume_bounces": 0,
+          "transparent_max_bounces": 6,
+          "sample_clamp_direct": 0.0,
+          "sample_clamp_indirect": 10.0,
+          "light_sampling_threshold": 0.009999999776482582,
+          "use_light_tree": true,
+          "use_fast_gi": false,
+          "use_guiding": false,
+          "volume_step_rate": 1.0,
+          "volume_max_steps": 1024,
+          "rolling_shutter_type": "NONE",
+          "rolling_shutter_duration": 0.10000000149011612
+        },
+        "render": {
+          "fps": 24,
+          "fps_base": 1.0,
+          "resolution_x": 1920,
+          "resolution_y": 1080,
+          "resolution_percentage": 100,
+          "threads_mode": "FIXED",
+          "threads": 2,
+          "use_motion_blur": false,
+          "motion_blur_shutter": 0.5,
+          "use_persistent_data": true,
+          "image": {
+            "file_format": "PNG",
+            "color_mode": "RGB",
+            "color_depth": "8",
+            "compression": 15,
+            "color_management": "FOLLOW_SCENE"
+          }
+        },
+        "color": {
+          "view_transform": "AgX",
+          "look": "None",
+          "exposure": 0.0,
+          "gamma": 1.0,
+          "use_curve_mapping": false,
+          "display_device": "sRGB"
+        }
+      },
+      "peak_host_rss_kib": 3359296
+    },
+    {
+      "name": "escape",
+      "start": 1393,
+      "end": 1393,
+      "exit_code": 0,
+      "wall_seconds": 28.580413915000463,
+      "evidence": "Logs/full-cinematic-renders/opening-rtx-pilot-20261124T235231Z/escape/render-evidence-001393-001393.json",
+      "status": "complete",
+      "frames": [
+        {
+          "camera": "Camera 08-interlock",
+          "camera_marker": "08-interlock",
+          "camera_marker_frame": 1225,
+          "camera_world_matrix": [
+            [
+              -0.4632934033870697,
+              -0.1935797929763794,
+              0.8648039698600769,
+              1.6585936546325684
+            ],
+            [
+              0.8862047791481018,
+              -0.10085347294807434,
+              0.4521830379962921,
+              1.1871094703674316
+            ],
+            [
+              -0.00031496453448198736,
+              0.9758869409561157,
+              0.21827620267868042,
+              1.1077344417572021
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 44.859375,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 08-interlock",
+            "focus_distance": 10.0
+          },
+          "frame": 1393,
+          "seconds": 27.420435232999807,
+          "bytes": 2254046,
+          "sha256": "6e1473bb750329fd1cfba49abf134a8a4895510de4a6f1434f48fb0904287fa3"
+        }
+      ],
+      "provenance": {
+        "schema": 2,
+        "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+        "scene": "Scene",
+        "view_layer": "ViewLayer",
+        "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+        "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+        "blender": {
+          "version": [
+            4,
+            5,
+            16
+          ],
+          "version_string": "4.5.16 LTS",
+          "build_hash": "3f6797307da5"
+        },
+        "engine": "CYCLES",
+        "backend": "OPTIX",
+        "devices": [
+          {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "type": "OPTIX",
+            "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+          }
+        ],
+        "device_mode": "GPU",
+        "scene_frame_range": [
+          1,
+          1920
+        ],
+        "camera_schedule": [
+          {
+            "frame": 1,
+            "marker": "01-rhythm",
+            "camera": "Camera 01-rhythm"
+          },
+          {
+            "frame": 121,
+            "marker": "02-petrov",
+            "camera": "Camera 02-petrov"
+          },
+          {
+            "frame": 289,
+            "marker": "03-recognition",
+            "camera": "Camera 03-recognition"
+          },
+          {
+            "frame": 457,
+            "marker": "04-disagreement",
+            "camera": "Camera 04-disagreement"
+          },
+          {
+            "frame": 625,
+            "marker": "05-two-bodies",
+            "camera": "Camera 05-two-bodies"
+          },
+          {
+            "frame": 817,
+            "marker": "06-contact",
+            "camera": "Camera 06-contact"
+          },
+          {
+            "frame": 1033,
+            "marker": "07-restraint",
+            "camera": "Camera 07-restraint"
+          },
+          {
+            "frame": 1225,
+            "marker": "08-interlock",
+            "camera": "Camera 08-interlock"
+          },
+          {
+            "frame": 1417,
+            "marker": "09-conduit",
+            "camera": "Camera 09-conduit"
+          },
+          {
+            "frame": 1609,
+            "marker": "10-outside",
+            "camera": "Camera 10-outside"
+          },
+          {
+            "frame": 1801,
+            "marker": "11-next-beat",
+            "camera": "Camera 11-next-beat"
+          }
+        ],
+        "sampling": {
+          "samples": 48,
+          "use_adaptive_sampling": true,
+          "adaptive_threshold": 0.03999999910593033,
+          "adaptive_min_samples": 0,
+          "use_denoising": true,
+          "denoiser": "OPENIMAGEDENOISE",
+          "denoising_use_gpu": false,
+          "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+          "denoising_prefilter": "ACCURATE",
+          "denoising_quality": "HIGH",
+          "seed": 0,
+          "use_animated_seed": false,
+          "sample_offset": 0,
+          "max_bounces": 6,
+          "diffuse_bounces": 4,
+          "glossy_bounces": 4,
+          "transmission_bounces": 4,
+          "volume_bounces": 0,
+          "transparent_max_bounces": 6,
+          "sample_clamp_direct": 0.0,
+          "sample_clamp_indirect": 10.0,
+          "light_sampling_threshold": 0.009999999776482582,
+          "use_light_tree": true,
+          "use_fast_gi": false,
+          "use_guiding": false,
+          "volume_step_rate": 1.0,
+          "volume_max_steps": 1024,
+          "rolling_shutter_type": "NONE",
+          "rolling_shutter_duration": 0.10000000149011612
+        },
+        "render": {
+          "fps": 24,
+          "fps_base": 1.0,
+          "resolution_x": 1920,
+          "resolution_y": 1080,
+          "resolution_percentage": 100,
+          "threads_mode": "FIXED",
+          "threads": 2,
+          "use_motion_blur": false,
+          "motion_blur_shutter": 0.5,
+          "use_persistent_data": true,
+          "image": {
+            "file_format": "PNG",
+            "color_mode": "RGB",
+            "color_depth": "8",
+            "compression": 15,
+            "color_management": "FOLLOW_SCENE"
+          }
+        },
+        "color": {
+          "view_transform": "AgX",
+          "look": "None",
+          "exposure": 0.0,
+          "gamma": 1.0,
+          "use_curve_mapping": false,
+          "display_device": "sRGB"
+        }
+      },
+      "peak_host_rss_kib": 3357600
+    },
+    {
+      "name": "outside",
+      "start": 1705,
+      "end": 1705,
+      "exit_code": 0,
+      "wall_seconds": 29.43169824100005,
+      "evidence": "Logs/full-cinematic-renders/opening-rtx-pilot-20261124T235231Z/outside/render-evidence-001705-001705.json",
+      "status": "complete",
+      "frames": [
+        {
+          "camera": "Camera 10-outside",
+          "camera_marker": "10-outside",
+          "camera_marker_frame": 1609,
+          "camera_world_matrix": [
+            [
+              -0.9998005628585815,
+              0.0009192831930704415,
+              -0.019967233762145042,
+              0.10000000149011612
+            ],
+            [
+              -0.019988015294075012,
+              -0.05204078555107117,
+              0.9984450936317444,
+              -36.599998474121094
+            ],
+            [
+              -0.00012125324428780004,
+              0.9986447095870972,
+              0.052048418670892715,
+              0.36500000953674316
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 36.0,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 11.0,
+            "focus_object": "Focus 10-outside",
+            "focus_distance": 10.0
+          },
+          "frame": 1705,
+          "seconds": 28.30701687599867,
+          "bytes": 2563427,
+          "sha256": "bf6d2c25fd7111113aec6b15b9ad4d4f3188bcf039358e54ff968439927265fe"
+        }
+      ],
+      "provenance": {
+        "schema": 2,
+        "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+        "scene": "Scene",
+        "view_layer": "ViewLayer",
+        "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+        "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+        "blender": {
+          "version": [
+            4,
+            5,
+            16
+          ],
+          "version_string": "4.5.16 LTS",
+          "build_hash": "3f6797307da5"
+        },
+        "engine": "CYCLES",
+        "backend": "OPTIX",
+        "devices": [
+          {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "type": "OPTIX",
+            "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+          }
+        ],
+        "device_mode": "GPU",
+        "scene_frame_range": [
+          1,
+          1920
+        ],
+        "camera_schedule": [
+          {
+            "frame": 1,
+            "marker": "01-rhythm",
+            "camera": "Camera 01-rhythm"
+          },
+          {
+            "frame": 121,
+            "marker": "02-petrov",
+            "camera": "Camera 02-petrov"
+          },
+          {
+            "frame": 289,
+            "marker": "03-recognition",
+            "camera": "Camera 03-recognition"
+          },
+          {
+            "frame": 457,
+            "marker": "04-disagreement",
+            "camera": "Camera 04-disagreement"
+          },
+          {
+            "frame": 625,
+            "marker": "05-two-bodies",
+            "camera": "Camera 05-two-bodies"
+          },
+          {
+            "frame": 817,
+            "marker": "06-contact",
+            "camera": "Camera 06-contact"
+          },
+          {
+            "frame": 1033,
+            "marker": "07-restraint",
+            "camera": "Camera 07-restraint"
+          },
+          {
+            "frame": 1225,
+            "marker": "08-interlock",
+            "camera": "Camera 08-interlock"
+          },
+          {
+            "frame": 1417,
+            "marker": "09-conduit",
+            "camera": "Camera 09-conduit"
+          },
+          {
+            "frame": 1609,
+            "marker": "10-outside",
+            "camera": "Camera 10-outside"
+          },
+          {
+            "frame": 1801,
+            "marker": "11-next-beat",
+            "camera": "Camera 11-next-beat"
+          }
+        ],
+        "sampling": {
+          "samples": 48,
+          "use_adaptive_sampling": true,
+          "adaptive_threshold": 0.03999999910593033,
+          "adaptive_min_samples": 0,
+          "use_denoising": true,
+          "denoiser": "OPENIMAGEDENOISE",
+          "denoising_use_gpu": false,
+          "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+          "denoising_prefilter": "ACCURATE",
+          "denoising_quality": "HIGH",
+          "seed": 0,
+          "use_animated_seed": false,
+          "sample_offset": 0,
+          "max_bounces": 6,
+          "diffuse_bounces": 4,
+          "glossy_bounces": 4,
+          "transmission_bounces": 4,
+          "volume_bounces": 0,
+          "transparent_max_bounces": 6,
+          "sample_clamp_direct": 0.0,
+          "sample_clamp_indirect": 10.0,
+          "light_sampling_threshold": 0.009999999776482582,
+          "use_light_tree": true,
+          "use_fast_gi": false,
+          "use_guiding": false,
+          "volume_step_rate": 1.0,
+          "volume_max_steps": 1024,
+          "rolling_shutter_type": "NONE",
+          "rolling_shutter_duration": 0.10000000149011612
+        },
+        "render": {
+          "fps": 24,
+          "fps_base": 1.0,
+          "resolution_x": 1920,
+          "resolution_y": 1080,
+          "resolution_percentage": 100,
+          "threads_mode": "FIXED",
+          "threads": 2,
+          "use_motion_blur": false,
+          "motion_blur_shutter": 0.5,
+          "use_persistent_data": true,
+          "image": {
+            "file_format": "PNG",
+            "color_mode": "RGB",
+            "color_depth": "8",
+            "compression": 15,
+            "color_management": "FOLLOW_SCENE"
+          }
+        },
+        "color": {
+          "view_transform": "AgX",
+          "look": "None",
+          "exposure": 0.0,
+          "gamma": 1.0,
+          "use_curve_mapping": false,
+          "display_device": "sRGB"
+        }
+      },
+      "peak_host_rss_kib": 3561604
+    },
+    {
+      "name": "contact-motion",
+      "start": 843,
+      "end": 850,
+      "exit_code": 0,
+      "wall_seconds": 200.46248073099923,
+      "evidence": "Logs/full-cinematic-renders/opening-rtx-pilot-20261124T235231Z/contact-motion/render-evidence-000843-000850.json",
+      "status": "complete",
+      "frames": [
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.977706253528595,
+              0.04183652251958847,
+              -0.20576710999011993,
+              0.31477123498916626
+            ],
+            [
+              -0.20996010303497314,
+              -0.1823047399520874,
+              0.9605632424354553,
+              3.5124711990356445
+            ],
+            [
+              0.002674301853403449,
+              0.9823516011238098,
+              0.18702451884746552,
+              1.7235130071640015
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 35.24285888671875,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 843,
+          "seconds": 25.13461283000106,
+          "bytes": 2259764,
+          "sha256": "ceafa1305338bacf0becfddca2b531c75a407a4211bb154642c75df70c491561"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9783692955970764,
+              0.04171435162425041,
+              -0.20261740684509277,
+              0.32389649748802185
+            ],
+            [
+              -0.2068488746881485,
+              -0.1843523234128952,
+              0.9608475565910339,
+              3.5186524391174316
+            ],
+            [
+              0.0027281634975224733,
+              0.981974720954895,
+              0.18899299204349518,
+              1.7256420850753784
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 35.19184494018555,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 844,
+          "seconds": 24.68103221000092,
+          "bytes": 2257720,
+          "sha256": "69c2a534979d1ef2ecd603e699becee4f352c8c275b1b83a6465719a7d31c49f"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9790449142456055,
+              0.0415659137070179,
+              -0.19935743510723114,
+              0.3333805203437805
+            ],
+            [
+              -0.20362575352191925,
+              -0.18650487065315247,
+              0.9611204266548157,
+              3.524768352508545
+            ],
+            [
+              0.0027687211986631155,
+              0.9815743565559387,
+              0.19106049835681915,
+              1.7278838157653809
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 35.13985061645508,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 845,
+          "seconds": 25.007526376000897,
+          "bytes": 2257996,
+          "sha256": "01531bdeaed174182f9edc263c43f3d84c1bb0db94b68c9d99de58c0a48fa41d"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9797326326370239,
+              0.041389212012290955,
+              -0.19598785042762756,
+              0.34322428703308105
+            ],
+            [
+              -0.2002910077571869,
+              -0.18876440823078156,
+              0.9613800644874573,
+              3.5307977199554443
+            ],
+            [
+              0.0027952503878623247,
+              0.9811499118804932,
+              0.1932283639907837,
+              1.7302407026290894
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 35.08694839477539,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 846,
+          "seconds": 24.81041980200098,
+          "bytes": 2257788,
+          "sha256": "8fb34c396f5cef33069b1a98c271721d926ee7c3cd5bc619b879bac8b66c7b31"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9804307818412781,
+              0.0411822684109211,
+              -0.19250929355621338,
+              0.3534288704395294
+            ],
+            [
+              -0.1968449205160141,
+              -0.19113263487815857,
+              0.9616239070892334,
+              3.5367186069488525
+            ],
+            [
+              0.0028070653788745403,
+              0.9807000160217285,
+              0.19549864530563354,
+              1.7327148914337158
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 35.033203125,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 847,
+          "seconds": 24.372935252999014,
+          "bytes": 2257721,
+          "sha256": "89162105dc518dd4ea9a49b4e83d14085989f413caebac6f284bb9b7956cd239"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9811381101608276,
+              0.04094298556447029,
+              -0.18892228603363037,
+              0.3639952540397644
+            ],
+            [
+              -0.19328759610652924,
+              -0.19361144304275513,
+              0.9618495106697083,
+              3.5425093173980713
+            ],
+            [
+              0.0028034751303493977,
+              0.9802235960960388,
+              0.19787335395812988,
+              1.7353087663650513
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 34.97868347167969,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 848,
+          "seconds": 25.465196470000592,
+          "bytes": 2257409,
+          "sha256": "ecfe9b72816ebf26cccb259387a894d986c2b7b8d8832f125d292482909fec31"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9818537831306458,
+              0.04066925868391991,
+              -0.18522749841213226,
+              0.37492460012435913
+            ],
+            [
+              -0.1896192580461502,
+              -0.19620290398597717,
+              0.9620545506477356,
+              3.5481481552124023
+            ],
+            [
+              0.0027838756795972586,
+              0.9797195792198181,
+              0.2003541886806488,
+              1.7380247116088867
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 34.92345428466797,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 849,
+          "seconds": 24.80206693999935,
+          "bytes": 2257384,
+          "sha256": "945307def20f707851fb4a5c43e00732c8889aa71626f63474cac5f08378fd24"
+        },
+        {
+          "camera": "Camera 06-contact",
+          "camera_marker": "06-contact",
+          "camera_marker_frame": 817,
+          "camera_world_matrix": [
+            [
+              -0.9825760722160339,
+              0.04035894200205803,
+              -0.181425541639328,
+              0.3862178325653076
+            ],
+            [
+              -0.18584004044532776,
+              -0.19890859723091125,
+              0.9622362852096558,
+              3.5536131858825684
+            ],
+            [
+              0.002747730351984501,
+              0.9791865944862366,
+              0.20294326543807983,
+              1.7408651113510132
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "camera_lens_mm": 34.867591857910156,
+          "camera_sensor_mm": [
+            36.0,
+            24.0
+          ],
+          "dof": {
+            "enabled": true,
+            "fstop": 5.599999904632568,
+            "focus_object": "Focus 06-contact",
+            "focus_distance": 10.0
+          },
+          "frame": 850,
+          "seconds": 24.722877377998884,
+          "bytes": 2256029,
+          "sha256": "ce9d04ec01ea832a5d4c07e53e623a1c974e24d5d2ff3260db74c4963a0f9d57"
+        }
+      ],
+      "provenance": {
+        "schema": 2,
+        "source_sha256": "8b8531ce2c48197bd1543841e1d3d156b0f2254b61a158f595115412ede093d1",
+        "scene": "Scene",
+        "view_layer": "ViewLayer",
+        "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+        "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+        "blender": {
+          "version": [
+            4,
+            5,
+            16
+          ],
+          "version_string": "4.5.16 LTS",
+          "build_hash": "3f6797307da5"
+        },
+        "engine": "CYCLES",
+        "backend": "OPTIX",
+        "devices": [
+          {
+            "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+            "type": "OPTIX",
+            "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+          }
+        ],
+        "device_mode": "GPU",
+        "scene_frame_range": [
+          1,
+          1920
+        ],
+        "camera_schedule": [
+          {
+            "frame": 1,
+            "marker": "01-rhythm",
+            "camera": "Camera 01-rhythm"
+          },
+          {
+            "frame": 121,
+            "marker": "02-petrov",
+            "camera": "Camera 02-petrov"
+          },
+          {
+            "frame": 289,
+            "marker": "03-recognition",
+            "camera": "Camera 03-recognition"
+          },
+          {
+            "frame": 457,
+            "marker": "04-disagreement",
+            "camera": "Camera 04-disagreement"
+          },
+          {
+            "frame": 625,
+            "marker": "05-two-bodies",
+            "camera": "Camera 05-two-bodies"
+          },
+          {
+            "frame": 817,
+            "marker": "06-contact",
+            "camera": "Camera 06-contact"
+          },
+          {
+            "frame": 1033,
+            "marker": "07-restraint",
+            "camera": "Camera 07-restraint"
+          },
+          {
+            "frame": 1225,
+            "marker": "08-interlock",
+            "camera": "Camera 08-interlock"
+          },
+          {
+            "frame": 1417,
+            "marker": "09-conduit",
+            "camera": "Camera 09-conduit"
+          },
+          {
+            "frame": 1609,
+            "marker": "10-outside",
+            "camera": "Camera 10-outside"
+          },
+          {
+            "frame": 1801,
+            "marker": "11-next-beat",
+            "camera": "Camera 11-next-beat"
+          }
+        ],
+        "sampling": {
+          "samples": 48,
+          "use_adaptive_sampling": true,
+          "adaptive_threshold": 0.03999999910593033,
+          "adaptive_min_samples": 0,
+          "use_denoising": true,
+          "denoiser": "OPENIMAGEDENOISE",
+          "denoising_use_gpu": false,
+          "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+          "denoising_prefilter": "ACCURATE",
+          "denoising_quality": "HIGH",
+          "seed": 0,
+          "use_animated_seed": false,
+          "sample_offset": 0,
+          "max_bounces": 6,
+          "diffuse_bounces": 4,
+          "glossy_bounces": 4,
+          "transmission_bounces": 4,
+          "volume_bounces": 0,
+          "transparent_max_bounces": 6,
+          "sample_clamp_direct": 0.0,
+          "sample_clamp_indirect": 10.0,
+          "light_sampling_threshold": 0.009999999776482582,
+          "use_light_tree": true,
+          "use_fast_gi": false,
+          "use_guiding": false,
+          "volume_step_rate": 1.0,
+          "volume_max_steps": 1024,
+          "rolling_shutter_type": "NONE",
+          "rolling_shutter_duration": 0.10000000149011612
+        },
+        "render": {
+          "fps": 24,
+          "fps_base": 1.0,
+          "resolution_x": 1920,
+          "resolution_y": 1080,
+          "resolution_percentage": 100,
+          "threads_mode": "FIXED",
+          "threads": 2,
+          "use_motion_blur": false,
+          "motion_blur_shutter": 0.5,
+          "use_persistent_data": true,
+          "image": {
+            "file_format": "PNG",
+            "color_mode": "RGB",
+            "color_depth": "8",
+            "compression": 15,
+            "color_management": "FOLLOW_SCENE"
+          }
+        },
+        "color": {
+          "view_transform": "AgX",
+          "look": "None",
+          "exposure": 0.0,
+          "gamma": 1.0,
+          "use_curve_mapping": false,
+          "display_device": "sRGB"
+        }
+      },
+      "peak_host_rss_kib": 3368164
+    }
+  ],
+  "status": "complete",
+  "gpu_telemetry": {
+    "sampling_ms": 500,
+    "samples": 630,
+    "baseline_used_mib": 17.0,
+    "peak_used_mib": 1470.0,
+    "total_mib": 6141.0,
+    "peak_temperature_c": 70.0,
+    "peak_utilization_percent": 100.0,
+    "mean_utilization_percent": 27.322222222222223,
+    "peak_power_w": 42.89,
+    "gpu_wide_not_per_process": true,
+    "parse_note": "CSV headers stripped; numeric prefixes parsed before units"
+  },
+  "complete_frames": 12,
+  "quality_review": {
+    "production_approved": false,
+    "source_is_previous_revision": true,
+    "findings": [
+      "Original layered glass obscured specimen",
+      "Walking passerby soles floated; revised source derives actual posed-sole grounding"
+    ],
+    "revised_source_requires_new_pilot": true,
+    "measurement_environment": "Exclusive GPU; brief concurrent CPU compile/archive activity; CPU OIDN on two threads"
+  }
+}

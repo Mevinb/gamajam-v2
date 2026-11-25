@@ -1,14 +1,76 @@
 {
   "arrival": {
     "source": "ArtSource/FullCinematics/Lake/Lake_Arrival.blend",
-    "bytes": 32343483,
-    "sha256": "35c7cb59b699d0cf141ad5055f61dbf45a28b113209fb1565d13e4e300ee28e9",
+    "bytes": 32298898,
+    "sha256": "ec46ac1534d2edd752de2677825999bd7a6c9926a9a49a7fd91c3c6e7fd10d37",
     "frame_count": 360,
     "packed_external_images": true,
     "camera_cuts": 3,
     "heartbeat_count": 0,
     "hold_endpoint_matrix_max_delta": 0,
     "hold_environment_endpoint_max_delta": 0,
+    "natural_hand_contact_samples": [
+      {
+        "frame": 1,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000150485429913,
+        "hand_back_alignment_to_thigh_normal": 1.0000000894069672,
+        "elbow_lateral_offset_m": 0.07411368191242218,
+        "nearest_palm_skin_distance_m": 0.0003332483465783298,
+        "open_patch_directional_gap_m": -0.023525765631347895,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 1,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.020000213757157326,
+        "hand_back_alignment_to_thigh_normal": 1.0000000074505806,
+        "elbow_lateral_offset_m": 0.07385075092315674,
+        "nearest_palm_skin_distance_m": 0.00119180663023144,
+        "open_patch_directional_gap_m": -0.014624628704041243,
+        "palm_skin_vertices_within_8mm": 16
+      },
+      {
+        "frame": 180,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020016096881590784,
+        "hand_back_alignment_to_thigh_normal": 1.0000001788139343,
+        "elbow_lateral_offset_m": 0.06893983483314514,
+        "nearest_palm_skin_distance_m": 0.0004739299474749714,
+        "open_patch_directional_gap_m": -0.017232342099305242,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 180,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.0200068965787068,
+        "hand_back_alignment_to_thigh_normal": 1.0000001844018698,
+        "elbow_lateral_offset_m": 0.06868778169155121,
+        "nearest_palm_skin_distance_m": 9.733162733027712e-05,
+        "open_patch_directional_gap_m": -0.009574145544320345,
+        "palm_skin_vertices_within_8mm": 21
+      },
+      {
+        "frame": 360,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000146876554936,
+        "hand_back_alignment_to_thigh_normal": 1.0000001061707735,
+        "elbow_lateral_offset_m": 0.07411368191242218,
+        "nearest_palm_skin_distance_m": 0.00033312750747427344,
+        "open_patch_directional_gap_m": -0.02352576283738017,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 360,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.020000148855615407,
+        "hand_back_alignment_to_thigh_normal": 1.0000000298023224,
+        "elbow_lateral_offset_m": 0.07385075092315674,
+        "nearest_palm_skin_distance_m": 0.0011917417868971825,
+        "open_patch_directional_gap_m": -0.014624737203121185,
+        "palm_skin_vertices_within_8mm": 16
+      }
+    ],
     "bone_euler_range_degrees_xyz": {
       "Head": [
         1.8,
@@ -21,33 +83,95 @@
         0.0
       ],
       "LeftHand": [
-        0.0,
-        3.9956,
-        1.9978
+        3.225,
+        1.9657,
+        1.5959
       ],
       "RightHand": [
-        0.0,
-        3.9956,
-        1.9978
+        3.3363,
+        1.9861,
+        1.8233
       ],
       "LeftIndexProximal": [
-        1.4984,
-        0.0,
-        0.0
+        2.159,
+        0.1033,
+        0.2023
       ]
     },
     "saved_quality_samples": 48
   },
   "hold": {
     "source": "ArtSource/FullCinematics/Lake/Lake_Hold.blend",
-    "bytes": 32257460,
-    "sha256": "61dd2684ea622aa356473e97f874651523e2ec95c1383a1e34fabee3787f3e0e",
+    "bytes": 32374498,
+    "sha256": "a86bcc0b8cfa7f52c9455e5f29f4fced8a2a2587e9e4fc965e32f395276f0a0e",
     "frame_count": 144,
     "packed_external_images": true,
     "camera_cuts": 1,
     "heartbeat_count": 0,
     "hold_endpoint_matrix_max_delta": 0.0,
     "hold_environment_endpoint_max_delta": 0.0,
+    "natural_hand_contact_samples": [
+      {
+        "frame": 1,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000150485429913,
+        "hand_back_alignment_to_thigh_normal": 1.0000000894069672,
+        "elbow_lateral_offset_m": 0.07411368191242218,
+        "nearest_palm_skin_distance_m": 0.0003332483465783298,
+        "open_patch_directional_gap_m": -0.023525765631347895,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 1,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.020000213757157326,
+        "hand_back_alignment_to_thigh_normal": 1.0000000074505806,
+        "elbow_lateral_offset_m": 0.07385075092315674,
+        "nearest_palm_skin_distance_m": 0.00119180663023144,
+        "open_patch_directional_gap_m": -0.014624628704041243,
+        "palm_skin_vertices_within_8mm": 16
+      },
+      {
+        "frame": 72,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000245014671236,
+        "hand_back_alignment_to_thigh_normal": 1.0000001955777407,
+        "elbow_lateral_offset_m": 0.0740673691034317,
+        "nearest_palm_skin_distance_m": 0.00033408746821805835,
+        "open_patch_directional_gap_m": -0.023571949743200094,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 72,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.02000038919504732,
+        "hand_back_alignment_to_thigh_normal": 1.0000001452863216,
+        "elbow_lateral_offset_m": 0.07380461692810059,
+        "nearest_palm_skin_distance_m": 0.0011715430300682783,
+        "open_patch_directional_gap_m": -0.014674325939267874,
+        "palm_skin_vertices_within_8mm": 16
+      },
+      {
+        "frame": 144,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.02000020758714527,
+        "hand_back_alignment_to_thigh_normal": 1.000000225380063,
+        "elbow_lateral_offset_m": 0.07416000962257385,
+        "nearest_palm_skin_distance_m": 0.0003322910633869469,
+        "open_patch_directional_gap_m": -0.023479548923205584,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 144,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.02000012545613572,
+        "hand_back_alignment_to_thigh_normal": 1.000000135973096,
+        "elbow_lateral_offset_m": 0.0738968551158905,
+        "nearest_palm_skin_distance_m": 0.0012104535708203912,
+        "open_patch_directional_gap_m": -0.014575084205716848,
+        "palm_skin_vertices_within_8mm": 16
+      }
+    ],
     "bone_euler_range_degrees_xyz": {
       "Head": [
         0.0,
@@ -60,33 +184,95 @@
         0.0
       ],
       "LeftHand": [
-        0.0,
-        0.96,
-        0.48
+        1.0986,
+        0.0976,
+        1.554
       ],
       "RightHand": [
-        0.0,
-        0.96,
-        0.48
+        1.4108,
+        0.1233,
+        1.805
       ],
       "LeftIndexProximal": [
-        0.36,
-        0.0,
-        0.0
+        0.5188,
+        0.0245,
+        0.0488
       ]
     },
     "saved_quality_samples": 48
   },
   "peace": {
     "source": "ArtSource/FullCinematics/Lake/Lake_Peace.blend",
-    "bytes": 32339451,
-    "sha256": "1da527bffd85ba3b2a268888bf7afab665558b098330f96627c2218f27b02f60",
+    "bytes": 32256969,
+    "sha256": "cc2d3b8c3fed908714397b3ce3976c4bc8396d7c1862eaad00e7f2aae0ccd8f2",
     "frame_count": 168,
     "packed_external_images": true,
     "camera_cuts": 3,
     "heartbeat_count": 0,
     "hold_endpoint_matrix_max_delta": 0,
     "hold_environment_endpoint_max_delta": 0,
+    "natural_hand_contact_samples": [
+      {
+        "frame": 1,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000150485429913,
+        "hand_back_alignment_to_thigh_normal": 1.0000000894069672,
+        "elbow_lateral_offset_m": 0.07411368191242218,
+        "nearest_palm_skin_distance_m": 0.0003332483465783298,
+        "open_patch_directional_gap_m": -0.023525765631347895,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 1,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.020000213757157326,
+        "hand_back_alignment_to_thigh_normal": 1.0000000074505806,
+        "elbow_lateral_offset_m": 0.07385075092315674,
+        "nearest_palm_skin_distance_m": 0.00119180663023144,
+        "open_patch_directional_gap_m": -0.014624628704041243,
+        "palm_skin_vertices_within_8mm": 16
+      },
+      {
+        "frame": 84,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.02000047464389354,
+        "hand_back_alignment_to_thigh_normal": 1.0000001266598701,
+        "elbow_lateral_offset_m": 0.07741647958755493,
+        "nearest_palm_skin_distance_m": 0.0004486198886297643,
+        "open_patch_directional_gap_m": -0.016462006140500307,
+        "palm_skin_vertices_within_8mm": 21
+      },
+      {
+        "frame": 84,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.019999452168121934,
+        "hand_back_alignment_to_thigh_normal": 1.00000006146729,
+        "elbow_lateral_offset_m": 0.07714797556400299,
+        "nearest_palm_skin_distance_m": 0.00044522667303681374,
+        "open_patch_directional_gap_m": -0.018355359039048835,
+        "palm_skin_vertices_within_8mm": 17
+      },
+      {
+        "frame": 168,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.02000019233673811,
+        "hand_back_alignment_to_thigh_normal": 1.0000000782310963,
+        "elbow_lateral_offset_m": 0.07670485973358154,
+        "nearest_palm_skin_distance_m": 0.0004474748275242746,
+        "open_patch_directional_gap_m": -0.016465487860841677,
+        "palm_skin_vertices_within_8mm": 21
+      },
+      {
+        "frame": 168,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.02000018348917365,
+        "hand_back_alignment_to_thigh_normal": 1.0000001676380634,
+        "elbow_lateral_offset_m": 0.07643969357013702,
+        "nearest_palm_skin_distance_m": 0.00044572187471203506,
+        "open_patch_directional_gap_m": -0.018343975586333272,
+        "palm_skin_vertices_within_8mm": 17
+      }
+    ],
     "bone_euler_range_degrees_xyz": {
       "Head": [
         3.4,
@@ -99,33 +285,95 @@
         0.0
       ],
       "LeftHand": [
-        0.0,
-        3.2,
-        1.6
+        2.0993,
+        0.3129,
+        2.4792
       ],
       "RightHand": [
-        0.0,
-        3.2,
-        1.6
+        2.1415,
+        0.8601,
+        3.4329
       ],
       "LeftIndexProximal": [
-        3.2,
-        0.0,
-        0.0
+        3.7293,
+        0.081,
+        0.1629
       ]
     },
     "saved_quality_samples": 48
   },
   "dominion": {
     "source": "ArtSource/FullCinematics/Lake/Lake_Dominion.blend",
-    "bytes": 32414168,
-    "sha256": "640a87ab66bc73eacf02b4fc89ddc67e339ef22aea5d403b287691e8cdb0d61c",
+    "bytes": 32471345,
+    "sha256": "2e335ff0075b8e7008f03f9ec9c7ee9ed6ec2e8687ed23c580eb711f647601bb",
     "frame_count": 168,
     "packed_external_images": true,
     "camera_cuts": 3,
     "heartbeat_count": 42,
     "hold_endpoint_matrix_max_delta": 0,
     "hold_environment_endpoint_max_delta": 0,
+    "natural_hand_contact_samples": [
+      {
+        "frame": 1,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.020000150485429913,
+        "hand_back_alignment_to_thigh_normal": 1.0000000894069672,
+        "elbow_lateral_offset_m": 0.07411368191242218,
+        "nearest_palm_skin_distance_m": 0.00030304427491500974,
+        "open_patch_directional_gap_m": -0.023525765631347895,
+        "palm_skin_vertices_within_8mm": 23
+      },
+      {
+        "frame": 1,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.020000213757157326,
+        "hand_back_alignment_to_thigh_normal": 1.0000000074505806,
+        "elbow_lateral_offset_m": 0.07385075092315674,
+        "nearest_palm_skin_distance_m": 0.0011764670489355922,
+        "open_patch_directional_gap_m": -0.014624628704041243,
+        "palm_skin_vertices_within_8mm": 17
+      },
+      {
+        "frame": 84,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.09500020276755095,
+        "hand_back_alignment_to_thigh_normal": 1.0000002011656761,
+        "elbow_lateral_offset_m": 0.07550506293773651,
+        "nearest_palm_skin_distance_m": 0.04417691007256508,
+        "open_patch_directional_gap_m": -0.05019846512004733,
+        "palm_skin_vertices_within_8mm": 0
+      },
+      {
+        "frame": 84,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.09500003326684237,
+        "hand_back_alignment_to_thigh_normal": 1.0000001210719347,
+        "elbow_lateral_offset_m": 0.07473845779895782,
+        "nearest_palm_skin_distance_m": 0.051967594772577286,
+        "open_patch_directional_gap_m": -0.05578826589771779,
+        "palm_skin_vertices_within_8mm": 0
+      },
+      {
+        "frame": 168,
+        "side": "Left",
+        "palm_center_above_thigh_m": 0.09500012267380953,
+        "hand_back_alignment_to_thigh_normal": 1.0000001341104507,
+        "elbow_lateral_offset_m": 0.07529754936695099,
+        "nearest_palm_skin_distance_m": 0.044176943600177765,
+        "open_patch_directional_gap_m": -0.05019834963604808,
+        "palm_skin_vertices_within_8mm": 0
+      },
+      {
+        "frame": 168,
+        "side": "Right",
+        "palm_center_above_thigh_m": 0.09500018786638975,
+        "hand_back_alignment_to_thigh_normal": 1.000000037252903,
+        "elbow_lateral_offset_m": 0.07453402876853943,
+        "nearest_palm_skin_distance_m": 0.05196763947606087,
+        "open_patch_directional_gap_m": -0.05578829570004018,
+        "palm_skin_vertices_within_8mm": 0
+      }
+    ],
     "bone_euler_range_degrees_xyz": {
       "Head": [
         3.5,
@@ -138,19 +386,19 @@
         0.0
       ],
       "LeftHand": [
-        0.0,
-        4.0,
-        2.0
+        40.9352,
+        7.6105,
+        26.2289
       ],
       "RightHand": [
-        0.0,
-        4.0,
-        2.0
+        39.8498,
+        7.5237,
+        25.2551
       ],
       "LeftIndexProximal": [
-        29.0,
-        0.0,
-        0.0
+        56.1142,
+        5.9208,
+        7.2248
       ]
     },
     "saved_quality_samples": 48

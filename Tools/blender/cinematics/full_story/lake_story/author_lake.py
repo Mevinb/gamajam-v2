@@ -13,6 +13,9 @@ import bpy
 import math
 import json
 import sys
+sys.dont_write_bytecode=True
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from natural_sitting import SeatedContacts
 import hashlib
 import time
 from mathutils import Vector, Quaternion
@@ -269,7 +272,9 @@ def animate_environment(scene, film, length):
 
 def animate_girl(scene, film, length):
     rig = bpy.data.objects['Armature']
-    base = {b.name: b.rotation_euler.copy() for b in rig.pose.bones}
+    base = {b.name: (b.rotation_quaternion.to_euler('XYZ') if b.rotation_mode=='QUATERNION' else b.rotation_euler.copy()) for b in rig.pose.bones}
+    hero=next(o for o in bpy.data.objects if o.type=='MESH' and o.name.startswith('LakeGirl_LOD0'))
+    contacts=SeatedContacts(rig,hero)
     loc = {b.name: b.location.copy() for b in rig.pose.bones}
     names = ['Hips', 'Spine', 'Chest', 'UpperChest', 'Neck', 'Head', 'LeftEye', 'RightEye',
              'LeftShoulder', 'RightShoulder', 'LeftUpperArm', 'RightUpperArm',
@@ -343,6 +348,12 @@ def animate_girl(scene, film, length):
             b.keyframe_insert('rotation_euler', frame=f)
             if name == 'Spine':
                 b.keyframe_insert('location', frame=f)
+        contacts.solve(film,hand)
+        for name in names:
+            if name.startswith(('Left','Right')) and name not in ['LeftEye','RightEye']:
+                rig.pose.bones[name].keyframe_insert('rotation_euler',frame=f)
+        if f==1:
+            scene['neutral_contact_targets']=json.dumps(contacts.last)
     rig['performance'] = {'arrival': 'neutral gaze and resting hand readjustment; periodic breathing',
                          'hold': 'six second periodic breathing, eyes and loose hands; no outcome',
                          'peace': 'exhale, open relaxed palms, softened gaze, ordinary eyes',
@@ -464,7 +475,7 @@ def build(film):
         if a == 1:
             scene.camera = cam
     scene.frame_set(1)
-    scene.render.filepath = str(OUT / 'frames' / film / 'frame-')
+    scene.render.filepath = str(ROOT / 'Logs/full-cinematic-renders' / ('lake-'+film) / 'frame-')
     bpy.context.preferences.filepaths.save_version = 0
     bpy.ops.file.pack_all()
     path = OUT / ('Lake_'+film.title()+'.blend')
@@ -505,6 +516,40 @@ def audit():
                 [abs(bpy.data.objects[name].data.shape_keys.key_blocks['Quiet shore breeze'].value-value)
                  for name,value in first_wind.items()])
             assert environment_delta < 1e-5, environment_delta
+        hero=next(o for o in bpy.data.objects if o.type=='MESH' and o.name.startswith('LakeGirl_LOD0'))
+        contacts=SeatedContacts(rig,hero);contact_report=[]
+        for frame in [1,max(1,length//2),length]:
+            s.frame_set(frame);W=contacts.fk()
+            evaluated=hero.evaluated_get(bpy.context.evaluated_depsgraph_get());skin=evaluated.to_mesh()
+            skin_to_rig=rig.matrix_world.inverted()@evaluated.matrix_world
+            surface_metrics={}
+            for side,target in contacts.targets.items():
+                skin_slots={i for i,m in enumerate(hero.data.materials) if m and m.name.split('.')[0]=='Skin'}
+                skin_vertices={index for polygon in hero.data.polygons if polygon.material_index in skin_slots for index in polygon.vertices}
+                group=hero.vertex_groups.get(side+'Hand');candidates=[v.index for v in hero.data.vertices if v.index in skin_vertices and any(g.group==group.index and g.weight>.45 for g in v.groups)]
+                gaps=[]
+                for index in candidates:
+                    point=skin_to_rig@skin.vertices[index].co;nearest,normal,polygon,distance=target['tree'].find_nearest(point)
+                    if nearest is not None and (nearest-target['point']).length<.14:
+                        if normal.dot(target['normal'])<0:normal.negate()
+                        gaps.append((distance,(point-nearest).dot(normal)))
+                if not gaps:raise RuntimeError('No actual palm skin near contact surface')
+                surface_metrics[side]={'nearest_palm_skin_distance_m':min(v[0] for v in gaps),'open_patch_directional_gap_m':min(v[1] for v in gaps),'palm_skin_vertices_within_8mm':sum(v[0]<.008 for v in gaps)}
+            evaluated.to_mesh_clear()
+            for side,target in contacts.targets.items():
+                palm=W[side+'Hand']@target['palm_offset'];clearance=(palm-target['point']).dot(target['normal'])
+                rest_rotation=contacts.rest[side+'Hand'].to_3x3().normalized()
+                dorsal=W[side+'Hand'].to_3x3().normalized()@rest_rotation.inverted()@target['rest_dorsal']
+                palm_alignment=dorsal.dot(target['normal'])
+                elbow_offset=abs(W[side+'LowerArm'].translation.x-W[side+'UpperArm'].translation.x)
+                if film!='dominion' or frame==1:
+                    assert .005<clearance<.04,(film,frame,side,'hand does not rest near the actual thigh',clearance)
+                    assert palm_alignment>.98,(film,frame,side,'palm faces upward instead of resting down',palm_alignment)
+                    assert elbow_offset<.16,(film,frame,side,'elbow is detached from torso',elbow_offset)
+                    assert surface_metrics[side]['nearest_palm_skin_distance_m']<.025,(film,frame,side,'palm skin floats above actual thigh surface',surface_metrics[side])
+                    # The weighted thigh ROI is an open, layered clothing patch: signed distance is not a solid-penetration test.
+                    assert surface_metrics[side]['palm_skin_vertices_within_8mm']>=3,(film,frame,side,'no actual skin contact patch',surface_metrics[side])
+                contact_report.append({'frame':frame,'side':side,'palm_center_above_thigh_m':clearance,'hand_back_alignment_to_thigh_normal':palm_alignment,'elbow_lateral_offset_m':elbow_offset,**surface_metrics[side]})
         motion = {}
         for name in ['Head','Chest','LeftHand','RightHand','LeftIndexProximal']:
             values = []
@@ -517,7 +562,7 @@ def audit():
                          'frame_count':length,'packed_external_images':not packed,
                          'camera_cuts':len(s.timeline_markers), 'heartbeat_count':len(hearts),
                          'hold_endpoint_matrix_max_delta':delta,'hold_environment_endpoint_max_delta':environment_delta,
-                         'bone_euler_range_degrees_xyz':motion,'saved_quality_samples':s.cycles.samples}
+                         'natural_hand_contact_samples':contact_report,'bone_euler_range_degrees_xyz':motion,'saved_quality_samples':s.cycles.samples}
     (OUT/'audit.json').write_text(json.dumps(reports,indent=2)+'\n')
     print('[lake] AUDIT PASS', json.dumps(reports),flush=True)
 

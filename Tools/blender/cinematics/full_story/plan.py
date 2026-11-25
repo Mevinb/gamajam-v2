@@ -2,10 +2,10 @@
 FPS=24
 DURATION=80
 SHOTS=[
- {'id':'01-rhythm','start':0,'end':5,'beat':'A living specimen answers a four-tap rhythm behind real glass.','eye':(.15,1.43,-1.72),'end_eye':(-.12,1.41,-1.52),'target':(0,1.29,0),'lens':50},
+ {'id':'01-rhythm','start':0,'end':5,'beat':'A living specimen answers a four-tap rhythm behind real glass.','eye':(.15,1.44,-2.10),'end_eye':(.05,1.42,-2.02),'target':(0,1.29,0),'lens':44},
  {'id':'02-petrov','start':5,'end':12,'beat':'Petrov approaches and physically taps the vessel four times.','eye':(-1.9,1.65,-2.9),'end_eye':(-1.5,1.62,-2.55),'target':(-.25,1.3,.12),'lens':38},
  {'id':'03-recognition','start':12,'end':19,'beat':'The specimen repeats the rhythm; Petrov recognizes the response.','eye':(-.15,1.64,1.45),'end_eye':(-.20,1.63,1.30),'target':(-.68,1.48,.08),'lens':55},
- {'id':'04-disagreement','start':19,'end':26,'beat':'Vale dismisses the response; Petrov turns to challenge him.','eye':(-1.5,1.6,-2.2),'end_eye':(-1.3,1.58,-2.0),'target':(.7,1.45,.95),'lens':55},
+ {'id':'04-disagreement','start':19,'end':26,'beat':'Vale dismisses the response; Petrov turns to challenge him.','eye':(-1.7,1.65,.7),'end_eye':(-1.45,1.63,.72),'target':(.85,1.5,1.05),'lens':55},
  {'id':'05-two-bodies','start':26,'end':34,'beat':'One culture pinches into two synchronized, independently moving bodies.','eye':(-.4,1.45,-1.5),'end_eye':(.55,1.38,-1.45),'target':(-.02,1.29,0),'lens':52},
  {'id':'06-contact','start':34,'end':43,'beat':'A living filament touches the worker wrist; he recoils and collapses while Petrov intervenes.','eye':(.2,1.70,-3.4),'end_eye':(1.9,2.0,-3.4),'target':(.95,1.20,-.50),'end_target':(.85,.40,-1.1),'lens':36,'end_lens':38,'keys':[(34,(.2,1.70,-3.4),(.95,1.2,-.5),36),(36,(.6,1.8,-3.6),(.95,1.0,-.6),34),(38.5,(1.65,2.1,-3.6),(.95,.45,-1.0),32),(43,(1.9,2.0,-3.4),(.85,.40,-1.1),38)]},
  {'id':'07-restraint','start':43,'end':51,'beat':'Mechanical restraint closes; Petrov returns to the familiar rhythm.','eye':(-1.65,1.48,-1.55),'end_eye':(-1.30,1.44,-1.42),'target':(-.1,1.3,0),'lens':40},

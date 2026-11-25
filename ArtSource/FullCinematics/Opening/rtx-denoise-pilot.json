@@ -1,0 +1,972 @@
+{
+  "source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+  "quality": [
+    1920,
+    1080,
+    48
+  ],
+  "frames_per_job": [
+    61,
+    62
+  ],
+  "jobs": [
+    {
+      "name": "oidn-cpu",
+      "command": [
+        "/home/mevlec/Data/Blender/current/blender",
+        "-b",
+        "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "-t",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/home/mevlec/Data/Parasite/Tools/blender/cinematics/full_story/render_story.py",
+        "--",
+        "--gpu-released",
+        "--start",
+        "61",
+        "--end",
+        "62",
+        "--samples",
+        "48",
+        "--out",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/oidn-cpu",
+        "--stop-file",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP"
+      ]
+    },
+    {
+      "name": "oidn-gpu",
+      "command": [
+        "/home/mevlec/Data/Blender/current/blender",
+        "-b",
+        "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "-t",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/home/mevlec/Data/Parasite/Tools/blender/cinematics/full_story/render_story.py",
+        "--",
+        "--gpu-released",
+        "--start",
+        "61",
+        "--end",
+        "62",
+        "--samples",
+        "48",
+        "--out",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/oidn-gpu",
+        "--stop-file",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP",
+        "--denoise-gpu"
+      ]
+    },
+    {
+      "name": "optix-gpu",
+      "command": [
+        "/home/mevlec/Data/Blender/current/blender",
+        "-b",
+        "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "-t",
+        "2",
+        "--python-exit-code",
+        "1",
+        "--python",
+        "/home/mevlec/Data/Parasite/Tools/blender/cinematics/full_story/render_story.py",
+        "--",
+        "--gpu-released",
+        "--start",
+        "61",
+        "--end",
+        "62",
+        "--samples",
+        "48",
+        "--out",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/optix-gpu",
+        "--stop-file",
+        "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP",
+        "--denoiser",
+        "OPTIX",
+        "--denoise-gpu"
+      ]
+    }
+  ],
+  "output": "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z",
+  "execute_requested": true,
+  "qa": [
+    "Living specimen and nucleus remain readable through physical glass",
+    "No central reflected bands obscure subject",
+    "Compare pores, hair, skin, refraction and fine texture retention",
+    "Adjacent frames must not flicker or smear",
+    "Ray backend remains RTX4050 OptiX; source/driver/denoiser provenance separate"
+  ],
+  "production_authorized": false,
+  "status": "complete",
+  "results": [
+    {
+      "name": "oidn-cpu",
+      "exit_code": 0,
+      "wall_seconds": 57.2048438590009,
+      "evidence": {
+        "schema": 2,
+        "source": "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "provenance": {
+          "schema": 2,
+          "source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+          "scene": "Scene",
+          "view_layer": "ViewLayer",
+          "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+          "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+          "blender": {
+            "version": [
+              4,
+              5,
+              16
+            ],
+            "version_string": "4.5.16 LTS",
+            "build_hash": "3f6797307da5"
+          },
+          "engine": "CYCLES",
+          "backend": "OPTIX",
+          "devices": [
+            {
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "type": "OPTIX",
+              "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+            }
+          ],
+          "device_mode": "GPU",
+          "scene_frame_range": [
+            1,
+            1920
+          ],
+          "camera_schedule": [
+            {
+              "frame": 1,
+              "marker": "01-rhythm",
+              "camera": "Camera 01-rhythm"
+            },
+            {
+              "frame": 121,
+              "marker": "02-petrov",
+              "camera": "Camera 02-petrov"
+            },
+            {
+              "frame": 289,
+              "marker": "03-recognition",
+              "camera": "Camera 03-recognition"
+            },
+            {
+              "frame": 457,
+              "marker": "04-disagreement",
+              "camera": "Camera 04-disagreement"
+            },
+            {
+              "frame": 625,
+              "marker": "05-two-bodies",
+              "camera": "Camera 05-two-bodies"
+            },
+            {
+              "frame": 817,
+              "marker": "06-contact",
+              "camera": "Camera 06-contact"
+            },
+            {
+              "frame": 1033,
+              "marker": "07-restraint",
+              "camera": "Camera 07-restraint"
+            },
+            {
+              "frame": 1225,
+              "marker": "08-interlock",
+              "camera": "Camera 08-interlock"
+            },
+            {
+              "frame": 1417,
+              "marker": "09-conduit",
+              "camera": "Camera 09-conduit"
+            },
+            {
+              "frame": 1609,
+              "marker": "10-outside",
+              "camera": "Camera 10-outside"
+            },
+            {
+              "frame": 1801,
+              "marker": "11-next-beat",
+              "camera": "Camera 11-next-beat"
+            }
+          ],
+          "sampling": {
+            "samples": 48,
+            "use_adaptive_sampling": true,
+            "adaptive_threshold": 0.03999999910593033,
+            "adaptive_min_samples": 0,
+            "use_denoising": true,
+            "denoiser": "OPENIMAGEDENOISE",
+            "denoising_use_gpu": false,
+            "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+            "denoising_prefilter": "ACCURATE",
+            "denoising_quality": "HIGH",
+            "seed": 0,
+            "use_animated_seed": false,
+            "sample_offset": 0,
+            "max_bounces": 12,
+            "diffuse_bounces": 4,
+            "glossy_bounces": 4,
+            "transmission_bounces": 12,
+            "volume_bounces": 0,
+            "transparent_max_bounces": 12,
+            "sample_clamp_direct": 0.0,
+            "sample_clamp_indirect": 10.0,
+            "light_sampling_threshold": 0.009999999776482582,
+            "use_light_tree": true,
+            "use_fast_gi": false,
+            "use_guiding": false,
+            "volume_step_rate": 1.0,
+            "volume_max_steps": 1024,
+            "rolling_shutter_type": "NONE",
+            "rolling_shutter_duration": 0.10000000149011612
+          },
+          "render": {
+            "fps": 24,
+            "fps_base": 1.0,
+            "resolution_x": 1920,
+            "resolution_y": 1080,
+            "resolution_percentage": 100,
+            "threads_mode": "FIXED",
+            "threads": 2,
+            "use_motion_blur": false,
+            "motion_blur_shutter": 0.5,
+            "use_persistent_data": true,
+            "image": {
+              "file_format": "PNG",
+              "color_mode": "RGB",
+              "color_depth": "8",
+              "compression": 15,
+              "color_management": "FOLLOW_SCENE"
+            }
+          },
+          "color": {
+            "view_transform": "AgX",
+            "look": "None",
+            "exposure": 0.0,
+            "gamma": 1.0,
+            "use_curve_mapping": false,
+            "display_device": "sRGB"
+          }
+        },
+        "provenance_sha256": "5daac1ab5aeb138a47d58405995d80617be44d26118e9c764692aee24685eb67",
+        "start": 61,
+        "end": 62,
+        "stop_file": "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP",
+        "status": "complete",
+        "complete": true,
+        "frames": [
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.998847246170044,
+                -0.0032871307339519262,
+                0.04789634421467781,
+                0.10000000149011612
+              ],
+              [
+                0.048008993268013,
+                -0.06755618751049042,
+                0.9965599179267883,
+                2.059999942779541
+              ],
+              [
+                -4.0136212192010134e-05,
+                0.9977102279663086,
+                0.06763576716184616,
+                1.4299999475479126
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 61,
+            "seconds": 28.134940541000105,
+            "bytes": 2143025,
+            "sha256": "66aa076811fb4026c215d311686264ee768cfb1f16a761ff5b0215f262a8b53b"
+          },
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.9988746047019958,
+                -0.0032437145709991455,
+                0.04731664061546326,
+                0.09875012189149857
+              ],
+              [
+                0.04742767661809921,
+                -0.06747207790613174,
+                0.9965932369232178,
+                2.059000253677368
+              ],
+              [
+                -4.01110592065379e-05,
+                0.9977158904075623,
+                0.06755002588033676,
+                1.4297500848770142
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 62,
+            "seconds": 27.89945904200067,
+            "bytes": 2140782,
+            "sha256": "be00c2113cf716a6ca046cf837e6904d3eba9a2ac09671ddc7dad8e403a4d1fa"
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "name": "oidn-gpu",
+      "exit_code": 0,
+      "wall_seconds": 23.427305835999505,
+      "evidence": {
+        "schema": 2,
+        "source": "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "provenance": {
+          "schema": 2,
+          "source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+          "scene": "Scene",
+          "view_layer": "ViewLayer",
+          "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+          "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+          "blender": {
+            "version": [
+              4,
+              5,
+              16
+            ],
+            "version_string": "4.5.16 LTS",
+            "build_hash": "3f6797307da5"
+          },
+          "engine": "CYCLES",
+          "backend": "OPTIX",
+          "devices": [
+            {
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "type": "OPTIX",
+              "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+            }
+          ],
+          "device_mode": "GPU",
+          "scene_frame_range": [
+            1,
+            1920
+          ],
+          "camera_schedule": [
+            {
+              "frame": 1,
+              "marker": "01-rhythm",
+              "camera": "Camera 01-rhythm"
+            },
+            {
+              "frame": 121,
+              "marker": "02-petrov",
+              "camera": "Camera 02-petrov"
+            },
+            {
+              "frame": 289,
+              "marker": "03-recognition",
+              "camera": "Camera 03-recognition"
+            },
+            {
+              "frame": 457,
+              "marker": "04-disagreement",
+              "camera": "Camera 04-disagreement"
+            },
+            {
+              "frame": 625,
+              "marker": "05-two-bodies",
+              "camera": "Camera 05-two-bodies"
+            },
+            {
+              "frame": 817,
+              "marker": "06-contact",
+              "camera": "Camera 06-contact"
+            },
+            {
+              "frame": 1033,
+              "marker": "07-restraint",
+              "camera": "Camera 07-restraint"
+            },
+            {
+              "frame": 1225,
+              "marker": "08-interlock",
+              "camera": "Camera 08-interlock"
+            },
+            {
+              "frame": 1417,
+              "marker": "09-conduit",
+              "camera": "Camera 09-conduit"
+            },
+            {
+              "frame": 1609,
+              "marker": "10-outside",
+              "camera": "Camera 10-outside"
+            },
+            {
+              "frame": 1801,
+              "marker": "11-next-beat",
+              "camera": "Camera 11-next-beat"
+            }
+          ],
+          "sampling": {
+            "samples": 48,
+            "use_adaptive_sampling": true,
+            "adaptive_threshold": 0.03999999910593033,
+            "adaptive_min_samples": 0,
+            "use_denoising": true,
+            "denoiser": "OPENIMAGEDENOISE",
+            "denoising_use_gpu": true,
+            "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+            "denoising_prefilter": "ACCURATE",
+            "denoising_quality": "HIGH",
+            "seed": 0,
+            "use_animated_seed": false,
+            "sample_offset": 0,
+            "max_bounces": 12,
+            "diffuse_bounces": 4,
+            "glossy_bounces": 4,
+            "transmission_bounces": 12,
+            "volume_bounces": 0,
+            "transparent_max_bounces": 12,
+            "sample_clamp_direct": 0.0,
+            "sample_clamp_indirect": 10.0,
+            "light_sampling_threshold": 0.009999999776482582,
+            "use_light_tree": true,
+            "use_fast_gi": false,
+            "use_guiding": false,
+            "volume_step_rate": 1.0,
+            "volume_max_steps": 1024,
+            "rolling_shutter_type": "NONE",
+            "rolling_shutter_duration": 0.10000000149011612
+          },
+          "render": {
+            "fps": 24,
+            "fps_base": 1.0,
+            "resolution_x": 1920,
+            "resolution_y": 1080,
+            "resolution_percentage": 100,
+            "threads_mode": "FIXED",
+            "threads": 2,
+            "use_motion_blur": false,
+            "motion_blur_shutter": 0.5,
+            "use_persistent_data": true,
+            "image": {
+              "file_format": "PNG",
+              "color_mode": "RGB",
+              "color_depth": "8",
+              "compression": 15,
+              "color_management": "FOLLOW_SCENE"
+            }
+          },
+          "color": {
+            "view_transform": "AgX",
+            "look": "None",
+            "exposure": 0.0,
+            "gamma": 1.0,
+            "use_curve_mapping": false,
+            "display_device": "sRGB"
+          }
+        },
+        "provenance_sha256": "29eae385275466c9916401aee9835e8f19cb67518299eab67c38ceeced066ca6",
+        "start": 61,
+        "end": 62,
+        "stop_file": "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP",
+        "status": "complete",
+        "complete": true,
+        "frames": [
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.998847246170044,
+                -0.0032871307339519262,
+                0.04789634421467781,
+                0.10000000149011612
+              ],
+              [
+                0.048008993268013,
+                -0.06755618751049042,
+                0.9965599179267883,
+                2.059999942779541
+              ],
+              [
+                -4.0136212192010134e-05,
+                0.9977102279663086,
+                0.06763576716184616,
+                1.4299999475479126
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 61,
+            "seconds": 11.519883623001078,
+            "bytes": 2149410,
+            "sha256": "6696da7ca4be16c54784def43458c5a928ba2fd8bf504c76b24af7b87e384f51"
+          },
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.9988746047019958,
+                -0.0032437145709991455,
+                0.04731664061546326,
+                0.09875012189149857
+              ],
+              [
+                0.04742767661809921,
+                -0.06747207790613174,
+                0.9965932369232178,
+                2.059000253677368
+              ],
+              [
+                -4.01110592065379e-05,
+                0.9977158904075623,
+                0.06755002588033676,
+                1.4297500848770142
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 62,
+            "seconds": 10.718782447000194,
+            "bytes": 2148159,
+            "sha256": "3c41f97c66f39b196e2d9e0f810f429d29b00dcba947e5be1fe0730b3a9fa362"
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "name": "optix-gpu",
+      "exit_code": 0,
+      "wall_seconds": 23.287557416999334,
+      "evidence": {
+        "schema": 2,
+        "source": "/home/mevlec/Data/Parasite/ArtSource/FullCinematics/Opening/OpeningFull.blend",
+        "provenance": {
+          "schema": 2,
+          "source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+          "scene": "Scene",
+          "view_layer": "ViewLayer",
+          "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+          "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+          "blender": {
+            "version": [
+              4,
+              5,
+              16
+            ],
+            "version_string": "4.5.16 LTS",
+            "build_hash": "3f6797307da5"
+          },
+          "engine": "CYCLES",
+          "backend": "OPTIX",
+          "devices": [
+            {
+              "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+              "type": "OPTIX",
+              "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+            }
+          ],
+          "device_mode": "GPU",
+          "scene_frame_range": [
+            1,
+            1920
+          ],
+          "camera_schedule": [
+            {
+              "frame": 1,
+              "marker": "01-rhythm",
+              "camera": "Camera 01-rhythm"
+            },
+            {
+              "frame": 121,
+              "marker": "02-petrov",
+              "camera": "Camera 02-petrov"
+            },
+            {
+              "frame": 289,
+              "marker": "03-recognition",
+              "camera": "Camera 03-recognition"
+            },
+            {
+              "frame": 457,
+              "marker": "04-disagreement",
+              "camera": "Camera 04-disagreement"
+            },
+            {
+              "frame": 625,
+              "marker": "05-two-bodies",
+              "camera": "Camera 05-two-bodies"
+            },
+            {
+              "frame": 817,
+              "marker": "06-contact",
+              "camera": "Camera 06-contact"
+            },
+            {
+              "frame": 1033,
+              "marker": "07-restraint",
+              "camera": "Camera 07-restraint"
+            },
+            {
+              "frame": 1225,
+              "marker": "08-interlock",
+              "camera": "Camera 08-interlock"
+            },
+            {
+              "frame": 1417,
+              "marker": "09-conduit",
+              "camera": "Camera 09-conduit"
+            },
+            {
+              "frame": 1609,
+              "marker": "10-outside",
+              "camera": "Camera 10-outside"
+            },
+            {
+              "frame": 1801,
+              "marker": "11-next-beat",
+              "camera": "Camera 11-next-beat"
+            }
+          ],
+          "sampling": {
+            "samples": 48,
+            "use_adaptive_sampling": true,
+            "adaptive_threshold": 0.03999999910593033,
+            "adaptive_min_samples": 0,
+            "use_denoising": true,
+            "denoiser": "OPTIX",
+            "denoising_use_gpu": true,
+            "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+            "denoising_prefilter": "ACCURATE",
+            "denoising_quality": "HIGH",
+            "seed": 0,
+            "use_animated_seed": false,
+            "sample_offset": 0,
+            "max_bounces": 12,
+            "diffuse_bounces": 4,
+            "glossy_bounces": 4,
+            "transmission_bounces": 12,
+            "volume_bounces": 0,
+            "transparent_max_bounces": 12,
+            "sample_clamp_direct": 0.0,
+            "sample_clamp_indirect": 10.0,
+            "light_sampling_threshold": 0.009999999776482582,
+            "use_light_tree": true,
+            "use_fast_gi": false,
+            "use_guiding": false,
+            "volume_step_rate": 1.0,
+            "volume_max_steps": 1024,
+            "rolling_shutter_type": "NONE",
+            "rolling_shutter_duration": 0.10000000149011612
+          },
+          "render": {
+            "fps": 24,
+            "fps_base": 1.0,
+            "resolution_x": 1920,
+            "resolution_y": 1080,
+            "resolution_percentage": 100,
+            "threads_mode": "FIXED",
+            "threads": 2,
+            "use_motion_blur": false,
+            "motion_blur_shutter": 0.5,
+            "use_persistent_data": true,
+            "image": {
+              "file_format": "PNG",
+              "color_mode": "RGB",
+              "color_depth": "8",
+              "compression": 15,
+              "color_management": "FOLLOW_SCENE"
+            }
+          },
+          "color": {
+            "view_transform": "AgX",
+            "look": "None",
+            "exposure": 0.0,
+            "gamma": 1.0,
+            "use_curve_mapping": false,
+            "display_device": "sRGB"
+          }
+        },
+        "provenance_sha256": "0c088bda52f6e42df53518289ad77b6326b9f3f9e9112ce04aee9efa341f6b8b",
+        "start": 61,
+        "end": 62,
+        "stop_file": "/home/mevlec/Data/Parasite/Logs/full-cinematic-renders/revised-optics-ab-20261125T002058Z/STOP",
+        "status": "complete",
+        "complete": true,
+        "frames": [
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.998847246170044,
+                -0.0032871307339519262,
+                0.04789634421467781,
+                0.10000000149011612
+              ],
+              [
+                0.048008993268013,
+                -0.06755618751049042,
+                0.9965599179267883,
+                2.059999942779541
+              ],
+              [
+                -4.0136212192010134e-05,
+                0.9977102279663086,
+                0.06763576716184616,
+                1.4299999475479126
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 61,
+            "seconds": 11.353045826001107,
+            "bytes": 2409986,
+            "sha256": "560be5f6ea8590c09080b95cc7345ff1f0e812053892fa35f3672fe0c92a915b"
+          },
+          {
+            "camera": "Camera 01-rhythm",
+            "camera_marker": "01-rhythm",
+            "camera_marker_frame": 1,
+            "camera_world_matrix": [
+              [
+                -0.9988746047019958,
+                -0.0032437145709991455,
+                0.04731664061546326,
+                0.09875012189149857
+              ],
+              [
+                0.04742767661809921,
+                -0.06747207790613174,
+                0.9965932369232178,
+                2.059000253677368
+              ],
+              [
+                -4.01110592065379e-05,
+                0.9977158904075623,
+                0.06755002588033676,
+                1.4297500848770142
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "camera_lens_mm": 44.0,
+            "camera_sensor_mm": [
+              36.0,
+              24.0
+            ],
+            "dof": {
+              "enabled": true,
+              "fstop": 5.599999904632568,
+              "focus_object": "Focus 01-rhythm",
+              "focus_distance": 10.0
+            },
+            "frame": 62,
+            "seconds": 10.560518035999849,
+            "bytes": 2410781,
+            "sha256": "2c17a7c8e5a1f98978b535fedfca1af261d39313f38c055debe862f7467e75a4"
+          }
+        ],
+        "error": null
+      }
+    }
+  ],
+  "gpu_wide_telemetry": {
+    "interval_ms": 500,
+    "samples": 208,
+    "peak_used_mib": 2050.0,
+    "mean_utilization_percent": 55.98557692307692,
+    "peak_temperature_c": 70.0
+  },
+  "image_comparison": {
+    "oidn-gpu": {
+      "whole": {
+        "mean_absolute_pixel_delta": 0.00018555459735334462,
+        "psnr_vs_cpu_oidn_db": 61.38068461412562,
+        "horizontal_detail_energy_ratio": 1.0011885020962064,
+        "two_frame_temporal_residual_mae": 0.00032662465706447186
+      },
+      "face": {
+        "mean_absolute_pixel_delta": 0.00019410403050108932,
+        "psnr_vs_cpu_oidn_db": 61.18505626981662,
+        "horizontal_detail_energy_ratio": 1.0012989780695967,
+        "two_frame_temporal_residual_mae": 0.0003488051470588235
+      },
+      "gel": {
+        "mean_absolute_pixel_delta": 0.0001792752504826808,
+        "psnr_vs_cpu_oidn_db": 61.5301984246522,
+        "horizontal_detail_energy_ratio": 1.0015506239703595,
+        "two_frame_temporal_residual_mae": 0.00032327683720872574
+      }
+    },
+    "optix-gpu": {
+      "whole": {
+        "mean_absolute_pixel_delta": 0.0036454027727346083,
+        "psnr_vs_cpu_oidn_db": 42.990189046584234,
+        "horizontal_detail_energy_ratio": 1.1473721360241094,
+        "two_frame_temporal_residual_mae": 0.002108564940894053
+      },
+      "face": {
+        "mean_absolute_pixel_delta": 0.003332363153594771,
+        "psnr_vs_cpu_oidn_db": 45.18977883086894,
+        "horizontal_detail_energy_ratio": 1.0052962673549444,
+        "two_frame_temporal_residual_mae": 0.0025454027096949894
+      },
+      "gel": {
+        "mean_absolute_pixel_delta": 0.005891699749284889,
+        "psnr_vs_cpu_oidn_db": 39.13071869960072,
+        "horizontal_detail_energy_ratio": 1.6402213586805598,
+        "two_frame_temporal_residual_mae": 0.0023388062985586207
+      }
+    },
+    "seconds": {
+      "oidn-cpu": [
+        28.134940541000105,
+        27.89945904200067
+      ],
+      "oidn-gpu": [
+        11.519883623001078,
+        10.718782447000194
+      ],
+      "optix-gpu": [
+        11.353045826001107,
+        10.560518035999849
+      ]
+    },
+    "telemetry": {
+      "interval_ms": 500,
+      "samples": 208,
+      "peak_used_mib": 2050.0,
+      "mean_utilization_percent": 55.98557692307692,
+      "peak_temperature_c": 70.0
+    }
+  },
+  "review": {
+    "macro_root_approved": true,
+    "gpu_oidn_quality_root_approved": true,
+    "recommended_strategy": "48 samples with RTX4050 OptiX ray tracing and GPU OpenImageDenoise",
+    "production_source_camera04_revision": {
+      "scope": "camera 04 and focus only; actors/materials/other cameras/captions unchanged",
+      "base_source_sha256": "a2215ff60a3062bcb4242a311f92aaf691e731248be6a8c5768f673c84a90d2e",
+      "revised_source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+      "timing_seconds": [
+        19,
+        26
+      ],
+      "audit": {
+        "first_hit": "Dr Vale Hero",
+        "screen": [
+          0.4502968192100525,
+          0.5624886751174927,
+          2.5387682914733887
+        ]
+      },
+      "tool": "Tools/blender/cinematics/full_story/reframe_shot04.py"
+    },
+    "production_authorized": false,
+    "temporal_scope": "two adjacent frames per variant; full film motion still requires review"
+  }
+}

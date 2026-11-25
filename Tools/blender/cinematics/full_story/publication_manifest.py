@@ -10,20 +10,20 @@ MANIFEST=SOURCE/'source-publication-manifest.json'
 PATHSPEC=SOURCE/'source-publication.paths'
 
 TOOL_FILES=[
- 'RENDER_DRIVER.md','audit_opening.py','build_opening.sh','common.py','export_captions.py','opening_scene.py','plan.py',
+ 'RENDER_DRIVER.md','audit_opening.py','reframe_shot04.py','build_opening.sh','common.py','export_captions.py','opening_scene.py','plan.py',
  'render_policy.py','render_story.py','test_render_policy.py','smoke_driver.py','publication_manifest.py',
- 'lake_story/README.md','lake_story/author_lake.py','lake_story/make_storyboard.py',
+ 'lake_story/README.md','lake_story/natural_sitting.py','lake_story/author_lake.py','lake_story/make_storyboard.py',
  'motion/__init__.py','motion/build_library.py','motion/build_speech.py','motion/draw_poses.py','motion/draw_speech.py',
  'motion/library.py','motion/speech.py','motion/verify_standalone.py',
 ]
 SOURCE_FILES=[
  'README.md','STATUS.md','driver-smoke-evidence.json',
- 'Opening/OpeningFull.blend','Opening/authoring-audit.json','Opening/opening-captions-review.srt',
+ 'Opening/OpeningFull.blend','Opening/camera04-revision.json','Opening/rtx-denoise-pilot.json','Opening/rtx-pilot-baseline.json','Opening/authoring-audit.json','Opening/opening-captions-review.srt',
  'Opening/opening-timeline.json','Opening/preview-evidence.json',
- 'Opening/Review/02-petrov.png','Opening/Review/03-recognition.png','Opening/Review/05-two-bodies.png',
+ 'Opening/Review/01-rhythm.png','Opening/Review/04-disagreement.png','Opening/Review/07-restraint.png','Opening/Review/11-next-beat.png','Opening/Review/02-petrov.png','Opening/Review/03-recognition.png','Opening/Review/05-two-bodies.png',
  'Opening/Review/06-contact.png','Opening/Review/06-contact-fall.png','Opening/Review/08-interlock.png',
  'Opening/Review/08-interlock-escape.png','Opening/Review/09-conduit.png','Opening/Review/10-outside.png',
- 'Lake/DELIVERY.md','Lake/PROVENANCE.md','Lake/manifest.json','Lake/audit.json','Lake/preview_verification.json',
+ 'Lake/rtx-natural-pilot.json','Lake/DELIVERY.md','Lake/PROVENANCE.md','Lake/manifest.json','Lake/audit.json','Lake/preview_verification.json',
  'Lake/Lake_Storyboard_CPU.png','Lake/Lake_Arrival.blend','Lake/Lake_Hold.blend','Lake/Lake_Peace.blend','Lake/Lake_Dominion.blend',
  'Lake/previews/arrival_0001_cpu.png','Lake/previews/arrival_0144_cpu.png','Lake/previews/arrival_0264_cpu.png',
  'Lake/previews/arrival_0360_cpu.png','Lake/previews/arrival_evidence.json',

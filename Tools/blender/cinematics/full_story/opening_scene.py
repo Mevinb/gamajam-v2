@@ -23,10 +23,38 @@ blue=C.material('Clinical source',(.45,.68,.9),.4,0,.2)
 
 # Physical vessel, with a small real release port instead of a sealed cylinder the creature passes through.
 glass=C.material('Thin borosilicate',(.80,.94,.95),.045,0,0,1);glass.node_tree.nodes['Principled BSDF'].inputs['IOR'].default_value=1.46
-bpy.ops.mesh.primitive_cylinder_add(vertices=96,radius=.445,depth=1.82,end_fill_type='NOTHING',location=C.v((0,1.4,0)))
-vessel=bpy.context.object;vessel.name='Containment glass';vessel.parent=lab;vessel.data.materials.append(glass)
-solid=vessel.modifiers.new('Four millimeter vessel','SOLIDIFY');solid.thickness=.004;bpy.context.view_layer.objects.active=vessel;bpy.ops.object.modifier_apply(modifier=solid.name)
-for p in vessel.data.polygons:p.use_smooth=True
+# Axially segmented physical shell: flat closing annuli must not bend the entire tube's optical normals.
+segments,levels=96,16;vertices=[];faces=[];wall_face_count=0
+for radius in [.445,.441]:
+ for level in range(levels+1):
+  height=.49+1.82*level/levels
+  for i in range(segments):
+   angle=math.tau*i/segments;vertices.append((radius*math.cos(angle),radius*math.sin(angle),height))
+stride=(levels+1)*segments
+for level in range(levels):
+ for i in range(segments):
+  j=(i+1)%segments;a=level*segments+i;b=level*segments+j;c=(level+1)*segments+j;d=(level+1)*segments+i
+  faces.append((a,b,c,d));faces.append((stride+a,stride+d,stride+c,stride+b))
+wall_face_count=len(faces)
+for i in range(segments):
+ j=(i+1)%segments;top=levels*segments
+ faces.append((top+i,top+j,stride+top+j,stride+top+i))
+ faces.append((i,stride+i,stride+j,j))
+mesh=bpy.data.meshes.new('Segmented 4mm borosilicate shell');mesh.from_pydata(vertices,[],faces);mesh.update()
+vessel=bpy.data.objects.new('Containment glass',mesh);bpy.context.collection.objects.link(vessel);vessel.parent=lab;mesh.materials.append(glass)
+loop_normals=[]
+for polygon in mesh.polygons:
+ wall=polygon.index<wall_face_count;polygon.use_smooth=wall
+ for loop in polygon.loop_indices:
+  co=mesh.vertices[mesh.loops[loop].vertex_index].co
+  if wall:
+   sign=1 if polygon.index%2==0 else -1;n=Vector((co.x,co.y,0)).normalized()*sign
+  else:n=Vector((0,0,1 if polygon.index%2==0 else -1))
+  loop_normals.append(n)
+for edge in mesh.edges:
+ a,b=(mesh.vertices[i].co for i in edge.vertices)
+ if abs(a.z-b.z)<1e-6 and (abs(a.z-.49)<1e-6 or abs(a.z-2.31)<1e-6):edge.use_edge_sharp=True
+mesh.normals_split_custom_set(loop_normals);mesh.update()
 port_cutter=C.cylinder('Release port cutter',(0,.80,-.66),(0,.80,-.30),.17,None,lab,48)
 mod=vessel.modifiers.new('Actual escape aperture','BOOLEAN');mod.operation='DIFFERENCE';mod.solver='EXACT';mod.object=port_cutter;bpy.context.view_layer.objects.active=vessel;bpy.ops.object.modifier_apply(modifier=mod.name);bpy.data.objects.remove(port_cutter,do_unlink=True)
 port_hinge=C.empty('Release hatch hinge',lab,(.18,.80,-.456))
@@ -63,9 +91,14 @@ for side in [-1,1]:
   pivot.location=C.v((side*.69+x,1.17,0));pivot.keyframe_insert('location',frame=frame(t))
 
 C.area('Laboratory soft key',(-2.2,3,-2),(0,1.3,0),180,(.66,.84,1),2.4,lab)
-C.area('Specimen rim',(0,2.1,1.9),(0,1.3,0),75,(.16,1,.43),1.6,lab)
+C.area('Specimen rim',(-1.8,2.5,1.2),(0,1.3,0),60,(.16,1,.43),1.2,lab)
 C.area('Practical tungsten edge',(3,2.3,-1),(0,1.3,0),60,(1,.56,.28),1.7,lab)
-C.area('Actor soft frontal fill',(.1,2.5,-3.4),(0,1.2,.2),95,(.72,.83,1),3,lab)
+actor_fill=C.area('Actor soft frontal fill',(.1,2.5,-3.4),(0,1.2,.2),95,(.72,.83,1),3,lab)
+# Real shot lighting: keep the large front softbox off the glass reflection axis for the macro, then reset at the cut.
+actor_fill.rotation_mode='QUATERNION'
+for t,p in [(0,(-3.4,2.8,-.6)),(5,(.1,2.5,-3.4)),(59,(.1,2.5,-3.4))]:
+ C.move(actor_fill,t,p);actor_fill.rotation_quaternion=(C.v((0,1.2,.2))-C.v(p)).to_track_quat('-Z','Y');actor_fill.keyframe_insert('rotation_quaternion',frame=frame(t))
+
 
 jelly=C.material('Living translucent cytoplasm',(.035,.38,.085),.12,0,.035,.48);bs=jelly.node_tree.nodes['Principled BSDF'];bs.inputs['IOR'].default_value=1.36;bs.inputs['Subsurface Weight'].default_value=.2;bs.inputs['Subsurface Radius'].default_value=(.2,1,.25)
 coremat=C.material('Textured living nucleus',(.12,.34,.035),.25,0,.12,.22)
@@ -190,7 +223,8 @@ for f in range(1,59*FPS+1):
 
 # Culture movement responds to individual stimulus beats; both lobes share one physiological rhythm.
 for f in range(1,59*FPS+1):
- t=(f-1)/FPS;beat=max(math.exp(-((t-hit)/.12)**2) for hit in TAPS);breath=1+.025*math.sin(t*3)+beat*.035
+ t=(f-1)/FPS;beat=max(math.exp(-((t-hit)/.12)**2) for hit in TAPS);breath=1+.025*math.sin(t*3)+beat*.065
+ emission=corebs.inputs['Emission Strength'];emission.default_value=.12+.5*beat;emission.keyframe_insert('default_value',frame=f)
  if t<26.8:scale=1
  elif t<27.4:scale=1-smooth((t-26.8)/.6)
  elif t<33.5:scale=.001
@@ -263,7 +297,21 @@ C.area('Motivated low alley practical',(-4.3,1.9,-1),(0,.12,-1.5),35,(1,.69,.41)
 for i in range(13):C.box('Street drain iron slat',(-.3+i*.05,.025,-2),(.022,.045,.68),metal,alley,.006)
 for x in [-.34,.34]:C.box('Street drain border',(x,.025,-2),(.035,.045,.73),metal,alley,.008)
 for i in range(7):
- C.sphere('Shallow runoff reflection '+str(i),(-2.4+i*.7,-.002,1.2+math.sin(i)*1.8),(.35+.04*i,.006,.7),C.material('Puddle '+str(i),(.035,.06,.075),.07,.1,0,.15),alley)
+ cx,cz=-2.4+i*.7,1.2+math.sin(i)*1.8;count=64;points=[C.v((cx,.0015,cz))]
+ for j in range(count):
+  angle=math.tau*j/count;shape=1+.17*math.sin(3*angle+i)+.10*math.sin(7*angle+i*1.4)+.055*math.sin(11*angle-.6*i)
+  points.append(C.v((cx+(.35+.04*i)*shape*math.cos(angle),.0015,cz+.7*shape*math.sin(angle))))
+ faces=[(0,1+(j+1)%count,1+j) for j in range(count)];data=bpy.data.meshes.new('Irregular runoff shoreline');data.from_pydata(points,[],faces);data.update()
+ puddle=bpy.data.objects.new('Irregular shallow runoff '+str(i),data);bpy.context.collection.objects.link(puddle);puddle.parent=alley
+ water=C.material('Dirty rainwater '+str(i),(.035,.048,.055),.10,0,0,.5);water.node_tree.nodes['Principled BSDF'].inputs['IOR'].default_value=1.333;data.materials.append(water)
+ nt=water.node_tree;noise=nt.nodes.new('ShaderNodeTexNoise');noise.inputs['Scale'].default_value=9;rough=nt.nodes.new('ShaderNodeMapRange');rough.inputs['From Min'].default_value=0;rough.inputs['From Max'].default_value=1;rough.inputs['To Min'].default_value=.045;rough.inputs['To Max'].default_value=.19;nt.links.new(noise.outputs['Fac'],rough.inputs['Value']);nt.links.new(rough.outputs['Result'],nt.nodes['Principled BSDF'].inputs['Roughness'])
+grime=C.material('Wet drain sediment',(.026,.022,.014),.88)
+for i in range(18):
+ x=-.8+(i%6)*.29;z=-2.55+(i//6)*.46+.11*math.sin(i*2.4)
+ C.curve('Drain hairline grime crack '+str(i),[(x,.001,z),(x+.07,.001,z+.12),(x-.025,.001,z+.24)],.0017,grime,alley)
+for i in range(14):
+ C.box('Small drain grit '+str(i),(-.5+.078*i,.004,-2.42+.12*math.sin(i*2.7)),(.015+.004*(i%3),.008,.026),grime,alley,.002)
+
 free=culture('Specimen in the city',alley,(0,-.12,-2),(.16,.10,.18))
 for t,p in [(67,(0,-.12,-2)),(68.8,(0,.11,-2)),(71,(.15,.11,-1.5)),(75,(.35,.11,-.5)),(80,(.35,.11,.25))]:C.move(free,t,p)
 for f in range(frame(67),frame(80)):
@@ -271,7 +319,7 @@ for f in range(frame(67),frame(80)):
 # One ordinary passerby makes the city indifferent to the escaped experiment.
 passer=C.Actor('CivKenji','Unaware pedestrian',alley,(-5,0,8),90)
 for f in range(frame(67),frame(80)):
- t=(f-1)/FPS;C.move(passer.rig,t,(-5+(t-67)*.68,0,8));C.rotate(passer.rig,t,90);M.apply_pose(passer.rig,'Walk',(t-67)*.34,root_motion=False);C.key_pose(passer.rig,t)
+ t=(f-1)/FPS;C.move(passer.rig,t,(-5+(t-67)*.68,0,8));C.rotate(passer.rig,t,90);M.apply_pose(passer.rig,'Walk',(t-67)*.34,root_motion=False);C.ground_walking_actor(passer,t,0.0);C.key_pose(passer.rig,t)
 
 # Key visibility by object so lighting, particles, actors and props all change stages together.
 def descendants(root):return [root]+list(root.children_recursive)
@@ -285,17 +333,19 @@ cameras={shot['id']:C.make_camera(shot) for shot in SHOTS}
 for key in ['10-outside','11-next-beat']:cameras[key].data.dof.aperture_fstop=11
 S.camera=cameras[SHOTS[0]['id']]
 C.flush_transform_keys()
+for curve in actor_fill.animation_data.action.fcurves:
+ for key in curve.keyframe_points:key.interpolation='CONSTANT'
 for actor in actors+[passer]:C.set_linear(actor.rig.animation_data.action)
 for ob in [subject,*lobes,escaping,free]:
  if ob.animation_data:C.set_linear(ob.animation_data.action)
 S.frame_set(1)
-manifest={'version':1,'fps':FPS,'width':1920,'height':1080,'duration_seconds':DURATION,'frame_count':DURATION*FPS,'shots':SHOTS,'captions':[{'at':t,'speaker':who,'text':text} for t,who,text in CAPTIONS],'taps':TAPS,'caption_policy':'Live runtime overlay; no baked subtitles or automatic gameplay actions','render_profile':{'engine':'Cycles','device':'RTX4050 OptiX after explicit GPU release','samples':48,'adaptive_threshold':.04,'denoising':True},'actions':'Actual existing humanoid clips retargeted at24fps with physical hand IK and measured shipped-voice RMS jaw layer','speech_performance':{'cache':'ArtSource/FullCinematics/Motion/opening_speech_envelopes.json','actor_cues':[{'at':t,'speaker':who,'line':text,'clip':speech.info(who,text)} for t,who,text in CAPTIONS if who in ('DR. HANA PETROV','DR. VALE','MAINTENANCE WORKER')]} ,'remaining_verification':['GPU quality/timing calibration','Full frame render/encode','80s player decode/skip/end handoff']}
+manifest={'version':1,'fps':FPS,'width':1920,'height':1080,'duration_seconds':DURATION,'frame_count':DURATION*FPS,'shots':SHOTS,'captions':[{'at':t,'speaker':who,'text':text} for t,who,text in CAPTIONS],'taps':TAPS,'caption_policy':'Live runtime overlay; no baked subtitles or automatic gameplay actions','render_profile':{'engine':'Cycles','device':'RTX4050 OptiX after explicit GPU release','samples':48,'adaptive_threshold':.04,'denoising':True},'actions':'Actual existing humanoid clips retargeted at24fps with physical hand IK and measured shipped-voice RMS jaw layer','speech_performance':{'cache':'ArtSource/FullCinematics/Motion/opening_speech_envelopes.json','actor_cues':[{'at':t,'speaker':who,'line':text,'clip':speech.info(who,text)} for t,who,text in CAPTIONS if who in ('DR. HANA PETROV','DR. VALE','MAINTENANCE WORKER')]} ,'walking_grounding':{'method':'actual evaluated sole vertices, applied only to Walk','samples':getattr(passer,'grounding_samples',[])},'remaining_verification':['GPU quality/timing calibration','Full frame render/encode','80s player decode/skip/end handoff']}
 (OUT/'opening-timeline.json').write_text(json.dumps(manifest,indent=2)+'\n')
 source=OUT/'OpeningFull.blend';C.save_portable(source)
 print('[full-opening] AUTHORED',source,source.stat().st_size,'bytes',flush=True)
 
 if '--cpu-previews' in sys.argv:
- for name,t in [('02-petrov',7),('03-recognition',16.5),('05-two-bodies',29),('06-contact',35.2),('06-contact-fall',39),('08-interlock',52.4),('08-interlock-escape',58.2),('09-conduit',63.5),('10-outside',71)]:
+ for name,t in [('01-rhythm',2.5),('02-petrov',7),('03-recognition',16.5),('04-disagreement',22),('05-two-bodies',29),('06-contact',35.2),('06-contact-fall',39),('07-restraint',47),('08-interlock',52.4),('08-interlock-escape',58.2),('09-conduit',63.5),('10-outside',71),('11-next-beat',77.5)]:
   cam=cameras[next(s['id'] for s in SHOTS if s['start']<=t<s['end'])]
   C.cpu_preview(OUT/'Review'/(name+'.png'),t,cam,width=480,height=270,samples=8)
   print('[full-opening] CPU PREVIEW',name,flush=True)
