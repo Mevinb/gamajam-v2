@@ -6,6 +6,12 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Manifest actual-ray diagnostic is active:** root96256 via WORK`northline_manifest_los_20261126a`, only existing
+  DominionPhysicalChapter,600s/Null/nice15/idle/two workers. WORKRailAcceptance SHA
+  `bfced27c8ff5a04e23aab15a526cb32a5385023f3f600805ca66edb0851fcb66`; AutoTeste189 unchanged. Logging-only addition to
+  d4 records one actual Manifest eye→seal full ray and typed CanValidate before the unchanged assertion/E. API175/33/175+
+  3classes pass. No new result yet; hold WORKC# and other Editors until actual terminal. XML
+  `Logs/northline-manifest-los-20261126a.xml`. The source-based predicted bar remains unproven until this receipt.
 - **Two-leg bypass reaches new phase; whole Dominion case still RED:** root91852/native2/chunkbb0e33,46.863s.
   d4b2738c… completes actual free/human bypasses and same-body crossing, then scientist reaches original manifest approach
   local(-30.843,.190,3.423), error.2365 in12.959s/45.404s. Exact Manifest target is selected but allowedfalse: seal visibility
