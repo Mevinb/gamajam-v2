@@ -3,6 +3,10 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
+- Source 0.5.2 adds close-range aiming guidance and a live-host/physical-spacing test driver. Full Route 08 passes in the Null
+  Editor on the pinned pre-hint snapshot; two post-hint focused cases pass priority, occlusion, turn-away and actual E controls.
+  A rebuilt native binary remains required; the running user player is still 0.5.1.
+  [Moving-host proof](verification/moving-host-aim-20261125.json).
 - The new security-booth kit passes Blender source/export and eleven Null Unity import checks, but its CityBuilder hook,
   generated scene, native appearance and performance remain unverified. It is outside the running user build.
   [Booth proof](verification/city-security-booth-20261125.json).
@@ -24,7 +28,7 @@ current work; every pass applies to its recorded source or binary.
   not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native 23/24
   now pass 2/2, exit 0, on this same runtime using prepared Null-graphics fixtures. The other run is terminal 19/21, exit 1:
   case 08 failed when a moving officer invalidated its snapshot aim, and case 21 requires a rendered GPU for its camera check.
-  Live-host aiming passes a later focused source test; full Route 08 and rendered 21 remain required. No complete 24-case result
+  Live-host/physical-spacing source passes full Route 08 in the Null Editor; native Route 08 and rendered 21 remain required. No complete 24-case result
   is claimed. [Original/riverside result](verification/0.5.1-native-original-river-20261125.json).
 - The Editor Vulkan warning gate remains open after serializedIndividualFaces:13pass/1PendingDowngrade warning failure/
   1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no

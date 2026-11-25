@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "status": "EDITOR_MOVING_SPACING_AND_CLOSE_GUIDANCE_VERIFIED_NATIVE_REBUILD_PENDING",
+  "recorded_utc": "2026-11-25T17:42:19.185280+00:00",
+  "scope": "Acceptance camera input correction only. Production possession range, cone, LOS and PlayerCamera clamps remain unchanged. Native0.5.1 report failures are retained separately.",
+  "native_failure_origin": {
+    "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+    "report": {
+      "path": "Logs/graphics-native-original-and-river/report.txt",
+      "bytes": 3721,
+      "sha256": "3f3bfc33ddd004a335f425f3e74aef4b965b6c657605a4ce3f63f56ad7c7a36b"
+    },
+    "log": {
+      "path": "Logs/graphics-native-original-and-river/player.log",
+      "bytes": 87374,
+      "sha256": "a5657172e0d98ae3d87788e6fe6e60ffb1191ea1bfec0822ef3b0863d5966e55"
+    },
+    "native_exit_code": 1,
+    "summary": "19/21 passed;08 fails moving-officer aim,21 intentionally rejects Null graphics.",
+    "original_route08_diagnostics": [
+      "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter-target phase=full route before camera aim body=Amoeba_1 free=True bodyAt=(17.1341, 0.2000, 80.2731) eye=(17.1341, 0.6500, 80.2731) cameraAt=(17.1314, 0.8518, 76.9939) cameraForward=(0.0000, -0.1004, 0.9949) yaw=0.0000 pitch=5.7609 officerAt=(17.1109, 0.2955, 78.5992) chest=(17.1109, 1.5455, 78.5992) officerState=Normal possessable=True officerPossessor=False aimAngle=29.1381 cone=15 eyeDistance=1.8985 range=5 los=True transit=False inputLocked=False targetKind=None targetHost=Sgt. Marcus Reed prompt=Sgt. Marcus Reed is too far \u2014 get within 5 m rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=1.6226 self=False target=True]",
+      "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter-target phase=full route after settled yaw/pitch aim body=Amoeba_1 free=True bodyAt=(17.4872, 0.2000, 80.7749) eye=(17.4872, 0.6500, 80.7749) cameraAt=(17.5422, 0.3700, 81.0930) cameraForward=(-0.1546, 0.4212, -0.8937) yaw=-170.1865 pitch=-24.9127 officerAt=(16.8345, 0.2736, 80.8719) chest=(16.8345, 1.5236, 80.8719) officerState=Normal possessable=True officerPossessor=False aimAngle=54.6736 cone=15 eyeDistance=1.0949 range=5 los=True transit=False inputLocked=False targetKind=None targetHost=- prompt= rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=0.5971 self=False target=True]"
+    ],
+    "observation": "Officer moves over2m while the old helper aims at a fixed chest snapshot; blob also shifts from physical contact. The final actual target remains in range/LOS, but camera is near its upward clamp and misses the real chest. This differs from the earlier stationary vertical-angle failure."
+  },
+  "change": {
+    "focused_test_source": {
+      "path": "Assets/Parasite/Tests/PlayMode/MovingHostAimTests.cs",
+      "bytes": 9605,
+      "sha256": "9e5366b5fb0b1e15922906e13295ad354d779c283fe403ccddd87992ede12319"
+    },
+    "behavior": "HostCharacter overload reads the actual ChestPosition every frame throughout the original.8s settling interval and uses ordinary yaw/pitch camera controls; all five intended-host aim call sites use it. Fixed interactable points remain on the original overload.",
+    "invariants": [
+      "Original.8s unscaled budget and existing camera pitch clamps.",
+      "15degree aim cone,5m eye-to-chest range and physical LOS unchanged.",
+      "Pure camera aiming never moves/warps the actor. Separate hunter spacing uses normal physical movement within the existing approach budget, with no AI, geometry, cone/range or clamp changes.",
+      "Actual E input and reciprocal possession ownership are asserted after live tracking."
+    ],
+    "earlier_tracking_source": {
+      "path": "Assets/Parasite/Scripts/Core/AutoTest.cs",
+      "bytes": 130454,
+      "sha256": "2b2ae5750b55f12185d7d23d229bf5e1932b22f5b15c61f51f6db4344a67fb6e"
+    },
+    "source": {
+      "path": "Assets/Parasite/Scripts/Core/AutoTest.cs",
+      "bytes": 133197,
+      "sha256": "b12ec9aec65d32bd6a097ddda06180b2aaa157e0010ff457c7701f5e77cb2644"
+    },
+    "physical_spacing": "Only the hunter approach conditionally walks the free body to the known clear north security-room aisle when crowded below2.6m. The deadline is captured before the original15s approach (12s last focused approach attempt); retreat consumes only its remaining time. Normal WalkTo/CharacterController, complete path and original fixed target are required; no guard AI/pose, range, cone or camera clamp change."
+  },
+  "focused_result": {
+    "case": "Parasite.Tests.MovingHostAimTests.LiveOfficerMotionRemainsTargetedThroughNormalCameraControls",
+    "xml": {
+      "path": "Logs/hunter-moving-aim-focused.xml",
+      "bytes": 3781,
+      "sha256": "67660428a99c7ccce1f90581c736940d1661d7741c9c2acc55a363e37ccd32f4"
+    },
+    "log": {
+      "path": "Logs/hunter-moving-aim-focused.log",
+      "bytes": 49914,
+      "sha256": "dfcd8114868160d1caf08b741c9aacea4e697d42918ab33e7c24f848f0192344"
+    },
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 5.7153618,
+    "native_exit_code": 0,
+    "native_exit_receipt": "Child75658/chunkbbacc5, corroborated TestRunner exit0 log.",
+    "metrics": {
+      "moved": 2.3138,
+      "elapsed": 0.7943,
+      "actualAngle": 0.028,
+      "stalePointAngle": 26.3201,
+      "range": 4.5444,
+      "pitch": -13.3549,
+      "los": true,
+      "target": "Possess/Officer Ines Duarte"
+    },
+    "raw_metrics": "[MovingOfficerAim] moved=2.3138 elapsed=0.7943 actualAngle=0.0280 stalePointAngle=26.3201 range=4.5444 los=True pitch=-13.3549 target=Possess/Officer Ines Duarte initialChest=(17.5000, 1.5763, 75.4000) actualChest=(15.1862, 1.5762, 75.4000)",
+    "fixture": "Actual City/Officer/HunterSquad; prerequisite confrontation flag seeded, unrelated guards stunned, free blob legally placed once before aiming. Officer then moves through normal GuardAI investigation and NavMesh. No body warp/move during measured aim; player planar displacement must remain<.05m.",
+    "coverage_limit": "The legal-spacing motion case does not by itself prove the original close-contact Route08 failure is fixed."
+  },
+  "limits": [
+    "Null graphics and simulated controls: no rendered/physical keyboard/gamepad or human-playthrough claim.",
+    "A complete source Route08 pass and a new native build/current-native Route08 rerun remain required.",
+    "No complete24scenario pass follows from this focused result; current native21run has preserved failures."
+  ],
+  "full_route08_attempts": [
+    {
+      "kind": "live host tracking without physical spacing",
+      "xml": {
+        "path": "Logs/hunter-moving-route08.xml",
+        "bytes": 7877,
+        "sha256": "3e1c7d16cd48be1b1140adb2b6bdfd8ce1fbce2281c7639f305f402eb569f348"
+      },
+      "log": {
+        "path": "Logs/hunter-moving-route08.log",
+        "bytes": 56054,
+        "sha256": "e5d2b7e266a3bc5820d1b6649fb0e234fa1073287ec933b9d1d8e84355bcee81"
+      },
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "native_exit_code": 2,
+      "receipt": "Child61556/chunk922308",
+      "duration_seconds": 138.049591,
+      "failure": "Officer investigation crowds/pushes the blob; range1.0931/LOStrue but upward pitch clamp\u221225 leaves24.6925degree miss. Live target tracking alone is insufficient for this close-contact state."
+    },
+    {
+      "kind": "live host tracking plus real bounded physical spacing",
+      "xml": {
+        "path": "Logs/hunter-moving-route08-spacing.xml",
+        "bytes": 8305,
+        "sha256": "a6ecf4cb47b5e64cd1fd0c51371064c267847e81404f7d82ff6c0da011e2bcba"
+      },
+      "log": {
+        "path": "Logs/hunter-moving-route08-spacing.log",
+        "bytes": 63357,
+        "sha256": "9cbb144a14bd6e4ac6f8534c38b1090c35ed012b2d107a1ad203990aa7dd2c43"
+      },
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "native_exit_code": 0,
+      "receipt": "Child18508/chunked71cc",
+      "duration_seconds": 235.0208327,
+      "actual_scenario_seconds": 232.1,
+      "outcome": "Dominion",
+      "actual_log_metrics": [
+        "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter-target phase=crowded officer before physical retreat body=Amoeba_1 free=True bodyAt=(17.1392, 0.2000, 80.2556) eye=(17.1392, 0.6500, 80.2556) cameraAt=(17.1292, 0.8520, 77.0019) cameraForward=(0.0000, -0.1005, 0.9949) yaw=0.0000 pitch=5.7658 officerAt=(17.1383, 0.2976, 78.3751) chest=(17.1383, 1.5477, 78.3751) officerState=Normal possessable=True officerPossessor=False officerBrain=Investigate officerVelocity=(-0.4587, -0.0363, 3.7724) aimAngle=32.6342 cone=15 eyeDistance=2.0838 range=5 los=True transit=False inputLocked=False targetKind=None targetHost=Sgt. Marcus Reed prompt=Sgt. Marcus Reed is too far \u2014 get within 5 m rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=1.7935 self=False target=True]",
+        "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter physical retreat from=(17.1392, 0.2000, 80.2556) to=(17.2935, 0.2000, 83.6555) target=(17.3000, 0.1700, 83.8000) reached=True spacing=3.2987 originalBudgetRemaining=13.4500",
+        "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter-target phase=full route before camera aim body=Amoeba_1 free=True bodyAt=(17.2935, 0.2000, 83.6555) eye=(17.2935, 0.6500, 83.6555) cameraAt=(17.2925, 0.8516, 80.3506) cameraForward=(0.0000, -0.1005, 0.9949) yaw=0.0000 pitch=5.7658 officerAt=(16.8944, 0.2784, 80.3811) chest=(16.8944, 1.5284, 80.3811) officerState=Normal possessable=True officerPossessor=False officerBrain=Investigate officerVelocity=(-0.4590, -0.0363, 3.7727) aimAngle=92.7503 cone=15 eyeDistance=3.4136 range=5 los=True transit=False inputLocked=False targetKind=Possess targetHost=Sgt. Marcus Reed prompt=Possess Sgt. Marcus Reed (Security Guard) rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=3.1769 self=False target=True]",
+        "[AutoTest-note] 08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape :: hunter-target phase=full route after settled yaw/pitch aim body=Amoeba_1 free=True bodyAt=(17.2935, 0.2000, 83.6555) eye=(17.2935, 0.6500, 83.6555) cameraAt=(17.3580, 0.3700, 83.9707) cameraForward=(-0.1817, 0.4226, -0.8879) yaw=-168.4320 pitch=-25.0000 officerAt=(17.0567, 0.2580, 82.4991) chest=(17.0567, 1.5080, 82.4991) officerState=Normal possessable=True officerPossessor=False officerBrain=Investigate officerVelocity=(0.0000, 0.0000, 0.0000) aimAngle=12.1484 cone=15 eyeDistance=1.4593 range=5 los=True transit=False inputLocked=False targetKind=Possess targetHost=Officer Ines Duarte prompt=Possess Officer Ines Duarte (Security Guard) rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=1.0884 self=False target=True]",
+        "[AutoTest] PASS  08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape  (232.1s)  Maintenance \u2192 tail \u2192 Service Tunnel \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Dominion (route ServiceTunnel, 221s)"
+      ],
+      "scope": "Full original fourteen-mission maintenance/service-tunnel acceptance route with prepared helpers, simulated input and Null graphics; no native rebuilt or human/GPU claim."
+    }
+  ],
+  "updated_utc": "2026-11-25T18:03:40.268765+00:00",
+  "spacing_focused_result": {
+    "xml": {
+      "path": "Logs/hunter-moving-spacing-focused.xml",
+      "bytes": 5920,
+      "sha256": "65eddc19542e61e071ac23b34225ae96ab0f890daf79109a1831f8b5d2364061"
+    },
+    "log": {
+      "path": "Logs/hunter-moving-spacing-focused.log",
+      "bytes": 53679,
+      "sha256": "a497dc20de81a47b081ca0b6b2e205edd4b04ddeab9dfbb8214971c5f8628b8a"
+    },
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "native_exit_code": 0,
+    "native_exit_receipt": "Child82876/chunk07f10f",
+    "duration_seconds": 11.2414886,
+    "cases": [
+      {
+        "name": "Parasite.Tests.MovingHostAimTests.CrowdingInvestigatingOfficerRequiresRealRetreatBeforeAimAndE",
+        "result": "Passed",
+        "duration_seconds": 6.894303,
+        "diagnostic_output": "[CrowdedOfficerAim] before retreat range=1.0880 angle=24.9725 pitch=-25.0000 los=True officer=(16.9249, 0.2741, 80.8226) body=(17.5436, 0.2000, 81.0142)\n[AutoTest-note]  :: hunter-target phase=crowded officer before physical retreat body=Amoeba_1 free=True bodyAt=(17.5436, 0.2000, 81.0142) eye=(17.5436, 0.6500, 81.0142) cameraAt=(17.8509, 0.3700, 81.1094) cameraForward=(-0.8657, 0.4226, -0.2682) yaw=-107.2101 pitch=-25.0000 officerAt=(16.9249, 0.2741, 80.8226) chest=(16.9249, 1.5241, 80.8226) officerState=Normal possessable=True officerPossessor=False officerBrain=Investigate officerVelocity=(0.0000, 0.0000, 0.0000) aimAngle=24.9725 cone=15 eyeDistance=1.0880 range=5 los=True transit=False inputLocked=False targetKind=None targetHost=- prompt= rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=0.5841 self=False target=True]\n[AutoTest-note]  :: hunter physical retreat from=(17.5436, 0.2000, 81.0142) to=(17.3122, 0.2000, 83.6609) target=(17.3000, 0.1700, 83.8000) reached=True spacing=2.8646 originalBudgetRemaining=11.5934\n[CrowdedOfficerAim] after retreat moved=2.6568 range=2.9950 angle=0.0000 pitch=-19.3166 remaining=10.7905 target=Possess/Officer Ines Duarte officer=(16.9249, 0.2741, 80.8226) body=(17.3122, 0.2000, 83.6609)\n"
+      },
+      {
+        "name": "Parasite.Tests.MovingHostAimTests.LiveOfficerMotionRemainsTargetedThroughNormalCameraControls",
+        "result": "Passed",
+        "duration_seconds": 4.293267,
+        "diagnostic_output": "[MovingOfficerAim] moved=2.3145 elapsed=0.8023 actualAngle=0.0000 stalePointAngle=26.3159 range=4.5448 los=True pitch=-13.3539 target=Possess/Officer Ines Duarte initialChest=(17.5000, 1.5763, 75.4000) actualChest=(15.1855, 1.5762, 75.4000)\nSaving results to: /home/mevlec/.config/unity3d/Parasite Jam Team/PARASITE/TestResults.xml\n"
+      }
+    ],
+    "observed": "The close fixture first reproduces range1.0880/angle24.9725/pitch\u221225/LOStrue. Normal physical retreat moves2.6568m and restores range2.9950/angle0, then actual E/reciprocal possession passes. Original12s approach budget has11.5934s left after movement; normal.8s live aim follows. Separate lateral motion case moves2.3145m and stays targeted while initial snapshot diverges26.3159degrees.",
+    "limits": "Prepared fixture places the blob once and stuns unrelated guards; the target investigates through ordinary NavMesh/GuardAI. It does not prove the complete Route08 or a new native binary."
+  },
+  "passed_source_snapshot_before_guidance": {
+    "snapshot": {
+      "path": "Logs/hunter-moving-source-pre-hint/snapshot.json",
+      "bytes": 41269,
+      "sha256": "1ed29fa433a0e05ff2a14e6a8b51ff4945e08aae348cfde10ea5f17f8dbe4111"
+    },
+    "observed_utc": "2026-11-25T17:59:06.702221+00:00",
+    "scope": "Source-stable full Route08-spacing completed with native0 before the subsequent close-range guidance and harness-review edits.",
+    "source_file_count": 221,
+    "compiled_assemblies": [
+      {
+        "path": "Library/ScriptAssemblies/Parasite.Runtime.dll",
+        "sha256": "83c5593a561352bd49c8f14e99d3aef1cde61fea5dbea93dc41b8085cadacd60",
+        "bytes": 1004032
+      },
+      {
+        "path": "Library/ScriptAssemblies/Parasite.Tests.PlayMode.dll",
+        "sha256": "f9cb04e53711ac547794bee09c2fb60bf7b6edacaea0abc5647ea5cfa0a1f1d7",
+        "bytes": 280576
+      }
+    ],
+    "retained_runtime_dll": {
+      "path": "Logs/hunter-moving-source-pre-hint/Parasite.Runtime.dll",
+      "bytes": 1004032,
+      "sha256": "83c5593a561352bd49c8f14e99d3aef1cde61fea5dbea93dc41b8085cadacd60"
+    },
+    "retained_test_dll": {
+      "path": "Logs/hunter-moving-source-pre-hint/Parasite.Tests.PlayMode.dll",
+      "bytes": 280576,
+      "sha256": "f9cb04e53711ac547794bee09c2fb60bf7b6edacaea0abc5647ea5cfa0a1f1d7"
+    },
+    "selected_sources": [
+      {
+        "path": "Assets/Parasite/Scripts/Core/AutoTest.cs",
+        "sha256": "b12ec9aec65d32bd6a097ddda06180b2aaa157e0010ff457c7701f5e77cb2644",
+        "bytes": 133197
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Possession/PossessionManager.cs",
+        "sha256": "a5f1c0421a9ad193649fc24e97bf008e443571fe5665b8cac828eb8e67b7d55d",
+        "bytes": 22005
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Possession/PlayerCamera.cs",
+        "sha256": "9bb1ac38dd277c82d471345e9b7e344f26a6f11f863eaed23fb19e42dd610170",
+        "bytes": 9616
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/MovingHostAimTests.cs",
+        "sha256": "9e5366b5fb0b1e15922906e13295ad354d779c283fe403ccddd87992ede12319",
+        "bytes": 9605
+      }
+    ]
+  },
+  "subsequent_guidance_scope": "Root added close-range denied guidance after the pre-hint full08 snapshot. It is independently covered by the separate post-snapshot focused2/2 result; no later source changes inherit the full08 pass.",
+  "pending": [
+    "A new native build/current-native Route08 rerun containing the driver and guidance changes.",
+    "Rendered scenario21 on an actual graphics device; prior Null invocation remains a preserved backend mismatch.",
+    "Final current-player campaign/graphics and physical-input verification remain separate."
+  ],
+  "post_snapshot_close_guidance": {
+    "scope": "Separate focused verification after Root added production guidance. The preceding full Route08 result remains bound to the pre-guidance223-file/DLL snapshot, not this later runtime.",
+    "sources": [
+      {
+        "path": "Assets/Parasite/Scripts/Possession/PossessionManager.cs",
+        "bytes": 23350,
+        "sha256": "971ea5d6cf4f7c0324c273a3390943bbc1d15c7f03a4b5afbf0798eebff1edca"
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Possession/PlayerCamera.cs",
+        "bytes": 9699,
+        "sha256": "d8042900de678d1cb09b8b502b0845c6c9fc72e6f21ccd85908b005bf121f828"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/MovingHostAimTests.cs",
+        "bytes": 13320,
+        "sha256": "41aec4ab8220928af3cbf3674e80afa923674916c7d280dd2bbc83f8a4aea739"
+      }
+    ],
+    "xml": {
+      "path": "Logs/hunter-close-guidance-focused.xml",
+      "bytes": 6124,
+      "sha256": "2c4556d90562e5b7bf89e46b6f06d11d269ad299266350453aefbddd88d135be"
+    },
+    "log": {
+      "path": "Logs/hunter-close-guidance-focused.log",
+      "bytes": 54935,
+      "sha256": "2fb3508e949971b8b9a066d99d9a1b2d2791dcaf43746174f75b3bf27ac8f116"
+    },
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 12.1638219,
+    "native_exit_code": 0,
+    "receipt": "Child68755/chunk400842",
+    "cases": [
+      {
+        "name": "Parasite.Tests.MovingHostAimTests.CrowdingInvestigatingOfficerRequiresRealRetreatBeforeAimAndE",
+        "result": "Passed",
+        "duration_seconds": 7.778817,
+        "diagnostic_output": "[CrowdedOfficerAim] before retreat range=1.0807 angle=25.3298 pitch=-25.0000 los=True officer=(16.9244, 0.2741, 80.8269) body=(17.5333, 0.2000, 81.0090)\n[CrowdedOfficerAim] denied hint, nearby-interaction priority, real occlusion and turn-away negatives, then live-facing hint restoration all pass\n[AutoTest-note]  :: hunter-target phase=crowded officer before physical retreat body=Amoeba_1 free=True bodyAt=(17.5333, 0.2000, 81.0090) eye=(17.5333, 0.6500, 81.0090) cameraAt=(17.8414, 0.3700, 81.1012) cameraForward=(-0.8683, 0.4226, -0.2598) yaw=-106.6558 pitch=-25.0000 officerAt=(16.9244, 0.2741, 80.8269) chest=(16.9244, 1.5241, 80.8269) officerState=Normal possessable=True officerPossessor=False officerBrain=Investigate officerVelocity=(0.0000, 0.0000, 0.0000) aimAngle=25.3299 cone=15 eyeDistance=1.0807 range=5 los=True transit=False inputLocked=False targetKind=None targetHost=Officer Ines Duarte prompt=Step back to aim at Officer Ines Duarte rayHits=[HitBox parent=NPC_Officer Ines Duarte type=CapsuleCollider layer=8 distance=0.5705 self=False target=True]\n[AutoTest-note]  :: hunter physical retreat from=(17.5333, 0.2000, 81.0090) to=(17.3108, 0.2000, 83.6706) target=(17.3000, 0.1700, 83.8000) reached=True spacing=2.8698 originalBudgetRemaining=11.5825\n[CrowdedOfficerAim] after retreat moved=2.6708 range=2.9999 angle=0.0000 pitch=-19.2838 remaining=10.7809 target=Possess/Officer Ines Duarte officer=(16.9244, 0.2741, 80.8269) body=(17.3108, 0.2000, 83.6706)\n"
+      },
+      {
+        "name": "Parasite.Tests.MovingHostAimTests.LiveOfficerMotionRemainsTargetedThroughNormalCameraControls",
+        "result": "Passed",
+        "duration_seconds": 4.333247,
+        "diagnostic_output": "[MovingOfficerAim] moved=2.3197 elapsed=0.7992 actualAngle=0.0000 stalePointAngle=26.3697 range=4.5474 los=True pitch=-13.3461 target=Possess/Officer Ines Duarte initialChest=(17.5000, 1.5763, 75.4000) actualChest=(15.1803, 1.5762, 75.4000)\nSaving results to: /home/mevlec/.config/unity3d/Parasite Jam Team/PARASITE/TestResults.xml\n"
+      }
+    ],
+    "assertions": [
+      "At actual free-body close crowding/upward clamp, targeting returns None/allowedfalse with the intended host reference and Step back to aim at NAME. The host is not possessed by the hint.",
+      "A registered available nearby interaction takes priority over the denied hint.",
+      "An owned physical environment occluder makes actual LineOfSight false and removes the host-specific hint. Contact pairs are ignored only for the owned temporary query wall, preventing actor displacement.",
+      "Turning the view180degrees away removes the host-specific hint; normal live aiming restores it.",
+      "Normal physical retreat within the original approach budget restores legal aim, followed by actual simulated E and reciprocal possession of the same officer.",
+      "The existing separate moving-host case still proves live chest tracking rather than an old snapshot."
+    ],
+    "unchanged_rules": "Possession cone15degrees, range5m, physical LOS and exact original pitch limits remain. The hint is denied; valid-host and interactable priorities remain.",
+    "compile_check": "149runtime/29editor/149LinuxMono passed before this focused Editor run.",
+    "limits": "Null graphics/simulated controls; no new native-built, GPU/pixel, physical-device or complete-campaign claim."
+  }
+}

@@ -19,6 +19,7 @@ namespace Parasite.Possession
         public const float PossessRange = 5f;
         public const float AimConeDegrees = 15f;
         public const float StrongAimDegrees = 7f;
+        const float CloseAimHintRange = 2f;
         public const float LaunchSeconds = 0.42f;
         public const float AutoEjectSeconds = 3f;
 
@@ -124,13 +125,27 @@ namespace Parasite.Possession
             // possession candidate: inside the aim cone, within range, clear line of sight
             HostCharacter bestHost = null; float bestAngle = float.MaxValue;
             HostCharacter farHost = null; float farAngle = float.MaxValue;
+            HostCharacter closeAimHost = null; float closeAimDistance = float.MaxValue;
             foreach (var h in HostCharacter.All)
             {
                 if (!h || h == a.Host || !h.CanBePossessed) continue;
                 Vector3 chest = h.ChestPosition;
                 float angle = Vector3.Angle(camFwd, chest - camPos);
-                if (angle > AimConeDegrees) continue;
                 float dist = Vector3.Distance(eye, chest);
+                if (angle > AimConeDegrees)
+                {
+                    // At the free body's upward camera stop, a nearby chest can be above the legal aim cone.
+                    // Explain the physical retreat instead of presenting an empty prompt or accepting an invalid target.
+                    if (a.IsFree && cam && !cam.IsLowClearance && cam.Pitch <= cam.MinimumPitch + .05f &&
+                        chest.y > camPos.y && dist <= CloseAimHintRange && dist < closeAimDistance &&
+                        Vector3.Angle(Vector3.ProjectOnPlane(camFwd, Vector3.up), Vector3.ProjectOnPlane(chest - camPos, Vector3.up)) <= StrongAimDegrees &&
+                        LineOfSight(eye, chest, body.Root, h.transform))
+                    {
+                        closeAimHost = h;
+                        closeAimDistance = dist;
+                    }
+                    continue;
+                }
                 if (dist > PossessRange)
                 {
                     if (dist < PossessRange * 2.2f && angle < farAngle) { farAngle = angle; farHost = h; }
@@ -181,6 +196,13 @@ namespace Parasite.Possession
                     kind = TargetKind.Possess, host = bestHost, allowed = true,
                     prompt = $"Possess {bestHost.DisplayName} ({bestHost.Profile.title})",
                     worldPos = bestHost.transform.position + Vector3.up * 2.15f,
+                };
+            if (closeAimHost)
+                return new TargetInfo
+                {
+                    kind = TargetKind.None, host = closeAimHost, allowed = false,
+                    prompt = $"Step back to aim at {closeAimHost.DisplayName}",
+                    worldPos = closeAimHost.transform.position + Vector3.up * 2.15f,
                 };
             if (farHost)
                 return new TargetInfo

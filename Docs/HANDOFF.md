@@ -6,6 +6,12 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- Source is now **0.5.2-preview**, not yet built. The moving-host driver tracks the live chest and uses normal physical retreat
+  for a crowded duty officer within the original approach deadline. Full Route 08 passes all fourteen original missions and
+  Dominion in the Null Editor (235.0 seconds, exit 0), pinned before the subsequent player hint. The player-facing close-range
+  hint then passes two focused cases: denied targeting, interaction priority, real occlusion, looking away, physical retreat
+  and ordinary E possession. The 15-degree cone, 5 m range, LOS and camera pitch limits retain their original values.
+  [Moving-host proof](verification/moving-host-aim-20261125.json). A rebuilt native player and rendered case 21 remain required.
 - Source now includes an opt-in `-graphicsSettingsTestOut <absolute-json-path>` native settings harness. Runtime/Editor/
   Linux-Mono compilation and source review pass; real UI/images/pacing/interruption execution remain **unrun**. It is absent
   from the user's current binary. [Harness scope](verification/native-graphics-harness-20261125.json). Keep the RTX reserved
@@ -46,7 +52,7 @@ The full request remains **in progress**. Evidence applies to its named source o
   The other 21 cases on that pre-gate binary finished **19/21, native exit 1**, in 947.161 seconds. Case 08 exposed a moving
   officer that invalidated a snapshot-point aim; case 21 reached a camera assertion requiring a real GPU, so its Null invocation
   cannot certify that case. [Original/riverside result](verification/0.5.1-native-original-river-20261125.json) retains both failures.
-  A later live-host aim fixture passes a focused moving-officer check; full Route 08 is being checked on that source. Case 21
+  The later live-host/physical-spacing source passes full Route 08 in the Null Editor. Case 21
   still requires rendered execution. Rendered 22 and native 23/24 pass separately; no complete 24-case result is claimed.
 - Independent graphics use a versioned, checksummed data/store model and a shared staged title/pause menu: Display, Quality,
   Effects and Audio & Input. Existing four profile budgets are preserved, including Ultra1.25scale/4xrequestedMSAA. Custom
@@ -102,7 +108,7 @@ launcher selects the retained preview. No human launch/playthrough of the new0.5
 
 ## Required next work
 
-1. Finish the corrected moving-target Route 08 check and rerun case 21 on a real GPU after the user finishes testing.
+1. Build source 0.5.2, verify corrected Route 08 natively and rerun case 21 on a real GPU after the user finishes testing.
    The pre-gate 21-case run is terminal 19/21 with exit 1; its 23/24 and rendered 22 pass separately;
    the new gate WIP needs its own campaign validation. Keep prepared headless/simulated logic separate from graphical and physical-input proof.
 2. Characterize the remaining Editor Vulkan warning with bounded controls; do not rewrite its original unexpected-log guard
@@ -216,6 +222,9 @@ Use one MonoBehaviour per file, with the file matching the class name. Unity sce
 | 15 AFTER THE STILL WATER | Answer Petrov's distress signal and isolate a poisoned floodgate. |
 | 16 BORROWED HEARTS / A WILLING NETWORK | Analyse runoff, coordinate guard/scientist hosts at the shelter records. |
 | 17 THE OPEN CHANNEL / THE FIRST MANY | Hold mast power with maintenance, transmit with another host, leave by ferry as free amoeba. |
+| 18 UNDER THE WATERLINE | Cross the tidal culvert as a free amoeba or open the service latch as maintenance, then reach the inner refuge. |
+| 19 THE QUARANTINE WALK / EVERY VOICE | Lead three people through cover to the clinic, or mark, steer and release three couriers at their handoff lanes. |
+| 20 A LIGHT IN THE FOG / A SIGNAL BEYOND THE ISLAND | Carry the signal case in the same host, mount it, board every person and free amoeba, then depart. |
 
 The presentation shortcut remains Ctrl+M (either Ctrl, either press order) through initial title/opening/pause/dialogue/gameplay.
 It does not choose a lakeside outcome. It must not restart the old finale during the riverside chapter. Existing queued-input

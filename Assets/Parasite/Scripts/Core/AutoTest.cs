@@ -399,6 +399,40 @@ namespace Parasite.Testing
             for (float t = 0; t < 0.8f; t += Time.unscaledDeltaTime) { AimAt(p); yield return null; }
         }
 
+        /// <summary>Track the intended host's actual moving chest through the normal camera controls.</summary>
+        public static IEnumerator AimSettle(HostCharacter target)
+        {
+            for (float t = 0; t < 0.8f && target; t += Time.unscaledDeltaTime)
+            { AimAt(target.ChestPosition); yield return null; }
+        }
+
+        /// <summary>Normal retreat within the original security-room leg budget when an investigating officer crowds the blob.</summary>
+        public static IEnumerator EnsureHunterAimSpacing(HostCharacter officer, float approachDeadline)
+        {
+            if (!officer || PM == null || PM.Active == null || !PM.Active.IsFree)
+                throw new InvalidOperationException("Hunter aiming requires its actual free amoeba and officer.");
+            float spacing = Flat(PM.Active.Position - officer.transform.position).magnitude;
+            if (spacing >= 2.6f) yield break;
+            float remaining = approachDeadline - Time.realtimeSinceStartup;
+            if (remaining <= 0f) throw new InvalidOperationException("The original hunter approach budget expired before physical retreat.");
+            // This is the same clear north aisle used to enter the office. Stay on the inside of the arch;
+            // a player can back away from a close chest rather than changing the camera's upward clamp.
+            Vector3 retreat = new(17.3f, CityLayout.LabFloor, 83.8f);
+            if (!PathComplete(PM.Active.Position, retreat))
+                throw new InvalidOperationException("The hunter retreat must have a complete path to the original security-room aisle.");
+            Vector3 before = PM.Active.Position;
+            NoteHunterTarget("crowded officer before physical retreat", officer, PM.ComputeTarget());
+            bool reached = false;
+            yield return WalkTo(retreat, remaining, value => reached = value, .15f);
+            GameInput.SimMove = Vector2.zero; GameInput.SimSprint = false;
+            spacing = officer ? Flat(PM.Active.Position - officer.transform.position).magnitude : 0f;
+            Note("hunter physical retreat from=" + before.ToString("F4") + " to=" + PM.Active.Position.ToString("F4")
+                + " target=" + retreat.ToString("F4") + " reached=" + reached + " spacing=" + spacing.ToString("F4")
+                + " originalBudgetRemaining=" + (approachDeadline - Time.realtimeSinceStartup).ToString("F4"));
+            if (!reached || spacing < 2.6f || Time.realtimeSinceStartup > approachDeadline)
+                throw new InvalidOperationException("Normal hunter retreat did not restore legal aiming space inside the original approach budget.");
+        }
+
         static void NoteHunterTarget(string phase, HostCharacter officer, TargetInfo target)
         {
             var active = PM.Active; var body = PM.ActiveBody;
@@ -414,6 +448,8 @@ namespace Parasite.Testing
                 + " yaw=" + Cam.Yaw.ToString("F4") + " pitch=" + Cam.Pitch.ToString("F4")
                 + " officerAt=" + officer.transform.position.ToString("F4") + " chest=" + chest.ToString("F4")
                 + " officerState=" + officer.State + " possessable=" + officer.CanBePossessed + " officerPossessor=" + (officer.Possessor != null)
+                + " officerBrain=" + (officer.Brain is GuardAI guard ? guard.GState.ToString() : "not guard")
+                + " officerVelocity=" + officer.Velocity.ToString("F4")
                 + " aimAngle=" + Vector3.Angle(Cam.Forward, chest - Cam.Position).ToString("F4") + " cone=" + PossessionManager.AimConeDegrees
                 + " eyeDistance=" + ray.magnitude.ToString("F4") + " range=" + PossessionManager.PossessRange
                 + " los=" + PM.LineOfSight(eye, chest, body.Root, officer.transform) + " transit=" + active.InTransit
@@ -533,7 +569,7 @@ namespace Parasite.Testing
             Vector3 spot = PossessionManager.FindFreeSpot(hp + target.transform.forward * 3.5f, Vector3.zero);
             TeleportBody(PM.ActiveBody, spot, 0);
             target.Brain.Notice(spot, 3f);
-            yield return AimSettle(target.ChestPosition);
+            yield return AimSettle(target);
             var tg = PM.ComputeTarget();
             float ang = Vector3.Angle(Cam.Forward, target.ChestPosition - Cam.Position);
             float dst = Vector3.Distance(PM.ActiveBody.EyePosition, target.ChestPosition);
@@ -564,7 +600,7 @@ namespace Parasite.Testing
             var far = NearestHost(target.transform.position + Vector3.forward * 1000f, h => h.CanBePossessed);
             if (far && Vector3.Distance(far.transform.position, target.transform.position) > 8f)
             {
-                yield return AimSettle(far.ChestPosition);
+                yield return AimSettle(far);
                 var t2 = PM.ComputeTarget();
                 Check(!(t2.kind == TargetKind.Possess && t2.host == far), "far host (>5 m) not targetable");
             }
@@ -1276,7 +1312,7 @@ namespace Parasite.Testing
                 Vector3 stand = Ground(target.transform.position + away.normalized * 2.6f, 2f);
                 bool ok = false;
                 yield return WalkTo(stand, 10f, r => ok = r, 0.5f);
-                yield return AimSettle(target.ChestPosition);
+                yield return AimSettle(target);
                 var tg = PM.ComputeTarget();
                 if (tg.kind != TargetKind.Possess || tg.host != target) { Note($"possess attempt {attempt}: {tg.kind} '{tg.prompt}'"); continue; }
                 yield return PressInteract();
@@ -1464,12 +1500,14 @@ namespace Parasite.Testing
             yield return Press(() => GameInput.SimLeave = true, () => GameInput.SimLeave = false);
             yield return null;
             Check(PM.Active.IsFree, "left the host outside the bio-scan arch");
+            float aimApproachDeadline = Time.realtimeSinceStartup + 15f;
             yield return WalkTo(new Vector3(17.3f, CityLayout.LabFloor, 79.7f), 15f, r => ok = r, 0.6f);
             Check(ok && RunState.Has(MissionFlags.HunterGate) && BioScanTracker.BurnCount == burns, "a free amoeba crosses the arch unread");
             if (!current.pass) yield break;
             var officer = squad.Officer;
+            yield return EnsureHunterAimSpacing(officer, aimApproachDeadline);
             NoteHunterTarget("full route before camera aim", officer, PM.ComputeTarget());
-            yield return AimSettle(officer.ChestPosition);
+            yield return AimSettle(officer);
             var tg = PM.ComputeTarget();
             NoteHunterTarget("full route after settled yaw/pitch aim", officer, tg);
             Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable from behind: {tg.prompt}");
@@ -1586,14 +1624,20 @@ namespace Parasite.Testing
             // 4) A free amoeba walks through unread.
             int burns = BioScanTracker.BurnCount;
             bool ok2 = false;
-            for (int i = 0; i < 4 && !ok2; i++) { yield return WalkTo(new Vector3(17.3f, CityLayout.LabFloor, 79.7f), 12f, r => ok2 = r, 0.6f); Calm(); }
+            float aimApproachDeadline = Time.realtimeSinceStartup;
+            for (int i = 0; i < 4 && !ok2; i++)
+            {
+                aimApproachDeadline = Time.realtimeSinceStartup + 12f;
+                yield return WalkTo(new Vector3(17.3f, CityLayout.LabFloor, 79.7f), 12f, r => ok2 = r, 0.6f); Calm();
+            }
             Check(ok2 && BioScanTracker.BurnCount == burns && RunState.Has(MissionFlags.HunterGate), "a free amoeba slips through the arch unread");
             if (!current.pass) yield break;
 
             // 5) Possess the duty officer from behind and release the lockdown with her badge.
             var officer = squad.Officer;
+            yield return EnsureHunterAimSpacing(officer, aimApproachDeadline);
             NoteHunterTarget("focused protocol before camera aim", officer, PM.ComputeTarget());
-            yield return AimSettle(officer.ChestPosition);
+            yield return AimSettle(officer);
             var tg = PM.ComputeTarget();
             NoteHunterTarget("focused protocol after settled yaw/pitch aim", officer, tg);
             Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable: {tg.prompt}");

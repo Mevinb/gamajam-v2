@@ -45,8 +45,9 @@ this runtime, in 832.873 seconds, including both rescue branches and twelve reco
 [Exact rescue proof](verification/0.5.1-native-rescue-20261125.json) distinguishes prepared Null/simulated logic from graphics
 and human testing. The other native run finished 19/21 with exit 1 in 947.161 seconds. Case 08 exposed a moving-target test-driver
 failure; case 21 needs a real GPU for its camera subcheck and cannot pass under that Null invocation.
-[Original/riverside proof](verification/0.5.1-native-original-river-20261125.json) preserves both failures. A later focused live-host
-aim test passes; full corrected Route 08 and rendered 21 remain required.
+[Original/riverside proof](verification/0.5.1-native-original-river-20261125.json) preserves both failures. Later live-host aiming
+and ordinary physical spacing pass the full Route 08 in the Null Editor; post-hint focused cases pass 2/2. Source 0.5.2 is
+not yet built, so corrected native Route 08 and rendered 21 remain required. [Moving-host proof](verification/moving-host-aim-20261125.json).
 
 Independent settings now have real Display/Quality/Effects controls, staged Apply/Cancel/Defaults, Custom persistence and live
 Audio/Input. Existing profile quality is preserved.135EditMode rules pass. GPU cases verify actual Bloom pixels, owned renderer
@@ -85,7 +86,7 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
   appearance remain pending. [Booth proof](verification/city-security-booth-20261125.json).
 - Updated gate-capture schema 2 passes CPU compilation and retains raw semantic light/camera inputs and restoration checks.
   Fresh BEFORE/AFTER renders are required; the historical mismatch remains open. [Fixture proof](verification/gate-capture-fixture-20261125.json).
-- Verify the corrected full Route 08 and rerun camera-dependent case 21 on a real GPU. The original run is terminal 19/21,
+- Build source 0.5.2, verify corrected Route 08 natively and rerun camera-dependent case 21 on a real GPU. The original run is terminal 19/21,
   exit 1, with both failures retained. Scenarios 23/24 already
   pass and rendered 22 passes separately. Keep prepared Null/simulated logic separate from graphics and physical input.
 - Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and

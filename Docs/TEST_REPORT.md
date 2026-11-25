@@ -1,3 +1,16 @@
+# Moving-host recovery and close-range guidance — 25 November 2026
+
+The live-host aim driver follows the actual chest during the existing 0.8-second settle. The preserved live-only Route 08
+negative showed that crowding still exceeded the unchanged camera pitch stop. A hunter-only normal retreat within the
+original 15/12-second approach budgets resolves that setup. Full Route 08 then passes through all fourteen original missions
+and explicit Dominion in the Null Editor: scenario 232.1 seconds, wrapper 235.0208 seconds, native exit 0.
+
+That full result is bound to the retained pre-hint source/DLL snapshot. The later player-facing "Step back to aim" hint keeps
+targeting denied and passes a separate 2/2 focused Null run: nearby interaction priority, actual LOS occlusion, turning away,
+hint restoration, normal physical retreat and normal E possession. The range, cone, LOS and camera limits keep their original
+values. Source is 0.5.2-preview; no corresponding native player or rendered case 21 pass is claimed.
+[Full evidence and negatives](verification/moving-host-aim-20261125.json).
+
 # Native graphics harness source checkpoint — 25 November 2026
 
 The opt-in `GraphicsSettingsAcceptance` runtime harness compiles against Runtime and actual Linux-Mono APIs. Read-only review
@@ -26,7 +39,7 @@ with runtime `80e65c6b...` unchanged. Routes A/B, original recovery and the rive
 the moving duty officer invalidated a snapshot-point aim. Case 21 reached a camera guard requiring a real graphics device;
 that Null invocation cannot prove the graphical case. Both failures and the terminal receipts are preserved in
 [the original/riverside proof](verification/0.5.1-native-original-river-20261125.json). A later live-host tracking source change
-passes a focused moving-officer test. The full corrected Route 08 is running; rendered 21 and a corrected native binary remain
+passes the full Route 08 with normal physical spacing in the Null Editor; rendered 21 and a corrected native binary remain
 required. Separate passing 22/23/24 receipts do not turn this into a complete 24-case pass.
 
 # User-requested gate WIP build and launch — 25 November 2026

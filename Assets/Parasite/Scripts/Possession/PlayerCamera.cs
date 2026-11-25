@@ -157,7 +157,9 @@ namespace Parasite.Possession
         }
         public bool IsLowClearance => lowClearance;
         public float Pitch => pitch;
-        public void SetPitch(float value) => pitch = Mathf.Clamp(value,lowClearance ? -5 : -25,lowClearance ? 12 : 65);
+        public float MinimumPitch => lowClearance ? -5f : -25f;
+        public float MaximumPitch => lowClearance ? 12f : 65f;
+        public void SetPitch(float value) => pitch = Mathf.Clamp(value, MinimumPitch, MaximumPitch);
         public void SetYaw(float y) { yaw = y; }
         public void Kick(float fovDegrees) { fovKick = Mathf.Max(fovKick, fovDegrees); }
 
@@ -168,7 +170,7 @@ namespace Parasite.Possession
             {
                 var d = GameInput.LookDelta;
                 yaw += d.x;
-                pitch = Mathf.Clamp(pitch - d.y, lowClearance ? -5f : -25f, lowClearance ? 12f : 65f);
+                pitch = Mathf.Clamp(pitch - d.y, MinimumPitch, MaximumPitch);
             }
         }
 
