@@ -4,7 +4,18 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb**. This supersedes the historical scope freeze and local-only capture session.
 The full request remains **in progress**. Evidence applies to its named source or binary; do not transfer an older pass to a new build.
 
-## Current checkpoint — 25 November 2026
+## Current checkpoint — 26 November 2026
+
+- **Isolated Northline import +13selection cases pass:** actual VerifyImport root99364/native0/chunkde1516;
+  all35,449 data checks,11models/7,336triangles/3original texture references and unchanged scene/dirty state pass.
+  Selection root95384/native0/chunkacdeb4,13/13NUnit cases in.098s. [Data/selection proof](verification/northline-import-selection-20261126.json).
+  These are real imported-data/registry results, not graphics or gameplay acceptance.
+- **Seven Northline mechanics tests now active:** root18951 via worktree `northline_mechanics_20261126a`, exact
+  Parasite.Tests.RailCampaignTests, `Logs/northline-mechanics-20261126a.xml`,3600s owned wrapper, Null/two workers/
+  nice15/idle I/O/own XDG. Keep that checkout's C# fixed and do not start another Editor until the actual process is
+  terminal. Two art-binding tests remain after mechanics. Base0.6.1native90/91 are both terminal passes; no active
+  native overlap lease remains. Do not repeat those branches because an older checkpoint below says running.
+  The0.6.1portable docs overlay is being prepared under base Logs; no archive/extraction yet. No26-source merge/build yet.
 
 - **Both exact0.6.1 native continuous branches pass independently:** Native90 proof below and Native91 root89789/native0/
   supervisor0/chunk7cd985, case529.5s/elapsed536.556s. Exact PASS91/SUMMARY1/1/Null/nice10, no cancellation and all seven

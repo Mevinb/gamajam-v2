@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "status": "ISOLATED_NORTHLINE_IMPORTED_DATA_AND_13_SELECTION_CASES_PASS",
+  "recordedUtc": "2026-11-25T22:56:09.945346+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "importTerminal": {
+    "rootSession": 99364,
+    "chunk": "de1516",
+    "nativeEditorExit": 0,
+    "status": "IMPORTED_STRUCTURE_DATA_PASS_GRAPHICS_PENDING",
+    "passedChecks": 35449,
+    "sceneBefore": "-534|-534::True:False",
+    "sceneAfter": "-534|-534::True:False",
+    "device": "Null Device",
+    "api": "Null",
+    "sourceManifestSha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60"
+  },
+  "models": [
+    {
+      "name": "RailTram",
+      "sourceSha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a",
+      "assetSha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a",
+      "mesh": "RailTram.001",
+      "animationType": "None",
+      "vertices": 3336,
+      "submeshes": 1,
+      "triangles": 1724,
+      "uvValues": 3336,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -3.0,
+        "y": 0.019999980926513672,
+        "z": -1.2000000476837158
+      },
+      "max": {
+        "x": 3.0,
+        "y": 1.7899999618530273,
+        "z": 1.2000000476837158
+      },
+      "boundsError": 2.9802322387695312e-08,
+      "texelsPerMetreMin": 278.9763488769531,
+      "texelsPerMetreMedian": 3303.757080078125,
+      "texelsPerMetreMax": 46763.37109375
+    },
+    {
+      "name": "RailTransferCradle",
+      "sourceSha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a",
+      "assetSha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a",
+      "mesh": "RailTransferCradle.001",
+      "animationType": "None",
+      "vertices": 1416,
+      "submeshes": 1,
+      "triangles": 736,
+      "uvValues": 1416,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -1.5,
+        "y": 0.019999980926513672,
+        "z": -1.0
+      },
+      "max": {
+        "x": 1.5,
+        "y": 1.4649999141693115,
+        "z": 1.0
+      },
+      "boundsError": 1.4901161193847656e-08,
+      "texelsPerMetreMin": 404.9819030761719,
+      "texelsPerMetreMedian": 2466.227783203125,
+      "texelsPerMetreMax": 83978.96875
+    },
+    {
+      "name": "RailControl",
+      "sourceSha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3",
+      "assetSha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3",
+      "mesh": "RailControl.001",
+      "animationType": "None",
+      "vertices": 840,
+      "submeshes": 1,
+      "triangles": 464,
+      "uvValues": 840,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -0.3499999940395355,
+        "y": 0.0,
+        "z": -0.2619999647140503
+      },
+      "max": {
+        "x": 0.3499999940395355,
+        "y": 1.4375,
+        "z": 0.25
+      },
+      "boundsError": 2.9802322387695312e-08,
+      "texelsPerMetreMin": 1410.003662109375,
+      "texelsPerMetreMedian": 9292.83203125,
+      "texelsPerMetreMax": 39212.2265625
+    },
+    {
+      "name": "RailLowSignal",
+      "sourceSha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541",
+      "assetSha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541",
+      "mesh": "RailLowSignal.001",
+      "animationType": "None",
+      "vertices": 480,
+      "submeshes": 1,
+      "triangles": 236,
+      "uvValues": 480,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -0.23999999463558197,
+        "y": 0.0,
+        "z": -0.20000000298023224
+      },
+      "max": {
+        "x": 0.23999999463558197,
+        "y": 0.7900000214576721,
+        "z": 0.20000000298023224
+      },
+      "boundsError": 0.0,
+      "texelsPerMetreMin": 2263.919921875,
+      "texelsPerMetreMedian": 5364.12158203125,
+      "texelsPerMetreMax": 14207.7255859375
+    },
+    {
+      "name": "RailPointBlade",
+      "sourceSha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783",
+      "assetSha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783",
+      "mesh": "RailPointBlade.001",
+      "animationType": "None",
+      "vertices": 576,
+      "submeshes": 1,
+      "triangles": 264,
+      "uvValues": 576,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -1.399999976158142,
+        "y": -0.04500000178813934,
+        "z": -0.05000000074505806
+      },
+      "max": {
+        "x": 1.399999976158142,
+        "y": 0.04500000178813934,
+        "z": 0.05000000074505806
+      },
+      "boundsError": 0.0,
+      "texelsPerMetreMin": 1424.4696044921875,
+      "texelsPerMetreMedian": 8792.9130859375,
+      "texelsPerMetreMax": 11690.837890625
+    },
+    {
+      "name": "RailCrossingBarrier",
+      "sourceSha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917",
+      "assetSha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917",
+      "mesh": "RailCrossingBarrier.001",
+      "animationType": "None",
+      "vertices": 744,
+      "submeshes": 1,
+      "triangles": 364,
+      "uvValues": 744,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -4.0,
+        "y": -1.2999999523162842,
+        "z": -0.0925000011920929
+      },
+      "max": {
+        "x": 4.0,
+        "y": 1.2999999523162842,
+        "z": 0.06999999284744263
+      },
+      "boundsError": 7.450580596923828e-09,
+      "texelsPerMetreMin": 217.50927734375,
+      "texelsPerMetreMedian": 3331.1162109375,
+      "texelsPerMetreMax": 44363.6171875
+    },
+    {
+      "name": "RailServiceGate",
+      "sourceSha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964",
+      "assetSha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964",
+      "mesh": "RailServiceGate.001",
+      "animationType": "None",
+      "vertices": 480,
+      "submeshes": 1,
+      "triangles": 236,
+      "uvValues": 480,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -0.08999999612569809,
+        "y": -0.5,
+        "z": -0.699999988079071
+      },
+      "max": {
+        "x": 0.07000000029802322,
+        "y": 0.5,
+        "z": 0.699999988079071
+      },
+      "boundsError": 0.0,
+      "texelsPerMetreMin": 838.3929443359375,
+      "texelsPerMetreMedian": 5213.54833984375,
+      "texelsPerMetreMax": 22181.794921875
+    },
+    {
+      "name": "RailPlatformGate",
+      "sourceSha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d",
+      "assetSha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d",
+      "mesh": "RailPlatformGate.001",
+      "animationType": "None",
+      "vertices": 576,
+      "submeshes": 1,
+      "triangles": 280,
+      "uvValues": 576,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -0.15000000596046448,
+        "y": -1.5,
+        "z": -2.0
+      },
+      "max": {
+        "x": 0.125,
+        "y": 1.5,
+        "z": 2.0
+      },
+      "boundsError": 0.0,
+      "texelsPerMetreMin": 286.3643798828125,
+      "texelsPerMetreMedian": 2741.421630859375,
+      "texelsPerMetreMax": 20249.12109375
+    },
+    {
+      "name": "RailPortalGate",
+      "sourceSha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf",
+      "assetSha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf",
+      "mesh": "RailPortalGate.001",
+      "animationType": "None",
+      "vertices": 768,
+      "submeshes": 1,
+      "triangles": 368,
+      "uvValues": 768,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -2.0999999046325684,
+        "y": -1.7000000476837158,
+        "z": -0.125
+      },
+      "max": {
+        "x": 2.0999999046325684,
+        "y": 1.7000000476837158,
+        "z": 0.09999999403953552
+      },
+      "boundsError": 7.450580596923828e-09,
+      "texelsPerMetreMin": 262.510009765625,
+      "texelsPerMetreMedian": 2933.981689453125,
+      "texelsPerMetreMax": 22181.802734375
+    },
+    {
+      "name": "RailDepartureCoach",
+      "sourceSha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0",
+      "assetSha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0",
+      "mesh": "RailDepartureCoach.001",
+      "animationType": "None",
+      "vertices": 4464,
+      "submeshes": 1,
+      "triangles": 2508,
+      "uvValues": 4464,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": -1.6019999980926514,
+        "y": 0.15000009536743164,
+        "z": -7.009500026702881
+      },
+      "max": {
+        "x": 1.6019999980926514,
+        "y": 3.2899999618530273,
+        "z": 7.009500026702881
+      },
+      "boundsError": 8.940696716308594e-08,
+      "texelsPerMetreMin": 148.2073974609375,
+      "texelsPerMetreMedian": 1911.6962890625,
+      "texelsPerMetreMax": 45278.26171875
+    },
+    {
+      "name": "RailBoardingRamp",
+      "sourceSha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d",
+      "assetSha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d",
+      "mesh": "RailBoardingRamp.001",
+      "animationType": "None",
+      "vertices": 312,
+      "submeshes": 1,
+      "triangles": 156,
+      "uvValues": 312,
+      "degenerateTriangles": 0,
+      "degenerateUv": 0,
+      "readable": false,
+      "min": {
+        "x": 0.0,
+        "y": 0.12999999523162842,
+        "z": -1.0
+      },
+      "max": {
+        "x": 3.3499999046325684,
+        "y": 0.75,
+        "z": 1.0
+      },
+      "boundsError": 0.0,
+      "texelsPerMetreMin": 380.2297668457031,
+      "texelsPerMetreMedian": 9242.3818359375,
+      "texelsPerMetreMax": 95455.6796875
+    }
+  ],
+  "textures": [
+    {
+      "property": "_BaseMap",
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_A.png",
+      "guid": "c8685cd4c2ab2d014a84a1788b53bb53",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_SRGB",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "sameObject": true,
+      "sRGB": true,
+      "normal": false,
+      "standaloneBC7": true
+    },
+    {
+      "property": "_BumpMap",
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_N.png",
+      "guid": "45028556eae73fbdd97b93165163ca0e",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_UNorm",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "sameObject": true,
+      "sRGB": false,
+      "normal": true,
+      "standaloneBC7": true
+    },
+    {
+      "property": "_MetallicGlossMap",
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_M.png",
+      "guid": "5642b245617fda1dfaad7a486392d586",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_UNorm",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "sameObject": true,
+      "sRGB": false,
+      "normal": false,
+      "standaloneBC7": true
+    }
+  ],
+  "selectionTerminal": {
+    "rootSession": 95384,
+    "chunk": "acdeb4",
+    "nativeEditorExit": 0,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "13",
+      "result": "Passed",
+      "total": "13",
+      "passed": "13",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 22:55:29Z",
+      "end-time": "2026-11-25 22:55:29Z",
+      "duration": "0.0980893"
+    },
+    "cases": [
+      {
+        "name": "CommaTokenListSelectsOnlyExplicitNorthlineCases",
+        "result": "Passed"
+      },
+      {
+        "name": "DefaultSuiteStillContainsExactlyTheOriginal27Ids",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"90\")",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"91\")",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"92\")",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"93\")",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"94\")",
+        "result": "Passed"
+      },
+      {
+        "name": "ExactOptInSelectsOnlyItsOwnRegisteredCase(\"95\")",
+        "result": "Passed"
+      },
+      {
+        "name": "LegacyPrefixAndEmptyTokenNeverAccidentallyOptIn",
+        "result": "Passed"
+      },
+      {
+        "name": "UnknownOrBroadNineFilterSelectsNothing(\"9\")",
+        "result": "Passed"
+      },
+      {
+        "name": "UnknownOrBroadNineFilterSelectsNothing(\"92x\")",
+        "result": "Passed"
+      },
+      {
+        "name": "UnknownOrBroadNineFilterSelectsNothing(\"94extra\")",
+        "result": "Passed"
+      },
+      {
+        "name": "UnknownOrBroadNineFilterSelectsNothing(\"999\")",
+        "result": "Passed"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-import-20261126a.json",
+      "bytes": 5241675,
+      "sha256": "471383ad587e805e82b14c71a092c7def89c0cd40daa670377c77bba3dae3e2b"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_verify_20261126a.log",
+      "bytes": 27287,
+      "sha256": "28fd98902318b655aa8b5abd1c988e8a1491665c073dca39ccd583217f85106d"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-selection-20261126a.xml",
+      "bytes": 12645,
+      "sha256": "03c38a5d7531f520d3dbe25882cef6dc8ea99ca72343a716512d1285be43058b"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_selection_20261126a.log",
+      "bytes": 40354,
+      "sha256": "f71034e988d5a721bb704c8def8da17483d95aa347e3286addaef362a6f528f3"
+    }
+  ],
+  "limits": [
+    "Actual imported metadata, source identities, CPU read-only positions/normals/tangents/UV/index values, shared original texture references and scene preservation only. No runtime visual binding, pixels, art quality, physics/nav, gameplay or performance acceptance.",
+    "Low-poly shared-atlas geometry is a foundation. Hero detail, per-surface texel density, material/weathering refinement and final RTX image/performance review remain pending.",
+    "Selection checks execute the real registry/filter only, not game scenarios.",
+    "7mechanics and2runtime art-binding cases are still unverified; mechanics run has just started.",
+    "No Northline scene pixels/GPU/performance/human/native26 acceptance or merge/shipped claim.",
+    "Base0.6.1native90/91 passes remain pinned to a separate immutable candidate."
+  ]
+}
