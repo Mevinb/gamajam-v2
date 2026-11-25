@@ -6,6 +6,17 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **First Northline sidestep rerun is terminal RED:** root50443/native2/chunke7f034,one Dominion FAIL37.237s.
+  Sourcec3de85c1… physically bypasses the first maintenance worker, then stops at local(-17.579,.593,-33.706) beside the
+  south scientist/cover corner; actual casts hit scientist.02973m ahead and cover.04638m ahead, while existing WalkTo hops
+  leave the controller airborne. The original20.742s deadline correctly expires. Raw log/XML are WORK
+  `northline_npc_sidestep_20261126a.log`/`northline-npc-sidestep-20261126a.xml`. Editor122533 is gone; no lifecycle pass.
+  Rail agent is preparing a two-leg, full-capsule-cleared lateral+forward bypass with faster grounded contact detection,
+  still max3/max4s/originaldeadline and unchanged target/physics. No new Editor run yet.
+- Hunter has staged logging-only02diagnostics at base `Logs/possession02-diagnostics-stage/diagnostic.patch`,SHA8c40cede…,
+  against WORKAutoTest60037352…; not applied/compiled. It records intended target/placement/ray hits around unchanged
+  .8s aim. Wait for Rail agent's compile to finish before applying/compiling combined sources; do not race compiler inputs.
+  Basic extracted probe is terminal4/5/native1; no Editor hold remains. Base0.6.1source/artifacts stay unchanged.
 - **Portable0.6.1 extraction executes4/5, not a full pass:** artifact/package/extraction integrity succeeds193files/17dirs,
   but actual extracted native01–05 returns1/SUMMARY4/5:01/03/04/05pass,02fails0.8s with targetNone/angle0/dist4.9/LOSFalse/
   canPossessTrue. Agent93693/chunkb10fdb,26.414s, supervisor1; all10before/after integrity checks pass/no cancellation.
