@@ -21,7 +21,8 @@ The full request remains **in progress**. Evidence applies to its named source o
 - Northline mechanics/art/native stages remain unapplied. New third patch `Logs/rail-native-stage-20261126/feature.patch`
   SHA `98fede05a4725d2a25f4eca98561370f6c1717e844e6966678bed1f207b4e4e4` follows mechanics then art. It provides exact opt-in
   92/93 focused rail branches and94/95 earned26-mission continuations; default27 remains unchanged. Isolated175/33/175 API
-  and three NUnit classes compile;13selection/runtime/continuation cases remain unrun. Current AutoTest base is unchanged.
+  and three NUnit classes compile. The13selection cases, seven mechanics cases, two art-binding cases and new native
+  continuations all remain unrun. Current AutoTest base is unchanged.
 - Source is now **0.6.1-preview** for the corrected regroup/boarding driver and a shorter Peace M20 route hint.
   Only the Peace briefing/objective copy changes: it suggests the real clinic exit/west wall/north shore and natural
   regrouping; no extra waypoint arrows, gameplay gates or voice clips change. Runtime/Editor/Linux API162/31/162 passes.
