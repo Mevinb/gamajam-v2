@@ -30,9 +30,9 @@ namespace Parasite.Testing
             yield return IslandVisualAcceptance.Run();
         }
 
-        public static IEnumerator Route(EndingOutcome outcome,bool culvert)
+        public static IEnumerator Route(EndingOutcome outcome,bool culvert,bool continueCurrentSummary=false)
         {
-            yield return EnterFromFerry(outcome);
+            yield return EnterFromFerry(outcome,continueCurrentSummary:continueCurrentSummary);
             if(culvert)
             {
                 bool reached=false;
@@ -113,15 +113,26 @@ namespace Parasite.Testing
             Debug.Log("[IslandEntry] PASS human height denial, pre-gate retry and physically visited dry bay");
         }
 
-        public static IEnumerator EnterFromFerry(EndingOutcome outcome,bool skipArrival=true,Func<string,IEnumerator> arrivalCapture=null)
+        public static IEnumerator EnterFromFerry(EndingOutcome outcome,bool skipArrival=true,Func<string,IEnumerator> arrivalCapture=null,bool continueCurrentSummary=false)
         {
-            yield return AutoTest.LoadCity();
-            Check(!GameManager.Instance.ContinueIsland()&&!RunState.IslandStarted,"Ordinary city gameplay cannot bypass the completed-ferry gate.");
-            RunState.RecordLakesideOutcome(outcome);RunState.Flags.Add(MissionFlags.Escaped);
-            Check(RunState.BeginAfterlake(),"Fixture enters the existing river chapter first.");
-            SceneManager.LoadScene(GameManager.CityScene);yield return Ready();
-            foreach(string flag in new[]{AfterlakeCampaign.Signal,AfterlakeCampaign.Floodgate,AfterlakeCampaign.WaterAnalysed,AfterlakeCampaign.CorridorOpen,AfterlakeCampaign.ChannelOpened})MissionManager.SetFlag(flag);
-            GameManager.Instance.FinishAfterlake();
+            if (!continueCurrentSummary)
+            {
+                yield return AutoTest.LoadCity();
+                Check(!GameManager.Instance.ContinueIsland()&&!RunState.IslandStarted,"Ordinary city gameplay cannot bypass the completed-ferry gate.");
+                RunState.RecordLakesideOutcome(outcome);RunState.Flags.Add(MissionFlags.Escaped);
+                Check(RunState.BeginAfterlake(),"Fixture enters the existing river chapter first.");
+                SceneManager.LoadScene(GameManager.CityScene);yield return Ready();
+                foreach(string flag in new[]{AfterlakeCampaign.Signal,AfterlakeCampaign.Floodgate,AfterlakeCampaign.WaterAnalysed,AfterlakeCampaign.CorridorOpen,AfterlakeCampaign.ChannelOpened})MissionManager.SetFlag(flag);
+                GameManager.Instance.FinishAfterlake();
+            }
+            else
+            {
+                Check(GameManager.Instance && GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 17
+                    && MissionManager.Instance.Missions.Count == 17 && RunState.AfterlakeStarted
+                    && RunState.Has(AfterlakeCampaign.Departed) && RunState.LakesideOutcome == outcome
+                    && AfterlakeDeparture.AllAmoebaeFree(out _) && !RunState.IslandStarted,
+                    "Continuous island entry requires the actual earned M17 ferry summary with every host released.");
+            }
             Check(GameManager.Instance.State==GameState.Ended&&!RunState.IslandStarted,"Waiting at the ferry summary does not start the island.");
             int hosts=RunState.HostsPossessed,captures=RunState.Captures,resets=RunState.Resets;
             var flags=new HashSet<string>(RunState.Flags);

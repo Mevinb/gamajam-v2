@@ -53,9 +53,9 @@ namespace Parasite.Testing
             Debug.Log("[Harbor] PASS pressure · role denial → A+B overflow → C+A+B retry → pause → checkpoint → physical open gate");
         }
 
-        public static IEnumerator RunChapter(EndingOutcome outcome, Func<string, IEnumerator> capture = null)
+        public static IEnumerator RunChapter(EndingOutcome outcome, Func<string, IEnumerator> capture = null, bool continueCurrentSummary = false)
         {
-            yield return EnterFromIsland(outcome);
+            yield return EnterFromIsland(outcome, continueCurrentSummary);
             if (capture != null) yield return capture("harbor-" + outcome + "-landing.png");
             yield return Pressure(false);
             yield return Cargo(outcome, true);
@@ -73,26 +73,37 @@ namespace Parasite.Testing
             Check(!HUDController.Instance.GetComponentsInChildren<Button>(true).Single(button => button.name == "Btn_Continue · The Working Harbor").gameObject.activeSelf,
                 "The completed harbor summary removes its one-shot Continue button.");
             if (capture != null) { yield return new WaitForSecondsRealtime(.85f); yield return capture("harbor-" + outcome + "-summary.png"); }
-            Debug.Log("[Harbor] PASS " + outcome + " · prepared M20 summary → actual Continue → pressure → physical branch cargo → two free bodies → real E relay → summary");
+            Debug.Log("[Harbor] PASS " + outcome + (continueCurrentSummary ? " · earned M20 summary" : " · prepared M20 summary") + " → actual Continue → pressure → physical branch cargo → two free bodies → real E relay → summary");
         }
 
-        public static IEnumerator EnterFromIsland(EndingOutcome outcome)
+        public static IEnumerator EnterFromIsland(EndingOutcome outcome, bool continueCurrentSummary = false)
         {
-            yield return AutoTest.LoadCity();
-            SeedPriorChapter(outcome);
-            RunState.MissionIndex = 20;
-            SceneManager.LoadScene(GameManager.CityScene); yield return Ready();
-            Check(!RunState.HarborStarted && MissionManager.Instance.Missions.Count == 20, "Harbor missions remain absent before explicit continuation.");
-            // Test-only prior chapter fixture approved for bounded chapter coverage. This does not
-            // exercise island departure, nor grant any of this chapter's progress or geometry.
-            typeof(GameManager).GetProperty(nameof(GameManager.State), BindingFlags.Public | BindingFlags.Instance)
-                .GetSetMethod(true).Invoke(GameManager.Instance, new object[] { GameState.Ended });
-            Time.timeScale = 0;
-            GameEvents.RaiseEnding(new EndingData { route = RunState.Route, outcome = outcome, timeSeconds = RunState.PlayTime,
-                hostsPossessed = RunState.HostsPossessed, captures = RunState.Captures, peakSuspicion = RunState.PeakSuspicion });
+            if (!continueCurrentSummary)
+            {
+                yield return AutoTest.LoadCity();
+                SeedPriorChapter(outcome);
+                RunState.MissionIndex = 20;
+                SceneManager.LoadScene(GameManager.CityScene); yield return Ready();
+                Check(!RunState.HarborStarted && MissionManager.Instance.Missions.Count == 20, "Harbor missions remain absent before explicit continuation.");
+                // Test-only prior chapter fixture approved for bounded chapter coverage. This does not
+                // exercise island departure, nor grant any of this chapter's progress or geometry.
+                typeof(GameManager).GetProperty(nameof(GameManager.State), BindingFlags.Public | BindingFlags.Instance)
+                    .GetSetMethod(true).Invoke(GameManager.Instance, new object[] { GameState.Ended });
+                Time.timeScale = 0;
+                GameEvents.RaiseEnding(new EndingData { route = RunState.Route, outcome = outcome, timeSeconds = RunState.PlayTime,
+                    hostsPossessed = RunState.HostsPossessed, captures = RunState.Captures, peakSuspicion = RunState.PeakSuspicion });
+            }
+            else
+            {
+                Check(GameManager.Instance && GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 20
+                    && MissionManager.Instance.Missions.Count == 20 && RunState.IslandStarted
+                    && RunState.Has(IslandRoster.Departed) && RunState.Has(IslandRoster.SignalMounted) && IslandRoster.AllBoarded
+                    && RunState.LakesideOutcome == outcome && AfterlakeDeparture.AllAmoebaeFree(out _) && !RunState.HarborStarted,
+                    "Continuous harbor entry requires the actual completed M20 launch summary and its carried people/signal flags.");
+            }
             yield return new WaitForSecondsRealtime(.9f);
             var button = HUDController.Instance.GetComponentsInChildren<Button>(true).Single(b => b.name == "Btn_Continue · The Working Harbor");
-            Check(button.gameObject.activeInHierarchy && button.IsInteractable(), "The prepared M20 summary offers its actual harbor Continue button.");
+            Check(button.gameObject.activeInHierarchy && button.IsInteractable(), (continueCurrentSummary ? "The earned M20 summary" : "The prepared M20 summary") + " offers its actual harbor Continue button.");
             var oldFlags = new HashSet<string>(RunState.Flags);
             button.onClick.Invoke(); yield return Ready();
             yield return Wait(() => GameManager.Instance.IsPlaying && RunState.Has(HarborCampaign.ArrivalSeen), HarborArrival.PresentationSeconds + 3,
@@ -107,7 +118,9 @@ namespace Parasite.Testing
             Check(!RunState.Has(HarborCampaign.CanalOpen) && !RunState.Has(HarborCampaign.ManifestComplete) && !RunState.Has(HarborCampaign.RelayComplete),
                 "No harbor completion flag is prepared by the fixture.");
             GameInput.Simulated = true; Time.timeScale = 1;
-            Debug.Log("[Harbor] FIXTURE prior20 summary prepared; initial roles may be borrowed immediately; every harbor objective uses ordinary movement/E and physical timing.");
+            Debug.Log(continueCurrentSummary
+                ? "[Harbor] CONTINUOUS earned M20 summary carried into the real Continue; no prior flag or summary state prepared at this boundary."
+                : "[Harbor] FIXTURE prior20 summary prepared; initial roles may be borrowed immediately; every harbor objective uses ordinary movement/E and physical timing.");
         }
 
         static void SeedPriorChapter(EndingOutcome outcome, string omitted = null)

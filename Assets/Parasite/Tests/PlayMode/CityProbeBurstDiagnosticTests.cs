@@ -39,7 +39,7 @@ namespace Parasite.Tests
                 Assert.IsTrue(probe, "The diagnostic must not destroy an automatic city probe.");
                 Assert.AreEqual(ReflectionProbeMode.Realtime, probe.mode);
                 Assert.AreEqual(ReflectionProbeRefreshMode.OnAwake, probe.refreshMode);
-                Assert.AreEqual(ReflectionProbeTimeSlicingMode.NoTimeSlicing, probe.timeSlicingMode);
+                Assert.AreEqual(ReflectionProbeTimeSlicingMode.IndividualFaces, probe.timeSlicingMode);
                 Assert.AreEqual(position, probe.transform.position); Assert.AreEqual(size, probe.size); Assert.AreEqual(center, probe.center);
                 Assert.AreEqual(resolution, probe.resolution); Assert.AreEqual(hdr, probe.hdr); Assert.AreEqual(box, probe.boxProjection);
                 Assert.AreEqual(mask, probe.cullingMask); Assert.AreEqual(importance, probe.importance);
@@ -65,7 +65,7 @@ namespace Parasite.Tests
             {
                 Assert.IsTrue(probe.enabled && probe.gameObject.activeInHierarchy);
                 Assert.IsTrue(probe.transform.parent && probe.transform.parent.name == "Lighting");
-                Assert.AreEqual(ReflectionProbeTimeSlicingMode.NoTimeSlicing, probe.timeSlicingMode);
+                Assert.AreEqual(ReflectionProbeTimeSlicingMode.IndividualFaces, probe.timeSlicingMode);
                 Assert.AreEqual(probe.name == "Probe_Alley" ? 128 : 256, probe.resolution);
                 Assert.IsTrue(probe.hdr); Assert.AreEqual(-1, probe.cullingMask); Assert.AreEqual(250f, probe.farClipPlane);
                 TestContext.WriteLine($"[CityProbeBurst] inventory name={probe.name} id={probe.GetInstanceID()} origin={probe.transform.position:F3} size={probe.size:F3} center={probe.center:F3} hdr={probe.hdr} res={probe.resolution} box={probe.boxProjection} mask={probe.cullingMask} far={probe.farClipPlane} mode={probe.mode} refresh={probe.refreshMode} slicing={probe.timeSlicingMode}");

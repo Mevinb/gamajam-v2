@@ -16,28 +16,38 @@ namespace Parasite.Testing
     public static class AfterlakeAcceptance
     {
         static PossessionManager PM => PossessionManager.Instance;
-        public static IEnumerator RunChapter(EndingOutcome outcome, System.Func<string, IEnumerator> capture = null)
+        public static IEnumerator RunChapter(EndingOutcome outcome, System.Func<string, IEnumerator> capture = null, bool continueCurrentSummary = false)
         {
-            yield return AutoTest.LoadCity();
-            GameInput.Simulated = false;
-            var gm = GameManager.Instance;
-            Require.IsFalse(gm.ContinueAfterLake(), "Gameplay alone cannot bypass the lake choice.");
-            gm.FinishEnding(new EndingData { route = EntryRoute.MainGate });
-            yield return null;
-            var lake = LakesideEpilogue.Instance;
-            Require.IsNotNull(lake);
-            lake.RevealChoices();
-            yield return new WaitForSecondsRealtime(0.45f);
-            Require.IsTrue(lake.ChoicesReady);
-            var choice = lake.GetComponentsInChildren<Button>(true).Single(b => b.name == (outcome == EndingOutcome.Peace ? "Btn_Live quietly" : "Btn_Become the world"));
-            Require.IsTrue(choice.IsInteractable()); choice.onClick.Invoke();
-            yield return new WaitForSecondsRealtime(0.9f);
-            lake.FinishResolution();
-            Require.AreEqual(GameState.Ended, gm.State);
-            var banner = HUDController.Instance.GetComponentsInChildren<CanvasGroup>(true).Single(group => group.name == "MissionBanner");
-            Require.AreEqual(0f, banner.alpha, "An active mission card must be cleared before the ending summary fades in.");
-            Require.AreEqual(outcome, RunState.LakesideOutcome);
-            Require.IsFalse(RunState.AfterlakeStarted, "Resolving the lake does not automatically choose to continue.");
+            if (!continueCurrentSummary)
+            {
+                yield return AutoTest.LoadCity();
+                GameInput.Simulated = false;
+                var gm = GameManager.Instance;
+                Require.IsFalse(gm.ContinueAfterLake(), "Gameplay alone cannot bypass the lake choice.");
+                gm.FinishEnding(new EndingData { route = EntryRoute.MainGate });
+                yield return null;
+                var lake = LakesideEpilogue.Instance;
+                Require.IsNotNull(lake);
+                lake.RevealChoices();
+                yield return new WaitForSecondsRealtime(0.45f);
+                Require.IsTrue(lake.ChoicesReady);
+                var choice = lake.GetComponentsInChildren<Button>(true).Single(b => b.name == (outcome == EndingOutcome.Peace ? "Btn_Live quietly" : "Btn_Become the world"));
+                Require.IsTrue(choice.IsInteractable()); choice.onClick.Invoke();
+                yield return new WaitForSecondsRealtime(0.9f);
+                lake.FinishResolution();
+                Require.AreEqual(GameState.Ended, gm.State);
+                var banner = HUDController.Instance.GetComponentsInChildren<CanvasGroup>(true).Single(group => group.name == "MissionBanner");
+                Require.AreEqual(0f, banner.alpha, "An active mission card must be cleared before the ending summary fades in.");
+                Require.AreEqual(outcome, RunState.LakesideOutcome);
+                Require.IsFalse(RunState.AfterlakeStarted, "Resolving the lake does not automatically choose to continue.");
+            }
+            else
+            {
+                Require.IsTrue(GameManager.Instance && GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 14
+                    && MissionManager.Instance.Missions.Count == 14 && RunState.Has(MissionFlags.Escaped)
+                    && RunState.LakesideOutcome == outcome && !RunState.AfterlakeStarted,
+                    "Continuous river entry requires the actual completed M14 summary and its original lake choice.");
+            }
             var button = HUDController.Instance.GetComponentsInChildren<Button>(true).Single(b => b.name == "Btn_Continue · After the lake");
             yield return new WaitForSecondsRealtime(0.85f);
             if (capture != null) yield return capture("afterlake-" + outcome + "-continue-summary.png");

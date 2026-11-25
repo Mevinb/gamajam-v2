@@ -39,9 +39,14 @@ namespace Parasite.Testing
             yield return ParkedPassengersKeepGangwayClear();
         }
 
-        public static IEnumerator Branch(EndingOutcome outcome)
+        public static IEnumerator Branch(EndingOutcome outcome, bool continueCurrentRefuge = false)
         {
-            yield return StartAtRefuge(outcome);
+            if (!continueCurrentRefuge) yield return StartAtRefuge(outcome);
+            else Check(GameManager.Instance && GameManager.Instance.IsPlaying && RunState.IslandStarted
+                && RunState.Has(IslandCampaign.InnerRefuge) && RunState.MissionIndex == 18
+                && MissionManager.Instance.Missions.Count == 20 && RunState.LakesideOutcome == outcome
+                && IslandTravelers.Instance && IslandTravelers.Instance.Members.Count == 3,
+                "Continuous rescue starts at the physically earned M18 refuge without reseeding, placing a body or parking guards.");
             var roster = IslandTravelers.Instance;
             Check(roster.Members.Count == 3 && roster.Members.Select(t => t.StableId).Distinct().Count() == 3, "Exactly three durable people spawn after the inner refuge.");
             Check(!IslandExtraction.ReadyToDepart(out _), "The launch cannot finish without rescued people or a mounted signal.");

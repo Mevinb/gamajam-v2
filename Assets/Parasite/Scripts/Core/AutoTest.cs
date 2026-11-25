@@ -307,13 +307,22 @@ namespace Parasite.Testing
                 ("25 Harbor Peace: pressure lock, moving antidote manifest, two-free-body relay and checkpoint recovery", () => HarborAcceptance.RunChapter(EndingOutcome.Peace)),
                 ("26 Harbor Dominion: pressure lock, moving relay manifest, two-free-body relay and checkpoint recovery", () => HarborAcceptance.RunChapter(EndingOutcome.Dominion)),
                 ("27 Harbor cargo recovery: two actual in-flight reroutes, separate physical restore and bay arrivals", HarborAcceptance.TwoInflightCargoReroutesRecoverWithoutOverlap),
+                ("90 Continuous 23 missions: Main Gate Peace through all three earned chapter continuations", () => ScenarioContinuousCampaign(EntryRoute.MainGate)),
+                ("91 Continuous 23 missions: Service Tunnel Dominion through all three earned chapter continuations", () => ScenarioContinuousCampaign(EntryRoute.ServiceTunnel)),
             };
             // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
             var args = Environment.GetCommandLineArgs();
             int fi = Array.IndexOf(args, "-autotestFilter");
+            if (fi >= 0 && (fi + 1 >= args.Length || args[fi + 1].StartsWith("-", StringComparison.Ordinal)))
+            {
+                RecordSelectionFailure("The -autotestFilter option requires a scenario ID value before the next command-line option.");
+                Running = false;
+                yield break;
+            }
             var only = fi >= 0 && fi + 1 < args.Length ? args[fi + 1].Split(',') : null;
             foreach (var (name, fn) in scenarios)
             {
+                if ((name.StartsWith("90 ") || name.StartsWith("91 ")) && (only == null || !only.Any(token => token.Trim() == name.Substring(0, 2)))) continue;
                 if (only != null && !only.Any(o => name.StartsWith(o.Trim()))) continue;
                 yield return LoadCity();
                 current = new Result { name = name, pass = true };
@@ -325,7 +334,20 @@ namespace Parasite.Testing
                 GameInput.Simulated = false;
                 Time.timeScale = 1f;
             }
+            if (Results.Count == 0)
+                RecordSelectionFailure("No acceptance scenarios were selected. Check -autotestFilter; an empty suite is a validation failure.");
             Running = false;
+        }
+
+        // One shared failed Result drives both native exit status and Editor result inspection.
+        static void RecordSelectionFailure(string detail)
+        {
+            var invalidSelection = new Result
+            {
+                name = "FILTER No acceptance scenarios selected", pass = false, seconds = 0f, detail = detail,
+            };
+            Results.Add(invalidSelection);
+            Write("FAIL  " + invalidSelection.name + "  (0.0s)  " + invalidSelection.detail);
         }
 
         static Result current;
@@ -994,6 +1016,41 @@ namespace Parasite.Testing
             Check(ended && data.route == route && data.outcome == outcome && RunState.Has(MissionFlags.Escaped) &&
                 GameManager.Instance.State == GameState.Ended && Time.timeScale == 0f,
                 $"{prof} → tail → {door.doorName} → Vale reveal → hunters → signed evidence → relay sabotage → shadow uplink → black site vault → protocol epsilon → blackout → master broadcast → drain → lakeside choice {outcome} (route {data.route}, {data.timeSeconds:0}s)");
+        }
+
+        // Composes the existing acceptance drivers. Their within-chapter role/position/calm/timeScale
+        // fixtures remain in scope; only chapter-boundary reset/seeding is forbidden by these new cases.
+        static IEnumerator ScenarioContinuousCampaign(EntryRoute route)
+        {
+            yield return ScenarioRoute(route);
+            if (!current.pass) yield break;
+            var outcome = route == EntryRoute.ServiceTunnel ? EndingOutcome.Dominion : EndingOutcome.Peace;
+            var carried = new HashSet<string>(RunState.Flags);
+            float playTime = RunState.PlayTime, peakSuspicion = RunState.PeakSuspicion;
+            int hosts = RunState.HostsPossessed, captures = RunState.Captures, resets = RunState.Resets;
+            void Retained(string phase)
+            {
+                Check(carried.IsSubsetOf(RunState.Flags) && RunState.Route == route && RunState.LakesideOutcome == outcome,
+                    phase + " retains every earned earlier flag, route and immutable first choice.");
+                Check(RunState.PlayTime >= playTime && RunState.PeakSuspicion >= peakSuspicion && RunState.HostsPossessed >= hosts && RunState.Captures >= captures && RunState.Resets >= resets,
+                    phase + " cannot reset accumulated campaign statistics.");
+                carried = new HashSet<string>(RunState.Flags); playTime = RunState.PlayTime; peakSuspicion = RunState.PeakSuspicion;
+                hosts = RunState.HostsPossessed; captures = RunState.Captures; resets = RunState.Resets;
+            }
+            yield return AfterlakeAcceptance.RunChapter(outcome, continueCurrentSummary: true);
+            Retained("Earned M14 lake → river → M17 ferry summary");
+            if (!current.pass) yield break;
+            yield return IslandEntryAcceptance.Route(outcome, culvert: outcome == EndingOutcome.Peace, continueCurrentSummary: true);
+            Retained("Earned M17 ferry → M18 physical island entry");
+            if (!current.pass) yield break;
+            yield return IslandRescueAcceptance.Branch(outcome, continueCurrentRefuge: true);
+            Retained("Earned M18 refuge → M20 protected launch summary");
+            if (!current.pass) yield break;
+            yield return HarborAcceptance.RunChapter(outcome, continueCurrentSummary: true);
+            Retained("Earned M20 launch → M23 harbor summary");
+            Check(GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 23 && MissionManager.Instance.Missions.Count == 23,
+                "The same campaign reaches its implemented twenty-three-mission summary through three real Continue buttons.");
+            Note("CONTINUITY SCOPE: original and chapter driver fixtures remain; no inter-chapter LoadCity/NewGame/SeedPriorChapter, prior flag grants, fabricated summary or stat reset.");
         }
 
         // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.

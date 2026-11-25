@@ -6,6 +6,25 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **New private verification player:** `Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab`, still version0.6.0-preview,
+  runtime `3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3`, BUILD_INFO SHA
+  `5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8`. Build0/zero errors or warnings/1,118MB,
+  12.358s (root15477/chunkac34a0); source before/after SHA `eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253` matches.
+  It contains the current test-helper changes; it does not replace the published0435 archive or open0.5.1user player.
+  Its four finite native CLI controls pass: three invalid selections exit1 with one FILTER failure/SUMMARY0/1, valid01 exits0
+  with exactly one PASS/SUMMARY1/1. The older0435 player's unmatched/missing-value controls reproduce false success0/0.
+  [Selection red/green proof](verification/native-filter-selection-20261126.json). New opt-in90/91 compose earned campaign
+  state through M23 without boundary resets/seeding. They are not yet runtime-verified; within-chapter role/position/calm/
+  timeScale fixtures remain explicit. Source runtime/Editor/Linux-Mono API checks pass162/31/162.
+- The primary diagnostic input-contract patch is now applied to the two current PlayMode files; it changes three stale
+  NoTimeSlicing expectations to the actual saved IndividualFaces contract. GPU execution remains unrun and the warning cause
+  remains open. The optional attribution trace is still unapplied. Read the earlier review as its historical staged checkpoint.
+- The last superseded0.5.0 diagnostic at `Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2` has been retired
+  to make room for the proper verification build. Its full original manifest and83,222,010bytes of code/native binaries/
+  metadata remain under `Logs/retired-diagnostic-builds/` (retirement root46894/chunkf25839);991,824,003bytes reclaimed.
+  It is no longer runnable; old packed-data replay requires reconstructing the pinned source/data. All current candidates,
+  retainedLinux preview, release archives, source/art/raw renders and logs remain intact. Four reviewed system/PAM/SSH daemons
+  had privileged process-inspection limits, recorded honestly in the retirement receipt; no inspectable source references existed.
 - **Remaining 0.6 native logic passes 16/16:** the exact 0.6 player exits 0 after cases 06/07/09–20/23/24,
   using Null graphics, nice 10 and isolated absolute user directories. Source, runtime, BUILD_INFO, candidate and both
   protected preview trees remain unchanged; no watchdog or native rerun occurred. The original supervisor exits **1**
@@ -183,6 +202,8 @@ READMEs before execution; use fresh absolute Logs output paths and never close t
 The reviewed post-recovery snapshot is `Logs/candidate06-gpu-stage/reviewed-source-20261126-physical-recovery.json`, SHA256
 `9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763`. Its exact build delta is one modified acceptance
 helper plus the new test class/meta, with no removals. It becomes stale if any further source or asset changes.
+That9532 snapshot is now historical: current source is eedd after the seven-file helper/diagnostic update and verification build.
+Use the new build-run source snapshot (204952/0c8cccab) for any current-source freeze; no artifact inherits another binary's tests.
 
 1. Use the existing verified0.6candidate/archive. All 25 selected Null-logic cases pass across the three named invocations;
    do not repeat them merely because an older note calls them pending. Render-dependent21/22, exact-player media/settings

@@ -3,6 +3,11 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
+- The published0435 player's native acceptance CLI falsely returns exit0/SUMMARY0/0 for unmatched selections and a missing
+  value before the next option. Rebuilt3894 controls prove the current guard returns exit1 with a FILTER failure for unknown,
+  next-option missing and trailing missing forms; valid01 still passes. Empty-token legacy prefix behavior is not exhaustively
+  hardened. The new continuity cases90/91 are compiled but unrun; do not select them on the older binary.
+  [Exact CLI red/green scope](verification/native-filter-selection-20261126.json).
 - The 0.6.0-preview harbor expansion has a packaged native player with 23 missions. Selected native cases 08/25/26/27 pass 4/4,
   including both harbor outcomes and in-flight cargo recovery; a fresh extracted archive passes native 01–05, 5/5. These are
   isolated Null-graphics logic checks, not rendered appearance, physical controls or performance acceptance.
@@ -46,8 +51,8 @@ current work; every pass applies to its recorded source or binary.
   quality reduction or warning suppression is a verified fix. [Settings proof](verification/independent-graphics-settings-20261125.json).
 - Read-only stack mapping finds eight native reflection-loop emissions and one ordinary-camera emission across City loads;
   the failed test's log guard does not establish ownership of all nine. Two diagnostic files still contain three obsolete
-  NoTimeSlicing expectations. Their correction to current IndividualFaces is staged and API-compiles all28PlayMode sources,
-  but remains unapplied during the native source freeze. Optional attribution tracing is also staged, not GPU-tested.
+  NoTimeSlicing expectations at review time. Their correction to current IndividualFaces is now applied; the staged API check
+  compiles all28PlayMode sources, but actual GPU execution remains unrun. Optional attribution tracing is staged and unapplied.
   No production warning cause or fix is confirmed. [Review evidence](verification/reflection-warning-review-20261126.json).
 - New independent settings have135passing EditMode rules and passing named GPU ownership/Custom/UI/Bloom cases. The initial
   Bloom metric used a stale SingleCameraRequest volume stack; the corrected StandardRequest fixture passes with unchanged

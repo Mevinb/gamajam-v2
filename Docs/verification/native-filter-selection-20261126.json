@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "status": "OLD_FALSE_SUCCESS_REPRODUCED_AND_FOUR_FINITE_REBUILT_FILTER_CONTRACTS_PASS",
+  "recordedUtc": "2026-11-25T20:55:56.109105+00:00",
+  "repositoryHeadAtProof": "df833802a3f43183d0f2db28e05cfada5020127f",
+  "problem": "The old built player could select zero ordinary cases and exit 0 with SUMMARY 0/0. This creates false-positive validation reports.",
+  "sourceBehaviorChange": "Missing values before another option or at argv end and zero selected cases create one failed FILTER result; the ordinary valid selection path remains active.",
+  "oldRed": {
+    "proof": {
+      "path": "Logs/candidate06-filter-negative-controls/red-proof.json",
+      "bytes": 7847,
+      "sha256": "5803322e47d780973150fb386ffbba3a5ea27c743ddc9ea7253cd2c3e0f09532"
+    },
+    "runtimeSha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b",
+    "buildInfoSha256": "1009a8afed2434112b5ac23f5acc02b393d4b8a30f06605f354c06bfdeb62117",
+    "candidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
+    "builtAutoTestSourceSha256": "16a2c1c9901fd631f3c28d12b47d13c5f24a97ed56ed67c4a612fed3237038f9",
+    "cases": [
+      {
+        "name": "unknown-filter",
+        "nativeExitCode": 0,
+        "summary": "0/0 passed",
+        "ordinaryCaseRows": 0,
+        "elapsedSeconds": 3.125,
+        "report": {
+          "path": "Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/unknown-filter/report.txt",
+          "bytes": 109,
+          "sha256": "1da77ec39db105a08097f953d05aec5a2d63e79caf9ecdccc717d9605c0a5b1b"
+        },
+        "playerLog": {
+          "path": "Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/unknown-filter/player.log",
+          "bytes": 2729,
+          "sha256": "ecbfea0fba365ed3673f67b8c2c329ea6b63157ce73c84be97cac722104806b5"
+        },
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestFilter",
+          "__no_such_acceptance_case__",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/unknown-filter/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/unknown-filter/player.log"
+        ]
+      },
+      {
+        "name": "missing-value-before-log-option",
+        "nativeExitCode": 0,
+        "summary": "0/0 passed",
+        "ordinaryCaseRows": 0,
+        "elapsedSeconds": 3.156,
+        "report": {
+          "path": "Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/missing-value-before-log-option/report.txt",
+          "bytes": 109,
+          "sha256": "718ad2cf3bbf0b31a9eefbed921af611327c937decdd02a361741182b35acebe"
+        },
+        "playerLog": {
+          "path": "Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/missing-value-before-log-option/player.log",
+          "bytes": 2763,
+          "sha256": "0b500b55cfa4dc209efd3bb083be8b6e60837628c0196f6b083b42e81fb5084e"
+        },
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/missing-value-before-log-option/report.txt",
+          "-autotestFilter",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/candidate06-filter-negative-controls/20261125T204403628256Z-e89563a0/missing-value-before-log-option/player.log"
+        ]
+      }
+    ],
+    "trailingMissingFilterNotProbed": "Intentionally omitted on the old binary because it could run the entire ordinary suite.",
+    "candidateUnchanged": true
+  },
+  "newGreen": {
+    "proof": {
+      "path": "Logs/native-filter-green-controls/green-proof.json",
+      "bytes": 15499,
+      "sha256": "a382ea64e202fc26b525ea7ab7a06e926d94f257c6a7f64e35ffffb8d0fa5af3"
+    },
+    "candidate": "Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab",
+    "runtimeSha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+    "buildInfoSha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+    "buildSourceSnapshotSha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253",
+    "builtAutoTestSourceSha256": "3e4556af8c0ab60a4c2168ba31b6e40d1b459d1c3eec558a821baf37d064d62b",
+    "properBuildReceipt": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T204952819191Z-0c8cccab/runner-state.json",
+      "bytes": 8943,
+      "sha256": "31d703ee998a91e40db5718ea122c5770e8c900588f7e49c3860b186b2a2efe3"
+    },
+    "supervisorReceipt": {
+      "session_id": 32836,
+      "terminal_chunk": "d08ed5",
+      "exit_code": 0
+    },
+    "controls": [
+      {
+        "name": "unknown-filter-99",
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestFilter",
+          "99",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/player.log"
+        ],
+        "pid": 90511,
+        "nice": 10,
+        "native_exit_code": 1,
+        "summary": "0/1 passed",
+        "numeric_ordinary_case_rows": [],
+        "filter_failure_rows": [
+          " No acceptance scenarios selected  (0.0s)  No acceptance scenarios were selected. Check -autotestFilter; an empty suite is a validation failure."
+        ],
+        "elapsed_seconds": 3.588,
+        "actual_null": true,
+        "runtime_before_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "runtime_after_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "build_info_before_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "build_info_after_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "isolated_environment": {
+          "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/config",
+          "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/cache",
+          "XDG_DATA_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/data",
+          "TMPDIR": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/tmp"
+        },
+        "report": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/report.txt",
+          "bytes": 266,
+          "sha256": "74cb9d7fd9c4bd83d9b1531dc4bb5abdd3f39f0456289451ed7fcbd9686cf945"
+        },
+        "player_log": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/unknown-filter-99/player.log",
+          "bytes": 2887,
+          "sha256": "072f001de205bdeef6e8dd3cff680486c251e5dc28c3efb62dd5d0772239d180"
+        },
+        "raw_report": "PARASITE autotest \u2014 2026-11-26 02:24:27 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nFAIL  FILTER No acceptance scenarios selected  (0.0s)  No acceptance scenarios were selected. Check -autotestFilter; an empty suite is a validation failure.\nSUMMARY: 0/1 passed\n"
+      },
+      {
+        "name": "missing-value-before-log-option",
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/report.txt",
+          "-autotestFilter",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/player.log"
+        ],
+        "pid": 90589,
+        "nice": 10,
+        "native_exit_code": 1,
+        "summary": "0/1 passed",
+        "numeric_ordinary_case_rows": [],
+        "filter_failure_rows": [
+          " No acceptance scenarios selected  (0.0s)  The -autotestFilter option requires a scenario ID value before the next command-line option."
+        ],
+        "elapsed_seconds": 3.657,
+        "actual_null": true,
+        "runtime_before_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "runtime_after_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "build_info_before_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "build_info_after_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "isolated_environment": {
+          "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/config",
+          "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/cache",
+          "XDG_DATA_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/data",
+          "TMPDIR": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/tmp"
+        },
+        "report": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/report.txt",
+          "bytes": 257,
+          "sha256": "e95305ef7f55a8c83f4529f15e1c36cc836f8cffb218fd846afa1df22c0e9762"
+        },
+        "player_log": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/missing-value-before-log-option/player.log",
+          "bytes": 2906,
+          "sha256": "ea89d54de766d43e264b2b989255ce109a5df9dcc1b20bc7156d18a766bc36fe"
+        },
+        "raw_report": "PARASITE autotest \u2014 2026-11-26 02:24:30 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nFAIL  FILTER No acceptance scenarios selected  (0.0s)  The -autotestFilter option requires a scenario ID value before the next command-line option.\nSUMMARY: 0/1 passed\n"
+      },
+      {
+        "name": "trailing-missing-filter",
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/player.log",
+          "-autotestFilter"
+        ],
+        "pid": 90667,
+        "nice": 10,
+        "native_exit_code": 1,
+        "summary": "0/1 passed",
+        "numeric_ordinary_case_rows": [],
+        "filter_failure_rows": [
+          " No acceptance scenarios selected  (0.0s)  The -autotestFilter option requires a scenario ID value before the next command-line option."
+        ],
+        "elapsed_seconds": 3.624,
+        "actual_null": true,
+        "runtime_before_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "runtime_after_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "build_info_before_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "build_info_after_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "isolated_environment": {
+          "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/config",
+          "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/cache",
+          "XDG_DATA_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/data",
+          "TMPDIR": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/tmp"
+        },
+        "report": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/report.txt",
+          "bytes": 257,
+          "sha256": "2c8bb8974dcf87b787e0686b502f75a0fcec3bfb48a441d4cf082844f0a846f3"
+        },
+        "player_log": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/trailing-missing-filter/player.log",
+          "bytes": 2890,
+          "sha256": "9c5b74fd59b58a7b2d08169b13b18dec30b5be93536f2c74e18c15029aa8907c"
+        },
+        "raw_report": "PARASITE autotest \u2014 2026-11-26 02:24:34 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nFAIL  FILTER No acceptance scenarios selected  (0.0s)  The -autotestFilter option requires a scenario ID value before the next command-line option.\nSUMMARY: 0/1 passed\n"
+      },
+      {
+        "name": "valid-01",
+        "argv": [
+          "/usr/bin/nice",
+          "-n",
+          "10",
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab/Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestFilter",
+          "01",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/player.log"
+        ],
+        "pid": 90746,
+        "nice": 10,
+        "native_exit_code": 0,
+        "summary": "1/1 passed",
+        "numeric_ordinary_case_rows": [
+          [
+            "PASS",
+            "01",
+            "Start, move, camera, jump  (2.2s)  moved 4.6 m, camera turned 90\u00b0, hop 0.55 m"
+          ]
+        ],
+        "filter_failure_rows": [],
+        "elapsed_seconds": 7.003,
+        "actual_null": true,
+        "runtime_before_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "runtime_after_sha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+        "build_info_before_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "build_info_after_sha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+        "isolated_environment": {
+          "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/config",
+          "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/cache",
+          "XDG_DATA_HOME": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/data",
+          "TMPDIR": "/home/mevlec/Data/Parasite/Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/tmp"
+        },
+        "report": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/report.txt",
+          "bytes": 197,
+          "sha256": "710898008cf4d4e45da3ba9ec37d025676227006dcdb639e4bb96c343c352211"
+        },
+        "player_log": {
+          "path": "Logs/native-filter-green-controls/20261125T205420968287Z-0cee3862/valid-01/player.log",
+          "bytes": 3592,
+          "sha256": "7a440ccd416f7ee82e9ff50150c00726b722c9b10f1860b6cdfc337dab38a9d9"
+        },
+        "raw_report": "PARASITE autotest \u2014 2026-11-26 02:24:38 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  01 Start, move, camera, jump  (2.2s)  moved 4.6 m, camera turned 90\u00b0, hop 0.55 m\nSUMMARY: 1/1 passed\n"
+      }
+    ],
+    "allInputTreesUnchanged": true,
+    "inputTreesBeforeSha256": {
+      "candidate": "8ec5ae466812e55969357dac77f8af6ff3f7e8bf96963a6b1705c11f495dc7d6",
+      "user-preview": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "retained-preview": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "source": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253"
+    },
+    "inputTreesAfterSha256": {
+      "candidate": "8ec5ae466812e55969357dac77f8af6ff3f7e8bf96963a6b1705c11f495dc7d6",
+      "user-preview": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "retained-preview": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "source": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253"
+    },
+    "protectedUserObservation": {
+      "utc": "2026-11-25T20:54:49.111849+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    }
+  },
+  "limits": [
+    "Green evidence covers exactly unknown 99, missing value before real -logFile, trailing missing value, and valid 01. It is not exhaustive parsing validation.",
+    "The old unmatched control used __no_such_acceptance_case__; the rebuilt unmatched control used 99. Both are unmatched selections, not byte-identical argv A/B tests.",
+    "Only ordinary case 01 ran on the new 3894 verification candidate. Prior 25-of-27 logic coverage on the published 0435 player is separate and is not transferred to 3894.",
+    "Continuity cases 90/91 are newly compiled opt-in source but remain unrun.",
+    "All controls used actual Null graphics/nice 10 and isolated absolute configuration/cache/report/log paths. No GPU, Editor, physical input or human-playthrough result is claimed.",
+    "The published 0.6 archive 4a5252... and existing 0.5.1 user preview remain separate artifacts; these probes do not modify or replace them.",
+    "No retries, source edits or commits were performed by this verification task."
+  ]
+}

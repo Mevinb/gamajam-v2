@@ -45,12 +45,13 @@ namespace Parasite.Tests
             public int schema = 1, processId;
             public string status, mode, installedUtc, installationPhase, outputPath, api, gpu, finishedUtc, finishReason;
             public bool includeBootstrap;
+            public string expectedSerializedTimeSlicing = "IndividualFaces";
             public bool helperCallsPlayerPrefs = false, changesNativeFlagDuringTests = false;
             public bool cleanupTemporarilySuspendedNativeScheduling, nativeFlagBeforeCleanup, nativeFlagAfterCleanup;
             public bool cleanupNativeFlagRestored, allControlledMutationsBeforeObservedSrp = true;
             public int cityScenes, bootstrapScenes, controlledCityScenes, controlledBootstrapScenes, restoredLiveProbes, alreadyDestroyedProbes;
             public string automaticNativeRequestStatus = "UNOBSERVED: automatic OnAwake render IDs are not exposed to this helper; no zero-pending or native-retirement claim.";
-            public string lifecycleLimit = "sceneLoaded follows object Awake/OnEnable. A disable/re-enable may cancel an unsliced request, but this helper has no cancellation acknowledgement. A serialized IndividualFaces field precedes Awake and is a distinct stronger experiment.";
+            public string lifecycleLimit = "sceneLoaded follows object Awake/OnEnable. Current generated probes already use serialized IndividualFaces. The individualFaces arm re-enables that same authored slicing mode; automatic cancellation remains unacknowledged and disable is diagnostic only.";
             public List<SceneRecord> scenes = new();
             public List<string> errors = new();
         }
@@ -188,7 +189,7 @@ namespace Parasite.Tests
                 Fail("Expected exact generated Lighting probe inventory in " + scene.name + "; Lighting roots=" + lighting.Length + ", automatic count=" + automatic.Length);
             foreach (var probe in automatic.OrderBy(value => value.name))
             {
-                if (probe.transform.parent != lighting[0].transform || probe.timeSlicingMode != ReflectionProbeTimeSlicingMode.NoTimeSlicing ||
+                if (probe.transform.parent != lighting[0].transform || probe.timeSlicingMode != ReflectionProbeTimeSlicingMode.IndividualFaces ||
                     probe.resolution != (probe.name == "Probe_Alley" ? 128 : 256) || !probe.hdr || probe.cullingMask != -1 || probe.farClipPlane != 250f)
                     Fail("Generated probe specification differs before diagnostic control: " + scene.name + "/" + probe.name);
                 var fields = Read(probe);
