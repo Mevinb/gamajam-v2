@@ -35,10 +35,13 @@ The new 0.6.0-preview working tree adds a three-mission Working Harbor chapter a
 missions. Maintenance balances a physical pressure lock; a scientist routes branch-specific moving cargo into actual bays;
 two separate free amoebae complete a continuously validated relay. Nine Blender model inputs pass267Null import checks.
 Continuation, pressure recovery, in-flight cargo recovery and arrival cancellation have scoped tests; final Peace/Dominion
-source branches pass2/2 in272.328seconds with Editor exit0. A corresponding native player, rendered appearance and performance
-remain pending. The running user0.5.1 player still has20missions. [Harbor implementation/evidence](HARBOR_EXPANSION.md).
+source branches pass2/2 in272.328seconds with Editor exit0. The0.6native candidate now passes selected08/25/26/27,4/4,
+and the portable archive's fresh extracted player passes01–05,5/5; both are isolated Null-graphics logic checks.
+[Native proof](verification/0.6.0-native-selected-20261126.json), [package proof](verification/0.6.0-package-20261126.json).
+Rendered appearance, remaining native scenarios, physical controls and performance remain pending. The running user0.5.1
+player still has20missions. [Harbor implementation/evidence](HARBOR_EXPANSION.md).
 
-Twenty missions are implemented: original14, branch-sensitive riverside15–17 and island18–20. Explicit Peace/Dominion and
+The first twenty missions comprise original14, branch-sensitive riverside15–17 and island18–20. Explicit Peace/Dominion and
 Continue gates remain. The full80s opening and four lake films, eight island voices, authored quarantine-wall kit, centred
 free-body camera and reflection/movie ownership fixes are integrated. Full frame/decode provenance and named Editor/player
 checks are recorded in [TEST_REPORT.md](TEST_REPORT.md); these do not establish that the full open-ended request is complete.
@@ -54,7 +57,8 @@ and human testing. The other native run finished 19/21 with exit 1 in 947.161 se
 failure; case 21 needs a real GPU for its camera subcheck and cannot pass under that Null invocation.
 [Original/riverside proof](verification/0.5.1-native-original-river-20261125.json) preserves both failures. Later live-host aiming
 and ordinary physical spacing pass the full Route 08 in the Null Editor; post-hint focused cases pass 2/2. Source 0.5.2 is
-not yet built, so corrected native Route 08 and rendered 21 remain required. [Moving-host proof](verification/moving-host-aim-20261125.json).
+superseded by the0.6candidate, whose corrected native Route08 passes. Rendered21 remains required.
+[Moving-host proof](verification/moving-host-aim-20261125.json).
 
 Independent settings now have real Display/Quality/Effects controls, staged Apply/Cancel/Defaults, Custom persistence and live
 Audio/Input. Existing profile quality is preserved.135EditMode rules pass. GPU cases verify actual Bloom pixels, owned renderer
@@ -93,14 +97,16 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
   appearance remain pending. [Booth proof](verification/city-security-booth-20261125.json).
 - Updated gate-capture schema 2 passes CPU compilation and retains raw semantic light/camera inputs and restoration checks.
   Fresh BEFORE/AFTER renders are required; the historical mismatch remains open. [Fixture proof](verification/gate-capture-fixture-20261125.json).
-- Build source 0.5.2, verify corrected Route 08 natively and rerun camera-dependent case 21 on a real GPU. The original run is terminal 19/21,
-  exit 1, with both failures retained. Scenarios 23/24 already
-  pass and rendered 22 passes separately. Keep prepared Null/simulated logic separate from graphics and physical input.
+- Use the existing0.6candidate for rendered21, exact-player media/water/settings and isolated performance checks. Its native
+  08/25/26/27 already pass; do not repeat them because older notes call them pending. Keep prepared Null/simulated logic
+  separate from graphics and physical input. Historical failures remain in their original artifact-specific reports.
 - Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and
   story/audio/settings behavior on the new binary.
-- Finish gate-pilot integration and actual collision/lighting/motion/visual/performance checks before including it in a new build.
-- Measure the final binary at declared settings, listen to voices, exercise physical keyboard/gamepad, then verify a fresh archive
-  and isolated extracted player. The package shell script modifies the retained preview; use an explicit-candidate path.
+- Finish the gate's matched visual comparison, native role access and performance checks; the integrated art is already in the
+  existing0.5.1user player and0.6candidate, with saved physics/light inventory and actual door motion/navigation checks passing.
+- Measure the final binary at declared settings, listen to voices and exercise physical keyboard/gamepad. The0.6portable
+  archive and isolated extracted basic player are already verified. The package shell script modifies the retained preview;
+  use an explicit-candidate path for future packages.
 - Continue the requested mission/realism expansion. Compilation, completed films and narrow passing suites do not close the goal.
 
 `TEST_REPORT.md` retains artifact-specific history; `KNOWN_ISSUES.md` records limits. Builds, caches and captures remain ignored.

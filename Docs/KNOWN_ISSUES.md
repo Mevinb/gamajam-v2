@@ -3,13 +3,16 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
-- The 0.6.0-preview harbor expansion is source-verified, not yet a delivered native player:23missions in source, with final
-  Peace/Dominion passing2/2 in the Null Editor. Separate red/green tests fix overlapping in-flight cargo restoration and
-  arrival cancellation; nine authored models pass267input/import checks. Native behavior, actual rendered appearance,
+- The 0.6.0-preview harbor expansion has a packaged native player with 23 missions. Selected native cases 08/25/26/27 pass 4/4,
+  including both harbor outcomes and in-flight cargo recovery; a fresh extracted archive passes native 01–05, 5/5. These are
+  isolated Null-graphics logic checks, not rendered appearance, physical controls or performance acceptance.
+  [Native proof](verification/0.6.0-native-selected-20261126.json) and [package proof](verification/0.6.0-package-20261126.json).
+  Final Peace/Dominion source branches also pass 2/2 in the Null Editor. Separate red/green tests fix overlapping in-flight cargo restoration and
+  arrival cancellation; nine authored models pass267input/import checks. Remaining native scenarios, actual rendered appearance,
   physical controls and performance remain required. [Harbor scope](HARBOR_EXPANSION.md).
 - Source 0.5.2 adds close-range aiming guidance and a live-host/physical-spacing test driver. Full Route 08 passes in the Null
   Editor on the pinned pre-hint snapshot; two post-hint focused cases pass priority, occlusion, turn-away and actual E controls.
-  A rebuilt native binary remains required; the running user player is still 0.5.1.
+  The corrected driver is in the 0.6 native candidate, whose full Route 08 passes. The running user player is still 0.5.1.
   [Moving-host proof](verification/moving-host-aim-20261125.json).
 - The new security-booth kit passes Blender source/export and eleven Null Unity import checks, but its CityBuilder hook,
   generated scene, native appearance and performance remain unverified. It is outside the running user build.
@@ -32,7 +35,7 @@ current work; every pass applies to its recorded source or binary.
   not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native 23/24
   now pass 2/2, exit 0, on this same runtime using prepared Null-graphics fixtures. The other run is terminal 19/21, exit 1:
   case 08 failed when a moving officer invalidated its snapshot aim, and case 21 requires a rendered GPU for its camera check.
-  Live-host/physical-spacing source passes full Route 08 in the Null Editor; native Route 08 and rendered 21 remain required. No complete 24-case result
+  Live-host/physical-spacing source passes full Route 08 in the Null Editor and later 0.6 native candidate; rendered 21 remains required. No complete 24-case result
   is claimed. [Original/riverside result](verification/0.5.1-native-original-river-20261125.json).
 - The Editor Vulkan warning gate remains open after serializedIndividualFaces:13pass/1PendingDowngrade warning failure/
   1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no
@@ -48,7 +51,8 @@ current work; every pass applies to its recorded source or binary.
   stopped after01–05pass/06duty-officer aim failure with no final receipt before reboot. Yaw/pitch test feedback passes focused15
   and shared06/07/08/14/16 in the Editor with unchanged targeting rules. The new binary still needs the remaining campaign.
 - Six desktop0.5.0 baseline routes pass; riverHigh has one217.1ms worst frame with unproved cause. GPU timers/per-gameVRAM,
-  dedicated lab coverage and a final archive/extracted player remain pending. Older FPS values are not new-binary measurements.
+  dedicated lab coverage and final-binary measurements remain pending. The 0.6 archive/extracted basic player is verified separately.
+  Older FPS values are not new-binary measurements.
 - Immutable`Builds/Linux`0.5.0-preview contains M18/four full lake films, not M19/M20 or subsequent fixes. The retained0.4.2archive
   has two short inserts. Neither is relabelled by new source docs.
 - All five silent full films have complete frame/decode provenance. Continuous80s opening, selected actual voice progression,

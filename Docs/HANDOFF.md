@@ -38,7 +38,7 @@ The full request remains **in progress**. Evidence applies to its named source o
   Dominion in the Null Editor (235.0 seconds, exit 0), pinned before the subsequent player hint. The player-facing close-range
   hint then passes two focused cases: denied targeting, interaction priority, real occlusion, looking away, physical retreat
   and ordinary E possession. The 15-degree cone, 5 m range, LOS and camera pitch limits retain their original values.
-  [Moving-host proof](verification/moving-host-aim-20261125.json). A rebuilt native player and rendered case 21 remain required.
+  [Moving-host proof](verification/moving-host-aim-20261125.json). The rebuilt 0.6 native Route 08 passes; rendered case 21 remains required.
 - Source now includes an opt-in `-graphicsSettingsTestOut <absolute-json-path>` native settings harness. Runtime/Editor/
   Linux-Mono compilation and source review pass; real UI/images/pacing/interruption execution remain **unrun**. It is absent
   from the user's current binary. [Harness scope](verification/native-graphics-harness-20261125.json). Keep the RTX reserved
@@ -137,15 +137,17 @@ launcher selects the retained preview. No human launch/playthrough of the new0.5
 
 ## Required next work
 
-1. Build source 0.5.2, verify corrected Route 08 natively and rerun case 21 on a real GPU after the user finishes testing.
-   The pre-gate 21-case run is terminal 19/21 with exit 1; its 23/24 and rendered 22 pass separately;
-   the new gate WIP needs its own campaign validation. Keep prepared headless/simulated logic separate from graphical and physical-input proof.
+1. Use the existing verified0.6candidate/archive. Native08/25/26/27 and extracted01–05 already pass; do not rebuild or repeat
+   those completed runs merely because an older note calls them pending. Render-dependent21, exact-player media/water/settings
+   and declared GPU benchmarks remain. Keep prepared headless/simulated logic separate from graphics and physical-input proof.
 2. Characterize the remaining Editor Vulkan warning with bounded controls; do not rewrite its original unexpected-log guard
    or call residual-warning controls a complete fix. Exercise native Custom settings/persistence/frame pacing on the new binary.
 3. Resolve the gate AFTERstatic capture-contract failure before accepting matched visual comparisons. Saved physics/light inventory
    and actual door/aperture/navigation pass; native role access/full routes, declared performance and final-release acceptance remain separate.
-4. Measure the final binary at declared settings, verify a fresh archive and isolated extracted player, and continue the active
+4. Measure the final binary at declared settings and continue the active
    graphics/gameplay expansion. Physical keyboard/gamepad, subjective voice listening and disk campaign saving remain separate.
+   The current portable archive and isolated extracted basic player are already verified. The user's rendered0.5.1process
+   remains open; a choice to close it for GPU checks has been requested asynchronously. Silence is not permission to close it.
 
 ## Cinematic production and scheduling
 
