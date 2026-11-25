@@ -76,8 +76,24 @@ namespace Parasite.Tests
                 previous = source.time; yield return null;
             }
             Assert.That(source.time, Is.GreaterThan(4.0f));
+            AudioSettings.GetDSPBufferSize(out int bufferSamples, out int queuedBuffers);
+            int outputRate = AudioSettings.outputSampleRate;
+            Assert.That(bufferSamples, Is.GreaterThan(0)); Assert.That(outputRate, Is.GreaterThan(0));
+            double quantum = (double)bufferSamples / outputRate, pauseDsp = AudioSettings.dspTime;
             MusicDirector.DriveOpeningScore(source, false, previous);
+            float commanded = source.time;
+            // Pause is queued to the native mixer. Let two actual DSP quanta pass before measuring the held cursor;
+            // an in-flight buffer may publish its final cursor after the managed isPlaying flag becomes false.
+            float settleDeadline = Time.realtimeSinceStartup + Mathf.Max(.5f, (float)quantum * 4);
+            while (AudioSettings.dspTime - pauseDsp < quantum * 2 && Time.realtimeSinceStartup < settleDeadline)
+            {
+                MusicDirector.DriveOpeningScore(source, false, previous);
+                Assert.IsFalse(source.isPlaying, "Readiness loss must keep the source paused while its mixer cursor settles.");
+                yield return null;
+            }
+            Assert.That(AudioSettings.dspTime - pauseDsp, Is.GreaterThanOrEqualTo(quantum * 2), "The real mixer must advance through the bounded pause settlement.");
             float held = source.time; began = Time.realtimeSinceStartup;
+            Debug.Log($"[OpeningScorePause] outputRate={outputRate} bufferSamples={bufferSamples} queuedBuffers={queuedBuffers} quantumMs={quantum * 1000:F3} dspWaitMs={(AudioSettings.dspTime - pauseDsp) * 1000:F3} commanded={commanded:F6} held={held:F6} residualMs={(held - commanded) * 1000:F3}");
             while (Time.realtimeSinceStartup - began < .8f)
             {
                 MusicDirector.DriveOpeningScore(source, false, held);

@@ -39,13 +39,92 @@
     "scope": "Eleven actual production midpoints reviewed; contact/collapse34\u201342s reviewed in seven actual production frames. No definite torso interpenetration observed; hidden boot/vessel contact not proven from images."
   },
   "runtime_verification": {
-    "status": "PENDING",
-    "required": [
-      "Actual Unity imported metadata/decode",
-      "Normal-speed80s presentation with live voice and natural gameplay handoff",
-      "Keyboard release-aware skip/cleanup",
-      "Strict full5 native initial-image/seek/retirement acceptance"
-    ]
+    "status": "EDITOR_GPU_STORY_VERIFIED_NATIVE_PLAYER_PENDING",
+    "proof_file": "Docs/verification/full-opening-runtime-20261125.json",
+    "proof_sha256": "3ba9b432a9abb14c1d0c8e9818d155f4b92ba40b872a7e02f49c3638208c9b86",
+    "editor": {
+      "api": "Vulkan",
+      "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "first_suite": {
+        "xml": "Logs/full-opening-story-gpu.xml",
+        "xml_sha256": "49259c1b6cec2b64ca04261a39400497ffb6a656e5031febaabe4c5fc189b9be",
+        "log": "Logs/full-opening-story-gpu.log",
+        "log_sha256": "09a82622ae25b6a3e6175a9afcb4e5e3f2f97272103bb521f503f3afb5fb1985",
+        "result": "Failed(Child)",
+        "total": 13,
+        "passed": 12,
+        "failed": 1,
+        "skipped": 0,
+        "duration_seconds": 282.710683,
+        "native_exit_code": 2,
+        "exit_evidence": "Root PTY terminal receipt: first suite exit2; focused session3964/chunk46da78 exit0. Native process3980476 confirmed terminal before publication.",
+        "graphics_ring_buffer_warning_count": 21
+      },
+      "focused_suite": {
+        "xml": "Logs/full-opening-normal-audio-fixed.xml",
+        "xml_sha256": "492ae40dd19a930cda28e5e3a5e770b120ed4a2ab8cf1a3caeb5327785493a5c",
+        "log": "Logs/full-opening-normal-audio-fixed.log",
+        "log_sha256": "a724642f278aa307b9fa01b230c68fd2a872f724f79d9c87e71f33ad1321af2d",
+        "result": "Passed",
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "duration_seconds": 87.2042095,
+        "native_exit_code": 0,
+        "exit_evidence": "Root PTY terminal receipt: first suite exit2; focused session3964/chunk46da78 exit0. Native process3980476 confirmed terminal before publication.",
+        "graphics_ring_buffer_warning_count": 2
+      },
+      "normal_opening": {
+        "method": "Parasite.Tests.OpeningCinematicTests.PublishedFullOpeningPlaysContinuouslyAtNormalSpeedAndReturnsToGameplay",
+        "result": "PASS",
+        "test_duration_seconds": 82.86884,
+        "playback_speed": 1,
+        "checkpoint_time_note": "Drift is measured before optional voice/capture yields. Logged native time/frame are printed afterward, so those log fields must not be subtracted from the earlier story sample.",
+        "maximum_sampled_native_time_story_drift_seconds": 0.001,
+        "rolling_no_new_frame_limit_seconds": 2,
+        "clock_drift_limit_seconds": 1,
+        "per_checkpoint_native_time_and_music_drift_limit_seconds": 0.8,
+        "nonempty_decoded_readbacks": 3,
+        "actual_voice_source_progress_checks": 3,
+        "voice_scope": "First/middle/final selected shipped narration clips were identified bykey and actual advancing timeSamples; this is not allcontinuousspeech or physicalspeaker output.",
+        "final_frame_gate": "Maximum observed native frame >= clip.frameCount\u221212; final halfsecond reached.",
+        "natural_completion": "Watched; onefreeamoeba, normalTimeScale, unlockedinput, originalspawn, gameplaycamera/Cinemachine/HUD and untouchedcampaignstate restored.",
+        "native_media_after_drain": {
+          "owned": 0,
+          "pending": 0,
+          "quarantined": 0
+        }
+      },
+      "score_pause_fixture": {
+        "first_failure_residual_seconds": 0.021337510000000393,
+        "original_hold_tolerance_seconds": 0.02,
+        "correction": "Wait at most a bounded deadline for two measured nativeDSP quanta after Pause before taking heldcursor baseline; repeatedly require isPlayingFalse. Original.02s holdtolerance and .8s pausedobservation unchanged. Runtime Pause implementation unchanged.",
+        "focused_actual": {
+          "output_sample_rate": 48000,
+          "buffer_samples": 1024,
+          "queued_buffers": 4,
+          "quantum_ms": 21.333,
+          "dsp_wait_ms": 64.0,
+          "commanded_seconds": 4.145987,
+          "held_seconds": 4.145987,
+          "residual_ms": 0.0
+        },
+        "causality_limit": "First21.33751ms residual is consistentwithone21.333ms quantum; individualcause is not proven by agreement alone."
+      },
+      "warnings": {
+        "first_suite_graphics_ring_buffer": 21,
+        "focused_suite_graphics_ring_buffer": 2,
+        "scope": "Native warnings accompany Cityload/reflection submission; they didnotfail these named methods. Startupcaptureburst is a hypothesis, notprovenallocatorcausality or establishedplayerimpact. No suppression, allocatorflag or qualitycut used."
+      }
+    },
+    "pending": [
+      "Fresh rebuiltplayer strictfull5decoder/seek/retirement/nativeexit acceptance",
+      "Current rebuiltplayer campaign/settings/rendering/queuedshortcut regression",
+      "Finalbinary declared desktopperformance and isolatedpackage smoke",
+      "Physicalkeyboard/gamepad playtest and physicalspeaker listening"
+    ],
+    "scope": "Original13casecollection failed12/13; focusednormal80s+correctedpausefixture pass2/2/native0. Exactpermethod results/sourcehashes are in portableproof. Built-playerstrictfull5 remains pending."
   },
   "limits": [
     "Encoded footage is silent; captions, narration and music come from the running game.",
@@ -57,6 +136,6 @@
     "bundle_sha256": "3383b890cd55bfb1f1d07e0f37c2d04e07c5ce94ce7899543c771cd7f769f946",
     "atomic_publication_receipt_sha256": "ce58c024ac25eca5f2c0f2f55c2af6ce9aaf8cd5d6574dc24e94f3c074a78de6",
     "installed_movie_sha256": "e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27",
-    "scope": "Root published all five passed movie encodes atomically; actual imported Unity/runtime presentation remains a separate gate."
+    "scope": "Root atomically published all five passed encodes. Actual Editor imported decode and normal80s presentation subsequently passed in a collection with one separately recorded audio assertion failure; rebuilt-player gates remain pending."
   }
 }

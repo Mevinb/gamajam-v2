@@ -10,8 +10,8 @@ or binary. Historical passing runs do not verify a newer player.
 - Linux/URP remains the target chosen by the user. Blender uses RTX/OptiX offline path tracing; the game's screen-space
   reflections and probes are separate features. Do not describe the Linux player as hardware ray traced.
 - Source through `90bc520` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
-  Blender quarantine-wall kit, camera/reflection corrections and scoped native movie retirement. The physical rescue test
-  walker's bounded NPC sidestep and focused regression are the remaining source changes beyond that commit.
+  Blender quarantine-wall kit, camera/reflection corrections, scoped native movie retirement and the physical rescue walker's
+  bounded NPC sidestep/focused regression. The full opening and new continuous-playback proof extend that checkpoint.
 - `Tools/compile_check.sh all` passes 144 runtime / 23 editor / 144 Linux Mono sources. All 122 EditMode rules pass.
   These checks supplement actual Unity imports, rendering and player execution; they do not replace them.
 - The latest private player is `Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2`, built with zero errors
@@ -31,7 +31,11 @@ or binary. Historical passing runs do not verify a newer player.
   at 1920×1080, 24 fps, 48 samples, OptiX and GPU OIDN. Every production job exits 0. All five films pass exact source/frame
   provenance and complete FFmpeg decoding and are published in live Resources. The opening is 79,993,655 bytes, silent VP8,
   SHA-256 `e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27`.
-  Actual Unity story/audio/skip/handoff verification is running; built-player verification remains required.
+  Actual Editor RTX/Vulkan story verification passes across the original collection and focused rerun: the original collection
+  records 12/13 with one score-pause cursor baseline failure; the corrected pause fixture and normal80s opening rerun pass 2/2,
+  zero skips, native exit 0. Full five-film decode, all eleven normal-speed shots, selected real voice progress, skip/settings,
+  natural resolutions and gameplay/camera/HUD/media cleanup pass their named methods. Built-player verification remains required.
+  [Runtime proof](verification/full-opening-runtime-20261125.json) preserves both suite outcomes and 21/2 native graphics warnings.
   [Portable opening evidence](../ArtSource/FullOpeningFilm/README.md) and tracked publishing tools retain the production.
 
 ## User playtest build retained
@@ -81,8 +85,9 @@ The retained 0.4.2 archive is an earlier release containing two short film inser
 
 ## Remaining release work
 
-1. Verify the published full opening's actual decoder, all eleven story beats, first-image/audio timing,
-   skip/debounce, explicit lake choice and clean restoration of gameplay/camera/audio state.
+1. Run strict full-five decode/seek/retirement and story checks on a fresh built player. Editor normal80s playback,
+   eleven-shot checkpoints, selected voice progression, skip/choice/settings and restoration now pass; do not substitute
+   these Editor results for a native-player pass.
 2. Run native 24 with the corrected exposure fixture and the complete final-player campaign, settings/media and queued-shortcut
    regressions after final asset integration. Case 22 requires normal rendered Vulkan. Preserve real process exits and hashes.
 3. Build a fresh release candidate without overwriting `Builds/Linux`, measure its declared desktop presets, update artifact-specific

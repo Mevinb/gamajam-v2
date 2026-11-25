@@ -1,0 +1,339 @@
+{
+  "schema": 1,
+  "status": "EDITOR_GPU_STORY_VERIFIED_NATIVE_PLAYER_PENDING",
+  "recorded_utc": "2026-11-25T14:32:07.582418+00:00",
+  "scope": "Real published full80s opening and full lake films in Unity Editor on RTX4050/Vulkan, exact named methods and suite exits. No single13casegreen collection is claimed. Final built-player verification remains separate.",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "graphics_api": "Vulkan",
+  "movie": {
+    "path": "Assets/Parasite/Resources/Cinematics/FullStory/OpeningFull.webm",
+    "sha256": "e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27",
+    "frames": 1920,
+    "seconds": 80,
+    "fps": 24,
+    "width": 1920,
+    "height": 1080,
+    "audio_tracks": 0
+  },
+  "suites": [
+    {
+      "xml": "Logs/full-opening-story-gpu.xml",
+      "xml_sha256": "49259c1b6cec2b64ca04261a39400497ffb6a656e5031febaabe4c5fc189b9be",
+      "log": "Logs/full-opening-story-gpu.log",
+      "log_sha256": "09a82622ae25b6a3e6175a9afcb4e5e3f2f97272103bb521f503f3afb5fb1985",
+      "result": "Failed(Child)",
+      "total": 13,
+      "passed": 12,
+      "failed": 1,
+      "skipped": 0,
+      "duration_seconds": 282.710683,
+      "native_exit_code": 2,
+      "exit_evidence": "Root PTY terminal receipt: first suite exit2; focused session3964/chunk46da78 exit0. Native process3980476 confirmed terminal before publication.",
+      "graphics_ring_buffer_warning_count": 21,
+      "cases": [
+        {
+          "name": "Parasite.Tests.FullStoryFilmTests.CompleteLakeFootageDecodesWhileOpeningMayUseFallback",
+          "result": "Passed",
+          "duration_seconds": 2.857738,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.FullStoryFilmTests.FinalFullFootageDecodesAtItsDeclaredFormatAndHoldLoops",
+          "result": "Passed",
+          "duration_seconds": 2.941254,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.FullStoryFilmTests.OptionalFootageFallbackPreservesChoiceAudioAndCleanup",
+          "result": "Passed",
+          "duration_seconds": 6.815231,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.FullStoryFilmTests.OutcomeFramesRemainHiddenUntilExplicitOutcomeSelection",
+          "result": "Passed",
+          "duration_seconds": 8.123569,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.OpeningCinematicTests.EveryKeyboardSkipBindingReturnsToPlayAndReloadsDoNotReplay",
+          "result": "Passed",
+          "duration_seconds": 16.973539,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.OpeningCinematicTests.FullOpeningUsesUnscaledTimeAndPreservesCampaignState",
+          "result": "Passed",
+          "duration_seconds": 42.460786,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.OpeningCinematicTests.PublishedFullOpeningPlaysContinuouslyAtNormalSpeedAndReturnsToGameplay",
+          "result": "Passed",
+          "duration_seconds": 81.717951,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.TitleAndPauseSettingsApplyPersistAndKeepGameplayPaused",
+          "result": "Passed",
+          "duration_seconds": 51.630626,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.DestroyingOutcomeStopsSpeechWhenVoiceUpdateIsDisabled",
+          "result": "Passed",
+          "duration_seconds": 2.450851,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.ExplicitResolutionSkipCancelsCurrentAndQueuedRealSpeech",
+          "result": "Passed",
+          "duration_seconds": 5.986108,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.MutedDisabledAndMissingVoicesDoNotTrapAutomaticCompletion",
+          "result": "Passed",
+          "duration_seconds": 37.579835,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.NaturalResolutionsPlayTheirRealCaptionAndBeatBeforeAutomaticSummary",
+          "result": "Passed",
+          "duration_seconds": 19.630005,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.OpeningScoreWaitsWithoutPlayingOrSeekingAndStartsAtReadyClock",
+          "result": "Failed",
+          "duration_seconds": 3.423611,
+          "failure": "  Expected: 4.14598656f +/- 0.0199999996f\n  But was:  4.16732407f\n"
+        }
+      ]
+    },
+    {
+      "xml": "Logs/full-opening-normal-audio-fixed.xml",
+      "xml_sha256": "492ae40dd19a930cda28e5e3a5e770b120ed4a2ab8cf1a3caeb5327785493a5c",
+      "log": "Logs/full-opening-normal-audio-fixed.log",
+      "log_sha256": "a724642f278aa307b9fa01b230c68fd2a872f724f79d9c87e71f33ad1321af2d",
+      "result": "Passed",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 87.2042095,
+      "native_exit_code": 0,
+      "exit_evidence": "Root PTY terminal receipt: first suite exit2; focused session3964/chunk46da78 exit0. Native process3980476 confirmed terminal before publication.",
+      "graphics_ring_buffer_warning_count": 2,
+      "cases": [
+        {
+          "name": "Parasite.Tests.OpeningCinematicTests.PublishedFullOpeningPlaysContinuouslyAtNormalSpeedAndReturnsToGameplay",
+          "result": "Passed",
+          "duration_seconds": 82.86884,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.StoryAudioTimingTests.OpeningScoreWaitsWithoutPlayingOrSeekingAndStartsAtReadyClock",
+          "result": "Passed",
+          "duration_seconds": 4.274443,
+          "failure": null
+        }
+      ]
+    }
+  ],
+  "focused_normal_opening": {
+    "method": "Parasite.Tests.OpeningCinematicTests.PublishedFullOpeningPlaysContinuouslyAtNormalSpeedAndReturnsToGameplay",
+    "result": "PASS",
+    "test_duration_seconds": 82.86884,
+    "playback_speed": 1,
+    "checkpoints": [
+      {
+        "shot": 1,
+        "story_seconds": 2.001,
+        "logged_native_time_seconds": 2.083,
+        "logged_frame": 50,
+        "measured_pre_yield_drift_seconds": 0.001
+      },
+      {
+        "shot": 2,
+        "story_seconds": 7.0,
+        "logged_native_time_seconds": 7.125,
+        "logged_frame": 171,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 3,
+        "story_seconds": 17.0,
+        "logged_native_time_seconds": 17.0,
+        "logged_frame": 408,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 4,
+        "story_seconds": 23.0,
+        "logged_native_time_seconds": 23.0,
+        "logged_frame": 552,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 5,
+        "story_seconds": 28.0,
+        "logged_native_time_seconds": 28.0,
+        "logged_frame": 672,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 6,
+        "story_seconds": 40.0,
+        "logged_native_time_seconds": 40.042,
+        "logged_frame": 961,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 7,
+        "story_seconds": 45.0,
+        "logged_native_time_seconds": 45.125,
+        "logged_frame": 1083,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 8,
+        "story_seconds": 54.0,
+        "logged_native_time_seconds": 54.0,
+        "logged_frame": 1296,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 9,
+        "story_seconds": 62.0,
+        "logged_native_time_seconds": 62.0,
+        "logged_frame": 1488,
+        "measured_pre_yield_drift_seconds": 0.0
+      },
+      {
+        "shot": 10,
+        "story_seconds": 69.001,
+        "logged_native_time_seconds": 69.0,
+        "logged_frame": 1656,
+        "measured_pre_yield_drift_seconds": 0.001
+      },
+      {
+        "shot": 11,
+        "story_seconds": 76.0,
+        "logged_native_time_seconds": 76.125,
+        "logged_frame": 1827,
+        "measured_pre_yield_drift_seconds": 0.0
+      }
+    ],
+    "checkpoint_time_note": "Drift is measured before optional voice/capture yields. Logged native time/frame are printed afterward, so those log fields must not be subtracted from the earlier story sample.",
+    "maximum_sampled_native_time_story_drift_seconds": 0.001,
+    "rolling_no_new_frame_limit_seconds": 2,
+    "clock_drift_limit_seconds": 1,
+    "per_checkpoint_native_time_and_music_drift_limit_seconds": 0.8,
+    "nonempty_decoded_readbacks": 3,
+    "actual_voice_source_progress_checks": 3,
+    "voice_scope": "First/middle/final selected shipped narration clips were identified bykey and actual advancing timeSamples; this is not allcontinuousspeech or physicalspeaker output.",
+    "final_frame_gate": "Maximum observed native frame >= clip.frameCount\u221212; final halfsecond reached.",
+    "natural_completion": "Watched; onefreeamoeba, normalTimeScale, unlockedinput, originalspawn, gameplaycamera/Cinemachine/HUD and untouchedcampaignstate restored.",
+    "native_media_after_drain": {
+      "owned": 0,
+      "pending": 0,
+      "quarantined": 0
+    },
+    "captures": [
+      {
+        "path": "Logs/ui/11-full-opening-normal-01.png",
+        "sha256": "d9e6f0172021282226be3d67ac2956cc31ec47cadeea4eac79b423f506b7a182",
+        "bytes": 1186443,
+        "scope": "Latest focused-run1600x900UIcapture; earlier run used the same filenames."
+      },
+      {
+        "path": "Logs/ui/11-full-opening-normal-06.png",
+        "sha256": "cc1762ca146555041a64fc8bc92d1a9423d82c05674ea54226975cae6a7e3203",
+        "bytes": 1270052,
+        "scope": "Latest focused-run1600x900UIcapture; earlier run used the same filenames."
+      },
+      {
+        "path": "Logs/ui/11-full-opening-normal-11.png",
+        "sha256": "1a5c67335d7c250318ef00c23caa4237f9d58b1a85f41c5d05e478f7a51cd259",
+        "bytes": 1432118,
+        "scope": "Latest focused-run1600x900UIcapture; earlier run used the same filenames."
+      }
+    ]
+  },
+  "score_pause_fixture": {
+    "first_failure_residual_seconds": 0.021337510000000393,
+    "original_hold_tolerance_seconds": 0.02,
+    "correction": "Wait at most a bounded deadline for two measured nativeDSP quanta after Pause before taking heldcursor baseline; repeatedly require isPlayingFalse. Original.02s holdtolerance and .8s pausedobservation unchanged. Runtime Pause implementation unchanged.",
+    "focused_actual": {
+      "output_sample_rate": 48000,
+      "buffer_samples": 1024,
+      "queued_buffers": 4,
+      "quantum_ms": 21.333,
+      "dsp_wait_ms": 64.0,
+      "commanded_seconds": 4.145987,
+      "held_seconds": 4.145987,
+      "residual_ms": 0.0
+    },
+    "causality_limit": "First21.33751ms residual is consistentwithone21.333ms quantum; individualcause is not proven by agreement alone."
+  },
+  "warnings": {
+    "first_suite_graphics_ring_buffer": 21,
+    "focused_suite_graphics_ring_buffer": 2,
+    "scope": "Native warnings accompany Cityload/reflection submission; they didnotfail these named methods. Startupcaptureburst is a hypothesis, notprovenallocatorcausality or establishedplayerimpact. No suppression, allocatorflag or qualitycut used."
+  },
+  "source_sha256": {
+    "Assets/Parasite/Scripts/Core/OpeningCinematic.cs": "ac84db1ef6e7fafa184100ca312c9ea1638339ed436796284b89b03e8256a1a2",
+    "Assets/Parasite/Scripts/Core/CinematicFilm.cs": "dde4cf21dfa964a0304a653af448160f54ffa54c831c359985c5fa5149ba2db7",
+    "Assets/Parasite/Scripts/Core/CinematicFilmLifetime.cs": "108dfc473df034baf158d6c7babb91b45f4a12eb60941b5d12fed5ddf724b4d7",
+    "Assets/Parasite/Scripts/Core/CinematicFilmSpec.cs": "9e9003ff4490b1987a67800860b2f02884c6bf79441469248f6f121d7f2a590c",
+    "Assets/Parasite/Scripts/Audio/MusicDirector.cs": "46b9bb256cdbbfcf6efbf89dd07f45283ec526d8a71583f682285eadb82fa1fe",
+    "Assets/Parasite/Scripts/Audio/VoiceOver.cs": "237f333e6299cd6aae6f2c6f58974e47e98252447e7f477f419d0f1d792c3e1c",
+    "Assets/Parasite/Scripts/Audio/LakesideNarration.cs": "a433bcb29191a86b098519ed39c1ea56b16019715951d1dba045b3b1898bf00e",
+    "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs": "0225e9204703ab9523e67623d60e980c6da8a4ca91829b3942be6d255aab1cb1",
+    "Assets/Parasite/Tests/PlayMode/OpeningCinematicTests.cs": "dec35b9a03c01935a4c11dca6fd4eb965cbfc36eaddbf25fae7c05e3b23496ba",
+    "Assets/Parasite/Tests/PlayMode/FullStoryFilmTests.cs": "37cb31730e5076aca9788c4c1aaf014f715224bcd624478e92e13fd4da27d2d8",
+    "Assets/Parasite/Tests/PlayMode/StoryAudioTimingTests.cs": "bc895633a4efe21b15b5cecc295fd7bd540f7ff7b4b83d2e1b51f91325ba2083",
+    "Assets/Parasite/Tests/PlayMode/SettingsUITests.cs": "02b17d303317e9fcd23a7489b888508bb75e14c047e504f7721aaed69465409a"
+  },
+  "source_scope": "Source hashes record the terminal focused run. Between suites, the score-pause fixture gained a bounded two-DSP-quantum baseline settlement, the normal-opening fixture moved temporary audio gains after actual title entry to survive saved-setting loading, and bundleVersion changed from0.5.0-preview to0.5.0. Runtime media/audio C# implementation was unchanged. These fixture/settings changes are recorded rather than treating both suites as identical source.",
+  "pending": [
+    "Fresh rebuiltplayer strictfull5decoder/seek/retirement/nativeexit acceptance",
+    "Current rebuiltplayer campaign/settings/rendering/queuedshortcut regression",
+    "Finalbinary declared desktopperformance and isolatedpackage smoke",
+    "Physicalkeyboard/gamepad playtest and physicalspeaker listening"
+  ],
+  "current_editmode": {
+    "result": "PASS",
+    "passed": 122,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 0.2643886,
+    "native_exit_code": 0,
+    "exit_evidence": "Root session9414 terminal receipt chunkdc2faf",
+    "xml": "Logs/full-story-editmode.xml",
+    "xml_sha256": "a68c0b5576cfd197b76a3a58369000358008d4a17ff1c37b972713c72081ab56",
+    "log": "Logs/full-story-editmode.log",
+    "log_sha256": "00714d3905614500bf21a2f376e5f76ff7c59a8cbe790688ec8b156c18ffafb2",
+    "scope": "Current rules/importmetadata suite; separate from GPUstory and builtplayer behavior."
+  },
+  "between_suite_changes": {
+    "normal_opening_test": {
+      "path": "Assets/Parasite/Tests/PlayMode/OpeningCinematicTests.cs",
+      "first_suite_sha256": "8c6979a129b972cb1836bd9d7423eca8a948d1aade43daaa35344e581a60502d",
+      "focused_suite_sha256": "dec35b9a03c01935a4c11dca6fd4eb965cbfc36eaddbf25fae7c05e3b23496ba",
+      "change": "Move temporary voice/music/master/pause setup after BeginFromActualTitle; measured playback assertions unchanged."
+    },
+    "score_pause_test": {
+      "path": "Assets/Parasite/Tests/PlayMode/StoryAudioTimingTests.cs",
+      "change": "Bounded settlement through two actual DSP quanta before held baseline; original hold tolerance and observation retained."
+    },
+    "project_version": {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "before": "0.5.0-preview",
+      "after": "0.5.0",
+      "focused_sha256": "2d4719aee7855bea10c187428967ea14b491bd31b91387a8083cc9f62736a048"
+    },
+    "runtime_media_audio_code": "Unchanged between suites."
+  }
+}

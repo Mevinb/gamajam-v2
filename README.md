@@ -1,74 +1,90 @@
-# PARASITE — After the Still Water
+# PARASITE — The Far Shore
 
-You are Specimen 7, an escaped amoeba that borrows human bodies to uncover Vale Biotech's experiments. Possess people,
-use their credentials, split into two bodies, coordinate different professions and expose the black-site archive.
+You are Specimen 7, an escaped amoeba that borrows human bodies to uncover Vale Biotech's experiments. Use their credentials,
+split into two bodies, coordinate different professions and expose the black-site archive.
 
-The initial **14-mission campaign** ends at a sunset lake with an explicit **Peace** or **Dominion** choice. From its summary,
-choose **Continue · After the lake** to enter three more missions in a riverside district: stop poisoned runoff, coordinate
-an evacuation, operate a guarded radio mast and escape by ferry. Your chosen future changes the later chapter.
+The **0.5.0 candidate** contains twenty missions. The original fourteen end at a sunset lake, where you explicitly choose
+**Peace** or **Dominion**. **Continue · After the lake** opens three riverside missions; **Continue · The Far Shore** then opens
+three island missions. Lead protected survivors or direct couriers, carry a physical rescue signal, bring every passenger
+aboard and release all borrowed bodies before departure. The first lake choice remains unchanged.
 
-The current **0.4.0 upgrade is being verified**. It includes Blender-authored cinematic environments, packed PBR textures,
-revised shots, graphics fixes and the post-lake chapter. Follow [the upgrade tracker](Docs/UPGRADE_TRACKER.md) for the full
-active scope and [the test report](Docs/TEST_REPORT.md) for completed artifact-specific checks.
+This candidate adds the full **80-second RTX-rendered Blender opening** and four lake films: arrival, a neutral choice hold,
+Peace and Dominion. Eight island voice clips, a Blender-authored quarantine-wall kit with 2K PBR maps, centred free-amoeba
+camera work, reflection ownership fixes and safe native movie retirement are integrated. Final player verification remains in
+progress; [the test report](Docs/TEST_REPORT.md) names the exact tested artifacts and [the tracker](Docs/UPGRADE_TRACKER.md)
+preserves the wider active request. A completed render or passing focused test does not establish a final release.
 
-![Current regenerated Market Street environment](Docs/Screenshots/upgrade/00-market-street.png)
+![Earlier regenerated Market Street environment](Docs/Screenshots/upgrade/00-market-street.png)
 
-*Unity environment capture; runtime gameplay adds NPCs and the playable amoeba.*
+*Earlier Unity environment capture. It is not a screenshot of the final candidate or a human playthrough.*
 
 ## Play on Linux
+
+From an extracted build's `Linux` folder, run:
 
 ```bash
 ./play.sh
 ```
 
-The project launcher selects the NVIDIA GPU. The generated executable is `Builds/Linux/Parasite.x86_64`; builds and logs are
-local artifacts, not stored in Git. Keep the executable, `UnityPlayer.so` and `Parasite_Data` together when sharing a build.
+Keep `Parasite.x86_64`, `UnityPlayer.so`, `Parasite_Data` and the other supplied libraries together. The portable launcher
+selects NVIDIA offload and prefers Vulkan when NVIDIA is available. To select OpenGL, run
+`PARASITE_GRAPHICS_API=glcore ./play.sh`. Explicit Unity graphics API flags take priority.
 
-Choose **Begin Infiltration** to watch the opening. Press Space, Enter or Esc and release to skip. Reloading a checkpoint or
-restarting does not replay it. The lakeside scene always requires a deliberate choice; skipping or waiting never chooses.
-Graphics, mouse sensitivity and audio levels persist. Esc opens pause/settings and the mission journal.
+The launcher in the project root selects the retained `Builds/Linux` preview. That **0.5.0-preview** contains M18 and the four
+lake films, not M19/M20 or later fixes. Launch a newer candidate with the `play.sh` beside that candidate's executable.
+`BUILD_INFO.json` and [TEST_REPORT.md](Docs/TEST_REPORT.md) identify its source, scope and actual validation. The retained
+0.4.2 archive is older and contains two short film inserts. Builds and logs remain local artifacts, outside Git.
+
+Choose **Begin Infiltration** to watch the opening. Press Space, Enter or Esc and release to skip; gamepad South/East is also
+bound. Restart and checkpoint reloads do not replay it. At the lake, waiting or skipping never selects a future.
 
 | Input | Action |
 |---|---|
-| WASD / mouse | Move / look |
-| Shift / Space | Sprint / jump |
-| E / hold E | Possess or interact / work at terminals |
+| WASD or arrows / mouse | Move / look |
+| Left Shift / Space | Sprint / jump |
+| E | Possess, interact or eject when captured |
 | Q | Leave a host |
 | V / Tab | Split / switch amoebas |
 | F | Host profession ability |
 | Esc / F1 / F3 | Pause / controls / FPS |
 | Ctrl + M | Presentation shortcut to the original escape and explicit lake choice |
 
-The shortcut works from the initial title, opening, pause, dialogue and gameplay; it preserves explicit choices and does not
-replay the old finale in the later chapter. Automated queued-input coverage is separate from a physical keyboard/gamepad check.
+At a timed control, press E to start and stay close while it works. A paired control needs another amoeba in a different
+host. Ctrl+M works from the initial title, opening, pause, dialogue and gameplay, and is ignored after the later chapter starts.
+Queued-input tests are separate from physical keyboard/gamepad verification. Campaign checkpoints survive scene reloads in
+this process; persistent disk saving is not implemented.
 
-Read [the developer handoff](Docs/HANDOFF.md), [game guide](Docs/COMPLETE_GAME_GUIDE.md),
-[post-lake walkthrough](Docs/AFTERLAKE_GUIDE.md), and [known limits](Docs/KNOWN_ISSUES.md).
+Read [controls](Docs/CONTROLS.md), [the complete twenty-mission guide](Docs/COMPLETE_GAME_GUIDE.md),
+[the riverside walkthrough](Docs/AFTERLAKE_GUIDE.md), [known limits](Docs/KNOWN_ISSUES.md) and [the developer handoff](Docs/HANDOFF.md).
 
 ## Rendering and Blender
 
-Linux remains the delivery target. The RTX 4050 renders the real-time URP game. Reflections use probes and screen-space
-ray marching, alongside normal-mapped surfaces, ambient occlusion, shadows, wet ground, foliage and atmosphere.
-The user selected **RTX-rendered Blender cinematic footage** for path tracing, while retaining Linux gameplay.
-The Linux URP player does not use built-in hardware ray tracing.
+The real-time Linux game uses URP shaders, normal-mapped surfaces, ambient occlusion, shadows, wet ground, foliage, atmosphere,
+screen-space reflections and probes. It does not use built-in hardware ray tracing. The user selected Linux gameplay with
+**offline RTX/OptiX path-traced Blender cinematics**. Each full film is 1920×1080 at 24 fps, and live game audio supplies its
+captions, narration, taps and music.
 
-Blender scripts are in `Tools/blender/`; editable film sets are in `ArtSource/Cinematics`, and Unity imports their FBX exports
-and PBR textures from `Assets/Parasite/Resources/Cinematics`. External artwork and audio provenance is in
-[third-party assets](Docs/THIRD_PARTY_ASSETS.md).
+Editable packed film sets are in `ArtSource/FullCinematics`; [full-opening provenance](ArtSource/FullOpeningFilm/README.md),
+[lake-film provenance](ArtSource/FullLakeFilms/README.md) and [wall source/review](ArtSource/Island/QuarantineWalls.README.md)
+record the actual assets. Reproducible tools live in `Tools/blender/`. Models, textures, fonts, animations and audio provenance
+are recorded in [third-party assets](Docs/THIRD_PARTY_ASSETS.md). Dialogue voices are synthesized.
 
 ## Develop and verify
 
-Use Unity **6000.3.29f1** and read the handoff first. Scenes are generated; change their builders, not their YAML.
+Use Unity **6000.3.29f1** and read the handoff first. Scenes are generated; change their builders, not scene YAML.
 
 ```bash
 Tools/compile_check.sh all
-Tools/unity.sh buildscenes -executeMethod Parasite.EditorTools.CityBuilder.BuildAllBatch
 Tools/unity.sh editmode -nographics -runTests -testPlatform EditMode -testResults Logs/editmode-results.xml
 Tools/unity.sh playmode -runTests -testPlatform PlayMode -testResults Logs/playmode-results.xml
-Tools/unity.sh build-linux -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux
-./play.sh -autotest -autotestOut /tmp/parasite-acceptance.txt
-Tools/package_build.sh linux
 ```
 
-The Unity wrapper serializes editor access and selects the RTX. Coordinate Blender GPU renders with graphics jobs.
-Compile, regenerate, test and rebuild after builder changes. Package only after the report reflects the actual player.
+The Unity wrapper serializes Editor access and selects the RTX. Regenerate scenes through
+`Parasite.EditorTools.CityBuilder.BuildAllBatch` after builder/layout changes, then test and rebuild. Keep GPU renders and
+Unity graphics/player/benchmark jobs separate.
+
+Build candidates into a fresh path using `Tools/unity.sh <log> -executeMethod Parasite.EditorTools.BuildAutomation.BuildLinux
+-parasiteBuildDirectory <fresh-path-inside-Builds>`. Preserve the user's retained preview. Verify all 24 campaign scenarios,
+actual full-film story flow, settings and queued shortcuts on the final player; rendered water needs normal graphics mode.
+Only package after its test report, source snapshot and hashes agree. The current `Tools/package_build.sh` modifies `Builds/Linux`,
+so an explicit-candidate packaging path is required while preserving that preview.

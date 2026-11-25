@@ -1,3 +1,26 @@
+# Full opening Editor runtime — 25 November 2026
+
+The actual published 80-second opening and full lake films run on RTX4050/Vulkan. The first collection records **12 pass /
+1 fail / 0 skip, native exit2**: all four full-film cases, three opening cases (including continuous normal80s), settings and
+four resolution-audio cases pass. The score-pause fixture observes21.33751ms residual cursor movement against its20ms hold
+tolerance. Runtime Pause code is unchanged. The fixture now waits for two measured actual DSP quanta before taking its held
+baseline and retains the original20ms tolerance and0.8s observation.
+
+The focused repeat records **2 pass / 0 fail / 0 skip, native exit0**,87.2042s. Normal80s playback again reaches eleven authored
+checkpoints and the decoder's final half-second, with three nonempty native-image readbacks, three UI captures and three
+selected actual voice-source progress checks. Sampled native-time/story drift is at most0.001s. Natural completion restores
+normal gameplay/camera/HUD/input/state and leaves owned/pending/quarantined media at zero. The pause fixture measures48kHz,
+1024sample buffers,21.333ms quantum,64ms wait and0ms residual. The earlier residual is consistent with one quantum; that agreement
+alone does not prove individual causality. Current EditMode rules also pass122/122,zero skips,native0.
+
+The two GPU logs retain21 and2 native graphics ring-buffer warnings. They did not fail these named methods; allocator cause
+and final-player impact remain unproven. No suppression, allocator flag or quality cut was used. These are actual named-method
+results across two suites, **not one green13casecollection**. Strict rebuilt-player full-five media/campaign/settings/shortcuts
+remain pending. Three voice-progress checks do not establish all continuous speech, physical speaker output or human input.
+[Portable runtime proof](verification/full-opening-runtime-20261125.json) pins source, XML/log and latest capture hashes.
+
+---
+
 # Complete RTX opening production — 25 November 2026
 
 All 1,920 opening frames pass exact source, camera, byte/hash and PNG integrity checks. The complete 80-second silent VP8

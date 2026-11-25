@@ -6,6 +6,13 @@ The complete 80-second, eleven-shot opening was rendered from the editable packe
 
 `opening-11shot-contact.jpg` shows actual production midpoints; `review-samples.json` pins their frame numbers and hashes. The contact/collapse sequence was also reviewed at 34, 35, 36, 37, 38.5, 40 and 42 seconds, including full-resolution frame 925. It depicts Petrov kneeling to assist the worker. No definite torso penetration was observed; an occluded boot near the vessel base could not be classified from the images alone.
 
-The movie passed exact frame-count/format checks and a full FFmpeg decode before publication. It contains no soundtrack: captions, narration, taps and music come from the running game. Actual imported Unity decode, normal-speed presentation, skip and natural gameplay handoff are recorded separately; the manifest keeps those gates pending until their actual results are available. A complete encoded stream alone does not certify the runtime flow or a human playtest.
+The movie passes exact frame-count/format checks and a complete FFmpeg decode. It is silent: captions, narration, taps and
+music come from the game. Actual RTX4050/Vulkan Editor verification records12/13 in the first collection and2/2/native0 in a
+focused normal80s plus score-pause baseline rerun. The original audio assertion failure is preserved. All eleven normal-speed
+shot checkpoints, three real voice-source progress checks, actual image readbacks, natural handoff and zero owned media pass.
+[Portable runtime proof](../../Docs/verification/full-opening-runtime-20261125.json) pins exact sources, XML/log/capture hashes
+and limits. Native graphics warnings remain recorded; their allocator cause and final-player impact are unproven.
 
-The reproducible render/encode/validation/publication tools and commands are in `Tools/blender/cinematics/full_story/publishing/README.md`. These offline RTX path-traced frames are separate from the Linux URP player's real-time shaders.
+Strict rebuilt-player full-five media/story acceptance remains pending. These Editor results do not establish all continuous
+speech, physical speaker output or human keyboard/gamepad behavior. Reproducible render/encode/validation/publication tools
+are in `Tools/blender/cinematics/full_story/publishing/README.md`. Offline RTX path tracing remains separate from Linux URP rendering.

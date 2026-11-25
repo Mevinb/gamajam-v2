@@ -1,98 +1,103 @@
-# PARASITE 0.2.2 (local) — Controls & How It Plays
+# PARASITE 0.5.0 candidate — controls and play
 
-## Opening and final choice
+The candidate contains fourteen initial missions, three riverside missions and three Far Shore island missions.
+[TEST_REPORT.md](TEST_REPORT.md) identifies the actual binary and completed verification; final candidate checks remain in progress.
+The retained 0.5.0-preview contains M18 only, and the older 0.4.2 archive has a different mission/cinematic scope.
 
-**Begin Infiltration** starts the 80-second backstory. Skip with **Space**, **Enter** or **Esc** (gamepad **A/South** or **B/East**),
-then release the key/button to enter gameplay. Checkpoint reloads and Restart do not replay the opening.
-The live city, guards and capture timers freeze during the opening, Vale's reveal and the final cinematic.
+## Opening and deliberate continuation
 
-After the eight missions, the final scene shows a girl seated beside a sunset lake. Choose **Live quietly (Peace)** or
-**Become the world (Dominion)** using the mouse or menu navigation and confirm. Waiting, Escape or a dialogue-skip input never
-chooses an outcome. Your first choice is locked; the final statistics follow its resolution.
+**Begin Infiltration** starts the eighty-second opening. Skip with **Space**, **Enter** or **Esc**, or gamepad **A/South** or
+**B/East**, then release the input to enter gameplay. Restart and checkpoint reloads do not replay it. Live gameplay freezes
+during protected story presentation.
+
+After mission 14, the sunset lake requires **Live quietly (Peace)** or **Become the world (Dominion)**. Use the mouse or menu
+navigation and confirm. Waiting, Escape and dialogue-skip input never choose an outcome. The first choice is locked.
+Its summary offers **Continue · After the lake** for missions 15–17. The ferry summary then offers **Continue · The Far Shore**
+for missions 18–20. Continuation preserves the original choice, earlier flags and campaign statistics.
 
 ## Controls
 
-| Keyboard / Mouse | Gamepad | Action |
+| Keyboard / mouse | Gamepad | Action |
 |---|---|---|
-| W A S D (or arrows) | Left stick | Move |
-| Mouse | Right stick | Camera |
-| Shift | Left stick click | Sprint |
-| Space | A / South | Jump (hop as a blob) |
-| E | X / West | Possess the person you aim at · interact (doors, terminals, Dr. Vale) · **eject** when captured |
-| Q | B / East | Leave the current host (the host stays unconscious for 8 s) |
-| V | Y / North | Split off a second amoeba (max 2) |
-| Tab | Right bumper | Switch control to the other amoeba |
-| F | Left bumper | Host ability: civilian **distraction** · guard **radio dispatch** · scientist **professional calm** (−30 suspicion) · maintenance **cut the power** (cameras off 20 s) |
-| Esc | Start | Pause (Resume · Restart · Controls · Settings · Quit); return from a submenu before resuming |
-| F1 | — | Show / hide the controls card |
-| F3 | — | FPS counter (launch with `-showfps` to start with it on) |
-| Ctrl + M | — | Judges' presentation shortcut: jump to the final escape and sunset-lake choices, including from the initial title |
+| W A S D or arrows | Left stick | Move |
+| Mouse | Right stick | Look |
+| Left Shift | Left stick click | Sprint |
+| Space | A / South | Jump; hop as a free amoeba |
+| E | X / West | Possess the aimed-at person; interact; eject when a host is captured |
+| Q | B / East | Leave the current host; the host is unconscious for eight seconds |
+| V | Y / North | Split off a second amoeba, up to two |
+| Tab | Right bumper | Switch the active amoeba |
+| F | Left bumper | Use the current host's profession ability |
+| Esc | Start | Pause; return from a pause submenu before resuming |
+| F1 | — | Show or hide the controls card |
+| F3 | — | Toggle the FPS counter; `-showfps` starts with it visible |
+| Left or right Ctrl + M | — | Presentation shortcut to the original escape and explicit lake choice |
 
-Menus work with the mouse, or with arrows/WASD/D-pad + Enter/A.
-Settings in both the title and pause menus save graphics quality, mouse sensitivity, master volume and ambience/music.
-Sliders apply immediately. Gamepad B returns from controls/settings; Esc/Start also returns from pause submenus.
+Menus accept mouse input or keyboard/D-pad navigation and Enter/A confirmation. Gamepad B returns from controls/settings;
+Esc/Start returns from pause submenus. Title and pause settings save graphics quality, mouse sensitivity, master, ambience,
+music, effects and dialogue levels. Sliders apply immediately.
 
-For a short judges' presentation in local v0.2.2, press **Ctrl + M** from the title screen, opening, pause menus, Vale dialogue or gameplay to jump to the final escape and sunset-lake epilogue. Requests wait safely through loading or body changes. An ending already underway continues without restarting or choosing for you.
-This skips the remaining campaign for the presentation. You still choose **Live quietly (Peace)** or **Become the world (Dominion)**;
-the shortcut never chooses an outcome automatically.
+Ctrl+M works from the initial title, opening, pause menus, Vale dialogue and gameplay. A request waits through loading or body
+changes. An ending already underway continues without restarting or choosing for you. The shortcut skips the remaining original
+campaign for presentation and is ignored once the later chapter has started.
 
-## Possession
-Aim at a person within **5 m** (a marker and an `[E] Possess …` prompt appear) and press **E**: the amoeba leaps
-into them and you control their body. People further away show a red "too far" prompt. **Q** leaves the host;
-they collapse, unconscious, for 8 s (a timer ring floats above them). Anyone who finds an unconscious body becomes
-suspicious.
+## Possession, splitting and work
 
-## Split & switch
-**V** splits off a second free amoeba next to you (max two; numbered **1** and **2** in the HUD and above each
-body). **Tab** swaps control between them; the other one waits where it is. Use one to scout or hold a host while
-the other moves. Splitting where someone can see it is suspicious.
+Aim at a person within **five metres** and press **E** when the contextual possession prompt appears. **Q** leaves that body;
+other people can notice the resulting unconscious host. **V** creates your second free amoeba; **Tab** changes which one you
+control. The inactive half stays where you left it. Splitting or possessing in sight is suspicious.
 
-## Suspicion
-The meter at the top runs 0–100: **CALM** (0–29) → **CURIOUS** (30–59) → **INVESTIGATING** (60–84) →
-**PURSUIT** (85–100). It rises when people see your blob, see a possession or a split, find a knocked-out body,
-or catch a host somewhere their job doesn't allow. It decays once nobody is watching. NPCs show **?** (curious)
-or **!** (alarmed) above their heads. In pursuit, guards try to grab you: a captured host gives you a few seconds
-to **press E and eject** (an "ESCAPE WINDOW" follows, while guards are stunned). A guard catching a free blob
-contains it; if no amoeba is left you return to the last checkpoint.
+At a timed control, press **E** to begin and stay close while progress fills. Paired controls need separate amoebas in different
+hosts. Leave the supporting host at its console while the other works; releasing, changing or losing that host cancels its
+support. Selecting the other amoeba does not by itself release the original host. After a checkpoint reload, find new hosts
+and rearm unfinished cooperative controls. Completed progress remains within the current running process; there is no disk save.
 
-## Routes into Vale Biotech
-| Host | Credential | Route |
-|---|---|---|
-| Security Guard | Security badge | **Main Gate** checkpoint |
-| Scientist | Staff credentials | **Staff Terminal** (unlocks a staff door) |
-| Maintenance Worker | Maintenance keys | **Service Tunnel** |
+| Host | Useful access and ability |
+|---|---|
+| Civilian | Public areas; F throws a distraction where you aim |
+| Guard | Security badge and dispatch controls; F directs other nearby guards to investigate the aimed-at location |
+| Scientist | Staff terminals and analysis; F lowers suspicion by 30 outside pursuit |
+| Maintenance | Service routes and machinery; F disables cameras within 25 m for twenty seconds |
 
-Inside the lab, find Dr. Vale's office and confront him. His reveal starts three more missions; you can keep playing.
-The final end screen follows the evidence broadcast, storm-drain escape and your explicit lakeside choice, showing your chosen
-future, original infiltration route, total time, hosts possessed, peak suspicion and captures across the campaign.
+Abilities have cooldowns shown by the game. Read the E prompt for profession, prerequisite, range and pursuit restrictions.
+Security cameras can spot free amoebas, trespassing hosts and bodies. Suspicion rises through **Calm**, **Curious**,
+**Investigating** and **Pursuit**; break sight and change bodies. A burned host stays known to bio-scanners. If captured in a host,
+press E during the ejection window. Losing every playable amoeba returns you to the checkpoint.
 
-## Missions
+## Mission route
 
-The eight-mission campaign shipped in v0.2.0. Local v0.2.2 adds global presentation-shortcut handling; its Linux rebuild,
-8/8 focused PlayMode tests and 14/14 built-player queued-keyboard checks passed. Check `TEST_REPORT.md` for each version's
-actual coverage; the full campaign suite was not rerun for this shortcut fix.
+Follow the objective panel, compass and yellow waypoints. The [complete guide](COMPLETE_GAME_GUIDE.md) gives route details;
+the [riverside guide](AFTERLAKE_GUIDE.md) expands missions 15–17.
 
-1. **Out of the Drain** — leave the storm-drain alley, take your first host.
-2. **Word on the Street** — read the newsstand on City Plaza, eavesdrop on Dr. Petrov at the café.
-3. **Credentials** — pick a way in: guard → Main Gate · scientist + café keycard → Staff Terminal ·
-   maintenance + Substation 4 reset → Service Tunnel.
-4. **Vale's Research** — download files at the Lab A and Lab B terminals; Dr. Vale's office has a two-person rule:
-   split (V), put each amoeba in a staff host, badge both readers within 8 s (Tab to switch).
-5. **Creator** — confront Dr. Vale. His dialogue reveals that the research you stole was bait; gameplay resumes afterward.
-6. **The Part He Hid** — as **maintenance**, press **E** at the service-room coolant bypass and leave that body there.
-   **Tab** to the other amoeba, possess a **scientist** and copy Vale's signed archive in his office for **8 seconds**.
-   The two different hosts must stay at their respective terminals. Moving or losing either host interrupts the copy.
-7. **Break the Leash** — put a **guard** at the lobby dispatch override and press **E** to hold it. **Tab** back to a
-   **maintenance** body and overload the east service-alley containment relay for **7 seconds**. The guard must stay at dispatch.
-   Success permanently disables security cameras and opens the campus exits.
-8. **Outside the Experiment** — as **any host**, send the signed evidence through the **City Plaza journalist uplink** for
-   **10 seconds**. A pursuit blocks or interrupts the upload. After it succeeds, return to the south storm-drain alley,
-   leave your host with **Q**, and press **E** at the drain as a **free amoeba** to escape and reach the lakeside epilogue.
-   Choose **Live quietly** or **Become the world** to decide your future before the final summary. There is no automatic choice.
+1. **OUT OF THE DRAIN:** leave the alley and take a host.
+2. **WORD ON THE STREET:** read the plaza newsstand and listen at the café.
+3. **THE TAIL:** follow Petrov without crowding or losing her; collect the dead drop.
+4. **CREDENTIALS:** choose guard/main gate, scientist/keycard/staff terminal, or maintenance/power/service tunnel.
+5. **VALE'S RESEARCH:** copy both research terminals and use two staff hosts at the office readers.
+6. **CREATOR:** confront Vale; gameplay resumes after the protected reveal.
+7. **HUNTER PROTOCOL:** evade bio-scans, cross the arch as free amoeba and trip the duty-officer breaker.
+8. **THE PART HE HID:** maintenance holds coolant while another scientist copies the signed archive.
+9. **BREAK THE LEASH:** a guard holds dispatch while another maintenance host overloads the relay.
+10. **THE SHADOW UPLINK:** broadcast preliminary evidence without pursuit.
+11. **THE BLACK SITE ARCHIVE:** create a diversion and obtain the archive as a scientist.
+12. **CONTAINMENT PROTOCOL EPSILON:** overload backup power and override the security grid.
+13. **BLACKOUT:** cut three transformers within the limit using three distinct human palm prints.
+14. **THE FINAL CONVERGENCE:** broadcast the archive and return to the original drain as a free amoeba; choose at the lake.
+15. **AFTER THE STILL WATER:** answer Petrov and isolate the contaminated floodgate.
+16. **BORROWED HEARTS / A WILLING NETWORK:** analyse runoff and coordinate guard/scientist hosts at the shelter records.
+17. **THE OPEN CHANNEL / THE FIRST MANY:** power the mast, transmit with another host and leave all hosts before the ferry.
+18. **UNDER THE WATERLINE:** reach the island refuge by tidal culvert as a blob or service gate as maintenance.
+19. **THE QUARANTINE WALK / EVERY VOICE:** escort protected survivors on Peace or complete marked courier handoffs on Dominion.
+20. **A LIGHT IN THE FOG / A SIGNAL BEYOND THE ISLAND:** carry and mount the signal, board every passenger and depart with all amoebas free.
 
-Paired consoles need a separate amoeba at each position; one host cannot operate both. Press **E** once to start work, then stay
-close while progress fills. Completed evidence, sabotage and broadcast objectives survive checkpoint reloads. After a reload,
-reacquire hosts and rearm any unfinished paired controls; temporary body positions are not saved.
+On Peace, ask survivors to follow with E in a civilian/scientist host and lead them through cover they physically reach.
+Losing or releasing the leader requires a fresh E regroup, even if you reclaim the same body. On Dominion, mark each possessed
+courier's own handoff with E, walk to their named lane and release with Q; wait for the eight-second recovery and autonomous arrival.
 
-Yellow waypoints show where to go. Security cameras (red blinking lamp) sweep the campus and lab: they spot free
-amoebas, trespassers and bodies. A maintenance host can cut their power with F.
+The signal case must be carried to its mount in the same human host. Tab and pause preserve valid custody; release, capture,
+host change or checkpoint reload returns an unmounted case to the cache. Before rescue departure, every passenger must be awake,
+unoccupied and physically on deck. Release every borrowed host with Tab/Q, bring every surviving free half aboard, finish pending
+leaps and lose pursuit. Merely standing on the gangway is insufficient.
+
+Automated tests use simulated movement or queued input. They do not establish physical keyboard/gamepad behavior, physical
+speaker output or an extended human playthrough. See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for current limits.

@@ -10,8 +10,13 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
   and the earlier island presentation. It does not contain M19/M20, eight island voices or the subsequent source fixes. Do not
   relabel it as the latest private candidate or a final release. The retained 0.4.2 archive is older and has two short film inserts.
 - All 1,920 opening frames and all 840 lake frames pass source/frame provenance, visual sample review and complete FFmpeg decode.
-  All five silent 1080p24 films are published in live Resources. Actual Unity story verification is running; the final player
-  still needs its movie and story checks. See [opening production evidence](../ArtSource/FullOpeningFilm/README.md).
+  All five silent 1080p24 films are published in live Resources. Editor full-five decode, continuous normal80s opening,
+  eleven shot checkpoints, selected actual voice progression, skip/settings/choice and gameplay/media restoration pass.
+  The original suite records 12/13 after a score-pause cursor baseline failure; the bounded actual-DSP baseline correction
+  and normal80s rerun pass 2/2/native0 with unchanged hold tolerance. Native graphics ring-buffer warnings remain recorded
+  (21 in the first collection, two in the focused run); their allocator cause and player impact are unproven.
+  Final built-player media/story checks remain required. See [runtime proof](verification/full-opening-runtime-20261125.json)
+  and [opening production evidence](../ArtSource/FullOpeningFilm/README.md).
 - The preview's strict movie tests decoded the footage but hung during native cleanup. The newer scoped lifetime fix passes
   rendered, batch and untraced default terminal-seek stress with normal native exit 0. Actual pending-seek Quit(0)/Quit(1) probes
   also pass after real acknowledgement and zero owned/pending/quarantined resources, preserving requested native codes. These

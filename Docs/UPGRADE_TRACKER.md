@@ -47,7 +47,11 @@ checks. See [HANDOFF.md](HANDOFF.md) and the portable proofs it links for exact 
 
 All 2,760 RTX/OptiX frames have completed, including the full 80-second opening and all four lake sequences at 1080p24.
 All five films are now published in live Resources after exact frame/source provenance, visual sample review, encoding and
-complete FFmpeg decode. Actual Unity story gates are running; final-player verification remains required. The scoped native movie lifetime fix passes default stress
+complete FFmpeg decode. Actual Editor story gates pass across named methods in the original12/13 collection and focused2/2
+normal80s/pause-baseline rerun. The original failure remains recorded; this is not a single13casegreen result. Normal playback
+reaches all eleven shots and the final half-second, observes three real voice-source progress checks, and restores gameplay
+with zero owned media. Final-player verification remains required; [runtime proof](verification/full-opening-runtime-20261125.json)
+retains exact sources/results and native warnings. The scoped native movie lifetime fix passes default stress
 and actual pending-seek quit codes 0 and 1; OS/window-close pending-media routing remains separate.
 
 The immutable `Builds/Linux` 0.5.0 preview was built and launched for the user, then exited normally. It contains M18 and the
@@ -61,8 +65,8 @@ around 25 FPS were presentation-confounded. Neither set is a measurement of a fu
 
 ## Required next verification
 
-- Complete full-opening publication and actual title entry, all eleven beats, first-image/music timing, skip, explicit lake choice
-  and gameplay/camera/audio restoration with the final assets.
+- Verify strict full-five media and the final title/story/audio/skip/choice/handoff flow in the rebuilt player. These named
+  Editor gates now pass, including normal80s playback; their scope does not establish the final native binary.
 - Run current native rescue recovery and a complete rebuilt-player campaign/settings/media/queued-shortcut regression. Keep the
   rendered water check outside standalone batch mode. Automated movement/queued keys do not establish physical input or a human playthrough.
 - Review gameplay graphics at actual resolution, listen to the voices and measure declared desktop presets on the final player.
