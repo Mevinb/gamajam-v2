@@ -9,19 +9,27 @@ or binary. Historical passing runs do not verify a newer player.
 
 - Linux/URP remains the target chosen by the user. Blender uses RTX/OptiX offline path tracing; the game's screen-space
   reflections and probes are separate features. Do not describe the Linux player as hardware ray traced.
-- Source through `90bc520` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
+- Source through `2f3fde9` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
   Blender quarantine-wall kit, camera/reflection corrections, scoped native movie retirement and the physical rescue walker's
   bounded NPC sidestep/focused regression. The full opening and new continuous-playback proof extend that checkpoint.
 - `Tools/compile_check.sh all` passes 144 runtime / 23 editor / 144 Linux Mono sources. All 122 EditMode rules pass.
   These checks supplement actual Unity imports, rendering and player execution; they do not replace them.
-- The latest private player is `Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2`, built with zero errors
-  and warnings at 1,025 MB. Runtime SHA-256 is `c35c66a7fd0a9869c7aafdaf32d964a2483e22dbc7cca9e20b91e8cfa9832289`.
-  Source and retained preview trees were unchanged during its build. Its `BUILD_INFO.json` pins the working-tree snapshot.
-- Native scenario 23 now passes both full rescue branches in 516.231 seconds with native exit 0 on that player
+- The current **0.5.0 candidate** is `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95`, built from clean commit
+  `2f3fde9` at 1,101 MB, zero errors/warnings and native build exit 0. Runtime SHA-256 is
+  `2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc`. Source and the retained preview tree were unchanged
+  during its build. All twenty missions, full five films, eight island voices and the wall/camera/movie fixes are included.
+- Three normal rendered RTX4050/Vulkan gates pass on that exact runtime, each with native exit 0: strict full-five media
+  (eight checks/seven real PNGs), queued shortcuts (14/14) and water case22 (1/1). Their logs have zero native ring-buffer
+  warnings and the runtime hash is unchanged. This fast media stress is separate from continuous80s story playback.
+  [Candidate proof](verification/0.5.0-candidate-20261125.json) pins build, source, reports, logs, images and native receipts.
+  At 14:40 UTC, the user-controlled player is running (PID4063511) on RTX4050/Vulkan. The23-case headless regression is
+  also running (supervisor4060137/player4060139,nice10,Null graphics);22 passed separately. Neither live process establishes
+  a completed playthrough or campaign pass. Current-binary benchmarks and release archive remain pending.
+- On the earlier `c35c66a7...` diagnostic player, native scenario 23 passes both full rescue branches in 516.231 seconds with native exit 0
   (`Logs/native-island-23-sidestep-retry`). The earlier failure was the test walker blocked by delivered Morgan.
   The focused fixture first proves real capsule blockage, then reaches a valid lateral route and the original target using
   normal simulated movement. Collision, navigation, support checks and original time limits remain intact.
-- Native scenario 24 on that player exits 1 after 128.893 seconds: the exposure fixture fails to sustain actual sentry sight
+- Native scenario 24 on that earlier diagnostic player exits 1 after 128.893 seconds: the exposure fixture fails to sustain actual sentry sight
   during its normal idle scan. A focused diagnostic also fails the displaced-follower visibility prerequisite. The fixture
   now faces its sentry between Holding and the westward lead, retaining ordinary scanning and unchanged vision/exposure
   rules. `island-exposure-facing.xml` passes 1/1 in 35.36 seconds; actual sight stays true as exposure reaches 2.1 and Regroup.
@@ -34,11 +42,16 @@ or binary. Historical passing runs do not verify a newer player.
   Actual Editor RTX/Vulkan story verification passes across the original collection and focused rerun: the original collection
   records 12/13 with one score-pause cursor baseline failure; the corrected pause fixture and normal80s opening rerun pass 2/2,
   zero skips, native exit 0. Full five-film decode, all eleven normal-speed shots, selected real voice progress, skip/settings,
-  natural resolutions and gameplay/camera/HUD/media cleanup pass their named methods. Built-player verification remains required.
+  natural resolutions and gameplay/camera/HUD/media cleanup pass their named methods. The current built player now passes
+  strict full-five decode/terminal-seek cleanup; continuous80s natural story proof remains Editor scope.
   [Runtime proof](verification/full-opening-runtime-20261125.json) preserves both suite outcomes and 21/2 native graphics warnings.
   [Portable opening evidence](../ArtSource/FullOpeningFilm/README.md) and tracked publishing tools retain the production.
 
-## User playtest build retained
+## Current user playtest and retained preview
+
+The new0.5.0 candidate was launched for the user at14:39:37 UTC (20:09 local) and confirmed running on RTX4050/Vulkan,
+PID4063511. `Logs/user-playtest-0.5.0/session.json` and its live player log record this user-controlled desktop session.
+The launch proves the executable starts; it does not establish a completed human playthrough or physical-input test.
 
 The requested build-and-launch was completed with `0.5.0-preview` under `Builds/Linux`. It contains M18 and the four full lake
 films; it does not contain M19/M20 or the subsequent fixes. It launched on native `DISPLAY=:0` / RTX 4050 / Vulkan and later
@@ -85,14 +98,15 @@ The retained 0.4.2 archive is an earlier release containing two short film inser
 
 ## Remaining release work
 
-1. Run strict full-five decode/seek/retirement and story checks on a fresh built player. Editor normal80s playback,
-   eleven-shot checkpoints, selected voice progression, skip/choice/settings and restoration now pass; do not substitute
-   these Editor results for a native-player pass.
-2. Run native 24 with the corrected exposure fixture and the complete final-player campaign, settings/media and queued-shortcut
-   regressions after final asset integration. Case 22 requires normal rendered Vulkan. Preserve real process exits and hashes.
-3. Build a fresh release candidate without overwriting `Builds/Linux`, measure its declared desktop presets, update artifact-specific
-   guides/issues/test report, and verify the package and an isolated extracted player. `Tools/package_build.sh` currently targets
-   and modifies `Builds/Linux`; do not use it unchanged to package a private candidate while preserving the preview.
+1. Run the remaining23 campaign cases on the current binary, including corrected native24; rendered22 already passes separately.
+   This full campaign run is active under `Logs/full-story-candidate/campaign-headless` and has no final result yet.
+   Preserve real terminal exits and hashes, and distinguish prepared/simulated scenarios
+   from a continuous human playthrough.
+2. Complete final-player story/audio/settings observations while the launched user-controlled player remains available. Strict full-five media,14queued shortcuts and
+   rendered water already pass on this binary; continuous80s natural opening and selected live voice proof remain Editor scope.
+3. Measure declared desktop presets on this binary, then verify a fresh release package and isolated extracted player. Earlier
+   High/Ultra measurements belong to the earlier profiled candidate. `Tools/package_build.sh` targets and modifies `Builds/Linux`;
+   use an explicit-candidate packaging path while retaining the preview. No release archive or current-player FPS result is claimed.
 4. Continue the active realism/gameplay expansion from verified playtest findings. Do not mark the broad goal complete from
    compilation, render completion, a single route or these focused fixtures.
 
@@ -106,8 +120,8 @@ The packed blends, render driver and render policy are frozen and hash pinned; p
 For a future render resume only, request a safe stop using that production directory's `STOP`, then wait for the active frame,
 Blender and supervisor to become terminal before another Unity graphics/player/benchmark job. Headless logic work may coexist.
 Resume the same production directory via `production_plan.py`; it verifies recorded frame/input hashes. A 4 GiB disk reserve
-stops rendering between complete frames. Check free space before encoding, imports, builds or packages; only about 5 GiB was
-free at this checkpoint. Never infer a completed asset or passing runtime decode solely from a status file.
+stops rendering between complete frames. Check free space before encoding, imports, builds or packages; about 4 GiB was
+free after the candidate build. Never infer a completed asset or passing runtime decode solely from a status file.
 
 ## Environment and commands
 
@@ -115,7 +129,7 @@ free at this checkpoint. Never infer a completed asset or passing runtime decode
 - Unity 6000.3.29f1: `~/Data/Unity/Editor/6000.3.29f1/Editor/Unity`; URP 17.3, Cinemachine 3, Input System.
 - Blender: `~/Data/Blender/current/blender` (not on PATH). Existing pipelines live in `Tools/blender/`.
 - Linux x86-64 remains the target. The user selected RTX-rendered Blender cinematics plus improved real-time shaders.
-- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. About 5 GiB remained at the latest checkpoint; check live free space.
+- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. About 4 GiB remained after the current candidate build; check live free space.
 - Launch the built Linux player using `./play.sh`; it selects NVIDIA offload and prefers Vulkan on NVIDIA systems.
   Use `PARASITE_GRAPHICS_API=glcore ./play.sh` for OpenGL; explicit Unity API flags take priority.
 

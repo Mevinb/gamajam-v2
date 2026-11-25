@@ -35,7 +35,7 @@ The source now contains the original 14 missions, branch-sensitive riverside mis
 The island adds tidal culvert and maintenance-gate entry, physical Peace escorts or Dominion couriers, carried signal custody,
 individual boarding and an all-free protected departure. Both complete rescue branches and the original 14 recovery/boarding
 fixtures pass actual Editor execution. A new focused physical sidestep regression passes, and native scenario 23 passes both
-branches on the latest private candidate. Its native scenario 24 exits 1 at an exposure setup that does not sustain the ordinary
+branches on an earlier diagnostic candidate. That player's native scenario24 exits1 at an exposure setup that does not sustain the ordinary
 sentry's sight cone. Facing that fixture sentry between Holding and the westward lead passes the focused Editor case with
 unchanged exposure/vision/time rules. Native 24 and the full campaign regression remain open on the final rebuilt player;
 [the physical-walker proof](verification/island-walker-20261125.json) preserves the exact pass/failure and source scopes.
@@ -50,13 +50,20 @@ All five films are now published in live Resources after exact frame/source prov
 complete FFmpeg decode. Actual Editor story gates pass across named methods in the original12/13 collection and focused2/2
 normal80s/pause-baseline rerun. The original failure remains recorded; this is not a single13casegreen result. Normal playback
 reaches all eleven shots and the final half-second, observes three real voice-source progress checks, and restores gameplay
-with zero owned media. Final-player verification remains required; [runtime proof](verification/full-opening-runtime-20261125.json)
+with zero owned media. The new candidate passes strict full-five decoder/terminal-seek cleanup; continuous80s natural story
+proof remains Editor scope; [runtime proof](verification/full-opening-runtime-20261125.json)
 retains exact sources/results and native warnings. The scoped native movie lifetime fix passes default stress
 and actual pending-seek quit codes 0 and 1; OS/window-close pending-media routing remains separate.
 
 The immutable `Builds/Linux` 0.5.0 preview was built and launched for the user, then exited normally. It contains M18 and the
-four full lake films, not M19/M20 or subsequent fixes. New private candidates preserve that preview. The latest is
-`Builds/Diagnostics/native-lifetime-20261125T061935708762Z-c08646f2`; it is a diagnostic build rather than a final release.
+four full lake films, not M19/M20 or subsequent fixes. New candidates preserve that preview. The current0.5.0 candidate is
+`Builds/Candidates/full-story-20261125T143348976819Z-ea740a95`, built from clean`2f3fde9`:1,101MB,zero errors/warnings,native0.
+Its runtime is`2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc`. Strict full-five media,eight checks/seven PNGs;
+queued shortcuts,14/14; and rendered Vulkan water22,1/1,all pass with native0,unchanged runtime and zero ring warnings.
+[Candidate proof](verification/0.5.0-candidate-20261125.json) pins exact artifacts. The user-controlled native player is now running
+on RTX4050/Vulkan, launched14:39:37 UTC. The remaining23 campaign cases, including corrected24, are running separately on
+Null graphics at nice10. There is no final campaign result or completed human playthrough yet. Current-binary performance
+and release archive/extracted smoke remain pending. This is not a final release.
 The retained 0.4.2 archive and older test rows describe historical artifacts only.
 
 Measured desktop island performance on a profiled private candidate is High 265.6 FPS / p99 9.44 ms and Ultra 179.0 FPS /
@@ -65,10 +72,10 @@ around 25 FPS were presentation-confounded. Neither set is a measurement of a fu
 
 ## Required next verification
 
-- Verify strict full-five media and the final title/story/audio/skip/choice/handoff flow in the rebuilt player. These named
-  Editor gates now pass, including normal80s playback; their scope does not establish the final native binary.
-- Run current native rescue recovery and a complete rebuilt-player campaign/settings/media/queued-shortcut regression. Keep the
-  rendered water check outside standalone batch mode. Automated movement/queued keys do not establish physical input or a human playthrough.
+- Complete final native title/story/audio/settings observation. Strict full-five media,queued shortcuts and rendered water now
+  pass on the current candidate; continuous80s playback and selected live voice progression remain Editor scope.
+- Run the remaining23 campaign cases,including corrected native24,on the exact current binary; water22 passed separately in
+  normal rendered mode. Automated movement/queued keys do not establish physical input or a human playthrough.
 - Review gameplay graphics at actual resolution, listen to the voices and measure declared desktop presets on the final player.
 - Prepare a fresh release artifact, current guides/issues/test report, checksums and an isolated extracted-player verification
   while retaining the user's preview. The current package shell script targets `Builds/Linux` and needs a safe explicit-candidate path.

@@ -9,13 +9,20 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
 - The immutable `Builds/Linux` 0.5.0 preview was launched for the user and exited normally. It contains M18, four full lake films
   and the earlier island presentation. It does not contain M19/M20, eight island voices or the subsequent source fixes. Do not
   relabel it as the latest private candidate or a final release. The retained 0.4.2 archive is older and has two short film inserts.
+- The current0.5.0 candidate at `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95` is built from clean commit
+  `2f3fde9`,1,101MB with zero build errors/warnings. Its strict full-five media stress passes eight checks/seven PNGs, queued
+  shortcuts pass14/14, and rendered Vulkan water passes1/1. All three exit natively0 with unchanged runtime hash and zero
+  ring-buffer warnings. The user-controlled desktop player is now running on RTX4050/Vulkan; the23-case headless campaign,
+  including corrected24, is running separately on Null graphics at nice10. Neither has a completed-playthrough/pass claim.
+  Current-binary performance and archive/extracted-player checks remain pending. See [candidate proof](verification/0.5.0-candidate-20261125.json).
 - All 1,920 opening frames and all 840 lake frames pass source/frame provenance, visual sample review and complete FFmpeg decode.
   All five silent 1080p24 films are published in live Resources. Editor full-five decode, continuous normal80s opening,
   eleven shot checkpoints, selected actual voice progression, skip/settings/choice and gameplay/media restoration pass.
   The original suite records 12/13 after a score-pause cursor baseline failure; the bounded actual-DSP baseline correction
   and normal80s rerun pass 2/2/native0 with unchanged hold tolerance. Native graphics ring-buffer warnings remain recorded
   (21 in the first collection, two in the focused run); their allocator cause and player impact are unproven.
-  Final built-player media/story checks remain required. See [runtime proof](verification/full-opening-runtime-20261125.json)
+  The new candidate's strict decoder/terminal-seek check now passes; continuous80s native story observation remains separate.
+  See [Editor runtime proof](verification/full-opening-runtime-20261125.json)
   and [opening production evidence](../ArtSource/FullOpeningFilm/README.md).
 - The preview's strict movie tests decoded the footage but hung during native cleanup. The newer scoped lifetime fix passes
   rendered, batch and untraced default terminal-seek stress with normal native exit 0. Actual pending-seek Quit(0)/Quit(1) probes
@@ -24,7 +31,7 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
   See [cinematic retirement proof](verification/cinematic-retirement-20261125.json).
 - M19/M20 pass both complete branches and all original 14 Editor rescue fixtures, including custody, generation/loss,
   visited-cover/checkpoint, boarding and all-free departure. The focused physical sidestep fixture and native scenario 23 now
-  pass on the latest candidate. Native scenario 24 later exits 1 at the exposure fixture: ordinary sentry idle scanning loses
+  pass on the earlier `c35c66a7...` diagnostic player. Its native scenario 24 later exits 1 at the exposure fixture: ordinary sentry idle scanning loses
   the follower's sight cone. A fixture-only sentry-facing correction passes the focused Editor case with actual sight and
   exposure 2.1 before Regroup; vision rules and time limits are unchanged. Native 24 and the full campaign regression remain
   required on the final rebuilt player. See [the physical-walker proof](verification/island-walker-20261125.json).
@@ -50,7 +57,8 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
 - Some city prop detail is selected during scene generation and static batching rather than changing at camera distance.
   Preset LOD bias affects only assets that support runtime LODs.
 - Automated tests use simulated movement or queued Input System events. They do not establish physical keyboard/gamepad behavior,
-  a complete human playthrough, or every graphical configuration. Final release media/settings/shortcut and campaign checks remain required.
+  a complete human playthrough, or every graphical configuration. Final story/settings/campaign and package checks remain required;
+  current-candidate media stress and queued shortcuts are already recorded separately.
 - Two historical long Editor attempts ended in native SIGSEGV without final XML; a subsequent complete run on that earlier
   source passed. Their initiating cause remains unproven. Do not present later narrow native passes as a universal engine-crash repair.
 - Campaign checkpoints survive scene reloads within the running process. Persistent on-disk campaign saving is not implemented.

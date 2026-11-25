@@ -1,0 +1,316 @@
+{
+  "schema": 1,
+  "status": "CANDIDATE_RENDERED_GATES_PASS_USER_PLAYTEST_AND_CAMPAIGN_RUNNING",
+  "recorded_utc": "2026-11-25T14:40:55.171815+00:00",
+  "version": "0.5.0",
+  "candidate_path": "Builds/Candidates/full-story-20261125T143348976819Z-ea740a95",
+  "runtime_sha256": "2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc",
+  "build": {
+    "source_commit": "2f3fde96514edb79ef95d890b2d4a5c51448e3da",
+    "source_working_tree": false,
+    "source_snapshot_sha256": "c6468696096afccbec47cd4264eabfac7eb171e76109e76b2c1e44f6cf821731",
+    "source_snapshot_before_file": "Logs/full-story-candidate/build-runs/20261125T143348976819Z-ea740a95/source-snapshot-before.json",
+    "source_snapshot_before_file_sha256": "c6468696096afccbec47cd4264eabfac7eb171e76109e76b2c1e44f6cf821731",
+    "source_snapshot_after_file": "Logs/full-story-candidate/build-runs/20261125T143348976819Z-ea740a95/source-snapshot-after.json",
+    "source_snapshot_after_file_sha256": "c6468696096afccbec47cd4264eabfac7eb171e76109e76b2c1e44f6cf821731",
+    "source_unchanged_during_build": true,
+    "native_exit_code": 0,
+    "root_terminal_receipt": "session91453/chunkc30fea",
+    "summary": {
+      "result": "Succeeded",
+      "size_mb": 1101,
+      "time": "00:01:41.7264130",
+      "errors": 0,
+      "warnings": 0
+    },
+    "runner_state": "Logs/full-story-candidate/build-runs/20261125T143348976819Z-ea740a95/runner-state.json",
+    "runner_state_sha256": "5046e76ac2f19d8489e98c42192186ac60ee0edff4d24c396fb2439b12cdf14b",
+    "runner_state_scope": "READY_NOT_RUN records buildcompletion before the later three playerjobs; player_launchedFalse is historicalbuildreceipt, not current validationstatus.",
+    "log": "/home/mevlec/Data/Parasite/Logs/full_story_candidate_20261125T143348976819Z_ea740a95.log",
+    "log_sha256": "45d65d757bcd0c31c95923917c30c351bd6a9d773ae985113df0b0e74bc7dc19",
+    "build_info": "Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/BUILD_INFO.json",
+    "build_info_sha256": "98d18dea07a09101ecbd770a4104c019328f6e9e1e7a380e9559face24c1a329",
+    "output_manifest": "Logs/full-story-candidate/build-runs/20261125T143348976819Z-ea740a95/build-output-hashes.json",
+    "output_manifest_sha256": "37377c43c598f7b0681c9827c78fd713b5f33564aa0d210df56f787695617d82",
+    "output_tree_sha256": "7ed5ac80381cf7161d9484a208d274c50e428622bdddd8748340907ab9dd53f7",
+    "output_tree_scope": "Original postbuild tree before later documentation copies; runtime separatelyverifiedunchanged."
+  },
+  "retained_preview": {
+    "path": "Builds/Linux",
+    "before_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "after_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "unchanged": true,
+    "runtime_sha256": "8ce33854dd55496442655cef1c61ce404b9d5d9dc077d5606c89a28c88a9fabd",
+    "scope": "ImmutableM18/fourlakefilm0.5preview retained, distinct from this twenty-mission/fullfive candidate."
+  },
+  "rendered_validation": {
+    "api": "Vulkan",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "requested_window": [
+      1600,
+      900
+    ],
+    "execution_receipt": "Logs/full-story-candidate/player-validation/execution.json",
+    "execution_receipt_sha256": "68f63dda20a0d27d3e6c2424eab0ed8eb37311187b5e251b1ebc929f656c3c1a",
+    "root_terminal_receipt": "session26095/chunk942ae0/native0",
+    "jobs": [
+      {
+        "name": "full-films",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-cinematicTestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/full-films/report.txt",
+          "-requireFullStoryFilms",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/full-films/player.log"
+        ],
+        "started_utc": "2026-11-25T14:36:40.168238+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 9.494,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "23e7a2991f5ef3922b42c5e69429cefaa95d668e3baf5d89bc323fe2735fff73",
+        "ring_warnings": 0,
+        "pngs": 7,
+        "verified_pass": true,
+        "report": "Logs/full-story-candidate/player-validation/full-films/report.txt",
+        "log": "Logs/full-story-candidate/player-validation/full-films/player.log",
+        "log_sha256": "32bf51c15ef2bb5a1b0e6faa6d0fe87af9ec5ed23f07e3bb5e38ce0972b76753",
+        "png_files": [
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.ContainmentOpening.png",
+            "sha256": "e0ce8a30b6be551d04e1e22c39168770b0f6d2a8572b9a152c8b8807e238999e",
+            "bytes": 575256
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.LakeArrival.png",
+            "sha256": "0ccfc5f8ea0f74237996d8ba79e61ce8f1b076c719ea20453d800dd27aadf32c",
+            "bytes": 1049090
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.LakeDominion.png",
+            "sha256": "5af44775ed7bcd56c612134cb74d46ca2e647617dd08373b43feb93b93ca2c1e",
+            "bytes": 2070772
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.LakeHold.png",
+            "sha256": "3631be70f988963c11f6f69a2faaeeb577e3bd710395ec92a8b072a064e71c25",
+            "bytes": 2132843
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.LakePeace.png",
+            "sha256": "e617009cef2fd97cad40e3b9d38a453a3fef7fb0631f89e692d647b059b0ebc6",
+            "bytes": 2154908
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.LakesideEnding.png",
+            "sha256": "bbce10ff47fb893b9e84738694c8ec380baae876cb11ae00c3ad751afe8d5fd5",
+            "bytes": 523520
+          },
+          {
+            "path": "Logs/full-story-candidate/player-validation/full-films/report.txt.OpeningFull.png",
+            "sha256": "51b76a3c94d0cff66ff829aaf136c8794f19ea3d1ff2590f3044bd47fe676d5b",
+            "bytes": 1264201
+          }
+        ],
+        "film_passes": 8,
+        "film_failures": 0,
+        "scope": "Two legacy clips and allfivefullfilms produce realnonempty advancingframes at timeScale0; neutralhold wraps without outcome; default terminalTick retained and normal nativeexit0. This fastdecoderstress is separate from full80s continuousstory playback."
+      },
+      {
+        "name": "shortcuts",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-shortcuttest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/shortcuts/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/shortcuts/player.log"
+        ],
+        "started_utc": "2026-11-25T14:36:49.663406+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 38.08,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "3142cd9e03adee57f26cfeb4f13ec009305770aed57a5fbae7c63d8ab2370d6a",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": "Logs/full-story-candidate/player-validation/shortcuts/report.txt",
+        "log": "Logs/full-story-candidate/player-validation/shortcuts/player.log",
+        "log_sha256": "0daf1c39122bfc2dad528d2e3fe5932e36d1bcc71648ecd51ba9235c292cc302",
+        "png_files": [],
+        "film_passes": 0,
+        "film_failures": 0,
+        "scope": "Fourteen actual queuedKeyboardState cases, simulatedmovement false, bothCtrl/keyorders and title/opening/pausedsettings/Vale phases; no nativeOSkey injection or physicalinput claim."
+      },
+      {
+        "name": "water22",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-autotest",
+          "-autotestFilter",
+          "22",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/water22/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/player-validation/water22/player.log"
+        ],
+        "started_utc": "2026-11-25T14:37:27.752754+00:00",
+        "exit_code": 0,
+        "elapsed_seconds": 6.088,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "2304cda819175e34d37dbc3413305feecaffc38944f58b7ef3aad2d21606910d",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": "Logs/full-story-candidate/player-validation/water22/report.txt",
+        "log": "Logs/full-story-candidate/player-validation/water22/player.log",
+        "log_sha256": "759df198b601fcc01645f78252a1ad9d94088410e109ee0f1e4b812a4fc0413b",
+        "png_files": [],
+        "film_passes": 0,
+        "film_failures": 0,
+        "scope": "Normal rendered Vulkan case22; nativebefore/after water visibility with unchangedfooting. Not batchnativeprobe scheduling or a performancebenchmark."
+      }
+    ],
+    "ring_buffer_warnings_total": 0,
+    "runtime_unchanged_all_jobs": true
+  },
+  "prior_editor_story_proof": "Docs/verification/full-opening-runtime-20261125.json",
+  "prior_editor_story_proof_sha256": "3ba9b432a9abb14c1d0c8e9818d155f4b92ba40b872a7e02f49c3638208c9b86",
+  "pending": {
+    "full_campaign_on_this_binary": "RUNNING:23 cases except separately rendered22; no terminal pass/fail yet.",
+    "native24_corrected_exposure": "RUNNING as part of current23-case regression; no result yet.",
+    "current_binary_desktop_performance": "PENDING; earlierHigh/Ultra numbers belong to earliercandidate",
+    "release_archive_and_extracted_smoke": "PENDING",
+    "physical_input_human_playthrough_and_speaker_listening": "UNEXERCISED",
+    "user_playtest_completion": "USER PLAYER RUNNING; launch confirmed, completed human playthrough not established."
+  },
+  "limits": [
+    "Strict media acceptance decodes advancinginitialimages and stresses terminalseeks/cleanup; continuous80s naturalstory proof remains Editor scope.",
+    "Queuedkeyboard events are actualInputSystem events in theplayer but not physicalOSinput.",
+    "No all24 campaign pass, current-candidate performance or release archive claim follows from the three rendered gates or live user launch."
+  ],
+  "current_process_observations": {
+    "observed_utc": "2026-11-25T14:40:55.171815+00:00",
+    "user_playtest": {
+      "status_at_observation": "RUNNING",
+      "pid": 4063511,
+      "receipt": "Logs/user-playtest-0.5.0/session.json",
+      "receipt_sha256_at_observation": "6d7e73b506e1d87f559db5220d172137957d02aad78a9af25e65a7d3cd7e67f9",
+      "receipt_snapshot": {
+        "status": "running",
+        "version": "0.5.0",
+        "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95",
+        "source_commit": "2f3fde96514edb79ef95d890b2d4a5c51448e3da",
+        "runtime_sha256": "2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/play.sh",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/user-playtest-0.5.0/player.log"
+        ],
+        "started_utc": "2026-11-25T14:39:37.447105+00:00",
+        "scope": "User-controlled native desktop playtest. Launch is not evidence of a completed human playthrough.",
+        "pid": 4063511
+      },
+      "graphics_api_confirmed": "Vulkan",
+      "gpu_confirmed": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "log": "Logs/user-playtest-0.5.0/player.log",
+      "log_scope": "Live mutable log; GPU/device lines observed. No terminal-exit hash or completed-playthrough claim.",
+      "process_scope": "User-controlled native desktop launch confirmed live; no bot input injected by this documentation task."
+    },
+    "campaign_regression": {
+      "status_at_observation": "RUNNING",
+      "supervisor_pid": 4060137,
+      "player_pid": 4060139,
+      "nice": 10,
+      "receipt": "Logs/full-story-candidate/campaign-headless/execution.json",
+      "receipt_sha256_at_observation": "d7dd3a22f090c4989f0dd81a8448fd605921bf885f31c39b1c16cbbda52d2727",
+      "receipt_snapshot": {
+        "status": "running",
+        "supervisor_pid": 4060137,
+        "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95",
+        "runtime_sha256": "2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc",
+        "argv": [
+          "nice",
+          "-n",
+          "10",
+          "./Parasite.x86_64",
+          "-batchmode",
+          "-nographics",
+          "-autotest",
+          "-autotestFilter",
+          "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,23,24",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/campaign-headless/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/campaign-headless/player.log"
+        ],
+        "started_utc": "2026-11-25T14:39:15.903345+00:00",
+        "scope": "All23nonvisual current-player campaign cases on Null graphics, nice10; renderedwater22 verified separately. Prepared fixtures/simulated input, no human-playthrough or performance claim.",
+        "pid": 4060139
+      },
+      "graphics_device_confirmed": "Null Device",
+      "case_count": 23,
+      "case_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24
+      ],
+      "case22_scope": "Passed separately in normal rendered Vulkan on the same runtime.",
+      "log": "Logs/full-story-candidate/campaign-headless/player.log",
+      "scope": "Prepared fixtures and simulated controls; no graphics, performance, physical-input or completed-pass claim. Live receipt/log remain mutable until terminal."
+    }
+  }
+}

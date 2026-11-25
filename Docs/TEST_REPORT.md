@@ -1,3 +1,31 @@
+# 0.5.0 candidate build and rendered player gates — 25 November 2026
+
+`Builds/Candidates/full-story-20261125T143348976819Z-ea740a95` is built from clean pushed commit `2f3fde9`, version0.5.0,
+1,101 MB, zero errors/warnings and native build exit0. Source is unchanged across the build and the retained0.5.0-preview
+full tree is unchanged. Runtime SHA-256: `2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc`.
+
+On that exact binary, normal rendered RTX4050/Vulkan gates each pass with native exit0 and unchanged runtime hash:
+
+- Strict `-requireFullStoryFilms`: eight media checks, seven nonempty advancing-image PNGs; includes two legacy and all five
+  full clips, neutral hold wrap at frozen gameplay time, and the unchanged default terminal-seek stress. This fast backend
+  acceptance is separate from a complete80s native-story watch.
+- Queued shortcuts:14/14 actual Input System keyboard cases across title/opening/paused settings/Vale and both Ctrl/key orders.
+  These do not establish physical OS keyboard injection or gamepad behavior.
+- Water22:1/1 with actual rendered native probes, visible shaded river/berth and unchanged footing. No performance claim follows.
+
+All three logs contain zero native graphics ring-buffer warnings; earlier Editor warnings remain recorded below.
+At the14:40 UTC checkpoint, the23-case headless regression is running (started14:39:15 UTC; supervisor4060137/player4060139),
+including corrected24 and excluding separately rendered22. It uses Null graphics, nice10, prepared fixtures and simulated input.
+There is no terminal regression pass yet. The same candidate is also running as the user-controlled desktop player, launched
+14:39:37 UTC (20:09 local), PID4063511, with RTX4050/Vulkan confirmed in its live log. Launch does not establish a completed
+human playthrough or physical-input validation. Current-binary FPS, release archive and isolated extracted-player checks remain pending.
+
+[Portable candidate proof](verification/0.5.0-candidate-20261125.json) pins build/source/report/log/image hashes, live receipt
+snapshots and the preserved preview. Live process state is recorded at the stated checkpoint, not promised indefinitely.
+Older entries retain their named artifact scopes.
+
+---
+
 # Full opening Editor runtime — 25 November 2026
 
 The actual published 80-second opening and full lake films run on RTX4050/Vulkan. The first collection records **12 pass /
