@@ -4,6 +4,24 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb**. This supersedes the old eight-mission scope freeze and local-only capture session.
 The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Never present historical tests as verification of a new build.
 
+## Active cinematic production — 25 November 2026
+
+The verified Linux milestone is 0.4.1 (runtime source `e5bc956`, DLL SHA-256
+`5ba302f317916b6bd7ed42cd6f6bc11d78eb24f9f41cdf0f3e259b52f4d99ecf`).
+It fixes owned river falls and terminal ownership; `TEST_REPORT.md` distinguishes the broad 19-scenario fall build from
+its final three-scenario affected-flow run and the extracted media/input checks.
+
+A long RTX production is active under `Logs/full-cinematic-renders/full-production-20261125T003711Z`: all four lake clips,
+then the 80-second opening, 2,760 frames total at 1080p24 / 48 samples / GPU OIDN. The approved packed blends, render driver
+and policy must stay unchanged. Check actual processes/checkpoints rather than assuming the job has finished.
+
+Before another Unity graphics/player/benchmark job, request a safe stop by creating that production directory's `STOP` file,
+then wait for the active frame and supervisor to finish. Headless logic work and small CPU-only tasks can continue. Remove
+`STOP` and rerun `python3 Logs/full-cinematic-renders/production_plan.py --go --out <same-production-directory>` to resume;
+provenance and every recorded frame hash are checked. A 4 GiB free-space guard also stops between complete frames.
+Do not restart from scratch after an observation timeout. Completed real sequences must pass encoding/decoder gates before
+publication. The full-story runtime patch and island chapter are still staged outside live Assets.
+
 ## Environment and commands
 
 - Project: `~/Data/Parasite`; remote `https://github.com/Mevinb/gamajam-v2`, branch `main`.
