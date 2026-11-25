@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "status": "REAL_COMPOUND_COLLIDER_LOS_REGRESSIONS_4_OF_4_PASS",
+  "recordedUtc": "2026-11-25T23:48:37.227534+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 7099,
+    "chunk": "d5d49a",
+    "nativeEditorExit": 0,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "4",
+      "result": "Passed",
+      "total": "4",
+      "passed": "4",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:47:34Z",
+      "end-time": "2026-11-25 23:47:34Z",
+      "duration": "0.088373"
+    }
+  },
+  "cases": [
+    {
+      "name": "AForeignWallStillBlocksTheChildControl",
+      "result": "Passed"
+    },
+    {
+      "name": "AllowedChildColliderOnKinematicBodyRetainsItsOwnSightIdentity",
+      "result": "Passed"
+    },
+    {
+      "name": "OwnBodyChildBelowAnotherRigidbodyUsesItsActualColliderHierarchy",
+      "result": "Passed"
+    },
+    {
+      "name": "SiblingWallOnTheSameRigidbodyStillBlocksTheChildControl",
+      "result": "Passed"
+    }
+  ],
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-collider-los-20261126a.xml",
+      "bytes": 5492,
+      "sha256": "9aa0ecce6f1aad20bf1f1a932e46dce974b0e0d1cf35aee182b510b6fb93f82f"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_collider_los_20261126a.log",
+      "bytes": 50415,
+      "sha256": "40b1db5a292d0eff78f3b8ac56d5afe21ca0eb0459c09b042634bef07d41b089"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Missions/RailCampaign.cs",
+      "bytes": 11600,
+      "sha256": "e4488bc6137b0f334097fbc6d901713f631b7f86c65ac6db75413ed37e6480c8"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Tests/PlayMode/RailLineOfSightTests.cs",
+      "bytes": 7554,
+      "sha256": "b7ee36beebf9db3f2a1b757027041aff33616a3c0d2b82aa4d87739035a51592"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/rail-collider-los-fix-20261126/collider-los.patch",
+      "bytes": 8701,
+      "sha256": "4091e3fddc2a8e9d1f26f9784d77c0380b19239b845dfa8a3bbcbaf0b3d99198"
+    }
+  ],
+  "change": "Ownership checks use hit.collider.transform for the exact own/allowed subtree; they do not ignore the entire Rigidbody/coach.",
+  "realPhysicsCoverage": [
+    "Kinematic Rigidbody reports parent hit.transform while actual target child BoxCollider is allowed.",
+    "Sibling wall on the same Rigidbody remains blocking.",
+    "Foreign wall remains blocking.",
+    "Own-body child is ignored only for its supplied owned subtree."
+  ],
+  "apiCompile": {
+    "agentSession": 82045,
+    "chunk": "cabdf8",
+    "exit": 0,
+    "runtime": 175,
+    "editor": 33,
+    "linuxMono": 175,
+    "testClasses": 4
+  },
+  "limits": [
+    "Four actual CPU-physics controls only; no full chapter/lifecycle/pixel/native26 acceptance.",
+    "Root59655 now reruns existing DominionPhysicalChapter against this fix; result remains pending.",
+    "Base0.6.1candidate/archive/extraction remain unchanged and retain their separately reported results."
+  ]
+}

@@ -6,6 +6,17 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Actual compound-collider LOS fix passes4/4:** WORKRailCampaign SHAe4488bc6… usesactualcollider hierarchy forexact
+  own/target subtrees, never wholecoachignore. Root7099/native0/chunkd5d49a,4NUnitPASS. Real kinematic parent/child target
+  identity, same-RB sibling wall, foreign wall and own-subtree controls all pass. API175/33/175+4classes passes.
+  [Focused proof](verification/northline-collider-los-green-20261126.json). No full chapter/lifecycle pass yet.
+- **Current live job: fixed Dominion chapter**, root59655 viaWORK`northline_departure_fixed_20261126a`, only
+  DominionPhysicalChapter,600s/Null/nice15/idle/two workers, XML`Logs/northline-departure-fixed-20261126a.xml`.
+  WORKRailCampaign e448, RailAcceptance6d, AutoTest55b fixed; nootherEditor/C#edits until actualterminal.
+- Hunter has prepared a controlled02obstruction fixture only in baseLogs`possession02-obstruction-stage/feature.patch`
+  SHA0420ea69…, baselineWORKAutoTest55b→staged1f998595…. It keeps an actual owned opaque box enabled through denied
+  original LOS, bounded same-NPC fallback, unchanged aim/E and realWASD; no default/native registration. Not applied,
+  compiled or run; review after59655terminal. This tests semantic fallback, never reconstructs the unknown old native hit.
 - **Departure production bug is directly proved:** root21051/native2/chunk7da5e0,oneFAIL102.540s. BoardingReadyTrue,
   both free bodies fully aboard/grounded; one actual ray hit is the target control's OWN child BoxCollider. Hit.transform/
   Rigidbody resolves parent coach, while collider.transform resolves allowed child. Current ClearLine tests the former and
