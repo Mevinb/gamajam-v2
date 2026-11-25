@@ -1,3 +1,45 @@
+# Current 0.4.2 verification — 25 November 2026
+
+This candidate exposes the river/berth beneath the old opaque skyline ground and adds optional full-length film playback,
+neutral looping, explicit branch transitions and synchronized live audio. Missing footage keeps the existing live story and
+two short inserts. The complete full-length film set is still rendering and is not included in this candidate.
+
+Build source: `8fd5ecec9fc18f7f0e6dad82bbb9390ce0feefab`; runtime DLL SHA-256:
+`8cf43b0f6e174369bf561a85ecd113815347f30deb16fc9f1fe181397477a0c1`.
+
+| Check | Result and exact scope | Evidence |
+|---|---|---|
+| Fast compile | PASS 116 runtime / 21 editor files; tests also compiled in Unity | `Tools/compile_check.sh all` |
+| EditMode rules | PASS 105/105: current accumulated gameplay/assets, full-film metadata/loop rules, cutout area/UV/ownership/disposal | `Logs/water-cutout-rules.xml` |
+| Fallback and river logic without graphics | PASS focused fallback state/audio/cleanup; both shared Peace/Dominion river chapters also pass. These are not image-decoder checks. | `Logs/fullstory-fallback-final.xml`, `Logs/fullstory-afterlake-logic.xml` |
+| RTX presentation/audio batch | 15/16 in the combined run: legacy films, all eleven opening shots, skip/restart, settings/journal/shortcut/explicit ending and all four real-clip audio timing cases pass. Water's initial collider snapshot was stale; corrected below. | `Logs/fullstory-water-gpu.xml`, `Logs/fullstory-water-gpu.log` |
+| Actual rendered river/berth | PASS 1/1 corrected fixture: old slab hides both proof surfaces; rendering-only cut exposes both, source mesh/physical footing remain unchanged. Real shaded views saved. | `Logs/water-visibility-final.xml`, `Logs/water-occlusion/` |
+| Disabled-voice destruction cleanup | PASS 1/1 actual shipped narration stops when the epilogue is destroyed while VoiceOver.Update is disabled | `Logs/story-audio-destroy.xml` |
+| Linux build | PASS: 968 MB, zero errors / warnings. The first attempt caught Editor-only MeshRenderer.receiveGI; the authoring-only assignment is now guarded. | `Logs/fullstory-water-linux-final.log`, `Logs/standalone-0.4.2/build-info.json` |
+| Actual built-player water | PASS 1/1, exit 0, RTX 4050 / Vulkan: the exact shared visibility/physics routine passes after Unity's player build/static-batching process | `Logs/standalone-0.4.2/water.txt`, `water-player.log` |
+| Final-player river continuation | PASS 2/2, clean exit 0, RTX 4050 / Vulkan, both complete branches with checkpoint/rearm/host-release gates | `Logs/standalone-0.4.2/afterlake.txt`, `afterlake-player.log` |
+| Final-player media/input | PASS 2/2 actual decoder/readback cases and 14/14 queued shortcut cases, both exit 0 on RTX 4050 / Vulkan | `Logs/standalone-0.4.2/media-input-verification.json` |
+| Strict missing-film modes | PASS expected rejection: lake mode exits 1 with four missing-film failures; full mode exits 1 with five. Legacy clips still decode in both. This verifies rejection, not full-film playback. | `Logs/standalone-0.4.2/require-lake.txt`, `require-full.txt` |
+| Archive/extracted checks | PASS: gzip/checksum, complete 205-file set/byte comparison, all 37 local guide links and runtime provenance. Isolated extracted player passes 2/2 movies and 14/14 queued shortcut cases; final documentation-only repack retains those exact runtime bytes. | `Logs/release-0.4.2-verification.json`, `Logs/release-0.4.2-extracted-isolated-player.json` |
+
+The original water fixture sampled newly constructed Collider.bounds before physics synchronized transforms. After rendering,
+those caches had caught up, causing a false geometry-change assertion. Physics.SyncTransforms now precedes the baseline snapshot;
+the unchanged-footing check passes in both Editor and actual player. The renderer fix never edits a collider or generated scene. The first extracted smoke overlapped briefly with a resumed Blender job; it was repeated with an explicit no-other-render-process gate. Only the isolated rerun is used above.
+
+Both longer ending narrations outlast the seven-second movie: normal completion now holds its last frame until the owned
+caption and beat finish. Muted/disabled/missing VO has a finite fallback; user skip remains prompt. Opening music waits for
+presentation readiness instead of repeating the start of its score during decoder preparation.
+
+## Full-film production, separate from this player
+
+The frozen 2,760-frame production is under `Logs/full-cinematic-renders/full-production-20261125T003711Z`. LakeArrival and
+LakeHold have completed; Peace, Dominion and the 80-second opening remain incomplete. LakeArrival is encoded and verified:
+360 real source frames, silent VP8/yuv420p, 1920x1080 at24fps,15s,14,999,994 bytes, full ffmpeg decode; SHA-256
+`1f7e24eda91006c096ded6105a1798a5a1795eac5e0f765a6b259e6675dca619`. The single movie is not published and does not certify
+the four-clip lake set. Complete source/frame/provenance checks are retained in `Logs/full-film-publication`.
+
+---
+
 # Current 0.4.1 verification — 25 November 2026
 
 This hotfix addresses two reproduced gameplay defects: falling beside the ferry could endlessly reset a body above the same

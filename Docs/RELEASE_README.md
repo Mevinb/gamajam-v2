@@ -1,4 +1,4 @@
-# PARASITE — After the Still Water (0.4.1)
+# PARASITE — After the Still Water (0.4.2)
 
 You are Specimen 7, an escaped amoeba. Borrow human bodies, split in two, infiltrate Vale Biotech and expose the black-site
 archive across fourteen missions. The sunset lake requires an explicit Peace or Dominion choice. From its summary, choose
@@ -30,7 +30,7 @@ consoles must be held by one host while a different host operates the paired ter
 Read `COMPLETE_GAME_GUIDE.md` and `AFTERLAKE_GUIDE.md` for mission walkthroughs. `TEST_REPORT.md` records checks on this artifact;
 `KNOWN_ISSUES.md` records remaining limits. Automated acceptance does not replace physical control tests or a long human playthrough.
 Campaign checkpoints survive scene reloads in this process; they are not a persistent disk save. A fall beyond safe ground
-returns owned bodies to solid checkpoint footing while keeping completed mission progress.
+returns owned bodies to solid checkpoint footing while keeping completed mission progress. The river and ferry berth now render through the skyline backdrop, exposing their water surfaces.
 
 The current cinematic redesign uses Blender sets and two three-second RTX-rendered establishing inserts. Full story-length
 Blender films are being rendered separately; this package retains the complete live opening and explicit ending choice. Linux gameplay uses URP shaders, screen-space reflections

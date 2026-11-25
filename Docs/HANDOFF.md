@@ -6,10 +6,10 @@ The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Ne
 
 ## Active cinematic production — 25 November 2026
 
-The verified Linux milestone is 0.4.1 (runtime source `e5bc956`, DLL SHA-256
-`5ba302f317916b6bd7ed42cd6f6bc11d78eb24f9f41cdf0f3e259b52f4d99ecf`).
-It fixes owned river falls and terminal ownership; `TEST_REPORT.md` distinguishes the broad 19-scenario fall build from
-its final three-scenario affected-flow run and the extracted media/input checks.
+The verified Linux milestone is 0.4.2, built from `8fd5ece` (DLL SHA-256
+`8cf43b0f6e174369bf561a85ecd113815347f30deb16fc9f1fe181397477a0c1`). GPU presentation/audio, built-player
+rendered-water and both river branches pass. The isolated extracted copy passes media/input checks; the archive's full
+file set, hashes and local guide links are verified. `TEST_REPORT.md` records exact scope and retained older evidence.
 
 A long RTX production is active under `Logs/full-cinematic-renders/full-production-20261125T003711Z`: all four lake clips,
 then the 80-second opening, 2,760 frames total at 1080p24 / 48 samples / GPU OIDN. The approved packed blends, render driver
@@ -20,11 +20,12 @@ then wait for the active frame and supervisor to finish. Headless logic work and
 `STOP` and rerun `python3 Logs/full-cinematic-renders/production_plan.py --go --out <same-production-directory>` to resume;
 provenance and every recorded frame hash are checked. A 4 GiB free-space guard also stops between complete frames.
 Do not restart from scratch after an observation timeout. Completed real sequences must pass encoding/decoder gates before
-publication. The full-story runtime patch is now applied in the live working tree: 102 EditMode cases and its focused
-headless fallback/choice/audio-cleanup test pass. Legacy GPU regressions and real full-film decode remain pending; these
-uncommitted changes are not part of the verified 0.4.1 archive. The island chapter remains staged outside live Assets.
-A source audit also found the old opaque skyline ground above river/berth water; a rendering-only cut and actual camera
-visibility check are being staged. See `KNOWN_ISSUES.md`.
+publication. Full-story runtime support and the river backdrop cut are committed. Current evidence includes 105 EditMode
+cases, both headless river flows, 15 passing presentation/audio cases from the combined GPU run, its corrected water case,
+and the extra disabled-VO destruction regression. The strict built-player water test passes on Vulkan. Complete full-film
+decode remains pending actual finished movies. The island entry mission/camera package is staged under `Logs/island-entry-apply`
+and its manifest; it has compiled but has not run in Unity. Do not advertise its traversal/camera gates as passed.
+The old opaque skyline ground issue is corrected in 0.4.2; source meshes/colliders/navigation are preserved.
 
 ## Environment and commands
 

@@ -11,9 +11,9 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - The player includes two three-second RTX-rendered establishing inserts and Blender-designed live sets. The complete 80-second
   Blender opening and branching lake films are authored separately and still require production rendering and runtime integration.
   `TEST_REPORT.md` records actual-player checks for the current inserts and riverside chapter.
-- A source audit found the legacy skyline ground mesh above the riverside water meshes. Downward views may therefore hide
-  the intended water/reflections even though the berth has no physical footing. The 0.4.1 fall-recovery fix prevents an endless
-  fall there; a rendering-only ground cut and real camera verification are being prepared for the next update.
+- The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after
+  GPU views and the built Vulkan player confirm visible water with unchanged physical footing. The historical 0.4.1 archive
+  retains the earlier rendering behavior.
 - Screen-space reflections cannot reflect objects outside the camera's depth/color buffers. Reflection probes provide fallback;
   puddles are not a complete fluid simulation.
 - Traffic follows kinematic lanes with right-of-way, bumper clearance and pedestrian braking. It is not a full road simulator;
