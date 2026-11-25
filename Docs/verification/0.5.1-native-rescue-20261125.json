@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "status": "NATIVE_HEADLESS_RESCUE23_AND_RECOVERY24_VERIFIED",
+  "recorded_utc": "2026-11-25T17:24:57.306996+00:00",
+  "version": "0.5.1-preview",
+  "candidate": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+  "source": {
+    "base_commit": "bbebc8c2682b821de040a1c03aa5b9b9d25eeeb7",
+    "working_tree_build": true,
+    "source_snapshot": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T170047223995Z-63921b41/source-snapshot-before.json",
+      "bytes": 593404,
+      "sha256": "5b258c362c2fd21cf424d65af1b869483a118c3238191963459aa43b4fc2ed0c"
+    },
+    "build_snapshot_sha256": "5b258c362c2fd21cf424d65af1b869483a118c3238191963459aa43b4fc2ed0c",
+    "rescue_helper_from_build_snapshot": {
+      "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+      "bytes": 88554,
+      "sha256": "a37a4fa3db23fe9f072ca4c998f146b0bce06a4e942f89c074d222f3d68e342a"
+    },
+    "current_helper_matches_built_source": true
+  },
+  "runtime": {
+    "path": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41/Parasite_Data/Managed/Parasite.Runtime.dll",
+    "bytes": 944640,
+    "sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290"
+  },
+  "build_info": {
+    "path": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41/BUILD_INFO.json",
+    "bytes": 1278,
+    "sha256": "45dbe29a172e200cad27849f0cd05bb849496b11db984591f1499f147642e5b0"
+  },
+  "execution": {
+    "path": "Logs/graphics-native-rescue/execution.json",
+    "bytes": 953,
+    "sha256": "a4e42ce3b35108d44b219f02d64987208cedbd8034c9186a7d49f6ff7ea8f766"
+  },
+  "execution_receipt": {
+    "status": "exited",
+    "supervisor_pid": 44439,
+    "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+    "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+    "argv": [
+      "nice",
+      "-n",
+      "10",
+      "./Parasite.x86_64",
+      "-batchmode",
+      "-nographics",
+      "-autotest",
+      "-autotestFilter",
+      "23,24",
+      "-autotestOut",
+      "/home/mevlec/Data/Parasite/Logs/graphics-native-rescue/report.txt",
+      "-logFile",
+      "/home/mevlec/Data/Parasite/Logs/graphics-native-rescue/player.log"
+    ],
+    "started_utc": "2026-11-25T17:07:39.804945+00:00",
+    "scope": "Native mission logic with bounded physical test walker; no graphical/performance/native-input claim",
+    "pid": 44441,
+    "exit_code": 0,
+    "elapsed_seconds": 832.873,
+    "finished_utc": "2026-11-25T17:21:32.678410+00:00",
+    "runtime_unchanged": true,
+    "report_pass": true,
+    "verified_pass": true
+  },
+  "native_exit_code": 0,
+  "root_supervisor_exit_receipt": {
+    "session": 81796,
+    "exit_code": 0,
+    "chunk": "2996f1",
+    "reported_by": "Root after final process completion"
+  },
+  "process_observation": {
+    "observed_utc": "2026-11-25T17:24:57.308389+00:00",
+    "player_pid": 44441,
+    "supervisor_pid": 44439,
+    "both_processes_gone": true
+  },
+  "backend": "Null Device",
+  "priority_nice": 10,
+  "scenarios": [
+    {
+      "scenario": "23",
+      "name": "Island rescue branches: moving people, carried signal, all-free assembly and protected launch",
+      "seconds": 512.8,
+      "result": "PASS"
+    },
+    {
+      "scenario": "24",
+      "name": "Island rescue recovery: capture, visited cover, partial roster, signal custody and ally reporting",
+      "seconds": 315.9,
+      "result": "PASS"
+    }
+  ],
+  "total_process_seconds": 832.873,
+  "report": {
+    "path": "Logs/graphics-native-rescue/report.txt",
+    "bytes": 343,
+    "sha256": "14593069ee344667330c4e9e22cc42a7cbe94bb77c37f591d03b78d71ceaa277"
+  },
+  "player_log": {
+    "path": "Logs/graphics-native-rescue/player.log",
+    "bytes": 167179,
+    "sha256": "29432f0dd866ec7aff6ec6efde0403a3ce313c76b9654e7cb86b88dd5d7ff8d8"
+  },
+  "launcher_log": {
+    "path": "Logs/graphics-native-rescue/launcher.log",
+    "bytes": 1801,
+    "sha256": "97b6c0df0de05c8fd2f79f54dc647af5786b2d7508a4758607108b8a12eef15e"
+  },
+  "branch_outcomes": [
+    "Peace",
+    "Dominion"
+  ],
+  "branch_and_recovery_pass_lines": [
+    "[IslandRescue] PASS Peace actual people, signal custody, boarding and protected launch",
+    "[IslandRescue] PASS Dominion actual people, signal custody, boarding and protected launch",
+    "[IslandRescue] PASS captured leader, visited-cover retry and partial clinic checkpoint",
+    "[IslandRescue] PASS wrong-lane release denial and captured courier retry",
+    "[IslandRescue] PASS signal reach, pause, inactive owner, release/capture and checkpoint custody",
+    "[IslandRescue] PASS narrow ally reporting exception with ordinary witness control",
+    "[IslandRescue] PASS actual sentry exposure, physical Holding retreat and renewed aimed E following with no cover progress",
+    "[IslandRescue] PASS release then same-agent/same-host regain requires fresh E; inactive ownership preserved",
+    "[IslandRescue] PASS capture/immediate-eject then same-agent/same-host regain requires fresh E; inactive ownership preserved",
+    "[IslandRescue] PASS renewed courier possession invalidates the previous release and accepts a fresh marked retry",
+    "[IslandRescue] PASS no-yield capture/eject cancels courier authorization and retains a fair retry",
+    "[IslandRescue] PASS outer slot 0 tolerance edge rejects commit, keeps moving, and boards after physical inset entry",
+    "[IslandRescue] PASS outer slot 2 tolerance edge rejects commit, keeps moving, and boards after physical inset entry",
+    "[IslandRescue] PASS actual berth arrival and human gangway round trip after all three passengers park"
+  ],
+  "recovery_methods": [
+    "PeaceLeaderAndPartialRecovery()",
+    "DominionWrongReleaseAndCapture()",
+    "SignalCustodyAndCheckpoint()",
+    "AllyWitnessPolicy()",
+    "PeaceGuardExposure()",
+    "PeaceRegainedHostNeedsRegroup(false)",
+    "PeaceRegainedHostNeedsRegroup(true)",
+    "CourierRenewedPossessionCancelsRelease()",
+    "CourierImmediateCaptureEjectCancelsMark()",
+    "BoardingToleranceRequiresInset(0)",
+    "BoardingToleranceRequiresInset(2)",
+    "ParkedPassengersKeepGangwayClear()"
+  ],
+  "completed_sidestep_count": 5,
+  "raw_log_observations": {
+    "graphics_ring_buffer_warning_count": 0,
+    "unsupported_hdr_reflection_warnings": 365,
+    "scope": "Null-device HDR warnings are retained. Zero ring warnings here does not validate rendered probe scheduling."
+  },
+  "verified_behavior": [
+    "Scenario23 completes each real three-person roster, branch-dependent following or courier marking/release, physical same-host signal pickup/mount, individual passenger boarding, all-owned-bodies-free checks and protected launch for both outcomes.",
+    "Scenario24 passes all twelve original recovery helpers, including actual sentry exposure/Holding retreat/fresh E, release/capture generation invalidation, signal custody/checkpoint and physical berth/gangway checks.",
+    "Checkpoint restoration occurs through actual scene reloads in the same process; durable roster/item state is tested without claiming persistent disk saves.",
+    "Physical movement uses the bounded acceptance walker, original targets/deadlines and collision/navigation/footing checks. Actual obstruction may cause a valid lateral sidestep; no radius or collision gates are relaxed."
+  ],
+  "fixture_scope": [
+    "EnterFromFerry records the selected outcome and seeds prior riverside objective flags, then invokes the actual explicit Far Shore Continue button; it does not play the original14 or riverside missions.",
+    "StartAtRefuge directly places the free amoeba at refuge and grants the InnerRefuge prerequisite. M18 route traversal belongs to separate scenario21.",
+    "Unrelated island guards are parked at an authored test location and stunned for baseline traversal; the exposure helper spawns its own real visible guard. Calm clears unrelated suspicion.",
+    "Ordinary role hosts and controlled couriers are initially force-possessed by setup. Subsequent escort/courier/signal interactions use simulated E/Q and real controller/NavMesh movement.",
+    "Independent recovery fixtures seed specific delivered/mounted prerequisites and deliberately position bodies or people for negative custody/boarding/ownership checks. Branch extraction also positions inactive amoebae for negative gates. These prepared slices are not a continuous human playthrough."
+  ],
+  "limits": [
+    "This nographics run does not validate graphics, GPU frame timing, visual quality, physical keyboard/gamepad input or subjective speaker output.",
+    "The current native23/24 success does not establish remaining original/riverside/entry scenarios or whole24-scenario coverage. Other current-binary runs remain separate.",
+    "These results apply only to runtime80e65c6b and its pinned working-tree source snapshot; later UI/gate-pilot changes require their own build and verification.",
+    "No new rerun was used to erase an earlier failure. Earlier diagnostic/native failures remain in their original proof files."
+  ]
+}

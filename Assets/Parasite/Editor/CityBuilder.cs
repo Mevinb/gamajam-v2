@@ -496,8 +496,21 @@ namespace Parasite.EditorTools
             k.BoxMM(M("Concrete"), -100f, 100f, 0f, 4.2f, 107.75f, 108.25f);
 
             var con = M("Concrete");
-            k.WallX(con, -24f, 50.25f, 57.25f, 57.75f, 0f, 3.55f, new Vector3(-1.2f, 1.2f, GY + 3f));
-            k.BoxMM(M("MetalDark"), -24.05f, 50.3f, 3.55f, 3.65f, 57.2f, 57.8f, false);
+            // Load/validate the complete paired kit BEFORE suppressing any original visual faces.
+            bool gatePilot = CityGatePilotArt.TryAddStatic(k);
+            if (gatePilot)
+            {
+                k.WallXPhysics(con, -24f, 50.25f, 57.25f, 57.75f, 0f, 3.55f, new Vector3(-1.2f, 1.2f, GY + 3f));
+                k.BoxMM(con, -24f, -8f, 0f, 3.55f, 57.25f, 57.75f, false);
+                k.BoxMM(con, 8f, 50.25f, 0f, 3.55f, 57.25f, 57.75f, false);
+                k.BoxMM(M("MetalDark"), -24.05f, -8f, 3.55f, 3.65f, 57.2f, 57.8f, false);
+                k.BoxMM(M("MetalDark"), 8f, 50.3f, 3.55f, 3.65f, 57.2f, 57.8f, false);
+            }
+            else
+            {
+                k.WallX(con, -24f, 50.25f, 57.25f, 57.75f, 0f, 3.55f, new Vector3(-1.2f, 1.2f, GY + 3f));
+                k.BoxMM(M("MetalDark"), -24.05f, 50.3f, 3.55f, 3.65f, 57.2f, 57.8f, false);
+            }
             for (float x = -21f; x < 49f; x += 6f)
                 if (Mathf.Abs(x) > 3f) k.Box(M("ValeAccent"), new Vector3(x, 1.9f, 57.22f), new Vector3(0.3f, 3f, 0.06f));
             k.WallZ(con, 57.25f, 72f, -24f, -23.5f, 0f, 3.55f);
@@ -506,8 +519,8 @@ namespace Parasite.EditorTools
             k.WallZ(con, 91.7f, 107.75f, 49.75f, 50.25f, 0f, 4.2f);
 
             // main gate frame + booth (outside)
-            k.BoxMM(M("MetalDark"), -1.7f, -1.2f, 0f, 4.5f, 57.1f, 57.9f);
-            k.BoxMM(M("MetalDark"), 1.2f, 1.7f, 0f, 4.5f, 57.1f, 57.9f);
+            k.BoxMM(M("MetalDark"), -1.7f, -1.2f, 0f, 4.5f, 57.1f, 57.9f, visual: !gatePilot);
+            k.BoxMM(M("MetalDark"), 1.2f, 1.7f, 0f, 4.5f, 57.1f, 57.9f, visual: !gatePilot);
             k.Board("MAIN GATE — SECURITY", new Vector3(0f, 4.05f, 57.04f), 0f, 4.8f, 0.6f, Color.white, M("NeonRed"));
             k.Box(M("WarningLight"), new Vector3(-1.45f, 4.6f, 57.5f), new Vector3(0.2f, 0.2f, 0.2f));
             k.Box(M("WarningLight"), new Vector3(1.45f, 4.6f, 57.5f), new Vector3(0.2f, 0.2f, 0.2f));
@@ -913,7 +926,9 @@ namespace Parasite.EditorTools
             // A) main gate — panel slides along +x into the fence
             var gate = Door(doors, "Door_MainGate", L.MainGate, Vector3.zero, new Vector3(2.9f, 3f, 0.2f), new Vector3(3.05f, 0f, 0f),
                 M("Gate"), new Vector3(0f, 1.2f, -0.45f), "Main Gate", AccessPermission.SecurityGate, EntryRoute.MainGate, false);
-            for (float y = 0.4f; y < 3f; y += 0.65f) Deco(gate.panel, M("MetalDark"), new Vector3(0f, y - 1.5f, -0.11f), new Vector3(2.8f, 0.12f, 0.03f));
+            if (!CityGatePilotArt.TryAddMoving(gate))
+                for (float y = 0.4f; y < 3f; y += 0.65f) Deco(gate.panel, M("MetalDark"), new Vector3(0f, y - 1.5f, -0.11f), new Vector3(2.8f, 0.12f, 0.03f));
+            // Keep the original warning-light decoration and its exact scaled-parent transform.
             Deco(gate.panel, M("WarningLight"), new Vector3(0f, 1.25f, -0.12f), new Vector3(0.5f, 0.12f, 0.02f));
 
             // B) staff entrance — terminal controlled, panel slides along +z inside the wall

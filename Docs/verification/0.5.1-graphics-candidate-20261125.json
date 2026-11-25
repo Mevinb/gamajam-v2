@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "NATIVE_QUICK_GATES_PASS_CAMPAIGN_RUNNING",
+  "status": "NATIVE_QUICK_GATES_AND_RESCUE_PASS_REMAINING_CAMPAIGN_RUNNING",
   "recorded_utc": "2026-11-25T17:11:10.088672+00:00",
   "version": "0.5.1-preview",
   "candidate": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
@@ -212,7 +212,37 @@
       }
     ]
   },
-  "running_rescue_observation": {
+  "source_and_artifact_boundaries": [
+    "This candidate contains new independent graphics UI/backend and probe-only serialized regeneration; the later applied gate-builder work/imported assets are not in its built scene.",
+    "The0.5.0 candidate runtime2603... and immutableBuilds/Linux0.5.0-preview are older separate artifacts. The user playtest of0.5.0 exitednormally0; no human launch/playthrough ofthis0.5.1candidate is claimed.",
+    "Six desktop performance routes apply to the older0.5.0baseline, not this candidate."
+  ],
+  "related_proofs": [
+    {
+      "path": "Docs/verification/independent-graphics-settings-20261125.json",
+      "bytes": 79470,
+      "sha256": "918ebec06026730ad37bba272e49b1bdc61e24e313722ccc9d32bb606d3ee94b"
+    },
+    {
+      "path": "Docs/verification/serialized-probe-regeneration-20261125.json",
+      "bytes": 15005,
+      "sha256": "0faacd694ffcef0d0b088fa6c75bc71efda3576ff777d3baab903dfea0e9e87c"
+    },
+    {
+      "path": "Docs/verification/0.5.1-native-rescue-20261125.json",
+      "bytes": 9068,
+      "sha256": "be2ddf5258fa746228489aee3b408c1ad45f52768cef4e92a30f9c428463125b"
+    }
+  ],
+  "open_gates": [
+    "Editor no-control-flag15-case collection after serializedIndividualFaces still13pass/1GraphicsRingwarningfailure/1expectedNullskip,native2,9rawRingwarnings. Cause remains unproven; narrow native gates have0warnings.",
+    "NativeCustom-control editing/persistence across restart,frame-pacing measurements,physical keyboard/gamepad and full current-player campaign remain separate.",
+    "Remaining21 native cases are running separately; require their final report, runtime hash and native exit before claiming complete24-scenario coverage across the split runs.",
+    "Gatepilot source+import checkpoint needs scene regeneration, exact physics/lighting equality, access/motion/LOS/navigation, matched visualcaptures, performance and a new native build.",
+    "Currentbinary performance, releasearchive and isolatedextracted-player checks remain pending."
+  ],
+  "updated_utc": "2026-11-25T17:26:09.727100+00:00",
+  "initial_running_rescue_observation": {
     "scope": "Prepared mission23+24 logic on Null graphics, nice10, simulated controls; not graphics/performance/physical-input proof. A live receipt is not a final pass.",
     "execution_path": "Logs/graphics-native-rescue/execution.json",
     "sha256_at_observation": "b4478ae2530cd58dc89802f65be4f88a5080e6e939789c56793f87a5e96b7731",
@@ -255,30 +285,59 @@
       }
     },
     "log_path": "Logs/graphics-native-rescue/player.log",
-    "mutable_until_terminal": true
+    "mutable_until_terminal": true,
+    "historical_snapshot_superseded_by_final_receipt": true
   },
-  "source_and_artifact_boundaries": [
-    "This candidate contains new independent graphics UI/backend and probe-only serialized regeneration; the later applied gate-builder work/imported assets are not in its built scene.",
-    "The0.5.0 candidate runtime2603... and immutableBuilds/Linux0.5.0-preview are older separate artifacts. The user playtest of0.5.0 exitednormally0; no human launch/playthrough ofthis0.5.1candidate is claimed.",
-    "Six desktop performance routes apply to the older0.5.0baseline, not this candidate."
-  ],
-  "related_proofs": [
-    {
-      "path": "Docs/verification/independent-graphics-settings-20261125.json",
-      "bytes": 79470,
-      "sha256": "918ebec06026730ad37bba272e49b1bdc61e24e313722ccc9d32bb606d3ee94b"
+  "native_rescue_final": {
+    "status": "PASS",
+    "proof": {
+      "path": "Docs/verification/0.5.1-native-rescue-20261125.json",
+      "bytes": 9068,
+      "sha256": "be2ddf5258fa746228489aee3b408c1ad45f52768cef4e92a30f9c428463125b"
     },
-    {
-      "path": "Docs/verification/serialized-probe-regeneration-20261125.json",
-      "bytes": 15005,
-      "sha256": "0faacd694ffcef0d0b088fa6c75bc71efda3576ff777d3baab903dfea0e9e87c"
-    }
-  ],
-  "open_gates": [
-    "Editor no-control-flag15-case collection after serializedIndividualFaces still13pass/1GraphicsRingwarningfailure/1expectedNullskip,native2,9rawRingwarnings. Cause remains unproven; narrow native gates have0warnings.",
-    "NativeCustom-control editing/persistence across restart,frame-pacing measurements,physical keyboard/gamepad and full current-player campaign remain separate.",
-    "Rescue23+24 running; require finalreport/runtimehash/nativeexit before passing.",
-    "Gatepilot source+import checkpoint needs scene regeneration, exact physics/lighting equality, access/motion/LOS/navigation, matched visualcaptures, performance and a new native build.",
-    "Currentbinary performance, releasearchive and isolatedextracted-player checks remain pending."
-  ]
+    "execution": {
+      "path": "Logs/graphics-native-rescue/execution.json",
+      "bytes": 953,
+      "sha256": "a4e42ce3b35108d44b219f02d64987208cedbd8034c9186a7d49f6ff7ea8f766"
+    },
+    "native_exit_code": 0,
+    "summary": "2/2 passed",
+    "scenario23_seconds": 512.8,
+    "scenario24_seconds": 315.9,
+    "process_seconds": 832.873,
+    "recovery_helper_count": 12,
+    "scope": "Prepared mission logic on Null graphics with simulated controls; both outcome branches, physical boarding/custody and twelve recovery helpers. No graphics, performance or human-input claim."
+  },
+  "remaining21_observation": {
+    "observed_utc": "2026-11-25T17:26:09.727315+00:00",
+    "execution_path": "Logs/graphics-native-original-and-river/execution.json",
+    "sha256_at_observation": "7ae5a8957497503a553e2bf1c66641f1112a923e3528641e5afec010f2422932",
+    "receipt": {
+      "status": "running",
+      "supervisor_pid": 47464,
+      "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+      "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+      "argv": [
+        "nice",
+        "-n",
+        "10",
+        "./Parasite.x86_64",
+        "-batchmode",
+        "-nographics",
+        "-autotest",
+        "-autotestFilter",
+        "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21",
+        "-autotestOut",
+        "/home/mevlec/Data/Parasite/Logs/graphics-native-original-and-river/report.txt",
+        "-logFile",
+        "/home/mevlec/Data/Parasite/Logs/graphics-native-original-and-river/player.log"
+      ],
+      "started_utc": "2026-11-25T17:23:23.140637+00:00",
+      "scope": "Native mission logic with bounded physical test walker; no graphical/performance/native-input claim",
+      "pid": 47466
+    },
+    "both_processes_live_at_observation": true,
+    "mutable_until_terminal": true,
+    "scope": "Native21 selected original/riverside/entry cases are running separately; no final21/21 or whole24 coverage result is claimed."
+  }
 }

@@ -36,12 +36,14 @@ Continue gates remain. The full80s opening and four lake films, eight island voi
 free-body camera and reflection/movie ownership fixes are integrated. Full frame/decode provenance and named Editor/player
 checks are recorded in [TEST_REPORT.md](TEST_REPORT.md); these do not establish that the full open-ended request is complete.
 
-The new **0.5.1-preview graphics candidate** is a1,101MB working-tree build over`bbebc8c`, runtime`80e65c6b...`, at
+The earlier pre-gate **0.5.1-preview graphics candidate** is a1,101MB working-tree build over`bbebc8c`, runtime`80e65c6b...`, at
 `Builds/Candidates/full-story-20261125T170047223995Z-63921b41`. Strictfull-five media(8checks/7images), queuedshortcuts14/14 and
 renderedwater22 each pass on RTX4050/Vulkan with nativeexit0 and zero ring warnings. Source/preview hashes are unchanged.
 [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json) separates those narrow checks from native Custom editing,
-frame-pacing, continuous80s story observation and a complete human playthrough. Native23+24 is currentlyrunning nice10/Null
-under`Logs/graphics-native-rescue`; its final receipt is still required. Other current-player campaign checks remain open.
+frame-pacing, continuous80s story observation and a complete human playthrough. Native 23/24 now pass 2/2 with exit 0 on
+this runtime, in 832.873 seconds, including both rescue branches and twelve recovery helpers.
+[Exact rescue proof](verification/0.5.1-native-rescue-20261125.json) distinguishes prepared Null/simulated logic from graphics
+and human testing. The remaining 21 native cases are running separately and still require their own final receipt.
 
 Independent settings now have real Display/Quality/Effects controls, staged Apply/Cancel/Defaults, Custom persistence and live
 Audio/Input. Existing profile quality is preserved.135EditMode rules pass. GPU cases verify actual Bloom pixels, owned renderer
@@ -55,11 +57,17 @@ Probe-only regeneration preserves canonical world geometry, physics/nav/door dat
 components. Only8probe time-slicing values and17existing NPC default serializations differ.
 [Semantic comparison](verification/serialized-probe-regeneration-20261125.json) applies before gate integration.
 
-The **gate realism pilot is an applied source/import checkpoint**, outside that native candidate. Builder hooks and3editor helpers
-compile148/26/148. Actual Vulkan import passes21checks:2meshes/3,808triangles/3true2D2KBC7 maps/sharedPBR material; existing18
-island importer/meta hashes remain unchanged. The baseline has329colliders/4doors/144lights. Gate scene regeneration, exact
-physics/light comparison, motion/access/LOS/nav, matched before/after art review, performance and a new native build are pending.
-Import readiness alone does not establish an integrated visual upgrade.
+The user-requested **gate WIP** is now built at`Builds/Candidates/full-story-20261125T173043238618Z-0f595731`,0.5.1-preview,
+1,117MB/nativebuild0/zeroerrorswarnings/source+immutablepreview unchanged. Native media8checks/7images,14queuedshortcuts and
+renderedwater22 pass native0/zero ring warnings after an absolute-output runner correction. The user's RTX/Vulkan playtest is
+launched; it is not a completed campaign or final release. [WIP build proof](verification/0.5.1-gate-playtest-20261125.json).
+
+Gate import21checks and realGPUregeneration pass. Seven saved-contract checks retain the exact329collider/4door/144light
+inventory; actual99-ray closed/open/reclosed aperture, original door motion and open navigation pass. The before8capture set
+restoresfully. AFTERcapture still fails static matching despite all8camera/settings/rain fields matching and full restoration.
+DynamicAmoebaLight variation is a hypothesis, not a proved sole cause: raw light rows were not persisted. Accepted matched
+visual comparison, native role access/full routes/performance and final campaign checks remain pending. The identical runtimeDLL
+to the earlier pre-gate build does not transfer results across the changed scene/art snapshot.
 
 The earlier0.5.0 candidate was launched for the user and exited normally0 after130.601s. Its interrupted headless run records
 01–05pass,06duty-officer aim failure and no final receipt after reboot. The yaw/pitch fixture correction passes focused15 and
@@ -69,8 +77,8 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
 
 ## Required next verification
 
-- Observe native23+24 to its real final result and complete remaining current-player campaign scenarios. Keep Null/simulated
-  logic separate from rendered22 and physical input.
+- Complete the active remaining 21-case native run and inspect its final report/runtime hash/exit. Scenarios 23/24 already
+  pass and rendered 22 passes separately. Keep prepared Null/simulated logic separate from graphics and physical input.
 - Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and
   story/audio/settings behavior on the new binary.
 - Finish gate-pilot integration and actual collision/lighting/motion/visual/performance checks before including it in a new build.

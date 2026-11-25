@@ -100,11 +100,11 @@ namespace Parasite.EditorTools
             }
         }
 
-        public void BoxMM(Material m, float x0, float x1, float y0, float y1, float z0, float z1, bool solid = true)
+        public void BoxMM(Material m, float x0, float x1, float y0, float y1, float z0, float z1, bool solid = true, bool visual = true)
         {
             var c = new Vector3((x0 + x1) * 0.5f, (y0 + y1) * 0.5f, (z0 + z1) * 0.5f);
             var s = new Vector3(Mathf.Abs(x1 - x0), Mathf.Abs(y1 - y0), Mathf.Abs(z1 - z0));
-            Box(m, c, s);
+            if (visual) Box(m, c, s);
             if (solid) Solid(c, s);
         }
 
@@ -319,15 +319,22 @@ namespace Parasite.EditorTools
 
         /// <summary>Wall along X (x0..x1) of thickness z0..z1 with door openings (from, to, top height).</summary>
         public void WallX(Material m, float x0, float x1, float z0, float z1, float y0, float y1, params Vector3[] openings)
+            => WallXCore(m, x0, x1, z0, z1, y0, y1, true, openings);
+
+        /// <summary>The identical original Solid calls/order, without adding batched visual faces.</summary>
+        public void WallXPhysics(Material m, float x0, float x1, float z0, float z1, float y0, float y1, params Vector3[] openings)
+            => WallXCore(m, x0, x1, z0, z1, y0, y1, false, openings);
+
+        void WallXCore(Material m, float x0, float x1, float z0, float z1, float y0, float y1, bool visual, Vector3[] openings)
         {
             float x = x0;
             foreach (var o in Sorted(openings))
             {
-                if (o.x > x) BoxMM(m, x, o.x, y0, y1, z0, z1);
-                if (o.z < y1) BoxMM(m, o.x, o.y, o.z, y1, z0, z1);
+                if (o.x > x) BoxMM(m, x, o.x, y0, y1, z0, z1, visual: visual);
+                if (o.z < y1) BoxMM(m, o.x, o.y, o.z, y1, z0, z1, visual: visual);
                 x = o.y;
             }
-            if (x1 > x) BoxMM(m, x, x1, y0, y1, z0, z1);
+            if (x1 > x) BoxMM(m, x, x1, y0, y1, z0, z1, visual: visual);
         }
 
         /// <summary>Wall along Z (z0..z1) of thickness x0..x1 with door openings (from, to, top height).</summary>

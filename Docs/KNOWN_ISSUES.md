@@ -5,10 +5,20 @@ current work; every pass applies to its recorded source or binary.
 
 - Linux/URP uses screen-space reflections and probes. It has no built-in hardware ray tracing; Blender films use offline
   RTX/OptiX path tracing. SSR cannot reflect geometry outside the camera buffers; puddles are not a full fluid simulation.
-- The new0.5.1-preview candidate at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, runtime`80e65c6b...`, passes
+- The user-requested **gate WIP** is`Builds/Candidates/full-story-20261125T173043238618Z-0f595731`,0.5.1-preview,
+  1,117MB/nativebuild0/zeroerrorswarnings/source+retainedpreview unchanged. Corrected absolute-path media8checks/7images,
+  shortcuts14/14 and renderedwater22 all pass native0/zero ring warnings; user playtest is launched, not a complete playthrough.
+  This has the same runtimeDLL as the earlier graphics build but a different scene/art/source snapshot; older campaign results
+  are not transferred. [WIP proof](verification/0.5.1-gate-playtest-20261125.json).
+  Gate import21checks/GPUregeneration/exact329collider-4door-144light inventory and actual99-ray door/aperture/navigation pass.
+  Before8captures/fullrestore pass; AFTERcapture fails raw static matching despite8/8camera/settings/rain agreement and full
+  restoration. DynamicAmoebaLight variation is a hypothesis; raw light rows were not persisted, so sole cause is unproved.
+  Native gate access/fullroutes/performance and accepted matched visual comparison remain open.
+- The earlier pre-gate0.5.1-preview candidate at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, runtime`80e65c6b...`, passes
   native strictfull-five media(8checks/7images),14queuedshortcuts and renderedwater22, all exit0/zero ring warnings. These do
-  not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native23+24
-  is running nice10/Null; no final pass is claimed. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json).
+  not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native 23/24
+  now pass 2/2, exit 0, on this same runtime using prepared Null-graphics fixtures. The remaining 21 cases are running separately;
+  no complete 24-case result is claimed. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json).
 - The Editor Vulkan warning gate remains open after serializedIndividualFaces:13pass/1PendingDowngrade warning failure/
   1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no
   production all-green result or allocator cause is established. Narrow native gates currently have none. No allocator flag,
@@ -17,10 +27,8 @@ current work; every pass applies to its recorded source or binary.
   Bloom metric used a stale SingleCameraRequest volume stack; the corrected StandardRequest fixture passes with unchanged
   emitter/ROI/threshold and actual On1.178656/Off0.1345335/restored1.178656 HDR halo values. This is a rendered effect proof,
   not a final-player performance result. Queued keyboard/gamepad navigation is separate from physical device testing.
-- Gate pilot code/assets are imported and compile148/26/148; actual import passes21checks(2meshes/3,808triangles/3real2KBC7maps).
-  They are outside the current native build. Gate scene regeneration and exact physics/light/motion/access/LOS/nav, visual and
-  performance checks remain required. Its baseline is329colliders/4doors/144lights. Do not call import readiness an integrated
-  visual upgrade or conflate later gate changes with the verified pre-gate probe-only scene comparison.
+- Gate WIP checks above apply to the regenerated scene and173043build. The earlier pre-gate semantic comparison verifies
+  its own snapshots only; later gate validation is separately pinned. No final visual/performance release is implied.
 - The older0.5.0 candidate(runtime2603...) was launched for the user and exited normally0 after130.601s. Its headless campaign
   stopped after01–05pass/06duty-officer aim failure with no final receipt before reboot. Yaw/pitch test feedback passes focused15
   and shared06/07/08/14/16 in the Editor with unchanged targeting rules. The new binary still needs the remaining campaign.
@@ -34,9 +42,11 @@ current work; every pass applies to its recorded source or binary.
 - Scoped native movie retirement fixes the reproduced old-preview cleanup hang in newer pinned candidates. Actual pending-seek
   Quit0/1 preserves requested codes after ACK/zeroowned resources. OS/window-close with media pending and unexpected graphics
   owner destruction remain unexercised paths. [Movie proof](verification/cinematic-retirement-20261125.json).
-- M19/M20 both branches and original14Editor rescue fixtures pass; earlier native23 passes on a different diagnostic binary.
-  Earlier24failed a sentry-sight setup; its facing correction passes focused Editor checks without vision/exposure/time changes.
-  Current native23+24 is running and must finish. [Physical walker proof](verification/island-walker-20261125.json).
+- M19/M20 both branches and all twelve recovery helpers now pass native scenarios 23/24 on runtime `80e65c6b...`, with normal
+  exit 0 and unchanged binary. This includes the corrected actual sentry exposure/Holding retreat/fresh E case, retaining the
+  original vision/exposure/time rules. Setup grants prerequisites, forces initial role possession and parks unrelated guards;
+  this is not a complete human or stealth playthrough. [Native rescue proof](verification/0.5.1-native-rescue-20261125.json)
+  and [physical walker proof](verification/island-walker-20261125.json) retain precise limits and earlier failures.
 - The centred free-body camera passes more than 17,000 actual GPU samples; human framing and canonical markers remain. This
   isolated proof is separate from physical input and an extended human playthrough.
 - Reflection lifecycle, fallback and normal water pass six RTX/OpenGL cases. The rendered standalone Vulkan water case passes

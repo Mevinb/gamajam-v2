@@ -1,3 +1,22 @@
+# User-requested gate WIP build and launch — 25 November 2026
+
+`Builds/Candidates/full-story-20261125T173043238618Z-0f595731`, version0.5.1-preview, is a working-tree build over`4ace63c`:
+1,117MB/nativebuild0/zeroerrorswarnings, source and immutable preview unchanged. The runtimeDLL remains`80e65c6b...`; the
+new scene/art snapshot, output manifest and build identity distinguish this artifact from the earlier pre-gate graphics player.
+Corrected absolute-path native media(8checks/7images),shortcuts14/14 and renderedwater22 pass native0/zero ring warnings.
+The initial relative-path runner missed its native0media report undercandidate/Logs; that diagnostic is preserved separately.
+User-controlled RTX/Vulkan playtest was launched (PID51569/window0xc0000a at observation), not a completed human playthrough.
+
+Actual import21checks, realGPU regeneration and exact seven-check saved inventory equality pass (329colliders/4doors/144lights,
+SHA`1d813067633f6e2c14e6a1db5e428de01cdb274b65527d9a4f6a6cb59911c16a`). The actual AFTERdoor motion/aperture/navigation
+method passes99rays through closed/open/reclosed states. Before8capture/fullrestoration passes. The separate AFTERcapture
+method fails raw static matching, despite8/8camera/settings/rain agreement and full restoration. DynamicAmoebaLight variation
+is a current hypothesis; raw light rows were not persisted, so the sole cause is unproved. No matched visual acceptance,
+native gate route/performance or inherited old-candidate campaign pass is claimed.
+[Focused WIP proof](verification/0.5.1-gate-playtest-20261125.json) pins actual receipts, frames, source/build and open gates.
+
+---
+
 # Independent graphics and 0.5.1-preview checkpoint — 25 November 2026
 
 The new private graphics candidate is`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, version0.5.1-preview,
@@ -5,7 +24,12 @@ working-tree snapshot over`bbebc8c`,1,101MB/zero build errors/warnings/native0, 
 RuntimeSHA256:`80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290`.
 Strictfull-five media(8checks/7PNGs),queuedshortcuts14/14 and renderedwater22 all pass on RTX4050/Vulkan, native0/zero raw
 Graphics Ring Buffer warnings. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json) pins reports and scope.
-Native23+24 is currentlyrunning nice10/Null under`Logs/graphics-native-rescue`; finalreport/nativeexit are not yet available.
+Native scenarios 23 and 24 now pass 2/2 with normal exit 0 on this exact runtime: 512.8 seconds for both complete
+Peace/Dominion rescue branches and 315.9 seconds for all twelve recovery helpers, 832.873 seconds total process time.
+The actual sentry exposure, Holding retreat and new E consent pass without changing their original rules. The runtime hash
+remains `80e65c6b...`; no watchdog was used. [Native rescue proof](verification/0.5.1-native-rescue-20261125.json) pins source,
+report, log, final receipts and prepared-fixture/Null/simulated-input limits. The remaining 21 cases are running separately;
+this result does not establish whole-campaign or physical-input completion.
 
 135EditMode rules pass. Named GPU cases pass actual owned-renderer/source-asset preservation and cleanup, CustomLow/high
 reflection images across reload, late cameras, Bloom pixels and staged title/pause UI with queued keyboard/gamepad navigation.

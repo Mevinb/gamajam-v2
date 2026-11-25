@@ -9,19 +9,31 @@ The full request remains **in progress**. Evidence applies to its named source o
 - Linux/URP remains the chosen target. The game uses real-time shaders, screen-space reflections and probes. The completed
   Blender films use offline RTX/OptiX path tracing; this does not make the Linux player hardware ray traced.
 - Local feature commit `a993723` records independent graphics settings/tests and the pre-gate probe-only scene regeneration.
-  The new private player was built from that work over base `bbebc8c` before the feature commit. Later gate-pilot source/import
-  work is beyond its snapshot. Use explicit file staging; keep the untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` and other work intact.
-- The new **0.5.1-preview graphics candidate** is `Builds/Candidates/full-story-20261125T170047223995Z-63921b41`.
+  The earlier pre-gate graphics player was built from that work over base `bbebc8c` before the feature commit. The new gate WIP
+  below has a separate snapshot. Use explicit file staging; keep the untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` and other work intact.
+- **Current user-requested WIP playtest:** `Builds/Candidates/full-story-20261125T173043238618Z-0f595731`, version0.5.1-preview,
+  working tree over`4ace63c`,1,117MB/zero build errors/warnings/native0. Source and immutable preview were unchanged. The runtime
+  SHA remains`80e65c6b...` because gate changes are scene/art/editor outputs; use build/source/output identities, not DLL hash alone.
+  Strict8media checks/7PNGs,14queuedshortcuts and renderedwater22 pass on this exact build with native0/zero ring warnings.
+  The first runner used a relative output path and falsely missed the native0media report; corrected absolute-path rerun passes
+  all3gates. [WIP build proof](verification/0.5.1-gate-playtest-20261125.json) preserves both runner outcomes and exact scope.
+  User-controlled RTX4050/Vulkan playtest is live on`:0`, PID51569/window`0xc0000a` at the recorded observation; session/logs are
+  under`Logs/user-playtest-full-story-20261125T173043238618Z-0f595731`. Do not interrupt it with Unity/GPU jobs. Launch is not a
+  completed human playthrough, native gate acceptance or inherited campaign pass. The AFTERstatic capture contract remains open.
+- The earlier **0.5.1-preview pre-gate graphics candidate** is `Builds/Candidates/full-story-20261125T170047223995Z-63921b41`.
   It is a working-tree build over `bbebc8c`, 1,101 MB, zero build errors/warnings, native build exit 0. Runtime SHA-256:
   `80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290`. Source and the immutable preview tree were unchanged
   during its build. This binary includes the settings/backend and probe-only scene regeneration; it does not include the gate pilot.
 - Strict full-five media passes eight checks/seven images, queued shortcuts pass14/14 and rendered water22 passes1/1 on this
   exact RTX4050/Vulkan player. All three exit natively0, retain the runtime hash and log zero Graphics Ring Buffer warnings.
   These narrow checks do not exercise native Custom-control editing, real frame-pacing measurements or continuous80s story playback.
-  [New candidate proof](verification/0.5.1-graphics-candidate-20261125.json) pins actual build/source/reports/images/receipts.
-- Native rescue23+24 is **running**, nice10/Null graphics, under `Logs/graphics-native-rescue/execution.json` (supervisor44439,
-  player44441 at the recorded observation). This is prepared mission logic with simulated controls. Require an actual final
-  report, unchanged runtime and native exit before claiming a pass; a running JSON or missing old PID is not a terminal result.
+  [Earlier graphics candidate proof](verification/0.5.1-graphics-candidate-20261125.json) pins actual build/source/reports/images/receipts.
+- Native rescue scenarios 23 and 24 **pass 2/2 with exit 0** on the earlier pre-gate170047 candidate, in 832.873 seconds: both Peace/Dominion
+  rescue departures and all twelve recovery helpers, including the corrected sentry exposure. The report records 512.8/315.9
+  seconds per scenario; runtime `80e65c6b...` is unchanged and both processes are terminal. This uses prepared fixtures, normal
+  simulated movement and Null graphics. [Native rescue proof](verification/0.5.1-native-rescue-20261125.json) retains exact scope.
+  The other21cases on that earlier pre-gate binary run separately under`Logs/graphics-native-original-and-river`; their final
+  receipt is still required. Rendered case 22 passed separately; no complete 24-case or human playthrough is claimed yet.
 - Independent graphics use a versioned, checksummed data/store model and a shared staged title/pause menu: Display, Quality,
   Effects and Audio & Input. Existing four profile budgets are preserved, including Ultra1.25scale/4xrequestedMSAA. Custom
   render scale, VSync/frame cap, post AA/MSAA, shadows/distance, AO, reflection detail and three optional post effects persist
@@ -39,12 +51,16 @@ The full request remains **in progress**. Evidence applies to its named source o
   Offline canonical comparison finds identical hierarchy/component counts, transforms, referenced mesh content, physics/nav/door
   fields, light inputs/origins, global settings and UI data. All11CityVolume components retain identical parameter values.
   [Semantic proof](verification/serialized-probe-regeneration-20261125.json) applies to the pre-gate snapshots, not later pilot work.
-- **Gate pilot: source/import checkpoint only.** Builder hooks and three editor helpers are applied; fast APIs pass148runtime/
-  26editor/148LinuxMono. Actual Vulkan import passes21checks: two meshes/3,808triangles, three real2D/2KBC7 maps, one shared
-  PBR material; all18existing island importer/meta hashes remain unchanged. Pre-pilot baseline records329colliders,4doors and
-  144lights. At this checkpoint gate scenes have not been regenerated; baseline captures, exact post-regeneration physics,
-  motion/access/LOS/navigation, matched visual/performance checks and a new player build remain required. Do not stage the
-  unvalidated pilot with the working graphics feature merely because it is present in the checkout.
+- **Gate pilot WIP:** actual Vulkan import passes21checks (2meshes/3,808triangles/3real2D2KBC7maps/sharedPBR;18islandmeta hashes
+  unchanged), and actualGPU scene regeneration exits0. The seven-check serialized verification passes with exact inventory
+  hash`1d813067633f6e2c14e6a1db5e428de01cdb274b65527d9a4f6a6cb59911c16a`:329colliders/4doors/144lights, original door/collider/
+  carving/interaction/warning-light contracts preserved. The new visual follows the original door;99-ray closed/open/reclosed
+  aperture and open navigation pass in the actual AFTERmotion method. This is not native role-access/performance acceptance.
+  The before8-frame collection passes with full restoration. AFTERrecords8real frames/full restoration but fails static matching;
+  all8camera/settings/rain fields match. DynamicAmoebaLight variation is a hypothesis; raw light rows were not persisted,
+  so the sole cause is not proven despite matching144unique serialized light names/inventory. Do not call the before/after
+  visual acceptance complete or loosen/suppress its contract to pass. The fresh WIP build includes this art for user testing;
+  further capture diagnosis, actual access/full-route, image/performance and final-release checks remain required.
 
 ## Artifact and verification boundaries
 
@@ -58,7 +74,7 @@ The earlier **0.5.0** player `Builds/Candidates/full-story-20261125T143348976819
 for the user and exited normally0 after130.601s. Its interrupted23-case headless run records01–05pass and06duty-officer aim
 failure before reboot, with no final receipt. The yaw-only fixture missed the unchanged15° cone; corrected yaw/pitch feedback
 passes focused15 and shared06/07/08/14/16 in the headless Editor. [Aim proof](verification/hunter-camera-aim-20261125.json).
-The old binary remains unchanged; the new0.5.1player includes the corrected driver and still needs its full campaign result.
+The old binary remains unchanged; the pre-gate0.5.1player includes the corrected driver. The new gate WIP has its own scene/source snapshot and does not inherit those campaign results.
 
 Six focused desktop performance routes apply to that older0.5.0binary: High/Ultra city169.2/111.7FPS, river212.9/140.5,
 island252.2/169.5, all native0/focused/AIactive. RiversideHigh has one217.1ms worst frame with unproven cause. Per-game GPU
@@ -72,12 +88,12 @@ launcher selects the retained preview. No human launch/playthrough of the new0.5
 
 ## Required next work
 
-1. Observe the live native23+24 run to an actual terminal receipt; finish the remaining current-player campaign cases. Keep
-   headless/simulated logic separate from rendered water22 and physical input.
+1. Observe the remaining21-case pre-gate native run to its actual terminal receipt. Its23/24 and rendered22 pass separately;
+   the new gate WIP needs its own campaign validation. Keep prepared headless/simulated logic separate from graphical and physical-input proof.
 2. Characterize the remaining Editor Vulkan warning with bounded controls; do not rewrite its original unexpected-log guard
    or call residual-warning controls a complete fix. Exercise native Custom settings/persistence/frame pacing on the new binary.
-3. Finish gate-pilot before/after capture, GPU regeneration and exact physics/light comparison, then real access/motion/LOS/nav,
-   image/performance and rebuilt-player gates. Import readiness alone does not establish an integrated visual redesign.
+3. Resolve the gate AFTERstatic capture-contract failure before accepting matched visual comparisons. Saved physics/light inventory
+   and actual door/aperture/navigation pass; native role access/full routes, declared performance and final-release acceptance remain separate.
 4. Measure the final binary at declared settings, verify a fresh archive and isolated extracted player, and continue the active
    graphics/gameplay expansion. Physical keyboard/gamepad, subjective voice listening and disk campaign saving remain separate.
 

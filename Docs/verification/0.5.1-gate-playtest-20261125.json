@@ -1,0 +1,508 @@
+{
+  "schema": 1,
+  "status": "WIP_USER_PLAYTEST_LAUNCHED_STATIC_CAPTURE_GATE_OPEN",
+  "recorded_utc": "2026-11-25T17:34:24.401245+00:00",
+  "version": "0.5.1-preview",
+  "candidate": "Builds/Candidates/full-story-20261125T173043238618Z-0f595731",
+  "source_base_commit": "4ace63c34d98221917c03c57139c464eefcdf0c1",
+  "working_tree_build": true,
+  "source_snapshot_before_sha256": "5ea90f6a159c4517c707b9a113eeb15e7a0ebf81b3b0f16d93c68bea718875ba",
+  "source_snapshot_after_sha256": "5ea90f6a159c4517c707b9a113eeb15e7a0ebf81b3b0f16d93c68bea718875ba",
+  "source_unchanged_during_build": true,
+  "build": {
+    "native_exit_code": 0,
+    "result": "Succeeded",
+    "size_mb": 1117,
+    "time": "00:00:29.0483510",
+    "errors": 0,
+    "warnings": 0,
+    "runner": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T173043238618Z-0f595731/runner-state.json",
+      "bytes": 7720,
+      "sha256": "87480d5d5bc541a05f1bd81c385e3aac2a158076e62dccd313f9fa3d2078735e"
+    },
+    "build_info": {
+      "path": "Builds/Candidates/full-story-20261125T173043238618Z-0f595731/BUILD_INFO.json",
+      "bytes": 1278,
+      "sha256": "a69b196d1381808f36ef6129b8e4713af48e0c6af86de1ac533fe8f8955013f0"
+    },
+    "output_hash_manifest": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T173043238618Z-0f595731/build-output-hashes.json",
+      "bytes": 55143,
+      "sha256": "02286a0df18e20b7391db4c780135c9fef0fa7d0b9fa2642280c6077bfb802ef"
+    },
+    "runtime": {
+      "path": "Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "bytes": 944640,
+      "sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290"
+    },
+    "preview_unchanged": true,
+    "allowed_immutable_headless_player_pids": [
+      47466
+    ],
+    "post_build_free_reserve_gib": 2.5
+  },
+  "artifact_identity_note": "The runtimeDLL SHA is identical to the earlier pre-gate graphics candidate because this gate changes scene/art/editor outputs, not runtimeC#. Source snapshot, build/output manifest and build identity distinguish the artifacts; older campaign results are not transferred.",
+  "gate_evidence": {
+    "actual_import": {
+      "status": "PASS",
+      "checks": 21,
+      "native_exit_code": 0,
+      "report": {
+        "path": "Logs/city-gate-pilot/unity-import.json",
+        "bytes": 4250,
+        "sha256": "f3d32eb5e5542fd539d0f50aaa5b413b3a664a3709e0a45c1051d98813a1a84e"
+      }
+    },
+    "gpu_regeneration": {
+      "native_exit_code": 0,
+      "log": {
+        "path": "Logs/gatepilot_scenes.log",
+        "bytes": 223563,
+        "sha256": "04469b3afa7c7a4720ee1024813fe1a486c99f6d2a7d170e58990f899dc65508"
+      }
+    },
+    "exact_saved_physics": {
+      "status": "PASS",
+      "checks": 7,
+      "native_exit_code": 0,
+      "baseline_counts": {
+        "colliders": 329,
+        "doors": 4,
+        "lights": 144
+      },
+      "baseline_inventory_sha256": "1d813067633f6e2c14e6a1db5e428de01cdb274b65527d9a4f6a6cb59911c16a",
+      "after_inventory_sha256": "1d813067633f6e2c14e6a1db5e428de01cdb274b65527d9a4f6a6cb59911c16a",
+      "baseline": {
+        "path": "Logs/city-gate-pilot/baseline-physics.json",
+        "bytes": 770945,
+        "sha256": "94338d36d70c5754f888f05ef9fe6815bd7e518f5b9641446d9fa9da85636764"
+      },
+      "after": {
+        "path": "Logs/city-gate-pilot/regenerated-physics.json",
+        "bytes": 771455,
+        "sha256": "6f662b945e53274e8b8094428a9871fb64d5d2712f6cac05aff954594d9d25f3"
+      }
+    },
+    "before_capture": {
+      "result": "Passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 8.394462,
+      "native_exit_code": 0,
+      "xml": {
+        "path": "Logs/gatepilot-capture-before-restored.xml",
+        "bytes": 3888,
+        "sha256": "c428bae79fb04f3815729117fdbcc2d8e5a538fff9859cf6326d63ec9e03f26e"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.CityGatePilotCaptureTests.CaptureFixedGateViewsWithActualOverlayHudAndHdrScene",
+          "result": "Passed",
+          "duration_seconds": 8.364428
+        }
+      ],
+      "report": {
+        "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/capture.json",
+        "bytes": 25452,
+        "sha256": "c0832009fcedcf3b5c13ec3399c2663dc58a827fdaa39d2f9d966a5db2aacab5"
+      },
+      "shots": 8,
+      "restorationVerified": true
+    },
+    "after_motion_and_capture": {
+      "result": "Failed(Child)",
+      "passed": 1,
+      "failed": 1,
+      "skipped": 0,
+      "duration_seconds": 12.6101376,
+      "native_exit_code": 2,
+      "xml": {
+        "path": "Logs/gatepilot-after-motion.xml",
+        "bytes": 6751,
+        "sha256": "2b9521086430e3107a08136ba2aac039082b6e0056767d12d8b79d94dfc02eeb"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.CityGatePilotCaptureTests.CaptureFixedGateViewsWithActualOverlayHudAndHdrScene",
+          "result": "Failed",
+          "duration_seconds": 8.329665,
+          "failure": "  Each actual pair must match camera/settings/static-light/fog/rain contracts. Animated phase is recorded separately.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "Parasite.Tests.CityGatePilotTests.VisualChildFollowsOriginalDoorWhilePhysicsAndApertureRemainIntact",
+          "result": "Passed",
+          "duration_seconds": 4.210986
+        }
+      ],
+      "report": {
+        "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/capture.json",
+        "bytes": 26321,
+        "sha256": "4b06b79cc9abde94a3611013f29942062d2e0a9749e0110e3427483472e57af2"
+      },
+      "shots": 8,
+      "restorationVerified": true,
+      "matchedBeforeStaticContracts": false,
+      "pairs": [
+        {
+          "name": "outside-context",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/ACTUAL-OVERLAY-HUD-outside-context.png",
+            "bytes": 2620368,
+            "sha256": "c270b80af8f9160977d42a80ae30d044f80f75b9963d42a4b647d25b348282b9"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/ACTUAL-OVERLAY-HUD-outside-context.png",
+            "bytes": 2528717,
+            "sha256": "9f6e7c14ff37e6e8f87de60411acd610ed4dfb9fb6cacdc7eb893db32478abd4"
+          }
+        },
+        {
+          "name": "outside-context",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/SCENE-ONLY-HDR-QA-outside-context.png",
+            "bytes": 2666050,
+            "sha256": "e1245c0628a487b495b7f1f3d633f3efc93c51338fcb114f9b6f6b0cee0bd875"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/SCENE-ONLY-HDR-QA-outside-context.png",
+            "bytes": 2574274,
+            "sha256": "269b8ec2d21d71992f5949f1f01d9669dd252409d7da3e726e22babeefd7ad96"
+          }
+        },
+        {
+          "name": "low-amoeba",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/ACTUAL-OVERLAY-HUD-low-amoeba.png",
+            "bytes": 1680416,
+            "sha256": "38a7dc7dfb64c65859ff7bdd8c3d71df64dfbe140e9e0330dd9dcb1d37ece47f"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/ACTUAL-OVERLAY-HUD-low-amoeba.png",
+            "bytes": 1586173,
+            "sha256": "cd20a0f5906cf1b458c9e0741333d3f5a8e28810f58e076962b07718395f475d"
+          }
+        },
+        {
+          "name": "low-amoeba",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/SCENE-ONLY-HDR-QA-low-amoeba.png",
+            "bytes": 1652082,
+            "sha256": "9846ee9995ed7d3a1edd890ed349fbb8ee9b944eeebe666ceb90c3e85eb83e3d"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/SCENE-ONLY-HDR-QA-low-amoeba.png",
+            "bytes": 1544899,
+            "sha256": "d00a72fffc30d04fd2a34163745ece62deb295bd4ca15e7bf4eaf34ea9c06687"
+          }
+        },
+        {
+          "name": "badge-detail",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/ACTUAL-OVERLAY-HUD-badge-detail.png",
+            "bytes": 895731,
+            "sha256": "ad921c1ff946be546461e37408c7fe95c50f324fbd1464841b77ce08893cfbd3"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/ACTUAL-OVERLAY-HUD-badge-detail.png",
+            "bytes": 1058696,
+            "sha256": "9346a325cd509c56a416e840a7954f9e76e348337894fa521dc933e4cbce4c15"
+          }
+        },
+        {
+          "name": "badge-detail",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/SCENE-ONLY-HDR-QA-badge-detail.png",
+            "bytes": 806274,
+            "sha256": "c2b92b0e3db2692c12afe386d13210a0e1ce0b7197dc458cfaafcbbca1b12300"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/SCENE-ONLY-HDR-QA-badge-detail.png",
+            "bytes": 963507,
+            "sha256": "582d7ccb9ba3e6ccf487f6c43b77af93c28541346e91babeeeae9623ddbe81ff"
+          }
+        },
+        {
+          "name": "inside-context",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/ACTUAL-OVERLAY-HUD-inside-context.png",
+            "bytes": 2681591,
+            "sha256": "d4f9e228a44571ea6c7347e8b46fedb89b978ff1b3abd547eb0b959dcd4b86f8"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/ACTUAL-OVERLAY-HUD-inside-context.png",
+            "bytes": 2387931,
+            "sha256": "3d419ce180cacb4a661f4e7b93cc8e21a243db1d260fa2f4750681911c37bf92"
+          }
+        },
+        {
+          "name": "inside-context",
+          "matched_name": true,
+          "camera_settings_rain_fields_equal": true,
+          "raw_static_contract_equal": false,
+          "before_image": {
+            "path": "Logs/city-gate-pilot/captures/before-20261125T172524716/SCENE-ONLY-HDR-QA-inside-context.png",
+            "bytes": 2703503,
+            "sha256": "2c0eac9198688d7d5635c27d93e782abbec8fd2b6737435eb85015f750e25db5"
+          },
+          "after_image": {
+            "path": "Logs/city-gate-pilot/captures/after-20261125T172828944/SCENE-ONLY-HDR-QA-inside-context.png",
+            "bytes": 2413663,
+            "sha256": "b7a38864e845e1f3c740c238656fb8cd1645f0fe989261771a4aafeaed5b2fbd"
+          }
+        }
+      ],
+      "finding": "The door motion/aperture/navigation method passes actual99-ray closed/open/reclosed checks. The separate AFTERcapture method fails its static-match contract. All8recorded camera/settings/rain fields match; raw lighting contract/order diagnosis remains open. Do not call this a successful before/after visual acceptance.",
+      "motion_test_source": {
+        "path": "Assets/Parasite/Tests/PlayMode/CityGatePilotTests.cs",
+        "bytes": 7542,
+        "sha256": "0ee9f15af217a1b8a38f649150e69677eda035a6e210f836d540e8b721c2aa7d"
+      },
+      "capture_diagnosis": "Dynamic AmoebaLight variation is a current hypothesis. The serialized144light names/inventory and all8camera/settings/rain fields match, but raw light rows were not persisted; no sole cause or harmlessness is proven."
+    }
+  },
+  "initial_relative_output_diagnostic": {
+    "runner_execution": {
+      "path": "Logs/gate-playtest-player-validation/execution.json",
+      "bytes": 1130,
+      "sha256": "b5895487e6236e545c12813f494d3560d6d0e22a3992cb96da6d4717fc006a52"
+    },
+    "scope": "The initial runner used a relative output path from the candidate working directory. Native media returned0 and wrote8PASS/7images undercandidate/Logs, but project-side report lookup falsely failed. Preserve as runner/path diagnostic, not a native media failure or a successful runner.",
+    "actual_candidate_report": {
+      "path": "Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Logs/gate-playtest-player-validation/full-films/report.txt",
+      "bytes": 2590,
+      "sha256": "f4ddae5f16d350128f8064906fb110ad5465d268260bb852fd64bf3ee7cf54d5"
+    },
+    "media_pass_count": 8
+  },
+  "corrected_native_quick_gates": {
+    "execution": {
+      "path": "Logs/gate-playtest-player-validation-absolute/execution.json",
+      "bytes": 3260,
+      "sha256": "a0abb7844faca39afc1c96e57c7257a60cea926ec2e3d8ae368f23dba5a1d47c"
+    },
+    "parent_terminal_receipt": "Root session39074: allthreegates nativeexit0; absolute output paths corrected before this rerun.",
+    "jobs": [
+      {
+        "name": "full-films",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-cinematicTestOut",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/full-films/report.txt",
+          "-requireFullStoryFilms",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/full-films/player.log"
+        ],
+        "started_utc": "2026-11-25T17:32:12.290987+00:00",
+        "pid": 51207,
+        "exit_code": 0,
+        "elapsed_seconds": 8.785,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "fd2d8fa20aa03600045943746bb00099f8ca715b6ea81c1efad21d83d60fcaed",
+        "ring_warnings": 0,
+        "pngs": 7,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt",
+          "bytes": 2226,
+          "sha256": "fd2d8fa20aa03600045943746bb00099f8ca715b6ea81c1efad21d83d60fcaed"
+        },
+        "player_log": {
+          "path": "Logs/gate-playtest-player-validation-absolute/full-films/player.log",
+          "bytes": 32334,
+          "sha256": "8868b626589137d45dbdf8387b0afdb43f86909222944c04632d89ea909f36dc"
+        },
+        "raw_ring_warning_lines": 0,
+        "actual_media_passes": 8,
+        "actual_media_failures": 0,
+        "images": [
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.ContainmentOpening.png",
+            "bytes": 575256,
+            "sha256": "e0ce8a30b6be551d04e1e22c39168770b0f6d2a8572b9a152c8b8807e238999e"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.LakeArrival.png",
+            "bytes": 1049090,
+            "sha256": "0ccfc5f8ea0f74237996d8ba79e61ce8f1b076c719ea20453d800dd27aadf32c"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.LakeDominion.png",
+            "bytes": 2070772,
+            "sha256": "5af44775ed7bcd56c612134cb74d46ca2e647617dd08373b43feb93b93ca2c1e"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.LakeHold.png",
+            "bytes": 2132843,
+            "sha256": "3631be70f988963c11f6f69a2faaeeb577e3bd710395ec92a8b072a064e71c25"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.LakePeace.png",
+            "bytes": 2154908,
+            "sha256": "e617009cef2fd97cad40e3b9d38a453a3fef7fb0631f89e692d647b059b0ebc6"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.LakesideEnding.png",
+            "bytes": 523520,
+            "sha256": "bbce10ff47fb893b9e84738694c8ec380baae876cb11ae00c3ad751afe8d5fd5"
+          },
+          {
+            "path": "Logs/gate-playtest-player-validation-absolute/full-films/report.txt.OpeningFull.png",
+            "bytes": 1264201,
+            "sha256": "51b76a3c94d0cff66ff829aaf136c8794f19ea3d1ff2590f3044bd47fe676d5b"
+          }
+        ]
+      },
+      {
+        "name": "shortcuts",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-shortcuttest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/shortcuts/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/shortcuts/player.log"
+        ],
+        "started_utc": "2026-11-25T17:32:21.078447+00:00",
+        "pid": 51333,
+        "exit_code": 0,
+        "elapsed_seconds": 38.386,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "a1e944f59bea21cfc6ed614318f20b9e507401131dea66046ada1fa214f252bb",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/gate-playtest-player-validation-absolute/shortcuts/report.txt",
+          "bytes": 1292,
+          "sha256": "a1e944f59bea21cfc6ed614318f20b9e507401131dea66046ada1fa214f252bb"
+        },
+        "player_log": {
+          "path": "Logs/gate-playtest-player-validation-absolute/shortcuts/player.log",
+          "bytes": 40064,
+          "sha256": "5670f0a6961828ca265223f5dabb5337ce8925756e963822bb403f2c0b20e85d"
+        },
+        "raw_ring_warning_lines": 0
+      },
+      {
+        "name": "water22",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-autotest",
+          "-autotestFilter",
+          "22",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/water22/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/gate-playtest-player-validation-absolute/water22/player.log"
+        ],
+        "started_utc": "2026-11-25T17:32:59.466324+00:00",
+        "pid": 51466,
+        "exit_code": 0,
+        "elapsed_seconds": 6.631,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "8a2df0080c1fbe889da7ff62e088c739c6d4191c0359beb670b14e686588bfe0",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/gate-playtest-player-validation-absolute/water22/report.txt",
+          "bytes": 258,
+          "sha256": "8a2df0080c1fbe889da7ff62e088c739c6d4191c0359beb670b14e686588bfe0"
+        },
+        "player_log": {
+          "path": "Logs/gate-playtest-player-validation-absolute/water22/player.log",
+          "bytes": 33090,
+          "sha256": "600c5183eebcc8b2a2801ea86a5cb5e274d2d00bac3a31530103776f54636469"
+        },
+        "raw_ring_warning_lines": 0
+      }
+    ],
+    "scope": "Strict8media checks/7images,14queuedshortcuts,renderedwater22 only. No native gate-route/motion/performance or full current-binary campaign claim."
+  },
+  "user_playtest_observation": {
+    "receipt_path": "Logs/user-playtest-full-story-20261125T173043238618Z-0f595731/session.json",
+    "sha256_at_observation": "4d94cd64124a8473fcadbae97586d4d689c2001a450815419a0c23618b7c2d8e",
+    "receipt": {
+      "status": "running",
+      "version": "0.5.1-preview",
+      "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731",
+      "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+      "build_state": "/home/mevlec/Data/Parasite/Logs/full-story-candidate/build-runs/20261125T173043238618Z-0f595731/runner-state.json",
+      "argv": [
+        "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/play.sh",
+        "-screen-fullscreen",
+        "0",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "900",
+        "-logFile",
+        "/home/mevlec/Data/Parasite/Logs/user-playtest-full-story-20261125T173043238618Z-0f595731/player.log"
+      ],
+      "started_utc": "2026-11-25T17:33:12.803561+00:00",
+      "scope": "User-controlled native desktop playtest; no synthetic inputs or automatic quit. Launch is not a completed human playthrough.",
+      "pid": 51569
+    },
+    "process_live_at_observation": true,
+    "mutable_until_terminal": true,
+    "parent_visible_window": "PARASITE Xwindow0xc0000a on:0; root observed RTX4050/Vulkan.",
+    "exe_at_observation": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Parasite.x86_64"
+  },
+  "open_gates": [
+    "AFTERcapture static-match failure: raw light contract/order still under diagnosis despite camera/settings/rain equality and restoration.",
+    "Gate actual native appearance/access/full-route/performance and currentplayer fullcampaign still require validation; the earlier graphicscandidate results apply to its own snapshot.",
+    "Editor combinedVulkan Graphics Ring Buffer warning gate remainsopen; no suppression/allocator tweak/qualitycut is a fix.",
+    "Physical keyboard/gamepad,completedhumanplaythrough,subjectiveaudio and finalpackage checks are separate."
+  ],
+  "scope": "User-requested work-in-progress test build. Successful build/import/physics/motion/quickgates do not make the gate pilot a final visual acceptance or finish the broader upgrade goal."
+}
