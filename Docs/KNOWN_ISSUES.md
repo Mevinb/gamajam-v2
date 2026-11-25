@@ -7,8 +7,11 @@ current work; every pass applies to its recorded source or binary.
   including both harbor outcomes and in-flight cargo recovery; a fresh extracted archive passes native 01–05, 5/5. These are
   isolated Null-graphics logic checks, not rendered appearance, physical controls or performance acceptance.
   [Native proof](verification/0.6.0-native-selected-20261126.json) and [package proof](verification/0.6.0-package-20261126.json).
+  The other sixteen logic cases also pass with native exit 0; across those three invocations, 25 distinct cases pass on the
+  same candidate. The original supervisor's numeric-order mistake produces exit 1; a separate read-only verifier exits 0
+  after 21 checks, retaining that failure. Render-only 21/22 remain. [Remaining cases](verification/0.6.0-native-remaining-20261126.json).
   Final Peace/Dominion source branches also pass 2/2 in the Null Editor. Separate red/green tests fix overlapping in-flight cargo restoration and
-  arrival cancellation; nine authored models pass267input/import checks. Remaining native scenarios, actual rendered appearance,
+  arrival cancellation; nine authored models pass267input/import checks. Remaining rendered scenarios, actual rendered appearance,
   physical controls and performance remain required. [Harbor scope](HARBOR_EXPANSION.md).
 - Source 0.5.2 adds close-range aiming guidance and a live-host/physical-spacing test driver. Full Route 08 passes in the Null
   Editor on the pinned pre-hint snapshot; two post-hint focused cases pass priority, occlusion, turn-away and actual E controls.

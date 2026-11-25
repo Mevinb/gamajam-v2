@@ -1,0 +1,573 @@
+{
+  "schema": 1,
+  "status": "NATIVE_REMAINING_16_OF_16_PASS_NULL_WITH_INDEPENDENT_METADATA_ORDER_CORRECTION",
+  "recordedUtc": "2026-11-25T20:40:27.429672+00:00",
+  "version": "0.6.0-preview",
+  "implementedMissionCount": 23,
+  "candidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
+  "runtimeSha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b",
+  "buildInfoSha256": "1009a8afed2434112b5ac23f5acc02b393d4b8a30f06605f354c06bfdeb62117",
+  "candidateBuildCommit": "aa9ec701fe46af2dfec23e1ad7508f0f5b38dbd4",
+  "repositoryHeadAtProof": "1b14b8c55d2d544b4e1bb3baf2e37fec3a8e116b",
+  "nativeCaseScope": "Individual checks are driven by simulated input and prepared fixtures on the actual built Linux player using Null graphics. The route cases perform their named campaign routes; this does not establish physical input, a complete human playthrough or graphical acceptance.",
+  "nativeExitCode": 0,
+  "originalSupervisorExitCode": 1,
+  "independentTerminalVerifierExitCode": 0,
+  "requestedNumericIds": [
+    "06",
+    "07",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "23",
+    "24"
+  ],
+  "actualSourceDeclarationOrder": [
+    "06",
+    "07",
+    "09",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "10",
+    "11",
+    "17",
+    "18",
+    "19",
+    "20",
+    "23",
+    "24"
+  ],
+  "selectedCases": [
+    {
+      "id": "06",
+      "result": "PASS",
+      "name": "Route A: leads \u2192 tail \u2192 guard badge \u2192 Main Gate \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "reportedSeconds": 222.6,
+      "detail": "Guard \u2192 tail \u2192 Main Gate \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Peace (route MainGate, 213s)"
+    },
+    {
+      "id": "07",
+      "result": "PASS",
+      "name": "Route B: leads \u2192 tail \u2192 scientist + keycard \u2192 Staff Terminal \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "reportedSeconds": 222.2,
+      "detail": "Scientist \u2192 tail \u2192 Staff Entrance \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Peace (route StaffTerminal, 213s)"
+    },
+    {
+      "id": "09",
+      "result": "PASS",
+      "name": "Suspicion only from observed violations; decays",
+      "reportedSeconds": 5.7,
+      "detail": "unobserved: no rise; observed: rose to 6; decayed 6 \u2192 0"
+    },
+    {
+      "id": "12",
+      "result": "PASS",
+      "name": "Missions 1-2: alley exit, first host, newsstand, eavesdrop",
+      "reportedSeconds": 18.8,
+      "detail": "alley exit, first host, newsstand read, eavesdrop done \u2192 now mission 3/14 (THE TAIL)"
+    },
+    {
+      "id": "13",
+      "result": "PASS",
+      "name": "CCTV spots a free amoeba; maintenance F-ability cuts camera power; scientist calms",
+      "reportedSeconds": 1.9,
+      "detail": "abilities reject free and inactive hosts"
+    },
+    {
+      "id": "14",
+      "result": "PASS",
+      "name": "The Tail: losing Petrov or crowding her sends her back to the last checkpoint; progress survives a reload",
+      "reportedSeconds": 51.0,
+      "detail": "reload: leg-1 progress persists, Petrov waits at the bus stop; 2 failures (lost, spotted) each sent her back"
+    },
+    {
+      "id": "15",
+      "result": "PASS",
+      "name": "Hunter Protocol: bio-scanner burns a worn body, leaving it breaks the trail, the arch passes only a free amoeba",
+      "reportedSeconds": 11.4,
+      "detail": "reload: Protocol Hound stays down (no hunters redeployed); burned bodies, trail breaks and the arch verified"
+    },
+    {
+      "id": "16",
+      "result": "PASS",
+      "name": "Blackout: palm-print lockout, grid reroute on timeout, three-body chain, blackout persists",
+      "reportedSeconds": 45.3,
+      "detail": "reload: blackout persists (22 lights dark); lockout, reroute-on-timeout and the chain verified"
+    },
+    {
+      "id": "10",
+      "result": "PASS",
+      "name": "Guard pursues + captures; amoeba ejects and survives",
+      "reportedSeconds": 1.0,
+      "detail": "captured after 0.7s, E ejected, escape window 2.7s, game continues"
+    },
+    {
+      "id": "11",
+      "result": "PASS",
+      "name": "Pause + restart",
+      "reportedSeconds": 0.2,
+      "detail": "pause/resume OK, restart reloaded the city with a fresh amoeba"
+    },
+    {
+      "id": "17",
+      "result": "PASS",
+      "name": "Peace: explicit lake choice \u2192 Continue \u2192 riverside missions \u2192 checkpoint recovery \u2192 ferry",
+      "reportedSeconds": 22.2,
+      "detail": ""
+    },
+    {
+      "id": "18",
+      "result": "PASS",
+      "name": "Dominion: explicit lake choice \u2192 Continue \u2192 branch relay \u2192 checkpoint recovery \u2192 ferry",
+      "reportedSeconds": 22.2,
+      "detail": ""
+    },
+    {
+      "id": "19",
+      "result": "PASS",
+      "name": "River falls: active/inactive bodies recover once; story/NPC fixtures are excluded",
+      "reportedSeconds": 36.1,
+      "detail": ""
+    },
+    {
+      "id": "20",
+      "result": "PASS",
+      "name": "MissionProp holds: original owner/state/authorization and pause semantics",
+      "reportedSeconds": 17.0,
+      "detail": ""
+    },
+    {
+      "id": "23",
+      "result": "PASS",
+      "name": "Island rescue branches: moving people, carried signal, all-free assembly and protected launch",
+      "reportedSeconds": 508.9,
+      "detail": ""
+    },
+    {
+      "id": "24",
+      "result": "PASS",
+      "name": "Island rescue recovery: capture, visited cover, partial roster, signal custody and ally reporting",
+      "reportedSeconds": 316.1,
+      "detail": ""
+    }
+  ],
+  "summary": "16/16 passed",
+  "nativePlayerPid": 84441,
+  "supervisorPid": 84440,
+  "playerStartedUtc": "2026-11-25T20:13:19.273721+00:00",
+  "playerFinishedUtc": "2026-11-25T20:38:37.645812+00:00",
+  "verificationFinishedUtc": "2026-11-25T20:38:42.775081+00:00",
+  "nativeWallSeconds": 1518.372,
+  "lastSupervisorHeartbeatElapsedSeconds": 1516.371,
+  "perCaseDurationPrecision": "Raw case durations are rounded to 0.1 seconds; this is not a performance benchmark.",
+  "timeoutSeconds": 3600,
+  "watchdogTriggered": false,
+  "observedNice": 10,
+  "command": [
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-autotest",
+    "-autotestFilter",
+    "06,07,09,10,11,12,13,14,15,16,17,18,19,20,23,24",
+    "-autotestOut",
+    "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/report.txt",
+    "-logFile",
+    "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/player.log"
+  ],
+  "isolatedEnvironment": {
+    "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/config",
+    "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/cache",
+    "XDG_DATA_HOME": "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/data",
+    "TMPDIR": "/home/mevlec/Data/Parasite/Logs/candidate06-native-remaining-reviewed/tmp"
+  },
+  "actualBackend": {
+    "name": "Null",
+    "marker": true,
+    "reportHeader": "PARASITE autotest \u2014 2026-11-26 01:43:20 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit",
+    "rawRingWarningCount": 0
+  },
+  "metadataGuardDefect": {
+    "cause": "The supervisor compared selected report IDs to numeric order. AutoTest executes its unchanged declaration order:12\u201316 precede10\u201311. Exact membership and scenario assertions were not wrong.",
+    "originalFailure": "RuntimeError: Actual native exit0, exact16PASS/SUMMARY16/16 or Null marker failed",
+    "originalSupervisorVerifiedPass": false,
+    "originalNumericOrderGuard": false,
+    "nativeScenarioReruns": 0,
+    "executedSupervisor": {
+      "path": "Logs/candidate06-native-remaining/executed-run-cd5e2f.py",
+      "bytes": 10627,
+      "sha256": "cd5e2f0348d80f13ff72f73e079fbe7bf819f644e743f317e709f83f188fb568"
+    },
+    "unchangedAutoTestSourceSha256": "16a2c1c9901fd631f3c28d12b47d13c5f24a97ed56ed67c4a612fed3237038f9",
+    "declarationProvenance": "Live AutoTest.cs, git aa9ec70 contents and the original build snapshot row share the same SHA.",
+    "correctionScope": "Read-only terminal reanalysis requires 16 unique exact requested IDs, all PASS, exact source declaration order, SUMMARY 16/16, actual native exit 0, no watchdog/cancel, the expected original guard-only failure, immutable original report/log and full fresh integrity. No scenario, timing or rule requirement was relaxed."
+  },
+  "toolReceipts": {
+    "originalSupervisor": {
+      "sessionId": 4533,
+      "terminalChunk": "5ccda1",
+      "exitCode": 1
+    },
+    "independentTerminalVerifier": {
+      "sessionId": 43512,
+      "terminalChunk": "7e21c9",
+      "exitCode": 0,
+      "source": {
+        "path": "Logs/candidate06-native-remaining/verify_terminal.py",
+        "bytes": 7755,
+        "sha256": "10e9609f3ac697dfbfdccb2b6d3059b682f8279b34f8d883850d6b754d5ee0fc"
+      },
+      "receipt": {
+        "path": "Logs/candidate06-native-remaining/terminal-reanalysis.json",
+        "bytes": 8892,
+        "sha256": "b4e13df48d55cb08ab706e35b896bcc10224f55687f2416413e84a7ea2a17675"
+      },
+      "checksPassed": 21
+    }
+  },
+  "sourceIdentity": {
+    "original_build_source_snapshot": "/home/mevlec/Data/Parasite/Logs/full-story-candidate/build-runs/20261125T191303012539Z-a6d70d5c/source-snapshot-after.json",
+    "original_build_source_sha256": "8946a4d803d3b01ebf9bb84c6f586a6d96f162c4db34b8fca6486e4ca54d5970",
+    "reviewed_source_snapshot": "/home/mevlec/Data/Parasite/Logs/candidate06-gpu-stage/reviewed-source-20261126-physical-recovery.json",
+    "reviewed_source_sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763",
+    "exact_delta_from_built_source": {
+      "added": [
+        {
+          "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs",
+          "bytes": 1036,
+          "sha256": "628b00814a41ddc8f07518a4fee4efd2e3a6fdd8a0b2d496d7676c81e8dbeab7"
+        },
+        {
+          "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs.meta",
+          "bytes": 60,
+          "sha256": "99e123befbd7f4b2365e9b189ddc26628f0e67b3d73bb75773a6b6efa5597a55"
+        }
+      ],
+      "removed": [],
+      "modified": [
+        {
+          "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+          "build": {
+            "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+            "bytes": 46524,
+            "sha256": "cf260aab713bfb85aee48d641bb7c30e9e50255a3182d4ab89cbfaf7ced727fc"
+          },
+          "reviewed_frozen": {
+            "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+            "bytes": 67853,
+            "sha256": "d480cf467f64c7dca03eca4563e6017d89b5bea827b7dc5f8bb00c3f11518d16"
+          }
+        }
+      ]
+    },
+    "scope": "The immutable candidate contains its original build snapshot. Reviewed current-source changes, including regression tests, are not claimed to be in that candidate."
+  },
+  "integrity": {
+    "before": {
+      "checks": {
+        "current_source_matches_reviewed_frozen": true,
+        "frozen_snapshot_json_unchanged": true,
+        "retained_preview_matches_build": true,
+        "user_preview_matches_build": true,
+        "candidate_matches_build": true,
+        "runtime_unchanged": true,
+        "build_info_unchanged": true
+      },
+      "protected_user_process": {
+        "utc": "2026-11-25T20:13:19.262017+00:00",
+        "process_status": "running_identity_matches",
+        "start_ticks": 683333
+      },
+      "source_sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763",
+      "retained_preview_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "user_preview_tree_sha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "candidate_tree_sha256": "643e3db8397fca464e7f1af664bfd15e395f763721e4c7bed02a7cb1b063128c"
+    },
+    "after": {
+      "checks": {
+        "current_source_matches_reviewed_frozen": true,
+        "frozen_snapshot_json_unchanged": true,
+        "retained_preview_matches_build": true,
+        "user_preview_matches_build": true,
+        "candidate_matches_build": true,
+        "runtime_unchanged": true,
+        "build_info_unchanged": true
+      },
+      "protected_user_process": {
+        "utc": "2026-11-25T20:38:42.773979+00:00",
+        "process_status": "running_identity_matches",
+        "start_ticks": 683333
+      },
+      "source_sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763",
+      "retained_preview_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "user_preview_tree_sha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "candidate_tree_sha256": "643e3db8397fca464e7f1af664bfd15e395f763721e4c7bed02a7cb1b063128c"
+    },
+    "originalPostIntegrityPass": true,
+    "freshIndependentChecks": [
+      {
+        "name": "Actual native0 and original supervisor1 retained",
+        "passed": true
+      },
+      {
+        "name": "Original supervisor is terminal before reanalysis",
+        "passed": true
+      },
+      {
+        "name": "Original native child is terminal",
+        "passed": true
+      },
+      {
+        "name": "Executed buggy supervisor source pinned and preserved",
+        "passed": true
+      },
+      {
+        "name": "Original failure is the expected metadata guard, not watchdog/cancel",
+        "passed": true
+      },
+      {
+        "name": "Exact16unique requested IDs all PASS, no extra/missing rows",
+        "passed": true
+      },
+      {
+        "name": "Actual report order matches unchanged source declaration, not numeric order",
+        "passed": true
+      },
+      {
+        "name": "Native report bytes/rows/SUMMARY16of16 match original receipt",
+        "passed": true
+      },
+      {
+        "name": "Actual Null log/report markers retained",
+        "passed": true
+      },
+      {
+        "name": "AutoTest declaration source unchanged from exact build snapshot",
+        "passed": true
+      },
+      {
+        "name": "Reviewed frozen-source snapshot still pinned",
+        "passed": true
+      },
+      {
+        "name": "All original before/after integrity checks pass",
+        "passed": true
+      },
+      {
+        "name": "source saved before/after snapshots identical",
+        "passed": true
+      },
+      {
+        "name": "retained-preview saved before/after snapshots identical",
+        "passed": true
+      },
+      {
+        "name": "user-preview saved before/after snapshots identical",
+        "passed": true
+      },
+      {
+        "name": "candidate saved before/after snapshots identical",
+        "passed": true
+      },
+      {
+        "name": "Actual current source matches reviewed frozen source and terminal snapshot",
+        "passed": true
+      },
+      {
+        "name": "Actual immutable candidate runtime/BUILD_INFO still pinned",
+        "passed": true
+      },
+      {
+        "name": "Actual candidate full tree matches terminal snapshot",
+        "passed": true
+      },
+      {
+        "name": "Actual retained preview full tree matches terminal snapshot",
+        "passed": true
+      },
+      {
+        "name": "Actual protected user-preview full tree matches terminal snapshot",
+        "passed": true
+      }
+    ],
+    "freshProtectedUserObservation": {
+      "utc": "2026-11-25T20:39:05.539687+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    }
+  },
+  "evidence": {
+    "execution": {
+      "path": "Logs/candidate06-native-remaining-reviewed/execution.json",
+      "bytes": 14685,
+      "sha256": "aeff4b2b67260be6de81ea3bcfd6d675905e75a5f76268345238ca4ba2127d95"
+    },
+    "report": {
+      "path": "Logs/candidate06-native-remaining-reviewed/report.txt",
+      "bytes": 2966,
+      "sha256": "1a80d5ad53a5fe351bf2f2accc015863a59d299b225d96181464a9d5dbe7d469"
+    },
+    "playerLog": {
+      "path": "Logs/candidate06-native-remaining-reviewed/player.log",
+      "bytes": 206972,
+      "sha256": "da922c201d79f198ea4ee0498d03380937ff82f26bf89537b7ca2cedf28a9590"
+    },
+    "snapshots": [
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/source-before.json",
+        "bytes": 609861,
+        "sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/source-after.json",
+        "bytes": 609861,
+        "sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/retained-preview-before.json",
+        "bytes": 65547,
+        "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/retained-preview-after.json",
+        "bytes": 65547,
+        "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/user-preview-before.json",
+        "bytes": 64215,
+        "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/user-preview-after.json",
+        "bytes": 64215,
+        "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/candidate-before.json",
+        "bytes": 56224,
+        "sha256": "df6c2a286fb6a8e36fa6629c3c2893f6c4bc6e4bf2b28c1ba28cd807093bf403"
+      },
+      {
+        "path": "Logs/candidate06-native-remaining-reviewed/candidate-after.json",
+        "bytes": 56224,
+        "sha256": "df6c2a286fb6a8e36fa6629c3c2893f6c4bc6e4bf2b28c1ba28cd807093bf403"
+      }
+    ]
+  },
+  "currentCandidateCoverageUnion": {
+    "uniquePassingCaseCount": 25,
+    "uniquePassingCaseIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27"
+    ],
+    "namedRuns": [
+      {
+        "caseIds": [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05"
+        ],
+        "scope": "Fresh isolated extracted archive basic checks",
+        "receipt": {
+          "path": "Logs/extracted-candidate-basic/20261125T193351004552Z-33165d7b/execution.json",
+          "bytes": 6425,
+          "sha256": "15ab7952eaf25fc4fe17dce028f1222893039f0713689efe01922942e36b643c"
+        }
+      },
+      {
+        "caseIds": [
+          "08",
+          "25",
+          "26",
+          "27"
+        ],
+        "scope": "Four selected candidate logic cases",
+        "receipt": {
+          "path": "Logs/harbor-native-0.6-selected/execution.json",
+          "bytes": 7065,
+          "sha256": "ba694e511000574200eba8ce658f32c5a6390b76663a54b456c7f097bd34a240"
+        }
+      },
+      {
+        "caseIds": [
+          "06",
+          "07",
+          "09",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "10",
+          "11",
+          "17",
+          "18",
+          "19",
+          "20",
+          "23",
+          "24"
+        ],
+        "scope": "This remaining16-case native run, independently resolved metadata order",
+        "receipt": {
+          "path": "Logs/candidate06-native-remaining/terminal-reanalysis.json",
+          "bytes": 8892,
+          "sha256": "b4e13df48d55cb08ab706e35b896bcc10224f55687f2416413e84a7ea2a17675"
+        }
+      }
+    ],
+    "artifactRelationship": "All named runs retain the exact 0435 runtime. Archive extraction additionally verifies every shipped file SHA/mode against the candidate-derived package manifest. This is a union across separate named invocations, not one complete-suite process.",
+    "unrunRenderOnlyCaseIds": [
+      "21",
+      "22"
+    ],
+    "singleProcessAll27Claim": false
+  },
+  "limits": [
+    "Render-only cases 21/22 remain unrun on this exact candidate. No generic 27/27 pass is claimed.",
+    "Null logic checks do not establish RTX/Vulkan visuals, hardware ray tracing, shader/graphics-settings acceptance, physical devices, speaker listening, isolated performance or human playthrough.",
+    "Current frozen source 9532 contains two added regression files and one changed HarborAcceptance helper versus original build source 8946. These helpers are source-only and are not claimed to be inside the immutable candidate.",
+    "The original supervisor exits 1 and its failure receipt remains unchanged. Only a separate read-only verifier exits 0 after checking the actual native 16 PASS / exit 0 result.",
+    "The separate existing 0.5.1 user preview remains its own twenty-mission artifact; no user process was stopped or signaled."
+  ]
+}

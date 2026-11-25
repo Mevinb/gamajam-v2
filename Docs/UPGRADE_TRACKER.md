@@ -38,7 +38,10 @@ Continuation, pressure recovery, in-flight cargo recovery and arrival cancellati
 source branches pass2/2 in272.328seconds with Editor exit0. The0.6native candidate now passes selected08/25/26/27,4/4,
 and the portable archive's fresh extracted player passes01–05,5/5; both are isolated Null-graphics logic checks.
 [Native proof](verification/0.6.0-native-selected-20261126.json), [package proof](verification/0.6.0-package-20261126.json).
-Rendered appearance, remaining native scenarios, physical controls and performance remain pending. The running user0.5.1
+The remaining sixteen logic cases now also pass with native exit 0. Across the three named invocations, 25 distinct cases
+pass on this exact candidate; rendered 21/22 remain. The original supervisor's numeric-order failure is preserved beside a
+separate read-only verifier's exit 0 and 21 passing checks. [Remaining-native proof](verification/0.6.0-native-remaining-20261126.json).
+Rendered appearance, physical controls and performance remain pending. The running user0.5.1
 player still has20missions. [Harbor implementation/evidence](HARBOR_EXPANSION.md).
 
 The first twenty missions comprise original14, branch-sensitive riverside15–17 and island18–20. Explicit Peace/Dominion and
@@ -98,7 +101,7 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
 - Updated gate-capture schema 2 passes CPU compilation and retains raw semantic light/camera inputs and restoration checks.
   Fresh BEFORE/AFTER renders are required; the historical mismatch remains open. [Fixture proof](verification/gate-capture-fixture-20261125.json).
 - Use the existing0.6candidate for rendered21, exact-player media/water/settings and isolated performance checks. Its native
-  08/25/26/27 already pass; do not repeat them because older notes call them pending. Keep prepared Null/simulated logic
+  25 distinct logic cases already pass across the three named runs; do not repeat them because older notes call them pending. Keep prepared Null/simulated logic
   separate from graphics and physical input. Historical failures remain in their original artifact-specific reports.
 - Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and
   story/audio/settings behavior on the new binary.
