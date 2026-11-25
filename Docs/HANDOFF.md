@@ -17,6 +17,11 @@ The broad graphics/realism/cinematic/bug-fix/continued-mission goal remains acti
   Exact class `Parasite.Tests.RailCampaignTests`, seven cases, owned3600s timeout, Null, nice15, idle I/O, two job workers.
   **Keep that checkout's C#/assets/metas fixed and do not launch another Editor until the actual process is terminal.**
   Poll the same handle/process; an observation timeout or old note never authorizes restart. No current whole-suite result.
+- The live suite has emitted a real destroyed-body defect: five MissingReferenceException stacks from AmoebaController.Root
+  via AudioBus.FocusPosition (music/listener/ambience), MissionManager.Update and HUD.TickCompass. AmoebaAgent.Body casts a
+  destroyed Unity Blob to non-null IControllable; the2.2s checkpoint reload gap exposes it. Rail agent is preparing a Logs-only
+  central lifetime/fail-closed proposal and actual body-loss tests; no live source edits are allowed before suite terminal.
+  Later method-level PASS markers exist for coach rebind and coordinator destruction, but final NUnit counts remain pending.
 - Frozen current worktree sources: RailCampaign `e4488bc6137b0f334097fbc6d901713f631b7f86c65ac6db75413ed37e6480c8`;
   RailAcceptance `6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca`;
   AutoTest `1f998595a804a199fb6b7b780b2122360b94d1568abc7fa087a95e1591aede5c`.
@@ -70,6 +75,9 @@ The broad graphics/realism/cinematic/bug-fix/continued-mission goal remains acti
   The superseded3894 verification data is retired with exact reconstruction/retained-code/lossless-log receipts; see history, never call it runnable.
 - Disk last observed: Data~2.6GiB free, root filesystem~14GiB. A read-only full-candidate archival plan to root storage is being reviewed for the next build.
   Never delete/move protected artifacts blindly or lower the build helper's2.5GiB minimum reserve. Recheck actual capacity before writing.
+  The storage audit finds that relocating private0.6.1alone still does not meet the former3GiB Data reserve. Hunter is preparing
+  a dry-default runner adaptation for a fresh candidate under the isolated worktree's root filesystem while retaining all
+  protected-preview paths in the base project. No build/relocation/removal is authorized or executed from that plan yet.
 
 The current runtime annex does not require scene regeneration. Any later CityBuilder/MissionLayout/CityLayout builder change still requires the real-GPU generation workflow, never a Null lightmap bake.
 Use existing `Tools/unity.sh` in the intended checkout with its unchanged global flock. All test launches are root-owned and serialized.
