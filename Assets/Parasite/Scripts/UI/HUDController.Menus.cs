@@ -223,7 +223,8 @@ namespace Parasite.UI
         // ================================================================== end screen
         RectTransform endRoot;
         CanvasGroup endGroup;
-        Button endPlay, endReplay, endContinue;
+        Button endPlay, endReplay, endContinue, endContinueIsland;
+        readonly List<Selectable> endActionRow = new();
         Text[] endValues;
         Text endHeadline, endEpilogue, endOutcome;
         bool endOpen;
@@ -288,7 +289,14 @@ namespace Parasite.UI
                 if (gm) gm.ContinueAfterLake();
             }, 640, 62, 28, TextAnchor.MiddleCenter);
             ((RectTransform)endContinue.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
-            var row = new List<Selectable>();
+            endContinueIsland = UIKit.Btn(col, "Continue · The Far Shore", () =>
+            {
+                var gm = GameManager.Instance;
+                if (gm) gm.ContinueIsland();
+            }, 640, 62, 28, TextAnchor.MiddleCenter);
+            ((RectTransform)endContinueIsland.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
+            endContinueIsland.gameObject.SetActive(false);
+            var row = endActionRow;
             string[] labels = { "Play Again", "Main Menu", "Quit" };
             UnityEngine.Events.UnityAction[] actions =
             {
@@ -311,6 +319,7 @@ namespace Parasite.UI
             continueNavigation.selectOnDown = endReplay;
             continueNavigation.selectOnUp = endReplay;
             endContinue.navigation = continueNavigation;
+            endContinueIsland.navigation = continueNavigation;
             foreach (var selectable in row)
             {
                 var navigation = selectable.navigation;
@@ -347,7 +356,14 @@ namespace Parasite.UI
             else { endHeadline.text = "THE EVIDENCE IS OUT."; endEpilogue.text = Epilogue; }
             bool afterlakeComplete = RunState.Has(AfterlakeCampaign.Departed);
             endContinue.gameObject.SetActive(!RunState.AfterlakeStarted && RunState.LakesideOutcome != EndingOutcome.Unchosen);
-            endPlay = endContinue.gameObject.activeSelf ? endContinue : endReplay;
+            endContinueIsland.gameObject.SetActive(afterlakeComplete && !RunState.IslandStarted);
+            endPlay = endContinueIsland.gameObject.activeSelf ? endContinueIsland : endContinue.gameObject.activeSelf ? endContinue : endReplay;
+            foreach (var action in endActionRow)
+            {
+                var navigation = action.navigation;
+                navigation.selectOnUp = endPlay;
+                action.navigation = navigation;
+            }
             if (afterlakeComplete)
             {
                 endHeadline.text = d.outcome == EndingOutcome.Peace ? "THE RIVER CAN HEAL." : "THE FIRST MANY ANSWER.";
@@ -355,6 +371,12 @@ namespace Parasite.UI
                 endEpilogue.text = d.outcome == EndingOutcome.Peace
                     ? "The responders have Petrov's formula. The residents keep their names, their bodies and their futures. You leave the last host at the quay and cross the water alone. A quiet life can still be something you protect."
                     : "The relay carries your signal beyond the shelter. For the first time, another shore answers. You leave this borrowed body at the quay; your next foothold is already waiting across the water.";
+            }
+            if(RunState.Has(IslandRoster.Departed))
+            {
+                endHeadline.text=d.outcome==EndingOutcome.Peace?"A SHORE OF THEIR OWN.":"THE ROUTES ARE YOURS.";
+                endOutcome.text=d.outcome==EndingOutcome.Peace?"THREE LIVES SAFE  ·  ALL HOSTS RELEASED":"THREE COURIERS DELIVERED  ·  RELAY OUTBOUND";
+                endEpilogue.text=d.outcome==EndingOutcome.Peace?"The launch carries three people who keep their own minds. The signal burns over a quieter shore. What you saved will outlive the experiment.":"The couriers carry your answer beyond the quarantine line. No body stays occupied, but the route is no longer Vale's. Another shore begins to answer.";
             }
             int secs = Mathf.Max(0, Mathf.FloorToInt(d.timeSeconds));
             float peak = Mathf.Clamp(d.peakSuspicion, 0f, SuspicionRules.Max);

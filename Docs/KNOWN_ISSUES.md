@@ -13,15 +13,19 @@ all bugs are fixed or every new cinematic has been verified in the final player.
   pass. Five Editor cases now pass real source-tail progression, arrival/branch departure timing and skip/fallback behavior.
   Subjective listening, refuge/roster clip runtime playback and built-player checks remain pending. The preview is unchanged.
 - The 0.5.0 preview includes four complete RTX-rendered lake films and Blender-designed live sets. All four films pass actual
-  Editor decode/choice gates; strict automated built-player full-lake decode remains pending. The complete 80-second Blender
+  Editor decode/choice gates; built-player decode succeeds but normal shutdown remains unresolved. The complete 80-second Blender
   opening is still rendering. The retained 0.4.2 archive contains the earlier two three-second establishing inserts.
-- Corrected M19/M20 runtime is applied beyond the preview. Its first Peace rescue fixture timed out on a physical movement leg;
-  a later diagnostic reached two boarded passengers, then recorded a sustained collision with Morgan at the gangway. It exited
-  natively without XML. A stricter berth-arrival/off-aisle parking correction now passes the actual gangway round trip and
-  both outer-slot cases (3/3). The full Peace branch now passes 1/1 with checkpoint/assembly/departure checks and clean exit.
-  Dominion, remaining custody/capture/recovery cases and rebuilt-player checks are still required.
-- The reflection diagnostic proves native probe capture completes when realtime probes are enabled in QualitySettings; both
-  saved quality levels currently disable it. The preset/lifecycle fix remains staged and needs transition/cleanup GPU checks.
+- M19/M20 source now passes both full branches and all 14 rescue fixtures, including physical custody, generation/loss,
+  cover/checkpoint, boarding and all-free departure gates. A fresh built-player run is still required.
+- The centred free-body camera passes 17,347 GPU samples; human framing and canonical markers remain. Physical input and
+  extended human playthroughs remain separate from this automated camera proof.
+- Reflection lifecycle and normal water pass six actual RTX/OpenGL cases; native capture owns its RT, so publication now uses
+  an independent copied Cubemap. Null scheduling is guarded. Built-player/Vulkan checks remain pending.
+- The immutable preview decodes all four lake films and two old clips and wraps the hold on Vulkan and OpenGL, but both strict
+  test processes hang during native video cleanup and hit watchdog 137. Decode reports alone are not end-to-end passes.
+  Exact Unity symbols locate the cleanup lock; its cause/repair remains under investigation.
+- A new Blender precast-wall kit is staged with 2K PBR maps and unchanged physical openings/colliders. Unity import, appearance
+  and performance are unverified; it is not yet in the live source/build.
 - The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after
   GPU views and the built Vulkan player confirm visible water with unchanged physical footing. The historical 0.4.1 archive
   retains the earlier rendering behavior.

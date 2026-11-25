@@ -94,7 +94,7 @@ namespace Parasite.Stealth
             HostCharacter best = null; float bestD = float.MaxValue;
             foreach (var w in HostCharacter.All)
             {
-                if (!w || !w.IsAwakeNpc) continue;
+                if (!w || !w.IsAwakeNpc || !w.ReportsPlayerViolations) continue;
                 if (targetRoot && w.transform == targetRoot) continue;
                 if (ignore && w.transform == ignore) continue;
                 if (!CanSee(w, point, targetRoot, RangeFor(w) * rangeScale)) continue;

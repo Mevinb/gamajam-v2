@@ -22,6 +22,12 @@ namespace Parasite.Possession
         CinemachineCamera vcam;
         CinemachineThirdPersonFollow follow;
         float yaw, pitch = 14f, distance = 4f, targetDistance = 4f;
+        bool lowClearance;
+        AmoebaController lowBody, freeBody;
+        float normalCollisionDamping;
+        Vector3 normalFollowDamping = new(.1f,.25f,.2f);
+        Vector3 normalShoulder = new(.45f,.15f,0);
+        float normalArm = .25f;
         float transitionT = 1f, transitionDuration = 0.35f, fovKick;
         Vector3 transitionFrom;
         const float BaseFov = 58f;
@@ -69,7 +75,8 @@ namespace Parasite.Possession
             follow.AvoidObstacles.Enabled = true;
             follow.AvoidObstacles.CollisionFilter = Layers.EnvironmentMask;
             follow.AvoidObstacles.CameraRadius = 0.2f;
-            follow.AvoidObstacles.DampingIntoCollision = 0.05f;
+            // Resolve a shortening boom immediately; even a brief lag can put the camera through a nearby wall.
+            follow.AvoidObstacles.DampingIntoCollision = 0;
             follow.AvoidObstacles.DampingFromCollision = 0.4f;
             vgo.AddComponent<CinemachineRotateWithFollowTarget>();
         }
@@ -80,14 +87,77 @@ namespace Parasite.Possession
         public void SetTarget(Transform t, float dist, bool snap = false, float glideSeconds = 0.35f)
         {
             if (!t) return;
+            if (lowClearance && (!lowBody || t != lowBody.CameraTarget))
+            {
+                SetLowClearance(null);
+                snap = true; // Leaving a cramped body view must not sweep the camera through its wall.
+            }
             transitionFrom = pivot.position;
             target = t;
+            freeBody = t.GetComponentInParent<AmoebaController>();
+            // The small free body needs a centred rig even outside the culvert. A human-height
+            // shoulder/arm offset can hide it below the frame when a wall shortens the boom.
+            normalShoulder = freeBody ? Vector3.zero : new Vector3(.45f,.15f,0);
+            normalArm = freeBody ? 0 : .25f;
+            normalFollowDamping = freeBody ? Vector3.zero : new Vector3(.1f,.25f,.2f);
+            if (!lowClearance && follow)
+            {
+                follow.ShoulderOffset = normalShoulder;
+                follow.VerticalArmLength = normalArm;
+                follow.Damping = normalFollowDamping;
+            }
             targetDistance = dist;
             transitionDuration = Mathf.Max(0.01f, glideSeconds);
             transitionT = snap ? 1f : 0f;
-            if (snap) { pivot.position = t.position; distance = dist; }
+            if (snap)
+            {
+                pivot.position = TrackingPosition(); distance = lowClearance ? 1.1f : dist;
+                if (lowClearance && vcam) vcam.PreviousStateIsValid = false;
+            }
         }
 
+        // The owned pivot frames the actual free body; canonical body/host markers are never edited.
+        Vector3 TrackingPosition() => freeBody && target == freeBody.CameraTarget
+            ? freeBody.Center : target ? target.position : pivot.position;
+
+        public void SetLowClearance(AmoebaController body)
+        {
+            bool enabled = body && target == body.CameraTarget;
+            if (enabled == lowClearance && (!enabled || lowBody == body)) return;
+            if (enabled && !lowClearance && follow)
+            {
+                normalCollisionDamping = follow.AvoidObstacles.DampingIntoCollision;
+                normalFollowDamping = follow.Damping;
+            }
+            lowClearance = enabled; lowBody = enabled ? body : null;
+            if (enabled) { distance = Mathf.Min(distance,1.1f); pitch = Mathf.Clamp(pitch,-5,12); }
+            if (follow)
+            {
+                follow.ShoulderOffset = enabled ? Vector3.zero : normalShoulder;
+                follow.VerticalArmLength = enabled ? 0 : normalArm;
+                follow.CameraDistance = distance;
+                // A collision-shortened tunnel boom has no room for a lagging shoulder:
+                // keep the real body centre on the view axis through hops and side looks.
+                follow.Damping = enabled ? Vector3.zero : normalFollowDamping;
+                follow.AvoidObstacles.DampingIntoCollision = enabled ? 0 : normalCollisionDamping;
+            }
+            if (pivot && target) { pivot.position = TrackingPosition(); transitionFrom = pivot.position; transitionT = 1; }
+            if (vcam) vcam.PreviousStateIsValid = false;
+        }
+
+        public void NotifyBodyWarp(AmoebaController body, Vector3 displacement)
+        {
+            if (!body || target != body.CameraTarget || !pivot) return;
+            pivot.position = TrackingPosition(); transitionFrom = pivot.position; transitionT = 1;
+            if (vcam)
+            {
+                vcam.OnTargetObjectWarped(pivot,displacement);
+                vcam.PreviousStateIsValid = false;
+            }
+        }
+        public bool IsLowClearance => lowClearance;
+        public float Pitch => pitch;
+        public void SetPitch(float value) => pitch = Mathf.Clamp(value,lowClearance ? -5 : -25,lowClearance ? 12 : 65);
         public void SetYaw(float y) { yaw = y; }
         public void Kick(float fovDegrees) { fovKick = Mathf.Max(fovKick, fovDegrees); }
 
@@ -98,7 +168,7 @@ namespace Parasite.Possession
             {
                 var d = GameInput.LookDelta;
                 yaw += d.x;
-                pitch = Mathf.Clamp(pitch - d.y, -25f, 65f);
+                pitch = Mathf.Clamp(pitch - d.y, lowClearance ? -5f : -25f, lowClearance ? 12f : 65f);
             }
         }
 
@@ -111,11 +181,11 @@ namespace Parasite.Possession
                 {
                     transitionT = Mathf.Min(1f, transitionT + dt / transitionDuration);
                     float e = transitionT * transitionT * (3f - 2f * transitionT);
-                    pivot.position = Vector3.Lerp(transitionFrom, target.position, e);
+                    pivot.position = Vector3.Lerp(transitionFrom, TrackingPosition(), e);
                 }
-                else pivot.position = target.position;
+                else pivot.position = TrackingPosition();
             }
-            distance = Mathf.Lerp(distance, targetDistance, 1f - Mathf.Exp(-5f * dt));
+            distance = Mathf.Lerp(distance, lowClearance ? 1.1f : targetDistance, 1f - Mathf.Exp(-5f * dt));
             follow.CameraDistance = distance;
             pivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
             fovKick = Mathf.MoveTowards(fovKick, 0f, dt * 25f);

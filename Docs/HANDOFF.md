@@ -15,34 +15,42 @@ The preview has since exited normally with code 0 (recorded in `Logs/user-playte
 After that normal exit and the reflection diagnostic, the frozen RTX opening render was resumed. Check its actual
 process/checkpoint before GPU work; request a safe STOP and wait for terminal completion first.
 
-Post-build CPU-only work has advanced the live source beyond that immutable preview: corrected M19/M20 v2 is applied
-from `Logs/island-followup-v2-apply-manifest.json`, plus the staged reflection diagnostic helper. Runtime/editor/Linux API
-compilation passes 138/22/138 sources after the island voice timing helper. After the measured boarding correction,
-the full Peace M19/M20 branch passes actual headless Unity execution; Dominion and remaining recovery cases are pending.
-No new built-player claim is made. The source-execution
-ownership harness improves from 3/9 on v1 to 9/9 on v2 using stand-ins; real motion/capture/recovery/boarding fixtures remain
-required. The current preview still contains only M18 and the full lake films. Do not overwrite its running binary.
-The four lake films and island art kit are committed; the new island runtime/camera/visual work remains uncommitted until
-its remaining execution gates pass.
-The first live Peace rescue test ran and failed on a physical leg at local `(9.97,-7.30)` toward `(17,-9.50)`;
-`Logs/island-rescue-peace-logic.xml` records the exact failure. Authoritative M19/M20 v2 is in the live working tree,
-not yet verified by Unity/player execution. The campaign agent owns diagnosis of that movement failure. The probe matrix
-passed its diagnostic: quality-off never completed; quality-on completed with six real face/mip proofs. Runtime quality
-policy changes remain staged until review/execution. Eight audited island voice clips were generated offline on CPU and
-published with all 59 existing catalogue entries preserved. Arrival/departure now use finite audible clip windows, with
-the original silent fallback and 2.5-second vessel motion retained. Technical audio/key gates pass 8/8. Five focused Editor
-cases now pass actual FMOD source tails, skip/fallback and both departures after fixing the arrival scene-frame timing bug.
-Subjective listening, refuge/roster clip playback and built-player timing remain pending. Portable evidence is under
-`ArtSource/IslandVoices`; exact offline regeneration is in `Tools/audio/gen_island_voice.py` (dry by default).
-The diagnostic Peace fixture (`Logs/island-rescue-peace-diagnostic.*`) delivered all three people, mounted the signal and
-boarded two, then measured a sustained capsule collision with Morgan at the gangway. It exited natively (139) without XML;
-no passing result is assigned and the native cause is unproven. The physical boarding-clearance correction is now applied:
-Morgan's berth leaves the central aisle, final arrival is .35m, and all original deck/ownership gates remain. Focused gangway
-and both outer-slot checks pass 3/3 under `Logs/island-boarding-clearance.*`. The full Peace branch passes 1/1 in
-`Logs/island-rescue-peace-fixed.xml` (383.07s), including partial boarding reload, all-free/transit/ashore gates and departure.
-Its detached supervisor exits 0 and confirms all 174 source/settings hashes unchanged. Dominion is running under
-`Logs/island-rescue-dominion-fixed.*`; its detached supervisor records actual process exit, XML and source hashes.
-User playtest details are under `Logs/user-playtest/`.
+## Current source beyond the preview
+
+The live source now contains M18–M20 plus the four full lake films and eight island voice clips. Runtime/editor/Linux
+API compilation passes 140/22/140 sources. The retained preview binary still contains M18 only; do not relabel it.
+
+- All 14 `IslandRescueTests` now have actual passing execution across focused runs: full Peace (`island-rescue-peace-fixed.xml`),
+  full Dominion (`island-rescue-dominion-fixed.xml`), three berth/inset cases (`island-boarding-clearance.xml`), six recovery cases
+  from `island-recovery-reflection-null-fixed.xml`, and the three corrected cover prerequisites (`island-first-cover-retry.xml`).
+  Full branch supervisors exit 0 with unchanged source. Morgan parks away from the gangway and must reach a .35m berth sphere;
+  physical deck, all-free, awake-passenger, pursuit, transit and checkpoint gates remain. The failed cover fixtures had stopped
+  the leader while Riley was still 3.636m from cover; real through-leading reaches 1.431m and commits the unchanged runtime rule.
+- `reflection-owner-camera-diagnostic.xml`: camera passes 17,347 post-Cinemachine samples with zero failed samples, including
+  entry, pitch/yaw, hop, tide wash, target changes, exit and owner destruction. Free bodies use a centred rig; human shoulder
+  framing and canonical markers remain. Collision shortening is immediate. This isolated camera fixture stuns unrelated
+  guards; actual entry/stealth route tests remain separate. Earlier normal-approach clipping and framing failures are retained.
+- `river-reflection-publication-final.xml`: 6 GPU passes / 1 Null-only skip, actual RTX 4050/OpenGL Core. High/Ultra enable
+  native probes only on real graphics devices; Low/Medium use verified sky fallback. Null policy controls pass separately.
+  The native capture probe destroyed its attached RT on retirement (proved by before/after gate logs); publication now copies
+  the completed image into an independent Cubemap. Six origin signatures, compressed BC6H sampling, epoch cancellation,
+  repeated retirement, no recapture High-to-Ultra, cleanup and fresh unmarked water all pass. Built-player/Vulkan remains pending.
+- Eight offline CPU voice clips pass technical/key/level gates. Five focused Editor cases pass actual source tails, natural
+  arrival, release-aware skip, disabled/missing fallback and both branch departures. Arrival uses a monotonic cue origin.
+  Four refuge/roster clip source-tail checks are staged; subjective listening and rebuilt-player checks remain pending.
+- A Blender wall kit (two meshes, one material, 11,804 triangles, shared 2K PBR atlas) is staged under `Logs/island-wall-kit`.
+  CPU bounds/UV/opacity/opening proofs pass; no live publication/import or actual appearance/performance claim yet.
+
+The retained preview's strict movie checks decode all seven expected items (two old clips, four full lake films and the
+neutral wrap) on RTX/Vulkan and OpenGL, but both processes fail normal shutdown and hit their watchdogs. These are **not**
+end-to-end passes. Parent-GDB snapshots and exact matching Unity symbols locate a native `VideoMediaMemoryOutput` lock
+inside video-class engine cleanup; the lock owner/cause is unproven. Evidence lives under `Logs/standalone-0.5.0-preview*`.
+A two-file optional lifecycle trace / final-seek A/B patch is staged under `Logs/cinematic-native-lifetime`; no runtime fix
+is claimed. Preserve the old forced-seek stress path until the native issue is understood.
+
+The frozen RTX production is safely stopped at Opening frame 485 for this GPU window. Its old renderer/supervisor have
+actually exited. Resume the same production after all GPU jobs terminate, with packed inputs/driver/policy unchanged.
+User playtest metadata remains under `Logs/user-playtest/`. The older native exits remain unproven; do not label them repaired.
 
 ## Active cinematic production — 25 November 2026
 
@@ -51,7 +59,7 @@ The verified Linux milestone is 0.4.2, built from `8fd5ece` (DLL SHA-256
 rendered-water and both river branches pass. The isolated extracted copy passes media/input checks; the archive's full
 file set, hashes and local guide links are verified. `TEST_REPORT.md` records exact scope and retained older evidence.
 
-A long RTX production is active under `Logs/full-cinematic-renders/full-production-20261125T003711Z`: all four lake clips,
+A resumable RTX production is retained under `Logs/full-cinematic-renders/full-production-20261125T003711Z`: all four lake clips,
 then the 80-second opening, 2,760 frames total at 1080p24 / 48 samples / GPU OIDN. The approved packed blends, render driver
 and policy must stay unchanged. Check actual processes/checkpoints rather than assuming the job has finished.
 

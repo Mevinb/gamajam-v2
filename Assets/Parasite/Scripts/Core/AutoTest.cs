@@ -300,7 +300,10 @@ namespace Parasite.Testing
                 ("18 Dominion: explicit lake choice → Continue → branch relay → checkpoint recovery → ferry", () => AfterlakeAcceptance.RunChapter(EndingOutcome.Dominion)),
                 ("19 River falls: active/inactive bodies recover once; story/NPC fixtures are excluded", FallRecoveryAcceptance.RunAll),
                 ("20 MissionProp holds: original owner/state/authorization and pause semantics", MissionPropAcceptance.RunAll),
+                ("21 Island first slice: explicit ferry handoff, both entry routes and fair recovery", IslandEntryAcceptance.RunAll),
                 ("22 Rendered river/berth visibility: actual skyline occlusion before/after, unchanged footing and shaded views", () => WaterVisibilityAcceptance.Run()),
+                ("23 Island rescue branches: moving people, carried signal, all-free assembly and protected launch", IslandRescueAcceptance.RunBranches),
+                ("24 Island rescue recovery: capture, visited cover, partial roster, signal custody and ally reporting", IslandRescueAcceptance.RunRecovery),
             };
             // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
             var args = Environment.GetCommandLineArgs();
@@ -415,7 +418,7 @@ namespace Parasite.Testing
         }
 
         /// <summary>Walk the active body along a NavMesh path using simulated WASD (camera yaw fixed at 0).</summary>
-        static IEnumerator WalkTo(Vector3 target, float timeout, Action<bool> done, float tolerance = 0.9f)
+        public static IEnumerator WalkTo(Vector3 target, float timeout, Action<bool> done, float tolerance = 0.9f)
         {
             Cam.SetYaw(0f);
             var path = new NavMeshPath();

@@ -12,6 +12,7 @@ namespace Parasite
         public static readonly string[] Names = { "Low", "Medium", "High", "Ultra" };
         const string Key = "parasite.graphics";
         public static int Current { get; private set; } = 3;
+        public static event System.Action<int> Applied;
         static readonly float[] RenderScales = { 0.7f, 0.85f, 1f, 1.25f };
         static readonly float[] ShadowDistances = { 40f, 70f, 110f, 180f };
         static readonly float[] LodBias = { 0.6f, 0.9f, 1.3f, 2.5f };
@@ -64,11 +65,14 @@ namespace Parasite
             Shader.SetGlobalFloat(ConeScale, Current == 0 ? 0.7f : 1f);
             Shader.SetGlobalFloat(ShaftScale, Current == 0 ? -1f : 1f);   // sun shafts off on Low
             ApplyPostQuality();
+            // Generated city probes also schedule native rendering; a Null device must keep the global scheduler off.
+            QualitySettings.realtimeReflectionProbes = Current >= 2 && SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
             QualitySettings.lodBias = LodBias[Current];
             QualitySettings.anisotropicFiltering = Current >= 3 ? AnisotropicFiltering.ForceEnable : AnisotropicFiltering.Enable;
             QualitySettings.vSyncCount = 1;
             Application.targetFrameRate = -1;
             foreach (var camera in Camera.allCameras) ApplyCamera(camera);
+            Applied?.Invoke(Current);
         }
 
         /// <summary>Apply the current preset to a new gameplay/cinematic camera without saving preferences.</summary>

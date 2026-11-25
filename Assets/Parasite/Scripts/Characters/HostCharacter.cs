@@ -21,6 +21,9 @@ namespace Parasite.Characters
         public string DisplayName = "Pedestrian";
         public Profession Profession = Profession.Civilian;
         public bool IsDrVale;
+        public bool ProtectedMind;
+        // Story allies can see normally without reporting the people they are helping. Ordinary NPCs keep reporting.
+        public bool ReportsPlayerViolations = true;
 
         public HostState State { get; private set; } = HostState.Normal;
         public AmoebaAgent Possessor { get; private set; }
@@ -35,9 +38,12 @@ namespace Parasite.Characters
         public AccessPermission Permissions => Profile.permissions;
         public bool IsPossessed => State == HostState.Possessed;
         public bool IsAwakeNpc => State == HostState.Normal;
-        public bool CanBePossessed => State == HostState.Normal && !IsDrVale;
+        public bool CanBePossessed => State == HostState.Normal && !IsDrVale && !ProtectedMind;
         public float UnconsciousRemaining => State == HostState.Unconscious ? stateTimer : 0f;
         public int KnockoutId { get; private set; }
+        // Per-body transition history remains observable even if multiple transitions occur within one frame.
+        public int PossessionGeneration { get; private set; }
+        public int CaptureGeneration { get; private set; }
         public bool KnockoutDiscovered { get; set; }
         public Vector3 Velocity { get; private set; }
         public bool Grounded { get; private set; } = true;
@@ -100,6 +106,7 @@ namespace Parasite.Characters
         // ---------- state transitions ----------
         public void BeginPossession(AmoebaAgent agent)
         {
+            PossessionGeneration++;
             Possessor = agent;
             State = HostState.Possessed;
             SetNavMode(false);
@@ -137,6 +144,7 @@ namespace Parasite.Characters
         public void Capture()
         {
             if (State != HostState.Possessed) return;
+            CaptureGeneration++;
             State = HostState.Captured;
             Velocity = Vector3.zero;
             input = default;

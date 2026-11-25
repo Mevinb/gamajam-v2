@@ -71,3 +71,13 @@ with 3/3 passing focused physics cases and a full passing Peace branch. Dominion
 Eight island voice clips and finite spoken cue timing are integrated beyond the
 preview; five focused Editor source-tail/timing cases pass, with listening and built-player gates pending. Reflection quality lifecycle work,
 remaining mission execution, strict built-player full-lake decode and the full opening remain required work.
+
+
+## Current Far Shore source milestone
+
+M18–M20 are integrated beyond the retained preview. Both full rescue branches and all 14 rescue fixtures pass actual Unity
+execution; the centred camera passes 17,347 samples, and reflection/fallback/quality/cleanup plus normal water pass six GPU
+cases. All current APIs compile. The source still needs a rebuilt-player campaign/rendering pass. The four lake films decode
+in the retained preview on both APIs, but normal native shutdown fails and is being diagnosed with exact Unity symbols.
+The full opening is stopped at frame 485 for GPU verification. The new Blender 2K wall kit remains staged. These are concrete
+milestones under the full active request; they do not establish that the entire upgrade or every possible bug is complete.

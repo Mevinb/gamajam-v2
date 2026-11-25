@@ -1,4 +1,37 @@
-# Island and full lake working tree — verification in progress
+# Far Shore runtime and graphics — newest verification
+
+The live source is newer than retained 0.5.0-preview (M18/full lake films) and 0.4.2. No new player build is implied.
+
+| Scope | Actual result | Evidence |
+|---|---|---|
+| Full Peace M19/M20 | PASS 1/1, 383.074s; native exit 0, unchanged 174 source/settings files | `Logs/island-rescue-peace-fixed.xml` and supervisor JSON |
+| Full Dominion M19/M20 | PASS 1/1, 136.125s; native exit 0, unchanged 174 files | `Logs/island-rescue-dominion-fixed.xml` and supervisor JSON |
+| Physical berth/inset | PASS 3/3; actual passenger parking and human gangway round trip | `Logs/island-boarding-clearance.xml` |
+| Recovery/ownership | Six island cases pass in the mixed run; three safe-cover prerequisites corrected and pass 3/3 with real follower movement | `Logs/island-recovery-reflection-null-fixed.xml`, `Logs/island-first-cover-retry.xml` |
+| Total rescue fixture coverage | All 14 methods now have actual passing execution evidence; no runtime radius/flag shortcut | The four groups above |
+| Full camera lifecycle | PASS 17,347 post-Cinemachine samples, zero failed samples; actual RTX/OpenGL, unrelated guards stunned for this isolated camera check | `Logs/reflection-owner-camera-diagnostic.xml` |
+| Reflection/water lifecycle | PASS 6 / 1 expected Null-only skip, native exit 0; real six-face signatures, surviving copied cube, fallback pixels, quality transitions/cancellation/cleanup and normal water | `Logs/river-reflection-publication-final.xml` |
+| Null graphics policy | Both controls pass; global scheduler now stays off on Null, including generated city OnAwake probes | `Logs/null-guard-exposure-control.xml` (its old exposure fixture separately fails) |
+| Narration timing | PASS 5/5 actual FMOD source-tail/timing cases; technical decode/key/levels 8/8 | `Logs/island-voice-runtime-fixed.xml`, `ArtSource/IslandVoices/production-manifest.json` |
+| Current API compilation | PASS 140 runtime / 22 editor / 140 Linux Mono API sources | `Tools/compile_check.sh all` |
+| Retained preview movie decode/shutdown | Seven decode/loop checks and six images succeed on each API, but native shutdown fails: watchdog 137 on Vulkan and OpenGL. INCOMPLETE end-to-end acceptance | `Logs/standalone-0.5.0-preview/`, `Logs/standalone-0.5.0-preview-gl-control/` |
+
+The ownership diagnostic proves native probe retirement invalidated its published RT while all other readiness gates stayed
+valid. The final independent copied Cubemap survives retirement; the new shader reads actual compressed BC6H images through
+an uncompressed target. Camera fixes retain marker identity and human framing while centring free bodies and resolving
+collision shortening without lag. Earlier failed iterations below are historical evidence, not current passing results.
+
+Exact Unity symbolication places the movie-shutdown snapshot at `ReentrantLock::Acquire` under
+`VideoMediaMemoryOutput::ResetPresentationTimeOffset` / `VideoPlayer::CleanupClass`. That locates the native cleanup wait;
+it does not prove the lock owner, pending-seek cause or a repair. Optional tracing/A-B investigation remains staged. The full
+80-second opening is stopped safely at frame 485; the new Blender wall kit is staged and still needs Unity/visual/performance
+checks. Built-player validation of current M19/M20, camera, reflections and voices is required.
+
+---
+
+## Earlier island integration attempts (historical)
+
+### Initial working-tree verification
 
 The following work is newer than the pinned 0.4.2 archive below. The 0.5.0 preview includes M18 and four full lake films.
 Corrected M19/M20 runtime and eight island voices are now applied beyond that immutable preview. Do not count compilation

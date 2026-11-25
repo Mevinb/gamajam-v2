@@ -12,6 +12,7 @@ namespace Parasite.World
         public PatrolRoute route;
         public float wanderRadius = 14f;
         public bool isDrVale;
+        public bool reportsPlayerViolations = true;
         public int seed = 1;
 
         void OnDrawGizmos()

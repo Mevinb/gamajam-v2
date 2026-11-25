@@ -19,6 +19,7 @@ namespace Parasite.Characters
             HostBrain brain = spawn.profession == Profession.Guard && !spawn.isDrVale ? go.AddComponent<GuardAI>() : go.AddComponent<HostBrain>();
             var host = go.AddComponent<HostCharacter>();
             host.Init(spawn.displayName, spawn.profession, spawn.isDrVale, spawn.seed);
+            host.ReportsPlayerViolations = spawn.reportsPlayerViolations;
             brain.Setup(host, spawn);
             if (spawn.isDrVale)
             {

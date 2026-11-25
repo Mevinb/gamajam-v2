@@ -19,6 +19,18 @@ namespace Parasite.Testing
     {
         public static IEnumerator Run(string outputDirectory = null)
         {
+            int previous=GraphicsPreset.Current;
+            try
+            {
+                // This acceptance explicitly proves a completed local capture; Low/Medium intentionally use global fallback.
+                if(previous<2)GraphicsPreset.Apply(2,save:false);
+                yield return RunWithLocalReflections(outputDirectory);
+            }
+            finally{GraphicsPreset.Apply(previous,save:false);}
+        }
+
+        static IEnumerator RunWithLocalReflections(string outputDirectory)
+        {
             Assert.IsTrue(SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null,"Scenario22 requires an actual rendered GPU player; headless logic cannot certify visibility.");
             string output = outputDirectory ?? DefaultOutputDirectory();
             yield return AutoTest.LoadCity();
@@ -29,6 +41,8 @@ namespace Parasite.Testing
             Assert.IsTrue(CityDirector.Instance&&CityDirector.Instance.Ready);
             var water=Object.FindFirstObjectByType<AfterlakeWater>();var cutout=water?water.GetComponent<SkylineWaterCutout>():null;
             Assert.IsNotNull(cutout);Assert.IsTrue(cutout.Applied,cutout.LastFailure);
+            // The one-shot probe must see the normal scene before proof materials/background overrides.
+            yield return WaitForReflection(water);
             var original=GameObject.Find(SkylineWaterCutout.SourcePath).GetComponent<MeshRenderer>();
             var sourceMesh=original.GetComponent<MeshFilter>().sharedMesh;
             var surfaces=water.GetComponentsInChildren<MeshRenderer>().Where(r=>r.gameObject.layer==4).ToArray();Assert.AreEqual(2,surfaces.Length);
@@ -59,6 +73,7 @@ namespace Parasite.Testing
                 Assert.AreSame(sourceMesh,original.GetComponent<MeshFilter>().sharedMesh,"The original generated mesh stays untouched.");
                 foreach(var state in footing){Assert.AreEqual(state.enabled,state.collider.enabled);Assert.AreEqual(state.box,state.collider.bounds,"Visual cuts must not change physical footing or NavMesh sources.");}
                 for(int i=0;i<surfaces.Length;i++)surfaces[i].sharedMaterials=originals[i];
+                yield return WaitForReflection(water);
                 var main=Parasite.Possession.PlayerCamera.Instance.Cam;
                 var mainData=main.GetUniversalAdditionalCameraData();
                 camera.orthographic=false;camera.fieldOfView=main.fieldOfView;camera.farClipPlane=main.farClipPlane;camera.nearClipPlane=main.nearClipPlane;
@@ -71,7 +86,9 @@ namespace Parasite.Testing
                 data.antialiasing=mainData.antialiasing;data.antialiasingQuality=mainData.antialiasingQuality;
                 Capture(camera,new Vector3(282,8,-13),new Vector3(264,-.1f,-46),0,"normal-ferry-water",1600,900,output);
                 Capture(camera,new Vector3(250,5,-44),new Vector3(235,-.1f,-95),0,"normal-river-water",1600,900,output);
-                Debug.Log("[WaterVisibility] PASS actual before/after downward river+berth visibility, unchanged source mesh/footing; normal shaded captures saved.");
+                Capture(camera,new Vector3(279,1.65f,-22),new Vector3(268,.9f,-33),0,"normal-player-ferry-water",1600,900,output);
+                Capture(camera,new Vector3(257,1.65f,-34.5f),new Vector3(248,.5f,-74),0,"normal-player-shore-water",1600,900,output);
+                Debug.Log("[WaterVisibility] PASS actual before/after downward river+berth visibility, unchanged source mesh/footing; finished reflection request " + water.ReflectionRenderId + "; normal and player-height shaded captures saved.");
             }
             finally
             {
@@ -81,6 +98,13 @@ namespace Parasite.Testing
                 SceneManager.LoadScene(GameManager.MenuScene);
             }
             yield return null;
+        }
+
+        static IEnumerator WaitForReflection(AfterlakeWater water)
+        {
+            float deadline=Time.realtimeSinceStartup+8;
+            while(water&&!water.ReflectionReady&&Time.realtimeSinceStartup<deadline)yield return null;
+            Assert.IsTrue(water&&water.ReflectionReady,"Normal shaded water requires a finished local probe: "+(water?water.ReflectionStatus:"owner missing"));
         }
 
         static Color Capture(Camera camera,Vector3 eye,Vector3 target,float ortho,string name,int width,int height,string directory)

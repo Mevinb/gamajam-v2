@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -10,9 +9,11 @@ namespace Parasite.Missions
     {
         readonly List<Material> owned = new();
         Material river, berth;
-        ReflectionProbe probe;
-        RenderTexture reflectionTexture;
         Mesh surfaceMesh;
+        public RiverReflectionCapture ReflectionCapture { get; private set; }
+        public int ReflectionRenderId => ReflectionCapture ? ReflectionCapture.RenderId : -1;
+        public bool ReflectionReady => ReflectionCapture && ReflectionCapture.Ready;
+        public string ReflectionStatus => ReflectionCapture ? ReflectionCapture.Status : "reflection owner unavailable";
         float cleanWater;
         const int WaterLayer = 4;
 
@@ -68,18 +69,8 @@ namespace Parasite.Missions
                 }
             }
 
-            var probeObject = new GameObject("Riverside local reflection probe"); probeObject.transform.SetParent(transform, false);
-            probeObject.transform.localPosition = new Vector3(230, 3, -41);
-            probe = probeObject.AddComponent<ReflectionProbe>();
-            probe.mode = ReflectionProbeMode.Realtime; probe.refreshMode = ReflectionProbeRefreshMode.ViaScripting;
-            probe.timeSlicingMode = ReflectionProbeTimeSlicingMode.IndividualFaces;
-            probe.resolution = GraphicsPreset.Current >= 2 ? 256 : 128;
-            probe.size = new Vector3(430, 70, 260); probe.center = new Vector3(0, 12, -45);
-            probe.blendDistance = 15; probe.importance = 3; probe.boxProjection = false;
-            probe.hdr = true; probe.nearClipPlane = 0.15f; probe.farClipPlane = 220;
-            probe.clearFlags = ReflectionProbeClearFlags.Skybox;
-            probe.cullingMask = ~((1 << WaterLayer) | (1 << 2) | (1 << 30));
-            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null) probe.enabled = false;
+            ReflectionCapture = gameObject.AddComponent<RiverReflectionCapture>();
+            ReflectionCapture.Configure(new Vector3(230, 3, -41));
         }
 
         void Surface(string name, Vector3 position, Vector3 size, Material material)
@@ -119,21 +110,6 @@ namespace Parasite.Missions
             return material;
         }
 
-        IEnumerator Start()
-        {
-            // Capture once after the district's buildings, equipment and NPCs exist; never recapture every frame.
-            yield return null;
-            if (!probe || !probe.enabled) yield break;
-            reflectionTexture = new RenderTexture(probe.resolution, probe.resolution, 16, RenderTextureFormat.ARGBHalf)
-            {
-                name = "Riverside local HDR reflection", dimension = TextureDimension.Cube,
-                useMipMap = true, autoGenerateMips = false, hideFlags = HideFlags.DontSave,
-            };
-            reflectionTexture.Create();
-            probe.realtimeTexture = reflectionTexture;
-            probe.RenderProbe(reflectionTexture);
-        }
-
         void Update()
         {
             float target = RunState.Has(AfterlakeCampaign.Floodgate) ? 1f : 0f;
@@ -145,12 +121,7 @@ namespace Parasite.Missions
 
         void OnDestroy()
         {
-            if (probe) { probe.enabled = false; probe.realtimeTexture = null; }
-            if (reflectionTexture)
-            {
-                reflectionTexture.Release();
-                if (Application.isPlaying) Destroy(reflectionTexture); else DestroyImmediate(reflectionTexture);
-            }
+            if (ReflectionCapture) ReflectionCapture.Dispose();
             if (surfaceMesh) { if (Application.isPlaying) Destroy(surfaceMesh); else DestroyImmediate(surfaceMesh); }
             foreach (var material in owned)
                 if (material) { if (Application.isPlaying) Destroy(material); else DestroyImmediate(material); }
