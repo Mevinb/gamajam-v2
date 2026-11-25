@@ -110,5 +110,31 @@
     "Assets/Parasite/Scripts/Core/CinematicFilmLifetime.cs": "108dfc473df034baf158d6c7babb91b45f4a12eb60941b5d12fed5ddf724b4d7",
     "Assets/Parasite/Scripts/Core/CinematicFilmAcceptance.cs": "5514e5e5da5d6c09e1a4155d862bb3433099256674ebac424602c345641e8e09"
   },
-  "remaining": "Explicit Quit(code) during actual pending seek optional native cases are being staged; caller/owner state regressions remain scoped."
+  "remaining": "OS/window-close path and full80secondOpening still unverified; explicit0/1during actual pending seek now native-verified.",
+  "pending_seek_explicit_quit": [
+    {
+      "requested_exit": 0,
+      "native_exit": 0,
+      "quit_observed": true,
+      "passes": 12,
+      "failures": 0,
+      "png_count": 7,
+      "verified": true,
+      "execution_sha256": "ae62d31269c475d7ccb3013278c281ad5a8e5d159b3c8b9b2c84afbf15f18047",
+      "report_sha256": "64c0d8022dbd1cd8aae75892b8638042cbd5c84bed7d9f1cc945791d05c65216",
+      "log_sha256": "b4320e7900b5f53de01947c4466691fc9918124038c0c699259ab548e41aac84"
+    },
+    {
+      "requested_exit": 1,
+      "native_exit": 1,
+      "quit_observed": true,
+      "passes": 12,
+      "failures": 0,
+      "png_count": 7,
+      "verified": true,
+      "execution_sha256": "3f2ad3aa40719dbb53f1e2ff141f4b075d83c34a9137584eda4a3522c0bbccf1",
+      "report_sha256": "4798d401cd3e0c8814ff274a57236b86390661671e4f7f7fe75be29a88f1fdec",
+      "log_sha256": "b7477d1decb039317ec1b7502a905420db933077843a9ba3fb8cff3b934bcd14"
+    }
+  ]
 }

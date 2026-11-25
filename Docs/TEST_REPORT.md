@@ -1,3 +1,12 @@
+# Explicit quit while real seek is pending
+
+`Logs/cinematic-quit-pending-native/{0,1}` both pass:12checks (original7plus5probe),7actualPNGs, real pending terminal seek,
+immediate visible removal, retained native reader/RT, actual seek acknowledgement and zero-owned/pending/quarantine final
+quitting receipt. Requested native exit0remains0; requested1remains1. Default acceptance unchanged; OS/window close is separate.
+Portable exact source/report/exit evidence is in `verification/cinematic-retirement-20261125.json`.
+
+---
+
 # Cinematic native retirement verification
 
 The scoped native lifetime fix preserves default forced terminal Tick(end), immediate visual removal, native acknowledgement

@@ -1,7 +1,4 @@
-<!-- Current cleanup milestone: candidate build20261125T055158369729Z-c3ce6bed succeeds1025MB/0errors/0warnings,original preview unchanged. New scoped cinematic lifetime code API144/23/144; Editor12pass/0fail/1expectedmissingOpening skip; native originaldefault forcedendTick7PASS/6PNG exits0 rendered+batch; missingOpening exits1; normaluntraced default7PASS exits0. Portable proof Docs/verification/cinematic-retirement-20261125.json. ExplicitQuit0/1 whilepending source cases are still staging. Native mission24 passes1/1 native0/Null;23failed only static walker Morgan capsule contact. Physical sidestep fixture-only candidate still staging/peerreview corrections, no runtime size/collision/deadline change. Packed opening currently stopped757 forGPUtests; oldPIDs4076169/4076838 gone. -->
-<!-- Latest desktop control: same profiled build20261125T052551506572Z-024d2666 on actualXwayland:0 at1080p/Vulkan,20/20+native0: High265.6FPS/p999.44ms/all10382samplesfocused;Ultra179.0FPS/p9911.28ms/all6991focused. Private:97 focus helper initialPASS did NOT persist in game samples (all990unfocused), so no focus-only causal claim. No game optimization was required from those confounded results. Native headless23/24 sequential supervisor4073890/job234073892 is active under Logs/native-island-headless-private-candidate; immutable78197DLL. Frozen opening resumed after safe stop750, current session12477/PIDs4076169,4076838; verify beforeGPU. Cinematicretirement candidate remains staged pendingpeerreview/APIcompile. -->
-<!-- Current continuation: all122EditMode rules pass; opt-in profiler applied/API143/23/143 and private build20261125T052551506572Z-024d2666 succeeds1025MB/0errors/0warnings/original preview unchanged. Native profiledHigh20/20 exits0. Main39.37ms dominated by render-thread wait35.43ms; renderCPU0.878ms, present wait0.0025ms,target wait0. All981samples unfocused on Xvfb:97, so no game-bottleneck inference. One game camera/1000rendered of1000update frames/no reflection callbacks. Focused:97 then actual desktopXwayland:0 controls are being prepared. Packed opening resumed again after stop737, session44984; check actual process IDs. Movie-retirement candidate remains staging, not applied. -->
-<!-- Latest source commits: 5092418 wall kit/HDR evidence/guide;98a25b7 isolated build output/island benchmark; both pushed as Mevinb. -->
+<!-- PendingQuit0/1 verified on candidate20261125T061033248026Z-854e2b09: all original7media gates plus5probe gates/7PNGs, true pendingseek, immediateUIhidden/nativeRTretained, actualACK thenowned0/pending0/quarantine0 receipt, requested native0/1 exactly. ProbeAPI144/23/144; defaultstressgatesunchanged. Contactdiag nowproves earlier focusedsidestep fixture SLIDPAST Morgan (notfloorclassification): bodydelta(-.505,0,-2.173), final.4s moved1.027m. Campaign stages real-input safe-north/centerlinealignment and strict blockedcrossing beforeoriginalAverytarget; planner untouched. Packed renderer currently safelystopped822, oldPIDs7961/8277gone; resumefrozenjobwhenGPUterminal. -->
 # PARASITE — developer handoff
 
 Read this before changing the project. The active request is a full realism/cinematic upgrade and continued mission expansion,
@@ -10,27 +7,35 @@ The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Ne
 
 ## Latest verified checkpoint
 
-- Private build `Builds/Diagnostics/native-lifetime-20261125T044908356266Z-653cabfd`:1024MB,zero errors/warnings,native0.
-  Source snapshot and full original preview tree are unchanged. Supported fresh build-directory override is applied; no PATH
-  adapter, parking or rename was used. Original `Builds/Linux` remains the retained M18 preview.
-- New wall kit: actual import140checks pass; all four entry routes/camera pass; `island-wall-raster-final.xml` passes2/2.
-  The pixel mismatch was Atmosphere tinting empty structural-capture background. Six actual intended/mirrored views confirm
-  correct geometry. Only structural proof isolates Atmosphere, with exact restoration. Gameplay fog/physics stay unchanged.
-- `island-wall-art-hdr.xml` passes optional1/1: three staged normal-shaded before/after pairs, linear FP16 and one sRGB
-  conversion, actor renderers/UI hidden but lights retained. Portable import/runtime data and reviewed PNG pair: ArtSource/Island.
-- Rendered native RTX/Vulkan water scenario22 passes1/1 in2s,exit0. Same standalone batch command stalled native scheduling.
-  Editor Vulkan core matrix passes; full owner has5passes/1final-log failure from native ring-buffer warning/1Null skip.
-- Movie default forced-terminal-Tick stress still hangs after7decode checks/6PNGs and all managed quit markers, in batch and
-  normal rendering; watchdog137. Experimental no-final-seek arm exits0 on the same candidate. It is not a production fix.
-  Exact Unity symbols locate native video cleanup lock. Cine agent stages bounded per-film retirement/quit drain preserving
-  immediate visual skip, default stress and requested exit codes; no live cleanup candidate is applied yet.
-- Linux-binary island1920x1080/Vulkan private-display baselines reach20/20waypoints,exit0: High25.5FPS/p9963.23ms/scale1.00;
-  Ultra26.7FPS/p9966.76ms/scale1.25. AI/traffic active. Low GPU utilization and weak scaling warrant CPU/scheduling profiling.
-  Display was :97 (private), with all981profile samples unfocused. Main39.37ms is dominated by render-thread wait35.43ms;
-  one game camera, no recurring reflection cameras, rendered/update counts1:1. Actual focused:97 and desktop:0 controls
-  are pending. Do not infer a game bottleneck or optimize from these presentation-confounded results.
-- Packed opening resumed after the native/asset GPU window, prior safe stop699; current exec session60482. Verify actual
-  processes/checkpoints and request safe STOP before further graphics tests. API check passes142/23/142 with HDR art helper.
+- Source commits `5092418` (Blender wall kit), `98a25b7` (isolated builds/benchmark) and `dd669d3` (movie retirement/profiler)
+  are pushed as Mevinb. Main target remains Linux/URP; offline RTX/OptiX full films are separate from screen-space reflections.
+- Retained `Builds/Linux` is the immutable0.5.0-preview (M18/full-lake working tree) launched for the user and closed normally.
+  All private diagnostic builds use a fresh `-parasiteBuildDirectory`; original full preview tree hashes remain unchanged.
+- Current APIs pass144runtime/23editor/144Linux Mono. All122EditMode rules pass. All14rescue methods have Editor success;
+  native headless recovery24 passes1/1/exit0. Native23 fails only a static test-walker collision against Morgan at the clinic.
+- Fixture-only bounded sidestep is applied from f25f25cc; its focused test fails before avoidance because contact was not
+  established. A diagnostic-only contact patch93de2ab6 is now applied; focused headless run is active under
+  `Logs/island-contact-diagnostic.*`, exec session51408. Planner/compound assertion unchanged; inspect actual hits/movement.
+- Wall import140checks, four route/outcome traversals and full camera pass. Raster/visual2/2 and optional HDR art-QA1/1 pass.
+  Geometry is correct; Atmosphere contaminated the structural background. Proof-only isolation restores exact feature state.
+  Portable original Blender source, before/after PNGs and precise data: `ArtSource/Island/QuarantineWalls.README.md`.
+- Actual desktopXwayland:0,1920x1080/Vulkan,AI active,20/20waypoints/native0: High265.6FPS/p999.44ms/all10382focused;
+  Ultra179.0FPS/p9911.28ms/all6991focused. PrivateXvfb:97 (~25FPS) was presentation-confounded, not a game bottleneck.
+  Profiler sees one game camera,1:1render/update, no recurring reflection callbacks. No quality/AI reduction was made.
+- Copied independent reflection cube fixes native capture-RT retirement. EditorGL6passes/1Nullskip; rendered nativeVulkan
+  water22 passes1/1/exit0. Standalone batch rendering does not schedule that probe; do not use it for graphics proof.
+- Movie lifetime fix preserves default forced terminalTick, immediate UI removal, actual prepare/seek acknowledgement,
+  safe native destruction-before-RTrelease and explicit quit codes. APIpasses; Editor12/0/1missingOpening skip. Native default
+  rendered+batch+untraced all7mediaPASS/6PNGs/exit0; strict unfinishedOpening negative exits1. Portable proof is in
+  `Docs/verification/cinematic-retirement-20261125.json`.
+- Optional actual pending-seek Quit0/1 probe is applied/APIpasses but not rebuilt/executed. It requires a final quitting receipt
+  (ACK+owned0), not an early PASS. OS-close path is unexercised. No experimental no-final-seek flag is a production fix.
+- Private build `Builds/Diagnostics/native-lifetime-20261125T055158369729Z-c3ce6bed` contains the verified retirement fix;
+  build1025MB/0errors/0warnings/native0/sourceunchanged/previewunchanged. Earlier044908candidate is the pinned native23/24
+  baseline;052551candidate contains profiler and measured desktop results. Their BUILD_INFO/source snapshots retain scope.
+- Packed opening is running from prior safe stop757, exec session39621, supervisorPID7961/BlenderPID8277 (verify live).
+  Production: `Logs/full-cinematic-renders/full-production-20261125T003711Z`; request its STOP then wait actual processes
+  terminal before GPUjobs. Headless logic/API work may coexist. Frozen blends/driver/policy must stay unchanged.
 
 ## User playtest build retained
 

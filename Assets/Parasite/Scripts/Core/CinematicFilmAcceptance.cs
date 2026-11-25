@@ -17,14 +17,26 @@ namespace Parasite.Testing
         readonly StringBuilder report = new();
         bool passed = true;
         CinematicFilm film;
+        int? quitDuringSeek;
+        bool quitProbeStarted, quitProbeReady, quitObserved;
         static readonly bool TraceRequested = Array.IndexOf(Environment.GetCommandLineArgs(), "-traceCinematicLifetime") >= 0;
         void TraceLifetime(string action)
         {
             if (TraceRequested) Debug.Log($"[CinematicLifetime] owner=acceptance action={action} frame={Time.frameCount} real={Time.realtimeSinceStartupAsDouble:F4} passed={passed}");
         }
-        void OnEnable() { if (TraceRequested) Application.quitting += OnApplicationQuitting; }
-        void OnDisable() { if (TraceRequested) Application.quitting -= OnApplicationQuitting; }
-        void OnApplicationQuitting() => TraceLifetime("application.quitting");
+        void OnEnable() => Application.quitting += OnApplicationQuitting;
+        void OnDisable() => Application.quitting -= OnApplicationQuitting;
+        void OnApplicationQuitting()
+        {
+            TraceLifetime("application.quitting");
+            if (!quitProbeStarted) return;
+            quitObserved = true;
+            bool clean = quitProbeReady && film != null && film.RetirementComplete && film.RetirementSeekAcknowledged &&
+                !film.RetirementQuarantined && film.RetirementError == null && CinematicFilmLifetime.ResourceCount == 0 &&
+                CinematicFilmLifetime.PendingCount == 0 && CinematicFilmLifetime.QuarantinedCount == 0;
+            Record(clean, $"Optional explicit quit{quitDuringSeek} reached application.quitting after actual seek ACK and complete native retirement; owned={CinematicFilmLifetime.ResourceCount}, pending={CinematicFilmLifetime.PendingCount}, quarantine={CinematicFilmLifetime.QuarantinedCount}");
+            WriteQuitProbeReport();
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void StartWhenRequested()
@@ -48,6 +60,15 @@ namespace Parasite.Testing
             bool noFinalSeek = Array.IndexOf(Environment.GetCommandLineArgs(), "-cinematicNoFinalSeek") >= 0;
             report.AppendLine("Experimental acceptance no-final-seek: " + noFinalSeek + "; default control retains Tick(end). This switch is not a runtime fix.");
             TraceLifetime("start no-final-seek=" + noFinalSeek);
+            var arguments = Environment.GetCommandLineArgs();
+            int quitIndex = Array.IndexOf(arguments, "-cinematicQuitDuringSeek");
+            if (quitIndex >= 0)
+            {
+                if (quitIndex + 1 >= arguments.Length || !int.TryParse(arguments[quitIndex + 1], out int code) || (code != 0 && code != 1) || noFinalSeek)
+                { Record(false, "Optional -cinematicQuitDuringSeek requires0or1 and cannot combine with experimental -cinematicNoFinalSeek."); yield return Finish(); yield break; }
+                quitDuringSeek = code;
+                report.AppendLine("Optional explicit quit during an actual owned seek: " + code + "; native exit must match this code independently of managed media gates.");
+            }
             if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
             {
                 Record(false, "A graphics device is required for actual Linux video decode."); yield return Finish(); yield break;
@@ -112,7 +133,60 @@ namespace Parasite.Testing
                     Record(false, resource + " native retirement did not complete cleanly: " + retiring.RetirementError);
                 TraceLifetime("post-dispose-drain " + resource + " clean=" + drained + " seekAck=" + retiring.RetirementSeekAcknowledged);
             }
+            if (quitDuringSeek.HasValue && passed)
+            { yield return QuitWithOwnedPendingSeek(canvas.transform); yield break; }
             yield return Finish();
+        }
+
+        IEnumerator QuitWithOwnedPendingSeek(Transform canvas)
+        {
+            var definition = CinematicStoryPlan.Arrival;
+            if (!CinematicFilm.TryCreate(definition, canvas, out film))
+            { Record(false, "Optional quit probe requires actual published LakeArrival."); yield return Finish(); yield break; }
+            var player = film.Player;
+            float until = Time.realtimeSinceStartup + 15;
+            while (player && !film.Failed && player.frame < 2 && Time.realtimeSinceStartup < until)
+            { film.Tick(.1f); yield return null; }
+            bool decoded = player && !film.Failed && player.isPrepared && player.frame >= 2;
+            if (decoded)
+            {
+                long frame = player.frame; float observed = Time.realtimeSinceStartup;
+                while (Time.realtimeSinceStartup - observed < .25f)
+                { film.Tick(.1f + Time.realtimeSinceStartup - observed); yield return null; }
+                decoded = player.frame > frame && Time.timeScale == 0 && player.audioOutputMode == VideoAudioOutputMode.None;
+                try { decoded &= InspectFrame(player.texture as RenderTexture, "LakeArrival-QuitProbe", definition); }
+                catch (Exception error) { decoded = false; report.AppendLine("Optional quit readback: " + error.Message); }
+            }
+            Record(decoded, "Optional quit probe decoded actual silent1920x1080 LakeArrival with nonempty readback and advancing frames at timeScale=0");
+            if (!decoded) { film.Dispose(); yield return Finish(); yield break; }
+            film.Hide();
+            until = Time.realtimeSinceStartup + CinematicFilmLifetime.OperationTimeout;
+            while (film.Seeking && Time.realtimeSinceStartup < until) yield return null;
+            film.Hide();
+            float throttleUntil = Time.realtimeSinceStartup + .4f;
+            while (Time.realtimeSinceStartup < throttleUntil) yield return null;
+            Record(!film.Seeking && !player.isPlaying && CinematicFilmLifetime.ResourceCount == 1 && CinematicFilmLifetime.PendingCount == 0 && CinematicFilmLifetime.QuarantinedCount == 0,
+                $"Optional quit setup has one paused real decoder; owned={CinematicFilmLifetime.ResourceCount}, pending={CinematicFilmLifetime.PendingCount}, quarantine={CinematicFilmLifetime.QuarantinedCount}");
+            if (!passed) { film.Dispose(); yield return Finish(); yield break; }
+            var picture = film.Picture; var target = player.targetTexture;
+            film.Tick(definition.Seconds); // The real terminal request; never bypass the normal seek policy.
+            Record(film.Seeking && picture.enabled && target && target.IsCreated(), "Optional explicit quit is requested while a real terminal seek is outstanding");
+            if (!passed) { film.Dispose(); yield return Finish(); yield break; }
+            quitProbeStarted = true;
+            Debug.Log($"[CinematicQuitProbe] request code={quitDuringSeek.Value} owned={CinematicFilmLifetime.ResourceCount} pendingSeek={film.Seeking} timeScale={Time.timeScale}");
+            CinematicFilmLifetime.Quit(quitDuringSeek.Value); // Intentionally no caller Dispose/Drain before this request.
+            quitProbeReady = film.RetirementSawPendingSeek && film.DisposalRequested && !picture.enabled && !picture.texture &&
+                player && player.isActiveAndEnabled && player.targetTexture == target && target.IsCreated() &&
+                CinematicFilmLifetime.ResourceCount == 1 && CinematicFilmLifetime.PendingCount == 1;
+            Record(quitProbeReady, $"Optional explicit quit immediately hidesUI and retains the pending native reader/target; owned={CinematicFilmLifetime.ResourceCount}, pending={CinematicFilmLifetime.PendingCount}");
+            if (!quitProbeReady) CinematicFilmLifetime.Quit(1);
+            WriteQuitProbeReport(); // Final ownership/ACK receipt is written from application.quitting.
+        }
+        void WriteQuitProbeReport()
+        {
+            string path = Path.GetFullPath(output); Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllText(path, report + "EXPECTED_NATIVE_EXIT: " + quitDuringSeek + "\nQUIT_OBSERVED: " + quitObserved +
+                "\nRESULT: " + (!quitObserved ? "PENDING" : passed ? "PASS" : "FAIL") + "\n");
         }
 
         bool InspectFrame(RenderTexture frame, string resource, CinematicFilmSpec definition)
@@ -160,7 +234,7 @@ namespace Parasite.Testing
         void OnDestroy()
         {
             TraceLifetime("owner.on-destroy.enter");
-            if (TraceRequested) Application.quitting -= OnApplicationQuitting;
+            Application.quitting -= OnApplicationQuitting;
             film?.Dispose(); Time.timeScale = 1f;
             TraceLifetime("owner.on-destroy.exit");
         }
