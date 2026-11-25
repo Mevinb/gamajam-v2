@@ -6,6 +6,15 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Controlled02obstruction fixture passes:** root74517/native0/chunk432b92,NUnit7.338s. Real fixed/opaque wall blocks the
+  physically valid original pose; original/next candidate rejected, sample2sameAmara valid. Real.8aim/E/reciprocalownership
+  and1sWASD2.5661m pass with wallretained. [Exact proof](verification/possession-obstruction-green-20261126.json).
+  This never reconstructs/erases the unknown old0.6.1native02blocker; no new binary/native5/5claim.
+- **Current live job is full WORKmechanics rerun:** root80827 via`northline_mechanics_20261126b`, exactRailCampaignTests,
+  7cases/3600s wrapper/Null/nice15/idle/two workers; XML`Logs/northline-mechanics-20261126b.xml`. Freeze WORKC#/metas/no
+  otherEditor until actualterminal. RailCampaigne448/RailAcceptance6d/AutoTest1f998, API175/33/175+5classes pass.
+  Read-only feature-branch staging whitelist and film-meta/storage audits are being prepared; no Gitindex/HEAD change yet.
+  Two art-binding cases remain aftermechanics; no26native/GPU/continuous/human/merge/build acceptance yet.
 - **Full isolated Northline Dominion chapter passes:** root59655/native0/chunkc2610e, oneNUnitPASS106.664s.
   Fixed actual-collider LOS allows realE; actualcrossing/freight/signal/bothfreeboarding/coachendpoint/finalM26summary pass.
   [Exact result](verification/northline-dominion-editor-green-20261126.json). PreparedM23/initialrole fixtures remain;
