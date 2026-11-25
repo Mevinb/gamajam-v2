@@ -27,7 +27,10 @@ or binary. Historical passing runs do not verify a newer player.
   regression has no final exit receipt: five cases pass, Route A fails at duty-officer targeting, and Route B begins before
   the log stops. The machine has since restarted; both old processes and their tool session are gone. Do not treat its stale
   running JSON as a live process or a campaign pass. Current diagnostics preserve the targeting rules while inspecting
-  camera angle, range and obstruction. All six current-binary desktop benchmarks now pass; release archive remains pending.
+  camera angle, range and obstruction. The fixture used yaw-only aim and missed the unchanged15° cone. Yaw/pitch feedback
+  now passes focused15 and all shared06/07/08/14/16 scenarios in a headless Editor run with native exit0; no targeting rule
+  or production camera change was needed. [Exact aim proof](verification/hunter-camera-aim-20261125.json). All six current-binary
+  desktop benchmarks pass; release archive remains pending. The old0.5.0 binary is unchanged and still needs a later rebuild.
 - On the earlier `c35c66a7...` diagnostic player, native scenario 23 passes both full rescue branches in 516.231 seconds with native exit 0
   (`Logs/native-island-23-sidestep-retry`). The earlier failure was the test walker blocked by delivered Morgan.
   The focused fixture first proves real capsule blockage, then reaches a valid lateral route and the original target using
@@ -104,8 +107,8 @@ The retained 0.4.2 archive is an earlier release containing two short film inser
 
 ## Remaining release work
 
-1. Diagnose the recorded Route A duty-officer targeting failure, then run the affected routes and remaining campaign cases,
-   including corrected native24. Rendered22 already passes separately. The prior run under
+1. The duty-officer fixture correction passes focused15 and all five shared route/recovery cases in the Editor. Rebuild and
+   run the remaining current-player campaign cases, including corrected native24. Rendered22 already passes separately. The prior run under
    `Logs/full-story-candidate/campaign-headless` is interrupted with no native exit receipt; its recovery observation records
    five passes, one failure and the missing processes after reboot.
    Preserve real terminal exits and hashes, and distinguish prepared/simulated scenarios

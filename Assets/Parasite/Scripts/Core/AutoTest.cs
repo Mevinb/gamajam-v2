@@ -382,17 +382,43 @@ namespace Parasite.Testing
 
         static IEnumerator PressInteract() => Press(() => GameInput.SimInteract = true, () => GameInput.SimInteract = false);
 
-        /// <summary>Point the camera (yaw) at a world point from the active body.</summary>
+        /// <summary>Look at a world point through the actual camera, including its settled boom/collision position.</summary>
         static void AimAt(Vector3 p)
         {
-            var from = PM.ActiveBody.Root.position;
-            var d = p - from; d.y = 0;
-            if (d.sqrMagnitude > 0.001f) Cam.SetYaw(Quaternion.LookRotation(d).eulerAngles.y);
+            Vector3 d = p - Cam.Position;
+            if (d.sqrMagnitude <= 0.001f) return;
+            float planar = Mathf.Sqrt(d.x * d.x + d.z * d.z);
+            if (planar > 0.001f) Cam.SetYaw(Mathf.Atan2(d.x, d.z) * Mathf.Rad2Deg);
+            Cam.SetPitch(-Mathf.Atan2(d.y, planar) * Mathf.Rad2Deg);
         }
 
         static IEnumerator AimSettle(Vector3 p)
         {
+            // Yaw/pitch move the boom, and nearby geometry can shorten it. Recompute from its real
+            // position each frame, within the existing camera clamps and unchanged .8s aim budget.
             for (float t = 0; t < 0.8f; t += Time.unscaledDeltaTime) { AimAt(p); yield return null; }
+        }
+
+        static void NoteHunterTarget(string phase, HostCharacter officer, TargetInfo target)
+        {
+            var active = PM.Active; var body = PM.ActiveBody;
+            if (active == null || body == null || !officer || !Cam) return;
+            Vector3 eye = body.EyePosition, chest = officer.ChestPosition, ray = chest - eye;
+            var rayHits = Physics.RaycastAll(eye, ray.normalized, ray.magnitude, ~0, QueryTriggerInteraction.Ignore)
+                .OrderBy(h => h.distance).Select(h => h.collider.name + " parent=" + (h.collider.transform.parent ? h.collider.transform.parent.name : "-")
+                    + " type=" + h.collider.GetType().Name + " layer=" + h.collider.gameObject.layer + " distance=" + h.distance.ToString("F4")
+                    + " self=" + h.collider.transform.IsChildOf(body.Root) + " target=" + h.collider.transform.IsChildOf(officer.transform));
+            Note("hunter-target phase=" + phase + " body=" + body.Root.name + " free=" + active.IsFree
+                + " bodyAt=" + body.Root.position.ToString("F4") + " eye=" + eye.ToString("F4")
+                + " cameraAt=" + Cam.Position.ToString("F4") + " cameraForward=" + Cam.Forward.ToString("F4")
+                + " yaw=" + Cam.Yaw.ToString("F4") + " pitch=" + Cam.Pitch.ToString("F4")
+                + " officerAt=" + officer.transform.position.ToString("F4") + " chest=" + chest.ToString("F4")
+                + " officerState=" + officer.State + " possessable=" + officer.CanBePossessed + " officerPossessor=" + (officer.Possessor != null)
+                + " aimAngle=" + Vector3.Angle(Cam.Forward, chest - Cam.Position).ToString("F4") + " cone=" + PossessionManager.AimConeDegrees
+                + " eyeDistance=" + ray.magnitude.ToString("F4") + " range=" + PossessionManager.PossessRange
+                + " los=" + PM.LineOfSight(eye, chest, body.Root, officer.transform) + " transit=" + active.InTransit
+                + " inputLocked=" + PM.InputLocked + " targetKind=" + target.kind + " targetHost=" + (target.host ? target.host.DisplayName : "-")
+                + " prompt=" + target.prompt + " rayHits=[" + string.Join("; ", rayHits) + "]");
         }
 
         static HostCharacter NearestHost(Vector3 p, Func<HostCharacter, bool> pred) =>
@@ -1442,8 +1468,10 @@ namespace Parasite.Testing
             Check(ok && RunState.Has(MissionFlags.HunterGate) && BioScanTracker.BurnCount == burns, "a free amoeba crosses the arch unread");
             if (!current.pass) yield break;
             var officer = squad.Officer;
+            NoteHunterTarget("full route before camera aim", officer, PM.ComputeTarget());
             yield return AimSettle(officer.ChestPosition);
             var tg = PM.ComputeTarget();
+            NoteHunterTarget("full route after settled yaw/pitch aim", officer, tg);
             Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable from behind: {tg.prompt}");
             if (!current.pass) yield break;
             yield return PressInteract();
@@ -1564,8 +1592,10 @@ namespace Parasite.Testing
 
             // 5) Possess the duty officer from behind and release the lockdown with her badge.
             var officer = squad.Officer;
+            NoteHunterTarget("focused protocol before camera aim", officer, PM.ComputeTarget());
             yield return AimSettle(officer.ChestPosition);
             var tg = PM.ComputeTarget();
+            NoteHunterTarget("focused protocol after settled yaw/pitch aim", officer, tg);
             Check(tg.kind == TargetKind.Possess && tg.host == officer, $"duty officer targetable: {tg.prompt}");
             if (!current.pass) yield break;
             yield return PressInteract();

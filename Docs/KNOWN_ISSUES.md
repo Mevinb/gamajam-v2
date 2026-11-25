@@ -14,8 +14,10 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
   shortcuts pass14/14, and rendered Vulkan water passes1/1. All three exit natively0 with unchanged runtime hash and zero
   ring-buffer warnings. The user-controlled desktop player exited normally0 after130.601s. The23-case headless campaign
   stopped without a final receipt:01–05 pass,06 fails at duty-officer targeting,07 begins. The machine has since restarted;
-  both old processes are absent. The stale running receipt is not a campaign pass. Target angle/range/LOS diagnostics are
-  being prepared without relaxing possession rules. Corrected24 and the remaining current-player cases remain unverified.
+  both old processes are absent. The stale running receipt is not a campaign pass. Diagnostics prove a yaw-only test aim
+  missed the unchanged15° cone. Test-camera yaw/pitch feedback passes focused15 and shared06/07/08/14/16 in the headless
+  Editor, including all three original infiltration paths through extraction. A new native rebuild, corrected24 and the
+  remaining current-player cases are still required. [Aim proof](verification/hunter-camera-aim-20261125.json).
   Six focused current-binary High/Ultra baseline routes now pass; riverside High retains one217.1ms worst frame whose cause
   is unproven. Dedicated lab, GPU timer/per-game VRAM and archive/extracted-player checks remain pending.
   See [candidate proof](verification/0.5.0-candidate-20261125.json) and [baseline details](verification/graphics-baseline-0.5.0-20261125.json).
