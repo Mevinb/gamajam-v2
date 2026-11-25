@@ -6,6 +6,16 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Full isolated Northline Dominion chapter passes:** root59655/native0/chunkc2610e, oneNUnitPASS106.664s.
+  Fixed actual-collider LOS allows realE; actualcrossing/freight/signal/bothfreeboarding/coachendpoint/finalM26summary pass.
+  [Exact result](verification/northline-dominion-editor-green-20261126.json). PreparedM23/initialrole fixtures remain;
+  no continuous26/native26/graphics/human acceptance. Peace/recovery/lifecycle/binding suites remain pending.
+- **Current live job: controlled possession obstruction fixture**, root74517 viaWORK`possess_obstruction_20261126a`,
+  exact PossessSetupObstructionTests,180s/Null/nice15/idle/two workers. WORKAutoTest
+  `1f998595a804a199fb6b7b780b2122360b94d1568abc7fa087a95e1591aede5c` now includes the staged owned-box test;
+  RailAcceptance6d/RailCampaigne448 unchanged. ActualcombinedAPI175/33/175+FIVEtestclasses pass root71561/chunkfa1d89.
+  Test keeps its real wall enabled through blocked original LOS, different same-NPC fallback, normalE/WASD; no native/default
+  registration. ResultXML`Logs/possess-obstruction-20261126a.xml`, no passyet; holdC#/otherEditors until actualterminal.
 - **Actual compound-collider LOS fix passes4/4:** WORKRailCampaign SHAe4488bc6… usesactualcollider hierarchy forexact
   own/target subtrees, never wholecoachignore. Root7099/native0/chunkd5d49a,4NUnitPASS. Real kinematic parent/child target
   identity, same-RB sibling wall, foreign wall and own-subtree controls all pass. API175/33/175+4classes passes.

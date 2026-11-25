@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "EDITOR_NORTHLINE_DOMINION_PHYSICAL_CHAPTER_PASS",
+  "recordedUtc": "2026-11-25T23:51:41.140192+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 59655,
+    "chunk": "c2610e",
+    "nativeEditorExit": 0,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Passed",
+      "total": "1",
+      "passed": "1",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:48:13Z",
+      "end-time": "2026-11-25 23:49:59Z",
+      "duration": "106.6637723"
+    }
+  },
+  "source": {
+    "RailCampaign": "e4488bc6137b0f334097fbc6d901713f631b7f86c65ac6db75413ed37e6480c8",
+    "RailAcceptance": "6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca",
+    "AutoTest": "55b3b62e355e6c6044622601279bbff98ef1a31b3af7482a368a1c4479d610e5"
+  },
+  "success": [
+    "[Northline] PASS Dominion preparedM23 \u2192 realContinue \u2192 interlockedphysicalcrossing \u2192 realfreightarrival \u2192 host/freecrank+duct \u2192 bothfreeaboard \u2192 actualcoachendpoint"
+  ],
+  "actualAllowedDeparture": "[NorthlineDepartureLOS] ONCE expectedAllowed=True selectedControl=True targetKind=Interact targetAllowed=True prompt=Depart Northline \u2014 BOTH FREE bodies fully aboard actualCanDepart=True departReason= boardingReady=True boardingReason= controlReady=True controlReason= actualClearLine=True agent=1 bodyType=Parasite.Possession.AmoebaController body=Amoeba_1#-51896 bodyPosition=(1507.907000, 0.780005, -174.628600) host=FREE activeFree=True transit=False capturedPending=False eye=(1507.907000, 1.230005, -174.628600) control=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 controlPosition=(1509.150000, 0.750000, -175.200000) controlLocalPosition=(1.150024, 0.750000, -0.199997) controlPoint=(1509.150000, 1.550000, -175.200000) coach=World/Northline Railway Works/Northline departure carriage#-41790 coachPosition=(1508.000000, 0.000000, -175.000000) eyeInCoach=(-0.092651, 1.230005, 0.371414) pointInCoach=(1.150024, 1.550000, -0.199997) boardingBounds=Center: (1508.000000, 1.450000, -175.000000), Extents: (1.400000, 0.700000, 6.400000) eyeControlDistance=1.404689 bodies=[id=1 free=True at=(1507.907000, 0.780005, -174.628600) fullAboard=True grounded=True; id=2 free=True at=(1507.213000, 0.780005, -176.118100) fullAboard=True grounded=True] rayMask=-1 queryTriggers=Ignore hitCount=1 nonAllocCapacity=64 nonAllocMaySaturate=False sortedFullRayHits=[0:World/Northline Railway Works/Northline departure carriage/Northline departure control type=BoxCollider layer=0 bounds=(1509.150, 1.150, -175.200)/(0.700, 0.800, 0.500) colliderId=-42204 hitTransform=World/Northline Railway Works/Northline departure carriage#-41790 colliderTransform=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 hitRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 colliderAttachedRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 distance=1.009058 point=(1508.800000, 1.459873, -175.039100) normal=(-1.000000, 0.000000, 0.000000) ownByHitTransform=False controlByHitTransform=False ownByColliderTransform=False controlByColliderTransform=True coachByHitTransform=True coachByColliderTransform=True blocksActualPredicate=True blocksColliderHierarchyAlternative=False]",
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-departure-fixed-20261126a.xml",
+      "bytes": 97210,
+      "sha256": "9e1e51a47466107098fac42f1bd97f1d973c4499a05eaabb2b4cc1bca656b26c"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_departure_fixed_20261126a.log",
+      "bytes": 257305,
+      "sha256": "628831790eae0f3af098f8fc459e10fa005a1cf6b0771f85298722a292abda5d"
+    }
+  ],
+  "covered": "Prepared M23 summary\u2192real Continue\u2192actual tram/crossing gate\u2192moving branch cargo arrival\u2192host/free crank+duct/signal\u2192both free bodies physically aboard\u2192fresh E\u2192actual coach/body endpoint\u2192M26 Dominion summary.",
+  "limits": [
+    "Initial M23/role fixtures are declared; not an earned continuous26 run or human playthrough.",
+    "Only one Dominion physical chapter passes; Peace/recovery/coordinator/coach lifecycle and art-binding suites remain pending.",
+    "Null Editor only; no native26/GPU/pixel/performance acceptance or merge/build.",
+    "Diagnostic output blocksActualPredicate field is the old hit.transform comparison retained for comparison; actualCanDepart/actualClearLine use the fixed production collider hierarchy.",
+    "The later added controlled possession obstruction fixture changes AutoTest after this result and has separate pending coverage."
+  ]
+}
