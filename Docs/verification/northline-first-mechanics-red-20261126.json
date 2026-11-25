@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "NORTHLINE_CONTINUATION_PASSES_SIX_SHARED_INITIAL_WALK_FAILURES",
+  "recordedUtc": "2026-11-25T23:03:14.888954+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 18951,
+    "chunk": "c600e7",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "7",
+      "result": "Failed(Child)",
+      "total": "7",
+      "passed": "1",
+      "failed": "6",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 22:56:30Z",
+      "end-time": "2026-11-25 23:00:15Z",
+      "duration": "225.2097403"
+    }
+  },
+  "cases": [
+    {
+      "name": "ActualCoachDestroyDuringMotion",
+      "result": "Failed",
+      "seconds": "36.627599",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    },
+    {
+      "name": "ActualCoachRebindDuringMotion",
+      "result": "Failed",
+      "seconds": "34.525197",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    },
+    {
+      "name": "ActualCoordinatorDestroyDuringMotion",
+      "result": "Failed",
+      "seconds": "34.490436",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    },
+    {
+      "name": "ActualCoordinatorDisableDuringMotion",
+      "result": "Failed",
+      "seconds": "34.574127",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    },
+    {
+      "name": "ContinuationRequiresTheCompleted23Summary",
+      "result": "Passed",
+      "seconds": "15.605290",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "DominionPhysicalChapter",
+      "result": "Failed",
+      "seconds": "34.591694",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    },
+    {
+      "name": "PeacePhysicalChapterAndRecovery",
+      "result": "Failed",
+      "seconds": "34.732533",
+      "failure": "System.InvalidOperationException : Normal unwarped movement reaches original target.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Walk>d__32.MoveNext () [0x0025a] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:371 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    }
+  ],
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-mechanics-20261126a.xml",
+      "bytes": 13708,
+      "sha256": "0b72915b5c99e61c67440032ff15e91a6e575bec1ab159b52cb60d018f8f22b1"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_mechanics_20261126a.log",
+      "bytes": 67392,
+      "sha256": "a109a686e32f41cd39f3df6705ab1e7af2950c5f941dd012d165e585f892773d"
+    }
+  ],
+  "priorIntegratedSourceSnapshot": "c71a41afcad976574c2b4e50051a2ae933d617bf6a6def1ac7dc76316885afcb",
+  "observations": [
+    "All six gameplay/lifecycle methods fail at the same shared Walk predicate before any logged Northline PASS.",
+    "Source common entry is Enter\u2192Crossing; first free-body route is local(-24,-34)\u2192(-8,-27.4). Exact failed leg/actual collision was not logged, so identifying that leg is inference pending diagnostics.",
+    "Opaque cover at local centre(-17,1.15,-30), size(.6,2,7) intersects the direct approach; corner cutting is a candidate, not established cause."
+  ],
+  "limits": [
+    "ContinuationRequiresTheCompleted23Summary alone passes15.605s; no actual crossing/freight/signal/departure/lifecycle completion claim.",
+    "No criteria/tolerances/deadlines/production geometry changed to make this run pass.",
+    "Imported data and13selection passes remain independent; no graphics/gameplay acceptance inferred.",
+    "The exact0.6.1native23 candidate and portable archive are separate from this26-source red run."
+  ]
+}

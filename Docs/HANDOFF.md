@@ -6,6 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **First Northline mechanics batch is terminal RED:** root18951/native2/chunkc600e7,225.210s,7NUnit cases:1pass/6fail.
+  Continuation rules alone pass15.605s. Every gameplay/lifecycle method fails the shared Walk predicate, "Normal unwarped
+  movement reaches original target." Exact physical pose/leg was not logged; first crossing approach past opaque cover is
+  a source-based candidate, not proven cause. [Preserved failures](verification/northline-first-mechanics-red-20261126.json).
+  Editor116257 is gone. Rail agent is authorized to add bounded diagnostics only to worktree RailAcceptance.Walk, with no
+  target/timing/collision/criterion changes; no further Unity run yet. Next: existing DominionPhysicalChapter focused repro,
+  then evidence-led correction; do not rerun all seven before resolving their common failure. Two binding cases still unrun.
+- **0.6.1 portable archive is now built:** `Builds/Releases/PARASITE-0.6.1-preview-Linux.tar.gz`,615836474B, SHA
+  `fee38fdc4cab9593a9025a999b65ca6f27c7b5c20412b79c3c8383b54096fe8e`. Root83247/native0/chunk522070; existing read-only
+  packager verifies211entries/39links and exact candidate/docs before/after equality. This is packaging, not fresh-extracted
+  runtime acceptance. Hunter is extracting/verifying only to a fresh root-filesystem artifact directory, not Data; no player
+  is authorized from that extraction yet. Original user51569 and prior0.6.0release remain untouched.
 - **Isolated Northline import +13selection cases pass:** actual VerifyImport root99364/native0/chunkde1516;
   all35,449 data checks,11models/7,336triangles/3original texture references and unchanged scene/dirty state pass.
   Selection root95384/native0/chunkacdeb4,13/13NUnit cases in.098s. [Data/selection proof](verification/northline-import-selection-20261126.json).
