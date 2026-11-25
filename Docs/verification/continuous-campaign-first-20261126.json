@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "status": "CONTINUOUS_90_FAILED_91_INTERRUPTED_NO_SUITE_PASS",
+  "recordedUtc": "2026-11-25T21:12:54.081498+00:00",
+  "repositoryHeadAtProof": "4e62219635b93b51da7b8382c2dca2698c55ba6d",
+  "candidate": "Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab",
+  "runtimeSha256": "3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3",
+  "buildInfoSha256": "5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8",
+  "buildSourceSnapshotSha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253",
+  "scope": "Two continuous1\u201323 campaign-state checks,90MainGatePeace/91ServiceTunnelDominion, through three earned chapter Continue transitions without boundary seeding/reset/LoadCity/fabricated summary. Documented within-chapter role force, teleports, Calm and timeScale fixtures remain. Not human/stealth/graphics/performance/full-suite acceptance.",
+  "terminal": {
+    "agentExecSession": 57403,
+    "toolTerminalChunk": "593632",
+    "toolExitCode": 1,
+    "supervisorPid": 91136,
+    "playerPid": 91215,
+    "bothProcessesTerminal": true,
+    "supervisorExitCode": 1,
+    "nativeExitCode": 0,
+    "nativeZeroMeaning": "Owned shutdown after cancellation only; no successful suite conclusion.",
+    "startedUtc": "2026-11-25T20:59:33.073006+00:00",
+    "finishedUtc": "2026-11-25T21:09:05.695997+00:00",
+    "lastElapsedSeconds": 558.067,
+    "watchdogLimitSeconds": 3600,
+    "watchdogOrCancellation": true,
+    "recordedFailure": "RuntimeError: Owned-only cancellation/3600s watchdog",
+    "cancellationEvidence": "The unchanged runner enters this branch only when its SIGINT/SIGTERM handler set STOP or elapsed exceeds3600. Elapsed558.067 is below the watchdog. The original runner does not persist signal number, observed timestamp or sender; these remain unknown. No cause of the external signal is inferred.",
+    "finalReportPresent": false,
+    "finalSummaryPresent": false,
+    "nullBackendConfirmed": true,
+    "actualNice": 10,
+    "retries": 0
+  },
+  "cases": [
+    {
+      "id": "90",
+      "status": "FAIL",
+      "reportedSeconds": 341.0,
+      "failure": "Physical island M19 leg timed out while leading Morgan via cover1.",
+      "phaseBudgetSeconds": 26.3,
+      "continuousBoundariesObserved": [
+        "Afterlake Peace branch pass after actual summary Continue",
+        "Island Peace culvert entry pass into earned refuge"
+      ],
+      "atFailure": {
+        "leader": [
+          629.283,
+          0.19,
+          -224.645
+        ],
+        "morgan": [
+          633.006,
+          0.2,
+          -226.072
+        ],
+        "leaderFollowerFlatDistance": 3.987,
+        "targetError": 8.638,
+        "waitForFollower": true,
+        "leaderVelocity": [
+          0,
+          0,
+          0
+        ],
+        "leaderControllerFlags": "Below",
+        "followerState": "Normal",
+        "followerNavEnabled": true,
+        "followerOnNavMesh": true,
+        "followerDelivered": false,
+        "followerBoarded": false
+      },
+      "rawReceipt": "Logs/native-continuity-3894-90-91/player.log:139-155"
+    },
+    {
+      "id": "91",
+      "status": "INTERRUPTED",
+      "terminalCaseRowPresent": false,
+      "lastObservedMilestone": "Original city blackout chain finished11.5s,21lights dark,third body Iris Novak.",
+      "notClaimed": "No completion of1\u201323 or final result; native0 shutdown is not PASS."
+    }
+  ],
+  "integrity": {
+    "allSevenBeforeChecksPass": true,
+    "allSevenAfterChecksPass": true,
+    "fullPostIntegrityPass": true,
+    "sourceBeforeSha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253",
+    "sourceAfterSha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253",
+    "candidateBeforeTreeSha256": "effe59a1fd1afe971ab671447313ef6aefa54befd128e0d565d2e6e9f8b7ede0",
+    "candidateAfterTreeSha256": "effe59a1fd1afe971ab671447313ef6aefa54befd128e0d565d2e6e9f8b7ede0",
+    "retainedPreviewBeforeTreeSha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "retainedPreviewAfterTreeSha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "userPreviewBeforeTreeSha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+    "userPreviewAfterTreeSha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+    "protectedUser": {
+      "utc": "2026-11-25T21:09:05.694338+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    },
+    "protectedUserNeverSignalledByThisRun": true
+  },
+  "readOnlyCauseAssessment": {
+    "observed": "Morgan stopped0.998m from own Holding(634,.15,-226). No leader-side obstruction was detected; forwardHits empty and only shore collider overlaps.",
+    "compatibleButUnproven": "IslandTraveler returning/invalid-leader branch moves toward Holding then stops within1m. Independent guard visibility adds exposure and>2 clears the agreement/requests regroup. Continuous entry leaves live patrols where standalone StartAtRefuge parks/stuns them.",
+    "calmLimit": "Calm resets global suspicion and Suspect only; it does not disable IslandTraveler exposure scans or guard CanSee.",
+    "formationSpacingAloneInsufficient": "At3.987m from the leader, Morgan is at least2.487m from any1.5m follow point, above the1.2m follow-stop tolerance. This assumes a valid agreement and Drive executing.",
+    "unobserved": [
+      "returning/exposure/private cover",
+      "leader agreement identity and generations",
+      "follower actual navigation destination/path/velocity/remainingDistance/isStopped",
+      "guard visibility when agreement may have ended",
+      "HostBrain notice/flee timers"
+    ],
+    "noProductionNavBugConclusion": true,
+    "toastLimit": "RaiseToast only invokes event subscribers; this player log has no retreat/regroup event history.",
+    "stagedDiagnostics": {
+      "path": "Logs/island-continuity-diagnostics-stage/stage-review.json",
+      "bytes": 1895,
+      "sha256": "ff2602b028066d251af67b9e3e69e7b508901f935c277fda70e3cfc85e8fdf2b"
+    }
+  },
+  "evidence": {
+    "execution": {
+      "path": "Logs/native-continuity-3894-90-91/execution.json",
+      "bytes": 5909,
+      "sha256": "a9387d256516f648bacbb435396a0d7ffc21136e6760069a628371a8578d50bf"
+    },
+    "playerLog": {
+      "path": "Logs/native-continuity-3894-90-91/player.log",
+      "bytes": 27063,
+      "sha256": "cb24ecc81ef58b3f7a75f7f16db1654b495c5f0706250b8c84d321192ccb1171"
+    },
+    "launcherLog": {
+      "path": "Logs/native-continuity-3894-90-91/launcher.log",
+      "bytes": 1801,
+      "sha256": "97b6c0df0de05c8fd2f79f54dc647af5786b2d7508a4758607108b8a12eef15e"
+    },
+    "executedRunner": {
+      "path": "Logs/native-continuity-3894-stage/run.py",
+      "bytes": 11530,
+      "sha256": "1a171c525cd45b23dfcf24a539759a39b73e79cc2b7a8fa3f9609bdae897d3f8"
+    },
+    "archivedExecutedRunner": {
+      "path": "Logs/island-continuity-diagnostics-stage/executed-runner-1a171c52.py",
+      "bytes": 11530,
+      "sha256": "1a171c525cd45b23dfcf24a539759a39b73e79cc2b7a8fa3f9609bdae897d3f8"
+    },
+    "sourceBefore": {
+      "path": "Logs/native-continuity-3894-90-91/source-before.json",
+      "bytes": 609861,
+      "sha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253"
+    },
+    "sourceAfter": {
+      "path": "Logs/native-continuity-3894-90-91/source-after.json",
+      "bytes": 609861,
+      "sha256": "eedd3ee243479ad484def5d12efeff14fe004cf9d409104204e0cd42d9183253"
+    },
+    "candidateBefore": {
+      "path": "Logs/native-continuity-3894-90-91/candidate-before.json",
+      "bytes": 56224,
+      "sha256": "7b0acf6af9af8056cc6b7035e5abaaef6da47b31db36c3c76f73233aa3e55007"
+    },
+    "candidateAfter": {
+      "path": "Logs/native-continuity-3894-90-91/candidate-after.json",
+      "bytes": 56224,
+      "sha256": "7b0acf6af9af8056cc6b7035e5abaaef6da47b31db36c3c76f73233aa3e55007"
+    },
+    "retainedPreviewBefore": {
+      "path": "Logs/native-continuity-3894-90-91/retained-preview-before.json",
+      "bytes": 65547,
+      "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+    },
+    "retainedPreviewAfter": {
+      "path": "Logs/native-continuity-3894-90-91/retained-preview-after.json",
+      "bytes": 65547,
+      "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+    },
+    "userPreviewBefore": {
+      "path": "Logs/native-continuity-3894-90-91/user-preview-before.json",
+      "bytes": 64215,
+      "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+    },
+    "userPreviewAfter": {
+      "path": "Logs/native-continuity-3894-90-91/user-preview-after.json",
+      "bytes": 64215,
+      "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+    }
+  },
+  "limits": [
+    "No continuous campaign pass;90failed and91interrupted.",
+    "Prepared within-chapter role-force/position/Calm/timeScale fixtures remain; no human/stealth/graphics/performance claim.",
+    "No retry,live diagnostics patch,gameplay change,Unity/Blender/GPU launch occurred in this follow-up.",
+    "Future signal fields are staged only and cannot reconstruct the unknown original signal."
+  ]
+}

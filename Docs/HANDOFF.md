@@ -6,14 +6,16 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
-- **Continuous23-mission validation is active:** supervisor91136/player91215, agent exec57403, state
-  `Logs/native-continuity-3894-90-91/execution.json`. The proper rebuilt3894 player runs only opt-in90(MainGatePeace) and
-  91(ServiceTunnelDominion), actual Null/nice10 with isolated absolute user directories and3600s watchdog. All seven
-  source/artifact checks pass at launch; the exact existing user51569/start683333 is the sole coexistence exemption.
-  Source eedd is frozen until this run and its final integrity checks are terminal. Do not start an Editor, Blender, another
-  player or duplicate run, and do not apply Rail/other source changes. Agent `graphics_settings_foundation` owns monitoring.
-  These checks carry earned flags/route/choice/statistics through the actual M14/M17/M20 Continue boundaries, but existing
-  within-chapter role-force/position/calm/timeScale fixtures remain. No human/stealth/graphics or continuous-pass claim yet.
+- **First continuous23-mission attempt is terminal, without a pass:** rebuilt3894 native case90(MainGatePeace)
+  fails at M19 while leading Morgan through cover1; case91(ServiceTunnelDominion) is interrupted before a final case row.
+  Supervisor91136/player91215 are both terminal (agent exec57403/chunk593632, supervisor1). An external cancellation signal
+  reached the supervisor at558s, below its3600s watchdog; the original runner did not record the signal number or sender.
+  Native0 is the owned player's shutdown receipt only; final report/SUMMARY are absent. All seven before/after integrity checks
+  pass, source eedd and both protected previews remain unchanged, and user51569/start683333 stays live and untouched.
+  [First-continuity proof](verification/continuous-campaign-first-20261126.json) preserves the real90failure and interruption.
+  Morgan stopped about1m from Holding, compatible with the live-patrol retreat rule; agreement/exposure/nav state was not logged,
+  so the cause is unproven. A WalkState-only diagnostic patch and better signal receipts are staged underLogs, API-compiled162files,
+  not applied or executed. No retry or successful continuous/human/stealth/graphics claim; within-chapter fixtures remain explicit.
 - **New private verification player:** `Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab`, still version0.6.0-preview,
   runtime `3894f2204f481e8023bbe0d267e499070bfc43501b2b7bc17fa8eb9cb98cdbc3`, BUILD_INFO SHA
   `5471dfb954e4be5438f996f8f605ec50b684d3a391f2812ec39350bfd9a57bd8`. Build0/zero errors or warnings/1,118MB,

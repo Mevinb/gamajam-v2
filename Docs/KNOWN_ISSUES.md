@@ -3,6 +3,11 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
+- The first rebuilt3894 continuous campaign attempt does not pass. Peace reaches M19 then stalls while the leader waits for
+  Morgan; Morgan is near the holding position, compatible with a live-patrol retreat, but the relevant private state was not
+  logged. Dominion was interrupted by an unidentified cancellation signal before a result. Native0 records shutdown only,
+  not success. All source/artifact integrity checks pass. Detailed follower diagnostics are staged; no gameplay rule or timing
+  was changed. [Failure and interruption evidence](verification/continuous-campaign-first-20261126.json).
 - The published0435 player's native acceptance CLI falsely returns exit0/SUMMARY0/0 for unmatched selections and a missing
   value before the next option. Rebuilt3894 controls prove the current guard returns exit1 with a FILTER failure for unknown,
   next-option missing and trailing missing forms; valid01 still passes. Empty-token legacy prefix behavior is not exhaustively
