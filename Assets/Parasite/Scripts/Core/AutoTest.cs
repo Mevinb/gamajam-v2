@@ -300,6 +300,7 @@ namespace Parasite.Testing
                 ("18 Dominion: explicit lake choice → Continue → branch relay → checkpoint recovery → ferry", () => AfterlakeAcceptance.RunChapter(EndingOutcome.Dominion)),
                 ("19 River falls: active/inactive bodies recover once; story/NPC fixtures are excluded", FallRecoveryAcceptance.RunAll),
                 ("20 MissionProp holds: original owner/state/authorization and pause semantics", MissionPropAcceptance.RunAll),
+                ("22 Rendered river/berth visibility: actual skyline occlusion before/after, unchanged footing and shaded views", () => WaterVisibilityAcceptance.Run()),
             };
             // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
             var args = Environment.GetCommandLineArgs();

@@ -39,6 +39,11 @@ namespace Parasite.Missions
             berth.SetFloat("_ShoreZ", -24.15f);
             Surface("Ferry berth water", new Vector3(270, -0.3f, -31), new Vector3(10, 1, 14), berth);
 
+            var waterBounds = new List<Bounds>();
+            foreach (var renderer in GetComponentsInChildren<MeshRenderer>()) if (renderer.gameObject.layer == WaterLayer) waterBounds.Add(renderer.bounds);
+            var cutout = gameObject.AddComponent<SkylineWaterCutout>();
+            if (!cutout.ApplyToSkyline(waterBounds)) Debug.LogWarning("[AfterlakeWater] Distant ground left unchanged: " + cutout.LastFailure);
+
             var banks = Resources.Load<GameObject>("Riverside/RiversideBanks");
             if (banks)
             {
