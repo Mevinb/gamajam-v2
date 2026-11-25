@@ -1,17 +1,17 @@
-# PARASITE — The Far Shore (0.5.0 candidate)
+# PARASITE — The Far Shore (0.5.1 graphics preview)
 
 You are Specimen 7, an escaped amoeba. Borrow human bodies, split in two, infiltrate Vale Biotech and expose the black-site
 archive across fourteen missions. At the sunset lake, explicitly choose **Peace** or **Dominion**. Continue through three
 riverside missions and three Far Shore island missions: twenty missions in all.
 
-The candidate integrates a full eighty-second RTX-rendered Blender opening and four full lake films, eight island voice clips,
+The candidate retains a full eighty-second RTX-rendered Blender opening and four full lake films, eight island voice clips,
 a Blender quarantine-wall kit with 2K PBR maps, camera/reflection corrections and safe native movie cleanup. **Final verification
 is in progress.** `BUILD_INFO.json` identifies the binary; [TEST_REPORT.md](TEST_REPORT.md) records actual checks and unresolved
 gates. Do not interpret earlier successful runs or an encoded movie as a full pass for this candidate.
 
 ## Run on Linux
 
-Extract the entire archive, enter its `Linux` folder and run `./play.sh`. Keep `Parasite.x86_64`, `Parasite_Data` and all supplied
+Run `./play.sh` beside the executable in a private candidate, or enter the `Linux` folder of an extracted archive. Keep `Parasite.x86_64`, `Parasite_Data` and all supplied
 Unity libraries together. If executable permissions were lost, run `chmod +x play.sh Parasite.x86_64`.
 
 The launcher selects NVIDIA offload and prefers Vulkan when NVIDIA is available. To use OpenGL, run
@@ -20,7 +20,14 @@ executable so you run this binary rather than a different retained project build
 
 Choose **Begin Infiltration**. The eighty-second opening skips with Space/Enter/Esc or gamepad South/East; release the input
 to enter play. It does not replay on restart or checkpoint reload. Title and pause settings save graphics, sensitivity, master,
-music, ambience, effects and dialogue levels. High uses 100% render scale; Ultra uses 125% render scale and 4× MSAA.
+music, ambience, effects and dialogue levels. The new Display/Quality/Effects graphics pages stage independent choices until
+Apply; Cancel/Back discard the draft. Audio/input remain live. Custom profiles persist; quality changes retain VSync/frame cap.
+High retains100% render scale and Ultra125%/4×requestedMSAA. Post AA and MSAA are separate; real-time effects do not change baked movies.
+
+The private0.5.1-preview at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41` passes strictfull-five media,14queued
+shortcuts and renderedwater22 with nativeexit0/zero ring warnings. Remaining native settings/campaign, performance and release
+package checks are separate; the Editor combined-stress ring-warning gate remains open. Later gate-pilot source/import work is
+outside this binary. Use `BUILD_INFO.json` and the test report rather than treating this source guide as a final-release claim.
 
 ## Controls and continuation
 

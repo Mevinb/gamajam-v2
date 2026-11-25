@@ -1,46 +1,42 @@
 # Known issues and validation limits
 
-The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) and the current
-[handoff](HANDOFF.md). A focused pass applies to its recorded source/binary; it does not establish that all bugs are fixed.
+The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
+current work; every pass applies to its recorded source or binary.
 
-- Linux x86-64 remains the user's selected target. URP uses screen-space reflections and probes; built-in hardware ray tracing
-  is not enabled in this player. Blender cinematic footage uses RTX/OptiX offline path tracing. Screen-space reflections cannot
-  reflect objects outside the camera buffers, and puddles are not a complete fluid simulation.
-- The immutable `Builds/Linux` 0.5.0 preview was launched for the user and exited normally. It contains M18, four full lake films
-  and the earlier island presentation. It does not contain M19/M20, eight island voices or the subsequent source fixes. Do not
-  relabel it as the latest private candidate or a final release. The retained 0.4.2 archive is older and has two short film inserts.
-- The current0.5.0 candidate at `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95` is built from clean commit
-  `2f3fde9`,1,101MB with zero build errors/warnings. Its strict full-five media stress passes eight checks/seven PNGs, queued
-  shortcuts pass14/14, and rendered Vulkan water passes1/1. All three exit natively0 with unchanged runtime hash and zero
-  ring-buffer warnings. The user-controlled desktop player exited normally0 after130.601s. The23-case headless campaign
-  stopped without a final receipt:01–05 pass,06 fails at duty-officer targeting,07 begins. The machine has since restarted;
-  both old processes are absent. The stale running receipt is not a campaign pass. Diagnostics prove a yaw-only test aim
-  missed the unchanged15° cone. Test-camera yaw/pitch feedback passes focused15 and shared06/07/08/14/16 in the headless
-  Editor, including all three original infiltration paths through extraction. A new native rebuild, corrected24 and the
-  remaining current-player cases are still required. [Aim proof](verification/hunter-camera-aim-20261125.json).
-  Six focused current-binary High/Ultra baseline routes now pass; riverside High retains one217.1ms worst frame whose cause
-  is unproven. Dedicated lab, GPU timer/per-game VRAM and archive/extracted-player checks remain pending.
-  See [candidate proof](verification/0.5.0-candidate-20261125.json) and [baseline details](verification/graphics-baseline-0.5.0-20261125.json).
-- All 1,920 opening frames and all 840 lake frames pass source/frame provenance, visual sample review and complete FFmpeg decode.
-  All five silent 1080p24 films are published in live Resources. Editor full-five decode, continuous normal80s opening,
-  eleven shot checkpoints, selected actual voice progression, skip/settings/choice and gameplay/media restoration pass.
-  The original suite records 12/13 after a score-pause cursor baseline failure; the bounded actual-DSP baseline correction
-  and normal80s rerun pass 2/2/native0 with unchanged hold tolerance. Native graphics ring-buffer warnings remain recorded
-  (21 in the first collection, two in the focused run); their allocator cause and player impact are unproven.
-  The new candidate's strict decoder/terminal-seek check now passes; continuous80s native story observation remains separate.
-  See [Editor runtime proof](verification/full-opening-runtime-20261125.json)
-  and [opening production evidence](../ArtSource/FullOpeningFilm/README.md).
-- The preview's strict movie tests decoded the footage but hung during native cleanup. The newer scoped lifetime fix passes
-  rendered, batch and untraced default terminal-seek stress with normal native exit 0. Actual pending-seek Quit(0)/Quit(1) probes
-  also pass after real acknowledgement and zero owned/pending/quarantined resources, preserving requested native codes. These
-  results apply to pinned private candidates, not the immutable preview. OS/window-close while media is pending remains unexercised.
-  See [cinematic retirement proof](verification/cinematic-retirement-20261125.json).
-- M19/M20 pass both complete branches and all original 14 Editor rescue fixtures, including custody, generation/loss,
-  visited-cover/checkpoint, boarding and all-free departure. The focused physical sidestep fixture and native scenario 23 now
-  pass on the earlier `c35c66a7...` diagnostic player. Its native scenario 24 later exits 1 at the exposure fixture: ordinary sentry idle scanning loses
-  the follower's sight cone. A fixture-only sentry-facing correction passes the focused Editor case with actual sight and
-  exposure 2.1 before Regroup; vision rules and time limits are unchanged. Native 24 and the full campaign regression remain
-  required on the final rebuilt player. See [the physical-walker proof](verification/island-walker-20261125.json).
+- Linux/URP uses screen-space reflections and probes. It has no built-in hardware ray tracing; Blender films use offline
+  RTX/OptiX path tracing. SSR cannot reflect geometry outside the camera buffers; puddles are not a full fluid simulation.
+- The new0.5.1-preview candidate at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, runtime`80e65c6b...`, passes
+  native strictfull-five media(8checks/7images),14queuedshortcuts and renderedwater22, all exit0/zero ring warnings. These do
+  not prove native Custom-control persistence/frame pacing, continuous80s story playback or a full human campaign. Native23+24
+  is running nice10/Null; no final pass is claimed. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json).
+- The Editor Vulkan warning gate remains open after serializedIndividualFaces:13pass/1PendingDowngrade warning failure/
+  1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no
+  production all-green result or allocator cause is established. Narrow native gates currently have none. No allocator flag,
+  quality reduction or warning suppression is a verified fix. [Settings proof](verification/independent-graphics-settings-20261125.json).
+- New independent settings have135passing EditMode rules and passing named GPU ownership/Custom/UI/Bloom cases. The initial
+  Bloom metric used a stale SingleCameraRequest volume stack; the corrected StandardRequest fixture passes with unchanged
+  emitter/ROI/threshold and actual On1.178656/Off0.1345335/restored1.178656 HDR halo values. This is a rendered effect proof,
+  not a final-player performance result. Queued keyboard/gamepad navigation is separate from physical device testing.
+- Gate pilot code/assets are imported and compile148/26/148; actual import passes21checks(2meshes/3,808triangles/3real2KBC7maps).
+  They are outside the current native build. Gate scene regeneration and exact physics/light/motion/access/LOS/nav, visual and
+  performance checks remain required. Its baseline is329colliders/4doors/144lights. Do not call import readiness an integrated
+  visual upgrade or conflate later gate changes with the verified pre-gate probe-only scene comparison.
+- The older0.5.0 candidate(runtime2603...) was launched for the user and exited normally0 after130.601s. Its headless campaign
+  stopped after01–05pass/06duty-officer aim failure with no final receipt before reboot. Yaw/pitch test feedback passes focused15
+  and shared06/07/08/14/16 in the Editor with unchanged targeting rules. The new binary still needs the remaining campaign.
+- Six desktop0.5.0 baseline routes pass; riverHigh has one217.1ms worst frame with unproved cause. GPU timers/per-gameVRAM,
+  dedicated lab coverage and a final archive/extracted player remain pending. Older FPS values are not new-binary measurements.
+- Immutable`Builds/Linux`0.5.0-preview contains M18/four full lake films, not M19/M20 or subsequent fixes. The retained0.4.2archive
+  has two short inserts. Neither is relabelled by new source docs.
+- All five silent full films have complete frame/decode provenance. Continuous80s opening, selected actual voice progression,
+  skip/choice and gameplay/media restoration pass named Editor methods. New native media acceptance is initial-image/advancement/
+  terminal-seek cleanup, not a complete80s natural watch. Physical speakers/listening and native full story remain separate.
+- Scoped native movie retirement fixes the reproduced old-preview cleanup hang in newer pinned candidates. Actual pending-seek
+  Quit0/1 preserves requested codes after ACK/zeroowned resources. OS/window-close with media pending and unexpected graphics
+  owner destruction remain unexercised paths. [Movie proof](verification/cinematic-retirement-20261125.json).
+- M19/M20 both branches and original14Editor rescue fixtures pass; earlier native23 passes on a different diagnostic binary.
+  Earlier24failed a sentry-sight setup; its facing correction passes focused Editor checks without vision/exposure/time changes.
+  Current native23+24 is running and must finish. [Physical walker proof](verification/island-walker-20261125.json).
 - The centred free-body camera passes more than 17,000 actual GPU samples; human framing and canonical markers remain. This
   isolated proof is separate from physical input and an extended human playthrough.
 - Reflection lifecycle, fallback and normal water pass six RTX/OpenGL cases. The rendered standalone Vulkan water case passes

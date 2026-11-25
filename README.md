@@ -3,12 +3,12 @@
 You are Specimen 7, an escaped amoeba that borrows human bodies to uncover Vale Biotech's experiments. Use their credentials,
 split into two bodies, coordinate different professions and expose the black-site archive.
 
-The **0.5.0 candidate** contains twenty missions. The original fourteen end at a sunset lake, where you explicitly choose
+The twenty-mission baseline is retained in the **0.5.1-preview graphics candidate**. The original fourteen end at a sunset lake, where you explicitly choose
 **Peace** or **Dominion**. **Continue · After the lake** opens three riverside missions; **Continue · The Far Shore** then opens
 three island missions. Lead protected survivors or direct couriers, carry a physical rescue signal, bring every passenger
 aboard and release all borrowed bodies before departure. The first lake choice remains unchanged.
 
-This candidate adds the full **80-second RTX-rendered Blender opening** and four lake films: arrival, a neutral choice hold,
+The baseline includes the full **80-second RTX-rendered Blender opening** and four lake films: arrival, a neutral choice hold,
 Peace and Dominion. Eight island voice clips, a Blender-authored quarantine-wall kit with 2K PBR maps, centred free-amoeba
 camera work, reflection ownership fixes and safe native movie retirement are integrated. Final player verification remains in
 progress; [the test report](Docs/TEST_REPORT.md) names the exact tested artifacts and [the tracker](Docs/UPGRADE_TRACKER.md)
@@ -56,6 +56,20 @@ this process; persistent disk saving is not implemented.
 
 Read [controls](Docs/CONTROLS.md), [the complete twenty-mission guide](Docs/COMPLETE_GAME_GUIDE.md),
 [the riverside walkthrough](Docs/AFTERLAKE_GUIDE.md), [known limits](Docs/KNOWN_ISSUES.md) and [the developer handoff](Docs/HANDOFF.md).
+
+## Independent graphics settings
+
+The0.5.1-preview uses shared title/pause pages for **Display**, **Quality**, **Effects** and **Audio & Input**. Stage render
+scale, VSync/frame cap, post AA/MSAA, shadows/distance, ambient occlusion, reflections and optional Bloom/grain/color separation;
+**Apply** saves graphics, **Cancel** discards the draft, and **Back** discards unapplied graphics while returning one menu level.
+Audio and sensitivity apply/save immediately. Custom choices persist separately from the named baseline; existing four profile
+budgets are preserved, including High100% and Ultra125%/4xrequestedMSAA. Effects baked into the story movies do not change.
+
+The private build at`Builds/Candidates/full-story-20261125T170047223995Z-63921b41` passes native full-film stress,14queuedshortcuts
+and renderedwater22 with zero ring warnings. Native Custom-editing/frame-pacing and full-campaign checks remain separate.
+The combined Editor Vulkan warning gate remains open. [Exact candidate scope](Docs/verification/0.5.1-graphics-candidate-20261125.json).
+The gate realism pilot is currently source/import work outside this binary; integration and visual/physics/performance checks
+remain pending. The previously user-launched0.5.0 candidate remains a separate artifact with its older menu.
 
 ## Rendering and Blender
 

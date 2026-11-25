@@ -1,4 +1,4 @@
-# PARASITE 0.5.0 candidate — controls and play
+# PARASITE 0.5.1 graphics preview — controls and play
 
 The candidate contains fourteen initial missions, three riverside missions and three Far Shore island missions.
 [TEST_REPORT.md](TEST_REPORT.md) identifies the actual binary and completed verification; final candidate checks remain in progress.
@@ -34,8 +34,24 @@ for missions 18–20. Continuation preserves the original choice, earlier flags 
 | Left or right Ctrl + M | — | Presentation shortcut to the original escape and explicit lake choice |
 
 Menus accept mouse input or keyboard/D-pad navigation and Enter/A confirmation. Gamepad B returns from controls/settings;
-Esc/Start returns from pause submenus. Title and pause settings save graphics quality, mouse sensitivity, master, ambience,
-music, effects and dialogue levels. Sliders apply immediately.
+Esc/Start returns from pause submenus. Audio and sensitivity sliders apply/save immediately. Graphics are staged until Apply;
+Cancel/Back discard only unapplied graphics and preserve the pause state and saved audio/input values.
+
+## Graphics settings in0.5.1-preview
+
+- **Display:** game render scale50–150%, VSync and frame limit(Unlimited/30/60/90/120/144/240). The cap is used when VSync is off;
+  compositor/display behavior can still limit presentation. Menus/captions retain output resolution.
+- **Quality:** post AA(Off/FXAA/SMAA), separate MSAA(Off/2x/4x), shadows/distance, ambient occlusion and reflection detail.
+  Unsupported sample counts show the renderer's effective value. High/Ultra reflections can use real surrounding captures;
+  these are not hardware ray tracing.
+- **Effects:** Bloom, grain and chromatic aberration for real-time scenes. Movie lighting/effects are already rendered into the footage.
+- **Audio & Input:** live volume buses and mouse sensitivity; these stay saved when a graphics draft is cancelled.
+
+Use mouse, Up/Down or D-pad to focus a row, Left/Right to change a choice and scroll wheel/drag to move a page. Apply saves;
+Cancel reloads applied graphics; Defaults stages the normal starting profile; Back discards an unapplied draft. A changed profile
+shows **Custom**, retaining its named baseline for other quality budgets. Selecting quality preserves separately chosen VSync/frame cap.
+The older0.5.0 menu has one preset-cycle control; these pages belong to the newer graphics preview. Automated queued navigation
+passes in the Editor; physical input and native Custom editing remain separate verification.
 
 Ctrl+M works from the initial title, opening, pause menus, Vale dialogue and gameplay. A request waits through loading or body
 changes. An ending already underway continues without restarting or choosing for you. The shortcut skips the remaining original

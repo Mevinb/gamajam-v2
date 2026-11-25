@@ -8,9 +8,9 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 - Linux/URP remains the chosen target. The game uses real-time shaders, screen-space reflections and probes. The completed
   Blender films use offline RTX/OptiX path tracing; this does not make the Linux player hardware ray traced.
-- Source base `bbebc8c` contains the verified test-camera yaw/pitch aim correction. The working tree adds independent graphics
-  settings and their tests, probe time slicing and regenerated scenes. Later gate-pilot source/import work is beyond the new
-  private player's snapshot. Use explicit file staging; keep the untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` and other work intact.
+- Local feature commit `a993723` records independent graphics settings/tests and the pre-gate probe-only scene regeneration.
+  The new private player was built from that work over base `bbebc8c` before the feature commit. Later gate-pilot source/import
+  work is beyond its snapshot. Use explicit file staging; keep the untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` and other work intact.
 - The new **0.5.1-preview graphics candidate** is `Builds/Candidates/full-story-20261125T170047223995Z-63921b41`.
   It is a working-tree build over `bbebc8c`, 1,101 MB, zero build errors/warnings, native build exit 0. Runtime SHA-256:
   `80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290`. Source and the immutable preview tree were unchanged
@@ -95,8 +95,8 @@ new builds and bakes. `Tools/package_build.sh` modifies the retained `Builds/Lin
 - Unity 6000.3.29f1: `~/Data/Unity/Editor/6000.3.29f1/Editor/Unity`; URP 17.3, Cinemachine 3, Input System.
 - Blender: `~/Data/Blender/current/blender` (not on PATH). Existing pipelines live in `Tools/blender/`.
 - Linux x86-64 remains the target. The user selected RTX-rendered Blender cinematics plus improved real-time shaders.
-- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. About 4 GiB remained after the current candidate build; check live free space.
-- Launch the built Linux player using `./play.sh`; it selects NVIDIA offload and prefers Vulkan on NVIDIA systems.
+- GPU: RTX 4050 Laptop GPU, 6 GB; RAM 16 GB. Check `df -h .` before large imports/renders. Check live free space before large jobs; build/cache/import usage changes quickly.
+- Launch a candidate using its adjacent `play.sh`; the project-root `./play.sh` selects retained `Builds/Linux`. The launcher selects NVIDIA offload and prefers Vulkan on NVIDIA systems.
   Use `PARASITE_GRAPHICS_API=glcore ./play.sh` for OpenGL; explicit Unity API flags take priority.
 
 ```bash
@@ -155,7 +155,7 @@ Use one MonoBehaviour per file, with the file matching the class name. Unity sce
   Both use unscaled time while live gameplay is frozen. Blender set assets and PBR surfaces are loaded through `CinematicArt`.
 - **UI:** code-built uGUI in `HUDController` partial files; `MainMenuController`, `SettingsOverlay` and `UIKit` share input/navigation.
   Escape closes a pause submenu before resuming. Journal entries are built from the current campaign rather than hard-coded counts.
-- **Graphics:** `GraphicsPreset` applies saved Low/Medium/High/Ultra settings to pipeline and newly created cameras. GroundWater's
+- **Graphics:** `GraphicsSettingsData`/`GraphicsSettingsStore` persist independent choices; `GraphicsPreset` retains named-profile compatibility and applies active Custom data across scenes/new game cameras. `GraphicsSettingsRuntime` owns pipeline/renderer/feature/post copies and normal retirement. GroundWater's
   reflections are screen-space depth-buffer ray marches; they are not hardware ray tracing. `LampLights` budgets local lights.
   Custom atmosphere/foliage/facade/amoeba shaders and packed PBR textures provide the real-time look.
 - **Audio/FX:** `AudioPreferences`, voice/narration/ambience/music systems; `FxApi`, `SfxBackend`, `AmoebaVisual`, `HostGlow`;

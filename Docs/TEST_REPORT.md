@@ -1,4 +1,34 @@
-# Current 0.5.0 desktop performance baseline — 25 November 2026
+# Independent graphics and 0.5.1-preview checkpoint — 25 November 2026
+
+The new private graphics candidate is`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`, version0.5.1-preview,
+working-tree snapshot over`bbebc8c`,1,101MB/zero build errors/warnings/native0, source and retained-preview trees unchanged.
+RuntimeSHA256:`80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290`.
+Strictfull-five media(8checks/7PNGs),queuedshortcuts14/14 and renderedwater22 all pass on RTX4050/Vulkan, native0/zero raw
+Graphics Ring Buffer warnings. [Candidate proof](verification/0.5.1-graphics-candidate-20261125.json) pins reports and scope.
+Native23+24 is currentlyrunning nice10/Null under`Logs/graphics-native-rescue`; finalreport/nativeexit are not yet available.
+
+135EditMode rules pass. Named GPU cases pass actual owned-renderer/source-asset preservation and cleanup, CustomLow/high
+reflection images across reload, late cameras, Bloom pixels and staged title/pause UI with queued keyboard/gamepad navigation.
+InitialGPU15 records12pass/2fail/1expectedNullskip. Bloom SingleCameraRequest diagnostics prove a stale0.95volume stack; the
+fixture-only StandardRequest correction passes the same emitter/ROI/>.01threshold, On1.178656/Off0.1345335/restored1.178656.
+The corrected collection is13/1/1/native2; no-flag serializedIndividualFaces rerun is also13/1/1/native2, with9raw ring warnings.
+The original PendingDowngrade unexpected-log guard still fails; controlled14pass observations with residual warnings are not a
+production all-green result. Cause remains unproved; native quick gates have none. [Exact settings proof](verification/independent-graphics-settings-20261125.json).
+
+Probe-only GPU regeneration preserves canonical geometry/hierarchy, physics/nav/doors, light inputs/origins, global scene data
+and UI; all11CityVolume components are equivalent.8probe time-slicing fields and17existing NPC default serializations differ.
+[Semantic proof](verification/serialized-probe-regeneration-20261125.json) applies before gate integration.
+
+Gate pilot is **source/import only** at this checkpoint:148/26/148API compile,21actual Vulkan import checks,2meshes/3,808triangles,
+3real2KBC7maps/sharedPBRmaterial,18island importer/meta hashes unchanged. The329collider/4door/144light baseline is recorded.
+Gate scene regeneration, exact post-integration physics/light/motion/access/LOS/nav, matched visuals/performance and a new player
+remain pending. The current private player contains the new settings, not that pilot.
+
+The dated entries below retain earlier artifact states. A historical running observation is not a claim that its process is live now.
+
+---
+
+# 0.5.0 desktop performance baseline — retained prior artifact
 
 Six native RTX4050/Vulkan runs complete all city-exterior, riverside and island waypoints at 1920×1080 output, with AI active,
 AC power/balanced mode, all samples focused, unchanged runtime and native exits0. High/Ultra retain their existing1.0/1.25

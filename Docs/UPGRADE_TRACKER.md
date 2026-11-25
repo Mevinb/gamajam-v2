@@ -31,58 +31,51 @@ Primary references: [Unity render-pipeline feature comparison](https://docs.unit
 
 ## Current source and delivery boundary — 25 November 2026
 
-The source now contains the original 14 missions, branch-sensitive riverside missions M15–M17 and Far Shore missions M18–M20.
-The island adds tidal culvert and maintenance-gate entry, physical Peace escorts or Dominion couriers, carried signal custody,
-individual boarding and an all-free protected departure. Both complete rescue branches and the original 14 recovery/boarding
-fixtures pass actual Editor execution. A new focused physical sidestep regression passes, and native scenario 23 passes both
-branches on an earlier diagnostic candidate. That player's native scenario24 exits1 at an exposure setup that does not sustain the ordinary
-sentry's sight cone. Facing that fixture sentry between Holding and the westward lead passes the focused Editor case with
-unchanged exposure/vision/time rules. Native 24 and the full campaign regression remain open on the final rebuilt player;
-[the physical-walker proof](verification/island-walker-20261125.json) preserves the exact pass/failure and source scopes.
+Twenty missions are implemented: original14, branch-sensitive riverside15–17 and island18–20. Explicit Peace/Dominion and
+Continue gates remain. The full80s opening and four lake films, eight island voices, authored quarantine-wall kit, centred
+free-body camera and reflection/movie ownership fixes are integrated. Full frame/decode provenance and named Editor/player
+checks are recorded in [TEST_REPORT.md](TEST_REPORT.md); these do not establish that the full open-ended request is complete.
 
-Blender-authored quarantine walls and 2K PBR atlases are integrated with unchanged physical colliders/navigation. Actual import,
-entry routes, camera, raster aperture and HDR staged visual review pass. Reflection ownership/fallback/cleanup passes actual GPU
-checks; the rendered Vulkan standalone water case passes. Eight island voice clips pass technical gates and actual Editor source-tail
-checks. See [HANDOFF.md](HANDOFF.md) and the portable proofs it links for exact artifacts and limits.
+The new **0.5.1-preview graphics candidate** is a1,101MB working-tree build over`bbebc8c`, runtime`80e65c6b...`, at
+`Builds/Candidates/full-story-20261125T170047223995Z-63921b41`. Strictfull-five media(8checks/7images), queuedshortcuts14/14 and
+renderedwater22 each pass on RTX4050/Vulkan with nativeexit0 and zero ring warnings. Source/preview hashes are unchanged.
+[Candidate proof](verification/0.5.1-graphics-candidate-20261125.json) separates those narrow checks from native Custom editing,
+frame-pacing, continuous80s story observation and a complete human playthrough. Native23+24 is currentlyrunning nice10/Null
+under`Logs/graphics-native-rescue`; its final receipt is still required. Other current-player campaign checks remain open.
 
-All 2,760 RTX/OptiX frames have completed, including the full 80-second opening and all four lake sequences at 1080p24.
-All five films are now published in live Resources after exact frame/source provenance, visual sample review, encoding and
-complete FFmpeg decode. Actual Editor story gates pass across named methods in the original12/13 collection and focused2/2
-normal80s/pause-baseline rerun. The original failure remains recorded; this is not a single13casegreen result. Normal playback
-reaches all eleven shots and the final half-second, observes three real voice-source progress checks, and restores gameplay
-with zero owned media. The new candidate passes strict full-five decoder/terminal-seek cleanup; continuous80s natural story
-proof remains Editor scope; [runtime proof](verification/full-opening-runtime-20261125.json)
-retains exact sources/results and native warnings. The scoped native movie lifetime fix passes default stress
-and actual pending-seek quit codes 0 and 1; OS/window-close pending-media routing remains separate.
+Independent settings now have real Display/Quality/Effects controls, staged Apply/Cancel/Defaults, Custom persistence and live
+Audio/Input. Existing profile quality is preserved.135EditMode rules pass. GPU cases verify actual Bloom pixels, owned renderer
+cleanup/source-asset preservation, late cameras, CustomLow/high reflection images across reload and queued keyboard/gamepad UI.
+The remaining Editor Vulkan warning gate is **open**: the no-flag serializedIndividualFaces collection records13pass/1warning
+failure/1expectedNullskip/native2 with9raw warnings. Controlled14pass observations with residual warnings are diagnostic controls,
+not a production all-green result. Current narrow native gates have none; allocator cause remains unproven. No suppression or
+quality cut closes that gap. [Settings proof](verification/independent-graphics-settings-20261125.json).
 
-The immutable `Builds/Linux` 0.5.0 preview was built and launched for the user, then exited normally. It contains M18 and the
-four full lake films, not M19/M20 or subsequent fixes. New candidates preserve that preview. The current0.5.0 candidate is
-`Builds/Candidates/full-story-20261125T143348976819Z-ea740a95`, built from clean`2f3fde9`:1,101MB,zero errors/warnings,native0.
-Its runtime is`2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc`. Strict full-five media,eight checks/seven PNGs;
-queued shortcuts,14/14; and rendered Vulkan water22,1/1,all pass with native0,unchanged runtime and zero ring warnings.
-[Candidate proof](verification/0.5.0-candidate-20261125.json) pins exact artifacts. The user-controlled native player exited normally0
-after130.601s. The23-case campaign run has no final receipt:01–05 pass,06 fails at duty-officer targeting,07 starts before the
-log ends. Both old processes are absent after a machine restart. Diagnostics preserve possession rules while checking aim,
-range and obstruction. Six current-binary desktop High/Ultra baselines pass; the217.1ms riverside High worst frame is retained.
-[Baseline scope and hashes](verification/graphics-baseline-0.5.0-20261125.json). Release archive/extracted smoke and the
-unfinished campaign cases remain pending. This is not a final release.
-The retained 0.4.2 archive and older test rows describe historical artifacts only.
+Probe-only regeneration preserves canonical world geometry, physics/nav/door data, lights, global settings and all11CityVolume
+components. Only8probe time-slicing values and17existing NPC default serializations differ.
+[Semantic comparison](verification/serialized-probe-regeneration-20261125.json) applies before gate integration.
 
-The current0.5.0 baseline averages169.2/111.7FPS (city exterior High/Ultra),212.9/140.5 (riverside) and252.2/169.5 (island),
-1920×1080/Vulkan, live AI and all samples focused. All six native exits are0. GPU timing/per-game VRAM are unavailable,
-cache state is mixed, and no dedicated lab-interior route is covered. These measurements do not predict the new settings/art work.
+The **gate realism pilot is an applied source/import checkpoint**, outside that native candidate. Builder hooks and3editor helpers
+compile148/26/148. Actual Vulkan import passes21checks:2meshes/3,808triangles/3true2D2KBC7 maps/sharedPBR material; existing18
+island importer/meta hashes remain unchanged. The baseline has329colliders/4doors/144lights. Gate scene regeneration, exact
+physics/light comparison, motion/access/LOS/nav, matched before/after art review, performance and a new native build are pending.
+Import readiness alone does not establish an integrated visual upgrade.
+
+The earlier0.5.0 candidate was launched for the user and exited normally0 after130.601s. Its interrupted headless run records
+01–05pass,06duty-officer aim failure and no final receipt after reboot. The yaw/pitch fixture correction passes focused15 and
+shared06/07/08/14/16 in the Editor without changing possession rules. Six desktop0.5.0 baseline routes pass; the217.1ms river
+High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pilot. The immutable`Builds/Linux`0.5.0-preview
+(M18/four lake films) and retained0.4.2archive remain older separate artifacts.
 
 ## Required next verification
 
-- Complete final native title/story/audio/settings observation. Strict full-five media,queued shortcuts and rendered water now
-  pass on the current candidate; continuous80s playback and selected live voice progression remain Editor scope.
-- Run the remaining23 campaign cases,including corrected native24,on the exact current binary; water22 passed separately in
-  normal rendered mode. Automated movement/queued keys do not establish physical input or a human playthrough.
-- Review gameplay graphics at actual resolution, listen to the voices and measure declared desktop presets on the final player.
-- Prepare a fresh release artifact, current guides/issues/test report, checksums and an isolated extracted-player verification
-  while retaining the user's preview. The current package shell script targets `Builds/Linux` and needs a safe explicit-candidate path.
-- Continue mission and realism work from observed gameplay findings. All-bugs-fixed and the open-ended expansion request remain
-  unproven; compilation, completed renders and narrow passing suites do not close the full objective.
+- Observe native23+24 to its real final result and complete remaining current-player campaign scenarios. Keep Null/simulated
+  logic separate from rendered22 and physical input.
+- Characterize the Editor warning without suppressing its guard; exercise native Custom controls/persistence/frame pacing and
+  story/audio/settings behavior on the new binary.
+- Finish gate-pilot integration and actual collision/lighting/motion/visual/performance checks before including it in a new build.
+- Measure the final binary at declared settings, listen to voices, exercise physical keyboard/gamepad, then verify a fresh archive
+  and isolated extracted player. The package shell script modifies the retained preview; use an explicit-candidate path.
+- Continue the requested mission/realism expansion. Compilation, completed films and narrow passing suites do not close the goal.
 
-`TEST_REPORT.md` retains the dated test history. `KNOWN_ISSUES.md` records validation limits; reconcile its older status paragraphs
-with the final artifact before shipping. Build output and captures remain ignored under `Builds/` and `Logs/`.
+`TEST_REPORT.md` retains artifact-specific history; `KNOWN_ISSUES.md` records limits. Builds, caches and captures remain ignored.
