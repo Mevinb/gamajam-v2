@@ -36,7 +36,8 @@ namespace Parasite.Missions
 
         float busyT;
         Possession.AmoebaAgent busyAgent;
-        Vector3 busyPos;
+        IControllable busyBody;
+        Characters.HostCharacter busyHost;
 
         public Vector3 InteractPoint => interactPoint ? interactPoint.position : transform.position + Vector3.up * 1.1f;
         public float InteractRange => range;
@@ -44,7 +45,7 @@ namespace Parasite.Missions
         public bool Revealed => string.IsNullOrEmpty(visibleWhenFlag) || RunState.Has(visibleWhenFlag);
 
         void OnEnable() => Interactables.Register(this);
-        void OnDisable() { Interactables.Unregister(this); if (Current == this) Current = null; }
+        void OnDisable() { Interactables.Unregister(this); StopWork(); }
 
         void Start() => RefreshVisual();
 
@@ -68,16 +69,30 @@ namespace Parasite.Missions
         public bool CanInteract(in InteractContext ctx, out string deniedReason)
         {
             deniedReason = null;
+            var pm = Possession.PossessionManager.Instance;
+            if (ctx.agent == null || !pm || !pm.Agents.Contains(ctx.agent) || ctx.agent.InTransit)
+            { deniedReason = "Your amoeba is not ready to operate this."; return false; }
+            if (ctx.host)
+            {
+                if (ctx.agent.Host != ctx.host || ctx.host.Possessor != ctx.agent || ctx.host.State != HostState.Possessed)
+                { deniedReason = "You must control an uncaptured host to operate this."; return false; }
+            }
+            else if (ctx.agent.Host != null || !ctx.agent.Blob || !ctx.agent.Blob.isActiveAndEnabled)
+            { deniedReason = "Your amoeba is not ready to operate this."; return false; }
             if (requireHost && ctx.IsBlob) { deniedReason = "You need a body for this. Possess someone."; return false; }
-            if (!AccessRules.Has(ctx.permissions, requiredPermission))
+            var permissions = ctx.host ? ctx.host.Permissions : AccessPermission.None;
+            if (!AccessRules.Has(permissions, requiredPermission))
             { deniedReason = string.IsNullOrEmpty(permissionReason) ? "Your host isn't authorised." : permissionReason; return false; }
             if (!string.IsNullOrEmpty(requiredFlag) && !RunState.Has(requiredFlag))
             { deniedReason = string.IsNullOrEmpty(requiredFlagReason) ? "Not yet." : requiredFlagReason; return false; }
+            if (!Revealed) { deniedReason = "Not yet — this control is unavailable."; return false; }
             return true;
         }
 
         public void Interact(in InteractContext ctx)
         {
+            var gm = GameManager.Instance;
+            if (!IsAvailable || (gm && !gm.IsPlaying)) return;
             if (!CanInteract(ctx, out var reason))
             {
                 GameEvents.RaiseToast(reason, Palette.Danger);
@@ -86,37 +101,66 @@ namespace Parasite.Missions
                     SuspicionSystem.Instance?.ReportViolation(ViolationType.UnauthorizedAccess, InteractPoint, ctx.host);
                 return;
             }
+            if (!InStartReach(ctx.agent.Position)) { GameEvents.RaiseToast("Move closer to the control.", Palette.Warning); return; }
             if (holdSeconds <= 0f) { Complete(); return; }
             busyT = holdSeconds;
             busyAgent = ctx.agent;
-            busyPos = ctx.position;
+            busyBody = ctx.agent.Body;
+            busyHost = ctx.host;
             Current = this;
             Sfx.Play(SfxId.TerminalBeep, InteractPoint, 0.6f);
             GameEvents.RaiseToast($"{verb}… stay close", Palette.Info);
         }
 
+        // Matches PossessionManager's planar targeting reach, including its vertical allowance.
+        bool InStartReach(Vector3 position)
+        {
+            var delta = InteractPoint - position;
+            if (Mathf.Abs(delta.y) > 2.6f) return false;
+            delta.y = 0f;
+            return delta.sqrMagnitude <= range * range;
+        }
+
+        // Retain the original holding tolerance so small controller pushes do not invalidate a started hold.
+        bool InHoldReach(Vector3 position) => (position - InteractPoint).sqrMagnitude < (range + 1.2f) * (range + 1.2f);
+
+        void StopWork(bool interrupted = false)
+        {
+            bool wasBusy = Busy;
+            busyT = 0f; busyAgent = null; busyBody = null; busyHost = null;
+            if (Current == this) Current = null;
+            if (!interrupted || !wasBusy) return;
+            GameEvents.RaiseToast($"{displayName}: interrupted", Palette.Warning);
+            Sfx.Ui(SfxId.Denied, 0.4f);
+        }
+
         void Update()
         {
             if (glow && !RunState.Has(flag) && Time.frameCount % 6 == 0) RefreshVisual();
-            if (busyT <= 0f) return;
+            if (!Busy) return;
+            var gm = GameManager.Instance;
+            if ((gm && (gm.State == GameState.Resetting || gm.State == GameState.Ended)) || RunState.Has(flag))
+            { StopWork(); return; }
             var pm = Possession.PossessionManager.Instance;
-            bool stillHere = busyAgent != null && pm != null && pm.Agents.Contains(busyAgent) && !busyAgent.InTransit &&
-                             (busyAgent.Position - InteractPoint).sqrMagnitude < (range + 1.2f) * (range + 1.2f) &&
-                             (!requireHost || busyAgent.Host != null);
-            if (!stillHere)
+            bool sameBody = busyAgent != null && pm && pm.Agents.Contains(busyAgent) && !busyAgent.InTransit &&
+                busyBody != null && !(busyBody is Object unityBody && !unityBody) && ReferenceEquals(busyAgent.Body, busyBody);
+            if (!sameBody) { StopWork(interrupted: true); return; }
+            var ctx = new InteractContext
             {
-                busyT = 0f; Current = null;
-                GameEvents.RaiseToast($"{displayName}: interrupted", Palette.Warning);
-                Sfx.Ui(SfxId.Denied, 0.4f);
-                return;
-            }
+                agent = busyAgent, host = busyHost,
+                permissions = busyHost ? busyHost.Permissions : AccessPermission.None, position = busyAgent.Position,
+            };
+            if (!InHoldReach(busyAgent.Position) || !CanInteract(ctx, out _)) { StopWork(interrupted: true); return; }
+            // Switching selection is fine: the same authorized body may continue working while inactive.
+            // Pause/story protection preserves a valid hold, but never advances its timer.
+            if (gm && !gm.IsPlaying) return;
             busyT -= Time.deltaTime;
             if (busyT <= 0f) Complete();
         }
 
         void Complete()
         {
-            busyT = 0f; if (Current == this) Current = null;
+            StopWork();
             Sfx.Play(SfxId.TerminalBeep, InteractPoint);
             MissionManager.SetFlag(flag);
             if (!string.IsNullOrEmpty(doneToast)) GameEvents.RaiseToast(doneToast, Palette.Amoeba);
