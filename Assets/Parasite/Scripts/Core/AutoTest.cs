@@ -304,6 +304,9 @@ namespace Parasite.Testing
                 ("22 Rendered river/berth visibility: actual skyline occlusion before/after, unchanged footing and shaded views", () => WaterVisibilityAcceptance.Run()),
                 ("23 Island rescue branches: moving people, carried signal, all-free assembly and protected launch", IslandRescueAcceptance.RunBranches),
                 ("24 Island rescue recovery: capture, visited cover, partial roster, signal custody and ally reporting", IslandRescueAcceptance.RunRecovery),
+                ("25 Harbor Peace: pressure lock, moving antidote manifest, two-free-body relay and checkpoint recovery", () => HarborAcceptance.RunChapter(EndingOutcome.Peace)),
+                ("26 Harbor Dominion: pressure lock, moving relay manifest, two-free-body relay and checkpoint recovery", () => HarborAcceptance.RunChapter(EndingOutcome.Dominion)),
+                ("27 Harbor cargo recovery: two actual in-flight reroutes, separate physical restore and bay arrivals", HarborAcceptance.TwoInflightCargoReroutesRecoverWithoutOverlap),
             };
             // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
             var args = Environment.GetCommandLineArgs();

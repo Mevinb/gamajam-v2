@@ -1,3 +1,15 @@
+# Working Harbor source verification — 26 November 2026
+
+Source0.6.0-preview implements missions21–23 after explicit island-summary continuation. Final combined Peace/Dominion
+cases pass2/2 in272.3279138seconds (Dominion142.972496/Peace129.292570), native Editor exit0, root40089/chunkfe4e20.
+Separate continuation/pressure and cargo/arrival red-green results are preserved. The overlap regression first measures1m
+penetration after two earned in-flight reroutes, then verifies separate safe restaging and actual final physical arrivals.
+Arrival tests first reproduce both cancellation errors, then pass2/2 after owned coroutine retirement. No new harbor
+completion flags are granted by those gameplay fixtures. [Detailed scope and evidence](HARBOR_EXPANSION.md).
+
+The nine-model Blender kit passes its CPU roundtrip and267actualNullUnityimport checks. These source/logic checks are separate
+from a rebuilt native player, RTX appearance, physical-device controls and performance; those remain pending.
+
 # Moving-host recovery and close-range guidance — 25 November 2026
 
 The live-host aim driver follows the actual chest during the existing 0.8-second settle. The preserved live-only Route 08

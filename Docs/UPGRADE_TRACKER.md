@@ -31,6 +31,13 @@ Primary references: [Unity render-pipeline feature comparison](https://docs.unit
 
 ## Current source and delivery boundary — 25 November 2026
 
+The new 0.6.0-preview working tree adds a three-mission Working Harbor chapter after the completed island rescue, for 23
+missions. Maintenance balances a physical pressure lock; a scientist routes branch-specific moving cargo into actual bays;
+two separate free amoebae complete a continuously validated relay. Nine Blender model inputs pass267Null import checks.
+Continuation, pressure recovery, in-flight cargo recovery and arrival cancellation have scoped tests; final Peace/Dominion
+source branches pass2/2 in272.328seconds with Editor exit0. A corresponding native player, rendered appearance and performance
+remain pending. The running user0.5.1 player still has20missions. [Harbor implementation/evidence](HARBOR_EXPANSION.md).
+
 Twenty missions are implemented: original14, branch-sensitive riverside15–17 and island18–20. Explicit Peace/Dominion and
 Continue gates remain. The full80s opening and four lake films, eight island voices, authored quarantine-wall kit, centred
 free-body camera and reflection/movie ownership fixes are integrated. Full frame/decode provenance and named Editor/player

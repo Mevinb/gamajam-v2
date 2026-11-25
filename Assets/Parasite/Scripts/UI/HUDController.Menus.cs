@@ -223,7 +223,7 @@ namespace Parasite.UI
         // ================================================================== end screen
         RectTransform endRoot;
         CanvasGroup endGroup;
-        Button endPlay, endReplay, endContinue, endContinueIsland;
+        Button endPlay, endReplay, endContinue, endContinueIsland, endContinueHarbor;
         readonly List<Selectable> endActionRow = new();
         Text[] endValues;
         Text endHeadline, endEpilogue, endOutcome;
@@ -296,6 +296,13 @@ namespace Parasite.UI
             }, 640, 62, 28, TextAnchor.MiddleCenter);
             ((RectTransform)endContinueIsland.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
             endContinueIsland.gameObject.SetActive(false);
+            endContinueHarbor = UIKit.Btn(col, "Continue · The Working Harbor", () =>
+            {
+                var gm = GameManager.Instance;
+                if (gm) gm.ContinueHarbor();
+            }, 640, 62, 28, TextAnchor.MiddleCenter);
+            ((RectTransform)endContinueHarbor.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
+            endContinueHarbor.gameObject.SetActive(false);
             var row = endActionRow;
             string[] labels = { "Play Again", "Main Menu", "Quit" };
             UnityEngine.Events.UnityAction[] actions =
@@ -320,6 +327,7 @@ namespace Parasite.UI
             continueNavigation.selectOnUp = endReplay;
             endContinue.navigation = continueNavigation;
             endContinueIsland.navigation = continueNavigation;
+            endContinueHarbor.navigation = continueNavigation;
             foreach (var selectable in row)
             {
                 var navigation = selectable.navigation;
@@ -357,7 +365,8 @@ namespace Parasite.UI
             bool afterlakeComplete = RunState.Has(AfterlakeCampaign.Departed);
             endContinue.gameObject.SetActive(!RunState.AfterlakeStarted && RunState.LakesideOutcome != EndingOutcome.Unchosen);
             endContinueIsland.gameObject.SetActive(afterlakeComplete && !RunState.IslandStarted);
-            endPlay = endContinueIsland.gameObject.activeSelf ? endContinueIsland : endContinue.gameObject.activeSelf ? endContinue : endReplay;
+            endContinueHarbor.gameObject.SetActive(RunState.Has(IslandRoster.Departed) && !RunState.HarborStarted);
+            endPlay = endContinueHarbor.gameObject.activeSelf ? endContinueHarbor : endContinueIsland.gameObject.activeSelf ? endContinueIsland : endContinue.gameObject.activeSelf ? endContinue : endReplay;
             foreach (var action in endActionRow)
             {
                 var navigation = action.navigation;
@@ -377,6 +386,14 @@ namespace Parasite.UI
                 endHeadline.text=d.outcome==EndingOutcome.Peace?"A SHORE OF THEIR OWN.":"THE ROUTES ARE YOURS.";
                 endOutcome.text=d.outcome==EndingOutcome.Peace?"THREE LIVES SAFE  ·  ALL HOSTS RELEASED":"THREE COURIERS DELIVERED  ·  RELAY OUTBOUND";
                 endEpilogue.text=d.outcome==EndingOutcome.Peace?"The launch carries three people who keep their own minds. The signal burns over a quieter shore. What you saved will outlive the experiment.":"The couriers carry your answer beyond the quarantine line. No body stays occupied, but the route is no longer Vale's. Another shore begins to answer.";
+            }
+            if (RunState.Has(HarborCampaign.RelayComplete))
+            {
+                endHeadline.text = d.outcome == EndingOutcome.Peace ? "A CITY THAT CHOOSES." : "EVERY FREQUENCY ANSWERS.";
+                endOutcome.text = d.outcome == EndingOutcome.Peace ? "ANTIDOTE RELEASED  ·  LOCK REOPENED  ·  TWO FREE SIGNALS" : "RELAYS DISPATCHED  ·  LOCK REOPENED  ·  A WIDER NETWORK";
+                endEpilogue.text = d.outcome == EndingOutcome.Peace
+                    ? "The harbor sends medicine beyond the quarantine. Workers keep their bodies, the city keeps its choices, and two small lives share one signal without taking another mind."
+                    : "The consignments carry your relay beyond Vale's reach. Two free bodies held the channel open; every borrowed worker is released as the harbor carries your answer onward.";
             }
             int secs = Mathf.Max(0, Mathf.FloorToInt(d.timeSeconds));
             float peak = Mathf.Clamp(d.peakSuspicion, 0f, SuspicionRules.Max);

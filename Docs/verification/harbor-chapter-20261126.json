@@ -1,0 +1,961 @@
+{
+  "schema": 1,
+  "status": "NULL_EDITOR_CHAPTER_GATES_PASS_NATIVE_PLAYER_AND_RENDERING_PENDING",
+  "recordedUtc": "2026-11-25T19:12:11.234804+00:00",
+  "source": {
+    "version": "0.6.0-preview",
+    "implementedMissionCount": 23,
+    "missionIndices": [
+      20,
+      21,
+      22
+    ],
+    "projectSettings": {
+      "path": "ProjectSettings/ProjectSettings.asset",
+      "bytes": 25549,
+      "sha256": "9827e934267ce1f57036a69cf53f7d054bd14443ebfbf983b41b6a2ab1592030"
+    },
+    "baseGitCommit": "ffcc9200647826626c5063901ab9fafaebe7a786",
+    "workingTreeFeatureNotYetCommitted": true,
+    "allCSharpSourceSha256": {
+      "Assets/Parasite/Scripts/Audio/AudioBus.cs": "cc372442dc56941c785241e25cc61cb222fcca5ace05bfbf7d3181b3a0c31f5c",
+      "Assets/Parasite/Scripts/Audio/AudioDirector.cs": "ac097b561a3cd093fbe6ce03aab0c25f341c3db941d1a55bfb6ce7c1ab1c6826",
+      "Assets/Parasite/Scripts/Audio/AudioLoopEmitter.cs": "d3e1b94f6da6f560f379b7d888e414c5a0a67a700f3196598facc28c5f417680",
+      "Assets/Parasite/Scripts/Audio/CarEngineAudio.cs": "a64f53bf6f938edfd797ad9dc1df044509febf892bb2b116427944a2ffbcd51e",
+      "Assets/Parasite/Scripts/Audio/CctvServoAudio.cs": "36392ffaf7694ecb8a6cda80e35e0e7b1c4a46195d393e9b4127b926bca67124",
+      "Assets/Parasite/Scripts/Audio/Footsteps.cs": "ca599f1041f592090ad9662542e6ac0778d5a2e5618d72ac3ffbd1d17742267f",
+      "Assets/Parasite/Scripts/Audio/LakesideNarration.cs": "a433bcb29191a86b098519ed39c1ea56b16019715951d1dba045b3b1898bf00e",
+      "Assets/Parasite/Scripts/Audio/ListenerFx.cs": "bf6076995e41b9f6677248e2ac05a278541884f179417db560911e5373d3c3a3",
+      "Assets/Parasite/Scripts/Audio/MusicDirector.cs": "46b9bb256cdbbfcf6efbf89dd07f45283ec526d8a71583f682285eadb82fa1fe",
+      "Assets/Parasite/Scripts/Audio/NpcVocals.cs": "967f59dab776b9376872ddc66c814d80f1bf442ca8334de3b044aa0e4caa5b7a",
+      "Assets/Parasite/Scripts/Audio/UiAudio.cs": "b5b6375fbc02a743b6b6067b9e180a789ab09dab03bbac3d7dd0197f40c0de27",
+      "Assets/Parasite/Scripts/Audio/VoiceOver.cs": "237f333e6299cd6aae6f2c6f58974e47e98252447e7f477f419d0f1d792c3e1c",
+      "Assets/Parasite/Scripts/Characters/CharacterCatalog.cs": "b18104a00bdb49baece2454bbf736f73d137f5b7413acff0617d68fe1037b426",
+      "Assets/Parasite/Scripts/Characters/CharacterPalettes.cs": "72f2ace63d2cb012da6ca7420d9593c8542991d9cfecf72886b6bfdd7b5b679e",
+      "Assets/Parasite/Scripts/Characters/GuardAI.cs": "0be3a4cbe21378df28b6ed1358da0b0cbe41081edb87aa14b6d5f5eba46eeb07",
+      "Assets/Parasite/Scripts/Characters/HostBrain.cs": "4f15391d8c268421051f1e25b68581ea07db883ddfd5ce29998a9d9897ff819f",
+      "Assets/Parasite/Scripts/Characters/HostCharacter.cs": "0928faadb27308467104b6749b349765768b82da692cdcb890b8f6955b1dd2c8",
+      "Assets/Parasite/Scripts/Characters/HostFactory.cs": "a00da50e79f2c148a491d55c8728122c6695f9a75dde53fcb565cad1758ab5c1",
+      "Assets/Parasite/Scripts/Characters/HumanAnimParams.cs": "eb3910f2904937fba21ebd6c90005c2728617c454dac5c191c945bd7ea603b38",
+      "Assets/Parasite/Scripts/Characters/HumanoidRig.cs": "0fdc0c8cf95e827ec6efa6281d0196b516a4f68e3d5c6116df7f39bb340da0ea",
+      "Assets/Parasite/Scripts/Characters/ProceduralHumanPose.cs": "ba746186947eea0448ca8f7d7b7f5fb9ddc5cf2553249c2a1dbe7a01d570c581",
+      "Assets/Parasite/Scripts/Core/AfterlakeAcceptance.cs": "fa066cd4363681fdb904ba7e340a1dfa2f77cd3726ff7bb75c1433a9033d7ae4",
+      "Assets/Parasite/Scripts/Core/AudioPreferences.cs": "6e7070876770264390c96751bc6d00b8da3770d55272a3beea48f07f261eb96b",
+      "Assets/Parasite/Scripts/Core/AutoTest.cs": "16a2c1c9901fd631f3c28d12b47d13c5f24a97ed56ed67c4a612fed3237038f9",
+      "Assets/Parasite/Scripts/Core/BenchmarkProfile.cs": "6b0be97e878eeb62698abd1cdb6d1686da95c2ec113f2d33b4f237fed491053d",
+      "Assets/Parasite/Scripts/Core/CinematicArt.cs": "886715c5748703af71b10d934381c5ee3acf6f977f38386abf47ae9400d924e6",
+      "Assets/Parasite/Scripts/Core/CinematicFilm.cs": "dde4cf21dfa964a0304a653af448160f54ffa54c831c359985c5fa5149ba2db7",
+      "Assets/Parasite/Scripts/Core/CinematicFilmAcceptance.cs": "32d57aa93a495784a4ee581550ca86855455186ea85d1c5a258d8937190f1f57",
+      "Assets/Parasite/Scripts/Core/CinematicFilmLifetime.cs": "108dfc473df034baf158d6c7babb91b45f4a12eb60941b5d12fed5ddf724b4d7",
+      "Assets/Parasite/Scripts/Core/CinematicFilmSpec.cs": "9e9003ff4490b1987a67800860b2f02884c6bf79441469248f6f121d7f2a590c",
+      "Assets/Parasite/Scripts/Core/FallRecoveryAcceptance.cs": "89b3fb1ccddfd1e62d56aee494d95d18327c874b56633af9f42af97f4a73bd88",
+      "Assets/Parasite/Scripts/Core/GameInput.cs": "53d30ad8378c551cd2487007f03e396959457e9527d00fad27f544ee39a68cb8",
+      "Assets/Parasite/Scripts/Core/GameManager.cs": "a0c3f4ed7d727a44e0038ded16cf1271f5786a540f76b80c3d6cd33ac2e28d28",
+      "Assets/Parasite/Scripts/Core/GameTypes.cs": "518948d38f91656769d27cfa80b42d8661227b72c40a39d0c6118fde135128be",
+      "Assets/Parasite/Scripts/Core/GraphicsPreset.cs": "b114fc860e67537969980ebbd6931722b4390b7b9c5471b5437956b29b44ff1d",
+      "Assets/Parasite/Scripts/Core/GraphicsSettingsAcceptance.cs": "3f6fd3d5caf46f1b23ba87bf664eb78c8f0f43bff12fcefa5fcc378ce6050c5b",
+      "Assets/Parasite/Scripts/Core/GraphicsSettingsData.cs": "a2ad88c3aeb2500f5772e0dadbcd6a9fae83e715b4a9d4e8cc1b35e69c7852d3",
+      "Assets/Parasite/Scripts/Core/GraphicsSettingsRuntime.cs": "8245c3e3aa9d40fef85504c28317dca80e2827b03648acdb63de006f0284093a",
+      "Assets/Parasite/Scripts/Core/GraphicsSettingsStore.cs": "3d3964916deb83e7828923692ceb3bfdb81965ff7aaa6ab8f1765240e0bd0e55",
+      "Assets/Parasite/Scripts/Core/HarborAcceptance.cs": "cf260aab713bfb85aee48d641bb7c30e9e50255a3182d4ab89cbfaf7ced727fc",
+      "Assets/Parasite/Scripts/Core/IslandCameraAcceptance.cs": "abf536469a6bef0837ecec7f90b075ba67aaabefe7505f46911ba9192e3ae36a",
+      "Assets/Parasite/Scripts/Core/IslandEntryAcceptance.cs": "038a44e4001ff3234fe31c5c8ed8e55fd61f55f19c39dd7652acd5dcce4c0490",
+      "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs": "a37a4fa3db23fe9f072ca4c998f146b0bce06a4e942f89c074d222f3d68e342a",
+      "Assets/Parasite/Scripts/Core/IslandVisualAcceptance.cs": "30232f4263c16594b260372f2ec3b3bd365d2505a8144dbd31e8210e5377cf84",
+      "Assets/Parasite/Scripts/Core/IslandWallAcceptance.cs": "9f5a33eb50deeda50952b4a5f5a849bd7d977eb2e3a6938cd4715695301e8fcd",
+      "Assets/Parasite/Scripts/Core/IslandWallArtCapture.cs": "d55911c051953751de3e36d8f7eea1deef4b6cd59f785b71c6b9c9ed030e0a40",
+      "Assets/Parasite/Scripts/Core/MatFactory.cs": "c9ac28aaea628987d70c7f5dfb1f7aeca0c28f5225de703b67766e3bb35e6cc9",
+      "Assets/Parasite/Scripts/Core/MissionPropAcceptance.cs": "169f1583dba2288c0e1da2b045ab8a4c9f65c742d7a1d297512d740525b64d74",
+      "Assets/Parasite/Scripts/Core/OpeningCinematic.cs": "ac84db1ef6e7fafa184100ca312c9ea1638339ed436796284b89b03e8256a1a2",
+      "Assets/Parasite/Scripts/Core/PresentationShortcut.cs": "2ede5c3c17616a4c43a49904e7c6a5ea32ec729aace92bec362e49367340bda3",
+      "Assets/Parasite/Scripts/Core/ReflectionCubeReadback.cs": "d653f7fee1f66e6af6552e3ec6638ac6b6aedf7c88c616fb9f13269c7e1c6f83",
+      "Assets/Parasite/Scripts/Core/ReflectionProbeDiagnosticAcceptance.cs": "cafcc394a6df253c74ec5a4ebd2e57d00a8cf6978b74dcf28681d6ac0688ca19",
+      "Assets/Parasite/Scripts/Core/WaterVisibilityAcceptance.cs": "6c0bbb5f165fcc04f88b2d277dd3b5d5ebad63ae1f3f5a984f446549a5a14af0",
+      "Assets/Parasite/Scripts/FX/AmoebaVisual.cs": "2acd9e781b844ec2b16ef3d56961d42dcc726aa10d10107e342d475e7984a23c",
+      "Assets/Parasite/Scripts/FX/FxApi.cs": "58351eefa0dc2512073e3012dcb47241be774398ec9e2150734279a8ddd3d0b1",
+      "Assets/Parasite/Scripts/FX/FxAssets.cs": "fcb873b856fe036cd0a906ef1d582313769e8518e397ceae65fe4c3d9049b666",
+      "Assets/Parasite/Scripts/FX/FxBackend.cs": "6429e86703bc85be1a9f8b3aa55450deb020c43473abc201d16ad36d0a916ecf",
+      "Assets/Parasite/Scripts/FX/FxLightFlash.cs": "5a74e39f3c69297a762afe1dbd608c6860af0aa00e8c783b4044bd063d23b42c",
+      "Assets/Parasite/Scripts/FX/FxOwnedMaterials.cs": "c1ca8c26385fc446b86f5db990258da2a68e8ede33761413a9790d0c2bcf1b5a",
+      "Assets/Parasite/Scripts/FX/FxProjectileWobble.cs": "0788655fee11d843539d2485e7e84efd8b6361ef7a17f41a25a3aa1795a18dcf",
+      "Assets/Parasite/Scripts/FX/FxRunner.cs": "f25d238b64194a89d3ff40c42adf4aa05ad161cff8d35e2e84aac82f8cc114ef",
+      "Assets/Parasite/Scripts/FX/HostGlow.cs": "a1102d2f5dbcd28b032a2597c29b63f0dfff5d045d15125fc7a1e0a9bebd5a03",
+      "Assets/Parasite/Scripts/FX/LampLights.cs": "56d644b0c4cf714b5e6e1f500ebb851227734d3ca668235d77a6b1176df1e7e1",
+      "Assets/Parasite/Scripts/FX/LampMotes.cs": "1b58e7fb77d3d4d36b9529d3605e785945919addd6a81a5e117a9d383345b6a7",
+      "Assets/Parasite/Scripts/FX/RainSystem.cs": "cb90768bf0c8865b25c72247c70f7a7ba8a96957edb3b9af6217fe05d0607a30",
+      "Assets/Parasite/Scripts/FX/SfxAmbience.cs": "6e9f82326444a826c675bc11c6316aa148678456efb648154037c49d8a4e8644",
+      "Assets/Parasite/Scripts/FX/SfxBackend.cs": "005b87d3be60bf27d2ea5afcb1700d6504bc762f5f5fd5e98069f979751e8f52",
+      "Assets/Parasite/Scripts/FX/SfxPool.cs": "d15cde43d4a6ed5ed2bd2a7cd97f6e322dff4f097e523e88a39b7992cacf91bb",
+      "Assets/Parasite/Scripts/FX/SfxSynth.cs": "6146de0aa11bd2caf129a8b018c82caf41810bfb07290b20bea9252898f5ccfd",
+      "Assets/Parasite/Scripts/FX/SlimeTrail.cs": "ee31426df59d8eef1b5fd7ec000b15df57fe3291e61c52acca0d8c20275deb72",
+      "Assets/Parasite/Scripts/FX/SteamVent.cs": "8fafa2dffcd62ae66887cecd994c0b919c6881d1a0c06f40a917a0daa3ce612a",
+      "Assets/Parasite/Scripts/Missions/AccessDoor.cs": "08091fe9ccaa0bab4b65714d27835e55b5d42215144f1f5c33932a4a19161a3f",
+      "Assets/Parasite/Scripts/Missions/AfterlakeArt.cs": "0e34b811d8e0a88db14d06251f369a64fe401e5da8acfab7aad61845ec39d3b8",
+      "Assets/Parasite/Scripts/Missions/AfterlakeCampaign.cs": "71cf552cc9836f852375d43822ba6b75e6e4c1b70cc4aabe2ec597a61ad1b23a",
+      "Assets/Parasite/Scripts/Missions/AfterlakeDeparture.cs": "4e964076a767f3f99d59d09371dacffce0bc14d0b81531a1a63b698809768588",
+      "Assets/Parasite/Scripts/Missions/AfterlakeDistrict.cs": "6170c5ecbc8e31fea95f6c3b600ba1a1a0468d8efd51e85933962616b0f4245f",
+      "Assets/Parasite/Scripts/Missions/AfterlakeProps.cs": "4ea3945ac031b413a127eebf977e0c50be8b02f85f8ba14caf6fa1523ca3651a",
+      "Assets/Parasite/Scripts/Missions/AfterlakeSurfaceUV.cs": "2747e65c0d364cf4436768ac5d7bb35269b8f00d24821e77616a822ec2948a4b",
+      "Assets/Parasite/Scripts/Missions/AfterlakeWater.cs": "399c2ea011e8f22670445aba88fe11c4b2736b7acbe29ea456501db48fe3619c",
+      "Assets/Parasite/Scripts/Missions/BlackoutGrid.cs": "0338254624768ac8641b6254826e78d76c798ec69b6f122acda5ddd440688d4b",
+      "Assets/Parasite/Scripts/Missions/BlackoutRules.cs": "4a4758cd8e4dc1439f456ddd640197933932c1481da27f9123dd364d9dac4da7",
+      "Assets/Parasite/Scripts/Missions/BlackoutSwitch.cs": "a4cb57c6be02a30def2d52076874c329ff9dc74d6bc953aeb66bacb6956f1847",
+      "Assets/Parasite/Scripts/Missions/CampaignExtraction.cs": "a74a83087b648ba3e438972c91bcc7f99a34ba32b5e54802ff462bb80fc610e6",
+      "Assets/Parasite/Scripts/Missions/CampaignOperation.cs": "b315ab4ed0b7f096b84b120d7ab444fdd63294a0f1e69099a434a436e0bd7c50",
+      "Assets/Parasite/Scripts/Missions/CooperativeConsole.cs": "7957d3f8edc4a95c3a4321d66f4ce7625850843ddf991e5aae8ac9aa7d7bf785",
+      "Assets/Parasite/Scripts/Missions/DrValeInteraction.cs": "85432c2eca0590f59d98baf25dd7e3075de1d6adf4dc1b638ca1ede34e14361e",
+      "Assets/Parasite/Scripts/Missions/DualAuthReader.cs": "c9a021e6f61fc434fcad3aa96f82b25b3bbbc37d523a94ab22c0068835e2ae2c",
+      "Assets/Parasite/Scripts/Missions/EavesdropZone.cs": "1b34ac922163059139d49c7ba38568b37fa972066b85be6db9ae6d9a46f5c40d",
+      "Assets/Parasite/Scripts/Missions/HarborArrival.cs": "e2060acd4dc9e5bd2560d72ff36132602bb6ca6f6f5d03389f3334376fb130d7",
+      "Assets/Parasite/Scripts/Missions/HarborArt.cs": "c96839ece60a49708d34d498fb2b80d388ae8ecb67b76ff87d493c3624d61189",
+      "Assets/Parasite/Scripts/Missions/HarborBrake.cs": "f3cd04164273a1b34f5a9ea739b7e29c9e8dd501d16b91dcf74224d95d736413",
+      "Assets/Parasite/Scripts/Missions/HarborCampaign.cs": "5d47f770187cb82ad95478c6f3f8a833719af97169ba9823b85c23b91514867a",
+      "Assets/Parasite/Scripts/Missions/HarborCargoDirector.cs": "86afdf27fd590638cf1af6113aa3b95f82315883eb7ed9279169c19074f60a27",
+      "Assets/Parasite/Scripts/Missions/HarborCargoScanner.cs": "a50f684b4d2a40dae033bf950dee6b72dfa98abaa37783998da673010bf28c73",
+      "Assets/Parasite/Scripts/Missions/HarborDistrict.cs": "1be387748fcbffa8b2635908baedca23f76fcfa6d48f3de28c02f4cf227b9896",
+      "Assets/Parasite/Scripts/Missions/HarborLayout.cs": "665be93c74f9968436cd07e94363af35ec02750ffb6530c486486c1c2de46e8f",
+      "Assets/Parasite/Scripts/Missions/HarborPressureWorks.cs": "e4fca0704bcc17d0a1805bf8389af4035fdb56483bb68b9b1a327d533c64de9b",
+      "Assets/Parasite/Scripts/Missions/HarborRelay.cs": "ec9d8ae57a19314b91995055672311150d0b5621ddc8c961d39f26d815268fc2",
+      "Assets/Parasite/Scripts/Missions/HarborRelayNode.cs": "7dfee56d2173ddf926465ffcfe1c5c23c08c4ecf11d48845b2e7b459c64b8bdd",
+      "Assets/Parasite/Scripts/Missions/HarborValve.cs": "0fc343f09f666eb92409a27a120629fa8be4829e06fccf0ac46fd6cb5da8df7d",
+      "Assets/Parasite/Scripts/Missions/HunterSquad.cs": "c5dbaf22a1a7a90df7bef26858c41d1bbbe213719aacc5a7ec22a37a1f07d23c",
+      "Assets/Parasite/Scripts/Missions/IslandArrival.cs": "04c3a7abf435e9c14f0e1dc0275ae52921cec253844b6bd82298b1cc5392ae1e",
+      "Assets/Parasite/Scripts/Missions/IslandArt.cs": "235b827bee055666518ed67479b57b3052e82f37bb3e50a437fa7d35c7df7e77",
+      "Assets/Parasite/Scripts/Missions/IslandCampaign.cs": "1aedfcc66485820f9281cb34d6c39b7c5301da65307a12abac66841ce2f72151",
+      "Assets/Parasite/Scripts/Missions/IslandDistrict.cs": "574229acb89eff5552d74b59d5cc60bd28777c33a3964c9b686fb47202f915c2",
+      "Assets/Parasite/Scripts/Missions/IslandExtraction.cs": "ed2d0fd00f129076f35df28c38b94420cc691aa253e9e14cf2f4a91e6a595a12",
+      "Assets/Parasite/Scripts/Missions/IslandOwnedMaterial.cs": "fa58bdc48ca7a1c993fc2c09eb66665cf8d3ac311becc2556acfb16ff0b9cfd2",
+      "Assets/Parasite/Scripts/Missions/IslandRefugeArrival.cs": "e24f19d6b5a900c72167da5894525667f9478a3453d481c692201b8fd3b96f0e",
+      "Assets/Parasite/Scripts/Missions/IslandRoster.cs": "37c372e7dc383de05d80aa742c9761e201027c8bfbc290d0c48e8aee4edc444c",
+      "Assets/Parasite/Scripts/Missions/IslandServiceGate.cs": "a704e2e1ec53a5c24771f212f20780b749ff182c7d29b3e7c6cae445c9f3200e",
+      "Assets/Parasite/Scripts/Missions/IslandSignalMount.cs": "87016ecf882a8927aa61d35194febcfef113cf64ad53eacf39b29deb5d83bec5",
+      "Assets/Parasite/Scripts/Missions/IslandSignalPickup.cs": "5f039e9d807c5809e9e8f63424682fb0706cc3d2bd810aed6c4995d8a7c7cde6",
+      "Assets/Parasite/Scripts/Missions/IslandSignalTransport.cs": "3ce4402839c49e95e5ccad77f77b1dfb0cf88ddbda84c03f80b72c5cb0c46d2a",
+      "Assets/Parasite/Scripts/Missions/IslandTraveler.cs": "8db6922f14a263a3b195542ee5212af860263af86aba6f40b175396bdb96b7ce",
+      "Assets/Parasite/Scripts/Missions/IslandTravelers.cs": "4149db4e19ddf7da0f553d22b06239f9744b5a2e10319a71cbf20e63ba5c607d",
+      "Assets/Parasite/Scripts/Missions/IslandVoiceTiming.cs": "cd605237856f7d7e7d04619f95882ace814d40730d0f972ddf85bcce594d2357",
+      "Assets/Parasite/Scripts/Missions/MissionManager.cs": "26932357e5e4020b42bfc38a6e96be61b4fb650339cfafda52a5e612688cf877",
+      "Assets/Parasite/Scripts/Missions/MissionProp.cs": "c339f6ba5ca41efc2d3956082e6413538ed68135956352d8561fb448dda37336",
+      "Assets/Parasite/Scripts/Missions/MissionSpawner.cs": "f52d5445e2f32b10832f2bf846b39f34ec12dfa272ba1b7036eed0e629fd0eb8",
+      "Assets/Parasite/Scripts/Missions/RiverReflectionCapture.cs": "c87c05dfc5aafcce625bba4c079d8d4c448c499756c84c311eead98e9820cc8b",
+      "Assets/Parasite/Scripts/Missions/SkylineWaterCutout.cs": "e4733f4d56236a5df572442a5390bfb36dfdd6c3ba473504ba99d5eec3c58ccc",
+      "Assets/Parasite/Scripts/Missions/StaffTerminal.cs": "075ee66642d0d6f306e33c7f25ba7dcc9c0ac0ba4fbdb8822caa16b77f21d52e",
+      "Assets/Parasite/Scripts/Missions/TailRules.cs": "5325f112ed781f627b2a87b091f790dcd9342f76ab1b8c7ec506bb70549d7124",
+      "Assets/Parasite/Scripts/Missions/TailTarget.cs": "8fe349a42992aac8def581bb54ac17986f3fc65db56d98484d4b58fac13fe246",
+      "Assets/Parasite/Scripts/Missions/TidalCulvert.cs": "b27552a46fb2f572b900c0e22a052ef9ab607ac54775ade9912a1c3ac1eb2fc1",
+      "Assets/Parasite/Scripts/Missions/TideRules.cs": "b23809b6217a9a5cdfcbaaf18ed244edae9125847acb55f5d318e9364d0ad777",
+      "Assets/Parasite/Scripts/Possession/AbilitySystem.cs": "4a478da426ebe72a7b07e6b160dea5edab10e6df085fca5efc3525e5897fe3ec",
+      "Assets/Parasite/Scripts/Possession/AmoebaController.cs": "9e3514376dd2d5eeacfa13d53dddcd1d8450f862cff6b5b4ad1703503a6fbf60",
+      "Assets/Parasite/Scripts/Possession/PlayerCamera.cs": "d8042900de678d1cb09b8b502b0845c6c9fc72e6f21ccd85908b005bf121f828",
+      "Assets/Parasite/Scripts/Possession/PossessionManager.cs": "971ea5d6cf4f7c0324c273a3390943bbc1d15c7f03a4b5afbf0798eebff1edca",
+      "Assets/Parasite/Scripts/Stealth/BioScanRules.cs": "02d33fe38bf6e2d48625e2b4d0cfb983acfc915507a14f846c70d5eeccc12aca",
+      "Assets/Parasite/Scripts/Stealth/BioScanTracker.cs": "c792faae45db3629e6fccab2a956936ef57ac2bb9a3e568c094483caace0b364",
+      "Assets/Parasite/Scripts/Stealth/BioScanner.cs": "c12058455c01b84767d8b86d62ace3d6df5c878d23f5664e68fc1cca833bb3c2",
+      "Assets/Parasite/Scripts/Stealth/ScanGate.cs": "038a732069b1c641a1f5f144d8ee44b8f0c9f6a970870170484aeb81f638e2b7",
+      "Assets/Parasite/Scripts/Stealth/SecurityCamera.cs": "fc2b9a8437e6581b7f70a51aba99439047c23d12daec9f5681e9155261a34984",
+      "Assets/Parasite/Scripts/Stealth/SuspicionSystem.cs": "6cec9ccc9bc288f2e1056fa87eb841de50dcf7e975e9e377ac811355a807e046",
+      "Assets/Parasite/Scripts/UI/HUDController.Menus.cs": "7a4753acd38454950f481489a4291e4539dd453d40f67d2001d80ff49bd67ad1",
+      "Assets/Parasite/Scripts/UI/HUDController.Mission.cs": "644d1d2f564b090ca66e8d5111ab154d19b67a69d1da4d76cbe5bdc1d067dd75",
+      "Assets/Parasite/Scripts/UI/HUDController.World.cs": "ea2f45b7c69575851961b79674cc9633a29ab52b4a4f0a9dc298be6196f3d8ad",
+      "Assets/Parasite/Scripts/UI/HUDController.cs": "3861b4ec7d46d39cabb50532de764679355435408021d77154831869fd7071f0",
+      "Assets/Parasite/Scripts/UI/LakesideEpilogue.cs": "0225e9204703ab9523e67623d60e980c6da8a4ca91829b3942be6d255aab1cb1",
+      "Assets/Parasite/Scripts/UI/LakesideFilmSequence.cs": "af79cc4c720392ec7614a2a8d9ec66461f8856e1ae0e61f7709314b4d4f2f0ce",
+      "Assets/Parasite/Scripts/UI/LakesideSet.cs": "76ab40472245e2523c3aa2245b94cceae012390511433341e14f44e267bf55f6",
+      "Assets/Parasite/Scripts/UI/MainMenuController.cs": "28b1a8669950e6995dd72c33edc515e7e4a9a8217bbf40b6ede469e4874d5233",
+      "Assets/Parasite/Scripts/UI/SettingsCycleControl.cs": "85fbbbcc49299bd55bd052bd168d288540961dde6dd4c201465d8f5a36172678",
+      "Assets/Parasite/Scripts/UI/SettingsOverlay.cs": "8f319499188f3b5559a2201f6e1b5885b0b86c5b4b8afa54c986ee1cb9ca72be",
+      "Assets/Parasite/Scripts/UI/UIButtonFx.cs": "efeb25c7d88f271999ec762b70e9738c15e1e73d8cfc11ef5342fb70c08c6d15",
+      "Assets/Parasite/Scripts/UI/UIKit.cs": "bc3722c942770c5bc9ab75714e309b7ac89cf712c0cbf3516ee21f5a6cc76575",
+      "Assets/Parasite/Scripts/World/CheckpointZone.cs": "6a3f715dee23f5b733ac7b3320ae6f900b2e856bb03a3406fae4731630faeabd",
+      "Assets/Parasite/Scripts/World/CityDirector.cs": "95f91c446592c03229253af74b30f5d5349f5d323e1bb4f52d3f975ec8077897",
+      "Assets/Parasite/Scripts/World/CityLayout.cs": "b0bb700f21bc3db958dd1ad46dcaf03687b206141c9923212691ad798e7129d1",
+      "Assets/Parasite/Scripts/World/LabInteriorZone.cs": "04209adfb0cfeb97399e5a0c1c089dae23e78888870365db341eeed2544c97b3",
+      "Assets/Parasite/Scripts/World/MissionLayout.cs": "894632627c0be6d4e21abadceb3ab9d1b17ed8f411a0426e29592d506eb7541f",
+      "Assets/Parasite/Scripts/World/NpcSpawn.cs": "843bb29159e271715f8003bca344d05fd321908a79588c349c7f81e16e830023",
+      "Assets/Parasite/Scripts/World/PatrolRoute.cs": "4354147fcdb1bbf345719c64a7c747f2d0427fedc5e595e3f63ad24477cc0fd9",
+      "Assets/Parasite/Scripts/World/PlayerSpawn.cs": "2cad4a918126e0cf4e8e197eab12267c4e7bfe7cb49c97966d186350619e7d33",
+      "Assets/Parasite/Scripts/World/RestrictedZone.cs": "3e074c277125c962a154e636ec337c78e82caeeb666f4e985d5a5e73318abed7",
+      "Assets/Parasite/Scripts/World/SignLabel.cs": "1dc51813628729ffb5a5c3603cc5dd1b7c331dad2784267efd3ae9b77849d066",
+      "Assets/Parasite/Scripts/World/TrafficCar.cs": "7c2b8a223f3252a69cf63e286235b2fdbf9b9d9f8d76a83360f10ef8f66f9e4d",
+      "Assets/Parasite/Scripts/World/TrafficSystem.cs": "e7c07bf18f20dac6a05e4858745508274a1537dbedc76172ea490eed2ae0db2c",
+      "Assets/Parasite/Scripts/World/WorldTextFont.cs": "56168de527b30aad572dc40b038daa4c4a3ca51457ffdf88cbf9f3d67c64d3c1",
+      "Assets/Parasite/Scripts/World/ZoneVolume.cs": "9ff56b24c36285c2310d8b3330485970f7ce5eeca697b326eb565eacdaac0d3b",
+      "Assets/Parasite/Editor/AnimationPreviewTool.cs": "b2493b43b4a55ca01c1a7d794dfc81032c8d1299d23427426def42391a9850e3",
+      "Assets/Parasite/Editor/AudioImportRules.cs": "f2d4fc558add544c00f9dd66a788a4f6ff9cfa1e1dfee83206d78100537fe1cd",
+      "Assets/Parasite/Editor/BuildAutomation.cs": "61967ba9755c06a57e4b77df22159f6cd84ba45c33d4347362581423cab99fdf",
+      "Assets/Parasite/Editor/CharacterModelImporter.cs": "0e973c30f439ee89baad97cbd0f557d3b8378c4d808b4ffb2b60de3afa16c7b8",
+      "Assets/Parasite/Editor/CharacterPhotoTool.cs": "db2ef54f6fd95b607fd158bdf1a1ec3207eabefae485246cbc4ebf5e39f6820a",
+      "Assets/Parasite/Editor/CinematicArtImporter.cs": "edc70832d07ed9b2ac6feb85345fa80d832d39be2c506869a017dfc2662b13c9",
+      "Assets/Parasite/Editor/CityBuilder.cs": "30cc654c5ad5952bd07a39301ade35998b867d7c96437b3eb8944cb5bfdfaa13",
+      "Assets/Parasite/Editor/CityGatePilotArt.cs": "242fb368a117e943580b2505a03d111a5c9bbfde2dedacccbabde3cb21ced6fa",
+      "Assets/Parasite/Editor/CityGatePilotImporter.cs": "c1261cc707a81e1a15c33b01162653278c71892f54f76054b4d261cad003c85f",
+      "Assets/Parasite/Editor/CityGatePilotVerification.cs": "c59cf9c08d113fc95f0c40cdd4f661ff4072f34e8966ed92d4a916bcb4b42f15",
+      "Assets/Parasite/Editor/CitySecurityBoothArt.cs": "84199200968aae0e1c4d5d2ad814313fb2d5b1c0789db8d2f502d3a236ae4963",
+      "Assets/Parasite/Editor/CitySecurityBoothImporter.cs": "e352aa80ef6a1d7c754be9c564341230d8fdf8d2c32f6eaf70d76755bbad0ddf",
+      "Assets/Parasite/Editor/CitySecurityBoothVerification.cs": "533313691b12d136bbde13fc488b485ee1bf102f5430027ace59bf7ab002223f",
+      "Assets/Parasite/Editor/FullStoryFilmImporter.cs": "4c45d57b5c8010b2e1439105fb9f16ad499320bdfadf49880632d406611f14a4",
+      "Assets/Parasite/Editor/FxSetup.cs": "4e3d5e251fccadffcf2752d86a38ca8779c314c16e142cca6f730dfed61fa548",
+      "Assets/Parasite/Editor/HarborArtImporter.cs": "dd21d14f35f850198c3ca8f7c34d8047560761af755551674f7df16f83ffc719",
+      "Assets/Parasite/Editor/HarborArtVerification.cs": "292d9cb77de4455946fb748f3afbef95c51a37a44ae1493f272d06983ec3486f",
+      "Assets/Parasite/Editor/HumanAnimationImporter.cs": "a1ca84077b7be0baf92bc99aad3afc4043ab383ef1a57394bd218e014206ae6f",
+      "Assets/Parasite/Editor/HumanAnimatorBuilder.cs": "ae1c1b07cf7b314996fd0b2648af40f8ba03e387117a19b9495ffe7d963c42d8",
+      "Assets/Parasite/Editor/IslandArtImporter.cs": "8f344eb9960645a1084a38ea1b0f77cbbdce40c338d8256e261e45325469b7d4",
+      "Assets/Parasite/Editor/IslandWallImportGate.cs": "cff7cc0e90bfbc164b8102155b52f4ef31c1b4018d3823cd6cacb3d7a61f7de2",
+      "Assets/Parasite/Editor/MissionPhotoTool.cs": "3f9ade53a49b82d9df14866e55e68f5211b2788d3bdc2862c7a3cc517e86d8ee",
+      "Assets/Parasite/Editor/MissionPlacement.cs": "6252c6ee84ec8c8b22c40f37551ca22506a4890594c7b1a010580b5fa9210a95",
+      "Assets/Parasite/Editor/PhotoTool.cs": "dc8c2b192ca7e669ca344a9346473beeb83f8164e8596eb3b10eccc4a2d79235",
+      "Assets/Parasite/Editor/ProjectSetup.cs": "47eae51429295da84f01c9a20aded6fe3b4255533cc85bad39e12889aff0585c",
+      "Assets/Parasite/Editor/RiversideArtImporter.cs": "4db3c3beb9869310bb3eb27dbb25de55b12af080b3ecddac048055fa11aee145",
+      "Assets/Parasite/Editor/World/CityAssets.cs": "05bef9f5514334c9ec48f5dbecf07cd343298563852580310a0297b996c47bfd",
+      "Assets/Parasite/Editor/World/CityProps.cs": "dbdce6954def429121fd15a45a459b7e23439e37f87f458581dd6b7d1cd0e230",
+      "Assets/Parasite/Editor/World/SignAtlas.g.cs": "68e65ffa58b2ddbe94560556ae301a7b9aa94d968590eacf64e49071d8001f0e",
+      "Assets/Parasite/Editor/World/Vehicles.cs": "459e5b89a534f2b1bc77ccf8b3f572f56a4f5b6c8c153bb07848866ce32eca1e",
+      "Assets/Parasite/Editor/World/WorldKit.cs": "66382f17f4f92eab5cbbeabe0ceefca532adf39d3eecaced7060dad10c617076",
+      "Assets/Parasite/Tests/EditMode/AfterlakeRulesTests.cs": "7d1b1d9158c1b7b8a197153afb6d08299f712f935b4d4e13f452407ca2a7bad7",
+      "Assets/Parasite/Tests/EditMode/AfterlakeSurfaceUVTests.cs": "653e04e2f8c103774efcccf1811c7fa987225efc1a0a625119d66e79c214508a",
+      "Assets/Parasite/Tests/EditMode/AudioPreferencesTests.cs": "220e590e6516c3ab99e75bddf1c58e95849498b8f6cb5507bd1c8a27858bbb47",
+      "Assets/Parasite/Tests/EditMode/CharacterCatalogResourceTests.cs": "b2f4ad82fa1b157ab909f1245fb4b17c7353c19bbfa015236d1ba22e7a7996d5",
+      "Assets/Parasite/Tests/EditMode/CinematicArtResourceTests.cs": "62465a46ac3616b85f910d63eefbc01a92aed70d16bf70987ef5f40f2e14cedf",
+      "Assets/Parasite/Tests/EditMode/CinematicStoryPlanTests.cs": "fab1c27bd62fe7728c2de6944b06eb8b31cd3ed840ea377f62a6670ac8de898d",
+      "Assets/Parasite/Tests/EditMode/GraphicsSettingsDataTests.cs": "8e4b99cac30ab4592ec83720f4f6d238df2053565a002d406da6c7c0e29cb1b7",
+      "Assets/Parasite/Tests/EditMode/GuardCaptureTests.cs": "cc2527ed2a2dcb18a52f49bf51c925ec26a8d9110455ecc27e4248e57bd697cd",
+      "Assets/Parasite/Tests/EditMode/IslandRosterRulesTests.cs": "c5e152bb18cb5d19ced878a8518707faa17f55cde8521c882661d99648b4006a",
+      "Assets/Parasite/Tests/EditMode/IslandStateRulesTests.cs": "696eca71e670a5edaa44908a07ba356645b1c7b362559f4069738d83a67453fb",
+      "Assets/Parasite/Tests/EditMode/MissionMechanicRulesTests.cs": "16d2acbdd1f79233eaa402db365a540ab0a83688017fd2362df387e465924a49",
+      "Assets/Parasite/Tests/EditMode/RiversideResourceTests.cs": "c9f359a22d952ecf68ec5e43d15df01ec29de9f933e2f442e9995d2714a588d0",
+      "Assets/Parasite/Tests/EditMode/RulesTests.cs": "228638bcc570beb5f678ede8cf1391e4680b8153adc6c29d0e5df4675ca4ab0f",
+      "Assets/Parasite/Tests/EditMode/SecurityCameraTests.cs": "ffbf312f2c1e9b9a2737c9edfaf3d4847ff9993408f4f64b7250b46fb7140c7d",
+      "Assets/Parasite/Tests/EditMode/SkylineWaterCutoutTests.cs": "de6339481b0da2d8bebd241283f0fabdeac3a8cc44cdea623730f1aef920a495",
+      "Assets/Parasite/Tests/EditMode/SuspicionGraceTests.cs": "2b87245a56acd19cddd3583005df1e9816379e2e646e6b804eecf9235ce14c97",
+      "Assets/Parasite/Tests/EditMode/TideRulesTests.cs": "5b1ef41ecc83138dae6b654d487d1a579255acca09088d00692537ac93b68453",
+      "Assets/Parasite/Tests/EditMode/TrafficSafetyTests.cs": "f5a99da9b2baa6c92f41ea264176ab41dce0a44f02f3087fc49e9f8cf99a42fd",
+      "Assets/Parasite/Tests/PlayMode/AcceptanceTests.cs": "e4e52d4058dc6378913476c502825a7663c4b79bef6c372e77716d52f5b5f657",
+      "Assets/Parasite/Tests/PlayMode/AfterlakeCampaignTests.cs": "bedb53b5a7a331600e6e091ae81dab005e2fa65893c3e028821fbfe46a8e08e6",
+      "Assets/Parasite/Tests/PlayMode/AfterlakeSurfaceUVLifecycleTests.cs": "4607163d666f0287fd7fbe93af1d8f557d2f9758402cc3ab19073c80865685d2",
+      "Assets/Parasite/Tests/PlayMode/CinematicFilmRetirementTests.cs": "332b928ccd374725bd4e20b9f0a9f7f705f5ac7608f41ace4d235c096d4a598c",
+      "Assets/Parasite/Tests/PlayMode/CinematicFilmTests.cs": "ec292143c9efe78240ab7e4aebf8044484b4863c6d563756ccfa958741c7530d",
+      "Assets/Parasite/Tests/PlayMode/CityGatePilotCaptureTests.cs": "77be5abab6402966c87bf63cf77e8689ebb20ca3d362f72739b01622d207fcfe",
+      "Assets/Parasite/Tests/PlayMode/CityGatePilotTests.cs": "0ee9f15af217a1b8a38f649150e69677eda035a6e210f836d540e8b721c2aa7d",
+      "Assets/Parasite/Tests/PlayMode/CityProbeBurstDiagnosticTests.cs": "f964983e24906416971b3683ab789a8d3db3601198d9f88e7b8db4203baddf6f",
+      "Assets/Parasite/Tests/PlayMode/CityProbeCollectionControlFixture.cs": "e5156ff44e95c82ceda5356cf10cd628e36bb2b6fe72ddc10fc0125fe0d6b817",
+      "Assets/Parasite/Tests/PlayMode/FallRecoveryTests.cs": "bd691eec6e4beb74cc73935b1bdf0a4ed28b8c489b439c5a77e724301bb620ca",
+      "Assets/Parasite/Tests/PlayMode/FullStoryFilmTests.cs": "37cb31730e5076aca9788c4c1aaf014f715224bcd624478e92e13fd4da27d2d8",
+      "Assets/Parasite/Tests/PlayMode/GraphicsPresetTests.cs": "2811da05427582f623634027516b1941ec527c21359b4aa8963d21c35b93fddc",
+      "Assets/Parasite/Tests/PlayMode/GraphicsSettingsRuntimeTests.cs": "06c559f1b79148cf9eb86c77a188e82e6aec3c8d7285eb1aa3e48206b62d052e",
+      "Assets/Parasite/Tests/PlayMode/HarborArrivalLifecycleTests.cs": "3f1c408b158c5efb53a161014c8eb1fa11f4005138938b5646f06257b87e9fa0",
+      "Assets/Parasite/Tests/PlayMode/HarborCampaignTests.cs": "641ecdcc7f426559a71e4dd14f341a35a2c1010b251ebb1dd2e81439d7d5188e",
+      "Assets/Parasite/Tests/PlayMode/IslandEntryTests.cs": "005387caabfd79ccb711cab071dab378c35554c1cdc481994a260f0fbc85f632",
+      "Assets/Parasite/Tests/PlayMode/IslandRescueTests.cs": "eac9aa9e63d8bdc4ef2db5b3b2693508e3a7d23727d9b322c4cc96c2fea4827b",
+      "Assets/Parasite/Tests/PlayMode/IslandVoiceTimingTests.cs": "31d4d72513e5f9f9843f99c1cd304123ec95bd0f77dce2f862e146fe8ff9c17f",
+      "Assets/Parasite/Tests/PlayMode/IslandWallVisualTests.cs": "f3442f400148aa004c07f6125724f7b7ad7f4a85721088c1656c3667524e2f68",
+      "Assets/Parasite/Tests/PlayMode/MissionPropHoldTests.cs": "e8c035e724107b1cb26de652ed6e83f1c99adc73258a5f1f58479b36e3853107",
+      "Assets/Parasite/Tests/PlayMode/MovingHostAimTests.cs": "41aec4ab8220928af3cbf3674e80afa923674916c7d280dd2bbc83f8a4aea739",
+      "Assets/Parasite/Tests/PlayMode/OpeningCinematicTests.cs": "dec35b9a03c01935a4c11dca6fd4eb965cbfc36eaddbf25fae7c05e3b23496ba",
+      "Assets/Parasite/Tests/PlayMode/ReflectionProbeDiagnosticTests.cs": "e2eb0177e019ba0127dae1c676a6bd82af38d1e89343e321335f55c5874935f6",
+      "Assets/Parasite/Tests/PlayMode/RiverReflectionQualityTests.cs": "60c58ad7ca3ee7d9e2f1770b26faa6e0020ae4c6295cb8293f31d460df8432ff",
+      "Assets/Parasite/Tests/PlayMode/SettingsUITests.cs": "469ee5c625e96700a5e490a42a42f9c876ea173943fb1a98c0326bcef177aeff",
+      "Assets/Parasite/Tests/PlayMode/StoryAudioTimingTests.cs": "bc895633a4efe21b15b5cecc295fd7bd540f7ff7b4b83d2e1b51f91325ba2083",
+      "Assets/Parasite/Tests/PlayMode/WaterBackdropVisibilityTests.cs": "05f97e9971cf69d037d6af3825ee08da4dcf58cfec35c5b434b5e0ce52e3c7f7"
+    },
+    "sourceInventorySha256": "1dd99c442f3b9f39a03809c5d0c080d4df53c676bbd8dbb24f680464c0443caa",
+    "sourceInventoryMeaning": "Current frozen source during root session40089; earlier per-run source revisions are qualified separately.",
+    "editorAssemblies": [
+      {
+        "path": "Library/ScriptAssemblies/Parasite.Runtime.dll",
+        "bytes": 1121792,
+        "sha256": "2c6a4754b011e8eb6afe68c01b63f127496cb3dda09c42a15b97cd28e5a217c6"
+      },
+      {
+        "path": "Library/ScriptAssemblies/Parasite.Tests.PlayMode.dll",
+        "bytes": 294400,
+        "sha256": "81a1772cf015b4b46081b52f14898d01184acbefe2a7e0d9d53ffb0f278e028b"
+      },
+      {
+        "path": "Library/ScriptAssemblies/Parasite.Editor.dll",
+        "bytes": 333312,
+        "sha256": "fea54076695d8df7ba7ca11cfd2dcbf55dda8e79cf0a7da6d416ad4e6b52c2df"
+      }
+    ],
+    "componentHistory": [
+      {
+        "component": "HarborCargoDirector.cs",
+        "redSha256": "9bc15442239777065d87053e5ba984253a55bbd723a0621ae59d9c223d152a44",
+        "greenSha256": "86afdf27fd590638cf1af6113aa3b95f82315883eb7ed9279169c19074f60a27",
+        "proposal": {
+          "path": "Logs/harbor-cargo-recovery-stage/proposal.json",
+          "bytes": 2599,
+          "sha256": "2106c9826b06b43071a84fb0fa74c22e3e69718c71e119af66fea3adecb06dc6"
+        }
+      },
+      {
+        "component": "HarborArrival.cs",
+        "redSha256": "4eae06b6adc623490c04e4ecf125247ee66d1c10fff71a9c0a3a39702ec7466f",
+        "greenSha256": "e2060acd4dc9e5bd2560d72ff36132602bb6ca6f6f5d03389f3334376fb130d7",
+        "proposal": {
+          "path": "Logs/harbor-arrival-lifecycle-stage/proposal.json",
+          "bytes": 909,
+          "sha256": "e768ba9a835f79a8cb081a2fbf04af1bb25a1f1e250458aacb41f5d15c40c784"
+        }
+      }
+    ],
+    "frozenInventoryRecheckedAfterTerminal": true
+  },
+  "currentUserArtifact": {
+    "pid": 51569,
+    "version": "0.5.1-preview",
+    "missionCount": 20,
+    "observedAlive": true,
+    "harborIncluded": false,
+    "executable": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Parasite.x86_64",
+    "workingDirectory": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731",
+    "commandLine": "./Parasite.x86_64 -force-vulkan -screen-fullscreen 0 -screen-width 1600 -screen-height 900 -logFile /home/mevlec/Data/Parasite/Logs/user-playtest-full-story-20261125T173043238618Z-0f595731/player.log",
+    "runtimeAssembly": {
+      "path": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290"
+    }
+  },
+  "finalSourceBranchGate": {
+    "status": "PASS",
+    "rootSessionId": 40089,
+    "rootChunkId": "fe4e20",
+    "nativeProcessExitCode": 0,
+    "receiptAuthority": "Root authoritative terminal receipt; exit0, chunkfe4e20",
+    "artifactType": "Unity Editor PlayMode, -nographics; not a standalone0.6 player",
+    "backend": "Null",
+    "xml": {
+      "path": "Logs/harbor-branches-final.xml",
+      "bytes": 9671,
+      "sha256": "bfc8601f9137ef26e1c967f60d2081ddaef5a6e472e6ecfa8efc0508c78e19b7"
+    },
+    "log": {
+      "path": "Logs/harbor_branches_final.log",
+      "bytes": 82373,
+      "sha256": "c0093876912bc251a8b86e327246153b1be23d8837c976347302d4346d669792"
+    },
+    "result": "Passed",
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 272.3279138,
+    "startedUtc": "2026-11-25 19:06:56Z",
+    "endedUtc": "2026-11-25 19:11:29Z",
+    "cases": [
+      {
+        "name": "Parasite.Tests.HarborCampaignTests.DominionPressureCargoAndTwoFreeBodyRelay",
+        "result": "Passed",
+        "durationSeconds": 142.972496,
+        "failure": null
+      },
+      {
+        "name": "Parasite.Tests.HarborCampaignTests.PeacePressureCargoAndTwoFreeBodyRelay",
+        "result": "Passed",
+        "durationSeconds": 129.29257,
+        "failure": null
+      }
+    ],
+    "sourceInventorySha256": "1dd99c442f3b9f39a03809c5d0c080d4df53c676bbd8dbb24f680464c0443caa"
+  },
+  "earlierTestRuns": [
+    {
+      "id": "entry",
+      "xml": {
+        "path": "Logs/harbor-entry-licensed.xml",
+        "bytes": 3815,
+        "sha256": "606130cc5bfb5805150442c3f6c445049892f0d5dd815c8f59ab7c9818baf5fa"
+      },
+      "log": {
+        "path": "Logs/harbor_entry_licensed.log",
+        "bytes": 49589,
+        "sha256": "bb946a2c998144c714a9df582614357fcf96f3f8904dd1275a471df3793285b7"
+      },
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 16.4876954,
+      "startedUtc": "2026-11-25 18:29:12Z",
+      "endedUtc": "2026-11-25 18:29:29Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.HarborContinuationRequiresResolvedIslandSummary",
+          "result": "Passed",
+          "durationSeconds": 16.438294,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "earlier source; see component history",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 28301
+    },
+    {
+      "id": "pressure",
+      "xml": {
+        "path": "Logs/harbor-pressure.xml",
+        "bytes": 3810,
+        "sha256": "1e4e79d9cff444e7a540650a00c6934e7b8f677b441a7f0fba425bc6b0c311d3"
+      },
+      "log": {
+        "path": "Logs/harbor_pressure.log",
+        "bytes": 48178,
+        "sha256": "d598936c850c7b5fe1983f03404d9fccf046bc8a05181337e279cc44cd62d0dc"
+      },
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 42.6679277,
+      "startedUtc": "2026-11-25 18:30:48Z",
+      "endedUtc": "2026-11-25 18:31:30Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.PressureReliefPauseAndTransientCheckpoint",
+          "result": "Passed",
+          "durationSeconds": 42.613457,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "earlier source; see component history",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 39903
+    },
+    {
+      "id": "peace-brake-original-negative",
+      "xml": {
+        "path": "Logs/harbor-peace.xml",
+        "bytes": 4940,
+        "sha256": "e0c8554faa78f46aa169b617747745a883588750e022e340fcf80675a4c88e82"
+      },
+      "log": {
+        "path": "Logs/harbor_peace.log",
+        "bytes": 52618,
+        "sha256": "9a81d2fea4f0f02afe152b7e7c5fbc9ef3c576bcba680887ba83db699140446b"
+      },
+      "result": "Failed(Child)",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 40.7076876,
+      "startedUtc": "2026-11-25 18:34:54Z",
+      "endedUtc": "2026-11-25 18:35:34Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.PeacePressureCargoAndTwoFreeBodyRelay",
+          "result": "Failed",
+          "durationSeconds": 40.657387,
+          "failure": "System.InvalidOperationException : The engaged brake physically stops unsorted crate 0"
+        }
+      ],
+      "nativeProcessExitCode": 2,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "earlier source; see component history",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 17387
+    },
+    {
+      "id": "peace-brake-diagnostic-negative",
+      "xml": {
+        "path": "Logs/harbor-peace-brake-diagnostic.xml",
+        "bytes": 7294,
+        "sha256": "ae109ea43baec7f56a635575a7b720b1127b1344d268df92da92faed7ea0e9c0"
+      },
+      "log": {
+        "path": "Logs/harbor_peace_brake_diagnostic.log",
+        "bytes": 59026,
+        "sha256": "0592653719e2f3ab42cfd8fa8c4567fd0a4bce01d8a1751bbbcdd39273d67905"
+      },
+      "result": "Failed(Child)",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 40.6294621,
+      "startedUtc": "2026-11-25 18:38:26Z",
+      "endedUtc": "2026-11-25 18:39:07Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.PeacePressureCargoAndTwoFreeBodyRelay",
+          "result": "Failed",
+          "durationSeconds": 40.58132,
+          "failure": "System.InvalidOperationException : The engaged brake physically stops unsorted crate 0"
+        }
+      ],
+      "nativeProcessExitCode": 2,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "earlier source; see component history",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 32690
+    },
+    {
+      "id": "peace-first-complete",
+      "xml": {
+        "path": "Logs/harbor-peace-brake-physical.xml",
+        "bytes": 6190,
+        "sha256": "c3ab3a750f847d0e889b69ef1dc1ba156b0edac23e3fbe38c92af574f257892b"
+      },
+      "log": {
+        "path": "Logs/harbor_peace_brake_physical.log",
+        "bytes": 56407,
+        "sha256": "84f53f021f4d435b5ee5b9c561d4ce52d59374eb0d7efd4a624b9c8c98be6f07"
+      },
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 131.4709905,
+      "startedUtc": "2026-11-25 18:45:42Z",
+      "endedUtc": "2026-11-25 18:47:53Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.PeacePressureCargoAndTwoFreeBodyRelay",
+          "result": "Passed",
+          "durationSeconds": 131.423311,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "before static import policy and in-flight cargo recovery fixes",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 59971
+    },
+    {
+      "id": "two-inflight-recovery-red",
+      "xml": {
+        "path": "Logs/harbor-inflight-red.xml",
+        "bytes": 12931,
+        "sha256": "482c978a426390c4fd5d61f81e33d4c56cc9b63d100e89772218019cc870ea2d"
+      },
+      "log": {
+        "path": "Logs/harbor_inflight_red.log",
+        "bytes": 161325,
+        "sha256": "177e7a6b48636a355145468655fabeab01c7ee573c931db322b635bd1aae8c4a"
+      },
+      "result": "Failed(Child)",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 55.2951735,
+      "startedUtc": "2026-11-25 18:56:12Z",
+      "endedUtc": "2026-11-25 18:57:07Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.TwoInflightCargoReroutesSurviveCheckpointWithoutPhysicalOverlap",
+          "result": "Failed",
+          "durationSeconds": 55.243352,
+          "failure": "System.InvalidOperationException : No physical crate boxes may penetrate immediately after reload: A17/A32 depth=1.00000000; "
+        }
+      ],
+      "nativeProcessExitCode": 2,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "cargo director9bc15442239777065d87053e5ba984253a55bbd723a0621ae59d9c223d152a44",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player"
+    },
+    {
+      "id": "two-inflight-recovery-green",
+      "xml": {
+        "path": "Logs/harbor-inflight-green.xml",
+        "bytes": 15164,
+        "sha256": "666e36a6405322302ff1c41f4706e50fae8a30f7d12875e81a6c72d950d9457d"
+      },
+      "log": {
+        "path": "Logs/harbor_inflight_green.log",
+        "bytes": 215315,
+        "sha256": "35b7c8bb4ed1ebace2cf647077d9136987e9c7e0883984020d820f100cb875a1"
+      },
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 56.6837008,
+      "startedUtc": "2026-11-25 18:59:24Z",
+      "endedUtc": "2026-11-25 19:00:21Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.TwoInflightCargoReroutesSurviveCheckpointWithoutPhysicalOverlap",
+          "result": "Passed",
+          "durationSeconds": 56.632381,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "cargo director86afdf27fd590638cf1af6113aa3b95f82315883eb7ed9279169c19074f60a27; before arrival lifecycle correction",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 73419
+    },
+    {
+      "id": "dominion-first-complete",
+      "xml": {
+        "path": "Logs/harbor-dominion.xml",
+        "bytes": 6202,
+        "sha256": "2c8766682b5ad340931ce6e8a8fd15d00fe609f6d0e44626fbea1dbee222fca5"
+      },
+      "log": {
+        "path": "Logs/harbor_dominion.log",
+        "bytes": 58929,
+        "sha256": "7b1cffc3c214d694cd5980d2489673b54912f215bc7c0c0be71b883422a7f8ed"
+      },
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 142.5989002,
+      "startedUtc": "2026-11-25 19:01:17Z",
+      "endedUtc": "2026-11-25 19:03:39Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborCampaignTests.DominionPressureCargoAndTwoFreeBodyRelay",
+          "result": "Passed",
+          "durationSeconds": 142.548709,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "after cargo recovery/static import fixes, before arrival lifecycle correction",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player",
+      "rootSessionId": 53349
+    },
+    {
+      "id": "arrival-lifecycle-red",
+      "xml": {
+        "path": "Logs/harbor-arrival-red.xml",
+        "bytes": 7226,
+        "sha256": "9350bb28ad9287cb3aac09ae1779dc93cb35ea63c791b3962b60c4aa2be57189"
+      },
+      "log": {
+        "path": "Logs/harbor_arrival_red.log",
+        "bytes": 60326,
+        "sha256": "fe28dea86b419c33a469e61b6e49889c9dc25a2789123b7835fd791332ecf912"
+      },
+      "result": "Failed(Child)",
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "skipped": 0,
+      "durationSeconds": 14.5439661,
+      "startedUtc": "2026-11-25 19:04:33Z",
+      "endedUtc": "2026-11-25 19:04:48Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborArrivalLifecycleTests.DisableAndReenableBeforeStartCannotReacquirePresentation",
+          "result": "Failed",
+          "durationSeconds": 4.324018,
+          "failure": "  Pre-Start cancellation cannot reacquire presentation or leave gameplay stuck; it must remain Playing/timeScale1 with no ArrivalSeen. Observed reacquired=True, state=Ending, timeScale=0, seen=False\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "Parasite.Tests.HarborArrivalLifecycleTests.DisablingRunningArrivalCancelsEveryLaterPresentationEffect",
+          "result": "Failed",
+          "durationSeconds": 10.168039,
+          "failure": "  Cancellation must preserve all strict outcomes: no later cue, no banner, no ArrivalSeen, Playing and timeScale1. Observed captions=1, banners=2, seen=True, state=Playing, timeScale=1\n  Expected: True\n  But was:  False\n"
+        }
+      ],
+      "nativeProcessExitCode": 2,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "arrival4eae06b6adc623490c04e4ecf125247ee66d1c10fff71a9c0a3a39702ec7466f",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player"
+    },
+    {
+      "id": "arrival-lifecycle-green",
+      "xml": {
+        "path": "Logs/harbor-arrival-green.xml",
+        "bytes": 4958,
+        "sha256": "dc9a0cb2d555ba1dcfe359e153b0a9c55d65dc12230017b2c5dd11ae84addba9"
+      },
+      "log": {
+        "path": "Logs/harbor_arrival_green.log",
+        "bytes": 65268,
+        "sha256": "7f6abf873c75594f7f9af6e5331082ed6202e4e1cbceec2483fdd373e840b02a"
+      },
+      "result": "Passed",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 14.6138801,
+      "startedUtc": "2026-11-25 19:05:33Z",
+      "endedUtc": "2026-11-25 19:05:48Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborArrivalLifecycleTests.DisableAndReenableBeforeStartCannotReacquirePresentation",
+          "result": "Passed",
+          "durationSeconds": 4.335055,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.HarborArrivalLifecycleTests.DisablingRunningArrivalCancelsEveryLaterPresentationEffect",
+          "result": "Passed",
+          "durationSeconds": 10.230168,
+          "failure": null
+        }
+      ],
+      "nativeProcessExitCode": 0,
+      "receiptAuthority": "Root confirmed terminal process result",
+      "sourceScope": "arrivale2060acd4dc9e5bd2560d72ff36132602bb6ca6f6f5d03389f3334376fb130d7",
+      "artifactType": "Unity Editor PlayMode, -nographics; not a standalone player"
+    }
+  ],
+  "startupNegative": {
+    "log": {
+      "path": "Logs/harbor_entry.log",
+      "bytes": 5486,
+      "sha256": "53603a0ea841faf160c3d726061532835e01dd955635e78ae8aec3d977869802"
+    },
+    "nativeProcessExitCode": 198,
+    "testsExecuted": false,
+    "reason": "Fresh isolated XDG Unity profile did not contain an activated license.",
+    "correction": "Linked the installed application existing licensed Unity profile while keeping game-company preferences isolated. No credentials copied.",
+    "preferencesRoot": "Logs/harbor-editor-user/config"
+  },
+  "imports": [
+    {
+      "report": {
+        "path": "Logs/harbor-art/20261125T1842593799330Z-cc041795/import-verification.json",
+        "bytes": 63355,
+        "sha256": "c1f358bce2bf9587430a8cb67b8587140c3ed0a8aa6ae1abe521569bb3d7d196"
+      },
+      "result": "FAIL",
+      "checks": 114,
+      "passed": 96,
+      "failedNames": [
+        "No imported physics/animation/cameras/lights HarborValveBase",
+        "Imported model HarborValveBase exception",
+        "No imported physics/animation/cameras/lights HarborValveWheel",
+        "Imported model HarborValveWheel exception",
+        "No imported physics/animation/cameras/lights HarborGaugeBase",
+        "Imported model HarborGaugeBase exception",
+        "No imported physics/animation/cameras/lights HarborGaugeNeedle",
+        "Imported model HarborGaugeNeedle exception",
+        "No imported physics/animation/cameras/lights HarborLiftGate",
+        "Imported model HarborLiftGate exception",
+        "No imported physics/animation/cameras/lights HarborConveyor",
+        "Imported model HarborConveyor exception",
+        "No imported physics/animation/cameras/lights HarborSealedCrate",
+        "Imported model HarborSealedCrate exception",
+        "No imported physics/animation/cameras/lights HarborRelayPad",
+        "Imported model HarborRelayPad exception",
+        "No imported physics/animation/cameras/lights HarborEmitter",
+        "Imported model HarborEmitter exception"
+      ],
+      "nativeProcessExitCode": 1,
+      "device": "Null Device",
+      "api": "Null",
+      "verifierSourceSha256": "ff0e73c21f08f47f4a271aaa4ba6a2261e321ffad2b62a0bb20461a43973e45e",
+      "log": {
+        "path": "Logs/harbor_art_verify.log",
+        "bytes": 35593,
+        "sha256": "294b91269ba3c421e8dcc8b21c289d53f62c62429af0fb6563c594a31c473fa1"
+      }
+    },
+    {
+      "report": {
+        "path": "Logs/harbor-art/20261125T1853347198840Z-500a9f8e/import-verification.json",
+        "bytes": 120874,
+        "sha256": "fb37afee8501d1f1b8312da07f9296c79d6973e193e32572f1e13947c005cd69"
+      },
+      "result": "PASS",
+      "checks": 267,
+      "passed": 267,
+      "failedNames": [],
+      "nativeProcessExitCode": 0,
+      "device": "Null Device",
+      "api": "Null",
+      "verifierSourceSha256": "8d98ae19c0510c87167c7cbae8ae34178e9b2b5d678c51b238064f8224368f79",
+      "rootReceipt": {
+        "session_id": 38559,
+        "chunk_id": "8fd0d5",
+        "exit_code": 0
+      },
+      "log": {
+        "path": "Logs/harbor_art_verify_static.log",
+        "bytes": 26166,
+        "sha256": "244699ed9cba9fde5681a59968b808130866297ce070d03118f394612cde0c6a"
+      }
+    }
+  ],
+  "artProof": {
+    "path": "Docs/verification/harbor-art-20261126.json",
+    "bytes": 27249,
+    "sha256": "7aafbda4033ba9270cebb85616254ebdde859baf8c177c16977c3ffb57983bfa"
+  },
+  "artScope": {
+    "models": 9,
+    "distinctTriangles": 8328,
+    "closedOutwardSolids": 244,
+    "runtimeModelInstances": 34,
+    "repeatedModelTriangles": 58156,
+    "pavingTriangles": 920,
+    "renderingValidated": false,
+    "staticImporterCorrection": "animationType=None; no imported behavior/physics; original gate atlas/metadata preserved."
+  },
+  "brakeFixtureCorrection": {
+    "productionBrakeChanged": false,
+    "interpolationChanged": false,
+    "physicalBodyDeltasMeters": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "visualSettleDeltasMeters": [
+      0.015732,
+      0.015747,
+      0.015732,
+      0.015747
+    ],
+    "observedScaledSeconds": 0.20193,
+    "assertions": "Immediate Rigidbody immobility below1mm over .2s; bounded natural interpolation settling; then unchanged Transform immobility below1mm over a fresh .2s; fixed five-second brake duration and pause checks retained.",
+    "diagnosticLog": {
+      "path": "Logs/harbor_peace_brake_diagnostic.log",
+      "bytes": 59026,
+      "sha256": "0592653719e2f3ab42cfd8fa8c4567fd0a4bce01d8a1751bbbcdd39273d67905"
+    }
+  },
+  "cargoRecovery": {
+    "redBug": "Two genuinely scanned in-flight Peace lots were restored at the same arch point; actual BoxCollider penetration depth1m.",
+    "scanOrder": [
+      "A32",
+      "A17"
+    ],
+    "orderReason": "These are adjacent in that physical positive-direction loop; reverse order is three quarters of a loop.",
+    "redOverlappingPair": {
+      "ids": [
+        "A17",
+        "A32"
+      ],
+      "depthMeters": 1,
+      "bodyPositionsBoth": [
+        1114,
+        0.55,
+        -203.912
+      ]
+    },
+    "restagingPolicy": "Earned reroutes resume at their own bay minus3m forward, on final physical route stage2. Delivered lots remain in their own stable bay. No delivery or manifest flag is set by Configure.",
+    "restagingNotExactSavedPositionPersistence": true,
+    "greenAfterReloadPairs": [
+      {
+        "first": "A17",
+        "second": "A32",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      },
+      {
+        "first": "A17",
+        "second": "R09",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      },
+      {
+        "first": "A17",
+        "second": "R21",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      },
+      {
+        "first": "A32",
+        "second": "R09",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      },
+      {
+        "first": "A32",
+        "second": "R21",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      },
+      {
+        "first": "R09",
+        "second": "R21",
+        "overlap": false,
+        "penetrationDepthMeters": null,
+        "separationDirection": null
+      }
+    ],
+    "continuousCheckScope": "All6 actual box pairs checked at Rigidbody poses on each coroutine frame while waiting for both physical arrivals; no overlap guard threw.",
+    "greenAfterReloadPositions": {
+      "A17": [
+        1130,
+        0.55,
+        -193.956
+      ],
+      "A32": [
+        1132,
+        0.55,
+        -193.956
+      ]
+    },
+    "greenActualArrivals": {
+      "A17": [
+        1130,
+        0.55,
+        -191.0076
+      ],
+      "A32": [
+        1132,
+        0.55,
+        -191.0076
+      ]
+    },
+    "observedTravelAfterReadyMeters": 2.9484,
+    "observedScaledWaitAfterReadySeconds": 1.35398,
+    "deliveryToleranceMeters": 0.02,
+    "transformAndBodyBothRequired": true,
+    "undefinedFalseOutputPolicy": "ComputePenetration direction/depth are not evidence when it returns false. The proof records them as null; original raw logs remain pinned.",
+    "proposal": {
+      "path": "Logs/harbor-cargo-recovery-stage/proposal.json",
+      "bytes": 2599,
+      "sha256": "2106c9826b06b43071a84fb0fa74c22e3e69718c71e119af66fea3adecb06dc6"
+    }
+  },
+  "arrivalLifecycle": {
+    "redBeforeStart": "Disable/re-enable reacquired Ending and left timeScale0.",
+    "redWhileRunning": "Disabling owner still produced1 late caption,2 banners and ArrivalSeen after the original8s window.",
+    "greenBeforeStart": "No reacquisition; Playing/timeScale1; fresh factory owner can start and cancel.",
+    "greenWhileRunning": "Full8.353s observation:0 late captions,0 banners,ArrivalSeenfalse,Playing/timeScale1.",
+    "fix": "Retirement is permanent; stop coroutines on disable; clear singleton; capture and revalidate manager/scene ownership before later effects; resume only the presentation context owned by that instance.",
+    "testFixture": "Presentation-only fixture seeds prior chapters, HarborStarted and temporary ArrivalSeen to control normal factory timing. It removes ArrivalSeen before each test and never grants CanalOpen/ManifestComplete/RelayComplete.",
+    "sourceProposal": {
+      "path": "Logs/harbor-arrival-lifecycle-stage/proposal.json",
+      "bytes": 909,
+      "sha256": "e768ba9a835f79a8cb081a2fbf04af1bb25a1f1e250458aacb41f5d15c40c784"
+    }
+  },
+  "coverage": {
+    "continuation": "Real summary Continue button; original outcome immutable; BeginHarbor prior-story requirements and one-shot continuation; direct FinishHarbor cannot bypass relay.",
+    "pressure": "Actual free-body role denial, maintenance E, A+B overflow/reset, safe C+A+B retry, two-second balance, pause, transient checkpoint reset, real gate lift/crossing.",
+    "cargo": "Scientist-only actual E scans during live arch windows; wrong role, empty arch, wrong branch, optional five-second maintenance brake/pause, real crate diversion and body+transform bay arrival, four stable crates on reload.",
+    "relay": "One body/same pad/partial capsule/pending leap/ownership/capture/pursuit denials; real V/Tab movement; normal E eject; actual physical LOS obstruction and movement cancellation; pause and checkpoint transient reset; fresh three-second E and branch summary.",
+    "registeredNativeScenariosOnly": [
+      25,
+      26,
+      27
+    ]
+  },
+  "limits": [
+    "All chapter gameplay evidence here is Unity Editor PlayMode with Null graphics and simulated input; not a built Linux player, physical-keyboard test, rendered-camera acceptance or human playthrough.",
+    "The prior twenty-mission summary/prerequisite flags and initial role ownership are prepared fixtures; the earlier chapters are not replayed by these tests.",
+    "Harbor completion flags and crate/player objective positions are never fixture-granted; objective travel, E actions, timing, physical collisions and bay arrivals use runtime mechanics.",
+    "Controlled guard-capture callbacks, global pursuit values and pending-leap negative fixtures are deliberate rule probes, not observed live guard catches.",
+    "Checkpoint cargo recovery deliberately restages earned cargo on distinct final approaches; it does not persist its exact pre-reload world position.",
+    "No all27 acceptance-suite pass is claimed; scenarios25/26/27 are registered but have not been run in a new native0.6 player.",
+    "Obstructed diversion and free-body containment during a running handshake remain separate unexecuted focused checks.",
+    "RTX/rendered Harbor gameplay, user testing, performance/settings execution and a fresh0.6 native build remain pending at this receipt."
+  ]
+}

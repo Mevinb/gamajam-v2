@@ -3,6 +3,10 @@
 The full realism/expansion request remains active. [HANDOFF.md](HANDOFF.md) and [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) name
 current work; every pass applies to its recorded source or binary.
 
+- The 0.6.0-preview harbor expansion is source-verified, not yet a delivered native player:23missions in source, with final
+  Peace/Dominion passing2/2 in the Null Editor. Separate red/green tests fix overlapping in-flight cargo restoration and
+  arrival cancellation; nine authored models pass267input/import checks. Native behavior, actual rendered appearance,
+  physical controls and performance remain required. [Harbor scope](HARBOR_EXPANSION.md).
 - Source 0.5.2 adds close-range aiming guidance and a live-host/physical-spacing test driver. Full Route 08 passes in the Null
   Editor on the pinned pre-hint snapshot; two post-hint focused cases pass priority, occlusion, turn-away and actual E controls.
   A rebuilt native binary remains required; the running user player is still 0.5.1.

@@ -52,7 +52,8 @@ namespace Parasite.World
             FX.SteamVent.EnsureCityVents();
             Ready = true;
             OpeningCinematic.StartIfRequested();
-            IslandArrival.BeginIfNeeded();
+            if (RunState.HarborStarted) HarborArrival.BeginIfNeeded();
+            else IslandArrival.BeginIfNeeded();
         }
 
         void OnDestroy() { if (Instance == this) Instance = null; }

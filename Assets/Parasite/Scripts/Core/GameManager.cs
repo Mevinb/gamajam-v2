@@ -26,7 +26,8 @@ namespace Parasite
         public static EndingOutcome LakesideOutcome { get; private set; }
         public static bool AfterlakeStarted => Has(Missions.AfterlakeCampaign.Started);
         public static bool IslandStarted => Has(Missions.IslandCampaign.Started);
-        public static Vector3 CurrentChapterSpawn => IslandStarted ? Missions.IslandCampaign.Spawn : AfterlakeStarted ? Missions.AfterlakeCampaign.Spawn : World.CityLayout.PlayerSpawn;
+        public static bool HarborStarted => Has(Missions.HarborCampaign.Started);
+        public static Vector3 CurrentChapterSpawn => HarborStarted ? Missions.HarborLayout.Spawn : IslandStarted ? Missions.IslandCampaign.Spawn : AfterlakeStarted ? Missions.AfterlakeCampaign.Spawn : World.CityLayout.PlayerSpawn;
 
         /// <summary>The first resolved lakeside choice stays true through later chapters and reloads.</summary>
         public static bool RecordLakesideOutcome(EndingOutcome outcome)
@@ -58,6 +59,18 @@ namespace Parasite
         }
         public static bool Has(string flag) => Flags.Contains(flag);
 
+        public static bool BeginHarbor()
+        {
+            if (LakesideOutcome == EndingOutcome.Unchosen || !Has(Missions.MissionFlags.Escaped) ||
+                !AfterlakeStarted || !IslandStarted || !Has(Missions.IslandRoster.Departed) || HarborStarted) return false;
+            Flags.Add(Missions.HarborCampaign.Started);
+            MissionIndex = Missions.HarborCampaign.FirstMissionIndex;
+            HasCheckpoint = true;
+            CheckpointPosition = Missions.HarborLayout.Spawn;
+            CheckpointName = "Harbor landing";
+            return true;
+        }
+
         public static void NewGame()
         {
             HasCheckpoint = false; CheckpointPosition = Vector3.zero; CheckpointName = "";
@@ -76,6 +89,7 @@ namespace Parasite
         public static GameManager Instance { get; private set; }
         public GameState State { get; private set; } = GameState.Playing;
         public bool IsPlaying => State == GameState.Playing;
+        Missions.HarborRelay harborRelay;
 
         void Awake()
         {
@@ -84,11 +98,21 @@ namespace Parasite
             SetCursorLocked(true);
             PresentationShortcut.Ensure();
             // CityDirector adds this manager before baking its NavMesh and spawning markers.
-            if (RunState.IslandStarted) Missions.IslandDistrict.Build();
+            if (RunState.HarborStarted)
+            {
+                Missions.HarborDistrict.Build();
+                harborRelay = Missions.HarborRelay.Instance;
+                if (harborRelay) harborRelay.Completed += OnHarborRelayComplete;
+            }
+            else if (RunState.IslandStarted) Missions.IslandDistrict.Build();
             else if (RunState.AfterlakeStarted) Missions.AfterlakeDistrict.Build();
         }
 
-        void OnDestroy() { if (Instance == this) Instance = null; }
+        void OnDestroy()
+        {
+            if (harborRelay) harborRelay.Completed -= OnHarborRelayComplete;
+            if (Instance == this) Instance = null;
+        }
 
         void Update()
         {
@@ -175,6 +199,45 @@ namespace Parasite
             Time.timeScale = 1f;
             SceneManager.LoadScene(CityScene);
             return true;
+        }
+
+        /// <summary>Deliberate continuation from the completed island rescue, retaining its original lake choice.</summary>
+        public bool ContinueHarbor()
+        {
+            if (State != GameState.Ended || !Missions.AfterlakeDeparture.AllAmoebaeFree(out _) || !RunState.BeginHarbor()) return false;
+            State = GameState.Resetting;
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(CityScene);
+            return true;
+        }
+
+        void OnHarborRelayComplete() => FinishHarbor();
+
+        public bool FinishHarbor()
+        {
+            if (!IsPlaying || !RunState.HarborStarted || !RunState.Has(Missions.HarborCampaign.RelayComplete) ||
+                !harborRelay || !harborRelay.Ready) return false;
+            BeginEnding();
+            StartCoroutine(HarborResolution());
+            return true;
+        }
+
+        IEnumerator HarborResolution()
+        {
+            GameEvents.RaiseSubtitle("HARBOR RADIO", RunState.LakesideOutcome == EndingOutcome.Peace
+                ? "The antidote is through. Two signals, one promise: every person keeps their own mind."
+                : "Both relays are through. Every frequency carries your answer, and every borrowed body is free.");
+            yield return new WaitForSecondsRealtime(4f);
+            GameEvents.RaiseSubtitle("", "");
+            if (State != GameState.Ending || !RunState.Has(Missions.HarborCampaign.RelayComplete)) yield break;
+            State = GameState.Ended;
+            Time.timeScale = 0;
+            SetCursorLocked(false);
+            GameEvents.RaiseEnding(new EndingData
+            {
+                route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
+                peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome,
+            });
         }
 
         public void FinishIsland()
@@ -269,7 +332,7 @@ namespace Parasite
             if (NavMesh.SamplePosition(fallback, out var landing, 2f, NavMesh.AllAreas)) fallback = landing.position;
             RunState.HasCheckpoint = true;
             RunState.CheckpointPosition = fallback;
-            RunState.CheckpointName = RunState.IslandStarted ? "Island outer jetty" : RunState.AfterlakeStarted ? "Riverside landing" : "Storm Drain";
+            RunState.CheckpointName = RunState.HarborStarted ? "Harbor landing" : RunState.IslandStarted ? "Island outer jetty" : RunState.AfterlakeStarted ? "Riverside landing" : "Storm Drain";
         }
 
         /// <summary>No playable amoeba left: reload the city at the last checkpoint.</summary>

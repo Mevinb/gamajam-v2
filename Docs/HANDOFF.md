@@ -6,6 +6,13 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Active harbor expansion:** missions 21–23, runtime district and acceptance fixtures are in the working tree; the verified
+  nine-model art checkpoint is pushed as `ffcc920`. Source **0.6.0-preview** compiles 162/31/162. Continuation, pressure recovery,
+  initial full Peace/Dominion, actual cargo recovery red/green and arrival cancellation red/green pass their named Null Editor
+  scopes. Final combined source branches also pass **2/2 in 272.328 seconds, native Editor exit 0** (root40089/chunkfe4e20).
+  No rerun is required merely because an older note calls that job active. Actual art import passes267checks.
+  The user's running 0.5.1 player remains the separate
+  twenty-mission artifact. Read [HARBOR_EXPANSION.md](HARBOR_EXPANSION.md) before resuming or starting more Unity jobs.
 - Source is now **0.5.2-preview**, not yet built. The moving-host driver tracks the live chest and uses normal physical retreat
   for a crowded duty officer within the original approach deadline. Full Route 08 passes all fourteen original missions and
   Dominion in the Null Editor (235.0 seconds, exit 0), pinned before the subsequent player hint. The player-facing close-range

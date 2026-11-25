@@ -122,7 +122,8 @@ namespace Parasite.Missions
                 if (GameManager.Instance && pm && pm.ActiveBody != null)
                     GameManager.Instance.SetCheckpoint(pm.ActiveBody.Root.position, "After " + flag.Replace('_', ' '));
             }
-            if (RunState.IslandStarted) IslandCampaign.OnFlag(flag);
+            if (RunState.HarborStarted) HarborCampaign.OnFlag(flag);
+            else if (RunState.IslandStarted) IslandCampaign.OnFlag(flag);
             else if (RunState.AfterlakeStarted) AfterlakeCampaign.OnFlag(flag);
             if (flag == MissionFlags.Eavesdropped) GameEvents.RaiseToast("Overheard: Dr. Vale works nights at VALE BIOTECH. Three ways in.", Palette.Amoeba);
             if (flag == MissionFlags.DeadDrop)
@@ -468,6 +469,7 @@ namespace Parasite.Missions
             };
             if (RunState.AfterlakeStarted) AfterlakeCampaign.AppendMissions(list);
             if (RunState.IslandStarted) IslandCampaign.AppendMissions(list);
+            if (RunState.HarborStarted) HarborCampaign.AppendMissions(list);
             return list;
         }
 
