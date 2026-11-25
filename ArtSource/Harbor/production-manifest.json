@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "status": "CPU authored; Unity import/native verification pending",
+  "author_script_sha256": "a956a8457e93a1344963d22d0a457dba9c99c116c2486c0a675649958048dd83",
+  "blender": "4.5.16 LTS",
+  "source_atlas": {
+    "gate_blend": {
+      "path": "ArtSource/CityGatePilot/CityGatePilot.blend",
+      "sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d"
+    },
+    "textures": {
+      "A": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_A.png",
+        "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006",
+        "bytes": 3758966
+      },
+      "N": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_N.png",
+        "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64",
+        "bytes": 3124980
+      },
+      "M": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_M.png",
+        "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb",
+        "bytes": 1666303
+      }
+    }
+  },
+  "new_textures": 0,
+  "new_colliders": 0,
+  "shared_material": "CityGatePilot_SharedPBR",
+  "exports": [
+    {
+      "name": "HarborValveBase",
+      "file": "Exports/HarborValveBase.fbx",
+      "vertices": 488,
+      "triangles": 848,
+      "bounds": [
+        [
+          -0.5249999761581421,
+          0.0,
+          -0.4099999964237213
+        ],
+        [
+          0.5249999761581421,
+          1.4300000667572021,
+          0.4099999964237213
+        ]
+      ],
+      "closed_solids": 32,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborValveWheel",
+      "file": "Exports/HarborValveWheel.fbx",
+      "vertices": 240,
+      "triangles": 456,
+      "bounds": [
+        [
+          -0.3370000123977661,
+          -0.3370000123977661,
+          -0.054999999701976776
+        ],
+        [
+          0.3370000123977661,
+          0.3375000059604645,
+          0.054999999701976776
+        ]
+      ],
+      "closed_solids": 7,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborGaugeBase",
+      "file": "Exports/HarborGaugeBase.fbx",
+      "vertices": 552,
+      "triangles": 1008,
+      "bounds": [
+        [
+          -0.4020000100135803,
+          -1.4500000476837158,
+          -0.22499999403953552
+        ],
+        [
+          0.4020000100135803,
+          0.4020000100135803,
+          0.42499998211860657
+        ]
+      ],
+      "closed_solids": 25,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborGaugeNeedle",
+      "file": "Exports/HarborGaugeNeedle.fbx",
+      "vertices": 72,
+      "triangles": 132,
+      "bounds": [
+        [
+          -0.029999999329447746,
+          -0.08500000089406967,
+          -0.017999999225139618
+        ],
+        [
+          0.029999999329447746,
+          0.24000000953674316,
+          0.017999999225139618
+        ]
+      ],
+      "closed_solids": 3,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborLiftGate",
+      "file": "Exports/HarborLiftGate.fbx",
+      "vertices": 608,
+      "triangles": 1076,
+      "bounds": [
+        [
+          -2.0,
+          -1.75,
+          -0.14550000429153442
+        ],
+        [
+          2.0,
+          1.75,
+          0.10000000149011612
+        ]
+      ],
+      "closed_solids": 35,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborConveyor",
+      "file": "Exports/HarborConveyor.fbx",
+      "vertices": 1696,
+      "triangles": 3020,
+      "bounds": [
+        [
+          -4.0,
+          0.0,
+          -1.2400000095367432
+        ],
+        [
+          4.0,
+          0.9200000166893005,
+          1.8700001239776611
+        ]
+      ],
+      "closed_solids": 93,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborSealedCrate",
+      "file": "Exports/HarborSealedCrate.fbx",
+      "vertices": 408,
+      "triangles": 728,
+      "bounds": [
+        [
+          -0.6000000238418579,
+          0.0,
+          -0.737500011920929
+        ],
+        [
+          0.6000000238418579,
+          1.0110000371932983,
+          0.7224999666213989
+        ]
+      ],
+      "closed_solids": 22,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborRelayPad",
+      "file": "Exports/HarborRelayPad.fbx",
+      "vertices": 456,
+      "triangles": 828,
+      "bounds": [
+        [
+          -1.100000023841858,
+          0.0,
+          -1.100000023841858
+        ],
+        [
+          1.100000023841858,
+          0.14000000059604645,
+          1.100000023841858
+        ]
+      ],
+      "closed_solids": 21,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    },
+    {
+      "name": "HarborEmitter",
+      "file": "Exports/HarborEmitter.fbx",
+      "vertices": 128,
+      "triangles": 232,
+      "bounds": [
+        [
+          -0.23999999463558197,
+          0.0,
+          -0.2199999988079071
+        ],
+        [
+          0.23999999463558197,
+          0.9300000071525574,
+          0.2199999988079071
+        ]
+      ],
+      "closed_solids": 6,
+      "pivot": "local origin; rotations around Unity Z for wheel/needle",
+      "material": "CityGatePilot_SharedPBR"
+    }
+  ],
+  "distinct_triangles": 8328,
+  "closed_solids": 244,
+  "cpu_previews": [
+    {
+      "file": "Review/kit-overview.png",
+      "dimensions": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    },
+    {
+      "file": "Review/pressure-station.png",
+      "dimensions": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    },
+    {
+      "file": "Review/conveyor-cargo.png",
+      "dimensions": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    },
+    {
+      "file": "Review/relay-manufacturing.png",
+      "dimensions": [
+        960,
+        720
+      ],
+      "samples": 8,
+      "threads": 2,
+      "device": "CPU",
+      "denoiser": "OPENIMAGEDENOISE CPU"
+    }
+  ],
+  "files": {
+    "Exports/HarborConveyor.fbx": {
+      "bytes": 73740,
+      "sha256": "343f30821eccc1bb2b37673f832c84ae875e1eb6bb793ddcfb94a6457130ca99"
+    },
+    "Exports/HarborEmitter.fbx": {
+      "bytes": 24508,
+      "sha256": "215415d00c94bb81d5a56d745ab8037d8b5a931bd9289c8186ae6242019c2fe6"
+    },
+    "Exports/HarborGaugeBase.fbx": {
+      "bytes": 46492,
+      "sha256": "1e2faeae8aa7055b738467abe534f2dcb3900ab668721d2dc63029cd37c53c9d"
+    },
+    "Exports/HarborGaugeNeedle.fbx": {
+      "bytes": 22380,
+      "sha256": "2d195bb47f61422280e42bbc2af85b10d7ebc71cc552d9831059b632a864c67f"
+    },
+    "Exports/HarborLiftGate.fbx": {
+      "bytes": 40860,
+      "sha256": "8dedfabc11c1fe4654a39c5b8fffb99840539a0ed6a62d0aebb8887da51bb0a3"
+    },
+    "Exports/HarborRelayPad.fbx": {
+      "bytes": 35164,
+      "sha256": "b92f08c8eb93ba7526f4757156381e934a4f8180ad8c8faded2cd7b53247f167"
+    },
+    "Exports/HarborSealedCrate.fbx": {
+      "bytes": 33516,
+      "sha256": "e92c73106b3c1c91febbc06e77af2d53c518278e8db98337a2769cf90fafc818"
+    },
+    "Exports/HarborValveBase.fbx": {
+      "bytes": 40588,
+      "sha256": "8cf91238f32695d647548f5d86a33a06f230040a71e0d256575b87677655371a"
+    },
+    "Exports/HarborValveWheel.fbx": {
+      "bytes": 30060,
+      "sha256": "8ea53530e9d992a3af5dbf943dcb988f69bdd364a1e79026c9be1e6408eb5252"
+    },
+    "Harbor.blend": {
+      "bytes": 8766615,
+      "sha256": "03520eda2803d835b238fd1489527f9412a1b101ab9f3eb80a0e49cacca99b03"
+    },
+    "Review/conveyor-cargo.png": {
+      "bytes": 728412,
+      "sha256": "f1b1fd795813e7ee363d5b9470aa4a3d5ce28cdd38e9ad9d5675749492bd6f70"
+    },
+    "Review/kit-overview.png": {
+      "bytes": 621313,
+      "sha256": "58e57b909803967bcaa0e56593ab119751c54c23ac2c06373549157cc5e60869"
+    },
+    "Review/pressure-station.png": {
+      "bytes": 702608,
+      "sha256": "814eeccc18cb3e2fc31092be3cca82b4dfcb70d294344ccedb35a77f92b10df5"
+    },
+    "Review/relay-manufacturing.png": {
+      "bytes": 725618,
+      "sha256": "7ee509332e8ee5b4807dfbcbe08acc1f4e8d364e6276925475d427b462bf3a69"
+    },
+    "piece-map.json": {
+      "bytes": 95712,
+      "sha256": "be7de9002409147ef3d5897d00eaa43ce5c8fefd97a5e6bbd0e6d45edc6a5376"
+    }
+  },
+  "elapsed_seconds": 82.653,
+  "license": "Original project geometry; unchanged original CityGatePilot procedural atlas. No external models/textures."
+}

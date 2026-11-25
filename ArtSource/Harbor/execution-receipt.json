@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-25T18:23:36.334921+00:00",
+  "author": {
+    "native_exit": 0,
+    "terminal_tool_chunk": "74f22f",
+    "session": 22006,
+    "log": "ArtSource/Harbor/authoring.log",
+    "script_sha256": "a956a8457e93a1344963d22d0a457dba9c99c116c2486c0a675649958048dd83"
+  },
+  "verifier": {
+    "native_exit": 0,
+    "terminal_tool_chunk": "b777b7",
+    "session": 25373,
+    "log": "ArtSource/Harbor/verification.log",
+    "script_sha256": "e0347f75f18f20fa26211cde386156403676f4ce6bd5e6495885bc494dc0a99f"
+  },
+  "images_opened_and_checked": [
+    "Review/kit-overview.png",
+    "Review/pressure-station.png",
+    "Review/conveyor-cargo.png",
+    "Review/relay-manufacturing.png"
+  ],
+  "initial_verifier_attempt": {
+    "native_exit": 1,
+    "reason": "Verifier assumed imported Euler rotation must be identity. The standard FBX axis conversion legitimately imports with an axis rotation; corrected to require source identity and verify imported origin, unit scale, positive determinant and actual world bounds. Geometry/source assets were not changed."
+  },
+  "gpu_jobs": 0,
+  "unity_jobs": 0,
+  "new_textures": 0,
+  "source_assets_frozen_for_parent_import": true
+}

@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "files": {
+    "ArtSource/Harbor/CREDITS.md": {
+      "bytes": 1089,
+      "sha256": "59bdcc803ca6520570dc129f517b86fee3d3e308cfaeff6417c61e44d68950ef"
+    },
+    "ArtSource/Harbor/Exports/HarborConveyor.fbx": {
+      "bytes": 73740,
+      "sha256": "343f30821eccc1bb2b37673f832c84ae875e1eb6bb793ddcfb94a6457130ca99"
+    },
+    "ArtSource/Harbor/Exports/HarborEmitter.fbx": {
+      "bytes": 24508,
+      "sha256": "215415d00c94bb81d5a56d745ab8037d8b5a931bd9289c8186ae6242019c2fe6"
+    },
+    "ArtSource/Harbor/Exports/HarborGaugeBase.fbx": {
+      "bytes": 46492,
+      "sha256": "1e2faeae8aa7055b738467abe534f2dcb3900ab668721d2dc63029cd37c53c9d"
+    },
+    "ArtSource/Harbor/Exports/HarborGaugeNeedle.fbx": {
+      "bytes": 22380,
+      "sha256": "2d195bb47f61422280e42bbc2af85b10d7ebc71cc552d9831059b632a864c67f"
+    },
+    "ArtSource/Harbor/Exports/HarborLiftGate.fbx": {
+      "bytes": 40860,
+      "sha256": "8dedfabc11c1fe4654a39c5b8fffb99840539a0ed6a62d0aebb8887da51bb0a3"
+    },
+    "ArtSource/Harbor/Exports/HarborRelayPad.fbx": {
+      "bytes": 35164,
+      "sha256": "b92f08c8eb93ba7526f4757156381e934a4f8180ad8c8faded2cd7b53247f167"
+    },
+    "ArtSource/Harbor/Exports/HarborSealedCrate.fbx": {
+      "bytes": 33516,
+      "sha256": "e92c73106b3c1c91febbc06e77af2d53c518278e8db98337a2769cf90fafc818"
+    },
+    "ArtSource/Harbor/Exports/HarborValveBase.fbx": {
+      "bytes": 40588,
+      "sha256": "8cf91238f32695d647548f5d86a33a06f230040a71e0d256575b87677655371a"
+    },
+    "ArtSource/Harbor/Exports/HarborValveWheel.fbx": {
+      "bytes": 30060,
+      "sha256": "8ea53530e9d992a3af5dbf943dcb988f69bdd364a1e79026c9be1e6408eb5252"
+    },
+    "ArtSource/Harbor/Harbor.blend": {
+      "bytes": 8766615,
+      "sha256": "03520eda2803d835b238fd1489527f9412a1b101ab9f3eb80a0e49cacca99b03"
+    },
+    "ArtSource/Harbor/README.md": {
+      "bytes": 4110,
+      "sha256": "f535ac8b9866db78f8a2791d118e9b69c04207be569818cbc59acc0af80398a5"
+    },
+    "ArtSource/Harbor/Review/conveyor-cargo.png": {
+      "bytes": 728412,
+      "sha256": "f1b1fd795813e7ee363d5b9470aa4a3d5ce28cdd38e9ad9d5675749492bd6f70"
+    },
+    "ArtSource/Harbor/Review/kit-overview.png": {
+      "bytes": 621313,
+      "sha256": "58e57b909803967bcaa0e56593ab119751c54c23ac2c06373549157cc5e60869"
+    },
+    "ArtSource/Harbor/Review/pressure-station.png": {
+      "bytes": 702608,
+      "sha256": "814eeccc18cb3e2fc31092be3cca82b4dfcb70d294344ccedb35a77f92b10df5"
+    },
+    "ArtSource/Harbor/Review/relay-manufacturing.png": {
+      "bytes": 725618,
+      "sha256": "7ee509332e8ee5b4807dfbcbe08acc1f4e8d364e6276925475d427b462bf3a69"
+    },
+    "ArtSource/Harbor/authoring.log": {
+      "bytes": 29177,
+      "sha256": "126ffbd6361832cd5d7495a722522e797964269954faa83ece2f0aff16dcff72"
+    },
+    "ArtSource/Harbor/district-contract.json": {
+      "bytes": 4659,
+      "sha256": "ae83e414da92899f3091ae6a4e3cbf475a88f62a3b589ff984c9a6d02da4b48b"
+    },
+    "ArtSource/Harbor/execution-receipt.json": {
+      "bytes": 1199,
+      "sha256": "7b1f879a6f9ca3c63cd917bda201fb6df95bb316b4cea06e880f2c3b99142163"
+    },
+    "ArtSource/Harbor/export-verification.json": {
+      "bytes": 7794,
+      "sha256": "91fa11ceb9c22146b00577b5881965a226570006afbff647cb5cc31494b7c841"
+    },
+    "ArtSource/Harbor/piece-map.json": {
+      "bytes": 95712,
+      "sha256": "be7de9002409147ef3d5897d00eaa43ce5c8fefd97a5e6bbd0e6d45edc6a5376"
+    },
+    "ArtSource/Harbor/production-manifest.json": {
+      "bytes": 9115,
+      "sha256": "cb923b5a6b79e29ecb84ad5badd70c1f7ad2dca381b68f7ec3c63e97bda4ebf5"
+    },
+    "ArtSource/Harbor/verification.log": {
+      "bytes": 401,
+      "sha256": "c750e104b9f02c3fdfd92a091e2d6df363a89d9e93cfe88dbae7c77272a597d8"
+    },
+    "Tools/blender/harbor/README.md": {
+      "bytes": 2018,
+      "sha256": "ff4b5c1139221d38530852f90e7a4bc3cd1086035f9c0fdb038f7a5862b40c5d"
+    },
+    "Tools/blender/harbor/author_harbor.py": {
+      "bytes": 16699,
+      "sha256": "a956a8457e93a1344963d22d0a457dba9c99c116c2486c0a675649958048dd83"
+    },
+    "Tools/blender/harbor/verify_harbor.py": {
+      "bytes": 6734,
+      "sha256": "e0347f75f18f20fa26211cde386156403676f4ce6bd5e6495885bc494dc0a99f"
+    }
+  },
+  "total_bytes": 12070581
+}

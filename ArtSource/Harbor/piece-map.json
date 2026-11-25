@@ -1,0 +1,4394 @@
+[
+  {
+    "group": "ValveBase",
+    "name": "anchored concrete plinth",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.5249999761581421,
+      0.0,
+      -0.4099999964237213
+    ],
+    "bounds_max": [
+      0.5249999761581421,
+      0.15000000596046448,
+      0.4099999964237213
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 0.12604599875453107
+  },
+  {
+    "group": "ValveBase",
+    "name": "cast valve pedestal",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.20999999344348907,
+      0.1199999749660492,
+      -0.20000000298023224
+    ],
+    "bounds_max": [
+      0.20999999344348907,
+      1.0399999618530273,
+      0.25999999046325684
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 0.1734939974943986
+  },
+  {
+    "group": "ValveBase",
+    "name": "sealed pipe riser",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.17000001668930054,
+      0.14999991655349731,
+      -0.1300000548362732
+    ],
+    "bounds_max": [
+      0.17000001668930054,
+      1.4200000762939453,
+      0.21000006794929504
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.11010901714284733
+  },
+  {
+    "group": "ValveBase",
+    "name": "bolted pipe flange",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.23500001430511475,
+      0.2149999737739563,
+      -0.19500002264976501
+    ],
+    "bounds_max": [
+      0.23500001430511475,
+      0.3050000071525574,
+      0.2750000059604645
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.014910752558821905
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.19374166429042816,
+      0.304999977350235,
+      0.026999998837709427
+    ],
+    "bounds_max": [
+      0.21625833213329315,
+      0.33000001311302185,
+      0.05299999937415123
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.13369855284690857,
+      0.304999977350235,
+      0.1719568967819214
+    ],
+    "bounds_max": [
+      0.15621522068977356,
+      0.33000001311302185,
+      0.1979568898677826
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.011258330196142197,
+      0.304999977350235,
+      0.23200000822544098
+    ],
+    "bounds_max": [
+      0.011258330196142197,
+      0.33000001311302185,
+      0.2580000162124634
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.15621522068977356,
+      0.304999977350235,
+      0.1719568967819214
+    ],
+    "bounds_max": [
+      -0.13369855284690857,
+      0.33000001311302185,
+      0.1979568898677826
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.21625833213329315,
+      0.304999977350235,
+      0.026999998837709427
+    ],
+    "bounds_max": [
+      -0.19374166429042816,
+      0.33000001311302185,
+      0.05299999937415123
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.15621522068977356,
+      0.304999977350235,
+      -0.11795689165592194
+    ],
+    "bounds_max": [
+      -0.13369855284690857,
+      0.33000001311302185,
+      -0.09195688366889954
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.011258330196142197,
+      0.304999977350235,
+      -0.17800000309944153
+    ],
+    "bounds_max": [
+      0.011258330196142197,
+      0.33000001311302185,
+      -0.15200001001358032
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.13369855284690857,
+      0.304999977350235,
+      -0.11795689165592194
+    ],
+    "bounds_max": [
+      0.15621522068977356,
+      0.33000001311302185,
+      -0.09195688366889954
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976874830243494e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "bolted pipe flange",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.23500001430511475,
+      1.315000057220459,
+      -0.19500002264976501
+    ],
+    "bounds_max": [
+      0.23500001430511475,
+      1.4049999713897705,
+      0.2750000059604645
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01491073800717535
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.19374166429042816,
+      1.4049999713897705,
+      0.026999998837709427
+    ],
+    "bounds_max": [
+      0.21625833213329315,
+      1.4300000667572021,
+      0.05299999937415123
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.13369855284690857,
+      1.4049999713897705,
+      0.1719568967819214
+    ],
+    "bounds_max": [
+      0.15621522068977356,
+      1.4300000667572021,
+      0.1979568898677826
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.011258330196142197,
+      1.4049999713897705,
+      0.23200000822544098
+    ],
+    "bounds_max": [
+      0.011258330196142197,
+      1.4300000667572021,
+      0.2580000162124634
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.15621522068977356,
+      1.4049999713897705,
+      0.1719568967819214
+    ],
+    "bounds_max": [
+      -0.13369855284690857,
+      1.4300000667572021,
+      0.1979568898677826
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.21625833213329315,
+      1.4049999713897705,
+      0.026999998837709427
+    ],
+    "bounds_max": [
+      -0.19374166429042816,
+      1.4300000667572021,
+      0.05299999937415123
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.15621522068977356,
+      1.4049999713897705,
+      -0.11795689165592194
+    ],
+    "bounds_max": [
+      -0.13369855284690857,
+      1.4300000667572021,
+      -0.09195688366889954
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.011258330196142197,
+      1.4049999713897705,
+      -0.17800000309944153
+    ],
+    "bounds_max": [
+      0.011258330196142197,
+      1.4300000667572021,
+      -0.15200001001358032
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "flange bolt",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.13369855284690857,
+      1.4049999713897705,
+      -0.11795689165592194
+    ],
+    "bounds_max": [
+      0.15621522068977356,
+      1.4300000667572021,
+      -0.09195688366889954
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 1.0976861961484718e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "front spindle housing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.11500000953674316,
+      0.9850000143051147,
+      -0.3400000035762787
+    ],
+    "bounds_max": [
+      0.11500000953674316,
+      1.215000033378601,
+      -0.11999999731779099
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.008728499363089968
+  },
+  {
+    "group": "ValveBase",
+    "name": "yellow lockout plate",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.17000000178813934,
+      0.5800000429153442,
+      -0.24250000715255737
+    ],
+    "bounds_max": [
+      0.38999998569488525,
+      0.8999999761581421,
+      -0.19749999046325684
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.003077118007601736
+  },
+  {
+    "group": "ValveBase",
+    "name": "lockout engraving",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.21000000834465027,
+      0.6840000152587891,
+      -0.25049999356269836
+    ],
+    "bounds_max": [
+      0.3499999940395355,
+      0.6959999799728394,
+      -0.24549999833106995
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 8.399999921023843e-06
+  },
+  {
+    "group": "ValveBase",
+    "name": "lockout engraving",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.21000000834465027,
+      0.8040000200271606,
+      -0.25049999356269836
+    ],
+    "bounds_max": [
+      0.3499999940395355,
+      0.8159999847412109,
+      -0.24549999833106995
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 8.399999921023843e-06
+  },
+  {
+    "group": "ValveBase",
+    "name": "protected hydraulic hose",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.40281420946121216,
+      0.818606972694397,
+      0.035588331520557404
+    ],
+    "bounds_max": [
+      -0.18718574941158295,
+      0.9613929986953735,
+      0.12441166490316391
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0004175909176487713
+  },
+  {
+    "group": "ValveBase",
+    "name": "protected hydraulic hose",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.4654749035835266,
+      0.5144473314285278,
+      0.07461241632699966
+    ],
+    "bounds_max": [
+      -0.36452507972717285,
+      0.8455525636672974,
+      0.17538759112358093
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0006266050402279436
+  },
+  {
+    "group": "ValveBase",
+    "name": "protected hydraulic hose",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.4619347155094147,
+      0.26736438274383545,
+      0.12592869997024536
+    ],
+    "bounds_max": [
+      -0.29806527495384216,
+      0.5326355695724487,
+      0.23407131433486938
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005257175693280127
+  },
+  {
+    "group": "ValveBase",
+    "name": "plinth anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.4181865453720093,
+      0.1509999781847,
+      -0.3109999895095825
+    ],
+    "bounds_max": [
+      -0.3818134665489197,
+      0.17099998891353607,
+      -0.26899999380111694
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 2.2915030671355297e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "plinth anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.4181865453720093,
+      0.1509999781847,
+      0.26899999380111694
+    ],
+    "bounds_max": [
+      -0.3818134665489197,
+      0.17099998891353607,
+      0.3109999895095825
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 2.2915030671355297e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "plinth anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.3818134665489197,
+      0.1509999781847,
+      -0.3109999895095825
+    ],
+    "bounds_max": [
+      0.4181865453720093,
+      0.17099998891353607,
+      -0.26899999380111694
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 2.2915030671355297e-05
+  },
+  {
+    "group": "ValveBase",
+    "name": "plinth anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.3818134665489197,
+      0.1509999781847,
+      0.26899999380111694
+    ],
+    "bounds_max": [
+      0.4181865453720093,
+      0.17099998891353607,
+      0.3109999895095825
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 2.2915030671355297e-05
+  },
+  {
+    "group": "ValveWheel",
+    "name": "handwheel rim",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.3370000123977661,
+      -0.3370000123977661,
+      -0.02338268607854843
+    ],
+    "bounds_max": [
+      0.3370000123977661,
+      0.3370000123977661,
+      0.02338268607854843
+    ],
+    "source_vertices": 144,
+    "outward_signed_volume": 0.003647107404782847
+  },
+  {
+    "group": "ValveWheel",
+    "name": "wheel hub",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.07500000298023224,
+      -0.07500000298023224,
+      -0.054999999701976776
+    ],
+    "bounds_max": [
+      0.07500000298023224,
+      0.07500000298023224,
+      0.054999999701976776
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.001856250030386061
+  },
+  {
+    "group": "ValveWheel",
+    "name": "wheel spoke",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.059999994933605194,
+      -0.017999999225139618,
+      -0.015588466078042984
+    ],
+    "bounds_max": [
+      0.28999999165534973,
+      0.017999999225139618,
+      0.015588466078042984
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 0.00019360860506271814
+  },
+  {
+    "group": "ValveWheel",
+    "name": "wheel spoke",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.015588458627462387,
+      0.059999994933605194,
+      -0.018000014126300812
+    ],
+    "bounds_max": [
+      0.015588458627462387,
+      0.28999999165534973,
+      0.018000014126300812
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 0.00019360866399041827
+  },
+  {
+    "group": "ValveWheel",
+    "name": "wheel spoke",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.28999999165534973,
+      -0.017999999225139618,
+      -0.015588466078042984
+    ],
+    "bounds_max": [
+      -0.059999994933605194,
+      0.017999999225139618,
+      0.015588466078042984
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 0.00019360860506271814
+  },
+  {
+    "group": "ValveWheel",
+    "name": "wheel spoke",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.015588458627462387,
+      -0.28999999165534973,
+      -0.018000014126300812
+    ],
+    "bounds_max": [
+      0.015588458627462387,
+      -0.059999994933605194,
+      0.018000014126300812
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 0.00019360866120298592
+  },
+  {
+    "group": "ValveWheel",
+    "name": "raised grip index",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.03750000149011612,
+      0.2824999988079071,
+      -0.05250000208616257
+    ],
+    "bounds_max": [
+      0.03750000149011612,
+      0.3375000059604645,
+      0.002499999478459358
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0002182916765461362
+  },
+  {
+    "group": "GaugeBase",
+    "name": "pressure station foot",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.375,
+      -1.4500000476837158,
+      -0.22499999403953552
+    ],
+    "bounds_max": [
+      0.375,
+      -1.3199999332427979,
+      0.42499998211860657
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.06270449601745612
+  },
+  {
+    "group": "GaugeBase",
+    "name": "pressure station post",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.07500000298023224,
+      -1.3350000381469727,
+      0.02499999850988388
+    ],
+    "bounds_max": [
+      0.07500000298023224,
+      0.014999985694885254,
+      0.17500001192092896
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.029909018645113042
+  },
+  {
+    "group": "GaugeBase",
+    "name": "sealed pressure housing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.4000000059604645,
+      -0.4000000059604645,
+      -0.07999999821186066
+    ],
+    "bounds_max": [
+      0.4000000059604645,
+      0.4000000059604645,
+      0.14000000059604645
+    ],
+    "source_vertices": 64,
+    "outward_signed_volume": 0.10987486899140766
+  },
+  {
+    "group": "GaugeBase",
+    "name": "pale calibrated dial",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -0.3540000021457672,
+      -0.3540000021457672,
+      -0.10799999535083771
+    ],
+    "bounds_max": [
+      0.3540000021457672,
+      0.3540000021457672,
+      -0.0820000022649765
+    ],
+    "source_vertices": 64,
+    "outward_signed_volume": 0.01017034250722902
+  },
+  {
+    "group": "GaugeBase",
+    "name": "machined gauge bezel",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.4020000100135803,
+      -0.4020000100135803,
+      -0.14338268339633942
+    ],
+    "bounds_max": [
+      0.4020000100135803,
+      0.4020000100135803,
+      -0.09661731123924255
+    ],
+    "source_vertices": 192,
+    "outward_signed_volume": 0.0044340075602949365
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.22535350918769836,
+      -0.19022275507450104,
+      -0.12997928261756897
+    ],
+    "bounds_max": [
+      -0.1945154368877411,
+      -0.16208912432193756,
+      -0.12002070993185043
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955506796389745e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.26783648133277893,
+      -0.12224220484495163,
+      -0.13094952702522278
+    ],
+    "bounds_max": [
+      -0.23384574055671692,
+      -0.09850325435400009,
+      -0.11905047297477722
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695549038633829e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.2883601486682892,
+      -0.044241856783628464,
+      -0.13144439458847046
+    ],
+    "bounds_max": [
+      -0.25505074858665466,
+      -0.02729954943060875,
+      -0.11855560541152954
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695550465788159e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.28760215640068054,
+      0.03291346877813339,
+      -0.13142435252666473
+    ],
+    "bounds_max": [
+      -0.25411882996559143,
+      0.050465360283851624,
+      -0.11857564747333527
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955509889845726e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.265318900346756,
+      0.1037387102842331,
+      -0.13089099526405334
+    ],
+    "bounds_max": [
+      -0.23142839968204498,
+      0.12789835035800934,
+      -0.11910899728536606
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955490879904955e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.22125573456287384,
+      0.1665029525756836,
+      -0.1298869550228119
+    ],
+    "bounds_max": [
+      -0.1908276528120041,
+      0.19488447904586792,
+      -0.12011303752660751
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695548989786273e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.1604403853416443,
+      0.21473383903503418,
+      -0.1304820477962494
+    ],
+    "bounds_max": [
+      -0.1340535283088684,
+      0.2475290298461914,
+      -0.11951795220375061
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695548902334968e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.08714143931865692,
+      0.2460426390171051,
+      -0.13124032318592072
+    ],
+    "bounds_max": [
+      -0.0662328451871872,
+      0.28016069531440735,
+      -0.11875967681407928
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955517351907717e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.006500000134110451,
+      0.2581000030040741,
+      -0.1315000057220459
+    ],
+    "bounds_max": [
+      0.006500000134110451,
+      0.28999999165534973,
+      -0.1185000017285347
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695549055709125e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.0662328451871872,
+      0.2460426390171051,
+      -0.13124032318592072
+    ],
+    "bounds_max": [
+      0.08714143931865692,
+      0.28016069531440735,
+      -0.11875967681407928
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955517351907717e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.1340535283088684,
+      0.21473383903503418,
+      -0.1304820477962494
+    ],
+    "bounds_max": [
+      0.1604403853416443,
+      0.2475290298461914,
+      -0.11951795220375061
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695548902334968e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.1908276528120041,
+      0.1665029525756836,
+      -0.1298869550228119
+    ],
+    "bounds_max": [
+      0.22125573456287384,
+      0.19488447904586792,
+      -0.12011303752660751
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695548989786273e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.23142839968204498,
+      0.1037387102842331,
+      -0.13089099526405334
+    ],
+    "bounds_max": [
+      0.265318900346756,
+      0.12789835035800934,
+      -0.11910899728536606
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955490879904955e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.25411882996559143,
+      0.03291346877813339,
+      -0.13142435252666473
+    ],
+    "bounds_max": [
+      0.28760215640068054,
+      0.050465360283851624,
+      -0.11857564747333527
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955509889845726e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.25505074858665466,
+      -0.044241856783628464,
+      -0.13144439458847046
+    ],
+    "bounds_max": [
+      0.2883601486682892,
+      -0.02729954943060875,
+      -0.11855560541152954
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695550465788159e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.23384574055671692,
+      -0.12224220484495163,
+      -0.13094952702522278
+    ],
+    "bounds_max": [
+      0.26783648133277893,
+      -0.09850325435400009,
+      -0.11905047297477722
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.695549038633829e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "dial graduation",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.1945154368877411,
+      -0.19022275507450104,
+      -0.12997928261756897
+    ],
+    "bounds_max": [
+      0.22535350918769836,
+      -0.16208912432193756,
+      -0.12002070993185043
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.6955506796389745e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "gauge housing fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.2630000114440918,
+      0.18874166905879974,
+      -0.1629999876022339
+    ],
+    "bounds_max": [
+      -0.2370000034570694,
+      0.21125833690166473,
+      -0.14300000667572021
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781494103069567e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "gauge housing fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.2370000034570694,
+      0.18874166905879974,
+      -0.1629999876022339
+    ],
+    "bounds_max": [
+      0.2630000114440918,
+      0.21125833690166473,
+      -0.14300000667572021
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781494103069567e-06
+  },
+  {
+    "group": "GaugeBase",
+    "name": "gauge serial plate",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.10999999940395355,
+      -0.2150000035762787,
+      -0.13300000131130219
+    ],
+    "bounds_max": [
+      0.10999999940395355,
+      -0.14500001072883606,
+      -0.12699998915195465
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 9.18133343982449e-05
+  },
+  {
+    "group": "GaugeNeedle",
+    "name": "needle central pin",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.029999999329447746,
+      -0.029999999329447746,
+      -0.017999999225139618
+    ],
+    "bounds_max": [
+      0.029999999329447746,
+      0.029999999329447746,
+      0.017999999225139618
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 9.719999050488016e-05
+  },
+  {
+    "group": "GaugeNeedle",
+    "name": "pressure needle",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.007000000216066837,
+      -0.030000008642673492,
+      -0.006000000052154064
+    ],
+    "bounds_max": [
+      0.007000000216066837,
+      0.24000000953674316,
+      0.006000000052154064
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 4.303466913122931e-05
+  },
+  {
+    "group": "GaugeNeedle",
+    "name": "needle counterweight",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.02250000089406967,
+      -0.08500000089406967,
+      -0.00800000037997961
+    ],
+    "bounds_max": [
+      0.02250000089406967,
+      -0.015000000596046448,
+      0.00800000037997961
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 4.654933690282706e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "continuous quarantine lift leaf",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -2.0,
+      -1.75,
+      -0.10000000149011612
+    ],
+    "bounds_max": [
+      2.0,
+      1.75,
+      0.10000000149011612
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 2.7955924799083753
+  },
+  {
+    "group": "LiftGate",
+    "name": "lift gate side rail",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.9550000429153442,
+      -1.7400000095367432,
+      -0.125
+    ],
+    "bounds_max": [
+      -1.784999966621399,
+      1.7400000095367432,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0058867626928821755
+  },
+  {
+    "group": "LiftGate",
+    "name": "lift gate side rail",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.784999966621399,
+      -1.7400000095367432,
+      -0.125
+    ],
+    "bounds_max": [
+      1.9550000429153442,
+      1.7400000095367432,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0058867626928821755
+  },
+  {
+    "group": "LiftGate",
+    "name": "folded gate reinforcement",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8799999952316284,
+      -1.6699999570846558,
+      -0.125
+    ],
+    "bounds_max": [
+      1.8799999952316284,
+      -1.5500000715255737,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004480922460051361
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.715000033378601,
+      -1.622990369796753,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -1.6850000619888306,
+      -1.5970096588134766,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8650000095367432,
+      -1.622990369796753,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -0.8350000381469727,
+      -1.5970096588134766,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.014999998733401299,
+      -1.622990369796753,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.014999998733401299,
+      -1.5970096588134766,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.8350000381469727,
+      -1.622990369796753,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.8650000095367432,
+      -1.5970096588134766,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.6850000619888306,
+      -1.622990369796753,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      1.715000033378601,
+      -1.5970096588134766,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "folded gate reinforcement",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8799999952316284,
+      -0.5799999833106995,
+      -0.125
+    ],
+    "bounds_max": [
+      1.8799999952316284,
+      -0.4599999785423279,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004480922460051361
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.715000033378601,
+      -0.5329903364181519,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -1.6850000619888306,
+      -0.5070096254348755,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8650000095367432,
+      -0.5329903364181519,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -0.8350000381469727,
+      -0.5070096254348755,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.014999998733401299,
+      -0.5329903364181519,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.014999998733401299,
+      -0.5070096254348755,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.8350000381469727,
+      -0.5329903364181519,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.8650000095367432,
+      -0.5070096254348755,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.6850000619888306,
+      -0.5329903364181519,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      1.715000033378601,
+      -0.5070096254348755,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "folded gate reinforcement",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8799999952316284,
+      0.4599999785423279,
+      -0.125
+    ],
+    "bounds_max": [
+      1.8799999952316284,
+      0.5799999833106995,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004480922460051361
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.715000033378601,
+      0.5070096254348755,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -1.6850000619888306,
+      0.5329903364181519,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8650000095367432,
+      0.5070096254348755,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -0.8350000381469727,
+      0.5329903364181519,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.014999998733401299,
+      0.5070096254348755,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.014999998733401299,
+      0.5329903364181519,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.8350000381469727,
+      0.5070096254348755,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.8650000095367432,
+      0.5329903364181519,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.6850000619888306,
+      0.5070096254348755,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      1.715000033378601,
+      0.5329903364181519,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "folded gate reinforcement",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8799999952316284,
+      1.5500000715255737,
+      -0.125
+    ],
+    "bounds_max": [
+      1.8799999952316284,
+      1.6699999570846558,
+      -0.11499999463558197
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004480922460051361
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.715000033378601,
+      1.5970096588134766,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -1.6850000619888306,
+      1.622990369796753,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8650000095367432,
+      1.5970096588134766,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      -0.8350000381469727,
+      1.622990369796753,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.014999998733401299,
+      1.5970096588134766,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.014999998733401299,
+      1.622990369796753,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.8350000381469727,
+      1.5970096588134766,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      0.8650000095367432,
+      1.622990369796753,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "gate captive fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.6850000619888306,
+      1.5970096588134766,
+      -0.14499999582767487
+    ],
+    "bounds_max": [
+      1.715000033378601,
+      1.622990369796753,
+      -0.12999998033046722
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.768505739976219e-06
+  },
+  {
+    "group": "LiftGate",
+    "name": "dark quarantine plaque",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.5600000023841858,
+      0.20999999344348907,
+      -0.14000000059604645
+    ],
+    "bounds_max": [
+      0.5600000023841858,
+      0.6899999976158142,
+      -0.12800000607967377
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.006422327837570992
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.4375,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      -0.4024999737739563,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.29750001430511475,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      -0.26249998807907104,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.1574999988079071,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      -0.12250000238418579,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.017500000074505806,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      0.017500000074505806,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.12250000238418579,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      0.1574999988079071,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.26249998807907104,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      0.29750001430511475,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "LiftGate",
+    "name": "serial plaque ribs",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.4024999737739563,
+      0.3349999785423279,
+      -0.14550000429153442
+    ],
+    "bounds_max": [
+      0.4375,
+      0.5649999976158142,
+      -0.140500009059906
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 3.971533307437533e-05
+  },
+  {
+    "group": "Conveyor",
+    "name": "rolled conveyor chassis",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -4.0,
+      0.4699999988079071,
+      -1.1200000047683716
+    ],
+    "bounds_max": [
+      4.0,
+      0.6700000166893005,
+      -0.9599999785423279
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.2517415217312009
+  },
+  {
+    "group": "Conveyor",
+    "name": "yellow safety rim",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -4.0,
+      0.8399999737739563,
+      -1.09499990940094
+    ],
+    "bounds_max": [
+      4.0,
+      0.9200000166893005,
+      -0.98499995470047
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.06935440865110908
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.5799999237060547,
+      0.0,
+      -1.1200000047683716
+    ],
+    "bounds_max": [
+      -3.4200000762939453,
+      0.5400000214576721,
+      -0.9599999785423279
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.700000047683716,
+      0.0,
+      -1.2400000095367432
+    ],
+    "bounds_max": [
+      -3.299999952316284,
+      0.07000000029802322,
+      -0.8399999737739563
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.07999999821186066,
+      0.0,
+      -1.1200000047683716
+    ],
+    "bounds_max": [
+      0.07999999821186066,
+      0.5400000214576721,
+      -0.9599999785423279
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.20000000298023224,
+      0.0,
+      -1.2400000095367432
+    ],
+    "bounds_max": [
+      0.20000000298023224,
+      0.07000000029802322,
+      -0.8399999737739563
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.4200000762939453,
+      0.0,
+      -1.1200000047683716
+    ],
+    "bounds_max": [
+      3.5799999237060547,
+      0.5400000214576721,
+      -0.9599999785423279
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.299999952316284,
+      0.0,
+      -1.2400000095367432
+    ],
+    "bounds_max": [
+      3.700000047683716,
+      0.07000000029802322,
+      -0.8399999737739563
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "rolled conveyor chassis",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -4.0,
+      0.4699999988079071,
+      0.9599999785423279
+    ],
+    "bounds_max": [
+      4.0,
+      0.6700000166893005,
+      1.1200000047683716
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.2517415217312009
+  },
+  {
+    "group": "Conveyor",
+    "name": "yellow safety rim",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -4.0,
+      0.8399999737739563,
+      0.98499995470047
+    ],
+    "bounds_max": [
+      4.0,
+      0.9200000166893005,
+      1.09499990940094
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.06935440865110908
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.5799999237060547,
+      0.0,
+      0.9599999785423279
+    ],
+    "bounds_max": [
+      -3.4200000762939453,
+      0.5400000214576721,
+      1.1200000047683716
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.700000047683716,
+      0.0,
+      0.8399999737739563
+    ],
+    "bounds_max": [
+      -3.299999952316284,
+      0.07000000029802322,
+      1.2400000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.07999999821186066,
+      0.0,
+      0.9599999785423279
+    ],
+    "bounds_max": [
+      0.07999999821186066,
+      0.5400000214576721,
+      1.1200000047683716
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.20000000298023224,
+      0.0,
+      0.8399999737739563
+    ],
+    "bounds_max": [
+      0.20000000298023224,
+      0.07000000029802322,
+      1.2400000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor leg",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.4200000762939453,
+      0.0,
+      0.9599999785423279
+    ],
+    "bounds_max": [
+      3.5799999237060547,
+      0.5400000214576721,
+      1.1200000047683716
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.013657333373943934
+  },
+  {
+    "group": "Conveyor",
+    "name": "conveyor foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.299999952316284,
+      0.0,
+      0.8399999737739563
+    ],
+    "bounds_max": [
+      3.700000047683716,
+      0.07000000029802322,
+      1.2400000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.01109137101140849
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.8789377212524414,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -3.721062183380127,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.8550000190734863,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -3.744999885559082,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.8550000190734863,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -3.744999885559082,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.478937864303589,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -3.3210623264312744,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.455000162124634,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -3.3450000286102295,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.455000162124634,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -3.3450000286102295,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.0789377689361572,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -2.9210622310638428,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.055000066757202,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -2.944999933242798,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.055000066757202,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -2.944999933242798,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.6789376735687256,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -2.521062135696411,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.6549999713897705,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -2.544999837875366,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.6549999713897705,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -2.544999837875366,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.278937816619873,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -2.1210622787475586,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.255000114440918,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -2.1449999809265137,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.255000114440918,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -2.1449999809265137,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8789376020431519,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -1.7210623025894165,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8549998998641968,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -1.7450000047683716,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.8549998998641968,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -1.7450000047683716,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4789376258850098,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -1.3210623264312744,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4549999237060547,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -1.3450000286102295,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.4549999237060547,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -1.3450000286102295,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0789376497268677,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -0.9210622906684875,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0549999475479126,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -0.9449999928474426,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.0549999475479126,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -0.9449999928474426,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.6789377331733704,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -0.5210623145103455,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.6550000309944153,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -0.5450000166893005,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.6550000309944153,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -0.5450000166893005,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.2789376974105835,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -0.12106231600046158,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.2549999952316284,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      -0.14500001072883606,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.2549999952316284,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      -0.14500001072883606,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.12106231600046158,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      0.2789376974105835,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.14500001072883606,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      0.2549999952316284,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.14500001072883606,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      0.2549999952316284,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5210623145103455,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      0.6789377331733704,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5450000166893005,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      0.6550000309944153,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5450000166893005,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      0.6550000309944153,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.9210622906684875,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      1.0789376497268677,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.9449999928474426,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      1.0549999475479126,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.9449999928474426,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      1.0549999475479126,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.3210623264312744,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      1.4789376258850098,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.3450000286102295,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      1.4549999237060547,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.3450000286102295,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      1.4549999237060547,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.7210623025894165,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      1.8789376020431519,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.7450000047683716,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      1.8549998998641968,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.7450000047683716,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      1.8549998998641968,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.1210622787475586,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      2.278937816619873,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.1449999809265137,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      2.255000114440918,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.1449999809265137,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      2.255000114440918,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.521062135696411,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      2.6789376735687256,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.544999837875366,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      2.6549999713897705,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.544999837875366,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      2.6549999713897705,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.9210622310638428,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      3.0789377689361572,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.944999933242798,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      3.055000066757202,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.944999933242798,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      3.055000066757202,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.3210623264312744,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      3.478937864303589,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.3450000286102295,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      3.455000162124634,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.3450000286102295,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      3.455000162124634,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "real transverse conveyor roller",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.721062183380127,
+      0.6069999933242798,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      3.8789377212524414,
+      0.7730000019073486,
+      0.9700000286102295
+    ],
+    "source_vertices": 20,
+    "outward_signed_volume": 0.039277748746218075
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.744999885559082,
+      0.6349999904632568,
+      -1.1319999694824219
+    ],
+    "bounds_max": [
+      3.8550000190734863,
+      0.7450000047683716,
+      -1.0679998397827148
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "roller axle bearing",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.744999885559082,
+      0.6349999904632568,
+      1.0679998397827148
+    ],
+    "bounds_max": [
+      3.8550000190734863,
+      0.7450000047683716,
+      1.1319999694824219
+    ],
+    "source_vertices": 16,
+    "outward_signed_volume": 0.0005475835666700746
+  },
+  {
+    "group": "Conveyor",
+    "name": "drive gearbox",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.8999998569488525,
+      0.20999999344348907,
+      1.0799999237060547
+    ],
+    "bounds_max": [
+      -3.200000047683716,
+      0.6899999976158142,
+      1.5199999809265137
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 0.14403999171674242
+  },
+  {
+    "group": "Conveyor",
+    "name": "drive cooling fin",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.7950000762939453,
+      0.6800000071525574,
+      1.0749999284744263
+    ],
+    "bounds_max": [
+      -3.744999885559082,
+      0.7199999690055847,
+      1.524999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0008904239638049596
+  },
+  {
+    "group": "Conveyor",
+    "name": "drive cooling fin",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.5850000381469727,
+      0.6800000071525574,
+      1.0749999284744263
+    ],
+    "bounds_max": [
+      -3.5349998474121094,
+      0.7199999690055847,
+      1.524999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0008904239638049596
+  },
+  {
+    "group": "Conveyor",
+    "name": "drive cooling fin",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.375,
+      0.6800000071525574,
+      1.0749999284744263
+    ],
+    "bounds_max": [
+      -3.3249998092651367,
+      0.7199999690055847,
+      1.524999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0008904239638049596
+  },
+  {
+    "group": "Conveyor",
+    "name": "guarded electric motor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.7300000190734863,
+      0.26999998092651367,
+      1.4900000095367432
+    ],
+    "bounds_max": [
+      -3.369999885559082,
+      0.6299999952316284,
+      1.8700001239776611
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.03693600245973256
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.6112582683563232,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      -3.5887415409088135,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -3.6112582683563232,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      -3.5887415409088135,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.011258363723755,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      -1.9887416362762451,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -2.011258363723755,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      -1.9887416362762451,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.411258339881897,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      -0.388741672039032,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.411258339881897,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      -0.388741672039032,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.188741683959961,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      1.2112584114074707,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      1.188741683959961,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      1.2112584114074707,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.7887415885925293,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      2.811258316040039,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      2.7887415885925293,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      2.811258316040039,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.5887415409088135,
+      0.5669999718666077,
+      -1.1349999904632568
+    ],
+    "bounds_max": [
+      3.6112582683563232,
+      0.5929999947547913,
+      -1.1150000095367432
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "Conveyor",
+    "name": "chassis fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      3.5887415409088135,
+      0.5669999718666077,
+      1.1349999904632568
+    ],
+    "bounds_max": [
+      3.6112582683563232,
+      0.5929999947547913,
+      1.1549999713897705
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 8.781489359485232e-06
+  },
+  {
+    "group": "SealedCrate",
+    "name": "sealed polymer cargo core",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.6000000238418579,
+      0.0,
+      -0.699999988079071
+    ],
+    "bounds_max": [
+      0.6000000238418579,
+      1.0,
+      0.699999988079071
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 1.6712500445544678
+  },
+  {
+    "group": "SealedCrate",
+    "name": "extruded crate upright",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5900000333786011,
+      0.009999990463256836,
+      -0.7199999690055847
+    ],
+    "bounds_max": [
+      -0.5099999904632568,
+      0.9900000095367432,
+      -0.6600000262260437
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004624511860955715
+  },
+  {
+    "group": "SealedCrate",
+    "name": "extruded crate upright",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5900000333786011,
+      0.009999990463256836,
+      0.6600000262260437
+    ],
+    "bounds_max": [
+      -0.5099999904632568,
+      0.9900000095367432,
+      0.7199999690055847
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004624511860955715
+  },
+  {
+    "group": "SealedCrate",
+    "name": "extruded crate upright",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5099999904632568,
+      0.009999990463256836,
+      -0.7199999690055847
+    ],
+    "bounds_max": [
+      0.5900000333786011,
+      0.9900000095367432,
+      -0.6600000262260437
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004624511860955715
+  },
+  {
+    "group": "SealedCrate",
+    "name": "extruded crate upright",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5099999904632568,
+      0.009999990463256836,
+      0.6600000262260437
+    ],
+    "bounds_max": [
+      0.5900000333786011,
+      0.9900000095367432,
+      0.7199999690055847
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004624511860955715
+  },
+  {
+    "group": "SealedCrate",
+    "name": "continuous crate front edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5849999785423279,
+      0.009999997913837433,
+      -0.7224999666213989
+    ],
+    "bounds_max": [
+      0.5849999785423279,
+      0.10000000149011612,
+      -0.6775000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004673916902658829
+  },
+  {
+    "group": "SealedCrate",
+    "name": "continuous crate rear edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5849999785423279,
+      0.009999997913837433,
+      0.6775000095367432
+    ],
+    "bounds_max": [
+      0.5849999785423279,
+      0.10000000149011612,
+      0.7224999666213989
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004673916902658829
+  },
+  {
+    "group": "SealedCrate",
+    "name": "continuous crate front edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5849999785423279,
+      0.8999999761581421,
+      -0.7224999666213989
+    ],
+    "bounds_max": [
+      0.5849999785423279,
+      0.9900000095367432,
+      -0.6775000095367432
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004673916902658829
+  },
+  {
+    "group": "SealedCrate",
+    "name": "continuous crate rear edge",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.5849999785423279,
+      0.8999999761581421,
+      0.6775000095367432
+    ],
+    "bounds_max": [
+      0.5849999785423279,
+      0.9900000095367432,
+      0.7224999666213989
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.004673916902658829
+  },
+  {
+    "group": "SealedCrate",
+    "name": "sealed cargo restraint band",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.39250001311302185,
+      0.050000011920928955,
+      -0.7310000061988831
+    ],
+    "bounds_max": [
+      -0.32750001549720764,
+      0.949999988079071,
+      -0.7190000414848328
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006942266250225902
+  },
+  {
+    "group": "SealedCrate",
+    "name": "sealed top restraint band",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.39250001311302185,
+      0.9990000128746033,
+      -0.675000011920929
+    ],
+    "bounds_max": [
+      -0.32750001549720764,
+      1.0110000371932983,
+      0.675000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0010416266593739883
+  },
+  {
+    "group": "SealedCrate",
+    "name": "sealed cargo restraint band",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.32750001549720764,
+      0.050000011920928955,
+      -0.7310000061988831
+    ],
+    "bounds_max": [
+      0.39250001311302185,
+      0.949999988079071,
+      -0.7190000414848328
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0006942266250225902
+  },
+  {
+    "group": "SealedCrate",
+    "name": "sealed top restraint band",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.32750001549720764,
+      0.9990000128746033,
+      -0.675000011920929
+    ],
+    "bounds_max": [
+      0.39250001311302185,
+      1.0110000371932983,
+      0.675000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0010416266593739883
+  },
+  {
+    "group": "SealedCrate",
+    "name": "tamper evidence panel",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.20000000298023224,
+      0.41499999165534973,
+      -0.7310000061988831
+    ],
+    "bounds_max": [
+      0.20000000298023224,
+      0.7250000238418579,
+      -0.7190000414848328
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0014751480197702485
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.16200000047683716,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      -0.1380000114440918,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.2799999402463435e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.11499999463558197,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      -0.10300000011920929,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 1.1399999701231717e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.07400000095367432,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      -0.06200000271201134,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 1.1399999701231717e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      -0.039000000804662704,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      -0.015000000596046448,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.2799999402463435e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.00800000037997961,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      0.019999999552965164,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 1.1399999701231717e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.04899999871850014,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      0.061000000685453415,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 1.1399999701231717e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.08399999886751175,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      0.1080000028014183,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 2.2799999402463435e-05
+  },
+  {
+    "group": "SealedCrate",
+    "name": "manufactured barcode groove",
+    "tile": 3,
+    "glass": false,
+    "bounds_min": [
+      0.13099999725818634,
+      0.4749999940395355,
+      -0.737500011920929
+    ],
+    "bounds_max": [
+      0.14299999177455902,
+      0.6649999618530273,
+      -0.7325000166893005
+    ],
+    "source_vertices": 8,
+    "outward_signed_volume": 1.1399999701231717e-05
+  },
+  {
+    "group": "RelayPad",
+    "name": "relay ground footing",
+    "tile": 0,
+    "glass": false,
+    "bounds_min": [
+      -1.100000023841858,
+      0.0,
+      -1.100000023841858
+    ],
+    "bounds_max": [
+      1.100000023841858,
+      0.07000000029802322,
+      1.100000023841858
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.3368065179220292
+  },
+  {
+    "group": "RelayPad",
+    "name": "relay sealed treadplate",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -1.024999976158142,
+      0.07000000029802322,
+      -1.024999976158142
+    ],
+    "bounds_max": [
+      1.024999976158142,
+      0.11999999731779099,
+      1.024999976158142
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.2089390128756365
+  },
+  {
+    "group": "RelayPad",
+    "name": "visible yellow pad edge",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.9699999690055847,
+      0.12000000476837158,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      -0.9100000262260437,
+      0.13199999928474426,
+      0.9700000286102295
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013927813558321088
+  },
+  {
+    "group": "RelayPad",
+    "name": "visible yellow pad edge",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      0.9100000262260437,
+      0.12000000476837158,
+      -0.9700000286102295
+    ],
+    "bounds_max": [
+      0.9699999690055847,
+      0.13199999928474426,
+      0.9700000286102295
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013927813558321088
+  },
+  {
+    "group": "RelayPad",
+    "name": "visible yellow pad edge",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.9700000286102295,
+      0.12000000476837158,
+      -0.9699999690055847
+    ],
+    "bounds_max": [
+      0.9700000286102295,
+      0.13199999928474426,
+      -0.9100000262260437
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013927813558321088
+  },
+  {
+    "group": "RelayPad",
+    "name": "visible yellow pad edge",
+    "tile": 2,
+    "glass": false,
+    "bounds_min": [
+      -0.9700000286102295,
+      0.12000000476837158,
+      0.9100000262260437
+    ],
+    "bounds_max": [
+      0.9700000286102295,
+      0.13199999928474426,
+      0.9699999690055847
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.0013927813558321088
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.7574999928474426,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      -0.7425000071525574,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.6075000166893005,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      -0.5925000309944153,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.45749998092651367,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      -0.4424999952316284,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.3075000047683716,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      -0.29250001907348633,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.1574999988079071,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      -0.14250001311302185,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.007499999832361937,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.007499999832361937,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.14250001311302185,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.1574999988079071,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.29250001907348633,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.3075000047683716,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.4424999952316284,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.45749998092651367,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.5925000309944153,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.6075000166893005,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "anti slip tread",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.7425000071525574,
+      0.12400000542402267,
+      -0.800000011920929
+    ],
+    "bounds_max": [
+      0.7574999928474426,
+      0.13199999928474426,
+      0.800000011920929
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00018875934044329312
+  },
+  {
+    "group": "RelayPad",
+    "name": "pad countersunk fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8121243715286255,
+      0.12999998033046722,
+      -0.8140000104904175
+    ],
+    "bounds_max": [
+      -0.7878756523132324,
+      0.14000000059604645,
+      -0.7860000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 5.092233259047083e-06
+  },
+  {
+    "group": "RelayPad",
+    "name": "pad countersunk fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.8121243715286255,
+      0.12999998033046722,
+      0.7860000133514404
+    ],
+    "bounds_max": [
+      -0.7878756523132324,
+      0.14000000059604645,
+      0.8140000104904175
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 5.092233259047083e-06
+  },
+  {
+    "group": "RelayPad",
+    "name": "pad countersunk fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.7878756523132324,
+      0.12999998033046722,
+      -0.8140000104904175
+    ],
+    "bounds_max": [
+      0.8121243715286255,
+      0.14000000059604645,
+      -0.7860000133514404
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 5.092233259047083e-06
+  },
+  {
+    "group": "RelayPad",
+    "name": "pad countersunk fastener",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.7878756523132324,
+      0.12999998033046722,
+      0.7860000133514404
+    ],
+    "bounds_max": [
+      0.8121243715286255,
+      0.14000000059604645,
+      0.8140000104904175
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 5.092233259047083e-06
+  },
+  {
+    "group": "Emitter",
+    "name": "emitter bolted foot",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.23999999463558197,
+      0.0,
+      -0.2199999988079071
+    ],
+    "bounds_max": [
+      0.23999999463558197,
+      0.07000000029802322,
+      0.2199999988079071
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.014688809006241043
+  },
+  {
+    "group": "Emitter",
+    "name": "emitter post",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.05000000074505806,
+      0.030000001192092896,
+      -0.05000000074505806
+    ],
+    "bounds_max": [
+      0.05000000074505806,
+      0.809999942779541,
+      0.05000000074505806
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.007705789301266741
+  },
+  {
+    "group": "Emitter",
+    "name": "shielded emitter head",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.15000000596046448,
+      0.7299999594688416,
+      -0.15000000596046448
+    ],
+    "bounds_max": [
+      0.15000000596046448,
+      0.9300000071525574,
+      0.07000000029802322
+    ],
+    "source_vertices": 32,
+    "outward_signed_volume": 0.01281292865247155
+  },
+  {
+    "group": "Emitter",
+    "name": "nonemissive lens seat",
+    "tile": 3,
+    "glass": true,
+    "bounds_min": [
+      -0.0949999988079071,
+      0.7749999761581421,
+      -0.16700001060962677
+    ],
+    "bounds_max": [
+      0.0949999988079071,
+      0.8849999904632568,
+      -0.14900000393390656
+    ],
+    "source_vertices": 24,
+    "outward_signed_volume": 0.00036636530840949245
+  },
+  {
+    "group": "Emitter",
+    "name": "emitter anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      -0.20212435722351074,
+      0.07099999487400055,
+      0.1159999892115593
+    ],
+    "bounds_max": [
+      -0.17787563800811768,
+      0.08900000154972076,
+      0.14399999380111694
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 9.16601385383742e-06
+  },
+  {
+    "group": "Emitter",
+    "name": "emitter anchor",
+    "tile": 1,
+    "glass": false,
+    "bounds_min": [
+      0.17787563800811768,
+      0.07099999487400055,
+      0.1159999892115593
+    ],
+    "bounds_max": [
+      0.20212435722351074,
+      0.08900000154972076,
+      0.14399999380111694
+    ],
+    "source_vertices": 12,
+    "outward_signed_volume": 9.16601385383742e-06
+  }
+]

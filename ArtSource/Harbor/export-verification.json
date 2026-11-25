@@ -1,0 +1,296 @@
+{
+  "schema": 1,
+  "status": "PASS_CPU_SOURCE_AND_NINE_FBX_ROUNDTRIPS",
+  "verifier_sha256": "e0347f75f18f20fa26211cde386156403676f4ce6bd5e6495885bc494dc0a99f",
+  "blender": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "gpu_calls": 0,
+  "render_calls": 0,
+  "packed_original_images": [
+    {
+      "name": "CityGatePilot_A",
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006",
+      "bytes": 3758966
+    },
+    {
+      "name": "CityGatePilot_N",
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64",
+      "bytes": 3124980
+    },
+    {
+      "name": "CityGatePilot_M",
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb",
+      "bytes": 1666303
+    }
+  ],
+  "exports": [
+    {
+      "name": "HarborValveBase.001",
+      "triangles": 848,
+      "bounds": [
+        [
+          -0.5249999761581421,
+          -2.944418042716279e-08,
+          -0.4099999964237213
+        ],
+        [
+          0.5249999761581421,
+          1.4300000667572021,
+          0.4099999964237213
+        ]
+      ],
+      "closed_outward_solids": 32,
+      "minimum_signed_volume": 8.399966430690962e-06,
+      "minimum_triangle_area": 2.9999882817087407e-05,
+      "minimum_uv_area": 0.0001349716621916741,
+      "tiles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sha256": "8cf91238f32695d647548f5d86a33a06f230040a71e0d256575b87677655371a"
+    },
+    {
+      "name": "HarborValveWheel.001",
+      "triangles": 456,
+      "bounds": [
+        [
+          -0.3370000123977661,
+          -0.3370000123977661,
+          -0.05500000715255737
+        ],
+        [
+          0.3370000123977661,
+          0.3375000059604645,
+          0.05500000715255737
+        ]
+      ],
+      "closed_outward_solids": 7,
+      "minimum_signed_volume": 0.0001936085987909943,
+      "minimum_triangle_area": 2.165061483770273e-05,
+      "minimum_uv_area": 0.0004168838495388627,
+      "tiles": [
+        1,
+        2,
+        3
+      ],
+      "sha256": "8ea53530e9d992a3af5dbf943dcb988f69bdd364a1e79026c9be1e6408eb5252"
+    },
+    {
+      "name": "HarborGaugeBase.001",
+      "triangles": 1008,
+      "bounds": [
+        [
+          -0.4020000100135803,
+          -1.4500000476837158,
+          -0.22500009834766388
+        ],
+        [
+          0.4020000100135803,
+          0.4020000100135803,
+          0.4249998927116394
+        ]
+      ],
+      "closed_outward_solids": 25,
+      "minimum_signed_volume": 2.695546349597212e-06,
+      "minimum_triangle_area": 8.660203473767837e-07,
+      "minimum_uv_area": 8.341987268067896e-05,
+      "tiles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "sha256": "1e2faeae8aa7055b738467abe534f2dcb3900ab668721d2dc63029cd37c53c9d"
+    },
+    {
+      "name": "HarborGaugeNeedle.001",
+      "triangles": 132,
+      "bounds": [
+        [
+          -0.029999999329447746,
+          -0.08500000089406967,
+          -0.018000001087784767
+        ],
+        [
+          0.029999999329447746,
+          0.24000000953674316,
+          0.018000001087784767
+        ]
+      ],
+      "closed_outward_solids": 3,
+      "minimum_signed_volume": 4.303467032332223e-05,
+      "minimum_triangle_area": 3.4641067411212407e-06,
+      "minimum_uv_area": 0.00014482659753412008,
+      "tiles": [
+        1,
+        2
+      ],
+      "sha256": "2d195bb47f61422280e42bbc2af85b10d7ebc71cc552d9831059b632a864c67f"
+    },
+    {
+      "name": "HarborLiftGate.001",
+      "triangles": 1076,
+      "bounds": [
+        [
+          -2.0,
+          -1.75,
+          -0.14549997448921204
+        ],
+        [
+          2.0,
+          1.75,
+          0.10000013560056686
+        ]
+      ],
+      "closed_outward_solids": 35,
+      "minimum_signed_volume": 8.768477103720348e-06,
+      "minimum_triangle_area": 8.660192362827451e-07,
+      "minimum_uv_area": 8.444645800409489e-07,
+      "tiles": [
+        1,
+        2,
+        3
+      ],
+      "sha256": "8dedfabc11c1fe4654a39c5b8fffb99840539a0ed6a62d0aebb8887da51bb0a3"
+    },
+    {
+      "name": "HarborConveyor.001",
+      "triangles": 3020,
+      "bounds": [
+        [
+          -4.0,
+          -9.301341208356462e-08,
+          -1.2400000095367432
+        ],
+        [
+          4.0,
+          0.9200000762939453,
+          1.8700001239776611
+        ]
+      ],
+      "closed_outward_solids": 93,
+      "minimum_signed_volume": 8.781499814502941e-06,
+      "minimum_triangle_area": 7.794234231300102e-06,
+      "minimum_uv_area": 2.3461974706151523e-05,
+      "tiles": [
+        1,
+        2
+      ],
+      "sha256": "343f30821eccc1bb2b37673f832c84ae875e1eb6bb793ddcfb94a6457130ca99"
+    },
+    {
+      "name": "HarborSealedCrate.001",
+      "triangles": 728,
+      "bounds": [
+        [
+          -0.6000000238418579,
+          -5.096108424140766e-08,
+          -0.7374999523162842
+        ],
+        [
+          0.6000000238418579,
+          1.0110000371932983,
+          0.7225000262260437
+        ]
+      ],
+      "closed_outward_solids": 22,
+      "minimum_signed_volume": 1.1399981987484043e-05,
+      "minimum_triangle_area": 3.464081389507135e-06,
+      "minimum_uv_area": 8.514385626767762e-06,
+      "tiles": [
+        1,
+        2,
+        3
+      ],
+      "sha256": "e92c73106b3c1c91febbc06e77af2d53c518278e8db98337a2769cf90fafc818"
+    },
+    {
+      "name": "HarborRelayPad.001",
+      "triangles": 828,
+      "bounds": [
+        [
+          -1.100000023841858,
+          -8.191522482547953e-08,
+          -1.100000023841858
+        ],
+        [
+          1.100000023841858,
+          0.14000006020069122,
+          1.100000023841858
+        ]
+      ],
+      "closed_outward_solids": 21,
+      "minimum_signed_volume": 5.092239630172985e-06,
+      "minimum_triangle_area": 8.660031487332572e-07,
+      "minimum_uv_area": 0.00016292667714878917,
+      "tiles": [
+        0,
+        1,
+        2
+      ],
+      "sha256": "b92f08c8eb93ba7526f4757156381e934a4f8180ad8c8faded2cd7b53247f167"
+    },
+    {
+      "name": "HarborEmitter.001",
+      "triangles": 232,
+      "bounds": [
+        [
+          -0.23999999463558197,
+          -1.608105293371409e-08,
+          -0.2199999988079071
+        ],
+        [
+          0.23999999463558197,
+          0.9300000071525574,
+          0.2199999988079071
+        ]
+      ],
+      "closed_outward_solids": 6,
+      "minimum_signed_volume": 9.166016338934334e-06,
+      "minimum_triangle_area": 1.3856445242606812e-05,
+      "minimum_uv_area": 2.8737813408952206e-05,
+      "tiles": [
+        1,
+        3
+      ],
+      "sha256": "215415d00c94bb81d5a56d745ab8037d8b5a931bd9289c8186ae6242019c2fe6"
+    }
+  ],
+  "distinct_triangles": 8328,
+  "closed_outward_solids": 244,
+  "previews": [
+    {
+      "file": "Review/kit-overview.png",
+      "sha256": "58e57b909803967bcaa0e56593ab119751c54c23ac2c06373549157cc5e60869",
+      "width": 960,
+      "height": 720
+    },
+    {
+      "file": "Review/pressure-station.png",
+      "sha256": "814eeccc18cb3e2fc31092be3cca82b4dfcb70d294344ccedb35a77f92b10df5",
+      "width": 960,
+      "height": 720
+    },
+    {
+      "file": "Review/conveyor-cargo.png",
+      "sha256": "f1b1fd795813e7ee363d5b9470aa4a3d5ce28cdd38e9ad9d5675749492bd6f70",
+      "width": 960,
+      "height": 720
+    },
+    {
+      "file": "Review/relay-manufacturing.png",
+      "sha256": "7ee509332e8ee5b4807dfbcbe08acc1f4e8d364e6276925475d427b462bf3a69",
+      "width": 960,
+      "height": 720
+    }
+  ],
+  "new_textures": 0,
+  "new_imported_physics": 0,
+  "limits": [
+    "Unity import, generated district navigation/LOS, physical gameplay and native appearance/performance remain separate unrun checks.",
+    "Each manufactured detail is a closed solid; overlapping components are not claimed as a boolean-unioned volume.",
+    "Four images show CPU authoring setups, not rendered gameplay."
+  ]
+}

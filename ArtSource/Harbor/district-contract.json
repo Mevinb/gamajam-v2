@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "status": "SOURCE_CONTRACT; actual Unity/native verification pending",
+  "layout_path": "Assets/Parasite/Scripts/Missions/HarborLayout.cs",
+  "layout_sha256": "665be93c74f9968436cd07e94363af35ec02750ffb6530c486486c1c2de46e8f",
+  "world_origin": [
+    1100,
+    0,
+    -220
+  ],
+  "footing_y": 0.15,
+  "yard_local_bounds": [
+    [
+      -40,
+      0.15,
+      -42
+    ],
+    [
+      40,
+      0.15,
+      48
+    ]
+  ],
+  "models": [
+    {
+      "asset": "HarborValveBase",
+      "triangles_per_instance": 848,
+      "instances": 5,
+      "repeated_triangles": 4240
+    },
+    {
+      "asset": "HarborValveWheel",
+      "triangles_per_instance": 456,
+      "instances": 3,
+      "repeated_triangles": 1368
+    },
+    {
+      "asset": "HarborGaugeBase",
+      "triangles_per_instance": 1008,
+      "instances": 1,
+      "repeated_triangles": 1008
+    },
+    {
+      "asset": "HarborGaugeNeedle",
+      "triangles_per_instance": 132,
+      "instances": 1,
+      "repeated_triangles": 132
+    },
+    {
+      "asset": "HarborLiftGate",
+      "triangles_per_instance": 1076,
+      "instances": 1,
+      "repeated_triangles": 1076
+    },
+    {
+      "asset": "HarborConveyor",
+      "triangles_per_instance": 3020,
+      "instances": 15,
+      "repeated_triangles": 45300
+    },
+    {
+      "asset": "HarborSealedCrate",
+      "triangles_per_instance": 728,
+      "instances": 4,
+      "repeated_triangles": 2912
+    },
+    {
+      "asset": "HarborRelayPad",
+      "triangles_per_instance": 828,
+      "instances": 2,
+      "repeated_triangles": 1656
+    },
+    {
+      "asset": "HarborEmitter",
+      "triangles_per_instance": 232,
+      "instances": 2,
+      "repeated_triangles": 464
+    }
+  ],
+  "distinct_export_triangles": 8328,
+  "repeated_new_model_triangles": 58156,
+  "new_model_instances": 34,
+  "procedural_paving_triangles": 920,
+  "procedural_box_meshes_shared_by_atlas_tile": 4,
+  "reused_existing_ferry_instances": 1,
+  "ferry_budget_scope": "Existing RiversideFerry mesh/material cost is separate from the new-kit repeated count. Runtime render statistics must include it.",
+  "gate": {
+    "root": [
+      -10,
+      1.9,
+      0
+    ],
+    "collider_size": [
+      4,
+      3.5,
+      0.25
+    ],
+    "open_offset": [
+      0,
+      4,
+      0
+    ],
+    "carving": true,
+    "ignore_from_static_nav_build": true
+  },
+  "cargo": {
+    "fence_bounds_xz": [
+      [
+        10,
+        8
+      ],
+      [
+        35,
+        37
+      ]
+    ],
+    "bar_width": 0.08,
+    "bar_spacing": 0.43,
+    "clear_gap": 0.35,
+    "rail_y": [
+      0.24,
+      2.98
+    ],
+    "navigation_area": "NotWalkable",
+    "physics_bodies": 4,
+    "crate_size": [
+      1.2,
+      1,
+      1.4
+    ],
+    "crate_root": "bottom centre",
+    "roller_crown_y": 0.55,
+    "loop_local": [
+      [
+        14,
+        0.55,
+        10
+      ],
+      [
+        14,
+        0.55,
+        22
+      ],
+      [
+        26,
+        0.55,
+        22
+      ],
+      [
+        26,
+        0.55,
+        10
+      ]
+    ],
+    "bays_local": [
+      [
+        30,
+        0.55,
+        29
+      ],
+      [
+        32,
+        0.55,
+        29
+      ],
+      [
+        30,
+        0.55,
+        33
+      ],
+      [
+        32,
+        0.55,
+        33
+      ]
+    ],
+    "visible_lot_labels": [
+      "A17",
+      "A32",
+      "R09",
+      "R21"
+    ]
+  },
+  "relays": {
+    "node_roots": [
+      [
+        -8,
+        0.15,
+        34
+      ],
+      [
+        8,
+        0.15,
+        34
+      ]
+    ],
+    "visual_pad_offset_y": -0.132,
+    "sight_points": [
+      [
+        -8,
+        0.95,
+        34
+      ],
+      [
+        8,
+        0.95,
+        34
+      ]
+    ],
+    "emitter_post_offset_z": 0.9,
+    "sight_lenses_mark_actual_points": true
+  },
+  "shared_material": {
+    "original": "Assets/Parasite/Art/CityGatePilot/CityGatePilot_SharedPBR.mat",
+    "resource_copy": "Assets/Parasite/Resources/Harbor/HarborSharedPBR.mat",
+    "source_sha256": "738945d7214237ddd98676dc1a8580fe23ad868ee6c6f1547639efcd67012115",
+    "existing_shader_and_texture_guid_references_identical": true,
+    "new_texture_files": 0
+  },
+  "source_scope": [
+    "HarborDistrict.cs",
+    "HarborArt.cs",
+    "HarborArtImporter.cs"
+  ],
+  "cpu_proven": [
+    "nine FBX export/import roundtrips",
+    "244 closed consistently outward solids",
+    "finite bounds, UV and triangle areas",
+    "original packed atlas hash equality",
+    "four PNG dimensions/CRC and manual image review"
+  ],
+  "not_claimed": [
+    "Unity import acceptance",
+    "navigation or physical mission traversal",
+    "native rendering, performance or reflection lifecycle",
+    "human gameplay acceptance"
+  ]
+}

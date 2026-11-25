@@ -1,0 +1,919 @@
+{
+  "schema": 1,
+  "status": "CPU_SOURCE_AND_NULL_UNITY_IMPORT_PASS_RENDERING_PENDING",
+  "recorded_utc": "2026-11-25T19:02:06.348191+00:00",
+  "source_package": {
+    "path": "ArtSource/Harbor/package-index.json",
+    "bytes": 4239,
+    "sha256": "71668c25f94955eb8f2fa17396cad14707ce9bf9ad0362900c71cc29bd56a6a5"
+  },
+  "cpu_export_verification": {
+    "path": "ArtSource/Harbor/export-verification.json",
+    "bytes": 7794,
+    "sha256": "91fa11ceb9c22146b00577b5881965a226570006afbff647cb5cc31494b7c841"
+  },
+  "actual_import": {
+    "path": "Logs/harbor-art/20261125T1853347198840Z-500a9f8e/import-verification.json",
+    "bytes": 120874,
+    "sha256": "fb37afee8501d1f1b8312da07f9296c79d6973e193e32572f1e13947c005cd69"
+  },
+  "actual_native_exit_code": 0,
+  "root_receipt": {
+    "session_id": 38559,
+    "chunk_id": "8fd0d5",
+    "exit_code": 0
+  },
+  "checks": 267,
+  "models": 9,
+  "distinct_triangles": 8328,
+  "closed_outward_solids": 244,
+  "new_runtime_textures": 0,
+  "source_gate_assets_unchanged": true,
+  "actual_texture_rows": [
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_A.png",
+      "guid": "c8685cd4c2ab2d014a84a1788b53bb53",
+      "property": "_BaseMap",
+      "actualType": "UnityEngine.Texture2D",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_SRGB",
+      "normalType": "Default",
+      "platformFormat": "BC7",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "platformMaxSize": 2048,
+      "sharedSameObject": true,
+      "sRGB": true,
+      "actualSRGB": true,
+      "normal": false,
+      "platformOverride": true
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_N.png",
+      "guid": "45028556eae73fbdd97b93165163ca0e",
+      "property": "_BumpMap",
+      "actualType": "UnityEngine.Texture2D",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_UNorm",
+      "normalType": "NormalMap",
+      "platformFormat": "BC7",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "platformMaxSize": 2048,
+      "sharedSameObject": true,
+      "sRGB": false,
+      "actualSRGB": false,
+      "normal": true,
+      "platformOverride": true
+    },
+    {
+      "path": "Assets/Parasite/Art/CityGatePilot/Textures/CityGatePilot_M.png",
+      "guid": "5642b245617fda1dfaad7a486392d586",
+      "property": "_MetallicGlossMap",
+      "actualType": "UnityEngine.Texture2D",
+      "format": "BC7",
+      "graphicsFormat": "RGBA_BC7_UNorm",
+      "normalType": "Default",
+      "platformFormat": "BC7",
+      "width": 2048,
+      "height": 2048,
+      "mips": 12,
+      "platformMaxSize": 2048,
+      "sharedSameObject": true,
+      "sRGB": false,
+      "actualSRGB": false,
+      "normal": false,
+      "platformOverride": true
+    }
+  ],
+  "model_results": [
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborValveBase.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborValveBase.fbx",
+      "sourceSha256": "8cf91238f32695d647548f5d86a33a06f230040a71e0d256575b87677655371a",
+      "assetSha256": "8cf91238f32695d647548f5d86a33a06f230040a71e0d256575b87677655371a",
+      "filterName": "HarborValveBase.001",
+      "meshName": "HarborValveBase.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 1488,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 848,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborValveBase : UnityEngine.Transform",
+        "HarborValveBase/HarborValveBase.001 : UnityEngine.MeshFilter",
+        "HarborValveBase/HarborValveBase.001 : UnityEngine.MeshRenderer",
+        "HarborValveBase/HarborValveBase.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.5249999761581421,
+        "y": 0.0,
+        "z": -0.4099999964237213
+      },
+      "meshBoundsMax": {
+        "x": 0.5249999761581421,
+        "y": 1.4300000667572021,
+        "z": 0.4099999964237213
+      },
+      "transformedMin": {
+        "x": -0.5249999761581421,
+        "y": 0.0,
+        "z": -0.4099999964237213
+      },
+      "transformedMax": {
+        "x": 0.5249999761581421,
+        "y": 1.4300000667572021,
+        "z": 0.4099999964237213
+      },
+      "expectedMin": {
+        "x": -0.5249999761581421,
+        "y": 0.0,
+        "z": -0.4099999964237213
+      },
+      "expectedMax": {
+        "x": 0.5249999761581421,
+        "y": 1.4300000667572021,
+        "z": 0.4099999964237213
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 0.0
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborValveWheel.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborValveWheel.fbx",
+      "sourceSha256": "8ea53530e9d992a3af5dbf943dcb988f69bdd364a1e79026c9be1e6408eb5252",
+      "assetSha256": "8ea53530e9d992a3af5dbf943dcb988f69bdd364a1e79026c9be1e6408eb5252",
+      "filterName": "HarborValveWheel.001",
+      "meshName": "HarborValveWheel.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 792,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 456,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborValveWheel : UnityEngine.Transform",
+        "HarborValveWheel/HarborValveWheel.001 : UnityEngine.MeshFilter",
+        "HarborValveWheel/HarborValveWheel.001 : UnityEngine.MeshRenderer",
+        "HarborValveWheel/HarborValveWheel.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.3370000123977661,
+        "y": -0.3370000123977661,
+        "z": -0.054999999701976776
+      },
+      "meshBoundsMax": {
+        "x": 0.3370000123977661,
+        "y": 0.3374999761581421,
+        "z": 0.054999999701976776
+      },
+      "transformedMin": {
+        "x": -0.3370000123977661,
+        "y": -0.3370000123977661,
+        "z": -0.054999999701976776
+      },
+      "transformedMax": {
+        "x": 0.3370000123977661,
+        "y": 0.3374999761581421,
+        "z": 0.054999999701976776
+      },
+      "expectedMin": {
+        "x": -0.3370000123977661,
+        "y": -0.3370000123977661,
+        "z": -0.054999999701976776
+      },
+      "expectedMax": {
+        "x": 0.3370000123977661,
+        "y": 0.3375000059604645,
+        "z": 0.054999999701976776
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 2.9802322387695312e-08
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborGaugeBase.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborGaugeBase.fbx",
+      "sourceSha256": "1e2faeae8aa7055b738467abe534f2dcb3900ab668721d2dc63029cd37c53c9d",
+      "assetSha256": "1e2faeae8aa7055b738467abe534f2dcb3900ab668721d2dc63029cd37c53c9d",
+      "filterName": "HarborGaugeBase.001",
+      "meshName": "HarborGaugeBase.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 1792,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 1008,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborGaugeBase : UnityEngine.Transform",
+        "HarborGaugeBase/HarborGaugeBase.001 : UnityEngine.MeshFilter",
+        "HarborGaugeBase/HarborGaugeBase.001 : UnityEngine.MeshRenderer",
+        "HarborGaugeBase/HarborGaugeBase.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.4020000100135803,
+        "y": -1.4500000476837158,
+        "z": -0.22499999403953552
+      },
+      "meshBoundsMax": {
+        "x": 0.4020000100135803,
+        "y": 0.40199995040893555,
+        "z": 0.42499998211860657
+      },
+      "transformedMin": {
+        "x": -0.4020000100135803,
+        "y": -1.4500000476837158,
+        "z": -0.22499999403953552
+      },
+      "transformedMax": {
+        "x": 0.4020000100135803,
+        "y": 0.40199995040893555,
+        "z": 0.42499998211860657
+      },
+      "expectedMin": {
+        "x": -0.4020000100135803,
+        "y": -1.4500000476837158,
+        "z": -0.22499999403953552
+      },
+      "expectedMax": {
+        "x": 0.4020000100135803,
+        "y": 0.4020000100135803,
+        "z": 0.42499998211860657
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 5.960464477539063e-08
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborGaugeNeedle.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborGaugeNeedle.fbx",
+      "sourceSha256": "2d195bb47f61422280e42bbc2af85b10d7ebc71cc552d9831059b632a864c67f",
+      "assetSha256": "2d195bb47f61422280e42bbc2af85b10d7ebc71cc552d9831059b632a864c67f",
+      "filterName": "HarborGaugeNeedle.001",
+      "meshName": "HarborGaugeNeedle.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 264,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 132,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborGaugeNeedle : UnityEngine.Transform",
+        "HarborGaugeNeedle/HarborGaugeNeedle.001 : UnityEngine.MeshFilter",
+        "HarborGaugeNeedle/HarborGaugeNeedle.001 : UnityEngine.MeshRenderer",
+        "HarborGaugeNeedle/HarborGaugeNeedle.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.029999999329447746,
+        "y": -0.08500000834465027,
+        "z": -0.017999999225139618
+      },
+      "meshBoundsMax": {
+        "x": 0.029999999329447746,
+        "y": 0.24000000953674316,
+        "z": 0.017999999225139618
+      },
+      "transformedMin": {
+        "x": -0.029999999329447746,
+        "y": -0.08500000834465027,
+        "z": -0.017999999225139618
+      },
+      "transformedMax": {
+        "x": 0.029999999329447746,
+        "y": 0.24000000953674316,
+        "z": 0.017999999225139618
+      },
+      "expectedMin": {
+        "x": -0.029999999329447746,
+        "y": -0.08500000089406967,
+        "z": -0.017999999225139618
+      },
+      "expectedMax": {
+        "x": 0.029999999329447746,
+        "y": 0.24000000953674316,
+        "z": 0.017999999225139618
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 7.450580596923828e-09
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborLiftGate.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborLiftGate.fbx",
+      "sourceSha256": "8dedfabc11c1fe4654a39c5b8fffb99840539a0ed6a62d0aebb8887da51bb0a3",
+      "assetSha256": "8dedfabc11c1fe4654a39c5b8fffb99840539a0ed6a62d0aebb8887da51bb0a3",
+      "filterName": "HarborLiftGate.001",
+      "meshName": "HarborLiftGate.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 2160,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 1076,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborLiftGate : UnityEngine.Transform",
+        "HarborLiftGate/HarborLiftGate.001 : UnityEngine.MeshFilter",
+        "HarborLiftGate/HarborLiftGate.001 : UnityEngine.MeshRenderer",
+        "HarborLiftGate/HarborLiftGate.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -2.0,
+        "y": -1.75,
+        "z": -0.14550000429153442
+      },
+      "meshBoundsMax": {
+        "x": 2.0,
+        "y": 1.75,
+        "z": 0.09999999403953552
+      },
+      "transformedMin": {
+        "x": -2.0,
+        "y": -1.75,
+        "z": -0.14550000429153442
+      },
+      "transformedMax": {
+        "x": 2.0,
+        "y": 1.75,
+        "z": 0.09999999403953552
+      },
+      "expectedMin": {
+        "x": -2.0,
+        "y": -1.75,
+        "z": -0.14550000429153442
+      },
+      "expectedMax": {
+        "x": 2.0,
+        "y": 1.75,
+        "z": 0.10000000149011612
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 7.450580596923828e-09
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborConveyor.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborConveyor.fbx",
+      "sourceSha256": "343f30821eccc1bb2b37673f832c84ae875e1eb6bb793ddcfb94a6457130ca99",
+      "assetSha256": "343f30821eccc1bb2b37673f832c84ae875e1eb6bb793ddcfb94a6457130ca99",
+      "filterName": "HarborConveyor.001",
+      "meshName": "HarborConveyor.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 5544,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 3020,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborConveyor : UnityEngine.Transform",
+        "HarborConveyor/HarborConveyor.001 : UnityEngine.MeshFilter",
+        "HarborConveyor/HarborConveyor.001 : UnityEngine.MeshRenderer",
+        "HarborConveyor/HarborConveyor.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -4.0,
+        "y": 0.0,
+        "z": -1.2400000095367432
+      },
+      "meshBoundsMax": {
+        "x": 4.0,
+        "y": 0.9200000166893005,
+        "z": 1.8700001239776611
+      },
+      "transformedMin": {
+        "x": -4.0,
+        "y": 0.0,
+        "z": -1.2400000095367432
+      },
+      "transformedMax": {
+        "x": 4.0,
+        "y": 0.9200000166893005,
+        "z": 1.8700001239776611
+      },
+      "expectedMin": {
+        "x": -4.0,
+        "y": 0.0,
+        "z": -1.2400000095367432
+      },
+      "expectedMax": {
+        "x": 4.0,
+        "y": 0.9200000166893005,
+        "z": 1.8700001239776611
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 0.0
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborSealedCrate.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborSealedCrate.fbx",
+      "sourceSha256": "e92c73106b3c1c91febbc06e77af2d53c518278e8db98337a2769cf90fafc818",
+      "assetSha256": "e92c73106b3c1c91febbc06e77af2d53c518278e8db98337a2769cf90fafc818",
+      "filterName": "HarborSealedCrate.001",
+      "meshName": "HarborSealedCrate.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 1536,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 728,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborSealedCrate : UnityEngine.Transform",
+        "HarborSealedCrate/HarborSealedCrate.001 : UnityEngine.MeshFilter",
+        "HarborSealedCrate/HarborSealedCrate.001 : UnityEngine.MeshRenderer",
+        "HarborSealedCrate/HarborSealedCrate.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.6000000238418579,
+        "y": 0.0,
+        "z": -0.7375000715255737
+      },
+      "meshBoundsMax": {
+        "x": 0.6000000238418579,
+        "y": 1.0110000371932983,
+        "z": 0.7224999666213989
+      },
+      "transformedMin": {
+        "x": -0.6000000238418579,
+        "y": 0.0,
+        "z": -0.7375000715255737
+      },
+      "transformedMax": {
+        "x": 0.6000000238418579,
+        "y": 1.0110000371932983,
+        "z": 0.7224999666213989
+      },
+      "expectedMin": {
+        "x": -0.6000000238418579,
+        "y": 0.0,
+        "z": -0.737500011920929
+      },
+      "expectedMax": {
+        "x": 0.6000000238418579,
+        "y": 1.0110000371932983,
+        "z": 0.7224999666213989
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 5.960464477539063e-08
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborRelayPad.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborRelayPad.fbx",
+      "sourceSha256": "b92f08c8eb93ba7526f4757156381e934a4f8180ad8c8faded2cd7b53247f167",
+      "assetSha256": "b92f08c8eb93ba7526f4757156381e934a4f8180ad8c8faded2cd7b53247f167",
+      "filterName": "HarborRelayPad.001",
+      "meshName": "HarborRelayPad.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 1776,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 828,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborRelayPad : UnityEngine.Transform",
+        "HarborRelayPad/HarborRelayPad.001 : UnityEngine.MeshFilter",
+        "HarborRelayPad/HarborRelayPad.001 : UnityEngine.MeshRenderer",
+        "HarborRelayPad/HarborRelayPad.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -1.100000023841858,
+        "y": 0.0,
+        "z": -1.100000023841858
+      },
+      "meshBoundsMax": {
+        "x": 1.100000023841858,
+        "y": 0.14000000059604645,
+        "z": 1.100000023841858
+      },
+      "transformedMin": {
+        "x": -1.100000023841858,
+        "y": 0.0,
+        "z": -1.100000023841858
+      },
+      "transformedMax": {
+        "x": 1.100000023841858,
+        "y": 0.14000000059604645,
+        "z": 1.100000023841858
+      },
+      "expectedMin": {
+        "x": -1.100000023841858,
+        "y": 0.0,
+        "z": -1.100000023841858
+      },
+      "expectedMax": {
+        "x": 1.100000023841858,
+        "y": 0.14000000059604645,
+        "z": 1.100000023841858
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 0.0
+    },
+    {
+      "assetPath": "Assets/Parasite/Resources/Harbor/HarborEmitter.fbx",
+      "sourcePath": "ArtSource/Harbor/Exports/HarborEmitter.fbx",
+      "sourceSha256": "215415d00c94bb81d5a56d745ab8037d8b5a931bd9289c8186ae6242019c2fe6",
+      "assetSha256": "215415d00c94bb81d5a56d745ab8037d8b5a931bd9289c8186ae6242019c2fe6",
+      "filterName": "HarborEmitter.001",
+      "meshName": "HarborEmitter.001",
+      "rendererMaterial": "Lit",
+      "filters": 1,
+      "renderers": 1,
+      "submeshes": 1,
+      "vertices": 456,
+      "colliders": 0,
+      "rigidbodies": 0,
+      "animations": 0,
+      "animators": 0,
+      "cameras": 0,
+      "lights": 0,
+      "animationClips": 0,
+      "triangles": 232,
+      "importerAnimationType": "None",
+      "importedComponentTypes": [
+        "UnityEngine.MeshFilter",
+        "UnityEngine.MeshRenderer",
+        "UnityEngine.Transform"
+      ],
+      "importedComponentHierarchy": [
+        "HarborEmitter : UnityEngine.Transform",
+        "HarborEmitter/HarborEmitter.001 : UnityEngine.MeshFilter",
+        "HarborEmitter/HarborEmitter.001 : UnityEngine.MeshRenderer",
+        "HarborEmitter/HarborEmitter.001 : UnityEngine.Transform"
+      ],
+      "readable": false,
+      "normals": true,
+      "tangents": true,
+      "uv0": true,
+      "noImportedBehavior": true,
+      "policyMatches": true,
+      "meshBoundsMin": {
+        "x": -0.23999999463558197,
+        "y": 0.0,
+        "z": -0.2199999988079071
+      },
+      "meshBoundsMax": {
+        "x": 0.23999999463558197,
+        "y": 0.9300000071525574,
+        "z": 0.2199999988079071
+      },
+      "transformedMin": {
+        "x": -0.23999999463558197,
+        "y": 0.0,
+        "z": -0.2199999988079071
+      },
+      "transformedMax": {
+        "x": 0.23999999463558197,
+        "y": 0.9300000071525574,
+        "z": 0.2199999988079071
+      },
+      "expectedMin": {
+        "x": -0.23999999463558197,
+        "y": 0.0,
+        "z": -0.2199999988079071
+      },
+      "expectedMax": {
+        "x": 0.23999999463558197,
+        "y": 0.9300000071525574,
+        "z": 0.2199999988079071
+      },
+      "importedHierarchyMatrix": {
+        "e00": 1.0,
+        "e01": 0.0,
+        "e02": 0.0,
+        "e03": 0.0,
+        "e10": 0.0,
+        "e11": 1.0,
+        "e12": 0.0,
+        "e13": 0.0,
+        "e20": 0.0,
+        "e21": 0.0,
+        "e22": 1.0,
+        "e23": 0.0,
+        "e30": 0.0,
+        "e31": 0.0,
+        "e32": 0.0,
+        "e33": 1.0
+      },
+      "boundsError": 0.0
+    }
+  ],
+  "review_images": [
+    {
+      "path": "ArtSource/Harbor/Review/kit-overview.png",
+      "bytes": 621313,
+      "sha256": "58e57b909803967bcaa0e56593ab119751c54c23ac2c06373549157cc5e60869"
+    },
+    {
+      "path": "ArtSource/Harbor/Review/pressure-station.png",
+      "bytes": 702608,
+      "sha256": "814eeccc18cb3e2fc31092be3cca82b4dfcb70d294344ccedb35a77f92b10df5"
+    },
+    {
+      "path": "ArtSource/Harbor/Review/conveyor-cargo.png",
+      "bytes": 728412,
+      "sha256": "f1b1fd795813e7ee363d5b9470aa4a3d5ce28cdd38e9ad9d5675749492bd6f70"
+    },
+    {
+      "path": "ArtSource/Harbor/Review/relay-manufacturing.png",
+      "bytes": 725618,
+      "sha256": "7ee509332e8ee5b4807dfbcbe08acc1f4e8d364e6276925475d427b462bf3a69"
+    }
+  ],
+  "negative_import": {
+    "path": "Logs/harbor-art/20261125T1842593799330Z-cc041795/import-verification.json",
+    "bytes": 63355,
+    "sha256": "c1f358bce2bf9587430a8cb67b8587140c3ed0a8aa6ae1abe521569bb3d7d196"
+  },
+  "correction": "Static importer now requires animationType=None and retains strict no-animation/physics guards. All nine imported models report zero Animation and Animator components.",
+  "tooling": "Canonical contract producer is tracked under Tools/validation. The verifier default contract path was moved to Logs/harbor-art/import-contract.json after this pass; explicit-contract verification is otherwise unchanged.",
+  "limits": [
+    "Null Editor asset checks and CPU previews do not establish rendered shader appearance or native-player performance.",
+    "Harbor gameplay is a separate working-tree integration; these art assets alone do not establish a completed23-mission player.",
+    "Existing gate PNGs/metas/material source remain byte-identical; imported model physics remain forbidden."
+  ]
+}
