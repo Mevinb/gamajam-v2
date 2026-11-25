@@ -60,15 +60,17 @@ four full lake films, not M19/M20 or subsequent fixes. New candidates preserve t
 `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95`, built from clean`2f3fde9`:1,101MB,zero errors/warnings,native0.
 Its runtime is`2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc`. Strict full-five media,eight checks/seven PNGs;
 queued shortcuts,14/14; and rendered Vulkan water22,1/1,all pass with native0,unchanged runtime and zero ring warnings.
-[Candidate proof](verification/0.5.0-candidate-20261125.json) pins exact artifacts. The user-controlled native player is now running
-on RTX4050/Vulkan, launched14:39:37 UTC. The remaining23 campaign cases, including corrected24, are running separately on
-Null graphics at nice10. There is no final campaign result or completed human playthrough yet. Current-binary performance
-and release archive/extracted smoke remain pending. This is not a final release.
+[Candidate proof](verification/0.5.0-candidate-20261125.json) pins exact artifacts. The user-controlled native player exited normally0
+after130.601s. The23-case campaign run has no final receipt:01–05 pass,06 fails at duty-officer targeting,07 starts before the
+log ends. Both old processes are absent after a machine restart. Diagnostics preserve possession rules while checking aim,
+range and obstruction. Six current-binary desktop High/Ultra baselines pass; the217.1ms riverside High worst frame is retained.
+[Baseline scope and hashes](verification/graphics-baseline-0.5.0-20261125.json). Release archive/extracted smoke and the
+unfinished campaign cases remain pending. This is not a final release.
 The retained 0.4.2 archive and older test rows describe historical artifacts only.
 
-Measured desktop island performance on a profiled private candidate is High 265.6 FPS / p99 9.44 ms and Ultra 179.0 FPS /
-p99 11.28 ms at 1920×1080/Vulkan, AI active, all 20 waypoints, all sampled frames focused and native exit 0. Private Xvfb results
-around 25 FPS were presentation-confounded. Neither set is a measurement of a future final binary or every camera view.
+The current0.5.0 baseline averages169.2/111.7FPS (city exterior High/Ultra),212.9/140.5 (riverside) and252.2/169.5 (island),
+1920×1080/Vulkan, live AI and all samples focused. All six native exits are0. GPU timing/per-game VRAM are unavailable,
+cache state is mixed, and no dedicated lab-interior route is covered. These measurements do not predict the new settings/art work.
 
 ## Required next verification
 

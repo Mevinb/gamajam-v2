@@ -12,7 +12,8 @@ or binary. Historical passing runs do not verify a newer player.
 - Source through `2f3fde9` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
   Blender quarantine-wall kit, camera/reflection corrections, scoped native movie retirement and the physical rescue walker's
   bounded NPC sidestep/focused regression. The full opening and new continuous-playback proof extend that checkpoint.
-- `Tools/compile_check.sh all` passes 144 runtime / 23 editor / 144 Linux Mono sources. All 122 EditMode rules pass.
+- The 0.5.0 baseline passes 144 runtime / 23 editor / 144 Linux Mono API checks and all 122 EditMode rules.
+  The independent graphics-settings work beyond that binary compiles 148/23/148; its new Unity tests are pending.
   These checks supplement actual Unity imports, rendering and player execution; they do not replace them.
 - The current **0.5.0 candidate** is `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95`, built from clean commit
   `2f3fde9` at 1,101 MB, zero errors/warnings and native build exit 0. Runtime SHA-256 is
@@ -22,9 +23,11 @@ or binary. Historical passing runs do not verify a newer player.
   (eight checks/seven real PNGs), queued shortcuts (14/14) and water case22 (1/1). Their logs have zero native ring-buffer
   warnings and the runtime hash is unchanged. This fast media stress is separate from continuous80s story playback.
   [Candidate proof](verification/0.5.0-candidate-20261125.json) pins build, source, reports, logs, images and native receipts.
-  At 14:40 UTC, the user-controlled player is running (PID4063511) on RTX4050/Vulkan. The23-case headless regression is
-  also running (supervisor4060137/player4060139,nice10,Null graphics);22 passed separately. Neither live process establishes
-  a completed playthrough or campaign pass. Current-binary benchmarks and release archive remain pending.
+  The user-controlled RTX4050/Vulkan playtest exited normally after 130.601 seconds, native code 0. The 23-case headless
+  regression has no final exit receipt: five cases pass, Route A fails at duty-officer targeting, and Route B begins before
+  the log stops. The machine has since restarted; both old processes and their tool session are gone. Do not treat its stale
+  running JSON as a live process or a campaign pass. Current diagnostics preserve the targeting rules while inspecting
+  camera angle, range and obstruction. All six current-binary desktop benchmarks now pass; release archive remains pending.
 - On the earlier `c35c66a7...` diagnostic player, native scenario 23 passes both full rescue branches in 516.231 seconds with native exit 0
   (`Logs/native-island-23-sidestep-retry`). The earlier failure was the test walker blocked by delivered Morgan.
   The focused fixture first proves real capsule blockage, then reaches a valid lateral route and the original target using
@@ -49,9 +52,10 @@ or binary. Historical passing runs do not verify a newer player.
 
 ## Current user playtest and retained preview
 
-The new0.5.0 candidate was launched for the user at14:39:37 UTC (20:09 local) and confirmed running on RTX4050/Vulkan,
-PID4063511. `Logs/user-playtest-0.5.0/session.json` and its live player log record this user-controlled desktop session.
-The launch proves the executable starts; it does not establish a completed human playthrough or physical-input test.
+The new0.5.0 candidate was launched for the user at14:39:37 UTC (20:09 local) on RTX4050/Vulkan and exited normally at
+14:41:48 UTC, native code 0. `Logs/user-playtest-0.5.0/session.json` records the 130.601-second session. This proves launch
+and normal exit, not a completed human playthrough or physical-input test. Do not relaunch it merely because an older note
+calls the process running.
 
 The requested build-and-launch was completed with `0.5.0-preview` under `Builds/Linux`. It contains M18 and the four full lake
 films; it does not contain M19/M20 or the subsequent fixes. It launched on native `DISPLAY=:0` / RTX 4050 / Vulkan and later
@@ -91,21 +95,26 @@ The retained 0.4.2 archive is an earlier release containing two short film inser
   correctly exits 1. Optional pending-seek Quit(0)/Quit(1) probes each pass 12 checks and seven PNGs, with actual seek ACK,
   zero owned/pending/quarantined resources and the requested native code. OS/window-close pending-media behavior is unexercised.
   Exact proof: [cinematic-retirement-20261125.json](verification/cinematic-retirement-20261125.json).
-- **Performance:** the same profiled private candidate on actual desktop Xwayland `:0`, 1920×1080/Vulkan, AI active, reaches
-  20/20 island waypoints and exits 0: High 265.6 FPS / p99 9.44 ms; Ultra 179.0 FPS / p99 11.28 ms. All sampled frames were
-  focused. Private Xvfb `:97` results around 25 FPS were presentation-confounded; they did not justify reducing game quality
-  or AI. These measured routes do not establish performance in every view or on a newer release binary.
+- **Performance:** the exact 0.5.0 binary on desktop `:0`, 1920×1080/Vulkan, AC power and balanced profile passes all six
+  High/Ultra routes with every sample focused, AI active and native exits 0. City exterior averages169.2/111.7FPS,
+  riverside212.9/140.5 and island252.2/169.5. All p99 times are8.68–12.84ms, but riverside High has a217.1ms worst frame;
+  its cause is unproven. GPU timing/per-game VRAM are unavailable, shared PSO cache makes these mixed-cache runs, and no
+  dedicated laboratory-interior route is included. [Exact baseline proof](verification/graphics-baseline-0.5.0-20261125.json)
+  retains every report/profile/image hash, power/focus observation and limitation. Older Xvfb results were presentation-confounded.
 
 ## Remaining release work
 
-1. Run the remaining23 campaign cases on the current binary, including corrected native24; rendered22 already passes separately.
-   This full campaign run is active under `Logs/full-story-candidate/campaign-headless` and has no final result yet.
+1. Diagnose the recorded Route A duty-officer targeting failure, then run the affected routes and remaining campaign cases,
+   including corrected native24. Rendered22 already passes separately. The prior run under
+   `Logs/full-story-candidate/campaign-headless` is interrupted with no native exit receipt; its recovery observation records
+   five passes, one failure and the missing processes after reboot.
    Preserve real terminal exits and hashes, and distinguish prepared/simulated scenarios
    from a continuous human playthrough.
-2. Complete final-player story/audio/settings observations while the launched user-controlled player remains available. Strict full-five media,14queued shortcuts and
+2. Complete final-player story/audio/settings observations. The user-controlled playtest has exited. Strict full-five media,14queued shortcuts and
    rendered water already pass on this binary; continuous80s natural opening and selected live voice proof remain Editor scope.
-3. Measure declared desktop presets on this binary, then verify a fresh release package and isolated extracted player. Earlier
-   High/Ultra measurements belong to the earlier profiled candidate. `Tools/package_build.sh` targets and modifies `Builds/Linux`;
+3. Six desktop baseline routes on this binary are complete; retain the single217.1ms spike for investigation. Verify the new
+   independent graphics controls with real pixels/ownership, then a fresh release package and isolated extracted player.
+   `Tools/package_build.sh` targets and modifies `Builds/Linux`;
    use an explicit-candidate packaging path while retaining the preview. No release archive or current-player FPS result is claimed.
 4. Continue the active realism/gameplay expansion from verified playtest findings. Do not mark the broad goal complete from
    compilation, render completion, a single route or these focused fixtures.

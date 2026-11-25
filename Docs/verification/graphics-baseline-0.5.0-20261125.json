@@ -1,0 +1,1529 @@
+{
+  "schema": 1,
+  "status": "SIX_FOCUSED_NATIVE_ROUTES_VERIFIED",
+  "recorded_utc": "2026-11-25T15:57:12.293562+00:00",
+  "scope": "Focused desktop 1920x1080 Vulkan baseline on the pinned0.5.0 binary. Existing city exterior/riverside/island routes; not a dedicated lab-interior route, mission proof or physical input test. No other task-owned GPU/player/CPU-heavy job is permitted.",
+  "candidate": "Builds/Candidates/full-story-20261125T143348976819Z-ea740a95",
+  "source_commit": "2f3fde96514edb79ef95d890b2d4a5c51448e3da",
+  "source_working_tree_at_build": false,
+  "source_snapshot_sha256": "c6468696096afccbec47cd4264eabfac7eb171e76109e76b2c1e44f6cf821731",
+  "runtime": {
+    "path": "Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/Parasite_Data/Managed/Parasite.Runtime.dll",
+    "bytes": 910848,
+    "sha256": "2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc"
+  },
+  "build_info": {
+    "path": "Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/BUILD_INFO.json",
+    "bytes": 1271,
+    "sha256": "98d18dea07a09101ecbd770a4104c019328f6e9e1e7a380e9559face24c1a329"
+  },
+  "execution": {
+    "path": "Logs/graphics-baseline-0.5.0/execution.json",
+    "bytes": 12703,
+    "sha256": "55e6c65a7d78e60f745e4ff81b61210947ea1afe4e0afa66aa57684cbc7ab919"
+  },
+  "runner": {
+    "path": "Logs/graphics-baseline-0.5.0/run.py",
+    "bytes": 5690,
+    "sha256": "c601a69be91fd22443a7ad391e08c26dcf6ee69226593fc7f193e39abc16c1c2"
+  },
+  "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "api": "Vulkan",
+  "display": ":0",
+  "cpu": "12th Gen Intel Core i5-12500H",
+  "power": "Per-job AC/power-profile snapshots are retained below; this audit did not change the power profile.",
+  "jobs": [
+    {
+      "district": "city",
+      "preset": "High",
+      "native_exit_code": 0,
+      "route_reached": 5,
+      "route_waypoints": 5,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.0,
+      "frames": 19891,
+      "walk_seconds": 117.6,
+      "average_fps": 169.2,
+      "mean_frame_ms": 5.91,
+      "p99_frame_ms": 10.92,
+      "worst_frame_ms": 36.0,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 5.747,
+      "profile_samples": 19887,
+      "profile_boundary_skips": 4,
+      "focused_samples": 19887,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 19891,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 5.901405563232263,
+          "p99_ms": 10.911346,
+          "max_ms": 35.986936
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 1.5952552811384322,
+          "p99_ms": 3.827308,
+          "max_ms": 7.027607
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 0.016591981495449288,
+          "p99_ms": 0.414067,
+          "max_ms": 4.208441
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 1.040250500025142,
+          "p99_ms": 6.119312,
+          "max_ms": 22.313117
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 19887,
+          "mean_ms": 5.8994184619600745,
+          "p99_ms": 10.909705,
+          "max_ms": 35.984864
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 258,
+        "reserved": 494,
+        "mono_heap": 10,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 17,
+        "renderers": 1989,
+        "lights": 144
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 131,
+          "minimum": 2.41,
+          "maximum": 39.63,
+          "mean": 34.593
+        },
+        "temperature.gpu": {
+          "samples": 131,
+          "minimum": 53.0,
+          "maximum": 74.0,
+          "mean": 70.092
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 131,
+          "minimum": 210.0,
+          "maximum": 2430.0,
+          "mean": 1612.901
+        },
+        "memory.used [MiB]": {
+          "samples": 131,
+          "minimum": 15.0,
+          "maximum": 1699.0,
+          "mean": 1349.527
+        },
+        "utilization.gpu [%]": {
+          "samples": 131,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 91.595
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/city-high/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/city-high/cache",
+        "unity_pso_shared_cache_loaded": false,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "NOT_FOUND",
+        "unity_pso_initial_bytes": null,
+        "unity_pso_extracted_bytes": 6190849,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/city-high/report.txt",
+        "bytes": 1976,
+        "sha256": "682e18e78313f170cef3198f2438e58471676ae9064e3fe66ce00f24a0ab75e5"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/city-high/report.profile.json",
+        "bytes": 16843,
+        "sha256": "52b614c4e818e7181f0c849e501e659b55281801dbbc86a4a133f14af3b73638"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/city-high/player.log",
+        "bytes": 33730,
+        "sha256": "933eb3dcef04bef7fe5eb048233cbe20a0c039c64ff52383b8fa0c75ad9fe910"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/city-high/gpu.csv",
+        "bytes": 13132,
+        "sha256": "deb09edd23c1270c1e90c8adeffbda27b8c1c8520bf4624cfcd59bd3b98fbef0"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/city-high/focus-4.json",
+        "bytes": 4604,
+        "sha256": "c83c6d3c2aecec63fb8e116ba0fe6fef97cf7cc245de70313c4cc736d0a9d605"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-high/screenshot_0.png",
+          "bytes": 2784880,
+          "sha256": "a6fd2d1e210e7b19f14490340f5b710ed8107f58c9fb42f0f205a4ab2817f549"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-high/screenshot_1.png",
+          "bytes": 2325311,
+          "sha256": "ef97d0e849300b67d900ad6e89d55c343099e268d449527987167c8c134425ce"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-high/screenshot_2.png",
+          "bytes": 2637665,
+          "sha256": "8ea23be439d37b7f423fd0ca7ae03b72a87bbe386afbc7a8bbbeaabdfa5dbbaf"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-high/screenshot_3.png",
+          "bytes": 2927052,
+          "sha256": "ba4618fc0a2cc40e34f377502d561e220f208ff3142fa6fea38bb887ba14fa02"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-high/screenshot_4.png",
+          "bytes": 2707609,
+          "sha256": "7a8edd2a80b662bfd38528c53a2b8939fc8e5d9855e5425fa6d093278c88c320"
+        }
+      ]
+    },
+    {
+      "district": "city",
+      "preset": "Ultra",
+      "native_exit_code": 0,
+      "route_reached": 5,
+      "route_waypoints": 5,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.25,
+      "frames": 13180,
+      "walk_seconds": 118.0,
+      "average_fps": 111.7,
+      "mean_frame_ms": 8.95,
+      "p99_frame_ms": 12.84,
+      "worst_frame_ms": 27.7,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 3.827,
+      "profile_samples": 13176,
+      "profile_boundary_skips": 4,
+      "focused_samples": 13176,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 13180,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 8.945222674559805,
+          "p99_ms": 12.822087,
+          "max_ms": 27.698148
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 2.0355631502732243,
+          "p99_ms": 4.761447,
+          "max_ms": 11.314154
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 0.015622438752276866,
+          "p99_ms": 0.0995,
+          "max_ms": 14.750918
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 0.7299717218427444,
+          "p99_ms": 6.7361,
+          "max_ms": 21.108197
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 13176,
+          "mean_ms": 8.943132148375835,
+          "p99_ms": 12.820229,
+          "max_ms": 27.695061
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 253,
+        "reserved": 476,
+        "mono_heap": 8,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 17,
+        "renderers": 1989,
+        "lights": 144
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 128,
+          "minimum": 13.44,
+          "maximum": 42.96,
+          "mean": 39.826
+        },
+        "temperature.gpu": {
+          "samples": 128,
+          "minimum": 68.0,
+          "maximum": 76.0,
+          "mean": 74.562
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 128,
+          "minimum": 1395.0,
+          "maximum": 2430.0,
+          "mean": 1638.516
+        },
+        "memory.used [MiB]": {
+          "samples": 128,
+          "minimum": 17.0,
+          "maximum": 1641.0,
+          "mean": 1599.664
+        },
+        "utilization.gpu [%]": {
+          "samples": 128,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 96.289
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/city-ultra/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/city-ultra/cache",
+        "unity_pso_shared_cache_loaded": true,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "LOADED",
+        "unity_pso_initial_bytes": 6190849,
+        "unity_pso_extracted_bytes": 6190849,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/city-ultra/report.txt",
+        "bytes": 1977,
+        "sha256": "54d5cf02af75c0d7af81fd8b650776dad734814c960e046d461ef7640e640f6b"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/city-ultra/report.profile.json",
+        "bytes": 16840,
+        "sha256": "8ce217c1b83a8df055a13012b0d6cfebf51f59ccc508c4410dc80e6067142783"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/city-ultra/player.log",
+        "bytes": 33703,
+        "sha256": "9dc4ba98793ac205d02336d67204e09fbb7c9cea17e1c6c29655ac48f56eac1a"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/city-ultra/gpu.csv",
+        "bytes": 12900,
+        "sha256": "ea55b78603f09690a3b7322b9fb1d98c680cf5e8a5d3d35740fa5e2e3f33309f"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/city-ultra/focus-4.json",
+        "bytes": 4611,
+        "sha256": "5f1d42fab76fe9dd901e10ee7806dbe7749bb6a16f0c456826c0108601caa849"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-ultra/screenshot_0.png",
+          "bytes": 2871146,
+          "sha256": "3f2a1dcfd2855877f67a69bc716a375133eda68197c01b34ba75d3d848423de9"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-ultra/screenshot_1.png",
+          "bytes": 2343649,
+          "sha256": "94e00977f0e93b32d6f3e6ad48848dfff1a3a2b5da9fae43c26ff4a60af4f5ef"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-ultra/screenshot_2.png",
+          "bytes": 2692166,
+          "sha256": "7fc080ec5f4b2bfebf7b70eac4a75fbc7cc1759a1ec4b826772c6a383f5b145b"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-ultra/screenshot_3.png",
+          "bytes": 2912388,
+          "sha256": "eec12faf9e43988536141a73f89b4b90c2f860f9b3295332b42a72ef00ef7545"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/city-ultra/screenshot_4.png",
+          "bytes": 2744150,
+          "sha256": "08dc310664db560fcbe2471e6f425e5c3f2d70ac9f67d987291aad5711cf0c9f"
+        }
+      ]
+    },
+    {
+      "district": "riverside",
+      "preset": "High",
+      "native_exit_code": 0,
+      "route_reached": 7,
+      "route_waypoints": 7,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.0,
+      "frames": 9442,
+      "walk_seconds": 44.4,
+      "average_fps": 212.9,
+      "mean_frame_ms": 4.7,
+      "p99_frame_ms": 9.57,
+      "worst_frame_ms": 217.1,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 7.097,
+      "profile_samples": 9436,
+      "profile_boundary_skips": 6,
+      "focused_samples": 9436,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 9442,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 4.689365756570581,
+          "p99_ms": 9.560104,
+          "max_ms": 217.086427
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 1.0462455356083087,
+          "p99_ms": 2.068178,
+          "max_ms": 3.845184
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 0.002185339126748622,
+          "p99_ms": 0.001872,
+          "max_ms": 1.227284
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 0.7629634484951251,
+          "p99_ms": 5.602823,
+          "max_ms": 213.276009
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 9436,
+          "mean_ms": 4.687588662356931,
+          "p99_ms": 9.55804,
+          "max_ms": 217.084651
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 261,
+        "reserved": 520,
+        "mono_heap": 10,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 25,
+        "renderers": 2231,
+        "lights": 149
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 56,
+          "minimum": 13.84,
+          "maximum": 39.47,
+          "mean": 34.354
+        },
+        "temperature.gpu": {
+          "samples": 56,
+          "minimum": 69.0,
+          "maximum": 76.0,
+          "mean": 74.804
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 56,
+          "minimum": 1395.0,
+          "maximum": 2430.0,
+          "mean": 1589.196
+        },
+        "memory.used [MiB]": {
+          "samples": 56,
+          "minimum": 17.0,
+          "maximum": 1628.0,
+          "mean": 1416.464
+        },
+        "utilization.gpu [%]": {
+          "samples": 56,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 88.107
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/riverside-high/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/riverside-high/cache",
+        "unity_pso_shared_cache_loaded": true,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "LOADED",
+        "unity_pso_initial_bytes": 6190849,
+        "unity_pso_extracted_bytes": 6689983,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-high/report.txt",
+        "bytes": 2456,
+        "sha256": "525e89b6bbc59741026acf6c81a7b5bc4a550b520cd8f7b8c1baf975ef52947e"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-high/report.profile.json",
+        "bytes": 16811,
+        "sha256": "71e8dc43446445f1bb6d654e7e6afed4cf5bac36e0af6a7f4525b2239650ed7d"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-high/player.log",
+        "bytes": 34586,
+        "sha256": "b054142290c26f2074b6e55452e5dea35103945dada65c20f6d312ea44433e8d"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-high/gpu.csv",
+        "bytes": 5680,
+        "sha256": "5bf009dc8df33739e4c5b647276cba316bad658d8b41b08247ef113488f15bc5"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-high/focus-4.json",
+        "bytes": 4634,
+        "sha256": "85f64c898c7797c28361d126f3d5b33a1eeb319793f6c35c5f4556aad3d0d40f"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_0.png",
+          "bytes": 2609316,
+          "sha256": "439c31f8de6f2732ddde81d92f4c1bdba8e6a4b3c671f77ce9876ef08141e16e"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_1.png",
+          "bytes": 2406519,
+          "sha256": "c6368038e2ea85d786fa6e1ddc5fc83b812ca1a30431f79d1bee0be9d0fb4524"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_2.png",
+          "bytes": 2235080,
+          "sha256": "b624615b8addddd4a6bf36f5880960925a9420bf5e5b6fd649240580036af4c7"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_3.png",
+          "bytes": 2362217,
+          "sha256": "289e673e5040a57f5e2188ffcad61287c6ff69b3e56abe311595ebfd9fff9595"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_4.png",
+          "bytes": 2503826,
+          "sha256": "6edb057d621aee721f158b7a7b1935d56285681bcbd5d8b4899947107b01bcd3"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_5.png",
+          "bytes": 2134478,
+          "sha256": "0621061411c0b8350434f50f813f29d87459e68c05227b489d4b3f10e84c49fd"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-high/screenshot_6.png",
+          "bytes": 2844908,
+          "sha256": "a0b065e045683e2978ddd1d22a95b216713d78121c23e444182abe0133241bb0"
+        }
+      ]
+    },
+    {
+      "district": "riverside",
+      "preset": "Ultra",
+      "native_exit_code": 0,
+      "route_reached": 7,
+      "route_waypoints": 7,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.25,
+      "frames": 6166,
+      "walk_seconds": 43.9,
+      "average_fps": 140.5,
+      "mean_frame_ms": 7.11,
+      "p99_frame_ms": 10.06,
+      "worst_frame_ms": 23.3,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 6.607,
+      "profile_samples": 6160,
+      "profile_boundary_skips": 6,
+      "focused_samples": 6160,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 6166,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 7.106335616883117,
+          "p99_ms": 10.049812,
+          "max_ms": 23.257862
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 1.431297377272727,
+          "p99_ms": 2.704548,
+          "max_ms": 5.131368
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 0.0016444621753246753,
+          "p99_ms": 0.001671,
+          "max_ms": 1.531568
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 0.5274051284090909,
+          "p99_ms": 5.88153,
+          "max_ms": 18.877014
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 6160,
+          "mean_ms": 7.104394382305195,
+          "p99_ms": 10.046709,
+          "max_ms": 23.253588
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 259,
+        "reserved": 510,
+        "mono_heap": 8,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 25,
+        "renderers": 2231,
+        "lights": 149
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 56,
+          "minimum": 14.1,
+          "maximum": 42.45,
+          "mean": 38.129
+        },
+        "temperature.gpu": {
+          "samples": 56,
+          "minimum": 71.0,
+          "maximum": 77.0,
+          "mean": 75.732
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 56,
+          "minimum": 1395.0,
+          "maximum": 2430.0,
+          "mean": 1689.911
+        },
+        "memory.used [MiB]": {
+          "samples": 56,
+          "minimum": 17.0,
+          "maximum": 1771.0,
+          "mean": 1662.893
+        },
+        "utilization.gpu [%]": {
+          "samples": 56,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 89.875
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/riverside-ultra/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/riverside-ultra/cache",
+        "unity_pso_shared_cache_loaded": true,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "LOADED",
+        "unity_pso_initial_bytes": 6689983,
+        "unity_pso_extracted_bytes": 6689983,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/report.txt",
+        "bytes": 2454,
+        "sha256": "67e588ba5a1cdc95daab81d8953d21e2a44573eb6f9f0f95b88373d67db54acc"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/report.profile.json",
+        "bytes": 16812,
+        "sha256": "2d04053372063cf7e7700b32b3b77cf5127d4334f4d1e5bf15914b6406104da5"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/player.log",
+        "bytes": 34526,
+        "sha256": "cb88722fdc52e6205e335859152861622119ae0317f7f42ba358295b04f4724c"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/gpu.csv",
+        "bytes": 5699,
+        "sha256": "38229d6ac89ba7d32e44a098cdd44b9b6e61013c7f36ca62dd7ccf1981b77ac8"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/focus-4.json",
+        "bytes": 4641,
+        "sha256": "135cc9649fa5342c00cae3cbcdc32e748ea68e22c5a6d0aac165b99010107b68"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_0.png",
+          "bytes": 2683989,
+          "sha256": "d596d398d9ff8dbb7676abb45fe9a0036beb9c15f78741894d19707b47a8115e"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_1.png",
+          "bytes": 1894013,
+          "sha256": "3ca3e0c372a1fcc7ae091b5b3092d7c675d030d3f6790da7c002e742d534493d"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_2.png",
+          "bytes": 2269315,
+          "sha256": "e28e2f20506bb76d0220cb7ffc5235c49f07e4eab8cd4ea1417113a33211990a"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_3.png",
+          "bytes": 2623689,
+          "sha256": "3ccfc187040db32e1db3c36ca8db7b6276bd9abcb4dc20291a24824d82242b7b"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_4.png",
+          "bytes": 2165821,
+          "sha256": "928e885992304562d697f210d3d96fd5084fd8c4943397ea0f9874609326117e"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_5.png",
+          "bytes": 2179993,
+          "sha256": "53997e9037ac8fd1a7e41fb573ab1a238e6c88c5484f774da445d70a67737b34"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/riverside-ultra/screenshot_6.png",
+          "bytes": 2358169,
+          "sha256": "ff313009f792de76966d98bf21195f8306856be4c314ed316c7f8b0bd3830784"
+        }
+      ]
+    },
+    {
+      "district": "island",
+      "preset": "High",
+      "native_exit_code": 0,
+      "route_reached": 20,
+      "route_waypoints": 20,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.0,
+      "frames": 9878,
+      "walk_seconds": 39.2,
+      "average_fps": 252.2,
+      "mean_frame_ms": 3.96,
+      "p99_frame_ms": 8.68,
+      "worst_frame_ms": 24.2,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 7.987,
+      "profile_samples": 9859,
+      "profile_boundary_skips": 19,
+      "focused_samples": 9859,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 9878,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 3.957578568820367,
+          "p99_ms": 8.661827,
+          "max_ms": 24.182436
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 0.9453295507657977,
+          "p99_ms": 1.788642,
+          "max_ms": 4.045725
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 0.0021941057916624405,
+          "p99_ms": 0.001888,
+          "max_ms": 3.613486
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 0.5599041898772695,
+          "p99_ms": 4.741749,
+          "max_ms": 21.065968
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 9859,
+          "mean_ms": 3.95609940470636,
+          "p99_ms": 8.660183,
+          "max_ms": 24.181286
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 255,
+        "reserved": 514,
+        "mono_heap": 9,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 31,
+        "renderers": 2124,
+        "lights": 146
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 57,
+          "minimum": 13.8,
+          "maximum": 39.56,
+          "mean": 34.155
+        },
+        "temperature.gpu": {
+          "samples": 57,
+          "minimum": 70.0,
+          "maximum": 78.0,
+          "mean": 76.316
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 57,
+          "minimum": 1455.0,
+          "maximum": 2430.0,
+          "mean": 1591.842
+        },
+        "memory.used [MiB]": {
+          "samples": 57,
+          "minimum": 17.0,
+          "maximum": 1639.0,
+          "mean": 1434.439
+        },
+        "utilization.gpu [%]": {
+          "samples": 57,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 90.912
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/island-high/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/island-high/cache",
+        "unity_pso_shared_cache_loaded": true,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "LOADED",
+        "unity_pso_initial_bytes": 6689983,
+        "unity_pso_extracted_bytes": 6689983,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/island-high/report.txt",
+        "bytes": 5630,
+        "sha256": "c1432213c3bdb3c40d7d50fcbed654b264a120b76a6040ace0a77bf6203bda8a"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/island-high/report.profile.json",
+        "bytes": 16808,
+        "sha256": "625d6aba405e9537aac670fbe1f6e02ce90615aafe5424a502c104e264d4e78c"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/island-high/player.log",
+        "bytes": 38007,
+        "sha256": "88a6a4c2a886863160a4e5c266da173f8438d9811ddd00c30f4dfcf63ddafa85"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/island-high/gpu.csv",
+        "bytes": 5780,
+        "sha256": "aeeaab43cc0bc639125c955187be97326da1c3209b2509b2e9da6ebc29497cdf"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/island-high/focus-4.json",
+        "bytes": 4617,
+        "sha256": "20ea4e5fb1557d6fde24feee0ba8cb929fdc16a39fcfd583640582e7a2a14914"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_0.png",
+          "bytes": 2123992,
+          "sha256": "35de1f598229c5dd4cc1daed174b9406cc9d44381d9eab445daf831768ba9fa2"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_1.png",
+          "bytes": 2298268,
+          "sha256": "4ee97e86c6bbee951db70a12a540fe308d89c8f3f0bdbb24ee8e1765695cf0ab"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_10.png",
+          "bytes": 2305021,
+          "sha256": "4e54cd012a44415e8bf70cb4f3f3023b2fc7e5aac2cec6d7ffcd0ab71bbf58ae"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_11.png",
+          "bytes": 2236702,
+          "sha256": "0ea7a511c397f8647faf7478dc983a18da265ab7137906a6d8157cdc92a28f07"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_12.png",
+          "bytes": 2235380,
+          "sha256": "0436d9c0c3e8bc28f9fc4b004b8c759d02d1f619888f2ada36f895b26f5de3b6"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_13.png",
+          "bytes": 2075761,
+          "sha256": "a6103eb3cdc9089f67a11cfaec26c11176a62dc175e0e57111278b9ff368dd3d"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_14.png",
+          "bytes": 2223591,
+          "sha256": "fc4e60c50c8491343ce25d6055b807b1dff31d14250ff4d33b2a60b78d020ad3"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_15.png",
+          "bytes": 2242310,
+          "sha256": "beb850d2d9605a485b2df18e587d0a19ee8a0c4b4505b91f13281c0588622484"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_16.png",
+          "bytes": 2210882,
+          "sha256": "6feb352157d7169f3bd5ecd7deb4fa3c4a43b9eb716c1af6725791cbfb176326"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_17.png",
+          "bytes": 2077043,
+          "sha256": "ac2413367eee1b09df2b25c0794569810d1d4a0186b6033ee196ef9a0f5a4c5d"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_18.png",
+          "bytes": 2022809,
+          "sha256": "71c5ec999e2b60f095341c587e3bc4076e695e2604aab733339db661a845ea24"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_19.png",
+          "bytes": 2078743,
+          "sha256": "a6019ef6b53593e0eafbd3af4c9f0fae798056477edfc8418c304ea8e1242056"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_2.png",
+          "bytes": 2212366,
+          "sha256": "1ef1e026d9bfcb27afd9aeacc908c5b652e122b8548a5eeda5f5c94cba7a7c60"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_3.png",
+          "bytes": 2133521,
+          "sha256": "5797ce59ce4b7abef3ff4a41b61bea522540af2fb6b93069298429c2a5e8fd81"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_4.png",
+          "bytes": 2303404,
+          "sha256": "22d52bf187e20b444115239b709322d70d2462add0d1041c5708360bf37daacc"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_5.png",
+          "bytes": 2286454,
+          "sha256": "31b02fe672809cf7e82dc4319c5a86684898d3433cb6ef0b2b4d5fa22e24c44c"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_6.png",
+          "bytes": 2172371,
+          "sha256": "7664c6a5c607ab9f15649bf2e6129c9c75a7e484c64cc0adc1eff843c2a8a5d3"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_7.png",
+          "bytes": 2196328,
+          "sha256": "cdb108e8fafe348ff3348e2f020e7be750f182adada3becdda502747487fe3bb"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_8.png",
+          "bytes": 2050931,
+          "sha256": "17f56c5f0b97b520432cb3790bb094f8d7b2e554b1bd8059460bfa9ebab2cbd2"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-high/screenshot_9.png",
+          "bytes": 2267708,
+          "sha256": "aa6372f9058d1a08d3367bbaef5af5afaae8b72831354f79276fb797dff651a3"
+        }
+      ]
+    },
+    {
+      "district": "island",
+      "preset": "Ultra",
+      "native_exit_code": 0,
+      "route_reached": 20,
+      "route_waypoints": 20,
+      "output_resolution": [
+        1920,
+        1080
+      ],
+      "reported_render_scale": 1.25,
+      "frames": 6641,
+      "walk_seconds": 39.2,
+      "average_fps": 169.5,
+      "mean_frame_ms": 5.9,
+      "p99_frame_ms": 10.53,
+      "worst_frame_ms": 23.9,
+      "observed_p99_margin_to_60fps_frame_budget_ms": 6.137,
+      "profile_samples": 6622,
+      "profile_boundary_skips": 19,
+      "focused_samples": 6622,
+      "unfocused_samples": 0,
+      "v_sync_count": 0,
+      "target_frame_rate": -1,
+      "render_frame_interval": [
+        1,
+        1
+      ],
+      "game_callbacks": 6641,
+      "reflection_callbacks_during_walk": 0,
+      "other_callbacks": 0,
+      "actual_timing_markers": {
+        "main-thread": {
+          "name": "Main Thread",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 5.888172646481426,
+          "p99_ms": 10.511513,
+          "max_ms": 23.887057
+        },
+        "render-thread": {
+          "name": "CPU Render Thread Frame Time",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 1.2978639414074298,
+          "p99_ms": 2.28255,
+          "max_ms": 6.030064
+        },
+        "present-wait": {
+          "name": "Gfx.WaitForPresentOnGfxThread",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 0.0017147016007248565,
+          "p99_ms": 0.001686,
+          "max_ms": 1.982429
+        },
+        "target-fps-wait": {
+          "name": "WaitForTargetFPS",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 0.0,
+          "p99_ms": 0.0,
+          "max_ms": 0.0
+        },
+        "render-thread-wait": {
+          "name": "Gfx.WaitForRenderThread",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 0.4881323192389006,
+          "p99_ms": 6.343642,
+          "max_ms": 19.533328
+        },
+        "player-loop": {
+          "name": "PlayerLoop",
+          "status": "VALID_SAMPLED",
+          "samples": 6622,
+          "mean_ms": 5.886267068257324,
+          "p99_ms": 10.510223,
+          "max_ms": 23.885542
+        }
+      },
+      "missing_requested_marker_groups": [
+        "present",
+        "scripts-update",
+        "scripts-late",
+        "scripts-fixed",
+        "physics",
+        "animation",
+        "culling",
+        "render-pipeline",
+        "draw"
+      ],
+      "gpu_frame_time_ms": null,
+      "gpu_frame_time_reason": "No GPU frame-time marker was collected. CPU render time, wait markers, utilization and total frame time are not a GPU-only timer.",
+      "unity_memory_mb": {
+        "allocated": 257,
+        "reserved": 502,
+        "mono_heap": 8,
+        "reported_gfx_driver": 0,
+        "gfx_driver_status": "UNAVAILABLE_ZERO"
+      },
+      "scene_counts": {
+        "npcs": 31,
+        "renderers": 2124,
+        "lights": 146
+      },
+      "nvml_whole_job_global_gpu_telemetry": {
+        "power.draw [W]": {
+          "samples": 57,
+          "minimum": 14.52,
+          "maximum": 43.0,
+          "mean": 37.263
+        },
+        "temperature.gpu": {
+          "samples": 57,
+          "minimum": 72.0,
+          "maximum": 78.0,
+          "mean": 76.667
+        },
+        "clocks.current.graphics [MHz]": {
+          "samples": 57,
+          "minimum": 1365.0,
+          "maximum": 2430.0,
+          "mean": 1597.368
+        },
+        "memory.used [MiB]": {
+          "samples": 57,
+          "minimum": 17.0,
+          "maximum": 1779.0,
+          "mean": 1700.053
+        },
+        "utilization.gpu [%]": {
+          "samples": 57,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "mean": 92.509
+        }
+      },
+      "power_before": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "power_after": {
+        "BAT1/status": "Not charging",
+        "BAT1/capacity": "98",
+        "ucsi-source-psy-USBC000:001/online": "0",
+        "ucsi-source-psy-USBC000:001/status": "Discharging",
+        "ACAD/online": "1",
+        "profile": "balanced"
+      },
+      "cache_observations": {
+        "fresh_per_job_xdg_config": "Logs/graphics-baseline-0.5.0/island-ultra/config",
+        "fresh_per_job_xdg_cache": "Logs/graphics-baseline-0.5.0/island-ultra/cache",
+        "unity_pso_shared_cache_loaded": true,
+        "unity_pso_cache_path": "/tmp/Parasite Jam Team/PARASITE/vulkan_pso_cache.bin",
+        "unity_pso_initial_status": "LOADED",
+        "unity_pso_initial_bytes": 6689983,
+        "unity_pso_extracted_bytes": 6689983,
+        "policy": "Fresh XDG directories do not imply a fully cold shader/driver/PSO cache; Unity shared its actual /tmp cache across runs."
+      },
+      "native_graphics_ring_warnings": 0,
+      "report": {
+        "path": "Logs/graphics-baseline-0.5.0/island-ultra/report.txt",
+        "bytes": 5631,
+        "sha256": "5a3bf7981803d1dcb41c8c23c68698292dbb52b14433f3af87cccd8f800995d2"
+      },
+      "profile": {
+        "path": "Logs/graphics-baseline-0.5.0/island-ultra/report.profile.json",
+        "bytes": 16813,
+        "sha256": "f36dd6d939867fb88fe556c05acac6eae889f30aa74b73264883b8141a247e71"
+      },
+      "player_log": {
+        "path": "Logs/graphics-baseline-0.5.0/island-ultra/player.log",
+        "bytes": 37999,
+        "sha256": "57fd2b6081019c616ee1e2857246e9d1e54017db10973c99dcdbcb6c105d481a"
+      },
+      "gpu_telemetry": {
+        "path": "Logs/graphics-baseline-0.5.0/island-ultra/gpu.csv",
+        "bytes": 5803,
+        "sha256": "180951911bc3c515807a7d2cb9c5c78c89b1cdebb32190eaf606a238055b9dbe"
+      },
+      "focus_receipt": {
+        "path": "Logs/graphics-baseline-0.5.0/island-ultra/focus-4.json",
+        "bytes": 4623,
+        "sha256": "e93968148251974923fa6a0211361e47fcce88fd1dedba3d5ccbbec59d156b52"
+      },
+      "screenshots": [
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_0.png",
+          "bytes": 2130377,
+          "sha256": "498c6166f6a69e35bb529f295b26a126175b38c0fb07cb02347d3dccda03ad0c"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_1.png",
+          "bytes": 2314011,
+          "sha256": "235a2de2ca7f02b4cdd399feba0aa89a10226071d9c8349531d16594bc12dc89"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_10.png",
+          "bytes": 2267287,
+          "sha256": "c760745dcf0dbb20d0281d8c057c61c40c9b86595d893c79205bb18619c3ed6c"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_11.png",
+          "bytes": 2247849,
+          "sha256": "26806b932423a3d4f2b9129420f10fa6f1f0e8ac255fdbd2e93f6a62275fa9b4"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_12.png",
+          "bytes": 2250113,
+          "sha256": "6dea070fb8d4088692fe43e68aed421ceb3ae8252c3ce51b0d80f51e11230692"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_13.png",
+          "bytes": 2109545,
+          "sha256": "99e58a9e23582e7abd8c8edb452bea95109f0411d3d3dc813261af0027a94c81"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_14.png",
+          "bytes": 2206830,
+          "sha256": "6ec173ba3dd2e5184e7d973a1bb831abb9e259a302870a4efec23e19d7d703fc"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_15.png",
+          "bytes": 2245063,
+          "sha256": "4de564bfb03dbe1eb842c01150e1ac647a7019642b8e8ef07fb9e21727c80b68"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_16.png",
+          "bytes": 2240217,
+          "sha256": "6e414534753cb8545929402ae08e7d039935a66e424887d35a17c701508ff2d3"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_17.png",
+          "bytes": 2156481,
+          "sha256": "52cc93b87e76dc716de5c35881ef2cb6f7a2265d2b1968614fe47d8a2af88e3c"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_18.png",
+          "bytes": 2061726,
+          "sha256": "b9d87221e1c6ef5f4ba39c06798d388b9a762fe543868b7942b8a2fc6f5e2f18"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_19.png",
+          "bytes": 2120906,
+          "sha256": "b8e29d45ba2708404db86267ca80562963bc999eada8aaa4d26017edb84adbbb"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_2.png",
+          "bytes": 2220668,
+          "sha256": "36cccf63607fc18577545a320cbb02cd2285623c68d2a84b878e2c5f340ba5ff"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_3.png",
+          "bytes": 2098473,
+          "sha256": "45612ee4017ad5aa18ad642cb1bcfd9fe4c5b76d43f580aa29277ec0b4ee0d2a"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_4.png",
+          "bytes": 2290995,
+          "sha256": "6802fab4d2907beffbdc7e14f688869ef3321b240f58d6b143f0501f6e80d696"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_5.png",
+          "bytes": 2337471,
+          "sha256": "ef0edaddcfa3f9ef317ade1fc731948d0fa7f9a82559ac8e7dc7d61235831c0d"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_6.png",
+          "bytes": 2146759,
+          "sha256": "9cd4c235411110d66e5565639ed2ee7707f699fd53b4b7d53d7079092ff1b6c3"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_7.png",
+          "bytes": 2244817,
+          "sha256": "50abc806e6de5ce5387fdb1b58a2c12a52de0628b7a117085d00144a0f3dd5de"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_8.png",
+          "bytes": 2119987,
+          "sha256": "b2d41a3229d136e4fd7d8cfa0e7823b86545f7d68c26ae40fef154e7e713653d"
+        },
+        {
+          "path": "Logs/graphics-baseline-0.5.0/island-ultra/screenshot_9.png",
+          "bytes": 2295468,
+          "sha256": "b6731b634eede08f6936c62e75574fbb67f13f29621629b960704990178f58f7"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "City covers five exterior waypoints (alley/main gate/staff terminal/service entrance/return); no dedicated lab-interior, close-up character or free-amoeba camera performance baseline was collected.",
+    "Riverside uses a Peace chapter fixture; island seeds travel/arrival/service-gate/refuge prerequisites and tours as a maintenance host. These are benchmark setup, not mission completion evidence.",
+    "Frame and profiler samples exclude startup and screenshot encoding. These runs do not measure loading/startup spikes, menu/video playback or every gameplay view.",
+    "GPU frame time is unavailable; valid CPU/wait markers are nested and cannot be added or relabeled as GPU-only work. The derived60FPS margin is observed total-frame p99 margin, not a GPU upgrade budget.",
+    "The Unity graphics-driver memory reading is zero/unavailable. NVML memory is total device usage including desktop/driver/other GPU clients, not per-player residency or a complete per-game VRAM budget.",
+    "NVML one-second telemetry covers each whole job, including startup, screenshots and shutdown; its samples are not the profiler walk-window distribution.",
+    "The riverHigh worst frame217.1ms is retained. Aggregate Main/PlayerLoop maxima are about217ms and render-thread-wait max213.276ms; their maxima are not frame-aligned evidence. No GC samples or per-frame hitch timestamps were collected, so a specific cause remains unproven.",
+    "Each job has fresh XDGconfig/cache directories, but the actual Unity VulkanPSO cache loaded from a shared/tmp path and grew across jobs. No fully cold-cache or cache-order-independent comparison is claimed.",
+    "All recorded profile samples are focused on the real desktop. Window focus was set only for the exact owned benchmark window without keyboard/mouse injection. No physical input or continuous human playthrough is claimed.",
+    "Saved screenshots are identity/hash evidence here, not a claim of new art quality or controlled before/after lighting/weather comparisons.",
+    "These measurements apply to the pinned0.5.0 candidate and recorded power profile. They do not predict performance after source changes or on every district view."
+  ]
+}

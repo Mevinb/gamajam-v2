@@ -204,12 +204,12 @@
   "prior_editor_story_proof": "Docs/verification/full-opening-runtime-20261125.json",
   "prior_editor_story_proof_sha256": "3ba9b432a9abb14c1d0c8e9818d155f4b92ba40b872a7e02f49c3638208c9b86",
   "pending": {
-    "full_campaign_on_this_binary": "RUNNING:23 cases except separately rendered22; no terminal pass/fail yet.",
-    "native24_corrected_exposure": "RUNNING as part of current23-case regression; no result yet.",
-    "current_binary_desktop_performance": "PENDING; earlierHigh/Ultra numbers belong to earliercandidate",
+    "full_campaign_on_this_binary": "INTERRUPTED:01\u201305 pass,06 fails duty-officer targeting,07 starts; no final native receipt. New diagnostic pending.",
+    "native24_corrected_exposure": "UNVERIFIED on this binary; interrupted before24.",
+    "current_binary_desktop_performance": "PASS: six focused1080p desktop High/Ultra routes; see desktop_baseline. Dedicated lab and spike cause remain unverified.",
     "release_archive_and_extracted_smoke": "PENDING",
     "physical_input_human_playthrough_and_speaker_listening": "UNEXERCISED",
-    "user_playtest_completion": "USER PLAYER RUNNING; launch confirmed, completed human playthrough not established."
+    "user_playtest_completion": "EXITED normally0 after130.601s. Completed human playthrough and physical-input verification not established."
   },
   "limits": [
     "Strict media acceptance decodes advancinginitialimages and stresses terminalseeks/cleanup; continuous80s naturalstory proof remains Editor scope.",
@@ -312,5 +312,74 @@
       "log": "Logs/full-story-candidate/campaign-headless/player.log",
       "scope": "Prepared fixtures and simulated controls; no graphics, performance, physical-input or completed-pass claim. Live receipt/log remain mutable until terminal."
     }
+  },
+  "latest_recovery_observation": {
+    "observed_utc": "2026-11-25T15:47:39.047175+00:00",
+    "path": "Logs/full-story-candidate/campaign-headless/recovery-observation.json",
+    "sha256": "6a48484897f1c0052f887c2f1a83a1da69fa614b6568279814121b6de376eaf2",
+    "campaign_status": "INTERRUPTED_NO_NATIVE_EXIT_RECEIPT",
+    "completed_cases": [
+      {
+        "result": "PASS",
+        "case": "01",
+        "detail": "Start, move, camera, jump  (2.2s)  moved 4.6 m, camera turned 90\u00b0, hop 0.55 m"
+      },
+      {
+        "result": "PASS",
+        "case": "02",
+        "detail": "Aim + E possesses host within 5 m (camera + WASD follow)  (3.9s)  far host (>5 m) not targetable"
+      },
+      {
+        "result": "PASS",
+        "case": "03",
+        "detail": "Q release: host unconscious 8 s then recovers  (9.8s)  host unconscious 8.0 s, recovered, AI resumed on NavMesh"
+      },
+      {
+        "result": "PASS",
+        "case": "04",
+        "detail": "V split max two, Tab switch, inactive stays put  (1.6s)  2 amoebas max, Tab switch OK, active moved 3.8 m, inactive drift 0.00 m, camera on active (3.2 m)"
+      },
+      {
+        "result": "PASS",
+        "case": "05",
+        "detail": "Civilian denied at restricted doors  (3.9s)  civilian denied at Main Gate, Staff Terminal and Service Tunnel"
+      },
+      {
+        "result": "FAIL",
+        "case": "06",
+        "detail": "Route A: leads \u2192 tail \u2192 guard badge \u2192 Main Gate \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape  (127.4s)  FAILED: duty officer targetable from behind: "
+      }
+    ],
+    "native_exit_code": null,
+    "user_playtest": {
+      "status": "exited",
+      "version": "0.5.0",
+      "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95",
+      "source_commit": "2f3fde96514edb79ef95d890b2d4a5c51448e3da",
+      "runtime_sha256": "2603c57202ec01363e80f156bd69ea117179fb598082ac1e2b63a75224472abc",
+      "argv": [
+        "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T143348976819Z-ea740a95/play.sh",
+        "-screen-fullscreen",
+        "0",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "900",
+        "-logFile",
+        "/home/mevlec/Data/Parasite/Logs/user-playtest-0.5.0/player.log"
+      ],
+      "started_utc": "2026-11-25T14:39:37.447105+00:00",
+      "scope": "User-controlled native desktop playtest. Launch is not evidence of a completed human playthrough.",
+      "pid": 4063511,
+      "exit_code": 0,
+      "elapsed_seconds": 130.601,
+      "finished_utc": "2026-11-25T14:41:48.048751+00:00"
+    },
+    "current_boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f"
+  },
+  "desktop_baseline": {
+    "proof": "Docs/verification/graphics-baseline-0.5.0-20261125.json",
+    "sha256": "62c86e0ac3af803ceba18d881a3786db9e143733a6f7fbba771cb202eb0fd20c",
+    "scope": "Pinned0.5.0, six focused High/Ultra routes, native0. Mixed PSO cache, no dedicated lab/GPU timer/per-game VRAM; retains217.1ms riverside High spike."
   }
 }

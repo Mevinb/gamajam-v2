@@ -1,3 +1,25 @@
+# Current 0.5.0 desktop performance baseline — 25 November 2026
+
+Six native RTX4050/Vulkan runs complete all city-exterior, riverside and island waypoints at 1920×1080 output, with AI active,
+AC power/balanced mode, all samples focused, unchanged runtime and native exits0. High/Ultra retain their existing1.0/1.25
+render scales; these are measurements of the pinned0.5.0 binary, before the independent-settings changes.
+
+| Route | High FPS / p99 ms | Ultra FPS / p99 ms |
+|---|---|---|
+| City exterior | 169.2 / 10.92 | 111.7 / 12.84 |
+| Riverside | 212.9 / 9.57 | 140.5 / 10.06 |
+| Island | 252.2 / 8.68 | 169.5 / 10.53 |
+
+Riverside High's worst frame is217.1ms and remains included. Aggregate render-wait maxima suggest synchronization, but no
+per-frame correlation or GC marker establishes its cause. GPU timing/per-game VRAM are unavailable. The jobs use separate
+XDG directories but share Unity's PSO cache; they are not fully cold-cache comparisons. No dedicated lab-interior route is
+covered. [Exact proof and artifact hashes](verification/graphics-baseline-0.5.0-20261125.json) retain these limits.
+
+The earlier user playtest exited normally0. Its23-case campaign regression stopped with no final receipt after01–05PASS,
+06FAIL at duty-officer targeting and07start; old processes are absent after reboot. This is not a full-campaign pass.
+
+---
+
 # 0.5.0 candidate build and rendered player gates — 25 November 2026
 
 `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95` is built from clean pushed commit `2f3fde9`, version0.5.0,

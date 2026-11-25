@@ -12,9 +12,13 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
 - The current0.5.0 candidate at `Builds/Candidates/full-story-20261125T143348976819Z-ea740a95` is built from clean commit
   `2f3fde9`,1,101MB with zero build errors/warnings. Its strict full-five media stress passes eight checks/seven PNGs, queued
   shortcuts pass14/14, and rendered Vulkan water passes1/1. All three exit natively0 with unchanged runtime hash and zero
-  ring-buffer warnings. The user-controlled desktop player is now running on RTX4050/Vulkan; the23-case headless campaign,
-  including corrected24, is running separately on Null graphics at nice10. Neither has a completed-playthrough/pass claim.
-  Current-binary performance and archive/extracted-player checks remain pending. See [candidate proof](verification/0.5.0-candidate-20261125.json).
+  ring-buffer warnings. The user-controlled desktop player exited normally0 after130.601s. The23-case headless campaign
+  stopped without a final receipt:01–05 pass,06 fails at duty-officer targeting,07 begins. The machine has since restarted;
+  both old processes are absent. The stale running receipt is not a campaign pass. Target angle/range/LOS diagnostics are
+  being prepared without relaxing possession rules. Corrected24 and the remaining current-player cases remain unverified.
+  Six focused current-binary High/Ultra baseline routes now pass; riverside High retains one217.1ms worst frame whose cause
+  is unproven. Dedicated lab, GPU timer/per-game VRAM and archive/extracted-player checks remain pending.
+  See [candidate proof](verification/0.5.0-candidate-20261125.json) and [baseline details](verification/graphics-baseline-0.5.0-20261125.json).
 - All 1,920 opening frames and all 840 lake frames pass source/frame provenance, visual sample review and complete FFmpeg decode.
   All five silent 1080p24 films are published in live Resources. Editor full-five decode, continuous normal80s opening,
   eleven shot checkpoints, selected actual voice progression, skip/settings/choice and gameplay/media restoration pass.
