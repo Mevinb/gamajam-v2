@@ -20,7 +20,11 @@ then wait for the active frame and supervisor to finish. Headless logic work and
 `STOP` and rerun `python3 Logs/full-cinematic-renders/production_plan.py --go --out <same-production-directory>` to resume;
 provenance and every recorded frame hash are checked. A 4 GiB free-space guard also stops between complete frames.
 Do not restart from scratch after an observation timeout. Completed real sequences must pass encoding/decoder gates before
-publication. The full-story runtime patch and island chapter are still staged outside live Assets.
+publication. The full-story runtime patch is now applied in the live working tree: 102 EditMode cases and its focused
+headless fallback/choice/audio-cleanup test pass. Legacy GPU regressions and real full-film decode remain pending; these
+uncommitted changes are not part of the verified 0.4.1 archive. The island chapter remains staged outside live Assets.
+A source audit also found the old opaque skyline ground above river/berth water; a rendering-only cut and actual camera
+visibility check are being staged. See `KNOWN_ISSUES.md`.
 
 ## Environment and commands
 
