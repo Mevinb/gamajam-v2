@@ -56,6 +56,11 @@ start another editor process on this project during a batch job. Poll the return
 proof a job is alive. Coordinate Blender GPU renders with Unity graphics jobs, especially benchmarks on this 6 GB card.
 Explicit `DISPLAY`/`XAUTHORITY`, including an Xvfb display, are preserved by `Tools/display.sh`.
 
+`Tools/compile_check.sh all` now includes a Linux-Mono player API check, using only references/defines from the last valid
+Bee player cache and enumerating current source anew. `runtime`, `editor` and `player` modes are explicit; unknown modes fail.
+A successful Linux build seeds this cache. Unity-version, package lock or assembly-definition changes require a fresh build;
+the player check fails clearly rather than silently using Editor assemblies. It does not replace shader/build/player tests.
+
 After edits to editor builders, `MissionLayout`, or `CityLayout`: **compile → regenerate scenes → PlayMode → Linux rebuild**.
 The generated Bootstrap and City scenes must never be hand-edited. Test source changes with the relevant focused suite,
 then run campaign regressions when shared behavior or mission progression changes. Package only after the build and its
