@@ -15,7 +15,10 @@ The full request remains **in progress**. Evidence applies to its named source o
   nice15/idle I/O/own XDG. Keep that checkout's C# fixed and do not start another Editor until the actual process is
   terminal. Two art-binding tests remain after mechanics. Base0.6.1native90/91 are both terminal passes; no active
   native overlap lease remains. Do not repeat those branches because an older checkpoint below says running.
-  The0.6.1portable docs overlay is being prepared under base Logs; no archive/extraction yet. No26-source merge/build yet.
+  The0.6.1portable docs overlay is ready at base `Logs/release-061-docs-20261125T225433031296Z/overlay` (18files/39validated
+  local links), with unchanged Build/Peace/Dominion proofs and exact1333/fab619/dc5 pins. Root reviewed README/NATIVE_SCOPE;
+  no archive/extraction yet. Use existing read-only Tools/package_candidate.py with the explicit0.6.1candidate, never the
+  retained-build packager. No26-source merge/build yet.
 
 - **Both exact0.6.1 native continuous branches pass independently:** Native90 proof below and Native91 root89789/native0/
   supervisor0/chunk7cd985, case529.5s/elapsed536.556s. Exact PASS91/SUMMARY1/1/Null/nice10, no cancellation and all seven
