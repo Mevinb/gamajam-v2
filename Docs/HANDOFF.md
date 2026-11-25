@@ -6,6 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Full Peace continuity rerun is active:** root exec53314, timeout101415/Editor101416, source5689 below.
+  `Tools/unity.sh continuity_north_shore -nographics -runTests -testPlatform PlayMode`
+  uses exact AcceptanceTests filter, `Logs/continuity-north-shore.xml`, only `-autotestFilter 90` and an owned1800s wrapper.
+  No full-case result yet. Keep live C# frozen and do not start another Editor/Blender/player until this actual process is
+  terminal. Poll its real session/process/log/XML; do not replay it because this note ages. User51569 remains open.
+- **Superseded3894 packed data retired, evidence retained:** exact private204952/0c8cccab now lives as code/native/metadata
+  evidence under `Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab`, not a runnable candidate.
+  Every retired packed payload freshly matched the protected0435 candidate; its full original manifest and copy-based
+  reconstruction recipe remain. The219,962,517B failed physical log and24,267,502B XML are losslessly gzipped there;
+  root independently decompressed/hash-verified both. Original content hashes/results remain unchanged, raw paths relocated.
+  Root15859/chunkcc72ae exits0;1321455616B reclaimed,4.52GB free at completion. Both previews/published0435/archive match
+  their original trees. [Retirement and exact log locations](verification/continuity-3894-retirement-20261126.json).
 - **Focused live-patrol boarding route passes:** IslandRescueAcceptance SHA
   `5689f81b024ee8c10e2258be9b7cff0fce69ca6bebc6772c455f5a14961a4469` now routes Peace passengers through the real
   clinic door, west clearance and northern shore before the original jetty target. Its single deadline still derives from
@@ -15,7 +27,7 @@ The full request remains **in progress**. Evidence applies to its named source o
   prerequisites and actor ownership/existing Calm fixtures remain declared. This is one passenger, not continuous23 or a
   native/rendered/human pass. API compile162/31/162 passes; no new candidate yet. Preserve the prior full-route failure below.
   [Focused proof](verification/island-boarding-via-focused-20261126.json). Next: rerun actual90, then91/native rebuilt checks.
-- **Physical regroup correction is terminal with a later boarding failure:** current IslandRescueAcceptance SHA
+- **Prior physical regroup correction is terminal with a later boarding failure:** historical IslandRescueAcceptance SHA
   `ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703`.
   It uses the public Regroup prompt, normal approach/aim/fresh E after actual patrol visibility clears, maximum3attempts,
   exact leader identity/generations and the original outer leg deadline/target/3.2m wait. No gameplay rules changed.

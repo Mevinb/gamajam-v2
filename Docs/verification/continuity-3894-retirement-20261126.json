@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "status": "SUPERSEDED3894_PACKED_DATA_RETIRED_RAW_EVIDENCE_LOSSLESSLY_COMPRESSED",
+  "recorded_utc": "2026-11-25T22:06:27.406357+00:00",
+  "retirement_receipt": {
+    "path": "Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab/retirement.json",
+    "bytes": 132813,
+    "sha256": "0e47faddde514dfd6ecccc3fe1677d99e1139cf554126dea646e07e14903057e"
+  },
+  "retired_candidate": "Builds/Candidates/full-story-20261125T204952819191Z-0c8cccab",
+  "original_proofs_unchanged": [
+    {
+      "path": "Docs/verification/continuous-campaign-first-20261126.json",
+      "bytes": 9223,
+      "sha256": "e27d8432a9d80e48f2fe4ab487021159c650986bcf9b9efe8267728d9fb1e1c3"
+    },
+    {
+      "path": "Docs/verification/island-regroup-arrival-red-20261126.json",
+      "bytes": 2394,
+      "sha256": "20fa7ee183f3fd357d972cf6c8fe580ac3ea10ed050df07afc9acf5f04a1255c"
+    },
+    {
+      "path": "Docs/verification/native-filter-selection-20261126.json",
+      "bytes": 19020,
+      "sha256": "b59e97afe4e46bb9caff563492f2633f3bfe813d644a61d3a7f0d821a149a5b2"
+    }
+  ],
+  "raw_relocations": [
+    {
+      "original": {
+        "path": "Logs/continuity_regroup_physical.log",
+        "bytes": 219962517,
+        "sha256": "bd41f2464f4d5b238e6d078e269086fb99a26bd040669249a050ea85711cbb19"
+      },
+      "original_metadata": {
+        "mode": 436,
+        "uid": 1000,
+        "gid": 1000,
+        "mtime_ns": 1795643016212494258,
+        "bytes": 219962517
+      },
+      "gzip_path": "Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab/compressed-logs/continuity_regroup_physical.log.gz",
+      "gzip": {
+        "path": "Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab/compressed-logs/continuity_regroup_physical.log.gz",
+        "bytes": 1390238,
+        "sha256": "dd6069699e5673565692cabe7c630c520fe3fbcacdf382cb97858d53d26d84cc"
+      },
+      "decompressed_bytes": 219962517,
+      "decompressed_sha256": "bd41f2464f4d5b238e6d078e269086fb99a26bd040669249a050ea85711cbb19",
+      "verified_durable": true
+    },
+    {
+      "original": {
+        "path": "Logs/continuity-regroup-physical.xml",
+        "bytes": 24267502,
+        "sha256": "7dd07ec3c2436d295ac9e8bcc6acf0eee9f47e63802b7d3b61de331c50f26af8"
+      },
+      "original_metadata": {
+        "mode": 436,
+        "uid": 1000,
+        "gid": 1000,
+        "mtime_ns": 1795643007837974966,
+        "bytes": 24267502
+      },
+      "gzip_path": "Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab/compressed-logs/continuity-regroup-physical.xml.gz",
+      "gzip": {
+        "path": "Logs/retired-diagnostic-builds/full-story-20261125T204952819191Z-0c8cccab/compressed-logs/continuity-regroup-physical.xml.gz",
+        "bytes": 175458,
+        "sha256": "ead4ff7a0dea33f197c96d09cc02adc4280412c73e501a556f61fd181de911ab"
+      },
+      "decompressed_bytes": 24267502,
+      "decompressed_sha256": "7dd07ec3c2436d295ac9e8bcc6acf0eee9f47e63802b7d3b61de331c50f26af8",
+      "verified_durable": true
+    }
+  ],
+  "scope": "Relocation pointer only. Original hashes/results are unchanged; old raw paths are restored by exact gzip decompression and original metadata. This is no new gameplay/build pass."
+}
