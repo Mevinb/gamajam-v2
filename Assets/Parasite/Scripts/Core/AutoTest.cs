@@ -1806,21 +1806,34 @@ namespace Parasite.Testing
                     requestedPreset = -1;
             }
             bool riverside = district.Equals("riverside", StringComparison.OrdinalIgnoreCase);
-            if ((!riverside && !district.Equals("city", StringComparison.OrdinalIgnoreCase)) || requestedPreset < 0 ||
+            bool island = district.Equals("island", StringComparison.OrdinalIgnoreCase);
+            if ((!riverside && !island && !district.Equals("city", StringComparison.OrdinalIgnoreCase)) || requestedPreset < 0 ||
                 SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
             {
-                Write("ERROR: benchmark requires a graphics device, -benchmarkPreset Low/Medium/High/Ultra (or 0-3), and -benchmarkDistrict city/riverside.");
+                Write("ERROR: benchmark requires a graphics device, -benchmarkPreset Low/Medium/High/Ultra (or 0-3), and -benchmarkDistrict city/riverside/island.");
                 File.WriteAllText(reportPath, Log.ToString());
                 Application.Quit(2);
                 yield break;
             }
             yield return LoadCity();
-            if (riverside)
+            if (riverside || island)
             {
-                // A diagnostic fixture for the later district; this benchmark never writes campaign or graphics preferences.
+                // Diagnostic chapter setup only, never mission proof or a saved campaign/graphics preference.
                 RunState.RecordLakesideOutcome(EndingOutcome.Peace);
                 RunState.Flags.Add(MissionFlags.Escaped);
                 RunState.BeginAfterlake();
+                if (island)
+                {
+                    RunState.Flags.Add(AfterlakeCampaign.Departed);
+                    if (!RunState.BeginIsland())
+                    {
+                        Write("ERROR: island benchmark chapter setup was rejected.");
+                        File.WriteAllText(reportPath, Log.ToString()); Application.Quit(2); yield break;
+                    }
+                    RunState.Flags.Add(IslandCampaign.ArrivalSeen); // Exclude protected travel presentation from performance samples.
+                    RunState.Flags.Add(IslandCampaign.ServiceOpen); // Authorized Maintenance service route; never the blob-only tunnel.
+                    RunState.Flags.Add(IslandCampaign.InnerRefuge); // Populate the real holding roster; delivery/boarding remain incomplete.
+                }
                 SceneManager.LoadScene(GameManager.CityScene);
                 yield return null;
                 float readyDeadline = Time.realtimeSinceStartup + 30f;
@@ -1830,8 +1843,15 @@ namespace Parasite.Testing
             GraphicsPreset.Apply(requestedPreset, save: false);
             GameInput.Simulated = true;
             // A legal staff host lets the tour exercise the live city without manufacturing a blob chase.
-            var tourSpawn = riverside ? AfterlakeCampaign.Spawn : CityLayout.PlayerSpawn;
-            var tourHost = NearestHost(tourSpawn, h => h.CanBePossessed && h.Profession == Profession.Scientist);
+            var tourSpawn = island ? IslandCampaign.Spawn : riverside ? AfterlakeCampaign.Spawn : CityLayout.PlayerSpawn;
+            var tourHost = island ? MissionSpawner.Find("Island jetty engineer") :
+                NearestHost(tourSpawn, h => h.CanBePossessed && h.Profession == Profession.Scientist);
+            if (island && (!CityDirector.Instance || !CityDirector.Instance.Ready || !tourHost || !tourHost.CanBePossessed ||
+                tourHost.Profession != Profession.Maintenance || (tourHost.Permissions & AccessPermission.ServiceTunnel) == 0))
+            {
+                Write("ERROR: island benchmark requires its actual ready district and unoccupied Maintenance/ServiceTunnel jetty engineer.");
+                File.WriteAllText(reportPath, Log.ToString()); Application.Quit(2); yield break;
+            }
             if (tourHost)
             {
                 PM.ForcePossessImmediate(tourHost);
@@ -1846,9 +1866,19 @@ namespace Parasite.Testing
             Write($"GPU: {SystemInfo.graphicsDeviceName} ({SystemInfo.graphicsDeviceType}, {SystemInfo.graphicsMemorySize} MB)  CPU: {SystemInfo.processorType} x{SystemInfo.processorCount}  RAM: {SystemInfo.systemMemorySize} MB");
             Write($"Resolution: {Screen.width}x{Screen.height} fullscreen={Screen.fullScreenMode} vSync={QualitySettings.vSyncCount} quality={QualitySettings.names[QualitySettings.GetQualityLevel()]}");
             var pipeline = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline as UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset;
-            Write($"Preset: {GraphicsPreset.Names[GraphicsPreset.Current]}, render scale {(pipeline ? pipeline.renderScale : 1f):0.00}; touring as {(tourHost ? "scientist" : "free amoeba")}; traffic and NPC AI enabled; startup and screenshot encoding excluded from samples");
-            Write($"District: {(riverside ? "riverside (Peace chapter fixture)" : "city")}; preset override is not saved.");
-            var waypoints = riverside
+            Write($"Preset: {GraphicsPreset.Names[GraphicsPreset.Current]}, render scale {(pipeline ? pipeline.renderScale : 1f):0.00}; touring as {(tourHost ? island ? "maintenance" : "scientist" : "free amoeba")}; traffic and NPC AI enabled; startup and screenshot encoding excluded from samples");
+            Write($"District: {(island ? "island (Peace chapter benchmark setup)" : riverside ? "riverside (Peace chapter fixture)" : "city")}; preset override is not saved.");
+            if (island) Write("Setup only: completed river travel, arrival seen, human service gate open and inner-refuge prerequisite seeded; real holding NPCs active, no deliveries/boarding or mission acceptance claimed.");
+            var waypoints = island
+                ? new[] { tourSpawn,
+                    IslandCampaign.At(-29.5f,.15f,-32), IslandCampaign.At(-22,.15f,-32), // Exterior wall views, south of the low culvert.
+                    IslandCampaign.At(-7,.15f,-21), IslandCampaign.At(-7,.15f,-14.5f), // Actual human service opening.
+                    IslandCampaign.At(-22,.15f,-5), IslandCampaign.At(-20,.15f,0), IslandCampaign.At(-20,.15f,6), IslandCampaign.At(-20,.15f,0),
+                    IslandCampaign.At(14,.15f,-13), IslandCampaign.At(20,.15f,-9), // Holding overview and clear eastern approach.
+                    IslandCampaign.At(17,.15f,5), IslandCampaign.At(27,.15f,10), // Handoff architecture from the south.
+                    IslandCampaign.At(18,.15f,16.3f), IslandCampaign.At(16,.15f,18), IslandCampaign.At(16,.15f,21), // Supply front and clear west/north exit.
+                    IslandCampaign.At(34,.15f,19), IslandCampaign.At(34,.15f,35), IslandCampaign.At(34,.15f,38), IslandCampaign.At(34,.55f,44.5f) }
+                : riverside
                 ? new[] { tourSpawn, AfterlakeCampaign.Receiver + Vector3.back * 3f, AfterlakeCampaign.FloodgatePanel + Vector3.back * 3f,
                     AfterlakeCampaign.Analysis + Vector3.back * 3f, AfterlakeCampaign.Radio + Vector3.back * 3f,
                     AfterlakeCampaign.Ferry + Vector3.back * 2f, tourSpawn }

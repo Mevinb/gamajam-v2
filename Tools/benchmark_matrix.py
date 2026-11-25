@@ -104,7 +104,7 @@ def main():
     parser.add_argument("--graphics-api", choices=["default", "glcore", "vulkan"], default="default")
     parser.add_argument("--popup-window", action="store_true", help="Request a borderless client window to avoid desktop decoration size changes")
     parser.add_argument("--presets", nargs="+", choices=["Low", "Medium", "High", "Ultra"], default=["High", "Ultra"])
-    parser.add_argument("--districts", nargs="+", choices=["city", "riverside"], default=["city", "riverside"])
+    parser.add_argument("--districts", nargs="+", choices=["city", "riverside", "island"], default=["city", "riverside"])
     parser.add_argument("--timeout", type=float, default=900, help="Per-process diagnostic timeout, seconds")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
