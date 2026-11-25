@@ -1,0 +1,346 @@
+{
+  "schema": 1,
+  "status": "PASS CPU FBX/UV/winding/bounds and gate-motion mapping; Unity integration/native comparison pending",
+  "verifier_sha256": "2b4880ec63762a934c60d207338f80eba91b45f02e1b9b1a8788f76f355fb25c",
+  "blender": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "render_calls": 0,
+  "gpu_rendering": false,
+  "fbx_sha256": "2f2ff0ecdcee74a2df952131dd01fafc35b312b1d3ebe12763c85aabb8c26d8c",
+  "source_blend_sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d",
+  "meshes": [
+    {
+      "name": "GateMovingLeaf",
+      "imported_name": "GateMovingLeaf.001",
+      "bounds_min": [
+        -1.4500000476837158,
+        -1.5,
+        -0.13000009953975677
+      ],
+      "bounds_max": [
+        1.4500000476837158,
+        1.5,
+        0.10000011324882507
+      ],
+      "max_bounds_error": 1.1324882506769107e-07,
+      "triangles": 1192,
+      "uv_min_area": 5.393386527430266e-05,
+      "triangle_min_area": 1.6099914928043275e-06,
+      "signed_volume": 1.7848530838502628,
+      "closed_outward_solids": 38,
+      "smallest_solid_volume": 2.1042949423048323e-06,
+      "all_edges_closed_consistently_wound": true,
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "modifiers": 0,
+      "rigid_body": false
+    },
+    {
+      "name": "GateStaticShell",
+      "imported_name": "GateStaticShell.001",
+      "bounds_min": [
+        -8.0,
+        -0.15000012516975403,
+        -0.4000000059604645
+      ],
+      "bounds_max": [
+        8.0,
+        4.349999904632568,
+        0.40000033378601074
+      ],
+      "max_bounds_error": 3.3378601071998304e-07,
+      "triangles": 2616,
+      "uv_min_area": 1.0486350220162421e-05,
+      "triangle_min_area": 3.7497245552860067e-06,
+      "signed_volume": 28.906013525207577,
+      "closed_outward_solids": 66,
+      "smallest_solid_volume": 4.789537354573284e-06,
+      "all_edges_closed_consistently_wound": true,
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "modifiers": 0,
+      "rigid_body": false
+    }
+  ],
+  "triangles": 3808,
+  "materials": 1,
+  "doorway": {
+    "static_clear_rays": 323,
+    "open_clear_rays": 323,
+    "closed_opaque_rays": 323,
+    "x": [
+      -1.199,
+      1.199
+    ],
+    "root_local_y": [
+      0.01,
+      2.99
+    ],
+    "original_open_offset": [
+      3.05,
+      0,
+      0
+    ]
+  },
+  "motion": {
+    "parent_scale": [
+      2.9,
+      3,
+      0.2
+    ],
+    "visual_child_scale": [
+      0.3448275862068966,
+      0.3333333333333333,
+      5.0
+    ],
+    "samples": [
+      {
+        "t": 0.0,
+        "smoothstep": 0.0,
+        "panel_center": [
+          0.0,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.05,
+        "smoothstep": 0.007250000000000001,
+        "panel_center": [
+          0.022112499922513962,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.1,
+        "smoothstep": 0.028000000000000004,
+        "panel_center": [
+          0.08540000021457672,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.15,
+        "smoothstep": 0.06075,
+        "panel_center": [
+          0.1852875053882599,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.2,
+        "smoothstep": 0.10400000000000002,
+        "panel_center": [
+          0.3172000050544739,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 1.1920928955078125e-07
+      },
+      {
+        "t": 0.25,
+        "smoothstep": 0.15625,
+        "panel_center": [
+          0.4765625,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.3,
+        "smoothstep": 0.216,
+        "panel_center": [
+          0.6588000059127808,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.35,
+        "smoothstep": 0.28174999999999994,
+        "panel_center": [
+          0.8593375086784363,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.4,
+        "smoothstep": 0.3520000000000001,
+        "panel_center": [
+          1.0736000537872314,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.45,
+        "smoothstep": 0.4252500000000001,
+        "panel_center": [
+          1.297012448310852,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.5,
+        "smoothstep": 0.5,
+        "panel_center": [
+          1.524999976158142,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.55,
+        "smoothstep": 0.5747500000000001,
+        "panel_center": [
+          1.7529875040054321,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.6,
+        "smoothstep": 0.648,
+        "panel_center": [
+          1.9764000177383423,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.65,
+        "smoothstep": 0.71825,
+        "panel_center": [
+          2.190662384033203,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.7,
+        "smoothstep": 0.7839999999999999,
+        "panel_center": [
+          2.391200065612793,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.75,
+        "smoothstep": 0.84375,
+        "panel_center": [
+          2.573437452316284,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.8,
+        "smoothstep": 0.8960000000000001,
+        "panel_center": [
+          2.732800006866455,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.85,
+        "smoothstep": 0.9392499999999999,
+        "panel_center": [
+          2.8647124767303467,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.9,
+        "smoothstep": 0.972,
+        "panel_center": [
+          2.964600086212158,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 0.95,
+        "smoothstep": 0.99275,
+        "panel_center": [
+          3.0278875827789307,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      },
+      {
+        "t": 1.0,
+        "smoothstep": 1.0,
+        "panel_center": [
+          3.049999952316284,
+          1.5,
+          0.0
+        ],
+        "max_transform_error": 0
+      }
+    ],
+    "max_transform_error": 1.1920928955078125e-07,
+    "animation_or_controller_added": false
+  },
+  "textures": [
+    {
+      "path": "Textures/CityGatePilot_A.png",
+      "width": 2048,
+      "height": 2048,
+      "png_crc_chunks": 464,
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006",
+      "bytes": 3758966
+    },
+    {
+      "path": "Textures/CityGatePilot_N.png",
+      "width": 2048,
+      "height": 2048,
+      "png_crc_chunks": 386,
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64",
+      "bytes": 3124980
+    },
+    {
+      "path": "Textures/CityGatePilot_M.png",
+      "width": 2048,
+      "height": 2048,
+      "png_crc_chunks": 209,
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb",
+      "bytes": 1666303
+    }
+  ],
+  "original_source_hashes_unchanged": true,
+  "new_colliders": 0,
+  "limits": [
+    "FBX round-trip uses the established project export boundary; actual Unity import remains unrun.",
+    "No scene generation, collider, LOS or NavMesh mutation occurred.",
+    "No native gameplay visual, performance or subjective improvement claim."
+  ]
+}

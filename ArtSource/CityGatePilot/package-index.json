@@ -1,0 +1,60 @@
+{
+  "status": "AUTHORING_CANDIDATE_ONLY_NOT_IMPORTED",
+  "files": {
+    "production-manifest.json": {
+      "bytes": 3809,
+      "sha256": "3a0de284cc3716f0a4c7297fb9b16a087f6c80e6f3bfd7f5df87e593d558c7e6"
+    },
+    "export-verification.json": {
+      "bytes": 7898,
+      "sha256": "5814d6057ca88a42194159315e8d6eb81a4916a756069289a2e5dec097de2441"
+    },
+    "CREDITS.md": {
+      "bytes": 1252,
+      "sha256": "1c26fb0b44b5271b72c6cb6ca21724644628e61c5364db276153cdaa88520174"
+    },
+    "physical-contract.json": {
+      "bytes": 4183,
+      "sha256": "0f2273c5e5d5100eeeb73a05360d037b31320e164f36ee8eda280ed98bc6c5fb"
+    },
+    "README.md": {
+      "bytes": 6252,
+      "sha256": "c79fa96b63207086c97b6519db9f972c00b9698d63564c5923b9af26b0f1d074"
+    },
+    "CityGatePilot.blend": {
+      "bytes": 8687046,
+      "sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d"
+    },
+    "piece-map.json": {
+      "bytes": 30246,
+      "sha256": "548cce56eeb937d876051201c1000f5cc98b15a3527fda782022cd35bd794ef4"
+    },
+    "Exports/CityGatePilot.fbx": {
+      "bytes": 91292,
+      "sha256": "2f2ff0ecdcee74a2df952131dd01fafc35b312b1d3ebe12763c85aabb8c26d8c"
+    },
+    "Textures/CityGatePilot_M.png": {
+      "bytes": 1666303,
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb"
+    },
+    "Textures/CityGatePilot_A.png": {
+      "bytes": 3758966,
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006"
+    },
+    "Textures/CityGatePilot_N.png": {
+      "bytes": 3124980,
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64"
+    },
+    "Review/closed-authoring-cpu.png": {
+      "bytes": 218342,
+      "sha256": "3cc513b8f56e1075fd074df06f664fd3e31d1e1a77c25e50bbe1f48a86036bbd"
+    },
+    "Review/open-authoring-cpu.png": {
+      "bytes": 209246,
+      "sha256": "b73d51629940880bd75e32119ee652778316839f3b3d19f2c59ccfe28260f436"
+    }
+  },
+  "total_bytes": 17809815,
+  "runtime_integration": false,
+  "native_visual_comparison": false
+}

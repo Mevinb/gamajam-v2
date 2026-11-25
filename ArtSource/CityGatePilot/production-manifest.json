@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "status": "AUTHORED ONLY; Unity import/integration and native comparison pending",
+  "generator_sha256": "1d860de5ca5426a80c9fc863015a3f6815d07daab3242ba3c6c736dc195000a2",
+  "blender": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "gpu_rendering": false,
+  "cpu_previews": [
+    "Review/closed-authoring-cpu.png",
+    "Review/open-authoring-cpu.png"
+  ],
+  "seed": 731405,
+  "atlas": {
+    "resolution": [
+      2048,
+      2048
+    ],
+    "tiles": [
+      {
+        "tile": 0,
+        "material": "cast concrete",
+        "metallic": [
+          0.0,
+          0.0
+        ],
+        "roughness": [
+          0.6303861834532922,
+          0.8346553301370873
+        ]
+      },
+      {
+        "tile": 1,
+        "material": "brushed dark steel",
+        "metallic": [
+          0.88,
+          0.88
+        ],
+        "roughness": [
+          0.32213725175179114,
+          0.474969972962316
+        ]
+      },
+      {
+        "tile": 2,
+        "material": "powder-coated yellow steel",
+        "metallic": [
+          0.0,
+          0.8
+        ],
+        "roughness": [
+          0.5950767293594816,
+          0.6649225250246311
+        ]
+      },
+      {
+        "tile": 3,
+        "material": "matte polymer / scanner glass",
+        "metallic": [
+          0.0,
+          0.0
+        ],
+        "roughness": [
+          0.14004490838653375,
+          0.7399588181530892
+        ]
+      }
+    ],
+    "tile_effective_pixels": 992,
+    "padding": 16,
+    "channels": {
+      "A": "opaque sRGB albedo",
+      "N": "linear tangent-space normal",
+      "M": "linear RGB metallic / alpha smoothness"
+    },
+    "normal_unit_max_error": 1.1920928955078125e-07,
+    "original_procedural_authorship": true
+  },
+  "meshes": [
+    {
+      "name": "GateStaticShell",
+      "vertices": 1440,
+      "triangles": 2616,
+      "uv_min_area": 1.0486350220162421e-05,
+      "bounds_min": [
+        -8.0,
+        -0.15000009536743164,
+        -0.4000000059604645
+      ],
+      "bounds_max": [
+        8.0,
+        4.349999904632568,
+        0.4000000059604645
+      ]
+    },
+    {
+      "name": "GateMovingLeaf",
+      "vertices": 672,
+      "triangles": 1192,
+      "uv_min_area": 5.393386527430266e-05,
+      "bounds_min": [
+        -1.4500000476837158,
+        -1.5,
+        -0.1300000101327896
+      ],
+      "bounds_max": [
+        1.4500000476837158,
+        1.5,
+        0.10000000149011612
+      ]
+    }
+  ],
+  "triangles": 3808,
+  "materials": 1,
+  "new_colliders": 0,
+  "pieces": 104,
+  "physical_contract": "physical-contract.json",
+  "files": {
+    "CityGatePilot.blend": {
+      "bytes": 8687046,
+      "sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d"
+    },
+    "Exports/CityGatePilot.fbx": {
+      "bytes": 91292,
+      "sha256": "2f2ff0ecdcee74a2df952131dd01fafc35b312b1d3ebe12763c85aabb8c26d8c"
+    },
+    "Review/closed-authoring-cpu.png": {
+      "bytes": 218342,
+      "sha256": "3cc513b8f56e1075fd074df06f664fd3e31d1e1a77c25e50bbe1f48a86036bbd"
+    },
+    "Review/open-authoring-cpu.png": {
+      "bytes": 209246,
+      "sha256": "b73d51629940880bd75e32119ee652778316839f3b3d19f2c59ccfe28260f436"
+    },
+    "Textures/CityGatePilot_A.png": {
+      "bytes": 3758966,
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006"
+    },
+    "Textures/CityGatePilot_M.png": {
+      "bytes": 1666303,
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb"
+    },
+    "Textures/CityGatePilot_N.png": {
+      "bytes": 3124980,
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64"
+    },
+    "physical-contract.json": {
+      "bytes": 4183,
+      "sha256": "0f2273c5e5d5100eeeb73a05360d037b31320e164f36ee8eda280ed98bc6c5fb"
+    }
+  },
+  "total_bytes": 17760358,
+  "elapsed_seconds": 8.787
+}
