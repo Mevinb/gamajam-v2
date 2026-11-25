@@ -6,6 +6,21 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Current live job: Departure hit-identity diagnostic**, root21051 via WORK`northline_departure_los_20261126a`, only
+  DominionPhysicalChapter,600s/Null/nice15/idle/two workers. WORKRailAcceptance SHA
+  `6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca`; AutoTest
+  `55b3b62e355e6c6044622601279bbff98ef1a31b3af7482a368a1c4479d610e5`. ActualAPI175/33/175+3classes pass root94329/
+  chunk5460fd. Hold WORKC# and other Editors until actual terminal. XML `Logs/northline-departure-los-20261126a.xml`.
+  The one-shot log distinguishes hit.transform/Rigidbody versus actual child collider ownership before unchangedE/assertion.
+- Previous precise Manifest run93109 is terminal2/b44451, oneFAIL102.799s. ActualManifest allowed/LOStrue after.05arrival;
+  crossing/freight/signal and both free boarders pass, then Departure control is selected but denied "physically obstructed."
+  A target-owned child collider reporting its parent coach Rigidbody is a source-based candidate, not yet actual ray proof.
+  Unity6000.3 documents RaycastHit.transform as rigidbody-or-collider; do not change LOS or coach geometry without receipt.
+- WORK02setup proposal is now applied (55babove): original request first/max17same-target deterministic candidates,
+  real full-capsule/floor/range/productionLOS precondition, actual placed-pose recheck, original.8aim/E/WASD retained.
+  Root25731/native0/chunkec8a54 sequence01,02 bothPASS, but sample0 accepted, so no fallback/native-fix proof.
+  Hunter is staging an actual opaque-obstruction fixture to exercise rejection/fallback, not applying during live21051.
+  Exact old0.6.1extracted basic4/5 remains a real negative; artifacts/base source unchanged.
 - **Actual Manifest ray confirms correct grille rejection:** root96256/native2/chunk174ade. Scientist eye→seal distance
   9.222m is within11m, target/role/docked body are correct, but the first actual hit is the solid freight grille bar at
   world(1472.960,1.569484,-215.4759),3.960871m away. [Ray proof](verification/northline-manifest-ray-red-20261126.json).
