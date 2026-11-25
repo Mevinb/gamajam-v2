@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "status": "RETURNED_SURVIVOR_AGREEMENT_AND_DRIVER_WAIT_DEADLOCK_OBSERVED",
+  "recordedUtc": "2026-11-25T21:30:29.039445+00:00",
+  "scope": "Diagnostics-only source change; no navigation, exposure, agreement, movement threshold or timeout changed. Actual Null Editor reproduction of case90; no native-player fix or completed campaign claim.",
+  "terminal": {
+    "rootSession": 60714,
+    "chunk": "52a1d3",
+    "nativeEditorExit": 2,
+    "xmlResult": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 21:23:18Z",
+      "end-time": "2026-11-25 21:28:29Z",
+      "duration": "311.1025417"
+    }
+  },
+  "source": {
+    "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+    "bytes": 95564,
+    "sha256": "217ad3c16f5dc17e75f4ce63f4fabf8e87f102243258dc22a78c471ed5c7bb39"
+  },
+  "log": {
+    "path": "Logs/continuity_morgan_diagnostics.log",
+    "bytes": 108623,
+    "sha256": "91dfcf1fd9a151e7c469adb9f814e8d33fc14dc579e928de2f21b290ea4cd01b"
+  },
+  "xml": {
+    "path": "Logs/continuity-morgan-diagnostics.xml",
+    "bytes": 28319,
+    "sha256": "9b1e35693008e2ddc31d213d63a2d478ef93d67c4a4e8905ad1c9414c66799ed"
+  },
+  "observed": {
+    "person": "riley",
+    "phase": "lead riley via cover 2",
+    "originalBudgetSeconds": 20,
+    "remainingTargetDistanceMetres": 3.207,
+    "leaderFollowerDistanceMetres": 3.21,
+    "waitForFollower": true,
+    "returning": true,
+    "leaderAgreement": "none",
+    "savedCover": 1,
+    "brainNotice": 0,
+    "brainFlee": 0,
+    "navStopped": true,
+    "navPathStatus": "PathComplete",
+    "navRemainingDistanceMetres": 0.997,
+    "navDestination": [
+      620.5,
+      0.2,
+      -220
+    ],
+    "actualNavPosition": [
+      620.3,
+      0.2,
+      -220.977
+    ]
+  },
+  "conclusion": "The follower is intentionally parked near its saved cover after its agreement was canceled. The driver waits for catch-up without responding to the public Regroup prompt/fresh-E requirement. This snapshot contradicts a simple blocked or incomplete NavMesh path explanation.",
+  "limits": [
+    "The exact preceding cancellation trigger was not event-logged. Patrol exposure is consistent with source and the current live-patrol setup; canceled agreement itself is directly observed.",
+    "Case90 failed; no successful continuous campaign is established.",
+    "A finite physical regroup response is staged separately and remains unexecuted.",
+    "The published0435 player, private3894 player and user51569 preview remain separate artifacts."
+  ]
+}

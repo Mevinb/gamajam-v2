@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Parasite.Characters;
@@ -1006,6 +1007,7 @@ namespace Parasite.Testing
                 text.Append(" follower={id=").Append(follower.StableId).Append(" at=").Append(follower.transform.position.ToString("F3"))
                     .Append(" distance=").Append(FlatDistance(follower.transform.position, agent.Position).ToString("F3")).Append(" delivered=").Append(follower.Delivered).Append(" boarded=").Append(follower.Boarded)
                     .Append(" state=").Append(follower.Host.State).Append(" nav=").Append(follower.Host.Nav.enabled).Append(" onMesh=").Append(follower.Host.Nav.enabled && follower.Host.Nav.isOnNavMesh).Append('}');
+            if (follower) AppendFollowerDiagnostics(text, follower);
             text.Append(" roster=").Append(string.Join("; ", IslandTravelers.Instance.Members.Select(p => p.StableId + ":" + p.transform.position.ToString("F3") + " delivered=" + p.Delivered + " boarded=" + p.Boarded)));
             if (collisions && controller)
             {
@@ -1027,6 +1029,62 @@ namespace Parasite.Testing
                 text.Append(" corners=[").Append(Corners(corners)).Append(']');
             }
             return text.ToString();
+        }
+        // Diagnostic snapshots only: do not restart agreements, move bodies, clear exposure or change navigation.
+        static object DiagnosticField(object owner, string name) => owner?.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(owner);
+        static void AppendFollowerDiagnostics(StringBuilder text, IslandTraveler follower)
+        {
+            var body = follower.Host;
+            var leader = DiagnosticField(follower, "leader") as AmoebaAgent;
+            var leaderHost = DiagnosticField(follower, "leaderHost") as HostCharacter;
+            int slot = Array.IndexOf(IslandRoster.Ids, follower.StableId);
+            int savedCover = IslandRoster.SavedCover(follower.StableId);
+            text.Append(" agreement={returning=").Append(DiagnosticField(follower, "returning"))
+                .Append(" exposure=").Append(DiagnosticField(follower, "exposure")).Append(" nextScan=").Append(DiagnosticField(follower, "scan"))
+                .Append(" privateCover=").Append(DiagnosticField(follower, "cover")).Append(" savedCover=").Append(savedCover)
+                .Append(" leader=").Append(leader == null ? "none" : leader.Id.ToString())
+                .Append(" leaderRegistered=").Append(leader != null && PM && PM.Agents.Contains(leader))
+                .Append(" leaderTransit=").Append(leader != null && leader.InTransit).Append(" leaderCapturedPending=").Append(leader != null && leader.CapturedPendingEject)
+                .Append(" leaderHost=").Append(leaderHost ? leaderHost.DisplayName + "#" + leaderHost.GetInstanceID() : "none")
+                .Append(" reciprocal=").Append(leader != null && leaderHost && leader.Host == leaderHost && leaderHost.Possessor == leader)
+                .Append(" possessionExpected=").Append(DiagnosticField(follower, "leaderPossessionGeneration"))
+                .Append(" captureExpected=").Append(DiagnosticField(follower, "leaderCaptureGeneration"));
+            if (leaderHost)
+            {
+                var follow = leaderHost.transform.position - leaderHost.transform.forward * 1.5f + leaderHost.transform.right * ((slot - 1) * .8f);
+                text.Append(" leaderState=").Append(leaderHost.State).Append(" possessionActual=").Append(leaderHost.PossessionGeneration)
+                    .Append(" captureActual=").Append(leaderHost.CaptureGeneration).Append(" leaderForward=").Append(leaderHost.transform.forward.ToString("F3"))
+                    .Append(" leaderRight=").Append(leaderHost.transform.right.ToString("F3")).Append(" desiredFollow=").Append(follow.ToString("F3"))
+                    .Append(" followError=").Append(Vector3.Distance(follower.transform.position, follow).ToString("F3"));
+            }
+            if (slot >= 0)
+                text.Append(" holding=").Append(IslandRoster.Holding[slot].ToString("F3"))
+                    .Append(" holdingError=").Append(Vector3.Distance(follower.transform.position, IslandRoster.Holding[slot]).ToString("F3"));
+            text.Append(" destination=").Append(follower.Destination.ToString("F3")).Append('}');
+            if (!body) { text.Append(" followerBodyMissing=True"); return; }
+            text.Append(" followerBrain={type=").Append(body.Brain ? body.Brain.GetType().Name : "none")
+                .Append(" noticeT=").Append(body.Brain ? typeof(HostBrain).GetField("noticeT", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(body.Brain) : null)
+                .Append(" fleeT=").Append(body.Brain ? typeof(HostBrain).GetField("fleeT", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(body.Brain) : null)
+                .Append(" reportsViolations=").Append(body.ReportsPlayerViolations).Append('}');
+            var nav = body.Nav;
+            if (nav && nav.enabled && nav.isOnNavMesh)
+                text.Append(" followerNav={destination=").Append(nav.destination.ToString("F3")).Append(" remaining=").Append(nav.remainingDistance.ToString("F3"))
+                    .Append(" stopped=").Append(nav.isStopped).Append(" pending=").Append(nav.pathPending).Append(" hasPath=").Append(nav.hasPath)
+                    .Append(" status=").Append(nav.pathStatus).Append(" stale=").Append(nav.isPathStale).Append(" velocity=").Append(nav.velocity.ToString("F3"))
+                    .Append(" desiredVelocity=").Append(nav.desiredVelocity.ToString("F3")).Append(" speed=").Append(nav.speed)
+                    .Append(" radius=").Append(nav.radius).Append(" stoppingDistance=").Append(nav.stoppingDistance)
+                    .Append(" avoidance=").Append(nav.obstacleAvoidanceType).Append(" priority=").Append(nav.avoidancePriority)
+                    .Append(" corners=[").Append(Corners(nav.path.corners)).Append("]}");
+            text.Append(" followerNearbyBodies=[").Append(string.Join("; ", HostCharacter.All.Where(h => h && h != body && Vector3.Distance(h.transform.position, body.transform.position) < 3.5f)
+                .OrderBy(h => Vector3.Distance(h.transform.position, body.transform.position)).Take(12).Select(h => h.DisplayName + " at=" + h.transform.position.ToString("F3")
+                    + " state=" + h.State + " hitbox=" + (h.HitBox && h.HitBox.enabled) + " controller=" + (h.Controller && h.Controller.enabled)
+                    + " nav=" + (h.Nav && h.Nav.enabled) + " navRadius=" + (h.Nav ? h.Nav.radius : 0)))).Append(']');
+            text.Append(" guardVisionSnapshot=[").Append(string.Join("; ", HostCharacter.All.Where(h => h && h.Profession == Profession.Guard && h.IsAwakeNpc
+                    && Vector3.Distance(h.transform.position, body.transform.position) <= 20).OrderBy(h => Vector3.Distance(h.transform.position, body.transform.position))
+                .Select(h => h.DisplayName + " at=" + h.transform.position.ToString("F3") + " forward=" + h.transform.forward.ToString("F3")
+                    + " distance=" + Vector3.Distance(h.transform.position, body.transform.position).ToString("F3") + " guardState=" + (h.Brain is GuardAI ai ? ai.GState.ToString() : "notGuardAI")
+                    + " exposureEligible=" + !(h.Brain is GuardAI stunned && stunned.GState == GuardState.Stunned)
+                    + " canSee=" + (SuspicionSystem.Instance && SuspicionSystem.Instance.CanSee(h, body.ChestPosition, body.transform, 20))))).Append(']');
         }
         static string DescribeCollider(Collider collider)
         {

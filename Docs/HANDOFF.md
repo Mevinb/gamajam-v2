@@ -6,6 +6,13 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- The diagnostics-only Null Editor case90 reproduction is terminal **FAIL**, native exit2, root60714/chunk52a1d3,
+  one failed NUnit case in311.103seconds. It now directly records Riley `returning=True`, cleared leader agreement,
+  savedCover1, zero brain notice/flee timers and an intentionally stopped complete NavMesh path within.997m of saved cover.
+  The walker waits at3.210m instead of responding to the public Regroup/fresh-E requirement. Exact preceding cancellation
+  cause is not event-logged; do not label it a navigation defect or a proven patrol event. Detailed snapshot code is applied,
+  API-compiles162/31/162, and changed no gameplay rule/budget. A bounded physical-regroup driver correction is staged by
+  `hunter_target_diagnosis`, not yet applied/tested. [Observed state](verification/island-regroup-diagnostic-20261126.json).
 - **First continuous23-mission attempt is terminal, without a pass:** rebuilt3894 native case90(MainGatePeace)
   fails at M19 while leading Morgan through cover1; case91(ServiceTunnelDominion) is interrupted before a final case row.
   Supervisor91136/player91215 are both terminal (agent exec57403/chunk593632, supervisor1). An external cancellation signal
