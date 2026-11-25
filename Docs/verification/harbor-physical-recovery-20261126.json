@@ -1,0 +1,409 @@
+{
+  "schema": 1,
+  "status": "TWO_FOCUSED_NULL_EDITOR_PHYSICAL_RECOVERY_CASES_PASS",
+  "recordedUtc": "2026-11-25T20:11:41.885574+00:00",
+  "finalRun": {
+    "id": "final-combined-green",
+    "xml": {
+      "path": "Logs/harbor-physical-recovery-final.xml",
+      "bytes": 21259,
+      "sha256": "9ada95f0826d6e927d0ce468edb02fb2f493b7df40bc46f1bf48234b25784ff6"
+    },
+    "log": {
+      "path": "Logs/harbor_physical_recovery_final.log",
+      "bytes": 266423,
+      "sha256": "2bc633a24383214de6fd65a0d2f5c53c2d9fd4962885522a9ef5e19efab3da51"
+    },
+    "execSession": 92343,
+    "terminalChunk": "f38e71",
+    "nativeEditorExitCode": 0,
+    "acceptanceSha256": "d480cf467f64c7dca03eca4563e6017d89b5bea827b7dc5f8bb00c3f11518d16",
+    "result": "Passed",
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 209.3580707,
+    "startedUtc": "2026-11-25 20:06:19Z",
+    "endedUtc": "2026-11-25 20:09:49Z",
+    "cases": [
+      {
+        "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualBlockedSpurCannotDeliverUntilObstacleIsRemoved",
+        "result": "Passed",
+        "durationSeconds": 74.364055,
+        "failure": null
+      },
+      {
+        "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualInactiveFreeContainmentCancelsRunningLinkAndNewPairNeedsE",
+        "result": "Passed",
+        "durationSeconds": 134.941925,
+        "failure": null
+      }
+    ]
+  },
+  "earlierRuns": [
+    {
+      "id": "original-combined",
+      "xml": {
+        "path": "Logs/harbor-physical-recovery.xml",
+        "bytes": 6518,
+        "sha256": "6cdea9d9cd7e338349c5c2aed6386b4d3d7359645a33cb31a71d181bceb60c0f"
+      },
+      "log": {
+        "path": "Logs/harbor_physical_recovery.log",
+        "bytes": 76455,
+        "sha256": "e186d766ed29de00baf7f38445c3914c5fada0d6294be2b296afea94f2d178f1"
+      },
+      "execSession": 72425,
+      "terminalChunk": "7679e8",
+      "nativeEditorExitCode": 2,
+      "acceptanceSha256": "19ed7c20a8a1630391d98a78251c1ce076e6bcee7c449b91b3079eb140fb1b99",
+      "result": "Failed(Child)",
+      "passed": 1,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 174.5672405,
+      "startedUtc": "2026-11-25 19:43:18Z",
+      "endedUtc": "2026-11-25 19:46:13Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualBlockedSpurCannotDeliverUntilObstacleIsRemoved",
+          "result": "Passed",
+          "durationSeconds": 75.246511,
+          "failure": null
+        },
+        {
+          "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualInactiveFreeContainmentCancelsRunningLinkAndNewPairNeedsE",
+          "result": "Failed",
+          "durationSeconds": 99.267284,
+          "failure": "System.InvalidOperationException : The replacement physically walks back to the empty pad."
+        }
+      ]
+    },
+    {
+      "id": "diagnostic-red",
+      "xml": {
+        "path": "Logs/harbor-containment-diagnostic.xml",
+        "bytes": 11824,
+        "sha256": "50f7d7302aa7f00a5c7f35543101efdeec8d562a6f7a4b0f443bf8f75d727bfc"
+      },
+      "log": {
+        "path": "Logs/harbor_containment_diagnostic.log",
+        "bytes": 164150,
+        "sha256": "f02951140bad68c12e420966b4aed47ccecfc9d651f8c2ab3542a45952445c40"
+      },
+      "execSession": 67935,
+      "terminalChunk": "c9b9ab",
+      "nativeEditorExitCode": 2,
+      "acceptanceSha256": "2ee7808a0278567c17986e45150c0a52863b44d2cb1fce49913bada2cc182e05",
+      "result": "Failed(Child)",
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 100.702494,
+      "startedUtc": "2026-11-25 19:49:04Z",
+      "endedUtc": "2026-11-25 19:50:44Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualInactiveFreeContainmentCancelsRunningLinkAndNewPairNeedsE",
+          "result": "Failed",
+          "durationSeconds": 100.647795,
+          "failure": "System.NullReferenceException : Object reference not set to an instance of an object."
+        }
+      ]
+    },
+    {
+      "id": "static-ne-escape-red",
+      "xml": {
+        "path": "Logs/harbor-containment-physical-escape.xml",
+        "bytes": 7607,
+        "sha256": "483cad917461ca4935f23224170a36c41ba7c4aed89773adf5a32a620f4d3716"
+      },
+      "log": {
+        "path": "Logs/harbor_containment_physical_escape.log",
+        "bytes": 90964,
+        "sha256": "fd08061709c6a8f27897efed28858e5918a8b9017933a36d323d480000234fd9"
+      },
+      "execSession": 98453,
+      "terminalChunk": "1f8d3a",
+      "nativeEditorExitCode": 2,
+      "acceptanceSha256": "a2526f9f7b6887ca9091ae965dc696eaddec14eb6d66f93d4cb4c4ef161cc07c",
+      "result": "Failed(Child)",
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "durationSeconds": 103.6040398,
+      "startedUtc": "2026-11-25 19:56:52Z",
+      "endedUtc": "2026-11-25 19:58:36Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualInactiveFreeContainmentCancelsRunningLinkAndNewPairNeedsE",
+          "result": "Failed",
+          "durationSeconds": 103.55305,
+          "failure": "System.InvalidOperationException : A physical relay leg must keep its exact registered active agent/body and expected count; a guard containment cannot silently transfer this input to the survivor."
+        }
+      ]
+    },
+    {
+      "id": "continuous-escape-focused-green",
+      "xml": {
+        "path": "Logs/harbor-containment-continuous-escape.xml",
+        "bytes": 19920,
+        "sha256": "b91918b3b33e8586af4ec770e534b561c5330f3a0a9d54552b96a94c88d02792"
+      },
+      "log": {
+        "path": "Logs/harbor_containment_continuous_escape.log",
+        "bytes": 257477,
+        "sha256": "6adcf339fbe3896580200d551126d9553f340f463f652d4add39d69e834e3432"
+      },
+      "execSession": 98969,
+      "terminalChunk": "aa528c",
+      "nativeEditorExitCode": 0,
+      "acceptanceSha256": "d480cf467f64c7dca03eca4563e6017d89b5bea827b7dc5f8bb00c3f11518d16",
+      "result": "Passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 136.8007473,
+      "startedUtc": "2026-11-25 20:01:49Z",
+      "endedUtc": "2026-11-25 20:04:06Z",
+      "cases": [
+        {
+          "name": "Parasite.Tests.HarborPhysicalRecoveryTests.ActualInactiveFreeContainmentCancelsRunningLinkAndNewPairNeedsE",
+          "result": "Passed",
+          "durationSeconds": 136.751519,
+          "failure": null
+        }
+      ]
+    }
+  ],
+  "actualBackend": "Null",
+  "command": [
+    "env",
+    "XDG_CONFIG_HOME=/home/mevlec/Data/Parasite/Logs/harbor-editor-user/config",
+    "XDG_CACHE_HOME=/home/mevlec/Data/Parasite/Logs/harbor-physical-gap-stage/editor-cache",
+    "Tools/unity.sh",
+    "harbor_physical_recovery_final",
+    "-nographics",
+    "-runTests",
+    "-testPlatform",
+    "PlayMode",
+    "-testFilter",
+    "Parasite.Tests.HarborPhysicalRecoveryTests",
+    "-testResults",
+    "Logs/harbor-physical-recovery-final.xml"
+  ],
+  "compile": {
+    "runtime": 162,
+    "editor": 31,
+    "linuxMono": 162,
+    "exitCode": 0,
+    "lastCompileToolReceipt": "a8e557"
+  },
+  "sourceFiles": [
+    {
+      "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+      "bytes": 67853,
+      "sha256": "d480cf467f64c7dca03eca4563e6017d89b5bea827b7dc5f8bb00c3f11518d16"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs",
+      "bytes": 1036,
+      "sha256": "628b00814a41ddc8f07518a4fee4efd2e3a6fdd8a0b2d496d7676c81e8dbeab7"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs.meta",
+      "bytes": 60,
+      "sha256": "99e123befbd7f4b2365e9b189ddc26628f0e67b3d73bb75773a6b6efa5597a55"
+    }
+  ],
+  "sourceDeltaAgainstReleasedBuild": [
+    {
+      "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+      "before": {
+        "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+        "bytes": 46524,
+        "sha256": "cf260aab713bfb85aee48d641bb7c30e9e50255a3182d4ab89cbfaf7ced727fc"
+      },
+      "after": {
+        "path": "Assets/Parasite/Scripts/Core/HarborAcceptance.cs",
+        "bytes": 67853,
+        "sha256": "d480cf467f64c7dca03eca4563e6017d89b5bea827b7dc5f8bb00c3f11518d16"
+      }
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs",
+      "before": null,
+      "after": {
+        "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs",
+        "bytes": 1036,
+        "sha256": "628b00814a41ddc8f07518a4fee4efd2e3a6fdd8a0b2d496d7676c81e8dbeab7"
+      }
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs.meta",
+      "before": null,
+      "after": {
+        "path": "Assets/Parasite/Tests/PlayMode/HarborPhysicalRecoveryTests.cs.meta",
+        "bytes": 60,
+        "sha256": "99e123befbd7f4b2365e9b189ddc26628f0e67b3d73bb75773a6b6efa5597a55"
+      }
+    }
+  ],
+  "completeSourceSnapshot": {
+    "path": "Logs/harbor-physical-gap-stage/current-source-snapshot.json",
+    "bytes": 609861,
+    "sha256": "9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763"
+  },
+  "artifactBoundary": {
+    "nativeCandidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
+    "sourceCommitOfCandidate": "aa9ec701fe46af2dfec23e1ad7508f0f5b38dbd4",
+    "candidateRuntime": {
+      "path": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "bytes": 1101824,
+      "sha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b"
+    },
+    "candidateBuildInfo": {
+      "path": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/BUILD_INFO.json",
+      "bytes": 1278,
+      "sha256": "1009a8afed2434112b5ac23f5acc02b393d4b8a30f06605f354c06bfdeb62117"
+    },
+    "candidateCompleteTreeSha256": "643e3db8397fca464e7f1af664bfd15e395f763721e4c7bed02a7cb1b063128c",
+    "candidateMatchesPreviousNativeTerminalTree": true,
+    "retainedPreviewCompleteTreeSha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "retainedPreviewMatchesPreviousNativeTerminalTree": true,
+    "userPreviewCompleteTreeSha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+    "userPreviewMatchesPreviousNativeTerminalTree": true,
+    "userProcess": {
+      "pid": 51569,
+      "uid": 1000,
+      "start_ticks": 683333,
+      "state": "S",
+      "exe": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731/Parasite.x86_64",
+      "cwd": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731",
+      "argv": [
+        "./Parasite.x86_64",
+        "-force-vulkan",
+        "-screen-fullscreen",
+        "0",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "900",
+        "-logFile",
+        "/home/mevlec/Data/Parasite/Logs/user-playtest-full-story-20261125T173043238618Z-0f595731/player.log"
+      ],
+      "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f"
+    },
+    "releaseArchive": {
+      "path": "Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz",
+      "bytes": 615809169,
+      "sha256": "4a5252f915eebdad78aef2584ffe119581bb50258b8c0a517d880a9063e07b31"
+    },
+    "releaseArchiveMatchesExistingPackageProof": true
+  },
+  "finalBoundaryReceipt": {
+    "path": "Logs/harbor-physical-gap-stage/final-boundary-receipt.json",
+    "bytes": 3615,
+    "sha256": "6519dff6eb5f428aac54050a0e36636b04829541e5e1f53774f35cb188fdf679"
+  },
+  "blockedSpur": {
+    "actualObstacleWorldCenter": [
+      1122,
+      1.05,
+      -195
+    ],
+    "obstacleBoxSize": [
+      0.4,
+      2,
+      3
+    ],
+    "observedStoppedRigidbody": [
+      1121.163,
+      0.55,
+      -195
+    ],
+    "stableFixedSeconds": 0.260002,
+    "blockedObservationScaledSeconds": 8,
+    "assertions": "Physical drift below1mm, no actual box penetration, no delivery/manifest while blocked; removing only the owned obstacle permits the same body and displayed pose to arrive at A17 bay. A32 remains unscanned and the cargo mission does not advance.",
+    "caseTimeoutMilliseconds": 240000
+  },
+  "inactiveFreeContainment": {
+    "initialEvent": "The fixture calls the real PM.ContainBlob on the inactive FREE registered agent during positive real-E handshake progress. Actual object removal/destruction, surviving active-agent ownership and cancellation are required. This is a controlled guard callback, not an initial guard-vision/capture claim.",
+    "originalFailure": "Replacement V raised witnessed suspicion from51.99 to84.59; subsequent actual guard activity removed the replacement. The generic walker followed automatic control transfer and moved the survivor to padA. Correct gameplay refused the missing pair.",
+    "diagnosticFailure": "The last survivor was also lost; an unsafe diagnostic PM.Active dereference caused the recorded NullReferenceException. The logger is now null-safe.",
+    "staticEscapeFailure": "Stopping at NE before visibility/attention cleared allowed the guard to catch the sole body; the new per-frame agent/body/count guard correctly rejected this instead of silently moving another body.",
+    "measuredNeCause": {
+      "body": [
+        1132.822,
+        0.180005,
+        -177.0013
+      ],
+      "guard": [
+        1117.9,
+        0.166667,
+        -178.7276
+      ],
+      "distanceMeters": 15.10708,
+      "guardState": "Investigate",
+      "actual24mVisibility": true,
+      "suspicion": 67.97284
+    },
+    "correction": "Normal survivor sprint and a bounded physical circuit while visible/recently observed or guards pursue. Natural attention decay only after those conditions clear; fresh split only at\u22645 suspicion and no actual24m guard witness to the proposed split. Both exact agents then use the north aisle to separate pads.",
+    "physicalPerimeterWaypointsLocal": [
+      [
+        36.5,
+        0.15,
+        38.5
+      ],
+      [
+        36.5,
+        0.15,
+        6.5
+      ],
+      [
+        8.5,
+        0.15,
+        6.5
+      ],
+      [
+        8.5,
+        0.15,
+        38.5
+      ],
+      [
+        33,
+        0.15,
+        43
+      ]
+    ],
+    "circuitsUsedFinal": 1,
+    "maximumCircuits": 2,
+    "maximumEscapeSeconds": 60,
+    "suspicionAtFinalSafeSplit": 0,
+    "bodyAndSplitVisibilityAtFinalCircuitEnd": false,
+    "finalUnobservedSeconds": 15.65714,
+    "identityGuard": "Per frame, compare actual registered AmoebaAgent reference, actual AmoebaController reference and expected count; numeric ID1 may be reused. A capture cannot silently redirect a leg.",
+    "freshPairRequirements": "New V creates a genuinely new body; normal Tab and physical movement restore both pads; cancelled progress remains zero without E; fresh normal E completes the unchanged3s handshake.",
+    "unchangedReadinessBudgetSeconds": 3,
+    "unchangedHandshakeSeconds": 3,
+    "caseTimeoutMilliseconds": 300000
+  },
+  "unchangedProductionRules": [
+    "No guard AI state or pose was overwritten, disabled, parked or stunned by a fixture operation. Guards remained active; role hosts moved through normal simulated input.",
+    "The new fixture never clears, reduces or reassures suspicion. Runtime rules produce natural decay during physical escape.",
+    "Objective traversal never assigns player/crate transforms. Declared initial role ownership and actual checkpoint scene reloads remain separate setup/runtime transitions. Harbor completion flags are earned through actual controls, timing and arrivals.",
+    "No collider, LOS, pursuit, pad containment, movement tolerance, camera clamp, range or handshake rule was relaxed. Existing generic AutoTest.WalkTo remains unchanged."
+  ],
+  "limits": [
+    "Unity Editor PlayMode with Null graphics and simulated controls. These two new focused tests are not newly executed native-player, graphical, physical-keyboard or human-playthrough results.",
+    "Prior twenty-mission summary and initial role ownership remain prepared prerequisites, as declared by the shared chapter fixture.",
+    "Controlled initial inactive containment is separate from later actual guard captures observed during the retained negative runs.",
+    "The released0.6 candidate/runtime/archive remain unchanged; its existing selected08/25/26/27 native proof and extracted01\u201305 package proof keep their named scope. This does not establish all27 coverage.",
+    "The live source now has exactly three test-related file deltas from the released build; it is not a rebuilt native artifact.",
+    "Read-only resource-ownership review found no confirmed high-severity defect in the inspected HarborArt/Reflection/Skyline paths; it is not a GPU allocation/leak measurement or whole-runtime memory certification."
+  ],
+  "auditNotes": {
+    "staleDocumentation": "KNOWN_ISSUES6\u201312/35/51 and UPGRADE_TRACKER34\u201339/55\u201357/96\u201398 still describe native0.6/corrected08/archive work as pending. Current named native/package receipts supersede those scheduling notes; no duplicate run is justified.",
+    "remainingRendererGates": "Actual0.6 RTX visuals/performance, native settings execution, rendered camera21 and matched gate captures remain GPU work, subject to the user-player ownership decision."
+  }
+}

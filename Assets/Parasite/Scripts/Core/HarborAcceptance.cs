@@ -493,6 +493,244 @@ namespace Parasite.Testing
             Check(allSeparate, "No physical crate boxes may penetrate " + phase + ": " + collisions);
         }
 
+        /// <summary>Observe a real blocked cargo spur; a clock cannot substitute for physical delivery.</summary>
+        public static IEnumerator BlockedCargoSpurWaitsForPhysicalClearance()
+        {
+            yield return EnterFromIsland(EndingOutcome.Peace);
+            yield return Pressure(false); // Earn the actual prerequisite through the existing normal-E driver.
+            Take(Profession.Scientist);
+            yield return Walk(HarborLayout.World(HarborLayout.ScannerLocal) + Vector3.left * 1.4f);
+            var director = HarborCargoDirector.Instance;
+            var scanner = Object.FindFirstObjectByType<HarborCargoScanner>();
+            const string id = "A17";
+            Check(!director.Rerouted(id) && !director.Delivered(id), "The physical spur fixture grants no cargo progress.");
+            yield return Aim(scanner);
+            yield return Wait(() => director.CurrentId == id && director.WindowRemaining > .2f, 32, "Actual A17 enters the moving arch.");
+            yield return PressAt(scanner, true, false);
+            Check(director.Rerouted(id) && !director.Delivered(id), "Actual E starts the real A17 diversion without granting arrival.");
+            var body = director.CrateBody(id); var box = body.GetComponent<BoxCollider>();
+            var obstacle = new GameObject("Harbor acceptance physical spur obstruction");
+            obstacle.transform.position = HarborLayout.At(22, 1.05f, 25);
+            var barrier = obstacle.AddComponent<BoxCollider>(); barrier.size = new Vector3(.4f, 2, 3);
+            Physics.SyncTransforms(); // Register only the newly added fixture collider; never move or disable gameplay bodies.
+            try
+            {
+                float deadline = Time.realtimeSinceStartup + 15, stableFixedSeconds = 0, lastFixed = Time.fixedTime;
+                Vector3 previous = body.position;
+                while (stableFixedSeconds < .25f && Time.realtimeSinceStartup < deadline)
+                {
+                    yield return null;
+                    if (Time.fixedTime <= lastFixed) continue;
+                    bool hitsOwnedBarrier = body.SweepTest(Vector3.right, out var hit, .07f, QueryTriggerInteraction.Ignore) && hit.collider == barrier;
+                    if (hitsOwnedBarrier && Vector3.Distance(previous, body.position) < .001f) stableFixedSeconds += Time.fixedTime - lastFixed;
+                    else stableFixedSeconds = 0;
+                    previous = body.position; lastFixed = Time.fixedTime;
+                }
+                Check(stableFixedSeconds >= .25f && director.RouteStage(id) == 1, "The actual body reaches the east spur and stops against the actual fixture collider.");
+                Vector3 blocked = body.position;
+                Check(Vector3.Distance(blocked, HarborLayout.World(HarborLayout.CargoBayLocal[0])) > 5, "The blocked crate is physically well short of its assigned bay.");
+                Debug.Log("[HarborBlockedSpur] stopped body=" + blocked.ToString("F6") + " route=" + director.RouteStage(id) + " stableFixedSeconds=" + stableFixedSeconds.ToString("F6"));
+                float observedUntil = Time.time + 8f; // Longer than the unblocked remaining spur and final bay travel.
+                while (Time.time < observedUntil)
+                {
+                    Check(Vector3.Distance(blocked, body.position) < .001f && !director.Delivered(id) && !RunState.Has(HarborCampaign.ManifestComplete),
+                        "An actually blocked rigidbody stays put and cannot gain delivery/manifest with elapsed time.");
+                    Check(!Physics.ComputePenetration(box, body.position, body.rotation, barrier, barrier.transform.position, barrier.transform.rotation, out _, out _),
+                        "The blocked physical crate cannot penetrate the real barrier.");
+                    yield return null;
+                }
+                Debug.Log("[HarborBlockedSpur] held8scaledSeconds body=" + body.position.ToString("F6") + " delivered=" + director.Delivered(id));
+                Object.Destroy(obstacle); obstacle = null; yield return null;
+                yield return Wait(() => director.Delivered(id), 20, "Removing only the fixture obstacle lets the same real crate finish its physical route.");
+                Vector3 bay = HarborLayout.World(HarborLayout.CargoBayLocal[0]);
+                Check(Vector3.Distance(body.position, bay) < .03f && Vector3.Distance(director.Crate(id).position, bay) < .03f && Vector3.Distance(blocked, body.position) > 5,
+                    "Both physical and displayed A17 reach the correct bay after real resumed movement.");
+                Check(!director.Rerouted("A32") && !director.Delivered("A32") && !RunState.Has(HarborCampaign.ManifestComplete) && RunState.MissionIndex == 21,
+                    "One resumed delivery cannot stand in for the second required lot or advance the cargo mission.");
+            }
+            finally { if (obstacle) Object.Destroy(obstacle); }
+            Debug.Log("[Harbor] PASS actual blocked spur → no timed delivery → remove fixture obstruction → same body physically arrives");
+        }
+
+        /// <summary>Destroy the inactive free body during a real link, then rebuild the pair with normal input.</summary>
+        public static IEnumerator InactiveFreeContainmentCancelsRelayAndRequiresNewE()
+        {
+            yield return EnterFromIsland(EndingOutcome.Peace);
+            yield return Pressure(false);
+            yield return Cargo(EndingOutcome.Peace, false); // Both required arrivals are earned; no manifest flag is prepared.
+            var relay = HarborRelay.Instance;
+            Check(PM.Agents.Count == 1 && PM.Active.IsFree && RunState.MissionIndex == 22, "Earned cargo recovery starts the actual relay approach with one free body.");
+            var initialAgent = PM.Active; var initialBlob = initialAgent.Blob;
+            yield return WalkPhysicalRelayAgent(initialAgent, initialBlob, HarborLayout.World(HarborLayout.RelayLocal[0]), 1, .08f);
+            GameInput.SimSplit = true; yield return null; GameInput.SimSplit = false; yield return null;
+            Check(PM.Agents.Count == 2, "Normal V creates the second real free body.");
+            yield return Switch();
+            yield return WalkPhysicalRelayAgent(PM.Active, PM.Active.Blob, HarborLayout.World(HarborLayout.RelayLocal[1]), 2, .12f);
+            yield return Wait(() => relay.Ready, 3, "Both distinct actual free capsules settle fully on their separate pads.");
+            yield return PressAt(Node(1), true);
+            yield return Wait(() => relay.Running && relay.Progress > .25f, 1, "Actual E creates positive running handshake progress before containment.");
+            var survivor = PM.Active;
+            var contained = PM.Agents.Single(agent => agent != survivor);
+            var containedBlob = contained.Blob;
+            var guard = Object.FindFirstObjectByType<GuardAI>();
+            int resets = RunState.Resets;
+            Check(guard && contained.IsFree && contained.Host == null && containedBlob && !contained.CapturedPendingEject && !contained.InTransit,
+                "The contained subject is the actual inactive FREE agent, not a host or a synthetic capture flag.");
+            Debug.Log("[HarborFreeContainment] before inactiveId=" + contained.Id + " activeId=" + survivor.Id + " progress=" + relay.Progress.ToString("F6") + " inactive=" + contained.Position.ToString("F6"));
+            LogPhysicalRelayState("before actual inactive containment");
+            PM.ContainBlob(contained, guard); // Controlled guard callback; the real production removal/destruction path runs.
+            yield return Wait(() => !relay.Running, 1, "Actual inactive free-body containment cancels the running handshake.");
+            yield return null; yield return null;
+            Check(PM.Agents.Count == 1 && !PM.Agents.Contains(contained) && !containedBlob && PM.Active == survivor && survivor.IsFree && !survivor.CapturedPendingEject,
+                "The contained body is actually destroyed/removed while control and the other free body survive.");
+            Check(relay.Progress == 0 && !RunState.Has(HarborCampaign.RelayComplete) && !relay.Ready && GameManager.Instance.IsPlaying && RunState.Resets == resets,
+                "Old progress is discarded without granting the link or resetting the surviving body.");
+            var survivorBlob = survivor.Blob;
+            yield return EscapeRelayAttention(survivor, survivorBlob);
+            LogPhysicalRelayState("before normal replacement split after physical escape");
+            GameInput.SimSplit = true; yield return null; GameInput.SimSplit = false; yield return null;
+            Check(PM.Agents.Count == 2 && PM.Agents.All(agent => agent != contained && agent.IsFree), "Normal V creates a genuinely new replacement body within the unchanged two-body limit.");
+            LogPhysicalRelayState("after normal replacement split");
+            var replacementAgent = PM.Agents.Single(agent => agent != survivor); var replacementBlob = replacementAgent.Blob;
+            yield return WalkPhysicalRelayAgent(survivor, survivorBlob, HarborLayout.At(8, .15f, 43), 2);
+            yield return WalkPhysicalRelayAgent(survivor, survivorBlob, HarborLayout.World(HarborLayout.RelayLocal[1]), 2);
+            yield return Switch();
+            Check(ReferenceEquals(PM.Active, replacementAgent) && PM.Active != contained, "Normal Tab selects the actual new registered body, not just a reused numeric ID.");
+            yield return WalkPhysicalRelayAgent(replacementAgent, replacementBlob, HarborLayout.At(-8, .15f, 43), 2);
+            yield return WalkPhysicalRelayAgent(replacementAgent, replacementBlob, HarborLayout.World(HarborLayout.RelayLocal[0]), 2);
+            LogPhysicalRelayState("after normal replacement walk");
+            float readyDeadline = Time.realtimeSinceStartup + 3f;
+            while (!relay.Ready && Time.realtimeSinceStartup < readyDeadline) yield return null;
+            LogPhysicalRelayState("after unchanged three-second readiness wait");
+            Check(relay.Ready, "The replacement physically walks back to the empty pad. Actual status: " + relay.StatusLine);
+            yield return new WaitForSeconds(1);
+            Check(!relay.Running && relay.Progress == 0 && !RunState.Has(HarborCampaign.RelayComplete), "Reforming a valid pair cannot resume the cancelled handshake without fresh E.");
+            yield return PressAt(Node(0), true);
+            Check(relay.Running && relay.Progress < .2f, "Fresh normal E starts the replacement pair from zero progress.");
+            yield return Wait(() => RunState.Has(HarborCampaign.RelayComplete), 5, "The fresh pair completes the unchanged three-second physical handshake.");
+            Check(relay.Progress >= HarborRelay.HandshakeSeconds && PM.Agents.Count == 2 && PM.Agents.All(agent => agent.IsFree), "Only the complete fresh handshake earns the relay flag with both replacement-pair bodies free.");
+            Debug.Log("[Harbor] PASS running E link → actual inactive FREE containment/removal → survivor retained → normal V/Tab/walk → fresh E link");
+        }
+
+        static void CheckPhysicalRelayAgent(AmoebaAgent expected, AmoebaController body, int count)
+        {
+            Check(PM && PM.Agents.Count == count && ReferenceEquals(PM.Active, expected) && PM.Agents.Contains(expected)
+                && expected.IsFree && !expected.InTransit && !expected.CapturedPendingEject && body && expected.Blob == body && body.gameObject.activeInHierarchy,
+                "A physical relay leg must keep its exact registered active agent/body and expected count; a guard containment cannot silently transfer this input to the survivor.");
+        }
+        static IEnumerator WalkPhysicalRelayAgent(AmoebaAgent expected, AmoebaController body, Vector3 target, int count, float tolerance = .12f, float deadline = float.PositiveInfinity)
+        {
+            var stack = new System.Collections.Generic.Stack<IEnumerator>(); stack.Push(Walk(target, tolerance));
+            try
+            {
+                while (stack.Count > 0)
+                {
+                    CheckPhysicalRelayAgent(expected, body, count);
+                    Check(Time.realtimeSinceStartup < deadline, "The bounded physical escape budget expired during actual movement.");
+                    var current = stack.Peek();
+                    if (!current.MoveNext()) { (current as IDisposable)?.Dispose(); stack.Pop(); continue; }
+                    if (current.Current is IEnumerator nested) stack.Push(nested); else yield return current.Current;
+                }
+                CheckPhysicalRelayAgent(expected, body, count);
+            }
+            finally
+            {
+                while (stack.Count > 0) (stack.Pop() as IDisposable)?.Dispose();
+                GameInput.SimMove = Vector2.zero; GameInput.SimSprint = GameInput.SimJump = false;
+            }
+        }
+        static bool RelaySplitHasWitness(AmoebaAgent agent)
+        {
+            var suspicion = SuspicionSystem.Instance;
+            if (agent == null || !agent.Blob || !suspicion) return true; // Missing body/context is unsafe, never a visibility pass.
+            Vector3 proposed = PossessionManager.FindFreeSpot(agent.Position, -agent.Blob.transform.right) + Vector3.up * .3f;
+            foreach (var witness in HostCharacter.All)
+                if (witness && witness.IsAwakeNpc && witness.ReportsPlayerViolations && suspicion.CanSee(witness, proposed, null, witness.Brain is GuardAI ? GuardAI.SightRange : suspicion.RangeFor(witness))) return true;
+            return false;
+        }
+        static bool ActualRelayBodyHasWitness(AmoebaAgent agent)
+        {
+            var suspicion = SuspicionSystem.Instance;
+            if (agent == null || !agent.Blob || !suspicion) return true;
+            return HostCharacter.All.Any(witness => witness && witness.IsAwakeNpc && witness.ReportsPlayerViolations
+                && suspicion.CanSee(witness, agent.Blob.Center, agent.Blob.transform, witness.Brain is GuardAI ? GuardAI.SightRange : suspicion.RangeFor(witness)));
+        }
+        static void LogEscapeGuardState(string phase, AmoebaAgent agent)
+        {
+            var suspicion = SuspicionSystem.Instance;
+            Debug.Log("[HarborEscapeDiagnostic] phase=" + phase + " body=" + (agent == null ? "none" : agent.Position.ToString("F6"))
+                + " suspicion=" + suspicion.Value.ToString("F6") + " level=" + suspicion.Level + " unobservedSeconds=" + suspicion.TimeSinceObserved.ToString("F6")
+                + " actualBodySeen=" + ActualRelayBodyHasWitness(agent) + " proposedSplitSeen=" + RelaySplitHasWitness(agent));
+            foreach (var host in HostCharacter.All)
+                if (host && host.IsAwakeNpc && host.Brain is GuardAI guard && Mathf.Abs(host.transform.position.x - HarborLayout.Origin.x) < 80)
+                    Debug.Log("[HarborEscapeDiagnostic] phase=" + phase + " guard=" + host.DisplayName + " state=" + guard.GState
+                        + " position=" + host.transform.position.ToString("F6") + " distance=" + (agent == null ? "none" : Vector3.Distance(host.EyePosition, agent.Position).ToString("F6"))
+                        + " seesBody=" + (agent != null && agent.Blob && suspicion.CanSee(host, agent.Blob.Center, agent.Blob.transform, GuardAI.SightRange))
+                        + " destination=" + (host.Nav && host.Nav.enabled && host.Nav.isOnNavMesh && host.Nav.hasPath ? host.Nav.destination.ToString("F6") : "none"));
+        }
+
+        static IEnumerator EscapeRelayAttention(AmoebaAgent survivor, AmoebaController body)
+        {
+            float deadline = Time.realtimeSinceStartup + 60f;
+            yield return WalkPhysicalRelayAgent(survivor, body, HarborLayout.At(8, .15f, 43), 1, .2f, deadline);
+            yield return WalkPhysicalRelayAgent(survivor, body, HarborLayout.At(33, .15f, 43), 1, .2f, deadline);
+            var suspicion = SuspicionSystem.Instance;
+            bool Safe() => PM && PM.Agents.Count == 1 && ReferenceEquals(PM.Active, survivor) && PM.Agents.Contains(survivor) && body && survivor.Blob == body
+                && survivor.IsFree && !survivor.CapturedPendingEject && !survivor.InTransit && suspicion.Value <= 5f && suspicion.Level != SuspicionLevel.Pursuing && !RelaySplitHasWitness(survivor);
+            int circuits = 0;
+            LogEscapeGuardState("arrived at NE before attention recovery", survivor);
+            while (!Safe() && Time.realtimeSinceStartup < deadline)
+            {
+                CheckPhysicalRelayAgent(survivor, body, 1);
+                bool visible = ActualRelayBodyHasWitness(survivor) || RelaySplitHasWitness(survivor);
+                bool hunting = HostCharacter.All.Any(host => host && host.IsAwakeNpc && host.Brain is GuardAI guard && guard.GState == GuardState.Pursue);
+                bool recentlyObserved = suspicion.TimeSinceObserved <= GuardAI.LoseTrackSeconds;
+                if (visible || hunting || recentlyObserved)
+                {
+                    Check(circuits < 2, "Two actual escape circuits are exhausted while guard visibility/attention remains; no third circuit or hidden waiting is permitted.");
+                    circuits++;
+                    foreach (var target in new[] { HarborLayout.At(36.5f, .15f, 38.5f), HarborLayout.At(36.5f, .15f, 6.5f), HarborLayout.At(8.5f, .15f, 6.5f), HarborLayout.At(8.5f, .15f, 38.5f), HarborLayout.At(33, .15f, 43) })
+                    {
+                        yield return WalkPhysicalRelayAgent(survivor, body, target, 1, .2f, deadline);
+                        LogEscapeGuardState("after actual perimeter leg circuit=" + circuits + " target=" + target, survivor);
+                    }
+                }
+                else yield return null;
+            }
+            LogPhysicalRelayState("after real survivor escape and natural attention decay");
+            Check(Safe(), "Normal escape must genuinely lose pursuit/attention and actual split visibility within60s; no suspicion or guard state is cleared by the fixture.");
+            Debug.Log("[HarborFreeContainment] physicalEscape circuits=" + circuits + " suspicion=" + suspicion.Value.ToString("F6") + " splitWitness=" + RelaySplitHasWitness(survivor));
+        }
+
+        static void LogPhysicalRelayState(string phase)
+        {
+            var relay = HarborRelay.Instance; var suspicion = SuspicionSystem.Instance;
+            if (!relay || !PM) { Debug.Log("[HarborPhysicalRelayDiagnostic] phase=" + phase + " missing relay/manager"); return; }
+            Debug.Log("[HarborPhysicalRelayDiagnostic] phase=" + phase + " ready=" + relay.Ready + " running=" + relay.Running + " progress=" + relay.Progress.ToString("F6")
+                + " status=" + relay.StatusLine + " suspicion=" + (suspicion ? suspicion.Value.ToString("F6") : "none") + " level=" + (suspicion ? suspicion.Level.ToString() : "none")
+                + " time=" + Time.time.ToString("F6") + " frame=" + Time.frameCount + " activeId=" + (PM.Active == null ? "none" : PM.Active.Id.ToString()));
+            foreach (var agent in PM.Agents)
+            {
+                var controller = agent.Blob ? agent.Blob.Controller : null;
+                Debug.Log("[HarborPhysicalRelayDiagnostic] phase=" + phase + " id=" + agent.Id + " object=" + (agent.Blob ? agent.Blob.GetInstanceID().ToString() : "none")
+                    + " position=" + agent.Position.ToString("F6") + " free=" + agent.IsFree + " transit=" + agent.InTransit + " capture=" + agent.CapturedPendingEject
+                    + " host=" + (agent.Host ? agent.Host.DisplayName : "none") + " blobActive=" + (agent.Blob && agent.Blob.isActiveAndEnabled)
+                    + " controller=" + (controller && controller.enabled) + " grounded=" + (controller && controller.isGrounded)
+                    + " boundsMin=" + (controller ? controller.bounds.min.ToString("F6") : "none") + " boundsMax=" + (controller ? controller.bounds.max.ToString("F6") : "none"));
+                for (int padIndex = 0; padIndex < 2 && controller; padIndex++)
+                {
+                    var bounds = padIndex == 0 ? relay.padA : relay.padB; bounds.Expand(HarborRelay.PadContainmentTolerance * 2);
+                    Vector3 start = agent.Blob.Center, end = relay.sightPoints[padIndex].position;
+                    var hits = Physics.RaycastAll(start, end - start, Vector3.Distance(start, end), ~0, QueryTriggerInteraction.Ignore);
+                    string hitList = string.Join(";", hits.Select(hit => hit.collider.name + "#" + hit.collider.GetInstanceID() + ":layer=" + hit.collider.gameObject.layer + ":distance=" + hit.distance.ToString("F6") + ":own=" + hit.transform.IsChildOf(agent.Blob.transform)));
+                    Debug.Log("[HarborPhysicalRelayDiagnostic] phase=" + phase + " id=" + agent.Id + " pad=" + padIndex
+                        + " fullyContained=" + (bounds.Contains(controller.bounds.min) && bounds.Contains(controller.bounds.max))
+                        + " padMin=" + bounds.min.ToString("F6") + " padMax=" + bounds.max.ToString("F6")
+                        + " beamStart=" + start.ToString("F6") + " beamEnd=" + end.ToString("F6") + " hits=" + hitList);
+                }
+            }
+        }
+
         static InteractContext Context() => new() { agent = PM.Active, host = PM.Active.Host, permissions = PM.Active.Host ? PM.Active.Host.Permissions : AccessPermission.None, position = PM.Active.Position };
         static void Take(Profession profession)
         {

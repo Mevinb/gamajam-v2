@@ -6,6 +6,14 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- Two additional physical harbor recovery cases pass together **2/2 in 209.358 seconds, Null Editor exit 0**
+  (agent session 92343, terminal chunk `f38e71`). A real obstruction holds the moving crate without delivery credit;
+  removing only that fixture permits its physical arrival. Actual inactive free-body containment cancels a running relay.
+  The survivor then evades live guards, naturally loses attention, creates/repositions a new body pair and needs fresh E.
+  Earlier failures exposed a test walker following automatic control transfer and a stationary evasion attempt; the final
+  driver checks exact agent/body/count every frame and uses physical movement. Guard/vision/suspicion/relay rules are unchanged.
+  These new regression helpers are source-only; the packaged 0.6 candidate retains its original build source.
+  [Physical recovery proof](verification/harbor-physical-recovery-20261126.json).
 - Portable **0.6.0 preview archive**: `Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz`, 615,809,169 bytes,
   SHA256 `4a5252f915eebdad78aef2584ffe119581bb50258b8c0a517d880a9063e07b31`. Read-only packaging checks pass with
   candidate/overlay unchanged and32local links. Fresh isolated extraction verifies all190files/16directories and then passes
@@ -136,6 +144,25 @@ The older0.4.2archive contains two short inserts. Launch a private candidate usi
 launcher selects the retained preview. No human launch/playthrough of the new0.5.1graphics candidate is claimed here.
 
 ## Required next work
+
+The next graphics jobs are already staged and root-reviewed; do not recreate these runners. Default dry invocations exit 0
+and detect both the existing user player and any active Editor without launching a player or writing Assets:
+
+- `Logs/candidate06-gpu-stage/run_gpu.py` (SHA256 `1b80c5979493eec06922bc6816eb9052cdd973d1ee60b9720362b4eac23232f4`)
+  plans exact-candidate films, shortcuts, rendered water22, island21 and native settings checks.
+- `Logs/candidate06-benchmark-stage/run.py` (SHA256 `98159e5e390c9a66870475ceb086033270410d34ed76b9510a35e936f145d851`)
+  plans isolated, focused 1920x1080 Vulkan High/Ultra city/riverside/island runs. The immutable candidate has no harbor benchmark
+  route; harbor performance remains unmeasured. CPU-heavy work must also finish before benchmarks.
+- `Logs/gate-booth-workflow-stage/gate_compare.py` (SHA256 `aa17b2bbbe9e5ee5cb54a7b2ccffaa8b26c70c141e90725c77ecf486d938cf9f`)
+  stages the complete 37-file generated-asset comparison and exact restoration. Its adjacent README and `booth-hook.patch`
+  describe the later booth integration. No asset swap, frozen snapshot preparation, regeneration or capture has run.
+
+Both native runners retain the immutable build identity and support an explicit reviewed frozen-source snapshot, recording
+every delta from the built source. New test helpers are not claimed to exist in the packaged candidate. Read the adjacent
+READMEs before execution; use fresh absolute Logs output paths and never close the user player from a runner.
+The reviewed post-recovery snapshot is `Logs/candidate06-gpu-stage/reviewed-source-20261126-physical-recovery.json`, SHA256
+`9532d9ba42ae2e0a381f1859d5951513b774a71cdaeb574902d28640802b8763`. Its exact build delta is one modified acceptance
+helper plus the new test class/meta, with no removals. It becomes stale if any further source or asset changes.
 
 1. Use the existing verified0.6candidate/archive. Native08/25/26/27 and extracted01–05 already pass; do not rebuild or repeat
    those completed runs merely because an older note calls them pending. Render-dependent21, exact-player media/water/settings
