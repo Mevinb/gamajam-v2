@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "PROMOTED_SOURCE_ART_ONLY",
+  "files": [
+    {
+      "path": "ArtSource/NorthlineRail/CREDITS.md",
+      "bytes": 1060,
+      "sha256": "e97609f44c56ac67e8e78cfb4908198bdac427b68aee98a98d954675d3f4bd59"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailBoardingRamp.fbx",
+      "bytes": 21980,
+      "sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailControl.fbx",
+      "bytes": 29628,
+      "sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailCrossingBarrier.fbx",
+      "bytes": 26860,
+      "sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailDepartureCoach.fbx",
+      "bytes": 68060,
+      "sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailLowSignal.fbx",
+      "bytes": 24892,
+      "sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailPlatformGate.fbx",
+      "bytes": 25532,
+      "sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailPointBlade.fbx",
+      "bytes": 24812,
+      "sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailPortalGate.fbx",
+      "bytes": 27212,
+      "sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailServiceGate.fbx",
+      "bytes": 24540,
+      "sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailTram.fbx",
+      "bytes": 54108,
+      "sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/Exports/RailTransferCradle.fbx",
+      "bytes": 34348,
+      "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/NorthlineRail.blend",
+      "bytes": 8740436,
+      "sha256": "af01208fc8b41799bbfcd5fa3862cf197290cd8582bb22443de2c469b9cab69f"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/README.md",
+      "bytes": 4941,
+      "sha256": "a982a7d448977b91b2d4bc7cf0fc5ec4142d3fffdac8db69e2f3f1d8705373f5"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/export-verification.json",
+      "bytes": 23952,
+      "sha256": "64a75f2cae0b54add06455eda647889ca6b6416d3b5c2c679827d30b033ad7d1"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/piece-map.json",
+      "bytes": 69430,
+      "sha256": "0812f39b9988c6c0bf3bbd5d1bcb4a809f1aa8e21678d305fae0644e8732e45a"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/production-manifest.json",
+      "bytes": 9875,
+      "sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60"
+    },
+    {
+      "path": "ArtSource/NorthlineRail/promotion-record.json",
+      "bytes": 7188,
+      "sha256": "1285be6e0b4bcb6e1e30da51ce273a040938f17bea787c857418ee644f49d33a"
+    }
+  ],
+  "tools": [
+    {
+      "path": "Tools/blender/northline/README.md",
+      "bytes": 4108,
+      "sha256": "e856f5f73e5aefe068bb32310c98d3a216d9cf93168b3e54e8e088aa31f46cbc"
+    },
+    {
+      "path": "Tools/blender/northline/author_rail.py",
+      "bytes": 17292,
+      "sha256": "5cdf907b8acc3f51c8fba972efe52f97fec4d7a1f34ac331783240ac1840f6dc"
+    },
+    {
+      "path": "Tools/blender/northline/review_and_verify.py",
+      "bytes": 16280,
+      "sha256": "6154fde1670d5e54c5ac2b90ae4b1e28ecbc40d85b40f8eccb212ac8c982fae1"
+    }
+  ],
+  "selfExcludedToAvoidCircularHash": true,
+  "productionManifestPreservedVerbatim": true,
+  "noReviewPngsCopied": true
+}

@@ -1,0 +1,874 @@
+{
+  "schema": 1,
+  "status": "PASS_CPU_ROUNDTRIP_AND_REVIEW",
+  "script_sha256": "cae2b2d9420630597815fac983845260577e2837c86c32862c349e1aff84e5d8",
+  "source_manifest_sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
+  "blender": "4.5.16 LTS",
+  "roundtrip": [
+    {
+      "name": "RailTram",
+      "imported_object_types": [
+        [
+          "RailTram.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a",
+      "imported_name": "RailTram.001",
+      "vertices": 936,
+      "triangles": 1724,
+      "bounds_unity": [
+        [
+          -3.0,
+          0.019999921321868896,
+          -1.2000000476837158
+        ],
+        [
+          3.0,
+          1.790000081062317,
+          1.2000000476837158
+        ]
+      ],
+      "max_bounds_error": 1.1920928955078125e-07,
+      "alternate_x_z_minus_y_error": 1.1920928955078125e-07,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 37,
+      "expected_components": 37,
+      "minimum_signed_volume": 8.768553698413387e-06,
+      "minimum_triangle_area": 3.463909181410373e-06,
+      "minimum_uv_area": 4.2283690504518745e-07,
+      "minimum_corner_normal_dot": 0.9999998211860686,
+      "atlas_tiles": [
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailTransferCradle",
+      "imported_object_types": [
+        [
+          "RailTransferCradle.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a",
+      "imported_name": "RailTransferCradle.001",
+      "vertices": 416,
+      "triangles": 736,
+      "bounds_unity": [
+        [
+          -1.5,
+          0.019999921321868896,
+          -1.0
+        ],
+        [
+          1.5,
+          1.4649999141693115,
+          1.0
+        ]
+      ],
+      "max_bounds_error": 7.450580596923828e-08,
+      "alternate_x_z_minus_y_error": 7.450580596923828e-08,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 24,
+      "expected_components": 24,
+      "minimum_signed_volume": 1.3199983096126077e-05,
+      "minimum_triangle_area": 1.385632555802854e-05,
+      "minimum_uv_area": 1.4562608157575596e-05,
+      "minimum_corner_normal_dot": 0.9999998211860657,
+      "atlas_tiles": [
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailControl",
+      "imported_object_types": [
+        [
+          "RailControl.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3",
+      "imported_name": "RailControl.001",
+      "vertices": 256,
+      "triangles": 464,
+      "bounds_unity": [
+        [
+          -0.3499999940395355,
+          -1.8119495237556293e-08,
+          -0.2619999051094055
+        ],
+        [
+          0.3499999940395355,
+          1.4375,
+          0.25
+        ]
+      ],
+      "max_bounds_error": 8.940696716308594e-08,
+      "alternate_x_z_minus_y_error": 0.01199999451637268,
+      "axis_ambiguity": "Asymmetric bounds distinguish the established mapping.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 12,
+      "expected_components": 12,
+      "minimum_signed_volume": 1.3302157800593275e-05,
+      "minimum_triangle_area": 7.794260382639726e-06,
+      "minimum_uv_area": 7.855634066800121e-06,
+      "minimum_corner_normal_dot": 0.9999998807907104,
+      "atlas_tiles": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailLowSignal",
+      "imported_object_types": [
+        [
+          "RailLowSignal.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541",
+      "imported_name": "RailLowSignal.001",
+      "vertices": 128,
+      "triangles": 236,
+      "bounds_unity": [
+        [
+          -0.23999999463558197,
+          -1.4646593271550046e-08,
+          -0.20000000298023224
+        ],
+        [
+          0.23999999463558197,
+          0.7900000214576721,
+          0.20000000298023224
+        ]
+      ],
+      "max_bounds_error": 1.4646593271550046e-08,
+      "alternate_x_z_minus_y_error": 1.4646593271550046e-08,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 5,
+      "expected_components": 5,
+      "minimum_signed_volume": 0.0003522478197732794,
+      "minimum_triangle_area": 7.794247251339733e-06,
+      "minimum_uv_area": 0.00012240916839800775,
+      "minimum_corner_normal_dot": 0.9999998509883881,
+      "atlas_tiles": [
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailPointBlade",
+      "imported_object_types": [
+        [
+          "RailPointBlade.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783",
+      "imported_name": "RailPointBlade.001",
+      "vertices": 144,
+      "triangles": 264,
+      "bounds_unity": [
+        [
+          -1.399999976158142,
+          -0.04500000551342964,
+          -0.05000000447034836
+        ],
+        [
+          1.399999976158142,
+          0.04500000551342964,
+          0.05000000447034836
+        ]
+      ],
+      "max_bounds_error": 3.725290298461914e-09,
+      "alternate_x_z_minus_y_error": 3.725290298461914e-09,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 6,
+      "expected_components": 6,
+      "minimum_signed_volume": 0.00071528333381185,
+      "minimum_triangle_area": 7.794053840307735e-06,
+      "minimum_uv_area": 1.5082790923770517e-05,
+      "minimum_corner_normal_dot": 0.9999998211860657,
+      "atlas_tiles": [
+        1,
+        2
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailCrossingBarrier",
+      "imported_object_types": [
+        [
+          "RailCrossingBarrier.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917",
+      "imported_name": "RailCrossingBarrier.001",
+      "vertices": 208,
+      "triangles": 364,
+      "bounds_unity": [
+        [
+          -4.0,
+          -1.2999999523162842,
+          -0.0924999862909317
+        ],
+        [
+          4.0,
+          1.2999999523162842,
+          0.07000009715557098
+        ]
+      ],
+      "max_bounds_error": 9.685754776000977e-08,
+      "alternate_x_z_minus_y_error": 0.022499985992908478,
+      "axis_ambiguity": "Asymmetric bounds distinguish the established mapping.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 13,
+      "expected_components": 13,
+      "minimum_signed_volume": 0.00014999980926518007,
+      "minimum_triangle_area": 7.794092344842883e-06,
+      "minimum_uv_area": 6.786126505176071e-06,
+      "minimum_corner_normal_dot": 0.9999998807907104,
+      "atlas_tiles": [
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailServiceGate",
+      "imported_object_types": [
+        [
+          "RailServiceGate.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964",
+      "imported_name": "RailServiceGate.001",
+      "vertices": 128,
+      "triangles": 236,
+      "bounds_unity": [
+        [
+          -0.08999999612569809,
+          -0.5000000596046448,
+          -0.7000000476837158
+        ],
+        [
+          0.07000000029802322,
+          0.5000000596046448,
+          0.7000000476837158
+        ]
+      ],
+      "max_bounds_error": 5.960464477539063e-08,
+      "alternate_x_z_minus_y_error": 5.960464477539063e-08,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 5,
+      "expected_components": 5,
+      "minimum_signed_volume": 0.0023081635672540903,
+      "minimum_triangle_area": 7.794247251339733e-06,
+      "minimum_uv_area": 4.12418412452098e-05,
+      "minimum_corner_normal_dot": 0.9999998509883881,
+      "atlas_tiles": [
+        1,
+        2
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailPlatformGate",
+      "imported_object_types": [
+        [
+          "RailPlatformGate.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d",
+      "imported_name": "RailPlatformGate.001",
+      "vertices": 152,
+      "triangles": 280,
+      "bounds_unity": [
+        [
+          -0.15000000596046448,
+          -1.5000001192092896,
+          -2.0
+        ],
+        [
+          0.125,
+          1.5000001192092896,
+          2.0
+        ]
+      ],
+      "max_bounds_error": 1.1920928955078125e-07,
+      "alternate_x_z_minus_y_error": 1.1920928955078125e-07,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 6,
+      "expected_components": 6,
+      "minimum_signed_volume": 0.00900158222488825,
+      "minimum_triangle_area": 7.794105476403856e-06,
+      "minimum_uv_area": 1.396527932229219e-05,
+      "minimum_corner_normal_dot": 0.9999998211860657,
+      "atlas_tiles": [
+        1,
+        2
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailPortalGate",
+      "imported_object_types": [
+        [
+          "RailPortalGate.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf",
+      "imported_name": "RailPortalGate.001",
+      "vertices": 200,
+      "triangles": 368,
+      "bounds_unity": [
+        [
+          -2.0999999046325684,
+          -1.7000000476837158,
+          -0.12500011920928955
+        ],
+        [
+          2.0999999046325684,
+          1.7000000476837158,
+          0.10000012814998627
+        ]
+      ],
+      "max_bounds_error": 1.2665987014770508e-07,
+      "alternate_x_z_minus_y_error": 0.02500011771917343,
+      "axis_ambiguity": "Asymmetric bounds distinguish the established mapping.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 8,
+      "expected_components": 8,
+      "minimum_signed_volume": 0.0065385809503326195,
+      "minimum_triangle_area": 7.794092344842883e-06,
+      "minimum_uv_area": 1.3197412044974044e-05,
+      "minimum_corner_normal_dot": 0.9999998807907104,
+      "atlas_tiles": [
+        1,
+        2
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailDepartureCoach",
+      "imported_object_types": [
+        [
+          "RailDepartureCoach.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0",
+      "imported_name": "RailDepartureCoach.001",
+      "vertices": 1352,
+      "triangles": 2508,
+      "bounds_unity": [
+        [
+          -1.6019999980926514,
+          0.14999963343143463,
+          -7.009500026702881
+        ],
+        [
+          1.6019999980926514,
+          3.2900004386901855,
+          7.009500026702881
+        ]
+      ],
+      "max_bounds_error": 4.76837158203125e-07,
+      "alternate_x_z_minus_y_error": 4.76837158203125e-07,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 49,
+      "expected_components": 49,
+      "minimum_signed_volume": 0.0012720077285684527,
+      "minimum_triangle_area": 3.4637370273548976e-06,
+      "minimum_uv_area": 1.1262881344009656e-05,
+      "minimum_corner_normal_dot": 0.9999997615814209,
+      "atlas_tiles": [
+        1,
+        2,
+        3
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    },
+    {
+      "name": "RailBoardingRamp",
+      "imported_object_types": [
+        [
+          "RailBoardingRamp.001",
+          "MESH"
+        ]
+      ],
+      "mesh_count": 1,
+      "fbx_sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d",
+      "imported_name": "RailBoardingRamp.001",
+      "vertices": 104,
+      "triangles": 156,
+      "bounds_unity": [
+        [
+          0.0,
+          0.12999992072582245,
+          -1.0
+        ],
+        [
+          3.3499999046325684,
+          0.7500000596046448,
+          1.0
+        ]
+      ],
+      "max_bounds_error": 7.450580596923828e-08,
+      "alternate_x_z_minus_y_error": 7.450580596923828e-08,
+      "axis_ambiguity": "Both transforms match symmetric bounds; established project mapping remains required.",
+      "materials": [
+        "CityGatePilot_SharedPBR"
+      ],
+      "components": 13,
+      "expected_components": 13,
+      "minimum_signed_volume": 0.00020735808924106773,
+      "minimum_triangle_area": 5.3999505509720843e-05,
+      "minimum_uv_area": 0.0037841796875,
+      "minimum_corner_normal_dot": 0.9999998807907104,
+      "atlas_tiles": [
+        1,
+        2
+      ],
+      "all_edges_closed_consistently_wound": true,
+      "all_solids_outward": true,
+      "status": "PASS"
+    }
+  ],
+  "reviews": [
+    {
+      "name": "coach-west-boarding-full",
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "objects": [
+        "RailDepartureCoach",
+        "RailBoardingRamp"
+      ],
+      "settings_readback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "camera_location_blender": [
+        -53.684574127197266,
+        23.393508911132812,
+        20.424808502197266
+      ],
+      "camera_rotation_euler": [
+        1.2535899877548218,
+        -2.7638225930104454e-08,
+        -1.9936503171920776
+      ],
+      "ortho_scale": 17.738506317138672,
+      "frame_bounds_uv": [
+        [
+          0.06328164786100388,
+          0.2683584988117218
+        ],
+        [
+          0.8581081628799438,
+          0.8010237216949463
+        ]
+      ],
+      "lights": [
+        {
+          "name": "Review Key",
+          "energy": 8000.0,
+          "size": 8.0,
+          "location": [
+            -9.699000358581543,
+            10.0,
+            11.710000038146973
+          ]
+        },
+        {
+          "name": "Review Fill",
+          "energy": 5000.0,
+          "size": 8.0,
+          "location": [
+            5.301000118255615,
+            1.0,
+            8.710000038146973
+          ]
+        },
+        {
+          "name": "Review Rim",
+          "energy": 7000.0,
+          "size": 6.0,
+          "location": [
+            0.3009999990463257,
+            -9.0,
+            11.710000038146973
+          ]
+        }
+      ],
+      "file": "Review/coach-west-boarding-full.png",
+      "sha256": "b2de861163ae815314526814a67760a20849cd7a0ea36ba9e396373673914863"
+    },
+    {
+      "name": "coach-door-bogie-detail",
+      "scope": "Detail bounds intentionally crop beyond this region; complete assembly is framed separately.",
+      "objects": [
+        "RailDepartureCoach",
+        "RailBoardingRamp"
+      ],
+      "settings_readback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "camera_location_blender": [
+        -58.684627532958984,
+        18.87038803100586,
+        14.071617126464844
+      ],
+      "camera_rotation_euler": [
+        1.3631131649017334,
+        -2.3186326814084168e-07,
+        -1.8622530698776245
+      ],
+      "ortho_scale": 10.527454376220703,
+      "frame_bounds_uv": [
+        [
+          0.06373334676027298,
+          0.1464867889881134
+        ],
+        [
+          0.9362667202949524,
+          0.8535090684890747
+        ]
+      ],
+      "lights": [
+        {
+          "name": "Review Key",
+          "energy": 8000.0,
+          "size": 8.0,
+          "location": [
+            -10.449999809265137,
+            12.0,
+            11.699999809265137
+          ]
+        },
+        {
+          "name": "Review Fill",
+          "energy": 5000.0,
+          "size": 8.0,
+          "location": [
+            4.550000190734863,
+            3.0,
+            8.699999809265137
+          ]
+        },
+        {
+          "name": "Review Rim",
+          "energy": 7000.0,
+          "size": 6.0,
+          "location": [
+            -0.4500000476837158,
+            -7.0,
+            11.699999809265137
+          ]
+        }
+      ],
+      "file": "Review/coach-door-bogie-detail.png",
+      "sha256": "81b8440f7c3e352c104d4bd44c753f5be7bacf68fa25a9f4cadbf79d6a77717e"
+    },
+    {
+      "name": "whole-kit-bright-studio",
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "objects": [
+        "RailTram",
+        "RailTransferCradle",
+        "RailControl",
+        "RailLowSignal",
+        "RailPointBlade",
+        "RailCrossingBarrier",
+        "RailServiceGate",
+        "RailPlatformGate",
+        "RailPortalGate",
+        "RailDepartureCoach",
+        "RailBoardingRamp"
+      ],
+      "settings_readback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "camera_location_blender": [
+        -38.99955749511719,
+        42.644805908203125,
+        26.832210540771484
+      ],
+      "camera_rotation_euler": [
+        1.1399719715118408,
+        8.373750404189195e-08,
+        -2.3561947345733643
+      ],
+      "ortho_scale": 29.2261905670166,
+      "frame_bounds_uv": [
+        [
+          0.11785687506198883,
+          0.06262074410915375
+        ],
+        [
+          0.796542763710022,
+          0.8428374528884888
+        ]
+      ],
+      "lights": [
+        {
+          "name": "Review Key",
+          "energy": 8000.0,
+          "size": 8.0,
+          "location": [
+            -8.449999809265137,
+            14.095250129699707,
+            11.774999618530273
+          ]
+        },
+        {
+          "name": "Review Fill",
+          "energy": 5000.0,
+          "size": 8.0,
+          "location": [
+            6.550000190734863,
+            5.095250129699707,
+            8.774999618530273
+          ]
+        },
+        {
+          "name": "Review Rim",
+          "energy": 7000.0,
+          "size": 6.0,
+          "location": [
+            1.5500001907348633,
+            -4.904749870300293,
+            11.774999618530273
+          ]
+        }
+      ],
+      "file": "Review/whole-kit-bright-studio.png",
+      "sha256": "77d69bf1272ad9408c6331debefead5d7922e4028916b4899493092f08556d6c"
+    },
+    {
+      "name": "tram-manufacturing-bright",
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "objects": [
+        "RailTram"
+      ],
+      "settings_readback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "camera_location_blender": [
+        -48.42902755737305,
+        54.42902755737305,
+        19.098060607910156
+      ],
+      "camera_rotation_euler": [
+        1.2627291679382324,
+        4.055152658111183e-08,
+        -2.356194496154785
+      ],
+      "ortho_scale": 7.019151210784912,
+      "frame_bounds_uv": [
+        [
+          0.07689362019300461,
+          0.10248982906341553
+        ],
+        [
+          0.9231064915657043,
+          0.8975011110305786
+        ]
+      ],
+      "lights": [
+        {
+          "name": "Review Key",
+          "energy": 8000.0,
+          "size": 8.0,
+          "location": [
+            -16.0,
+            24.0,
+            10.904999732971191
+          ]
+        },
+        {
+          "name": "Review Fill",
+          "energy": 5000.0,
+          "size": 8.0,
+          "location": [
+            -1.0,
+            15.0,
+            7.904999732971191
+          ]
+        },
+        {
+          "name": "Review Rim",
+          "energy": 7000.0,
+          "size": 6.0,
+          "location": [
+            -6.0,
+            5.0,
+            10.904999732971191
+          ]
+        }
+      ],
+      "file": "Review/tram-manufacturing-bright.png",
+      "sha256": "d235ee5ac05fbb4a33a8ccc7870734fe52351efcb41c445dbccb6c09aad937ce"
+    }
+  ],
+  "limits": [
+    "Uses the established gate/booth project FBX boundary: imported world(x,z,y) to Unity. Alternate axis error is recorded, not selected to force a pass.",
+    "No Unity importer/native graphics/physics validation. Review images use studio lighting, not game lighting.",
+    "Distinct manufactured pieces may overlap; closed-component checks do not claim a boolean-unioned mesh."
+  ],
+  "original_geometry_unchanged": true,
+  "original_material_graph_unchanged": true,
+  "original_source_transform_unchanged": true,
+  "original_input_files_unchanged": true,
+  "packed_images": [
+    {
+      "name": "CityGatePilot_A",
+      "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006"
+    },
+    {
+      "name": "CityGatePilot_N",
+      "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64"
+    },
+    {
+      "name": "CityGatePilot_M",
+      "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb"
+    }
+  ],
+  "review_only_assembly": {
+    "coach_origin": [
+      0,
+      0,
+      0
+    ],
+    "ramp_foot": [
+      -5,
+      0,
+      0
+    ],
+    "ramp_upper_x": -1.65,
+    "coach_west_x": -1.602,
+    "nominal_gap_m": 0.048,
+    "note": "Review copies match runtime relative alignment; original authored review has a1mZoffset and is preserved."
+  },
+  "triangles_checked": 7336,
+  "solid_components_checked": 178
+}

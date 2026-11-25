@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "status": "SOURCE_PROMOTED_BYTE_IDENTICAL_NO_UNITY_IMPORT",
+  "recordedUtc": "2026-11-25T21:25:53.539027+00:00",
+  "originalProductionManifestSha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
+  "copies": [
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/NorthlineRail.blend",
+      "destination": "ArtSource/NorthlineRail/NorthlineRail.blend",
+      "bytes": 8740436,
+      "sha256": "af01208fc8b41799bbfcd5fa3862cf197290cd8582bb22443de2c469b9cab69f",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/piece-map.json",
+      "destination": "ArtSource/NorthlineRail/piece-map.json",
+      "bytes": 69430,
+      "sha256": "0812f39b9988c6c0bf3bbd5d1bcb4a809f1aa8e21678d305fae0644e8732e45a",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/production-manifest.json",
+      "destination": "ArtSource/NorthlineRail/production-manifest.json",
+      "bytes": 9875,
+      "sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/review-verification.json",
+      "destination": "ArtSource/NorthlineRail/export-verification.json",
+      "bytes": 23952,
+      "sha256": "64a75f2cae0b54add06455eda647889ca6b6416d3b5c2c679827d30b033ad7d1",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailTram.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailTram.fbx",
+      "bytes": 54108,
+      "sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailTransferCradle.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailTransferCradle.fbx",
+      "bytes": 34348,
+      "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailControl.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailControl.fbx",
+      "bytes": 29628,
+      "sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailLowSignal.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailLowSignal.fbx",
+      "bytes": 24892,
+      "sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPointBlade.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailPointBlade.fbx",
+      "bytes": 24812,
+      "sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailCrossingBarrier.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailCrossingBarrier.fbx",
+      "bytes": 26860,
+      "sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailServiceGate.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailServiceGate.fbx",
+      "bytes": 24540,
+      "sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPlatformGate.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailPlatformGate.fbx",
+      "bytes": 25532,
+      "sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPortalGate.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailPortalGate.fbx",
+      "bytes": 27212,
+      "sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailDepartureCoach.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailDepartureCoach.fbx",
+      "bytes": 68060,
+      "sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailBoardingRamp.fbx",
+      "destination": "ArtSource/NorthlineRail/Exports/RailBoardingRamp.fbx",
+      "bytes": 21980,
+      "sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d",
+      "byte_identical": true
+    },
+    {
+      "source": "Logs/rail-chapter-stage/author_rail.py",
+      "destination": "Tools/blender/northline/author_rail.py",
+      "bytes": 17292,
+      "sha256": "5cdf907b8acc3f51c8fba972efe52f97fec4d7a1f34ac331783240ac1840f6dc",
+      "byte_identical": true
+    }
+  ],
+  "portableReviewScript": {
+    "path": "Tools/blender/northline/review_and_verify.py",
+    "sha256": "6154fde1670d5e54c5ac2b90ae4b1e28ecbc40d85b40f8eccb212ac8c982fae1",
+    "runtimeVerifiedAncestor": "Logs/rail-review-stage/review_and_verify.py",
+    "ancestorSha256": "cae2b2d9420630597815fac983845260577e2837c86c32862c349e1aff84e5d8",
+    "changes": "Accept the promoted ArtSource/NorthlineRail read-only input; explicitly record omitted original author review PNGs. All geometry/normal/UV/bounds checks and CPU reviews remain identical.",
+    "validation": "Python syntax only for the portable path adaptation; no additional Blender execution while Editor is active."
+  },
+  "omittedAuthorReviews": [
+    {
+      "file": "Review/kit-overview.png",
+      "device": "CPU",
+      "threads": 2,
+      "samples": 8,
+      "dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "Review/tram-manufacturing.png",
+      "device": "CPU",
+      "threads": 2,
+      "samples": 8,
+      "dimensions": [
+        1280,
+        800
+      ]
+    },
+    {
+      "file": "Review/coach-detail.png",
+      "device": "CPU",
+      "threads": 2,
+      "samples": 8,
+      "dimensions": [
+        1280,
+        800
+      ]
+    }
+  ],
+  "limits": [
+    "Original production/export-verification manifests are copied verbatim. Their Review references point to original Logs evidence and are not bundled source files.",
+    "Packed original images remain embedded. External relative map paths retain the original author Logs directory base and must be rebased deliberately if unpacked.",
+    "No Assets/ProjectSettings/Packages/C# changes, Unity/import/runtime/culling/physics validation or new process launch."
+  ]
+}

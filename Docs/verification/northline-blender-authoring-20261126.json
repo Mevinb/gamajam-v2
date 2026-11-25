@@ -1,0 +1,471 @@
+{
+  "schema": 1,
+  "status": "SOURCE_ART_PROMOTED_CPU_AUTHORING_AND_ROUNDTRIP_PASS_UNITY_PENDING",
+  "recordedUtc": "2026-11-25T21:27:32.213714+00:00",
+  "repositoryHeadAtProof": "f41e6f723cec519eaaee4a73adc842f3a553305c",
+  "sourcePackage": {
+    "path": "ArtSource/NorthlineRail/package-index.json",
+    "bytes": 4027,
+    "sha256": "99ab07e074b28ac32992e8191351601a56bd51ea88140a74d68d3ff153e8f97b"
+  },
+  "promotionRecord": {
+    "path": "ArtSource/NorthlineRail/promotion-record.json",
+    "bytes": 7188,
+    "sha256": "1285be6e0b4bcb6e1e30da51ce273a040938f17bea787c857418ee644f49d33a"
+  },
+  "authorRecipe": {
+    "path": "Tools/blender/northline/author_rail.py",
+    "bytes": 17292,
+    "sha256": "5cdf907b8acc3f51c8fba972efe52f97fec4d7a1f34ac331783240ac1840f6dc"
+  },
+  "authorRecipeUnchanged": true,
+  "geometry": {
+    "models": 11,
+    "distinctTriangles": 7336,
+    "closedOutwardManufacturedComponents": 178,
+    "material": "CityGatePilot_SharedPBR",
+    "newAtlasImages": 0,
+    "metres": true,
+    "coachBoundsUnity": [
+      [
+        -1.6019999980926514,
+        0.15000000596046448,
+        -7.009500026702881
+      ],
+      [
+        1.6019999980926514,
+        3.2899999618530273,
+        7.009500026702881
+      ]
+    ],
+    "rampBoundsUnity": [
+      [
+        0.0,
+        0.12999999523162842,
+        -1.0
+      ],
+      [
+        3.3499999046325684,
+        0.75,
+        1.0
+      ]
+    ],
+    "physicsObjectsAuthored": 0
+  },
+  "actualAuthorRun": {
+    "receipt": {
+      "path": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/author-receipt.json",
+      "bytes": 10837,
+      "sha256": "780e0bb2a9e5e22fb5278c8b223ab40e9d9ba2703b02e6a1610031d01417c90d"
+    },
+    "execution": {
+      "path": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/execution.json",
+      "bytes": 1475752,
+      "sha256": "4f68430ddbdb7a74388e90e945e87a2b8bffa75268372c04d7aceeafbc0b77d6"
+    },
+    "log": {
+      "path": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/blender.log",
+      "bytes": 23669,
+      "sha256": "24a992a4621ae8e3b7292c389336472b01a79bbc7be4c3e1d6753968c321d643"
+    },
+    "execSession": 2585,
+    "toolTerminalChunk": "de87b3",
+    "toolExitCode": 0,
+    "nativeExitCode": 0,
+    "supervisorExitCode": 0,
+    "watchdogSeconds": 600,
+    "watchdogTriggered": false,
+    "frozenRecipeSha256": "5cdf907b8acc3f51c8fba972efe52f97fec4d7a1f34ac331783240ac1840f6dc",
+    "productionManifest": {
+      "path": "ArtSource/NorthlineRail/production-manifest.json",
+      "bytes": 9875,
+      "sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60"
+    },
+    "configuration": {
+      "blender": "4.5.16 LTS",
+      "cyclesDevice": "CPU",
+      "fixedRenderThreads": 2,
+      "samples": 8,
+      "denoiser": "OPENIMAGEDENOISE",
+      "denoisingGpu": false,
+      "cudaVisibleDevices": ""
+    },
+    "nvidiaObservations": 13,
+    "integrityChecks": {
+      "frozen_recipe_unchanged": true,
+      "source_inputs_unchanged": true,
+      "live_source_unchanged": true,
+      "user_preview_tree_unchanged": true
+    }
+  },
+  "independentRoundtripAndReview": {
+    "receipt": {
+      "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review-receipt.json",
+      "bytes": 3902,
+      "sha256": "3e0b85577ee260a937518f5914cc17c6a852f5cb571e8ffedb131cd07cd24d0a"
+    },
+    "execution": {
+      "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/execution.json",
+      "bytes": 227174,
+      "sha256": "c25ae5573fe940b292d28f22af988ddc845fc8ec6b0116d8d1b127babbf8fa50"
+    },
+    "originalExecutedScript": {
+      "path": "Logs/rail-review-stage/review_and_verify.py",
+      "bytes": 15774,
+      "sha256": "cae2b2d9420630597815fac983845260577e2837c86c32862c349e1aff84e5d8"
+    },
+    "copiedVerification": {
+      "path": "ArtSource/NorthlineRail/export-verification.json",
+      "bytes": 23952,
+      "sha256": "64a75f2cae0b54add06455eda647889ca6b6416d3b5c2c679827d30b033ad7d1"
+    },
+    "execSession": 31544,
+    "toolTerminalChunk": "4bcdbc",
+    "toolExitCode": 0,
+    "nativeExitCode": 0,
+    "supervisorExitCode": 0,
+    "modelsPassed": 11,
+    "trianglesChecked": 7336,
+    "closedComponentsChecked": 178,
+    "checks": [
+      "Exactly one mesh and shared material semantic per FBX",
+      "Exact source vertices/triangles/independent-solid counts",
+      "Finite coordinates and bounded UVs, nondegenerate mesh/UV triangles",
+      "Imported corner normals agree with face winding",
+      "Closed consistently paired edges and positive translation-relative signed component volume",
+      "Expected transformed metre bounds using established gate/booth convention",
+      "No imported rigid bodies/modifiers/animation/cameras/lights",
+      "Original source geometry, UVs, material graph, source-object transforms and packed maps unchanged"
+    ],
+    "maxEstablishedAxisBoundsErrorMetres": 4.76837158203125e-07,
+    "minimumCornerNormalDotFace": 0.9999997615814209,
+    "axisConvention": "Imported world(x,z,y) decoded to Unity coordinates after the established temporary-Y-reflection/winding export.",
+    "asymmetricAxisDiscriminators": [
+      "RailControl",
+      "RailCrossingBarrier",
+      "RailPortalGate"
+    ],
+    "symmetricAxisAmbiguityRetained": [
+      "RailTram",
+      "RailTransferCradle",
+      "RailLowSignal",
+      "RailPointBlade",
+      "RailServiceGate",
+      "RailPlatformGate",
+      "RailDepartureCoach",
+      "RailBoardingRamp"
+    ],
+    "nvidiaObservations": 17,
+    "gpuObservationScope": "Observations during render log stages show protected user51569 and no Blender GPU process entry. Explicit CPU scene settings/readback remain the render-device evidence; totalGPUutilization belongs to the live desktop/game.",
+    "integrityChecks": {
+      "frozen_recipe_unchanged": true,
+      "source_inputs_unchanged": true,
+      "user_preview_tree_unchanged": true
+    }
+  },
+  "reviewImages": [
+    {
+      "image": {
+        "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/Review/coach-west-boarding-full.png",
+        "bytes": 906900,
+        "sha256": "b2de861163ae815314526814a67760a20849cd7a0ea36ba9e396373673914863"
+      },
+      "actualSettingsReadback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "framingUvBounds": [
+        [
+          0.06328164786100388,
+          0.2683584988117218
+        ],
+        [
+          0.8581081628799438,
+          0.8010237216949463
+        ]
+      ],
+      "rootViewed": true,
+      "originalGeometryAndMaterialsUnchanged": true
+    },
+    {
+      "image": {
+        "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/Review/coach-door-bogie-detail.png",
+        "bytes": 940885,
+        "sha256": "81b8440f7c3e352c104d4bd44c753f5be7bacf68fa25a9f4cadbf79d6a77717e"
+      },
+      "actualSettingsReadback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "scope": "Detail bounds intentionally crop beyond this region; complete assembly is framed separately.",
+      "framingUvBounds": [
+        [
+          0.06373334676027298,
+          0.1464867889881134
+        ],
+        [
+          0.9362667202949524,
+          0.8535090684890747
+        ]
+      ],
+      "rootViewed": true,
+      "originalGeometryAndMaterialsUnchanged": true
+    },
+    {
+      "image": {
+        "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/Review/whole-kit-bright-studio.png",
+        "bytes": 1002430,
+        "sha256": "77d69bf1272ad9408c6331debefead5d7922e4028916b4899493092f08556d6c"
+      },
+      "actualSettingsReadback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "framingUvBounds": [
+        [
+          0.11785687506198883,
+          0.06262074410915375
+        ],
+        [
+          0.796542763710022,
+          0.8428374528884888
+        ]
+      ],
+      "rootViewed": true,
+      "originalGeometryAndMaterialsUnchanged": true
+    },
+    {
+      "image": {
+        "path": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/Review/tram-manufacturing-bright.png",
+        "bytes": 1018061,
+        "sha256": "d235ee5ac05fbb4a33a8ccc7870734fe52351efcb41c445dbccb6c09aad937ce"
+      },
+      "actualSettingsReadback": {
+        "engine": "CYCLES",
+        "device": "CPU",
+        "threads_mode": "FIXED",
+        "threads": 2,
+        "samples": 8,
+        "denoiser": "OPENIMAGEDENOISE",
+        "denoising_use_gpu": false,
+        "dimensions": [
+          1280,
+          800
+        ],
+        "exposure": 1.0,
+        "world_strength": 1.0
+      },
+      "scope": "All visible object bounding corners fully framed, no image crop.",
+      "framingUvBounds": [
+        [
+          0.07689362019300461,
+          0.10248982906341553
+        ],
+        [
+          0.9231064915657043,
+          0.8975011110305786
+        ]
+      ],
+      "rootViewed": true,
+      "originalGeometryAndMaterialsUnchanged": true
+    }
+  ],
+  "rootReview": {
+    "reportedBy": "Root agent, after actually viewing all four bright review images.",
+    "accepted": "Geometry/export foundation for next integration.",
+    "notAccepted": "Finished realism or in-game graphics acceptance.",
+    "originalDarkControls": "All three original author PNGs remain preserved; dark/cropped coach views were not used as appearance acceptance."
+  },
+  "portableTool": {
+    "path": "Tools/blender/northline/review_and_verify.py",
+    "sha256": "6154fde1670d5e54c5ac2b90ae4b1e28ecbc40d85b40f8eccb212ac8c982fae1",
+    "runtimeVerifiedAncestor": "Logs/rail-review-stage/review_and_verify.py",
+    "ancestorSha256": "cae2b2d9420630597815fac983845260577e2837c86c32862c349e1aff84e5d8",
+    "changes": "Accept the promoted ArtSource/NorthlineRail read-only input; explicitly record omitted original author review PNGs. All geometry/normal/UV/bounds checks and CPU reviews remain identical.",
+    "validation": "Python syntax only for the portable path adaptation; no additional Blender execution while Editor is active."
+  },
+  "sourcePromotion": {
+    "directories": [
+      "ArtSource/NorthlineRail",
+      "Tools/blender/northline"
+    ],
+    "allOriginalCopiesByteIdentical": true,
+    "copies": [
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/NorthlineRail.blend",
+        "destination": "ArtSource/NorthlineRail/NorthlineRail.blend",
+        "bytes": 8740436,
+        "sha256": "af01208fc8b41799bbfcd5fa3862cf197290cd8582bb22443de2c469b9cab69f",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/piece-map.json",
+        "destination": "ArtSource/NorthlineRail/piece-map.json",
+        "bytes": 69430,
+        "sha256": "0812f39b9988c6c0bf3bbd5d1bcb4a809f1aa8e21678d305fae0644e8732e45a",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/production-manifest.json",
+        "destination": "ArtSource/NorthlineRail/production-manifest.json",
+        "bytes": 9875,
+        "sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-review-runs/20261125T212030697054Z-75f6470a/review/review-verification.json",
+        "destination": "ArtSource/NorthlineRail/export-verification.json",
+        "bytes": 23952,
+        "sha256": "64a75f2cae0b54add06455eda647889ca6b6416d3b5c2c679827d30b033ad7d1",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailTram.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailTram.fbx",
+        "bytes": 54108,
+        "sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailTransferCradle.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailTransferCradle.fbx",
+        "bytes": 34348,
+        "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailControl.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailControl.fbx",
+        "bytes": 29628,
+        "sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailLowSignal.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailLowSignal.fbx",
+        "bytes": 24892,
+        "sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPointBlade.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailPointBlade.fbx",
+        "bytes": 24812,
+        "sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailCrossingBarrier.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailCrossingBarrier.fbx",
+        "bytes": 26860,
+        "sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailServiceGate.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailServiceGate.fbx",
+        "bytes": 24540,
+        "sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPlatformGate.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailPlatformGate.fbx",
+        "bytes": 25532,
+        "sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailPortalGate.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailPortalGate.fbx",
+        "bytes": 27212,
+        "sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailDepartureCoach.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailDepartureCoach.fbx",
+        "bytes": 68060,
+        "sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-author-runs/20261125T211444784842Z-4421ba02/authored/Exports/RailBoardingRamp.fbx",
+        "destination": "ArtSource/NorthlineRail/Exports/RailBoardingRamp.fbx",
+        "bytes": 21980,
+        "sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d",
+        "byte_identical": true
+      },
+      {
+        "source": "Logs/rail-chapter-stage/author_rail.py",
+        "destination": "Tools/blender/northline/author_rail.py",
+        "bytes": 17292,
+        "sha256": "5cdf907b8acc3f51c8fba972efe52f97fec4d7a1f34ac331783240ac1840f6dc",
+        "byte_identical": true
+      }
+    ],
+    "sourceGateBlendAndThreeMapsUnchanged": true,
+    "packedImagesRemainEmbedded": true,
+    "externalPathLimit": "The blend retains original author Logs-relative external image strings. Rebase to the existing gate map paths only if deliberately unpacking/reloading.",
+    "originalManifestImageReferencesRetained": "Original production and verification manifests are byte-identical. Their provenance-only Review PNGs remain in Logs and are intentionally absent from the source package.",
+    "reviewImagesCopied": 0,
+    "assetsPackageProjectSettingsOrLiveCSharpWrites": 0,
+    "additionalUnityBlenderOrPlayerJobsDuringPromotion": 0,
+    "commitPerformed": false
+  },
+  "protectedUser": {
+    "identityAfterAuthor": {
+      "utc": "2026-11-25T21:16:03.841566+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    },
+    "identityAfterReview": {
+      "utc": "2026-11-25T21:22:15.984822+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    },
+    "userTreeUnchangedBothRuns": true,
+    "neverSignalledByTheseJobs": true
+  },
+  "limits": [
+    "Source art and CPU export/roundtrip review only; no Unity importer, generated-scene, actual engine culling/materials, gameplay/physics/navigation/native render/performance result.",
+    "Root viewed studio images, not native game images.",
+    "Portable source-path/omitted-PNG adaptations are syntax-checked only; the unchanged runtime-verified ancestor is pinned separately.",
+    "Live C# could change during the independent review and source promotion; those stages deliberately bind source art/maps/user preview rather than claiming the earlier eedd source freeze."
+  ]
+}

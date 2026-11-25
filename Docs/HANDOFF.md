@@ -6,6 +6,16 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Northline source art is authored and promoted:** `ArtSource/NorthlineRail` contains the packed editable blend,
+  eleven FBXs, manufacturing manifests and credits; reproducible CPU tools are under `Tools/blender/northline`.
+  Actual authoring and independent FBX round-trip both exit0:7,336triangles/178outward closed components, exact counts/
+  finite UVs/normals/shared material and measured bounds (max error4.77e-7m). Four brighter1280x800 CPU reviews replace
+  neither the preserved dark controls nor game screenshots. Root viewed them and accepted the geometry/export foundation;
+  in-game realism, imports, physics and GPU acceptance remain unproven. Source maps/old user preview were unchanged.
+  [Authoring/promotion proof](verification/northline-blender-authoring-20261126.json).
+  Missions24–26 and their importer/visual hooks remain staged outside live Assets. Independent staged-code review records
+  corrected coach/boarder/coordinator ownership and geometry, with seven runtime tests still unrun.
+  [Staged review](verification/northline-stage-review-20261126.json). Do not call these missions integrated or shipped.
 - The diagnostics-only Null Editor case90 reproduction is terminal **FAIL**, native exit2, root60714/chunk52a1d3,
   one failed NUnit case in311.103seconds. It now directly records Riley `returning=True`, cleared leader agreement,
   savedCover1, zero brain notice/flee timers and an intentionally stopped complete NavMesh path within.997m of saved cover.

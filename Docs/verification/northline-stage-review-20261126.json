@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "status": "STAGED_SOURCE_CORRECTIONS_REVIEWED_RUNTIME_UNRUN",
+  "recordedUtc": "2026-11-25T21:14:59.078251+00:00",
+  "scope": "Independent read-only source and geometry-contract review of the staged Northline chapter. No live Assets were edited, no patch was applied, and no Unity, Blender, player or GPU process was launched by this review.",
+  "findings": [
+    {
+      "id": "coordinator-disable-publication",
+      "originalEvidence": {
+        "resolutionSha256": "264194af8d1515209b0507ca6a323ccd1f16855921d7ee7b1c0e0f36ba8413b1",
+        "departureSha256": "3143787b49e4e74b67585eb49e9130bc28829fa304aa9acb846f06c850ae80a0"
+      },
+      "problem": "A component-only RailDeparture disable left authorization true, while the separate moving resolution did not require an enabled coordinator. It could continue to the M26 publication path. Gating cleanup by the stricter publish predicate alone would instead leave the captured manager frozen in Ending.",
+      "correctionReviewed": "RailResolution now keeps captured-manager/scene cleanup authority separately from enabled, authorized, non-retired coordinator publication authority. AvailabilityLost cancels the owned trip; exact boarders and coach roll back before the captured manager resumes.",
+      "references": [
+        "RailResolution.OwnsCapturedManager/Owns/OnCoordinatorUnavailable/FinishOrRollback",
+        "RailDeparture.OnDisable/TransitHardwareReady"
+      ],
+      "runtimeStatus": "UNRUN"
+    },
+    {
+      "id": "destroyed-coach-stale-body-registry",
+      "problem": "Destroying the moving coach GameObject also destroys its parented blobs, while PM.Agents can retain two managed entries. The old count==0 recovery check misses this state; an interface can also retain a destroyed Unity object before .Root is accessed.",
+      "correctionReviewed": "Registered rejects destroyed Unity objects before invoking Root. Cleanup counts actually usable registered free bodies and detects registry/active-body mismatch or lost captured hardware, then requests ordinary checkpoint recovery after restoring available captured state.",
+      "references": [
+        "RailCampaign.Registered/Free",
+        "RailResolution.FinishOrRollback/RestoreOwned"
+      ],
+      "runtimeStatus": "UNRUN"
+    },
+    {
+      "id": "mutable-coach-binding-rollback",
+      "problem": "Only the coach pose/interpolation were originally captured. Movement and rollback resolved mutable departure.Coach/carriage bindings, allowing an in-flight replacement object to inherit the old pose or interpolation.",
+      "correctionReviewed": "The actual Rigidbody and Transform are captured once. Publication requires the current bindings to equal those exact references; movement and rollback use captured references only. Rebinding requests checkpoint recovery without mutating the replacement.",
+      "references": [
+        "RailResolution.Initialize/Owns/ReadyToPublish/RestoreOwned"
+      ],
+      "runtimeStatus": "UNRUN"
+    },
+    {
+      "id": "permanent-coordinator-destruction-order",
+      "problem": "Unity component destruction invokes OnDisable before OnDestroy. A recoverable disable rollback may unsubscribe the trip before the permanent destruction notification, and native fake-null timing during the callback must not determine whether checkpoint recovery happens.",
+      "correctionReviewed": "RailDeparture sets PermanentlyRetired and clears its singleton before destruction notification. Publication and lost-hardware checks include this state. The captured GameManager monitors a genuinely destroyed cached coordinator during play and requests the ordinary checkpoint; temporary component disable remains re-enableable. Awake builds/binds the coordinator synchronously before Update, so no startup missing-binding window was found in the reviewed code.",
+      "references": [
+        "RailDeparture.OnDisable/OnDestroy",
+        "RailResolution.Owns/FinishOrRollback",
+        "GameManager.Awake/Update"
+      ],
+      "runtimeStatus": "UNRUN"
+    }
+  ],
+  "geometryArithmetic": {
+    "basis": "Derived from current staged constants and Box/convex-ramp construction only, not measured in Unity.",
+    "coachWidthX": 3.2,
+    "coachLengthZ": 14,
+    "coachStartLocal": [
+      8,
+      0,
+      45
+    ],
+    "initialCoachFootprintX": [
+      6.4,
+      9.6
+    ],
+    "initialCoachFootprintZ": [
+      38,
+      52
+    ],
+    "protectedTravelMetres": 8,
+    "endpointFrontLocalZ": 60,
+    "exitFootingEndLocalZ": 66,
+    "portalOpeningX": [
+      5.9,
+      10.1
+    ],
+    "sideClearanceMetres": 0.5,
+    "coachRoofTopY": 3.29,
+    "openedPortalLeafBottomY": 4.15,
+    "deckAndRampTopY": 0.75,
+    "rampLowY": 0.15,
+    "rampRunMetres": 3.35,
+    "rampSlopeDegrees": 10.154267,
+    "rampVehicleGapMetres": 0.05,
+    "physicsFootingNavCollisionAcceptance": "UNRUN"
+  },
+  "reviewedFiles": [
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailResolution.cs",
+      "bytes": 13678,
+      "sha256": "7e640818ba2e21d7900a2ca644964183709f9e0f50e848c1caa895a35e96711f"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailDeparture.cs",
+      "bytes": 20914,
+      "sha256": "3061e73e2b45d6f9d55f38d275efcd88e934cf3a7c6e7b93340185831b404b80"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailCampaign.cs",
+      "bytes": 11471,
+      "sha256": "1584a79b08eb3b456c77ec8dc17d33e250e526e444defad14003a7dc5eeeef78"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailCrossing.cs",
+      "bytes": 11159,
+      "sha256": "da7cd287b3cde741586b72066f119b21216575dc67736ed1dcf387ec54ead70e"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailLayout.cs",
+      "bytes": 2698,
+      "sha256": "5684d643ec8e41888a2c46779e075a3a4843f5bdc30d8e14399afcaf6e17faf5"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailDistrict.cs",
+      "bytes": 16947,
+      "sha256": "b52470682f43537f2a0d0228560ffe1c0b9e3a3bded6ade9bd2331cfdfe8b918"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Missions/RailVisuals.cs",
+      "bytes": 5146,
+      "sha256": "219943a1a7cd6c887592dc14f3e6ed5b9ae511e6f284cada3d3efa7bcb9d27c8"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Scripts/Core/RailAcceptance.cs",
+      "bytes": 38662,
+      "sha256": "9cc527a347c7692fe4c75f7d1f3c2fef2e0adb22f472b70d1390704e54be5d39"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/files/Assets/Parasite/Tests/PlayMode/RailCampaignTests.cs",
+      "bytes": 1696,
+      "sha256": "c587dadedf329c5f5c4e5a307742d7f21c620576ee5c37fa1c53383b479f488b"
+    },
+    {
+      "path": "Logs/rail-chapter-stage/integration-after/Assets/Parasite/Scripts/Core/GameManager.cs",
+      "bytes": 20523,
+      "sha256": "0d1e09d565b6f28afed07a8193891becc9c6293a4c64a8f6204c60a7d1fd048d"
+    }
+  ],
+  "apiCompile": {
+    "receipt": {
+      "path": "Logs/northline-stage-review-20261126/compile-receipt-at-review.json",
+      "bytes": 2974,
+      "sha256": "80adcf96ee6ab6949e663edc9cc83cba0b6349686a7eef37820ca28f06fa52e1"
+    },
+    "scope": "CPU Roslyn API compilation only. No Unity/Blender/player execution, imports, nav/physics, graphics or mission acceptance. Live Assets unchanged.",
+    "runtimeSources": 173,
+    "runtimeExit": 0,
+    "editorSources": 31,
+    "editorExit": 0,
+    "linuxMonoExit": 0,
+    "nunitApiExit": 0,
+    "originalReceiptPath": "Logs/rail-chapter-stage/compile/receipt.json"
+  },
+  "stagedAcceptance": {
+    "unityTestCount": 7,
+    "cases": [
+      "ContinuationRequiresTheCompleted23Summary",
+      "PeacePhysicalChapterAndRecovery",
+      "DominionPhysicalChapter",
+      "ActualCoordinatorDisableDuringMotion",
+      "ActualCoordinatorDestroyDuringMotion",
+      "ActualCoachDestroyDuringMotion",
+      "ActualCoachRebindDuringMotion"
+    ],
+    "executed": false,
+    "fixtureScope": "Prior23 summary and initial role ownership are declared fixtures; Northline objectives use normal input. Lifecycle fixtures act on actual earned, partially moving objects. Their implementation is not passing runtime evidence."
+  },
+  "limits": [
+    "No Northline gameplay, physics, navigation, pause, ownership, rollback, destruction, checkpoint or full-chapter test has run.",
+    "Blender author/export recipe, generated models and art import have not run; geometry remains provisional until actual production/import/review.",
+    "No GPU rendering, RTX performance, image, audio, physical-device, subjective realism or human-playthrough acceptance is established.",
+    "This review corrects source-level findings in staged files; it is not a claim that the chapter is integrated, shipped or bug-free.",
+    "No live Assets or user playtest process was changed or signaled by this review."
+  ]
+}
