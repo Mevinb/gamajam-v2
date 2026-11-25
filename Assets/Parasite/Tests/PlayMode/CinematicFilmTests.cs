@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -92,7 +93,9 @@ namespace Parasite.Tests
             try
             {
                 Assert.IsNotNull(epilogue);
-                var movie = Object.FindFirstObjectByType<VideoPlayer>();
+                string arrival = epilogue.UsingFullArrival ? "LakeArrival" : "LakesideEnding";
+                var movie = epilogue.GetComponentsInChildren<VideoPlayer>(true)
+                    .Single(player => player.clip && player.clip.name == arrival);
                 Assert.IsNotNull(movie);
                 float deadline = Time.realtimeSinceStartup + 8f;
                 while (movie.frame < 2 && Time.realtimeSinceStartup < deadline) yield return null;
