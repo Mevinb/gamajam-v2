@@ -14,6 +14,13 @@ The full request remains **in progress**. Evidence applies to its named source o
   Agent `graphics_settings_foundation` owns monitoring and will publish terminal evidence; do not start a duplicate run,
   another Editor/player/GPU acceptance, or modify Assets until the actual receipt is terminal. Cases already covered on this
   build and render-only21/22 are excluded. No 16-case pass or complete27-case result is claimed.
+  **Known supervisor metadata bug:** it expects numeric ID order, while the unchanged built AutoTest declares
+  06/07/09/12–16/10/11/17–20/23/24. Do not stop/restart the native run or overwrite its original receipt. Root reviewed
+  `Logs/candidate06-native-remaining/verify_terminal.py` (SHA256 `10e9609f3ac697dfbfdccb2b6d3059b682f8279b34f8d883850d6b754d5ee0fc`):
+  it may reanalyse only after actual native exit0/all16PASS and the original supervisor exits1 solely from that order guard.
+  It requires the exact unique ID set, verified declaration order, native0, unchanged scenario/source hashes and all full
+  before/after/current artifact checks. Preserve the supervisor failure alongside a separate read-only verification receipt;
+  never reinterpret a genuine scenario failure or rerun already-passed native work to fix this metadata error.
 - Two additional physical harbor recovery cases pass together **2/2 in 209.358 seconds, Null Editor exit 0**
   (agent session 92343, terminal chunk `f38e71`). A real obstruction holds the moving crate without delivery credit;
   removing only that fixture permits its physical arrival. Actual inactive free-body containment cancels a running relay.
