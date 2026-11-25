@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "status": "DEPARTURE_CONTROL_OWN_COLLIDER_REJECTED_AS_PARENT_RIGIDBODY",
+  "recordedUtc": "2026-11-25T23:43:27.245142+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 21051,
+    "chunk": "7da5e0",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:40:05Z",
+      "end-time": "2026-11-25 23:41:48Z",
+      "duration": "102.539798"
+    }
+  },
+  "source": {
+    "RailAcceptance": "6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca",
+    "AutoTest": "55b3b62e355e6c6044622601279bbff98ef1a31b3af7482a368a1c4479d610e5"
+  },
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_departure_los_20261126a.log",
+      "bytes": 252845,
+      "sha256": "b0f7739d5ceebbbb22a8581ead0487334114666ab610c88e3ce6aa85f282a089"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-departure-los-20261126a.xml",
+      "bytes": 98519,
+      "sha256": "3171eba4f216c0bd4687b47690c0a363d0ced636c187be7c7c625301d7b24de0"
+    }
+  ],
+  "actualReadyRay": "[NorthlineDepartureLOS] ONCE expectedAllowed=True selectedControl=True targetKind=Interact targetAllowed=False prompt=Depart Northline \u2014 BOTH FREE bodies fully aboard  \u2014  The control is physically obstructed. actualCanDepart=False departReason=The control is physically obstructed. boardingReady=True boardingReason= controlReady=False controlReason=The control is physically obstructed. actualClearLine=False agent=1 bodyType=Parasite.Possession.AmoebaController body=Amoeba_1#-51896 bodyPosition=(1507.907000, 0.780005, -174.628800) host=FREE activeFree=True transit=False capturedPending=False eye=(1507.907000, 1.230005, -174.628800) control=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 controlPosition=(1509.150000, 0.750000, -175.200000) controlLocalPosition=(1.150024, 0.750000, -0.199997) controlPoint=(1509.150000, 1.550000, -175.200000) coach=World/Northline Railway Works/Northline departure carriage#-41790 coachPosition=(1508.000000, 0.000000, -175.000000) eyeInCoach=(-0.093018, 1.230005, 0.371231) pointInCoach=(1.150024, 1.550000, -0.199997) boardingBounds=Center: (1508.000000, 1.450000, -175.000000), Extents: (1.400000, 0.700000, 6.400000) eyeControlDistance=1.404938 bodies=[id=1 free=True at=(1507.907000, 0.780005, -174.628800) fullAboard=True grounded=True; id=2 free=True at=(1507.209000, 0.780005, -176.110000) fullAboard=True grounded=True] rayMask=-1 queryTriggers=Ignore hitCount=1 nonAllocCapacity=64 nonAllocMaySaturate=False sortedFullRayHits=[0:World/Northline Railway Works/Northline departure carriage/Northline departure control type=BoxCollider layer=0 bounds=(1509.150, 1.150, -175.200)/(0.700, 0.800, 0.500) colliderId=-42204 hitTransform=World/Northline Railway Works/Northline departure carriage#-41790 colliderTransform=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 hitRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 colliderAttachedRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 distance=1.009354 point=(1508.800000, 1.459900, -175.039200) normal=(-1.000000, 0.000000, 0.000000) ownByHitTransform=False controlByHitTransform=False ownByColliderTransform=False controlByColliderTransform=True coachByHitTransform=True coachByColliderTransform=True blocksActualPredicate=True blocksColliderHierarchyAlternative=False]",
+  "allDeparturePressDiagnostics": [
+    "[NorthlineDepartureLOS] ONCE expectedAllowed=False selectedControl=True targetKind=Interact targetAllowed=False prompt=Depart Northline \u2014 BOTH FREE bodies fully aboard  \u2014  The control is physically obstructed. actualCanDepart=False departReason=The control is physically obstructed. boardingReady=False boardingReason=Release every host and bring both full FREE capsules into the departure carriage. controlReady=False controlReason=The control is physically obstructed. actualClearLine=False agent=2 bodyType=Parasite.Possession.AmoebaController body=Amoeba_2#-60128 bodyPosition=(1507.209000, 0.780005, -176.110000) host=FREE activeFree=True transit=False capturedPending=False eye=(1507.209000, 1.230005, -176.110000) control=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 controlPosition=(1509.150000, 0.750000, -175.200000) controlLocalPosition=(1.150024, 0.750000, -0.199997) controlPoint=(1509.150000, 1.550000, -175.200000) coach=World/Northline Railway Works/Northline departure carriage#-41790 coachPosition=(1508.000000, 0.000000, -175.000000) eyeInCoach=(-0.790772, 1.230005, -1.110001) pointInCoach=(1.150024, 1.550000, -0.199997) boardingBounds=Center: (1508.000000, 1.450000, -175.000000), Extents: (1.400000, 0.700000, 6.400000) eyeControlDistance=2.167301 bodies=[id=1 free=False at=(1489.931000, 0.190000, -186.032100) fullAboard=False grounded=True; id=2 free=True at=(1507.209000, 0.780005, -176.110000) fullAboard=True grounded=True] rayMask=-1 queryTriggers=Ignore hitCount=1 nonAllocCapacity=64 nonAllocMaySaturate=False sortedFullRayHits=[0:World/Northline Railway Works/Northline departure carriage/Northline departure control type=BoxCollider layer=0 bounds=(1509.150, 1.150, -175.200)/(0.700, 0.800, 0.500) colliderId=-42204 hitTransform=World/Northline Railway Works/Northline departure carriage#-41790 colliderTransform=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 hitRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 colliderAttachedRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 distance=1.776453 point=(1508.800000, 1.492293, -175.364100) normal=(-1.000000, 0.000000, 0.000000) ownByHitTransform=False controlByHitTransform=False ownByColliderTransform=False controlByColliderTransform=True coachByHitTransform=True coachByColliderTransform=True blocksActualPredicate=True blocksColliderHierarchyAlternative=False]",
+    "[NorthlineDepartureLOS] ONCE expectedAllowed=True selectedControl=True targetKind=Interact targetAllowed=False prompt=Depart Northline \u2014 BOTH FREE bodies fully aboard  \u2014  The control is physically obstructed. actualCanDepart=False departReason=The control is physically obstructed. boardingReady=True boardingReason= controlReady=False controlReason=The control is physically obstructed. actualClearLine=False agent=1 bodyType=Parasite.Possession.AmoebaController body=Amoeba_1#-51896 bodyPosition=(1507.907000, 0.780005, -174.628800) host=FREE activeFree=True transit=False capturedPending=False eye=(1507.907000, 1.230005, -174.628800) control=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 controlPosition=(1509.150000, 0.750000, -175.200000) controlLocalPosition=(1.150024, 0.750000, -0.199997) controlPoint=(1509.150000, 1.550000, -175.200000) coach=World/Northline Railway Works/Northline departure carriage#-41790 coachPosition=(1508.000000, 0.000000, -175.000000) eyeInCoach=(-0.093018, 1.230005, 0.371231) pointInCoach=(1.150024, 1.550000, -0.199997) boardingBounds=Center: (1508.000000, 1.450000, -175.000000), Extents: (1.400000, 0.700000, 6.400000) eyeControlDistance=1.404938 bodies=[id=1 free=True at=(1507.907000, 0.780005, -174.628800) fullAboard=True grounded=True; id=2 free=True at=(1507.209000, 0.780005, -176.110000) fullAboard=True grounded=True] rayMask=-1 queryTriggers=Ignore hitCount=1 nonAllocCapacity=64 nonAllocMaySaturate=False sortedFullRayHits=[0:World/Northline Railway Works/Northline departure carriage/Northline departure control type=BoxCollider layer=0 bounds=(1509.150, 1.150, -175.200)/(0.700, 0.800, 0.500) colliderId=-42204 hitTransform=World/Northline Railway Works/Northline departure carriage#-41790 colliderTransform=World/Northline Railway Works/Northline departure carriage/Northline departure control#-42190 hitRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 colliderAttachedRigidbody=World/Northline Railway Works/Northline departure carriage#-41790 distance=1.009354 point=(1508.800000, 1.459900, -175.039200) normal=(-1.000000, 0.000000, 0.000000) ownByHitTransform=False controlByHitTransform=False ownByColliderTransform=False controlByColliderTransform=True coachByHitTransform=True coachByColliderTransform=True blocksActualPredicate=True blocksColliderHierarchyAlternative=False]"
+  ],
+  "established": [
+    "Both real free bodies fully aboard and grounded; ReadyToDepart true for the final press.",
+    "Only one final ray hit: departure control own BoxCollider at1.009354m; eye-to-control1.404938m.",
+    "RaycastHit.transform and Rigidbody identify parent coach; collider.transform identifies the allowed child control.",
+    "RailCampaign.ClearLine tests hit.transform hierarchy, falsely rejects that target-owned child collider.",
+    "Actual collider hierarchy would ignore the target control while retaining unrelated geometry blockers."
+  ],
+  "primaryApiReference": "https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/raycasthit/transform",
+  "next": "Surgical actual-collider ownership fix plus real compound-body physics controls; no whole-coach ignore or geometry/range relaxation.",
+  "limits": [
+    "Whole Dominion case failed; no coach departure/lifecycle completion.",
+    "There are two one-shot Press receipts: earlier expected-denied boarding precondition and final expected-allowed press. Analysis uses the latter, retaining both.",
+    "Fix and new focused tests are being prepared, not passed.",
+    "0.6.1base/release bytes and previously reported smoke4/5 remain unchanged."
+  ]
+}

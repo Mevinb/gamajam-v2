@@ -6,6 +6,13 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Departure production bug is directly proved:** root21051/native2/chunk7da5e0,oneFAIL102.540s. BoardingReadyTrue,
+  both free bodies fully aboard/grounded; one actual ray hit is the target control's OWN child BoxCollider. Hit.transform/
+  Rigidbody resolves parent coach, while collider.transform resolves allowed child. Current ClearLine tests the former and
+  incorrectly denies its own target. [Exact ray](verification/northline-departure-own-collider-red-20261126.json).
+  Editor133849 is gone. Rail agent is authorized to fix only WORKRailCampaign.ClearLine ownership using actual collider
+  hierarchy, never whole-coach ignore, plus real kinematic-parent/child-target physics tests guarding sibling/foreign walls.
+  No code/test pass yet. WORKRailAcceptance6d/AutoTest55b stayfixed; base0.6.1and artifacts remain unchanged.
 - **Current live job: Departure hit-identity diagnostic**, root21051 via WORK`northline_departure_los_20261126a`, only
   DominionPhysicalChapter,600s/Null/nice15/idle/two workers. WORKRailAcceptance SHA
   `6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca`; AutoTest
