@@ -10,8 +10,8 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - Dialogue voices are synthesized. They are not recordings of human actors; captions remain available.
 - The retained 0.5.0 preview has four captioned island arrival/refuge lines without voice clips. The newer working tree now
   contains eight offline-generated island clips and duration-aware arrival/departure timing. Technical decode/key/level gates
-  pass. Five Editor cases now pass real source-tail progression, arrival/branch departure timing and skip/fallback behavior.
-  Subjective listening, refuge/roster clip runtime playback and built-player checks remain pending. The preview is unchanged.
+  pass. Seven Editor cases now pass real source-tail progression across all eight clips, source cue/clearing timing and skip/fallback.
+  Subjective listening and built-player checks remain pending. The preview is unchanged.
 - The 0.5.0 preview includes four complete RTX-rendered lake films and Blender-designed live sets. All four films pass actual
   Editor decode/choice gates; built-player decode succeeds but normal shutdown remains unresolved. The complete 80-second Blender
   opening is still rendering. The retained 0.4.2 archive contains the earlier two three-second establishing inserts.
@@ -24,8 +24,8 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - The immutable preview decodes all four lake films and two old clips and wraps the hold on Vulkan and OpenGL, but both strict
   test processes hang during native video cleanup and hit watchdog 137. Decode reports alone are not end-to-end passes.
   Exact Unity symbols locate the cleanup lock; its cause/repair remains under investigation.
-- A new Blender precast-wall kit is staged with 2K PBR maps and unchanged physical openings/colliders. Unity import, appearance
-  and performance are unverified; it is not yet in the live source/build.
+- The Blender precast-wall kit is applied beyond the preview. Its explicit-2D importer and model pass 140 actual checks;
+  three 2K BC7 maps use about 16 MiB. Actual GPU appearance/aperture/route and performance checks remain pending.
 - The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after
   GPU views and the built Vulkan player confirm visible water with unchanged physical footing. The historical 0.4.1 archive
   retains the earlier rendering behavior.

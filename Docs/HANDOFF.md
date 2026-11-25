@@ -18,7 +18,7 @@ process/checkpoint before GPU work; request a safe STOP and wait for terminal co
 ## Current source beyond the preview
 
 The live source now contains M18–M20 plus the four full lake films and eight island voice clips. Runtime/editor/Linux
-API compilation passes 140/22/140 sources. The retained preview binary still contains M18 only; do not relabel it.
+API compilation passes 141/23/141 sources with the wall verification helpers. The retained preview binary still contains M18 only; do not relabel it.
 
 - All 14 `IslandRescueTests` now have actual passing execution across focused runs: full Peace (`island-rescue-peace-fixed.xml`),
   full Dominion (`island-rescue-dominion-fixed.xml`), three berth/inset cases (`island-boarding-clearance.xml`), six recovery cases
@@ -35,21 +35,24 @@ API compilation passes 140/22/140 sources. The retained preview binary still con
   The native capture probe destroyed its attached RT on retirement (proved by before/after gate logs); publication now copies
   the completed image into an independent Cubemap. Six origin signatures, compressed BC6H sampling, epoch cancellation,
   repeated retirement, no recapture High-to-Ultra, cleanup and fresh unmarked water all pass. Built-player/Vulkan remains pending.
-- Eight offline CPU voice clips pass technical/key/level gates. Five focused Editor cases pass actual source tails, natural
-  arrival, release-aware skip, disabled/missing fallback and both branch departures. Arrival uses a monotonic cue origin.
-  Four refuge/roster clip source-tail checks are staged; subjective listening and rebuilt-player checks remain pending.
-- A Blender wall kit (two meshes, one material, 11,804 triangles, shared 2K PBR atlas) is staged under `Logs/island-wall-kit`.
-  CPU bounds/UV/opacity/opening proofs pass; no live publication/import or actual appearance/performance claim yet.
+- Eight offline CPU voice clips pass technical/key/level gates. Seven focused Editor cases pass actual source tails across all eight arrival/refuge/roster/departure clips, finite clearing,
+  release-aware skip and disabled/missing fallback. Arrival uses a monotonic cue origin. Subjective listening and rebuilt-player
+  checks remain pending.
+- The Blender wall kit (two meshes, one material, 11,804 triangles, shared 2K PBR atlas) is now applied. Initial automatic
+  texture import produced Cubemaps and blocked World initialization; the importer now explicitly requires Texture2D.
+  `island-wall-import-verification.json` passes 140 actual Unity checks: three 2048 BC7 maps (~16 MiB), all 18 old maps 512,
+  exact model counts/bounds and no colliders. Actual GPU wall appearance/aperture/route/performance checks remain pending.
 
 The retained preview's strict movie checks decode all seven expected items (two old clips, four full lake films and the
 neutral wrap) on RTX/Vulkan and OpenGL, but both processes fail normal shutdown and hit their watchdogs. These are **not**
 end-to-end passes. Parent-GDB snapshots and exact matching Unity symbols locate a native `VideoMediaMemoryOutput` lock
 inside video-class engine cleanup; the lock owner/cause is unproven. Evidence lives under `Logs/standalone-0.5.0-preview*`.
-A two-file optional lifecycle trace / final-seek A/B patch is staged under `Logs/cinematic-native-lifetime`; no runtime fix
-is claimed. Preserve the old forced-seek stress path until the native issue is understood.
+A two-file optional lifecycle trace / final-seek A/B patch is now applied from `Logs/cinematic-native-lifetime`; no new
+player build or runtime repair is claimed. Preserve the old forced-seek stress path until the native issue is understood.
 
-The frozen RTX production is safely stopped at Opening frame 485 for this GPU window. Its old renderer/supervisor have
-actually exited. Resume the same production after all GPU jobs terminate, with packed inputs/driver/policy unchanged.
+The frozen RTX production has resumed after the successful GPU window (old stop was frame 485). Current supervisor PID
+3394810 / Blender PID 3395037, session 31015; check actual processes/checkpoints. Stop safely before another GPU job.
+A reversible diagnostic build runner is being prepared under `Logs/cinematic-native-lifetime` to preserve the original preview.
 User playtest metadata remains under `Logs/user-playtest/`. The older native exits remain unproven; do not label them repaired.
 
 ## Active cinematic production — 25 November 2026

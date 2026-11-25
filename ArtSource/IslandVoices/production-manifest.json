@@ -245,7 +245,7 @@
   "validation_source_sha256": "49f26e910b6fa9bd0ab52e5d99bc2bf28b2d0fa1a0f8285dcc0fe712129cb133",
   "technical_audio_gate": true,
   "subjective_listening": "pending",
-  "runtime_timing": "Editor Null graphics / actual FMOD source progression: five focused cases passed. Built-player and subjective listening pending.",
+  "runtime_timing": "Editor Null graphics / real FMOD source progression: seven focused cases pass across all eight published clips. Built-player and subjective listening pending.",
   "clips": [
     {
       "key": "vo_4ffb1013f0db8f10",
@@ -393,25 +393,29 @@
     }
   ],
   "runtime_verification": {
-    "test_result_sha256": "9e4516e9cbe69b58ba825c9df58ad4ea994acc8731a6e6441f7e64e51fc9bbef",
-    "log_sha256": "b73f5664e0b9b7fb8bcfa1328be5c12245865ae661fc19e7a6802e7b29d55b13",
-    "passed": 5,
+    "test_result_sha256": "37a79dc7068bd329c930a28bd246ae2a00d9b2e14751ba81d25640a457275b2b",
+    "log_sha256": "92896b0427567372a2eb49a14842a689f53115cfb1858197e937255c91c4a808",
+    "passed": 7,
     "failed": 0,
     "cases": [
       "ArrivalRequiresReleaseThenSkipsPromptlyAndCancelsSpeech",
       "DisabledAndMissingArrivalNarrationKeepFiniteSilentTiming",
       "DominionDepartureStopsMotionBeforeItsRealLineFinishes",
+      "DominionRefugeAndRosterUseSourceCuesPublishedTailsAndFiniteClearing",
       "NaturalArrivalPlaysBothRealLinesBeforeReturningControl",
-      "PeaceDepartureStopsMotionBeforeItsRealLineFinishes"
+      "PeaceDepartureStopsMotionBeforeItsRealLineFinishes",
+      "PeaceRefugeAndRosterUseSourceCuesPublishedTailsAndFiniteClearing"
     ],
     "actual_source_tail_clips": [
       "vo_4ffb1013f0db8f10",
       "vo_a98be4db681daf60",
+      "vo_08e9ef6bdf74053a",
+      "vo_ea1a47d9e59b0be6",
+      "vo_fc1eae47d3a28931",
+      "vo_f019e6723e34f2d3",
       "vo_6528d8124228c4ff",
       "vo_332dc1ff69fc9f68"
     ],
-    "first_to_radio_seconds": 5.6508,
-    "radio_to_control_seconds": 5.9927,
-    "scope": "Actual existing FMOD AudioSource sample progression, enabled source/buses, natural completion, release-aware skip, disabled/missing lookup fallback, both branch protected departure motion. Does not establish speaker output, subjective listening, full mission traversal or built-player playback."
+    "scope": "Real source-raised arrival/refuge/roster/departure cues and actual FMOD sample tails, finite clearing, skip, disabled/missing fallback and protected vessel motion. Does not establish speaker output, subjective listening, a human playthrough or native-player playback."
   }
 }

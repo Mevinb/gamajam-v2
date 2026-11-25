@@ -24,12 +24,21 @@ namespace Parasite.Tests
         const string Radio = "Low water opens the culvert. Maintenance can take the service gate. Find the dry refuge beyond the fence.";
         const string PeaceDeparture = "Everyone aboard. No borrowed heart left behind.";
         const string DominionDeparture = "Every courier answered. The next shore is listening.";
+        const string PeaceRefuge = "You made it to the dry refuge. No one here belongs to Vale. Let us keep it that way.";
+        const string DominionRefuge = "The island has more than one route out. From this refuge, every route can become a connection.";
+        const string PeaceRoster = "All three reached the clinic. The rescue crew needs a mounted signal and everyone at the northern launch.";
+        const string DominionRoster = "Three couriers carry the relay. Mount the signal, then let the handoff routes converge at the northern launch.";
         sealed class ClipEvidence
         {
             public string Key; public AudioClip Clip;
-            public int Raised, MaxSamples; public bool Played, Muted;
-            public float RaisedAt = -1;
-            public void Reset() { Raised = MaxSamples = 0; Played = Muted = false; RaisedAt = -1; }
+            public int Raised, MaxSamples, Cleared; public bool Played, Muted, ObservedCurrentKey, PlayingAtClear;
+            public string ActualSpeaker, ActualLine;
+            public float RaisedAt = -1, ClearedAt = -1;
+            public void Reset()
+            {
+                Raised = MaxSamples = Cleared = 0; Played = Muted = ObservedCurrentKey = PlayingAtClear = false;
+                RaisedAt = ClearedAt = -1; ActualSpeaker = ActualLine = null;
+            }
         }
         readonly Dictionary<string, ClipEvidence> evidence = new();
         readonly Dictionary<string, (bool existed, AudioClip clip)> suppressed = new();
@@ -37,6 +46,7 @@ namespace Parasite.Tests
         AudioDirector audioRoot;
         AudioSource[] voiceSources;
         Coroutine observer;
+        string observedSubtitleKey;
         bool recording, frozenViolation, firstSilentBeforeRadio, oldPause, oldVoiceEnabled;
         float oldVoice, oldMaster, oldScale;
 
@@ -52,6 +62,8 @@ namespace Parasite.Tests
             Assert.AreEqual(2, voiceSources.Length, "Observe the actual persistent VO sources.");
             AddClip("SPECIMEN 7", Specimen); AddClip("ISLAND RADIO", Radio);
             AddClip("RESCUE RADIO", PeaceDeparture); AddClip("RESCUE RADIO", DominionDeparture);
+            AddClip("ISLAND RADIO", PeaceRefuge); AddClip("ISLAND RADIO", DominionRefuge);
+            AddClip("ISLAND RADIO", PeaceRoster); AddClip("ISLAND RADIO", DominionRoster);
             SceneManager.sceneLoaded += OnSceneLoaded;
             observer = audioRoot.StartCoroutine(ObserveSources());
             yield return new WaitForSecondsRealtime(.15f);
@@ -72,8 +84,18 @@ namespace Parasite.Tests
         }
         void OnSubtitle(string who, string line)
         {
-            if (!recording || string.IsNullOrEmpty(line)) return;
-            if (!evidence.TryGetValue(VoiceOver.KeyFor(who, line), out var cue)) return;
+            if (!recording) return;
+            if (string.IsNullOrEmpty(line))
+            {
+                if (observedSubtitleKey != null && evidence.TryGetValue(observedSubtitleKey, out var cleared))
+                {
+                    cleared.Cleared++; cleared.ClearedAt = Time.realtimeSinceStartup; cleared.PlayingAtClear |= Playing(cleared.Clip);
+                }
+                observedSubtitleKey = null; return;
+            }
+            observedSubtitleKey = VoiceOver.KeyFor(who, line);
+            if (!evidence.TryGetValue(observedSubtitleKey, out var cue)) return;
+            cue.ActualSpeaker = who; cue.ActualLine = line;
             cue.Raised++; if (cue.RaisedAt < 0) cue.RaisedAt = Time.realtimeSinceStartup;
             if (who == "ISLAND RADIO" && line == Radio)
                 firstSilentBeforeRadio = !Playing(Cue("SPECIMEN 7", Specimen).Clip);
@@ -89,6 +111,7 @@ namespace Parasite.Tests
                         var cue = evidence.Values.FirstOrDefault(e => e.Clip == source.clip);
                         if (cue == null) continue;
                         cue.Played = true; cue.MaxSamples = Mathf.Max(cue.MaxSamples, source.timeSamples);
+                        cue.ObservedCurrentKey |= VoiceOver.CurrentKey == cue.Key;
                         cue.Muted |= source.mute || source.volume <= 0 || AudioListener.volume <= 0;
                         if (GameManager.Instance && GameManager.Instance.State == GameState.Ending && Time.timeScale != 0) frozenViolation = true;
                     }
@@ -99,7 +122,7 @@ namespace Parasite.Tests
         void ResetEvidence()
         {
             foreach (var item in evidence.Values) item.Reset();
-            frozenViolation = false; firstSilentBeforeRadio = false; recording = true;
+            frozenViolation = false; firstSilentBeforeRadio = false; observedSubtitleKey = null; recording = true;
         }
         static void ClearInput()
         {
@@ -208,6 +231,52 @@ namespace Parasite.Tests
                 foreach (var item in suppressed)
                     if (item.Value.existed) lookup[item.Key] = item.Value.clip; else lookup.Remove(item.Key);
             suppressed.Clear();
+        }
+
+        [UnityTest, Timeout(180000)]
+        public IEnumerator PeaceRefugeAndRosterUseSourceCuesPublishedTailsAndFiniteClearing() => RefugeAndRoster(EndingOutcome.Peace);
+        [UnityTest, Timeout(180000)]
+        public IEnumerator DominionRefugeAndRosterUseSourceCuesPublishedTailsAndFiniteClearing() => RefugeAndRoster(EndingOutcome.Dominion);
+        IEnumerator RefugeAndRoster(EndingOutcome outcome)
+        {
+            yield return IslandEntryAcceptance.EnterFromFerry(outcome, true);
+            VoiceOver.StopSpeaking(); yield return new WaitForSecondsRealtime(.2f); ClearInput(); ResetEvidence();
+            Assert.IsFalse(RunState.Has(IslandCampaign.InnerRefuge)); Assert.IsFalse(RunState.Has(IslandRoster.Ready));
+            Assert.IsFalse(MissionManager.Instance.DialoguePlaying); Assert.IsNotNull(AudioBus.Listener);
+            string refuge = outcome == EndingOutcome.Peace ? PeaceRefuge : DominionRefuge;
+            string roster = outcome == EndingOutcome.Peace ? PeaceRoster : DominionRoster;
+            // Presentation-only prerequisite seeding. The physical entry and both full branches have their own acceptance.
+            // SetFlag invokes the actual IslandCampaign.OnFlag -> MissionManager.Say -> source-raised subtitle path.
+            MissionManager.SetFlag(IslandCampaign.InnerRefuge);
+            yield return AmbientCue(refuge);
+            Assert.IsNotNull(IslandTravelers.Instance); Assert.AreEqual(3, IslandTravelers.Instance.Members.Count);
+            Assert.IsFalse(RunState.Has(IslandRoster.Ready));
+            foreach (var person in IslandTravelers.Instance.Members) MissionManager.SetFlag(IslandRoster.Delivered(person.StableId));
+            // Do not set Ready or call Speak/Say here: the real IslandTravelers.Update must publish its own branch cue.
+            yield return AmbientCue(roster);
+            Assert.IsTrue(RunState.Has(IslandRoster.Ready)); Assert.AreEqual(outcome, RunState.LakesideOutcome);
+            Assert.AreEqual(0, Cue("ISLAND RADIO", outcome == EndingOutcome.Peace ? DominionRefuge : PeaceRefuge).Raised);
+            Assert.AreEqual(0, Cue("ISLAND RADIO", outcome == EndingOutcome.Peace ? DominionRoster : PeaceRoster).Raised);
+            Assert.IsFalse(Playing(Cue("ISLAND RADIO", refuge).Clip) || Playing(Cue("ISLAND RADIO", roster).Clip));
+        }
+        IEnumerator AmbientCue(string line)
+        {
+            var cue = Cue("ISLAND RADIO", line);
+            float sourceHold = 1.6f + line.Length * .045f;
+            float until = Time.realtimeSinceStartup + Mathf.Max(cue.Clip.length, sourceHold) + 2;
+            while ((cue.Raised == 0 || cue.ClearedAt < 0 || Playing(cue.Clip)) && Time.realtimeSinceStartup < until)
+            {
+                Assert.AreEqual(GameState.Playing, GameManager.Instance.State, "Non-blocking refuge/roster speech preserves gameplay control.");
+                Assert.That(Time.timeScale, Is.EqualTo(1)); yield return null;
+            }
+            Assert.AreEqual(1, cue.Raised); Assert.AreEqual("ISLAND RADIO", cue.ActualSpeaker); Assert.AreEqual(line, cue.ActualLine);
+            Assert.IsTrue(cue.ObservedCurrentKey, "The published source used the exact source-raised key: " + cue.Key);
+            AssertFullPlayback(cue);
+            Assert.AreEqual(1, cue.Cleared, "The actual ambient coroutine publishes its finite clear event.");
+            Assert.IsFalse(cue.PlayingAtClear, "Subtitle clearing must not cut off the real source tail.");
+            Assert.That(cue.ClearedAt - cue.RaisedAt, Is.InRange(cue.Clip.length - .05f, sourceHold + .5f));
+            Assert.IsFalse(Playing(cue.Clip));
+            Debug.Log($"[IslandVoiceTest] ambient {cue.Key} raised={cue.Raised} cleared={cue.Cleared} clip={cue.Clip.length:F4} clearAfter={cue.ClearedAt-cue.RaisedAt:F4} tail={cue.MaxSamples}/{cue.Clip.samples}");
         }
 
         [UnityTest, Timeout(180000)] public IEnumerator PeaceDepartureStopsMotionBeforeItsRealLineFinishes() => Departure(EndingOutcome.Peace);

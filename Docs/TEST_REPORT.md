@@ -1,3 +1,17 @@
+# Latest wall/voice integration after source milestone 701ad29
+
+- `Logs/island-wall-import-verification.json`: PASS 140 actual Unity import checks. Initial atlases imported as Cubemaps;
+  explicit Texture2D shape now fixes resource loading. All three are 2048 BC7/sRGB-or-linear as intended (~16 MiB runtime),
+  all 18 old maps remain 512, model counts/bounds/material/no-collider checks pass. GPU wall appearance/performance is pending.
+- `Logs/island-voices-all-clips-imported.xml`: PASS 7/7, 91.389s, normal exit 0. All eight actual arrival/refuge/roster/departure
+  clips reach their source tails under real source cue paths, including finite clearing and prior skip/fallback/motion checks.
+  The first attempt failed before audio testing because of the wall texture shape error; it is not a narration defect.
+- The optional native movie lifetime trace/no-final-seek experiment is applied but not yet rebuilt. Default forced end-seek,
+  metadata/image/advance/neutral-wrap gates are preserved. The existing preview is unchanged. Native cleanup repair remains open.
+- API compilation now passes 141 runtime / 23 editor / 141 Linux Mono API files. The RTX opening is rendering again.
+
+---
+
 # Far Shore runtime and graphics — newest verification
 
 The live source is newer than retained 0.5.0-preview (M18/full lake films) and 0.4.2. No new player build is implied.
