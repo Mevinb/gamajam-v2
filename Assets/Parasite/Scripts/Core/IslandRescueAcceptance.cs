@@ -116,9 +116,7 @@ namespace Parasite.Testing
                 if (outcome == EndingOutcome.Peace)
                 {
                     if (PM.Active.Host != carrier) PM.ForcePossessImmediate(carrier);
-                    yield return AskToFollow(traveler);
-                    yield return Walk(IslandCampaign.At(34, .15f, 38), traveler);
-                    yield return Walk(IslandCampaign.At(34, .55f, 44.5f), traveler);
+                    yield return LeadPeacePassengerToDeck(traveler);
                 }
                 yield return WaitUntil(() => traveler.Boarded, 65, "A real passenger walks up the gangway to its deck slot.");
                 Check(Vector3.Distance(traveler.transform.position, IslandRoster.Board[Array.IndexOf(IslandRoster.Ids, traveler.StableId)]) < 1.1f, "Boarding flags follow physical passenger arrival.");
@@ -171,6 +169,104 @@ namespace Parasite.Testing
             Check(launch.transform.position.z > departurePosition.z + 3 && PM.Agents.All(a => a.Host == null), "The occupied deck actually moves with free passengers; no borrowed host remains.");
             Check(RunState.LakesideOutcome == outcome && IslandRoster.AllBoarded, "Departure retains branch and all durable people.");
             Debug.Log("[IslandRescue] PASS " + outcome + " actual people, signal custody, boarding and protected launch");
+        }
+
+        // Both the continuous branch and the focused live-patrol probe use this same input driver.
+        // These are actual via destinations, not completion flags or new per-waypoint time budgets.
+        static IEnumerator LeadPeacePassengerToDeck(IslandTraveler traveler)
+        {
+            yield return AskToFollow(traveler);
+            Check(ReferenceEquals(DiagnosticField(traveler, "leader"), PM.Active)
+                && (DiagnosticField(traveler, "leaderHost") as HostCharacter) == PM.Active.Host,
+                "Fresh aimed E establishes this actual passenger's agreement with the current human leader.");
+            yield return Walk(IslandCampaign.At(34, .15f, 38), traveler, "boarding shore " + traveler.StableId,
+                via: new[] { IslandCampaign.At(-20, .15f, 0), IslandCampaign.At(-29, .15f, 0),
+                    IslandCampaign.At(-29, .15f, 30), IslandCampaign.At(34, .15f, 30) });
+            yield return Walk(IslandCampaign.At(34, .55f, 44.5f), traveler, "boarding gangway " + traveler.StableId);
+        }
+
+        public static IEnumerator PeaceClinicBoardingWithLivePatrols()
+        {
+            // Explicit isolated prerequisites, all written BEFORE fresh-scene/roster creation.
+            // This slice proves new E/physical Riley boarding, not earlier clinic delivery or signal custody.
+            RunState.NewGame(); Time.timeScale = 1;
+            Check(RunState.RecordLakesideOutcome(EndingOutcome.Peace), "The focused fixture declares its original Peace choice.");
+            RunState.Flags.Add(MissionFlags.Escaped);
+            Check(RunState.BeginAfterlake(), "The fixture declares its completed prior river chapter.");
+            RunState.Flags.Add(AfterlakeCampaign.Departed);
+            Check(RunState.BeginIsland(), "The fixture declares island entry before scene creation.");
+            foreach (string id in IslandRoster.Ids) RunState.Flags.Add(IslandRoster.Delivered(id));
+            foreach (string flag in new[] { IslandCampaign.ArrivalSeen, IslandCampaign.InnerRefuge,
+                IslandRoster.Ready, IslandRoster.SignalFound, IslandRoster.SignalMounted }) RunState.Flags.Add(flag);
+            RunState.MissionIndex = 19;
+            RunState.CheckpointPosition = IslandCampaign.At(34, .15f, 35); RunState.CheckpointName = "Island rescue jetty";
+            GameInput.Simulated = false; Stop();
+            GameInput.SimInteract = GameInput.SimLeave = GameInput.SimSplit = GameInput.SimSwitch = GameInput.SimJump = GameInput.SimAbility = false;
+            SceneManager.LoadScene(GameManager.CityScene); yield return null;
+            float readyDeadline = Time.realtimeSinceStartup + 30;
+            while ((!CityDirector.Instance || !CityDirector.Instance.Ready || !IslandTravelers.Instance
+                || IslandTravelers.Instance.Members.Count != 3 || !IslandSignalTransport.Instance
+                || !IslandSignalTransport.Instance.CaseTransform) && Time.realtimeSinceStartup < readyDeadline) yield return null;
+            Check(CityDirector.Instance && CityDirector.Instance.Ready && GameManager.Instance.IsPlaying
+                && IslandTravelers.Instance && IslandTravelers.Instance.Members.Count == 3,
+                "The fresh island builds its real navigation, clinic roster and natural patrols.");
+            yield return null; yield return null;
+            GameInput.Simulated = true;
+            var roster = IslandTravelers.Instance;
+            Check(roster.Members.All(p => p.Delivered && !p.Boarded && p.Host.Possessor == null)
+                && roster.Members.Select((p, i) => Vector3.Distance(p.transform.position, IslandRoster.Clinic[i]) < .25f).All(v => v),
+                "Only clinic delivery/mounted-signal prerequisites were seeded; no passenger starts boarded or relocated from its restored clinic slot.");
+            Check(IslandSignalTransport.Instance.CaseTransform
+                && Vector3.Distance(IslandSignalTransport.Instance.CaseTransform.position, IslandCampaign.At(32, 1.15f, 37)) < .05f,
+                "The prerequisite signal restores its actual mounted mesh.");
+            var guards = HostCharacter.All.Where(h => h && (h.DisplayName == "Island curfew patrol" || h.DisplayName == "Island quarantine sentry")).ToArray();
+            Check(guards.Length == 2, "Both authored island patrols exist in the focused scene.");
+            var routes = guards.Select(g => g.Brain.route).ToArray();
+            var previous = guards.Select(g => g.transform.position).ToArray(); var distance = new float[guards.Length];
+            UseHost("Island supply marshal"); // Declared actor-ownership fixture; never move or park a guard.
+            var expected = PM.Active; var host = expected.Host;
+            int possession = host.PossessionGeneration, capture = host.CaptureGeneration;
+            var traveler = roster.Members.Single(p => p.StableId == "riley");
+            var stack = new System.Collections.Generic.Stack<IEnumerator>(); stack.Push(LeadPeacePassengerToDeck(traveler));
+            try
+            {
+                while (stack.Count > 0)
+                {
+                    CheckEscortLeader(expected, host, possession, capture);
+                    CheckNaturalBoardingPatrols(guards, routes, previous, distance);
+                    var current = stack.Peek();
+                    if (!current.MoveNext()) { (current as IDisposable)?.Dispose(); stack.Pop(); continue; }
+                    if (current.Current is IEnumerator nested) stack.Push(nested); else yield return current.Current;
+                }
+                float boardingDeadline = Time.realtimeSinceStartup + 65;
+                while (!traveler.Boarded && Time.realtimeSinceStartup < boardingDeadline)
+                {
+                    CheckEscortLeader(expected, host, possession, capture);
+                    CheckNaturalBoardingPatrols(guards, routes, previous, distance); yield return null;
+                }
+                Check(traveler.Boarded && IslandRoster.DeckBounds.Contains(traveler.transform.position)
+                    && Vector3.Distance(traveler.transform.position, IslandRoster.Board[0]) <= IslandRoster.BoardArrivalTolerance,
+                    "Fresh E and actual clinic/shore/gangway motion earn Riley's physical final berth.");
+                Check(roster.Members.Skip(1).All(p => p.Delivered && !p.Boarded) && !RunState.Has(IslandRoster.Departed)
+                    && RunState.LakesideOutcome == EndingOutcome.Peace && RunState.Resets == 0,
+                    "The focused boarding does not credit other people, launch, change branch or hide a checkpoint reset.");
+                Check(distance.All(d => d > 1), "Both unstunned authored patrols actually moved during the focused driver.");
+                Debug.Log("[IslandRescue] PASS focused Riley clinic-to-deck via route with natural patrols; original direct-path leg budget, existing driver Calm fixture, no AI parking");
+            }
+            finally { while (stack.Count > 0) (stack.Pop() as IDisposable)?.Dispose(); Stop(); GameInput.SimInteract = false; }
+        }
+        static void CheckNaturalBoardingPatrols(HostCharacter[] guards, PatrolRoute[] routes, Vector3[] previous, float[] distance)
+        {
+            for (int i = 0; i < guards.Length; i++)
+            {
+                var g = guards[i];
+                Check(g && g.IsAwakeNpc && g.Brain is GuardAI ai && ai.GState != GuardState.Stunned
+                    && g.Brain.behaviour == NpcBehaviour.Patrol && g.Brain.route == routes[i]
+                    && routes[i] && routes[i].Count == 4 && g.Brain.RoutineOverride == null
+                    && g.Nav && g.Nav.enabled && g.Nav.isOnNavMesh,
+                    "The focused driver retains each actual awake, unstunned four-point patrol and its normal brain/navigation.");
+                distance[i] += Vector3.Distance(previous[i], g.transform.position); previous[i] = g.transform.position;
+            }
         }
 
         public static IEnumerator PeaceLeaderAndPartialRecovery()
@@ -797,7 +893,7 @@ namespace Parasite.Testing
             GameInput.SimLeave = false; yield return null;
         }
         static int completedSidesteps;
-        static IEnumerator Walk(Vector3 target, IslandTraveler follower = null, string phase = null, [CallerMemberName] string caller = null)
+        static IEnumerator Walk(Vector3 target, IslandTraveler follower = null, string phase = null, Vector3[] via = null, [CallerMemberName] string caller = null)
         {
             string leg = phase ?? caller ?? "walk";
             var expectedAgent = PM.Active; var expectedHost = expectedAgent.Host;
@@ -810,20 +906,25 @@ namespace Parasite.Testing
             Check(NavMesh.CalculatePath(a.position, b.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete, "The authored moving-person route has a complete physical path to " + target + ": " + leg);
             float length = 0;
             for (int i = 1; i < path.corners.Length; i++) length += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+            // The direct original path alone defines this one deadline, even when a safer physical via route is longer.
             float budget = Mathf.Max(20, length / (follower ? 1.35f : 2.4f) * 1.8f + 8);
+            bool routed = via != null && via.Length > 0;
+            int viaProgress = 0;
+            int[] viaEnds = null;
             float beganReal = Time.realtimeSinceStartup, beganSim = Time.time;
             float deadline = beganReal + budget;
+            Vector3[] corners = routed ? PlanRemainingVia(a.position, target, via, viaProgress, out viaEnds) : path.corners;
             float nextProgress = beganReal + 8, progressReal = beganReal;
             Vector3 progressPosition = PM.Active.Position;
             int corner = 1;
-            Vector3 aim = path.corners.Length > 1 ? path.corners[1] : target;
+            Vector3 aim = corners.Length > 1 ? corners[1] : target;
             bool wait = false;
             bool sidestepping = false;
             Vector3 sidestep = default;
             float sidestepDeadline = 0;
             int sidestepAttempts = 0;
             Debug.Log("[IslandRescueWalk] BEGIN phase=" + leg + " length=" + length.ToString("F2") + " budget=" + budget.ToString("F2")
-                + " from=" + PM.Active.Position + " target=" + target + " samples=" + a.position + " -> " + b.position + " corners=" + Corners(path.corners));
+                + " from=" + PM.Active.Position + " target=" + target + " samples=" + a.position + " -> " + b.position + " corners=" + Corners(corners) + " plannedVia=" + (routed ? via.Length : 0) + " budgetSource=original-direct-path");
             while (Time.realtimeSinceStartup < deadline)
             {
                 if (follower) CheckEscortLeader(expectedAgent, expectedHost, expectedPossession, expectedCapture);
@@ -837,20 +938,30 @@ namespace Parasite.Testing
                     Check(NavMesh.SamplePosition(PM.Active.Position, out var resumed, 2, NavMesh.AllAreas)
                         && NavMesh.CalculatePath(resumed.position, b.position, NavMesh.AllAreas, path) && path.status == NavMeshPathStatus.PathComplete,
                         "Regroup resumes a complete physical path to the same original target: " + leg);
+                    corners = routed ? PlanRemainingVia(resumed.position, target, via, viaProgress, out viaEnds) : path.corners;
                     corner = 1; sidestepping = false; progressPosition = PM.Active.Position; progressReal = Time.realtimeSinceStartup;
-                    Debug.Log("[IslandRescueRegroup] RESUME phase=" + leg + " originalTarget=" + target + " originalDeadline=" + deadline.ToString("F3") + " attempts=" + regroupAttempts);
+                    Debug.Log("[IslandRescueRegroup] RESUME phase=" + leg + " originalTarget=" + target + " originalDeadline=" + deadline.ToString("F3") + " attempts=" + regroupAttempts
+                        + " completedVia=" + viaProgress + "/" + (routed ? via.Length : 0));
                     continue;
                 }
+                while (routed && viaProgress < via.Length && FlatDistance(PM.Active.Position, via[viaProgress]) < .45f)
+                {
+                    Debug.Log("[IslandRescueWalk] VIA_REACHED phase=" + leg + " index=" + viaProgress + " requested=" + via[viaProgress]
+                        + " actual=" + PM.Active.Position + " originalTarget=" + target + " originalDeadline=" + deadline.ToString("F3"));
+                    corner = Mathf.Max(corner, viaEnds[viaProgress] + 1); viaProgress++;
+                }
                 var final = target - PM.Active.Position; final.y = 0;
-                if (final.magnitude < .45f)
+                if ((!routed || viaProgress == via.Length) && final.magnitude < .45f)
                 {
                     Stop();
                     Debug.Log("[IslandRescueWalk] END phase=" + leg + " at=" + PM.Active.Position + " real=" + (Time.realtimeSinceStartup - beganReal).ToString("F2")
                         + " sim=" + (Time.time - beganSim).ToString("F2") + " targetError=" + final.magnitude.ToString("F3"));
                     yield break;
                 }
-                while (corner < path.corners.Length - 1 && FlatDistance(PM.Active.Position, path.corners[corner]) < .4f) corner++;
-                aim = corner < path.corners.Length - 1 ? path.corners[corner] : target;
+                int segmentEnd = routed ? viaEnds[viaProgress] : corners.Length - 1;
+                Vector3 segmentTarget = routed && viaProgress < via.Length ? via[viaProgress] : target;
+                while (corner < segmentEnd && FlatDistance(PM.Active.Position, corners[corner]) < .4f) corner++;
+                aim = corner < segmentEnd ? corners[corner] : segmentTarget;
                 float now = Time.realtimeSinceStartup;
                 if (sidestepping)
                 {
@@ -880,7 +991,7 @@ namespace Parasite.Testing
                     float moved = FlatDistance(progressPosition, PM.Active.Position);
                     if (!wait && moved < .1f)
                     {
-                        Debug.Log("[IslandRescueWalk] STALL " + WalkState(leg, target, aim, path.corners, corner, follower, wait, beganReal, beganSim, budget, true));
+                        Debug.Log("[IslandRescueWalk] STALL " + WalkState(leg, target, aim, corners, corner, follower, wait, beganReal, beganSim, budget, true));
                         var controller = PM.Active.Host ? PM.Active.Host.Controller : PM.Active.Blob ? PM.Active.Blob.Controller : null;
                         if (!sidestepping && sidestepAttempts < 3 && controller && controller.enabled
                             && (controller.collisionFlags & CollisionFlags.Sides) != 0
@@ -905,13 +1016,35 @@ namespace Parasite.Testing
                 if (now >= nextProgress)
                 {
                     nextProgress = now + 8;
-                    Debug.Log("[IslandRescueWalk] PROGRESS " + WalkState(leg, target, aim, path.corners, corner, follower, wait, beganReal, beganSim, budget, false));
+                    Debug.Log("[IslandRescueWalk] PROGRESS " + WalkState(leg, target, aim, corners, corner, follower, wait, beganReal, beganSim, budget, false));
                 }
                 yield return null;
             }
-            string details = WalkState(leg, target, aim, path.corners, corner, follower, wait, beganReal, beganSim, budget, true);
+            string details = WalkState(leg, target, aim, corners, corner, follower, wait, beganReal, beganSim, budget, true);
             Stop(); Debug.LogError("[IslandRescueWalk] FAIL " + details);
             throw new InvalidOperationException("Physical island leg timed out: " + details);
+        }
+        static Vector3[] PlanRemainingVia(Vector3 from, Vector3 final, Vector3[] via, int first, out int[] ends)
+        {
+            var joined = new System.Collections.Generic.List<Vector3> { from };
+            ends = new int[via.Length + 1];
+            for (int i = first; i <= via.Length; i++)
+            {
+                Vector3 requested = i < via.Length ? via[i] : final;
+                Check(NavMesh.SamplePosition(requested, out var destination, 2, NavMesh.AllAreas)
+                    && FlatDistance(requested, destination.position) < .45f
+                    && Mathf.Abs(requested.y - destination.position.y) <= .15f && SameFloorSupport(requested, requested.y),
+                    "Each actual via/final marker has same-floor physical support and navigation inside the unchanged arrival tolerance; a two-metre projection cannot substitute for it.");
+                var segment = new NavMeshPath();
+                Check(NavMesh.CalculatePath(from, requested, NavMesh.AllAreas, segment)
+                    && segment.status == NavMeshPathStatus.PathComplete && segment.corners.Length > 0
+                    && FlatDistance(segment.corners[segment.corners.Length - 1], requested) < .45f,
+                    "Every remaining segment has a complete actual path to its requested marker; regroup cannot shortcut unvisited milestones.");
+                foreach (var p in segment.corners)
+                    if ((p - joined[joined.Count - 1]).sqrMagnitude > .000001f) joined.Add(p);
+                ends[i] = joined.Count - 1; from = destination.position;
+            }
+            return joined.ToArray();
         }
         static void CheckEscortLeader(AmoebaAgent expected, HostCharacter host, int possession, int capture)
         {

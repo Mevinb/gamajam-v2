@@ -6,6 +6,15 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Focused live-patrol boarding route passes:** IslandRescueAcceptance SHA
+  `5689f81b024ee8c10e2258be9b7cff0fce69ca6bebc6772c455f5a14961a4469` now routes Peace passengers through the real
+  clinic door, west clearance and northern shore before the original jetty target. Its single deadline still derives from
+  the original direct path; via points/regroup never restart it. Root12394/native0/chunk53d42a, one NUnit PASS87.180s.
+  Riley physically visited all four waypoints and boarded: shore58.69s within102.34s, gangway3.46s. Both natural authored
+  patrols retain their brains/routes/navigation and must move; no guard parking/stun/warp. Explicit pre-scene clinic/signal
+  prerequisites and actor ownership/existing Calm fixtures remain declared. This is one passenger, not continuous23 or a
+  native/rendered/human pass. API compile162/31/162 passes; no new candidate yet. Preserve the prior full-route failure below.
+  [Focused proof](verification/island-boarding-via-focused-20261126.json). Next: rerun actual90, then91/native rebuilt checks.
 - **Physical regroup correction is terminal with a later boarding failure:** current IslandRescueAcceptance SHA
   `ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703`.
   It uses the public Regroup prompt, normal approach/aim/fresh E after actual patrol visibility clears, maximum3attempts,

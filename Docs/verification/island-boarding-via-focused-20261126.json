@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "status": "FOCUSED_RILEY_LIVE_PATROL_CLINIC_TO_DECK_PASS",
+  "recordedUtc": "2026-11-25T22:05:46.315873+00:00",
+  "terminal": {
+    "rootSession": 12394,
+    "chunk": "53d42a",
+    "nativeEditorExit": 0,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Passed",
+      "total": "1",
+      "passed": "1",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 22:03:19Z",
+      "end-time": "2026-11-25 22:04:46Z",
+      "duration": "87.1796174"
+    },
+    "case": [
+      {
+        "id": "1061",
+        "name": "RileyClinicToDeckUsesPhysicalViaRouteAndNaturalPatrols",
+        "fullname": "Parasite.Tests.IslandBoardingLivePatrolTests.RileyClinicToDeckUsesPhysicalViaRouteAndNaturalPatrols",
+        "methodname": "RileyClinicToDeckUsesPhysicalViaRouteAndNaturalPatrols",
+        "classname": "Parasite.Tests.IslandBoardingLivePatrolTests",
+        "runstate": "Runnable",
+        "seed": "1817276031",
+        "result": "Passed",
+        "start-time": "2026-11-25 22:03:19Z",
+        "end-time": "2026-11-25 22:04:46Z",
+        "duration": "87.129219",
+        "asserts": "0"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "Assets/Parasite/Scripts/Core/IslandRescueAcceptance.cs",
+      "bytes": 114641,
+      "sha256": "5689f81b024ee8c10e2258be9b7cff0fce69ca6bebc6772c455f5a14961a4469"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/IslandBoardingLivePatrolTests.cs",
+      "bytes": 881,
+      "sha256": "898b5530ded702be97360cc54bb1a05785db78a4d5e8a531af5daf853438ca63"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/IslandBoardingLivePatrolTests.cs.meta",
+      "bytes": 60,
+      "sha256": "e3757ed58b569b91e1837af07a4dce43116e1c039601cd429b78bd94db52a065"
+    },
+    {
+      "path": "Logs/boarding_live_patrol_via.log",
+      "bytes": 167439,
+      "sha256": "7d76084344d6ceb5ccef74b8244fa5c7bae070d4fd90a2f0f9d9a8ba430707db"
+    },
+    {
+      "path": "Logs/boarding-live-patrol-via.xml",
+      "bytes": 23495,
+      "sha256": "1fff95aa5462f83ba5770f80bd5c74ccbeb61c995f08027597de3bf4815cd6fa"
+    }
+  ],
+  "compile": {
+    "command": "Tools/compile_check.sh all",
+    "session": 81860,
+    "chunk": "d3a727",
+    "exitCode": 0,
+    "runtimeSources": 162,
+    "editorSources": 31,
+    "linuxMonoPlayerSources": 162
+  },
+  "observed": [
+    "[IslandRescueWalk] VIA_REACHED phase=boarding shore riley index=0 requested=(600.00, 0.15, -220.00) actual=(599.84, 0.19, -219.59) originalTarget=(654.00, 0.15, -182.00) originalDeadline=127.737",
+    "[IslandRescueWalk] VIA_REACHED phase=boarding shore riley index=1 requested=(591.00, 0.15, -220.00) actual=(591.45, 0.19, -219.98) originalTarget=(654.00, 0.15, -182.00) originalDeadline=127.737",
+    "[IslandRescueWalk] VIA_REACHED phase=boarding shore riley index=2 requested=(591.00, 0.15, -190.00) actual=(591.01, 0.19, -190.45) originalTarget=(654.00, 0.15, -182.00) originalDeadline=127.737",
+    "[IslandRescueWalk] VIA_REACHED phase=boarding shore riley index=3 requested=(654.00, 0.15, -190.00) actual=(653.55, 0.19, -190.00) originalTarget=(654.00, 0.15, -182.00) originalDeadline=127.737",
+    "[IslandRescueWalk] END phase=boarding shore riley at=(653.97, 0.19, -182.45) real=58.69 sim=58.70 targetError=0.447",
+    "[IslandRescueWalk] END phase=boarding gangway riley at=(654.00, 0.66, -175.94) real=3.46 sim=3.46 targetError=0.440",
+    "[IslandRescue] PASS focused Riley clinic-to-deck via route with natural patrols; original direct-path leg budget, existing driver Calm fixture, no AI parking"
+  ],
+  "route": {
+    "localVia": [
+      [
+        -20,
+        0.15,
+        0
+      ],
+      [
+        -29,
+        0.15,
+        0
+      ],
+      [
+        -29,
+        0.15,
+        30
+      ],
+      [
+        34,
+        0.15,
+        30
+      ]
+    ],
+    "originalFinalTarget": [
+      34,
+      0.15,
+      38
+    ],
+    "shoreBudgetSeconds": 102.34,
+    "shoreActualSeconds": 58.69,
+    "deadlinePolicy": "One original direct-path budget; no waypoint or regroup deadline reset. Remaining via milestones survive replan."
+  },
+  "limits": [
+    "Focused prerequisites explicitly seed clinic delivery and mounted signal before fresh-scene roster creation; those earlier objectives are not earned in this fixture.",
+    "One passenger tested, not all three or the full continuous23-mission case; prior555.2s failure remains recorded.",
+    "Both authored patrols must remain awake, unstunned, on their original four-point routes/navigation and move over1m; no patrol parking/warping.",
+    "Actor ownership uses the declared ForcePossessImmediate fixture and existing Walk Calm calls; no human/stealth/graphics/performance proof.",
+    "No production gameplay thresholds, patrol routes, exposure/leash/collision or completion gates changed.",
+    "The new route/test are source-only; no rebuilt native player contains them yet."
+  ]
+}
