@@ -24,6 +24,13 @@ The full request remains **in progress**. Evidence applies to its named source o
   Missions24–26 and their importer/visual hooks remain staged outside live Assets. Independent staged-code review records
   corrected coach/boarder/coordinator ownership and geometry, with seven runtime tests still unrun.
   [Staged review](verification/northline-stage-review-20261126.json). Do not call these missions integrated or shipped.
+  The reviewed mechanics stage remains `Logs/rail-chapter-stage/feature.patch` (SHA
+  `e97aa855aa6b123b5e66e940ec23b3c941409725323c147410c30d12b4b0ef80`). A separate art/import stage is now ready:
+  `Logs/rail-art-binding-stage/art-feature.patch` (SHA `0797332b40097cd5efac23e7c54956ad356da316299deb8632893afb9ae691c3`).
+  Its README contains scoped Prepare/Verify/binding commands; API compilation passes175/33/175 plus both NUnit classes.
+  It validates the complete eleven-model kit before21bindings, cancels physical parent scale only on art children, retains
+  the crank wheel/onboard control, and requires unchanged physics/nav/control signatures. No import/binding/graphics job
+  has run. Apply neither stage during the current regroup test, and do not recreate these already prepared stages.
 - The diagnostics-only Null Editor case90 reproduction is terminal **FAIL**, native exit2, root60714/chunk52a1d3,
   one failed NUnit case in311.103seconds. It now directly records Riley `returning=True`, cleared leader agreement,
   savedCover1, zero brain notice/flee timers and an intentionally stopped complete NavMesh path within.997m of saved cover.
