@@ -21,7 +21,10 @@ namespace Parasite.UI
         Phase phase;
         float age, phaseAge;
         LakesideSet set;
-        CinematicFilm film;
+        LakesideFilmSequence film;
+        bool resolutionPresented;
+        public bool NarrationReady { get; private set; }
+        public bool UsingFullArrival => film != null && film.UsingFullArrival;
         Canvas canvas, hudCanvas;
         bool oldHudEnabled, oldPlayerCameraEnabled;
         PlayerCamera playerCamera;
@@ -55,7 +58,8 @@ namespace Parasite.UI
             foreach (var state in audioSnapshot) state.source.mute = true;
             set = new LakesideSet(); set.Build();
             BuildUI(); BuildSound();
-            film = new CinematicFilm("LakesideEnding", canvas.transform);
+            film = new LakesideFilmSequence(canvas.transform);
+            NarrationReady = film.TickArrival(0, 0);
             GameManager.SetCursorLocked(false);
             UIKit.Select(continueToChoice);
         }
@@ -103,7 +107,7 @@ namespace Parasite.UI
         public void RevealChoices()
         {
             if (phase != Phase.Arrival) return;
-            phase = Phase.Choice; phaseAge = 0f;
+            phase = Phase.Choice; phaseAge = 0f; NarrationReady = false;
             continueToChoice.gameObject.SetActive(false);
             caption.text = "What will you become?";
             caption.rectTransform.anchoredPosition = new Vector2(0, 290);
@@ -116,10 +120,20 @@ namespace Parasite.UI
 
         public void Choose(EndingOutcome outcome)
         {
-            if (!ChoicesReady || outcome == EndingOutcome.Unchosen) return;
+            if (!ChoicesReady || !CinematicStoryPlan.ValidOutcome(outcome)) return;
             ending.outcome = outcome;
             phase = Phase.Resolution; phaseAge = 0f;
             choiceGroup.interactable = choiceGroup.blocksRaycasts = false; choices.SetActive(false);
+            resolutionPresented = false; NarrationReady = false;
+            summary.interactable = false;
+            summary.gameObject.SetActive(false);
+        }
+
+        void PresentResolution()
+        {
+            if (resolutionPresented) return;
+            resolutionPresented = true;
+            var outcome = ending.outcome;
             caption.rectTransform.anchoredPosition = new Vector2(0, 230);
             beat.rectTransform.anchoredPosition = new Vector2(0, 176);
             context.text = outcome == EndingOutcome.Peace ? "A LIFE, NOT AN EXPERIMENT" : "ONE MIND. NO HORIZON.";
@@ -131,8 +145,9 @@ namespace Parasite.UI
 
         public void FinishResolution()
         {
-            if (phase != Phase.Resolution || phaseAge < 0.8f || ending.outcome == EndingOutcome.Unchosen) return;
-            phase = Phase.Summary;
+            if (phase != Phase.Resolution || !resolutionPresented || phaseAge < 0.8f || ending.outcome == EndingOutcome.Unchosen) return;
+            phase = Phase.Summary; NarrationReady = false;
+            Audio.LakesideNarration.StopFor(this);
             canvas.enabled = false;
             if (hudCanvas) hudCanvas.enabled = oldHudEnabled;
             var gm = GameManager.Instance;
@@ -148,10 +163,18 @@ namespace Parasite.UI
 
         void Update()
         {
-            float dt = Time.unscaledDeltaTime;
-            if (phase == Phase.Arrival && film != null && !film.Ready) dt = 0f;
+            float wallDt = Time.unscaledDeltaTime;
+            bool ready = film == null || (phase switch
+            {
+                Phase.Arrival => film.TickArrival(phaseAge, wallDt),
+                Phase.Choice => film.TickChoice(phaseAge, wallDt),
+                Phase.Resolution => film.TickResolution(ending.outcome, phaseAge, wallDt),
+                _ => film.TickResolution(ending.outcome, 7, wallDt),
+            });
+            NarrationReady = ready && phase != Phase.Summary;
+            float dt = ready && phase != Phase.Summary ? wallDt : 0;
             age += dt; phaseAge += dt;
-            film?.Tick(phase == Phase.Arrival ? age : CinematicFilm.Duration);
+            if (phase == Phase.Resolution && ready) PresentResolution();
             if (set != null) set.Tick(age, ending.outcome == EndingOutcome.Dominion);
             if (shore) shore.volume = Sfx.Volume * Sfx.AmbienceVolume * 0.35f;
             var keyboard = Keyboard.current;
@@ -174,7 +197,8 @@ namespace Parasite.UI
             else if (phase == Phase.Resolution)
             {
                 if (!summary.interactable && phaseAge > 0.8f && !ConfirmHeld()) { summary.interactable = true; UIKit.Select(summary); }
-                if (phaseAge > 7f || (phaseAge > 0.8f && advance)) FinishResolution();
+                bool naturalCompletion = phaseAge > 7f && !Audio.LakesideNarration.HasPendingFor(this);
+                if (naturalCompletion || (phaseAge > 0.8f && advance)) FinishResolution();
                 else if (summary.interactable) UIKit.KeepFocus(summary, canvas.transform);
             }
         }
@@ -197,6 +221,7 @@ namespace Parasite.UI
         void OnDestroy()
         {
             film?.Dispose(); film = null;
+            if (Instance == this) Audio.LakesideNarration.StopFor(this);
             if (set != null) set.Dispose();
             if (hudCanvas) hudCanvas.enabled = oldHudEnabled;
             if (playerCamera) playerCamera.enabled = oldPlayerCameraEnabled;

@@ -23,6 +23,9 @@ namespace Parasite
         public static string LastExitReason { get; private set; } = "";
         public bool Running { get; private set; }
         public float ElapsedSeconds => elapsed;
+        /// <summary>True once footage has an image, or the live-set fallback can present the story.</summary>
+        public bool PresentationReady => Running && (film == null || film.Ready);
+        public bool UsingFullStoryFilm => film != null && !film.Failed && film.Definition.ResourcePath == CinematicStoryPlan.Opening.ResourcePath;
         /// <summary>Preview/test clock; normal play always starts at 1. Does not alter world time.</summary>
         public float PlaybackSpeed { get; set; } = 1f;
         static bool requested;
@@ -138,7 +141,8 @@ namespace Parasite
                 cam.nearClipPlane = 0.025f; cam.farClipPlane = 80f;
                 cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(0.002f, 0.009f, 0.014f);
                 BuildOverlay(); BuildStage();
-                film = new CinematicFilm("ContainmentOpening", overlay.transform);
+                if (!CinematicFilm.TryCreate(CinematicStoryPlan.Opening, overlay.transform, out film))
+                    CinematicFilm.TryCreate(CinematicFilmSpec.Legacy("ContainmentOpening"), overlay.transform, out film);
                 LastExitReason = ""; Running = true;
                 EvaluateShot();
             }

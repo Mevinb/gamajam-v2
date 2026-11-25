@@ -179,12 +179,36 @@ namespace Parasite.Audio
             StartCue(ctx);
         }
 
+        /// <summary>Drive the actual opening source from the story clock; preparation must never start/reseek the score.</summary>
+        public static void DriveOpeningScore(AudioSource source, bool presentationReady, float storySeconds, bool synchronizeClock = true)
+        {
+            if (!source || !source.clip) return;
+            if (!presentationReady)
+            {
+                if (source.isPlaying) source.Pause();
+                return;
+            }
+            if (!AudioDirector.Ready(source)) return;
+            float at = Mathf.Clamp(storySeconds, 0f, Mathf.Max(0f, source.clip.length - .05f));
+            if (!source.isPlaying && storySeconds < source.clip.length - .05f)
+            {
+                source.time = at;
+                source.Play();
+            }
+            else if (synchronizeClock && source.isPlaying && Mathf.Abs(source.time - at) > .6f && storySeconds < source.clip.length - .1f)
+                source.time = at;
+        }
+
         void StartCue(MusicContext ctx)
         {
+            if (ctx == MusicContext.Opening)
+            {
+                var opening = OpeningCinematic.Instance;
+                DriveOpeningScore(cue, opening && opening.PresentationReady, opening ? opening.ElapsedSeconds : 0f);
+                return;
+            }
             if (!cue.clip || !AudioDirector.Ready(cue)) return;
             cue.time = 0f;
-            if (ctx == MusicContext.Opening && OpeningCinematic.Instance)
-                cue.time = Mathf.Clamp(OpeningCinematic.Instance.ElapsedSeconds, 0f, cue.clip.length - 0.05f);
             cue.Play();
             cueStarted = Time.realtimeSinceStartup;
         }
@@ -202,20 +226,19 @@ namespace Parasite.Audio
 
             // sources disabled while no listener existed stop playing: restart them in sync
             if (stemsStarted && AudioSettings.dspTime > stemsStartDsp + 1.0 && stems[0].enabled && stems[0].clip && !stems[0].isPlaying) { stemsStarted = false; foreach (var s in stems) s.Stop(); }
-            if (cueName != null && cue.enabled && cue.clip && !cue.isPlaying && Time.realtimeSinceStartup > cueStarted + 1f &&
-                (cue.loop || (Context == MusicContext.Opening && OpeningCinematic.Instance && OpeningCinematic.Instance.ElapsedSeconds < cue.clip.length - 1f)))
+            if (Context != MusicContext.Opening && cueName != null && cue.enabled && cue.clip && !cue.isPlaying &&
+                Time.realtimeSinceStartup > cueStarted + 1f && cue.loop)
                 StartCue(Context);
             if (Context == MusicContext.Explore) StartStems();
             Intensity = Context == MusicContext.Explore ? ResolveIntensity(dt) : 0;
             var zone = AudioBus.ZoneAt(AudioBus.FocusPosition);
             InLab = zone == AudioZone.Lab || zone == AudioZone.Tunnel;
 
-            // opening score stays locked to the cinematic clock at normal speed
-            if (Context == MusicContext.Opening && cue && cue.isPlaying && OpeningCinematic.Instance &&
-                Mathf.Abs(OpeningCinematic.Instance.PlaybackSpeed - 1f) < 0.01f &&
-                Mathf.Abs(cue.time - OpeningCinematic.Instance.ElapsedSeconds) > 0.6f && cue.clip &&
-                OpeningCinematic.Instance.ElapsedSeconds < cue.clip.length - 0.1f)
-                cue.time = OpeningCinematic.Instance.ElapsedSeconds;
+            // The same source gate owns initial playback and drift correction, so a pending image cannot restart it.
+            var opening = OpeningCinematic.Instance;
+            bool openingReady = Context != MusicContext.Opening || (opening && opening.PresentationReady);
+            if (Context == MusicContext.Opening && opening)
+                DriveOpeningScore(cue, openingReady, opening.ElapsedSeconds, Mathf.Abs(opening.PlaybackSpeed - 1f) < .01f);
 
             // explore stems vs. cues
             float exploreTarget = Context == MusicContext.Explore ? 1f : 0f;
@@ -228,7 +251,7 @@ namespace Parasite.Audio
                 stemLevel[i] = Mathf.MoveTowards(stemLevel[i], targets[i], dt / (targets[i] > stemLevel[i] ? up : down));
             }
 
-            float cueTargetA = cue == cueA && cueName != null ? 1f : 0f, cueTargetB = cue == cueB && cueName != null ? 1f : 0f;
+            float cueTargetA = cue == cueA && cueName != null && openingReady ? 1f : 0f, cueTargetB = cue == cueB && cueName != null && openingReady ? 1f : 0f;
             float cueIn = Context == MusicContext.Opening ? 0.6f : Context == MusicContext.Story ? 1.5f : 2.5f;
             cueLevelA = Mathf.MoveTowards(cueLevelA, cueTargetA, dt / (cueTargetA > cueLevelA ? cueIn : 2.5f));
             cueLevelB = Mathf.MoveTowards(cueLevelB, cueTargetB, dt / (cueTargetB > cueLevelB ? cueIn : 2.5f));

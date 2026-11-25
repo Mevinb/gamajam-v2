@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -44,37 +45,56 @@ namespace Parasite.Testing
             canvasObject.transform.SetParent(transform, false);
             var canvas = canvasObject.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 300;
             Time.timeScale = 0f;
-            foreach (string resource in new[] { "ContainmentOpening", "LakesideEnding" })
+            bool requireFull = Array.IndexOf(Environment.GetCommandLineArgs(), "-requireFullStoryFilms") >= 0;
+            bool requireLake = Array.IndexOf(Environment.GetCommandLineArgs(), "-requireLakeStoryFilms") >= 0;
+            var definitions = new List<CinematicFilmSpec> { CinematicFilmSpec.Legacy("ContainmentOpening"), CinematicFilmSpec.Legacy("LakesideEnding") };
+            foreach (var definition in CinematicStoryPlan.FullSet)
+                if (requireFull || (requireLake && definition.ResourcePath != CinematicStoryPlan.Opening.ResourcePath) ||
+                    Resources.Load<VideoClip>(definition.ResourcePath)) definitions.Add(definition);
+            foreach (var definition in definitions)
             {
-                string failure = null;
-                try { film = new CinematicFilm(resource, canvas.transform); }
-                catch (Exception e) { failure = e.Message; }
-                if (failure != null) { Record(false, resource + ": " + failure); continue; }
-                var player = canvasObject.GetComponentInChildren<VideoPlayer>();
+                string resource = definition.ResourcePath.Substring(definition.ResourcePath.LastIndexOf('/') + 1);
+                if (!CinematicFilm.TryCreate(definition, canvas.transform, out film))
+                { Record(false, definition.ResourcePath + ": missing or rejected footage metadata/audio contract"); continue; }
+                var player = film.Player;
                 float deadline = Time.realtimeSinceStartup + 15f;
-                while (player && player.frame < 2 && Time.realtimeSinceStartup < deadline)
+                while (player && !film.Failed && player.frame < 2 && Time.realtimeSinceStartup < deadline)
                 { film.Tick(.1f); yield return null; }
                 bool decoded = player && player.isPrepared && player.frame >= 2;
                 if (decoded)
                 {
                     long frame = player.frame;
-                    yield return new WaitForSecondsRealtime(.25f);
+                    float observed = Time.realtimeSinceStartup;
+                    while (Time.realtimeSinceStartup - observed < .25f)
+                    { film.Tick(.1f + Time.realtimeSinceStartup - observed); yield return null; }
                     decoded = player.frame > frame && Time.timeScale == 0;
                     string imageFailure = null;
-                    try { decoded &= InspectFrame(player.texture as RenderTexture, resource); }
+                    try { decoded &= InspectFrame(player.texture as RenderTexture, resource, definition); }
                     catch (Exception e) { decoded = false; imageFailure = e.Message; }
                     if (imageFailure != null) report.AppendLine(resource + " readback: " + imageFailure);
                 }
-                Record(decoded, resource + " decoded nonempty 1280x720 image and advancing frames at timeScale=0");
-                film.Tick(CinematicFilm.Duration); film.Dispose(); film = null;
+                Record(decoded, resource + $" decoded nonempty {definition.Width}x{definition.Height} image and advancing frames at timeScale=0; expected {definition.Seconds}s/24fps/silent");
+                if (decoded && definition.Loop)
+                {
+                    // Settle the asynchronous seek near the seam before timing a natural wrap.
+                    float seekUntil = Time.realtimeSinceStartup + 8;
+                    while ((player.frame < (long)((definition.Seconds - .6f) * 24) || film.Seeking) && Time.realtimeSinceStartup < seekUntil)
+                    { film.Tick(definition.Seconds - .5f, 0); yield return null; }
+                    int previousLoops = film.LoopCount;
+                    float loopStarted = Time.realtimeSinceStartup;
+                    while (Time.realtimeSinceStartup - loopStarted < 1.1f)
+                    { film.Tick(definition.Seconds - .5f + Time.realtimeSinceStartup - loopStarted); yield return null; }
+                    Record(film.LoopCount > previousLoops && player.isPlaying && Time.timeScale == 0, resource + " neutral hold wraps and continues without publishing a game outcome");
+                }
+                film.Tick(definition.Seconds); film.Dispose(); film = null;
                 yield return null;
             }
             Finish();
         }
 
-        bool InspectFrame(RenderTexture frame, string resource)
+        bool InspectFrame(RenderTexture frame, string resource, CinematicFilmSpec definition)
         {
-            if (!frame || frame.width != 1280 || frame.height != 720) return false;
+            if (!frame || frame.width != definition.Width || frame.height != definition.Height) return false;
             var old = RenderTexture.active;
             var pixels = new Texture2D(frame.width, frame.height, TextureFormat.RGB24, false);
             try
