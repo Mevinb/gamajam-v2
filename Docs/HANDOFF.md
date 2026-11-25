@@ -6,6 +6,14 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Remaining 0.6 native logic run is active:** supervisor 84440/player 84441, agent exec session 4533, started
+  `2026-11-25T20:13:13Z`; state is `Logs/candidate06-native-remaining-reviewed/execution.json`.
+  It selects 06/07/09–20/23/24 (16 cases), uses the existing immutable 0.6 candidate, actual Null graphics and nice 10,
+  isolated absolute user directories, and a 3600-second owned-child watchdog. All seven source/artifact preflight checks pass;
+  the exact existing user player 51569/start683333 is the sole coexistence exemption. Native exit is not yet known.
+  Agent `graphics_settings_foundation` owns monitoring and will publish terminal evidence; do not start a duplicate run,
+  another Editor/player/GPU acceptance, or modify Assets until the actual receipt is terminal. Cases already covered on this
+  build and render-only21/22 are excluded. No 16-case pass or complete27-case result is claimed.
 - Two additional physical harbor recovery cases pass together **2/2 in 209.358 seconds, Null Editor exit 0**
   (agent session 92343, terminal chunk `f38e71`). A real obstruction holds the moving crate without delivery credit;
   removing only that fixture permits its physical arrival. Actual inactive free-body containment cancels a running relay.
@@ -167,6 +175,7 @@ helper plus the new test class/meta, with no removals. It becomes stale if any f
 1. Use the existing verified0.6candidate/archive. Native08/25/26/27 and extracted01–05 already pass; do not rebuild or repeat
    those completed runs merely because an older note calls them pending. Render-dependent21, exact-player media/water/settings
    and declared GPU benchmarks remain. Keep prepared headless/simulated logic separate from graphics and physical-input proof.
+   Check the active remaining16 receipt above before scheduling any additional job; keep the reviewed source frozen until it finishes.
 2. Characterize the remaining Editor Vulkan warning with bounded controls; do not rewrite its original unexpected-log guard
    or call residual-warning controls a complete fix. Exercise native Custom settings/persistence/frame pacing on the new binary.
 3. Resolve the gate AFTERstatic capture-contract failure before accepting matched visual comparisons. Saved physics/light inventory
