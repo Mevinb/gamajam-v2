@@ -1,6 +1,6 @@
 # PARASITE — complete game guide
 
-**0.4.0 upgrade · Linux x86-64 · Fourteen initial missions plus three after the lake**
+**Linux x86-64 · Fourteen initial missions, three riverside missions and three island missions in later source**
 
 You are Specimen 7, an escaped amoeba that can possess humans and split into two independent bodies. A borrowed host changes
 where you can go and which controls you can use. Many later tasks need one host to hold a console while your other body acts.
@@ -115,6 +115,70 @@ at a riverside landing as one free amoeba, and appends three missions.
     or scientist; Dominion accepts a guard or scientist. Keep pursuit clear, then eject and use the ferry intake as free amoeba.
 
 See the [post-lake walkthrough](AFTERLAKE_GUIDE.md) for precise cooperative-control and checkpoint recovery instructions.
+
+## Missions 18–20: The Far Shore
+
+**Build scope:** the retained **0.5.0-preview** playtest binary contains mission 18 only. Missions 19–20 here describe the
+later live source. Use [TEST_REPORT.md](TEST_REPORT.md) for exact rebuilt-player and validation scope; this walkthrough does
+not upgrade the retained binary or establish a human playthrough.
+
+After mission 17's ferry summary, choose **Continue · The Far Shore**. The first lake outcome, earlier flags and statistics
+persist. Travel reunites your free halves into one amoeba at the island jetty; the island adds no third amoeba capacity.
+
+### 18. UNDER THE WATERLINE
+
+Reach the inner refuge by either route; both are optional alternatives to the same arrival objective.
+
+- **Free amoeba:** use the low tidal culvert. Its repeating gameplay-time cycle is **6 seconds low tide, 2 seconds rising-water
+  warning, then 4 seconds closed surge**. Watch the lamp and countdown. A surge returns an exposed blob to its last physically
+  visited dry point. Initially that is the entry landing; the right-hand sheltered bay beyond the sluice becomes a retry only
+  after that same blob reaches it. The bay shelters you from the surge. These local tide retry points reset with the scene.
+- **Maintenance:** borrow the **Island jetty engineer** on the public outer jetty. Use **E** at the mechanical service latch,
+  then walk through the human service gate. The latch is immediate, not a held console. A human cannot fit the low culvert.
+
+Continue to the dry-refuge marker to establish the island checkpoint. The later M19–M20 source then introduces Riley, Morgan
+and Avery.
+
+### 19. THE QUARANTINE WALK / EVERY VOICE
+
+**Peace — THE QUARANTINE WALK:** borrow the nearby **Island refuge volunteer** (civilian) or **Island relief scientist**.
+Aim at a survivor and use **E** to ask them to follow, then lead them to their clinic destination. Their minds remain protected;
+you cannot possess them. Keep close and use cover. The person must actually reach a cover point to save it: the leader merely
+touching a waypoint is insufficient. Sustained guard sight sends a follower back to visited cover. Civilian **F** distractions
+or a second borrowed guard body can help clear the route.
+
+**Tab** may select your other amoeba while the original host stays possessed as leader. Releasing, losing or changing that
+host cancels the agreement; even reclaiming the same body needs a fresh **E** regroup. An unboarded survivor returns to visited
+cover (the holding court if none was reached), or the clinic if already delivered. Each actual clinic arrival commits separately.
+
+**Dominion — EVERY VOICE:** possess each courier in turn. Use the **Mark this courier's handoff [E]** prompt while controlling
+that courier, walk to their own named handoff lane, then release with **Q** close to it. Allow the normal eight-second
+unconscious recovery and their autonomous walk beyond the lane. Arriving while still possessed does not complete delivery.
+Releasing away from the lane does not count. After capture or renewed possession, make a fresh mark-and-release attempt.
+Delivered couriers become protected from further possession. Complete all three people before taking the rescue signal.
+
+### 20. A LIGHT IN THE FOG / A SIGNAL BEYOND THE ISLAND
+
+Use **E** at the signal cache in an ordinary human host; the **Island supply marshal** stands nearby. Carry the physical case
+to the northern flare mount and use **E** there in that same carrier. Switching selected amoeba with **Tab** or pausing preserves
+valid custody; releasing, capture, changing host or checkpoint reload returns an unmounted case to its cache. The pickup flag
+alone is not inventory. A mounted signal persists and establishes the rescue-jetty checkpoint.
+
+For **Peace**, regroup in a civilian/scientist host and lead the survivors from the clinic up the gangway. For **Dominion**,
+delivered couriers walk toward the mounted signal and their boat berths themselves. Wait for all three to finish parking;
+standing on the gangway is not boarding. Spare **Island rescue volunteer** and **Island launch engineer** hosts remain near the
+jetty if you need a fresh body.
+
+For departure, all three named passengers must be awake, unoccupied and physically on the deck. Release **every** borrowed host:
+use **Tab/Q** for each owned amoeba, including inactive halves, then walk every surviving free half aboard. Wait for possession
+leaps to finish and lose active pursuit. Only then use **E** at the rescue intake. A protected departure plays before the island
+summary; the original lake choice remains unchanged.
+
+**Recovery:** checkpoints preserve each person's delivery, boarding and actually visited cover separately. Undelivered people
+restore at visited cover or the holding court; delivered people restore at the Peace clinic or their Dominion handoff, and
+boarded people restore at their berths. No duplicate people or extra amoebae are created. Resume unfinished escorts or courier
+attempts with a fresh E interaction; collect an unmounted case again. A completed mounting needs no repeat. Campaign progress
+lasts within this running session; this is not an on-disk save.
 
 ## Graphics and cinematics
 

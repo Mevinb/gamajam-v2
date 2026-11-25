@@ -29,6 +29,7 @@ namespace Parasite.Testing
             foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>())foreach(var material in renderer.sharedMaterials)
                 if(material&&material.name.Contains("island PBR")&&material.GetTexture("_MetallicGlossMap"))
                     Check(Mathf.Abs(material.GetFloat("_Smoothness")-1)<.001f,"Mapped roughness is not multiplied by an unrelated scalar smoothness.");
+            yield return IslandWallAcceptance.VerifyCurrent(root);
             var sea=root.transform.Find("Island tidal sea").GetComponent<MeshRenderer>();
             var cutout=root.GetComponent<SkylineWaterCutout>();Check(cutout&&cutout.Applied,"The island's actual sea footprint cuts the overlapping western skyline slab.");
             var proofCameraObject=new GameObject("Island geometry proof camera");var camera=proofCameraObject.AddComponent<Camera>();camera.enabled=false;

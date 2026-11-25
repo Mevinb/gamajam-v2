@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "packed_images": [
+    {
+      "name": "IslandQuarantine_A",
+      "size": [
+        2048,
+        2048
+      ],
+      "path": "//../../Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png",
+      "packed_bytes": 5122382,
+      "color_space": "sRGB"
+    },
+    {
+      "name": "IslandQuarantine_M",
+      "size": [
+        2048,
+        2048
+      ],
+      "path": "//../../Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png",
+      "packed_bytes": 3805694,
+      "color_space": "Non-Color"
+    },
+    {
+      "name": "IslandQuarantine_N",
+      "size": [
+        2048,
+        2048
+      ],
+      "path": "//../../Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png",
+      "packed_bytes": 5150025,
+      "color_space": "Non-Color"
+    }
+  ],
+  "render_engine": "BLENDER_WORKBENCH",
+  "render_calls": 0,
+  "cameras": 0,
+  "lights": 0,
+  "threads": 2
+}

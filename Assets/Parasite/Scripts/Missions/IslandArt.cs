@@ -20,7 +20,8 @@ namespace Parasite.Missions
         {
             if (materials.TryGetValue(name, out var material)) return material;
             string texture = null; Color color = Color.white; float smooth = .35f, metal = 0;
-            if (name.Contains("Concrete")) { texture = "IslandConcrete"; smooth = .12f; }
+            if (name.Contains("QuarantineConcrete")) { texture = "IslandQuarantine"; smooth = .2f; }
+            else if (name.Contains("Concrete")) { texture = "IslandConcrete"; smooth = .12f; }
             else if (name.Contains("Metal")) { texture = "IslandMetal"; smooth = .55f; metal = .75f; }
             else if (name.Contains("Oxide")) { texture = "IslandOxide"; smooth = .23f; metal = .4f; }
             else if (name.Contains("Clinic")) { texture = "IslandClinic"; smooth = .5f; }

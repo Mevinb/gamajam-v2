@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "status": "Ignored staging only; not imported/published or visually rendered",
+  "generator_sha256": "76367273a5f9b5cff3103314297791d2213d84c13f9992f75b3b2afdc3108056",
+  "blender_version": "4.5.16 LTS",
+  "cpu_threads": 2,
+  "render_calls": 0,
+  "cycles_used": false,
+  "gpu_used": false,
+  "seed": 184201,
+  "original_world_origin": [
+    620,
+    0,
+    -220
+  ],
+  "author_coordinates": "Blender=(UnityX,-UnityZ,UnityY)",
+  "export_conversion": "Temporary mesh reflection on Blender worldY plus reversed winding; observed Unity import maps(BlenderX,BlenderZ,BlenderY)",
+  "before": {
+    "visual_boxes": 7,
+    "triangles": 84,
+    "materials": [
+      "IslandConcrete"
+    ],
+    "texture_resolution": 512,
+    "colliders": "Existing exact primitive BoxColliders; unchanged by proposal"
+  },
+  "after": {
+    "active_meshes": 2,
+    "triangles": 11804,
+    "material_count": 1,
+    "lights": 0,
+    "shader_pass_changes": 0,
+    "new_colliders": 0,
+    "packed_blend_bytes": 14334013
+  },
+  "walls": [
+    {
+      "id": "quarantine-west",
+      "group": "QuarantineFacade",
+      "name": "Quarantine wall",
+      "center": [
+        -39.85,
+        1.95,
+        -18
+      ],
+      "size": [
+        26.3,
+        3.6,
+        0.4
+      ],
+      "vertices": 1096,
+      "triangles": 1932,
+      "bounds_min": [
+        -53.0,
+        0.15000000596046448,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        -26.69999885559082,
+        3.75,
+        -17.799999237060547
+      ],
+      "bounds_max_delta": 1.144409182529671e-06,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 7.629394538355427e-07
+    },
+    {
+      "id": "quarantine-middle",
+      "group": "QuarantineFacade",
+      "name": "Quarantine wall",
+      "center": [
+        -16.75,
+        1.95,
+        -18
+      ],
+      "size": [
+        17.1,
+        3.6,
+        0.4
+      ],
+      "vertices": 736,
+      "triangles": 1296,
+      "bounds_min": [
+        -25.30000114440918,
+        0.15000000596046448,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        -8.199999809265137,
+        3.75,
+        -17.799999237060547
+      ],
+      "bounds_max_delta": 1.1444091789769573e-06,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 0.012000274658202414
+    },
+    {
+      "id": "quarantine-east",
+      "group": "QuarantineFacade",
+      "name": "Quarantine wall",
+      "center": [
+        23.6,
+        1.95,
+        -18
+      ],
+      "size": [
+        58.8,
+        3.6,
+        0.4
+      ],
+      "vertices": 2296,
+      "triangles": 4052,
+      "bounds_min": [
+        -5.800000190734863,
+        0.15000000596046448,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        53.0,
+        3.75,
+        -17.799999237060547
+      ],
+      "bounds_max_delta": 7.629394538355427e-07,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 7.629394538355427e-07
+    },
+    {
+      "id": "culvert-lintel",
+      "group": "QuarantineFacade",
+      "name": "Low passage lintel",
+      "center": [
+        -26,
+        2.55,
+        -18
+      ],
+      "size": [
+        1.4,
+        2.4,
+        0.4
+      ],
+      "vertices": 136,
+      "triangles": 236,
+      "bounds_min": [
+        -26.700000762939453,
+        1.3499999046325684,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        -25.299999237060547,
+        3.75,
+        -17.799999237060547
+      ],
+      "bounds_max_delta": 7.629394538355427e-07,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 7.629394538355427e-07
+    },
+    {
+      "id": "service-lintel",
+      "group": "QuarantineFacade",
+      "name": "Service entrance lintel",
+      "center": [
+        -7,
+        3.25,
+        -18
+      ],
+      "size": [
+        2.4,
+        1,
+        0.4
+      ],
+      "vertices": 88,
+      "triangles": 148,
+      "bounds_min": [
+        -8.199999809265137,
+        2.75,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        -5.800000190734863,
+        3.75,
+        -17.799999237060547
+      ],
+      "bounds_max_delta": 7.629394538355427e-07,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 0.012000274658202414
+    },
+    {
+      "id": "south-quay-west",
+      "group": "SouthernQuayFacade",
+      "name": "South coast west wall",
+      "center": [
+        -44.75,
+        0.75,
+        -37.7
+      ],
+      "size": [
+        14.5,
+        1.2,
+        0.6
+      ],
+      "vertices": 376,
+      "triangles": 644,
+      "bounds_min": [
+        -52.0,
+        0.1499999761581421,
+        -38.0
+      ],
+      "bounds_max": [
+        -37.5,
+        1.350000023841858,
+        -37.39999771118164
+      ],
+      "bounds_max_delta": 2.288818365059342e-06,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 0.012002563476556816
+    },
+    {
+      "id": "south-quay-east",
+      "group": "SouthernQuayFacade",
+      "name": "South coast east wall",
+      "center": [
+        8.75,
+        0.75,
+        -37.7
+      ],
+      "size": [
+        86.5,
+        1.2,
+        0.6
+      ],
+      "vertices": 2032,
+      "triangles": 3496,
+      "bounds_min": [
+        -34.5,
+        0.1499999761581421,
+        -38.0
+      ],
+      "bounds_max": [
+        52.0,
+        1.350000023841858,
+        -37.39999771118164
+      ],
+      "bounds_max_delta": 2.288818365059342e-06,
+      "opaque_axis_rays": 726,
+      "opaque_axis_hits": 726,
+      "max_surface_recess": 0.012002563476556816
+    }
+  ],
+  "openings": [
+    {
+      "name": "culvert",
+      "x": [
+        -26.7,
+        -25.3
+      ],
+      "y": [
+        0.15,
+        1.35
+      ],
+      "width": 1.3999999999999986,
+      "height": 1.2000000000000002,
+      "clear_rays": 169
+    },
+    {
+      "name": "service",
+      "x": [
+        -8.2,
+        -5.8
+      ],
+      "y": [
+        0.15,
+        2.75
+      ],
+      "width": 2.3999999999999995,
+      "height": 2.6,
+      "clear_rays": 169
+    },
+    {
+      "name": "arrival-gangway",
+      "x": [
+        -37.5,
+        -34.5
+      ],
+      "y": [
+        0.15,
+        1.35
+      ],
+      "width": 3.0,
+      "height": 1.2000000000000002,
+      "clear_rays": 169
+    }
+  ],
+  "meshes": [
+    {
+      "name": "QuarantineFacade",
+      "vertices": 4352,
+      "triangles": 7664,
+      "materials": [
+        "IslandQuarantineConcrete"
+      ],
+      "uv_min_area": 9.07391211057984e-08,
+      "uv_degenerate_triangles": 0
+    },
+    {
+      "name": "SouthernQuayFacade",
+      "vertices": 2408,
+      "triangles": 4140,
+      "materials": [
+        "IslandQuarantineConcrete"
+      ],
+      "uv_min_area": 6.048460932106536e-08,
+      "uv_degenerate_triangles": 0
+    }
+  ],
+  "atlas": {
+    "resolution": [
+      2048,
+      2048
+    ],
+    "variants": 4,
+    "padding_pixels": 16,
+    "seed": 184201,
+    "albedo_rgb_min": 0.3244180679321289,
+    "albedo_rgb_max": 0.5846481919288635,
+    "alpha_min": 1.0,
+    "metallic_min": 0.0,
+    "metallic_max": 0.0,
+    "smoothness_min": 0.1297866255044937,
+    "smoothness_max": 0.4040766954421997,
+    "normal_finite": true,
+    "normal_unit_max_error": 1.1920928955078125e-07,
+    "channels": {
+      "A": "opaque sRGB base colour",
+      "N": "linear tangent-space normal",
+      "M": "linear RGB metallic=0 / alpha smoothness"
+    },
+    "compressed_gpu_budget_mib": 16,
+    "uncompressed_gpu_mips_mib": 64
+  },
+  "pieces": 429,
+  "files": {
+    "Assets/Parasite/Resources/Island/IslandQuarantineWalls.fbx": {
+      "sha256": "102f91800eadb60685c215b1c70fca786fec7dc1ce9ab02f9a727871729b7b19",
+      "bytes": 229564
+    },
+    "ArtSource/Island/QuarantineWalls.blend": {
+      "sha256": "272d766247db513cc0d97ebcf613e38b5bd9bd37644766ca004d5c06d53f23ce",
+      "bytes": 14334013
+    },
+    "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png": {
+      "sha256": "648e949802566bbb9b2ac11668fa4c3c66d4dd1881a8968025cec6addc7ee1f1",
+      "bytes": 5122382
+    },
+    "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png": {
+      "sha256": "256dd196e117af3d14781920cc4b7c89e895cedfb2f6b1577072dc8bbdaf8b2e",
+      "bytes": 5150025
+    },
+    "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png": {
+      "sha256": "2b6ee918fdedd6c3af14ee50a1bbd5b02e0048d33bceda14a90c722410e80ce1",
+      "bytes": 3805694
+    }
+  },
+  "elapsed_seconds": 2.366
+}

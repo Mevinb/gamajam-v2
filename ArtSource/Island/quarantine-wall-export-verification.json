@@ -1,0 +1,108 @@
+{
+  "status": "PASS CPU FBX round-trip; actual Unity visuals/performance still pending",
+  "blender_version": "4.5.16 LTS",
+  "threads": 2,
+  "gpu_rendering": false,
+  "source_fbx_sha256": "102f91800eadb60685c215b1c70fca786fec7dc1ce9ab02f9a727871729b7b19",
+  "meshes": [
+    {
+      "mesh": "QuarantineFacade",
+      "imported_name": "QuarantineFacade.001",
+      "bounds_min": [
+        -53.0,
+        0.15000134706497192,
+        -18.200000762939453
+      ],
+      "bounds_max": [
+        53.0,
+        3.7500014305114746,
+        -17.799999237060547
+      ],
+      "bounds_max_error": 1.430511474609375e-06,
+      "triangles": 7664,
+      "uv_min_area": 9.07391211057984e-08,
+      "zero_area_triangles": 0,
+      "signed_volume": 159.2343118598413,
+      "material_slots": [
+        "IslandQuarantineConcrete"
+      ]
+    },
+    {
+      "mesh": "SouthernQuayFacade",
+      "imported_name": "SouthernQuayFacade.001",
+      "bounds_min": [
+        -52.0,
+        0.15000279247760773,
+        -38.0
+      ],
+      "bounds_max": [
+        52.0,
+        1.3500028848648071,
+        -37.39999771118164
+      ],
+      "bounds_max_error": 2.8848648070400884e-06,
+      "triangles": 4140,
+      "uv_min_area": 6.048460932106536e-08,
+      "zero_area_triangles": 0,
+      "signed_volume": 86.7221232741383,
+      "material_slots": [
+        "IslandQuarantineConcrete"
+      ]
+    }
+  ],
+  "total_triangles": 11804,
+  "openings": [
+    {
+      "name": "culvert",
+      "clear_rays": 169,
+      "positive_x_mirror_solid": true
+    },
+    {
+      "name": "service",
+      "clear_rays": 169,
+      "positive_x_mirror_solid": true
+    },
+    {
+      "name": "arrival-gangway",
+      "clear_rays": 169,
+      "positive_x_mirror_solid": true
+    }
+  ],
+  "opaque_coverage": [
+    {
+      "wall": "quarantine-west",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "quarantine-middle",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "quarantine-east",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "culvert-lintel",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "service-lintel",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "south-quay-west",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    },
+    {
+      "wall": "south-quay-east",
+      "opaque_rays": 150,
+      "opaque_hits": 150
+    }
+  ]
+}

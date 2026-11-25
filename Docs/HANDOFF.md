@@ -4,6 +4,28 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb**. This supersedes the old eight-mission scope freeze and local-only capture session.
 The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Never present historical tests as verification of a new build.
 
+## Latest verified checkpoint
+
+- Private build `Builds/Diagnostics/native-lifetime-20261125T044908356266Z-653cabfd`:1024MB,zero errors/warnings,native0.
+  Source snapshot and full original preview tree are unchanged. Supported fresh build-directory override is applied; no PATH
+  adapter, parking or rename was used. Original `Builds/Linux` remains the retained M18 preview.
+- New wall kit: actual import140checks pass; all four entry routes/camera pass; `island-wall-raster-final.xml` passes2/2.
+  The pixel mismatch was Atmosphere tinting empty structural-capture background. Six actual intended/mirrored views confirm
+  correct geometry. Only structural proof isolates Atmosphere, with exact restoration. Gameplay fog/physics stay unchanged.
+- `island-wall-art-hdr.xml` passes optional1/1: three staged normal-shaded before/after pairs, linear FP16 and one sRGB
+  conversion, actor renderers/UI hidden but lights retained. Portable import/runtime data and reviewed PNG pair: ArtSource/Island.
+- Rendered native RTX/Vulkan water scenario22 passes1/1 in2s,exit0. Same standalone batch command stalled native scheduling.
+  Editor Vulkan core matrix passes; full owner has5passes/1final-log failure from native ring-buffer warning/1Null skip.
+- Movie default forced-terminal-Tick stress still hangs after7decode checks/6PNGs and all managed quit markers, in batch and
+  normal rendering; watchdog137. Experimental no-final-seek arm exits0 on the same candidate. It is not a production fix.
+  Exact Unity symbols locate native video cleanup lock. Cine agent stages bounded per-film retirement/quit drain preserving
+  immediate visual skip, default stress and requested exit codes; no live cleanup candidate is applied yet.
+- Native island1920x1080/Vulkan baselines reach20/20waypoints,exit0: High25.5FPS/p9963.23ms/scale1.00;
+  Ultra26.7FPS/p9966.76ms/scale1.25. AI/traffic active. Low GPU utilization and weak scaling warrant CPU/scheduling profiling.
+  No optimization claim; historical city/river results are different routes/builds. Profiling sidecar is being staged.
+- Packed opening is currently safely stopped at frame699; PIDs3620827/3621501 actually exited. Resume frozen production after
+  GPU jobs terminate. API check passes142runtime/23editor/142Linux player with optional HDR art helper.
+
 ## User playtest build retained
 
 The user requested the current work be built and launched. `0.5.0-preview` was launched on native `DISPLAY=:0`
@@ -41,7 +63,9 @@ API compilation passes 141/23/141 sources with the wall verification helpers. Th
 - The Blender wall kit (two meshes, one material, 11,804 triangles, shared 2K PBR atlas) is now applied. Initial automatic
   texture import produced Cubemaps and blocked World initialization; the importer now explicitly requires Texture2D.
   `island-wall-import-verification.json` passes 140 actual Unity checks: three 2048 BC7 maps (~16 MiB), all 18 old maps 512,
-  exact model counts/bounds and no colliders. Actual GPU wall appearance/aperture/route/performance checks remain pending.
+  exact model counts/bounds and no colliders. `island-wall-gpu.xml` then passes all four M18 route/outcome traversals and the full camera case (17,342 samples), but
+  both visual cases fail the first culvert aperture pixel at local (-26.62,.23,-18). Actual runtime mesh orientation versus
+  proof-camera effects is being diagnosed without changing thresholds/physics. Wall performance remains unrun.
 
 The retained preview's strict movie checks decode all seven expected items (two old clips, four full lake films and the
 neutral wrap) on RTX/Vulkan and OpenGL, but both processes fail normal shutdown and hit their watchdogs. These are **not**
@@ -50,9 +74,14 @@ inside video-class engine cleanup; the lock owner/cause is unproven. Evidence li
 A two-file optional lifecycle trace / final-seek A/B patch is now applied from `Logs/cinematic-native-lifetime`; no new
 player build or runtime repair is claimed. Preserve the old forced-seek stress path until the native issue is understood.
 
-The frozen RTX production has resumed after the successful GPU window (old stop was frame 485). Current supervisor PID
-3394810 / Blender PID 3395037, session 31015; check actual processes/checkpoints. Stop safely before another GPU job.
-A reversible diagnostic build runner is being prepared under `Logs/cinematic-native-lifetime` to preserve the original preview.
+The frozen RTX production resumed again after the wall GPU window (last safe stop Opening 671). Current session 50611;
+check actual processes/checkpoints before GPU work. Campaign agent is staging full aperture images/sample/camera diagnostics.
+The island benchmark patch is applied and API-compiles141/23/141: explicit20-point Maintenance route, no performance run yet.
+
+The diagnostic build runner is being revised to use a supported optional `-parasiteBuildDirectory` override in BuildAutomation.
+The old parking/PATH-flock-adapter runner design is superseded and MUST NOT be executed. Wait for the agent's frozen new
+runner/manifest: unchanged Tools/unity.sh lock, direct fresh Builds/Diagnostics output, original preview hashes checked
+before/after, no rename/PATH adapter. Build override patch itself is still staged/unapplied. No new player build has run.
 User playtest metadata remains under `Logs/user-playtest/`. The older native exits remain unproven; do not label them repaired.
 
 ## Active cinematic production — 25 November 2026

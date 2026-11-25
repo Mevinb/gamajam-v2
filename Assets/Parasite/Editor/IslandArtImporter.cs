@@ -19,9 +19,12 @@ namespace Parasite.EditorTools
         {
             if(!assetPath.StartsWith(Root+"Textures/",StringComparison.Ordinal))return;
             var texture=(TextureImporter)assetImporter;
+            // Surface maps always use 2D import, independent of automatic or preset shape selection.
+            texture.textureShape=TextureImporterShape.Texture2D;
             texture.textureType=assetPath.EndsWith("_N.png",StringComparison.Ordinal)?TextureImporterType.NormalMap:TextureImporterType.Default;
             texture.sRGBTexture=assetPath.EndsWith("_A.png",StringComparison.Ordinal);
-            texture.alphaSource=TextureImporterAlphaSource.FromInput;texture.mipmapEnabled=true;texture.maxTextureSize=512;
+            texture.alphaSource=TextureImporterAlphaSource.FromInput;texture.mipmapEnabled=true;
+            texture.maxTextureSize=assetPath.StartsWith(Root+"Textures/IslandQuarantine_",StringComparison.Ordinal)?2048:512;
             texture.wrapMode=UnityEngine.TextureWrapMode.Repeat;texture.anisoLevel=4;texture.textureCompression=TextureImporterCompression.CompressedHQ;
         }
     }

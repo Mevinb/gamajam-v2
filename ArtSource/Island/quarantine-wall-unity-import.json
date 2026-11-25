@@ -1,0 +1,1291 @@
+{
+    "schema": 2,
+    "globalTextureMipmapLimit": 0,
+    "status": "PASS",
+    "startedUtc": "2026-11-25T04:32:15.2403620Z",
+    "finishedUtc": "2026-11-25T04:32:18.6230720Z",
+    "unityVersion": "6000.3.29f1",
+    "buildTarget": "StandaloneLinux64",
+    "graphicsDevice": "Null",
+    "importerSourceSha256": "8f344eb9960645a1084a38ea1b0f77cbbdce40c338d8256e261e45325469b7d4",
+    "editorAssemblySha256": "d1dc267e5fe248555de17f5b85fc7d5d7933dc8260ea18a66d9b68acbdc8e743",
+    "modelSha256": "102f91800eadb60685c215b1c70fca786fec7dc1ce9ab02f9a727871729b7b19",
+    "exception": "",
+    "synchronousForceReimport": true,
+    "checks": [
+        {
+            "name": "Importer compilation has completed",
+            "expected": "not compiling/updating",
+            "actual": "False/False",
+            "pass": true
+        },
+        {
+            "name": "Linux target",
+            "expected": "StandaloneLinux64",
+            "actual": "StandaloneLinux64",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png actual size and cap",
+            "expected": "2048x2048; max=2048",
+            "actual": "2048x2048; max=2048",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=12",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png actual size and cap",
+            "expected": "2048x2048; max=2048",
+            "actual": "2048x2048; max=2048",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=12",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png actual size and cap",
+            "expected": "2048x2048; max=2048",
+            "actual": "2048x2048; max=2048",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=12",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png colour space",
+            "expected": "sRGB",
+            "actual": "True/RGBA_BC7_SRGB",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_SRGB/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png type",
+            "expected": "NormalMap",
+            "actual": "NormalMap",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png 2D shape",
+            "expected": "Texture2D",
+            "actual": "Texture2D (1); loaded=UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png exists",
+            "expected": "TextureImporter + Texture2D",
+            "actual": "importer/UnityEngine.Texture2D",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png actual size and cap",
+            "expected": "512x512; max=512",
+            "actual": "512x512; max=512",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png type",
+            "expected": "Default",
+            "actual": "Default",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png colour space",
+            "expected": "linear",
+            "actual": "False/RGBA_BC7_UNorm",
+            "pass": true
+        },
+        {
+            "name": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png compressed HQ mips",
+            "expected": "compressed/HQ/mipmapped",
+            "actual": "BC7/RGBA_BC7_UNorm/CompressedHQ/mips=10",
+            "pass": true
+        },
+        {
+            "name": "Wall model exists",
+            "expected": "ModelImporter + prefab",
+            "actual": "importer/prefab",
+            "pass": true
+        },
+        {
+            "name": "Model metre/axis/collider policy",
+            "expected": "scale1/fileScale/bakedAxes/no generated collider/no animation",
+            "actual": "1/True/True/False/False",
+            "pass": true
+        },
+        {
+            "name": "Exactly two model renderers",
+            "expected": "2",
+            "actual": "2",
+            "pass": true
+        },
+        {
+            "name": "No model colliders",
+            "expected": "0",
+            "actual": "0",
+            "pass": true
+        },
+        {
+            "name": "One shared authored material",
+            "expected": "one IslandQuarantineConcrete shared by both single-slot renderers",
+            "actual": "IslandQuarantineConcrete",
+            "pass": true
+        },
+        {
+            "name": "QuarantineFacade.001 mesh",
+            "expected": "MeshFilter + mesh",
+            "actual": "QuarantineFacade.001",
+            "pass": true
+        },
+        {
+            "name": "QuarantineFacade.001 topology",
+            "expected": "Triangles",
+            "actual": "Triangles",
+            "pass": true
+        },
+        {
+            "name": "QuarantineFacade.001 identity/count/bounds",
+            "expected": "7664 triangles; (-53.00, 0.15, -18.20)..(53.00, 3.75, -17.80)",
+            "actual": "7664; (-53.00, 0.15, -18.20)..(53.00, 3.75, -17.80)",
+            "pass": true
+        },
+        {
+            "name": "SouthernQuayFacade.001 mesh",
+            "expected": "MeshFilter + mesh",
+            "actual": "SouthernQuayFacade.001",
+            "pass": true
+        },
+        {
+            "name": "SouthernQuayFacade.001 topology",
+            "expected": "Triangles",
+            "actual": "Triangles",
+            "pass": true
+        },
+        {
+            "name": "SouthernQuayFacade.001 identity/count/bounds",
+            "expected": "4140 triangles; (-52.00, 0.15, -38.00)..(52.00, 1.35, -37.40)",
+            "actual": "4140; (-52.00, 0.15, -38.00)..(52.00, 1.35, -37.40)",
+            "pass": true
+        },
+        {
+            "name": "Exact total geometry",
+            "expected": "11804 triangles",
+            "actual": "11804",
+            "pass": true
+        }
+    ],
+    "textures": [
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_A.png",
+            "sha256": "648e949802566bbb9b2ac11668fa4c3c66d4dd1881a8968025cec6addc7ee1f1",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 2048,
+            "height": 2048,
+            "maxTextureSize": 2048,
+            "mipCount": 12,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": false,
+            "runtimeMemoryBytes": 5593312
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_N.png",
+            "sha256": "256dd196e117af3d14781920cc4b7c89e895cedfb2f6b1577072dc8bbdaf8b2e",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 2048,
+            "height": 2048,
+            "maxTextureSize": 2048,
+            "mipCount": 12,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": false,
+            "runtimeMemoryBytes": 5593312
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandQuarantine_M.png",
+            "sha256": "2b6ee918fdedd6c3af14ee50a1bbd5b02e0048d33bceda14a90c722410e80ce1",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 2048,
+            "height": 2048,
+            "maxTextureSize": 2048,
+            "mipCount": 12,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": false,
+            "runtimeMemoryBytes": 5593312
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandClinic_A.png",
+            "sha256": "f143ee9866e981e7a1f5dc2abea579ddc184ff1051c610d6d3703c0672bc6f3a",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandClinic_N.png",
+            "sha256": "1cb21969f77b3a7899d81aef1bac66b7fea552cf1d64963571b24deec137a1e7",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandClinic_M.png",
+            "sha256": "6b2a5a1a502a63cc8d94f15b15a0df7b6a136562bac0424a36935c06a7def98c",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_A.png",
+            "sha256": "2219bf5618ec9f900b11364aadbca86459f80b795e26fbde2b594ac36dd64a6a",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_N.png",
+            "sha256": "94ab099b8577bbab9a27c4ae21e90238e5ac9da2fac171afb2a396e05bce9aa0",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandConcrete_M.png",
+            "sha256": "7e9d99abd338df2f1588388e34cc00a7b71714ac6bbcebf45016668d31ac5ba4",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandFabric_A.png",
+            "sha256": "461632ea69aeb1eec47d753019fcb52a7fa6010379fc39323c9285025ed2cdfd",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandFabric_N.png",
+            "sha256": "faf2573b4f82eede63157f1550274cf55d946d18a42cfa29a3ba12021c153d1e",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandFabric_M.png",
+            "sha256": "c98c2a187589b1ce0c9a247373dc958506432a9d62c96c9ddbb29ccef0f266b4",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandMetal_A.png",
+            "sha256": "0617f9a55d935e46aaecbba35cbc50c39e465b1b96dd41731d917e49e51a71f8",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandMetal_N.png",
+            "sha256": "a5e8313cfacc2904b93416bd5efc3a5d68d78175b7e5b785ef1a33db53784c54",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandMetal_M.png",
+            "sha256": "3d1c2964558434b1fecaf9dc7e93eb36ed9fb96d5a42fb982327f4c9d9828b45",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandOxide_A.png",
+            "sha256": "294d14ed6dc47bb92a9839aa0c9a239419ba1b37a3129ea9950382171113874b",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandOxide_N.png",
+            "sha256": "aaf4d3be9c3cd74596e88aff5a72b161e29860b96543aa79c843ef592fcdfab9",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandOxide_M.png",
+            "sha256": "ba17d1a0157e002eae0e3aaa75d021c02bc25138b916a5aa7e15ec4de8bc951f",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandTimber_A.png",
+            "sha256": "4d82a1f86ac437959160c898b8b85fba6e3cf3bb9ab19b690f09dd9fc279b360",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_SRGB",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": true,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandTimber_N.png",
+            "sha256": "7af61d8883b664c8fca9eb0fa65a5d577edd0f5f222fa1c08bd519edb32caf16",
+            "type": "NormalMap",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        },
+        {
+            "path": "Assets/Parasite/Resources/Island/Textures/IslandTimber_M.png",
+            "sha256": "0e0c087ec635d68066b14102070d4c355bc54ef5b59a58eaa35518a41b07a28c",
+            "type": "Default",
+            "shape": "Texture2D",
+            "loadedAssetType": "UnityEngine.Texture2D",
+            "format": "BC7",
+            "graphicsFormat": "RGBA_BC7_UNorm",
+            "width": 512,
+            "height": 512,
+            "maxTextureSize": 512,
+            "mipCount": 10,
+            "shapeValue": 1,
+            "srgb": false,
+            "compressed": true,
+            "mipmaps": true,
+            "oldIslandMap": true,
+            "runtimeMemoryBytes": 350432
+        }
+    ],
+    "meshes": [
+        {
+            "name": "QuarantineFacade.001",
+            "material": "IslandQuarantineConcrete",
+            "triangles": 7664,
+            "min": {
+                "x": -53.0,
+                "y": 0.15000009536743165,
+                "z": -18.200000762939454
+            },
+            "max": {
+                "x": 53.0,
+                "y": 3.75,
+                "z": -17.799999237060548
+            }
+        },
+        {
+            "name": "SouthernQuayFacade.001",
+            "material": "IslandQuarantineConcrete",
+            "triangles": 4140,
+            "min": {
+                "x": -52.0,
+                "y": 0.1499999761581421,
+                "z": -38.0
+            },
+            "max": {
+                "x": 52.0,
+                "y": 1.350000023841858,
+                "z": -37.399993896484378
+            }
+        }
+    ],
+    "evidenceScope": "Actual Unity imports in this invocation. Existing Blender/CPU proofs are inputs, not Unity results. Runtime traversal/render verification is separate."
+}

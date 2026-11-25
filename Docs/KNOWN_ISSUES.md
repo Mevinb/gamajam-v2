@@ -46,3 +46,9 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 
 Caches, footage intermediates, verification captures and builds can grow quickly on this workstation. Check free space before
 large jobs. Keep generated builds/logs out of Git; compact editable art sources and the actual shipped cinematic clips belong in it.
+
+
+Current native verification: rendered RTX/Vulkan water passes, while standalone batch scheduling does not finish that probe.
+The default forced-terminal movie stress still hangs during native cleanup even in normal rendering; bounded retirement is
+being developed. The new wall kit passes import/routes/camera/raster and staged HDR review. Its first native1080p island
+baselines are25.5FPS High/26.7FPS Ultra; performance optimization remains open. No old benchmark is a new island FPS claim.

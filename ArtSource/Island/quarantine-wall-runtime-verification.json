@@ -1,0 +1,57 @@
+{
+  "status": "Unity import/route/camera/raster/art-QA verified; optimization still in progress",
+  "import_report_sha256": "f849dd68e6220049bc9c6d7759a01feb624c02962bf9e01152a9d48d5cca55ec",
+  "tests": [
+    {
+      "path": "Logs/island-wall-gpu.xml",
+      "sha256": "23bc0e0c08da38c9278ff730bc1a04e1b123ccf346890d4728f8300274f39d6b",
+      "passed": 5,
+      "failed": 2,
+      "scope": "four route branches and full camera pass; initial two fog-contaminated visual failures"
+    },
+    {
+      "path": "Logs/island-wall-raster-final.xml",
+      "sha256": "66792af1c576483ac12de6bb4013277a1794e66c62f35fefd2f3bcf0b7bac35e",
+      "passed": 2,
+      "failed": 0,
+      "scope": "two visual/material/physical-aperture cases pass with exact atmosphere restoration"
+    },
+    {
+      "path": "Logs/island-wall-art-hdr.xml",
+      "sha256": "8a0dfb6552fb10c87304b13a9bf9d8ab09ace9a7c042fa22f46497cf1eb3bed6",
+      "passed": 1,
+      "failed": 0,
+      "scope": "one optional HDR staged art-QA case passes with exact state restoration"
+    }
+  ],
+  "art_qa_report_sha256": "64407d8ad21b9e17dd1d43caed06baab5dd468324b71b1694107ea0d68dade1f",
+  "review_images": {
+    "STAGED-SCENE-ART-QA-precast-panel-detail-authored-after.png": "4354d245dfc0eb3ffdf91254e1fef6ee8018abb2a475553f44cac51fd6d65203",
+    "STAGED-SCENE-ART-QA-precast-panel-detail-primitive-before.png": "dbf7f7a1d0f392a8b07f72b56afc84835bd733d861f15bfc2a788a6fea1ddb49"
+  },
+  "capture_scope": "Staged same-camera scene-only HDR comparisons; actor renderers/UI hidden, owned lights and normal atmosphere retained. Not native gameplay/UI capture.",
+  "performance_baseline": {
+    "build_runtime_sha256": "78197d14e2bc0632b4a0b80c0953c7b4a89a60793386b78a1469d94438a1d529",
+    "resolution": [
+      1920,
+      1080
+    ],
+    "api": "Vulkan",
+    "gpu": "RTX4050Laptop",
+    "route_waypoints_reached": 20,
+    "route_waypoints_total": 20,
+    "high": {
+      "fps": 25.5,
+      "p99_ms": 63.23,
+      "render_scale": 1.0,
+      "report_sha256": "e70a443c0fe47e8283a831a09d4763e3cf1dac28ddc8fc059b55bffdd2aca1c0"
+    },
+    "ultra": {
+      "fps": 26.7,
+      "p99_ms": 66.76,
+      "render_scale": 1.25,
+      "report_sha256": "15417962aec3cda92d2bed885abaa22b9310d33db25703bda35afa569e4e72d4"
+    },
+    "scope": "AI active,20point seeded benchmark route, native exits0. Current measured baseline, not an improvement claim; CPU/scheduling profiling pending."
+  }
+}

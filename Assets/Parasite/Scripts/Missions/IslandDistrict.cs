@@ -43,6 +43,11 @@ namespace Parasite.Missions
                 Box("Quarantine wall",new Vector3((span.Item1+span.Item2)*.5f,1.95f,-18),new Vector3(span.Item2-span.Item1,3.6f,.4f),concrete);
             Box("Low passage lintel",new Vector3(-26,2.55f,-18),new Vector3(1.4f,2.4f,.4f),concrete);
             Box("Service entrance lintel",new Vector3(-7,3.25f,-18),new Vector3(2.4f,1f,.4f),concrete);
+            // Dress these opaque boxes only after the authored visual kit has loaded. Physics/LOS/nav retain the exact boxes.
+            art.Model("IslandQuarantineWalls",Vector3.zero,colliders:false);
+            var dressedWalls=new[]{"Quarantine wall","Low passage lintel","Service entrance lintel","South coast west wall","South coast east wall"};
+            foreach(var renderer in root.GetComponentsInChildren<MeshRenderer>(true))
+                if(renderer.transform.parent==root && dressedWalls.Contains(renderer.name)) renderer.enabled=false;
             art.Model("IslandTidalCulvert",new Vector3(-26,.15f,-30));
             var indicator=art.Model("IslandTideIndicator",new Vector3(-26,1.35f,-29.2f));
             var tide=go.AddComponent<TidalCulvert>();

@@ -1,3 +1,25 @@
+# Wall/native checkpoint
+
+Current proof and limits are recorded in the latest HANDOFF checkpoint and portable
+`ArtSource/Island/quarantine-wall-runtime-verification.json`. Wall raster/visual cases pass2/2; all four entry routes and
+camera pass with the kit; HDR staged art-QA passes1/1. Imported maps are true2D2048BC7 (~16MiB),old18remain512.
+Rendered native Vulkan water passes1/1,exit0. Default movie terminal-Tick stress remains a native shutdown failure; the
+experimental no-final-seek control is evidence, not a repair. Island1080p baselines25.5FPS High/26.7FPS Ultra reach20/20
+waypoints with AI active; profiling/optimization is pending. Historical rows below retain the earlier failed iterations.
+
+---
+
+# Wall GPU continuation checkpoint
+
+`Logs/island-wall-gpu.xml`:5/7 pass, normal NUnit exit2. All four Peace/Dominion culvert/maintenance routes and the full camera
+lifecycle (17,342 samples, zero failures) pass with the new imported kit. Both actual visual cases fail the first culvert
+aperture pixel at local(-26.62,.23,-18). Static/import/physical bounds remain passing; no visual aperture success is claimed.
+A diagnostic-only full-image/projection/asymmetric-sample patch is being staged. Pixel thresholds/physics stay unchanged.
+The island benchmark route is applied/compiles but has no native coverage or FPS result yet. Packed opening rendering resumed
+after safe stop671. The next diagnostic build will use fresh output override tooling; obsolete PATH-adapter runner is rejected.
+
+---
+
 # Latest wall/voice integration after source milestone 701ad29
 
 - `Logs/island-wall-import-verification.json`: PASS 140 actual Unity import checks. Initial atlases imported as Cubemaps;
