@@ -8,17 +8,17 @@ namespace Parasite.Tests
 {
     public class GraphicsPresetTests
     {
-        int originalPreset;
+        GraphicsSettingsData originalSettings;
         GameObject cameraObject;
 
         [SetUp]
-        public void SavePreset() => originalPreset = GraphicsPreset.Current;
+        public void SavePreset() => originalSettings = GraphicsPreset.CaptureSettings();
 
         [TearDown]
         public void RestorePreset()
         {
             if (cameraObject) Object.DestroyImmediate(cameraObject);
-            GraphicsPreset.Apply(originalPreset, save: false);
+            GraphicsPreset.ApplySettings(originalSettings, save: false);
         }
 
         [Test]

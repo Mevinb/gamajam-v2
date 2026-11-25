@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -5,138 +6,163 @@ using UnityEngine.SceneManagement;
 
 namespace Parasite
 {
-    /// <summary>Player-facing graphics presets (render scale, shadows, LOD, AA, lamp-light budget, water reflections,
-    /// SSAO, post quality). Saved in PlayerPrefs.</summary>
+    /// <summary>Compatibility facade for named profiles and independently saved graphics choices.</summary>
     public static class GraphicsPreset
     {
         public static readonly string[] Names = { "Low", "Medium", "High", "Ultra" };
-        const string Key = "parasite.graphics";
-        public static int Current { get; private set; } = 3;
-        public static event System.Action<int> Applied;
-        static readonly float[] RenderScales = { 0.7f, 0.85f, 1f, 1.25f };
-        static readonly float[] ShadowDistances = { 40f, 70f, 110f, 180f };
-        static readonly float[] LodBias = { 0.6f, 0.9f, 1.3f, 2.5f };
-        static readonly int[] MsaaSamples = { 1, 1, 1, 4 };
+        static GraphicsSettingsData settings = GraphicsSettingsData.ForPreset(3);
+        static GraphicsSettingsRuntime runtime;
+        static bool runtimeSuppressed;
+        public static int Current => settings.preset;
+        public static bool IsCustom => !settings.Equals(GraphicsSettingsData.ForPreset(Current));
+        public static string DisplayName => IsCustom ? "Custom (" + Names[Current] + ")" : Names[Current];
+        public static int ReflectionLevel => settings.reflectionLevel;
+        public static bool RealtimeReflectionsEnabled => settings.reflectionLevel >= 2 && QualitySettings.realtimeReflectionProbes && SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
+        public static int EffectiveMsaaSamples { get; private set; } = 1;
+        public static bool AmbientOcclusionAvailable { get; private set; }
+        public static GraphicsSettingsRuntime RuntimeOwner => runtime;
+        public static event Action<int> Applied;
+        static readonly float[] LodBias = { .6f, .9f, 1.3f, 2.5f };
         static readonly int[] ShadowResolutions = { 1024, 2048, 2048, 4096 };
         static readonly int[] LampBudgets = { 6, 14, 32, 64 };
         static readonly float[] LampDistances = { 32f, 48f, 70f, 110f };
         static readonly int[] ReflectionSteps = { 0, 16, 28, 36 };
+        internal const string SsrOff = "_PARASITE_SSR_OFF";
+        internal static readonly int SsrSteps = Shader.PropertyToID("_ParasiteSSRSteps");
+        internal static readonly int ConeScale = Shader.PropertyToID("_ParasiteConeScale");
+        internal static readonly int ShaftScale = Shader.PropertyToID("_ParasiteShaftScale");
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            RenderPipelineManager.beginCameraRendering -= OnBeginCamera;
+            runtime = null; runtimeSuppressed = false; Applied = null;
+            settings = GraphicsSettingsData.ForPreset(3); EffectiveMsaaSamples = 1; AmbientOcclusionAvailable = false;
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Boot()
         {
-            int def = SystemInfo.graphicsMemorySize >= 4000 ? 3 : 2;
-            Apply(PlayerPrefs.GetInt(Key, def), save: false);
-            // New gameplay cameras are created on scene load (including checkpoint reloads).
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            // Cinematic cameras can be created after sceneLoaded. Apply the saved policy before their first frame too.
-            RenderPipelineManager.beginCameraRendering -= OnBeginCamera;
-            RenderPipelineManager.beginCameraRendering += OnBeginCamera;
+            int fallback = SystemInfo.graphicsMemorySize >= 4000 ? 3 : 2;
+            ApplySettings(GraphicsSettingsStore.Load(fallback), save: false);
+            SceneManager.sceneLoaded -= OnSceneLoaded; SceneManager.sceneLoaded += OnSceneLoaded;
+            RenderPipelineManager.beginCameraRendering -= OnBeginCamera; RenderPipelineManager.beginCameraRendering += OnBeginCamera;
         }
 
-        static void OnSceneLoaded(Scene scene, LoadSceneMode mode) => Apply(Current, save: false);
+        static void OnSceneLoaded(Scene scene, LoadSceneMode mode) => ApplyActiveSettings();
         static void OnBeginCamera(ScriptableRenderContext context, Camera camera)
         {
+            if (!runtime || runtime.Retiring) return;
+            runtime.ObserveRenderLoop();
             if (camera && camera.cameraType == CameraType.Game) ApplyCamera(camera);
         }
 
+        public static GraphicsSettingsData CaptureSettings() => settings.Clone();
         public static void Cycle() => Apply((Current + 1) % Names.Length);
-
         public static void Apply(int level, bool save = true)
         {
-            Current = Mathf.Clamp(level, 0, Names.Length - 1);
-            if (save) { PlayerPrefs.SetInt(Key, Current); PlayerPrefs.Save(); }
-            var urp = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+            var next = GraphicsSettingsData.ForPreset(level);
+            // Quality changes do not reset the separately chosen display pacing policy.
+            next.vSync = settings.vSync; next.frameLimit = settings.frameLimit;
+            ApplySettings(next, save);
+        }
+
+        public static void ApplySettings(GraphicsSettingsData requested, bool save = true)
+        {
+            if (requested == null) throw new ArgumentNullException(nameof(requested));
+            settings = requested.Normalized(); runtimeSuppressed = false;
+            if (save) GraphicsSettingsStore.Save(settings);
+            ApplyActiveSettings();
+        }
+
+        static void EnsureRuntime()
+        {
+            if (runtimeSuppressed || !Application.isPlaying) return;
+            try
+            {
+                if (runtime) runtime.EnsurePipeline();
+                else
+                {
+                    var go = new GameObject("[Graphics Settings Runtime]") { hideFlags = HideFlags.DontSave };
+                    runtime = go.AddComponent<GraphicsSettingsRuntime>();
+                    runtime.Initialize();
+                }
+            }
+            catch (Exception error)
+            {
+                if (runtime) UnityEngine.Object.DestroyImmediate(runtime.gameObject);
+                runtime = null;
+                Debug.LogWarning("[GraphicsSettings] Runtime render copy unavailable; authoring assets were left unchanged: " + error.Message);
+            }
+        }
+
+        static int ResolveMsaa(int requested)
+        {
+            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null) return 1;
+            var descriptor = new RenderTextureDescriptor(4, 4, Current >= 2 ? RenderTextureFormat.ARGBHalf : RenderTextureFormat.ARGB32, 24)
+            { msaaSamples = requested };
+            int supported = SystemInfo.GetRenderTextureSupportedMSAASampleCount(descriptor);
+            return supported == 2 || supported == 4 ? Math.Min(requested, supported) : 1;
+        }
+
+        static void ApplyActiveSettings()
+        {
+            if (runtimeSuppressed) return;
+            EnsureRuntime();
+            EffectiveMsaaSamples = ResolveMsaa(settings.msaaSamples);
+            var urp = runtime ? runtime.Pipeline : null;
+            AmbientOcclusionAvailable = false;
             if (urp)
             {
-                urp.renderScale = RenderScales[Current];
-                urp.shadowDistance = ShadowDistances[Current];
-                urp.msaaSampleCount = MsaaSamples[Current];
+                urp.renderScale = settings.renderScale;
+                urp.shadowDistance = settings.shadows ? settings.shadowDistance : 0f;
+                urp.msaaSampleCount = EffectiveMsaaSamples;
                 urp.mainLightShadowmapResolution = ShadowResolutions[Current];
                 urp.supportsHDR = Current >= 2;
-                EnableSSAO(urp, Current >= 2);
+                AmbientOcclusionAvailable = runtime.SetAmbientOcclusion(settings.ambientOcclusion);
             }
-            // street-lamp light budget (FX.LampLights), screen-space water reflections, light-cone haze
-            FX.LampLights.Budget = LampBudgets[Current];
-            FX.LampLights.MaxDistance = LampDistances[Current];
-            if (Current == 0) Shader.EnableKeyword(SsrOff); else Shader.DisableKeyword(SsrOff);
-            Shader.SetGlobalFloat(SsrSteps, ReflectionSteps[Current]);
-            Shader.SetGlobalFloat(ConeScale, Current == 0 ? 0.7f : 1f);
-            Shader.SetGlobalFloat(ShaftScale, Current == 0 ? -1f : 1f);   // sun shafts off on Low
-            ApplyPostQuality();
-            // Generated city probes also schedule native rendering; a Null device must keep the global scheduler off.
-            QualitySettings.realtimeReflectionProbes = Current >= 2 && SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
+            FX.LampLights.Budget = LampBudgets[Current]; FX.LampLights.MaxDistance = LampDistances[Current];
+            if (settings.reflectionLevel == 0) Shader.EnableKeyword(SsrOff); else Shader.DisableKeyword(SsrOff);
+            Shader.SetGlobalFloat(SsrSteps, ReflectionSteps[settings.reflectionLevel]);
+            Shader.SetGlobalFloat(ConeScale, Current == 0 ? .7f : 1f);
+            Shader.SetGlobalFloat(ShaftScale, Current == 0 ? -1f : 1f);
+            if (runtime) runtime.ApplyPost(settings);
+            // Generated probes can also schedule native rendering; preserve the Null-device safety guard.
+            QualitySettings.realtimeReflectionProbes = settings.reflectionLevel >= 2 && SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
             QualitySettings.lodBias = LodBias[Current];
             QualitySettings.anisotropicFiltering = Current >= 3 ? AnisotropicFiltering.ForceEnable : AnisotropicFiltering.Enable;
-            QualitySettings.vSyncCount = 1;
-            Application.targetFrameRate = -1;
+            QualitySettings.vSyncCount = settings.vSync ? 1 : 0;
+            Application.targetFrameRate = settings.frameLimit;
             foreach (var camera in Camera.allCameras) ApplyCamera(camera);
             Applied?.Invoke(Current);
         }
 
-        /// <summary>Apply the current preset to a new gameplay/cinematic camera without saving preferences.</summary>
+        /// <summary>Apply image sampling to game/cinematic cameras, preserving their authored post-processing choice.</summary>
         public static void ApplyCamera(Camera camera)
         {
-            if (!camera) return;
-            camera.allowHDR = Current >= 2;
-            camera.allowMSAA = Current >= 3;
-            if (camera.TryGetComponent<UniversalAdditionalCameraData>(out var d))
+            if (!camera || camera.cameraType != CameraType.Game || runtimeSuppressed) return;
+            if (runtime) runtime.CaptureCamera(camera);
+            camera.allowHDR = Current >= 2; camera.allowMSAA = EffectiveMsaaSamples > 1;
+            if (camera.TryGetComponent<UniversalAdditionalCameraData>(out var data))
             {
-                d.antialiasing = Current >= 2 ? AntialiasingMode.SubpixelMorphologicalAntiAliasing : AntialiasingMode.FastApproximateAntialiasing;
-                d.antialiasingQuality = Current >= 3 ? AntialiasingQuality.High : AntialiasingQuality.Medium;
-                // Keep each camera's authored post-processing choice (the temporary lake set supplies its own grading).
+                data.antialiasing = settings.antiAliasing == 0 ? AntialiasingMode.None : settings.antiAliasing == 1
+                    ? AntialiasingMode.FastApproximateAntialiasing : AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+                data.antialiasingQuality = Current >= 3 ? AntialiasingQuality.High : AntialiasingQuality.Medium;
             }
         }
 
-        const string SsrOff = "_PARASITE_SSR_OFF";
-        static readonly int SsrSteps = Shader.PropertyToID("_ParasiteSSRSteps");
-        static readonly int ConeScale = Shader.PropertyToID("_ParasiteConeScale");
-        static readonly int ShaftScale = Shader.PropertyToID("_ParasiteShaftScale");
-        static Volume postOverride;
-        static VolumeProfile postProfile;
-
-        /// <summary>Low/Medium: cheaper bloom, no film grain / chromatic aberration (a runtime override volume, so the
-        /// scene's grading asset is never modified).</summary>
-        static void ApplyPostQuality()
+        /// <summary>Restore original pipeline, globals and live cameras; the owner retires after the render loop releases its pipeline.</summary>
+        public static GraphicsSettingsRuntime ReleaseRuntime()
         {
-            if (!Application.isPlaying) return;
-            if (!postOverride)
-            {
-                var go = new GameObject("[Graphics Preset Post]");
-                Object.DontDestroyOnLoad(go);
-                go.hideFlags = HideFlags.DontSave;
-                postOverride = go.AddComponent<Volume>();
-                postOverride.isGlobal = true;
-                postOverride.priority = 30f;
-                postProfile = ScriptableObject.CreateInstance<VolumeProfile>();
-                postProfile.name = "Graphics Preset Overrides";
-                var bloom = postProfile.Add<Bloom>(false); bloom.highQualityFiltering.Override(false);
-                var grain = postProfile.Add<FilmGrain>(false); grain.intensity.Override(0f);
-                var ca = postProfile.Add<ChromaticAberration>(false); ca.intensity.Override(0f);
-                postOverride.sharedProfile = postProfile;
-            }
-            postOverride.weight = Current <= 1 ? 1f : 0f;
+            var owner = runtime; runtime = null; runtimeSuppressed = true;
+            if (owner) owner.BeginRetirement();
+            return owner;
         }
 
-        static void EnableSSAO(UniversalRenderPipelineAsset urp, bool enable)
+        internal static void RuntimeOwnerDestroyed(GraphicsSettingsRuntime owner)
         {
-            try
-            {
-                foreach (var data in urp.rendererDataList)
-                {
-                    if (!data) continue;
-                    foreach (var f in data.rendererFeatures)
-                    {
-                        if (f && f.GetType().Name == "ScreenSpaceAmbientOcclusion")
-                            f.SetActive(enable);
-                    }
-                }
-            }
-            catch
-            {
-                // Fallback for custom or stripped renderers
-            }
+            if (ReferenceEquals(runtime, owner)) { runtime = null; runtimeSuppressed = true; }
         }
     }
 }

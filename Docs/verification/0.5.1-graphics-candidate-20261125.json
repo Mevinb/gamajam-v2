@@ -1,0 +1,284 @@
+{
+  "schema": 1,
+  "status": "NATIVE_QUICK_GATES_PASS_CAMPAIGN_RUNNING",
+  "recorded_utc": "2026-11-25T17:11:10.088672+00:00",
+  "version": "0.5.1-preview",
+  "candidate": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+  "source_base_commit": "bbebc8c2682b821de040a1c03aa5b9b9d25eeeb7",
+  "working_tree_build": true,
+  "source_snapshot_before_sha256": "5b258c362c2fd21cf424d65af1b869483a118c3238191963459aa43b4fc2ed0c",
+  "source_snapshot_after_sha256": "5b258c362c2fd21cf424d65af1b869483a118c3238191963459aa43b4fc2ed0c",
+  "source_unchanged_during_build": true,
+  "build": {
+    "native_exit_code": 0,
+    "result": "Succeeded",
+    "size_mb": 1101,
+    "time": "00:00:49.1768380",
+    "errors": 0,
+    "warnings": 0,
+    "runner": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T170047223995Z-63921b41/runner-state.json",
+      "bytes": 8186,
+      "sha256": "adca2e622208a71f49a9872c9ce4f03d7b82383276c689e739fdc3bb64555d95"
+    },
+    "build_log": {
+      "path": "Logs/full_story_candidate_20261125T170047223995Z_63921b41.log",
+      "bytes": 669021,
+      "sha256": "2fb3ba3f7013737b02715ba91921b08180a69ccc81af9c1675aab38426442cc0"
+    },
+    "build_info": {
+      "path": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41/BUILD_INFO.json",
+      "bytes": 1278,
+      "sha256": "45dbe29a172e200cad27849f0cd05bb849496b11db984591f1499f147642e5b0"
+    },
+    "runtime": {
+      "path": "Builds/Candidates/full-story-20261125T170047223995Z-63921b41/Parasite_Data/Managed/Parasite.Runtime.dll",
+      "bytes": 944640,
+      "sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290"
+    },
+    "retained_preview_unchanged": true,
+    "retained_preview_tree_before_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+    "retained_preview_tree_after_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25"
+  },
+  "quick_gates": {
+    "execution": {
+      "path": "Logs/full-story-candidate/graphics-player-validation/execution.json",
+      "bytes": 3301,
+      "sha256": "0897967202851a6d7ea40a9904eef5a65fc2889f8320902d67fb737e91bb0508"
+    },
+    "supervisor_exit_receipt": "Root session67882/chunk19477c returned exit_code0.",
+    "scope": "Normal rendered RTX4050/Vulkan standalone at1600x900, isolated default preferences. Strict full-five initial-image/advancement/terminal-seek cleanup;14queuedshortcut cases;renderedwater22. No native Custom editing/frame-pacing or continuous80s story claim.",
+    "jobs": [
+      {
+        "name": "full-films",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-cinematicTestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/full-films/report.txt",
+          "-requireFullStoryFilms",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/full-films/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:08.251161+00:00",
+        "pid": 42799,
+        "exit_code": 0,
+        "elapsed_seconds": 8.24,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "fe4c83e24d71f949dc638a4d619d7c902476443f94d47732a63f891bbca49ee1",
+        "ring_warnings": 0,
+        "pngs": 7,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt",
+          "bytes": 2275,
+          "sha256": "fe4c83e24d71f949dc638a4d619d7c902476443f94d47732a63f891bbca49ee1"
+        },
+        "player_log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/full-films/player.log",
+          "bytes": 32384,
+          "sha256": "329d9c6617f7526e64bed63a86a2d33c3dfdb53ba3f9e8eb7b2ef07b141b23fa"
+        },
+        "raw_graphics_ring_buffer_warnings": 0,
+        "film_passes": 8,
+        "film_failures": 0,
+        "images": [
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.ContainmentOpening.png",
+            "bytes": 575256,
+            "sha256": "e0ce8a30b6be551d04e1e22c39168770b0f6d2a8572b9a152c8b8807e238999e"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeArrival.png",
+            "bytes": 1049090,
+            "sha256": "0ccfc5f8ea0f74237996d8ba79e61ce8f1b076c719ea20453d800dd27aadf32c"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeDominion.png",
+            "bytes": 2070772,
+            "sha256": "5af44775ed7bcd56c612134cb74d46ca2e647617dd08373b43feb93b93ca2c1e"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeHold.png",
+            "bytes": 2132843,
+            "sha256": "3631be70f988963c11f6f69a2faaeeb577e3bd710395ec92a8b072a064e71c25"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakePeace.png",
+            "bytes": 2154908,
+            "sha256": "e617009cef2fd97cad40e3b9d38a453a3fef7fb0631f89e692d647b059b0ebc6"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakesideEnding.png",
+            "bytes": 523520,
+            "sha256": "bbce10ff47fb893b9e84738694c8ec380baae876cb11ae00c3ad751afe8d5fd5"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.OpeningFull.png",
+            "bytes": 1264201,
+            "sha256": "51b76a3c94d0cff66ff829aaf136c8794f19ea3d1ff2590f3044bd47fe676d5b"
+          }
+        ]
+      },
+      {
+        "name": "shortcuts",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-shortcuttest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/shortcuts/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/shortcuts/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:16.492873+00:00",
+        "pid": 42907,
+        "exit_code": 0,
+        "elapsed_seconds": 37.184,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "63971fdd0fd9b043d57be48123ee466d15f72097e9182ad3bdd51dabba59c563",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/shortcuts/report.txt",
+          "bytes": 1292,
+          "sha256": "63971fdd0fd9b043d57be48123ee466d15f72097e9182ad3bdd51dabba59c563"
+        },
+        "player_log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/shortcuts/player.log",
+          "bytes": 40120,
+          "sha256": "13706546f93ecf05bd03d57bf9aaa8cebafada00ffda930f2ef23ebadef7c76a"
+        },
+        "raw_graphics_ring_buffer_warnings": 0
+      },
+      {
+        "name": "water22",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-autotest",
+          "-autotestFilter",
+          "22",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/water22/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/water22/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:53.679499+00:00",
+        "pid": 43021,
+        "exit_code": 0,
+        "elapsed_seconds": 5.635,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "133e91bd7b5065c2c57a70776341989812c340df5b0552a161814a5f79e0c262",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/water22/report.txt",
+          "bytes": 258,
+          "sha256": "133e91bd7b5065c2c57a70776341989812c340df5b0552a161814a5f79e0c262"
+        },
+        "player_log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/water22/player.log",
+          "bytes": 33147,
+          "sha256": "cb406e7893850ce92889a961bcb5f2e59ffac4acc981c8ea18af6ff0bc2314cc"
+        },
+        "raw_graphics_ring_buffer_warnings": 0
+      }
+    ]
+  },
+  "running_rescue_observation": {
+    "scope": "Prepared mission23+24 logic on Null graphics, nice10, simulated controls; not graphics/performance/physical-input proof. A live receipt is not a final pass.",
+    "execution_path": "Logs/graphics-native-rescue/execution.json",
+    "sha256_at_observation": "b4478ae2530cd58dc89802f65be4f88a5080e6e939789c56793f87a5e96b7731",
+    "receipt": {
+      "status": "running",
+      "supervisor_pid": 44439,
+      "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+      "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+      "argv": [
+        "nice",
+        "-n",
+        "10",
+        "./Parasite.x86_64",
+        "-batchmode",
+        "-nographics",
+        "-autotest",
+        "-autotestFilter",
+        "23,24",
+        "-autotestOut",
+        "/home/mevlec/Data/Parasite/Logs/graphics-native-rescue/report.txt",
+        "-logFile",
+        "/home/mevlec/Data/Parasite/Logs/graphics-native-rescue/player.log"
+      ],
+      "started_utc": "2026-11-25T17:07:39.804945+00:00",
+      "scope": "Native mission logic with bounded physical test walker; no graphical/performance/native-input claim",
+      "pid": 44441
+    },
+    "processes": {
+      "supervisor": {
+        "pid": 44439,
+        "live_at_observation": true,
+        "command": "python3 Logs/run-graphics-native-rescue.py",
+        "exe": "/usr/bin/python3.14"
+      },
+      "player": {
+        "pid": 44441,
+        "live_at_observation": true,
+        "command": "./Parasite.x86_64 -batchmode -nographics -autotest -autotestFilter 23,24 -autotestOut /home/mevlec/Data/Parasite/Logs/graphics-native-rescue/report.txt -logFile /home/mevlec/Data/Parasite/Logs/graphics-native-rescue/player.log",
+        "exe": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/Parasite.x86_64"
+      }
+    },
+    "log_path": "Logs/graphics-native-rescue/player.log",
+    "mutable_until_terminal": true
+  },
+  "source_and_artifact_boundaries": [
+    "This candidate contains new independent graphics UI/backend and probe-only serialized regeneration; the later applied gate-builder work/imported assets are not in its built scene.",
+    "The0.5.0 candidate runtime2603... and immutableBuilds/Linux0.5.0-preview are older separate artifacts. The user playtest of0.5.0 exitednormally0; no human launch/playthrough ofthis0.5.1candidate is claimed.",
+    "Six desktop performance routes apply to the older0.5.0baseline, not this candidate."
+  ],
+  "related_proofs": [
+    {
+      "path": "Docs/verification/independent-graphics-settings-20261125.json",
+      "bytes": 79470,
+      "sha256": "918ebec06026730ad37bba272e49b1bdc61e24e313722ccc9d32bb606d3ee94b"
+    },
+    {
+      "path": "Docs/verification/serialized-probe-regeneration-20261125.json",
+      "bytes": 15005,
+      "sha256": "0faacd694ffcef0d0b088fa6c75bc71efda3576ff777d3baab903dfea0e9e87c"
+    }
+  ],
+  "open_gates": [
+    "Editor no-control-flag15-case collection after serializedIndividualFaces still13pass/1GraphicsRingwarningfailure/1expectedNullskip,native2,9rawRingwarnings. Cause remains unproven; narrow native gates have0warnings.",
+    "NativeCustom-control editing/persistence across restart,frame-pacing measurements,physical keyboard/gamepad and full current-player campaign remain separate.",
+    "Rescue23+24 running; require finalreport/runtimehash/nativeexit before passing.",
+    "Gatepilot source+import checkpoint needs scene regeneration, exact physics/lighting equality, access/motion/LOS/navigation, matched visualcaptures, performance and a new native build.",
+    "Currentbinary performance, releasearchive and isolatedextracted-player checks remain pending."
+  ]
+}

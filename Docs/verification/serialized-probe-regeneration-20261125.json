@@ -1,0 +1,439 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-25T17:05:28.361892+00:00",
+  "status": "PASS_CANONICAL_WORLD_EQUIVALENCE_WITH_DECLARED_SERIALIZATION_DELTAS",
+  "scope": "Offline Unity-YAML semantic comparison of probe-only regenerated snapshots, before gate-pilot integration. This is not an additional runtime physics or baked-image visual test.",
+  "base_commit": "bbebc8c2682b821de040a1c03aa5b9b9d25eeeb7",
+  "before_manifest": {
+    "path": "Logs/probe-serialized-before/manifest.json",
+    "bytes": 458,
+    "sha256": "65a76c4e953e0e069ad4c869092feecd12cbf64123c97c396a3669ce848c75c3"
+  },
+  "method": [
+    "Parse every Unity-YAML object using class/fileID headers and PyYaml C loader.",
+    "Map GameObjects by full hierarchical names; duplicate sibling names use original child-list occurrence. Map components by hierarchy, class/script identity and occurrence.",
+    "Normalize local object references to those identities; normalize local meshes/material/texture assets through full payload hashes rather than remapped fileIDs. External GUID/fileID references remain exact.",
+    "Compare all per-node serialized fields and component order. Compare all colliders, rigid bodies, obstacles, navigation/door components, lights and world origins.",
+    "Compare global RenderSettings, LightmapSettings, NavMeshSettings, OcclusionCullingSettings and SceneRoots. Separate RectTransform UI ancestry.",
+    "Compare CityVolume.asset by unique component name plus script GUID, all parameter and override fields and component list order, ignoring local IDs/document order."
+  ],
+  "scenes": [
+    {
+      "scene": "Bootstrap.unity",
+      "status": "PASS_DECLARED_DELTAS_ONLY",
+      "before": {
+        "path": "Logs/probe-serialized-before/Bootstrap.unity",
+        "sha256": "274f2007f0c2ec5e2161c9e1dc689c23484e91db5585334f6758395e2e25fdb8"
+      },
+      "after_snapshot": {
+        "path": "Assets/Parasite/Scenes/Bootstrap.unity",
+        "sha256": "0ea535e8c818fd5b0bfde26560748c5b21ef9de2cc43f00d49c166e466bf10e6"
+      },
+      "documents": [
+        4724,
+        4724
+      ],
+      "gameObjects": [
+        996,
+        996
+      ],
+      "world_gameObjects": [
+        996,
+        996
+      ],
+      "ui_gameObjects": [
+        0,
+        0
+      ],
+      "added_paths": [],
+      "removed_paths": [],
+      "component_counts_equal": true,
+      "physics_component_counts_before": {
+        "BoxCollider": 54
+      },
+      "physics_component_counts_after": {
+        "BoxCollider": 54
+      },
+      "physics_component_field_differences": 0,
+      "light_component_and_origin_differences": 0,
+      "global_render_lightmap_navmesh_occlusion_and_scene_root_differences": 0,
+      "ui_canonical_differences": 0,
+      "probe_count_before": 1,
+      "probe_count_after": 1,
+      "probe_origins_and_fields_except_declared_timeslicing_unchanged": true,
+      "declared_probe_time_slicing_changes": [
+        {
+          "path": "/Lighting/Probe_Street",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        }
+      ],
+      "materialized_npc_default_changes": [],
+      "other_world_differences": [],
+      "unknown_references_before": 0,
+      "unknown_references_after": 0,
+      "detailed_report": {
+        "path": "Logs/probe-semantic-comparison/Bootstrap.unity.semantic.json",
+        "bytes": 18604,
+        "sha256": "9c98bd162177776b2e55790cf4a260831b4a780ed93d1cacf9f94b4785ee2931"
+      }
+    },
+    {
+      "scene": "City.unity",
+      "status": "PASS_DECLARED_DELTAS_ONLY",
+      "before": {
+        "path": "Logs/probe-serialized-before/City.unity",
+        "sha256": "6c26696cc9f98ad3f448be2ec9dc66096d8eaa500cb1cb295541a4bbb6419558"
+      },
+      "after_snapshot": {
+        "path": "Assets/Parasite/Scenes/City.unity",
+        "sha256": "e1e11d3d0e722cace928ee1b1fa0c909066803059dba7ce5936771611fe837cd"
+      },
+      "documents": [
+        10295,
+        10295
+      ],
+      "gameObjects": [
+        2325,
+        2325
+      ],
+      "world_gameObjects": [
+        2325,
+        2325
+      ],
+      "ui_gameObjects": [
+        0,
+        0
+      ],
+      "added_paths": [],
+      "removed_paths": [],
+      "component_counts_equal": true,
+      "physics_component_counts_before": {
+        "BoxCollider": 329,
+        "MonoBehaviour:AccessDoor": 4
+      },
+      "physics_component_counts_after": {
+        "BoxCollider": 329,
+        "MonoBehaviour:AccessDoor": 4
+      },
+      "physics_component_field_differences": 0,
+      "light_component_and_origin_differences": 0,
+      "global_render_lightmap_navmesh_occlusion_and_scene_root_differences": 0,
+      "ui_canonical_differences": 0,
+      "probe_count_before": 7,
+      "probe_count_after": 7,
+      "probe_origins_and_fields_except_declared_timeslicing_unchanged": true,
+      "declared_probe_time_slicing_changes": [
+        {
+          "path": "/Lighting/Probe_Alley",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_Avenue",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_Campus",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_Lab",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_Market",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_Plaza",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Lighting/Probe_South",
+          "changes": [
+            {
+              "field": "/components/1/data/m_TimeSlicingMode",
+              "before": 2,
+              "after": 1
+            }
+          ]
+        }
+      ],
+      "materialized_npc_default_changes": [
+        {
+          "path": "/Gameplay/Missions/MissionNPCs/NpcSpawn_Amara_Diallo",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/Missions/MissionNPCs/NpcSpawn_Leo_Park",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/Missions/NpcSpawn_CoolantEngineer",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Dana_Kowalski",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Dr_Felix_Moreau",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Dr_Hana_Petrov",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Dr_Ingrid_Sato",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Dr_Vale",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Gus_Romero",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Lena_Fischer",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Maya_Chen",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Omar_Haddad",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Priya_Nair",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Rita_Okafor",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Sgt_Marcus_Reed",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Theo_Brooks",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        },
+        {
+          "path": "/Gameplay/NPCs/Spawn_Victor_Hale",
+          "changes": [
+            {
+              "field": "/components/1/data/reportsPlayerViolations",
+              "before": null,
+              "after": 1
+            }
+          ]
+        }
+      ],
+      "other_world_differences": [],
+      "unknown_references_before": 0,
+      "unknown_references_after": 0,
+      "detailed_report": {
+        "path": "Logs/probe-semantic-comparison/City.unity.semantic.json",
+        "bytes": 45704,
+        "sha256": "c1a2615a9f735b4407cf3ea8d25a94433e774aed92a22024157f4de87a565ccf"
+      }
+    }
+  ],
+  "npc_default_materialization": {
+    "count": 17,
+    "field": "reportsPlayerViolations",
+    "before_serialized": "absent",
+    "after_serialized": true,
+    "source_before_sha256": "843bb29159e271715f8003bca344d05fd321908a79588c349c7f81e16e830023",
+    "source_after_sha256": "843bb29159e271715f8003bca344d05fd321908a79588c349c7f81e16e830023",
+    "source_byte_identical": true,
+    "existing_field_initializer": "public bool reportsPlayerViolations = true;",
+    "interpretation": "Regeneration materializes the already-existing true default. No new reporting policy was introduced in NpcSpawn.cs; no separate old-scene runtime-deserialization experiment is claimed."
+  },
+  "volume_profile": {
+    "base_commit": "bbebc8c2682b821de040a1c03aa5b9b9d25eeeb7",
+    "before_sha256": "912f774bbca3b23525f1990786fee58016c22196d86a3bd4e20edee72eaf1e9a",
+    "after_sha256": "7ad4a7a5629d3d9968b43b6492f2015e7428f37a7cf48cae7f0806ce268d4573",
+    "component_counts": [
+      11,
+      11
+    ],
+    "component_names": [
+      "MonoBehaviour:Bloom@0b2db86121404754db890f4c8dfe81b2",
+      "MonoBehaviour:ChromaticAberration@81180773991d8724ab7f2d216912b564",
+      "MonoBehaviour:CityVolume@d7fd9488000d3734a9e00ee676215985",
+      "MonoBehaviour:ColorAdjustments@66f335fb1ffd8684294ad653bf1c7564",
+      "MonoBehaviour:FilmGrain@29fa0085f50d5e54f8144f766051a691",
+      "MonoBehaviour:LiftGammaGain@5485954d14dfb9a4c8ead8edb0ded5b1",
+      "MonoBehaviour:ShadowsMidtonesHighlights@558a8e2b6826cf840aae193990ba9f2e",
+      "MonoBehaviour:SplitToning@70afe9e12c7a7ed47911bb608a23a8ff",
+      "MonoBehaviour:Tonemapping@97c23e3b12dc18c42a140437e53d3951",
+      "MonoBehaviour:Vignette@899c54efeace73346a0a16faa3afe726",
+      "MonoBehaviour:WhiteBalance@221518ef91623a7438a71fef23660601"
+    ],
+    "semantic_equal": true,
+    "differences": [],
+    "normalization": "Local fileIDs map to unique component-name+scriptGUID identities; dict order ignored; component list order and all parameter values retained.",
+    "report": {
+      "path": "Logs/probe-semantic-comparison/CityVolume.semantic.json",
+      "bytes": 1263,
+      "sha256": "9f5ea46b93024ac7355fdd5b9a411ca6f4061d7b07a5fb93989e5254c3c89763"
+    }
+  },
+  "baked_outputs_scope": "Real GPU regeneration replaced reflection EXR payloads and LightingData binary references; this comparison establishes unchanged serialized lighting/probe inputs, not identical baked pixels or binary LightingData identity. Root retains actual GPU regeneration evidence separately.",
+  "geometry_conclusion": "No added/removed GameObjects, identical component inventories, identical transforms and referenced mesh-content identities: no duplicated or moved world geometry was detected.",
+  "limitations": [
+    "The snapshot after hashes identify the probe-only regeneration analyzed here. Later gate-pilot or other source work is outside this report.",
+    "No unknown local references or stripped objects were encountered.",
+    "Unreferenced embedded asset payloads are not asserted individually; all referenced world mesh/material/texture identities and all object/component inventories are covered.",
+    "This offline equivalence does not establish the cause or resolution of the separate Vulkan Graphics Ring Buffer warning."
+  ],
+  "reproducer": {
+    "path": "Logs/probe-semantic-comparison/compare_scenes.py",
+    "bytes": 9761,
+    "sha256": "23c7c4d2d9c6476f7a68e3b7c45f5ac4606b06ac6efa120cc74c039983746843"
+  }
+}

@@ -26,7 +26,10 @@ namespace Parasite.Tests
         static readonly string[] Keys = { "parasite.audio.master", "parasite.audio.ambience", "parasite.mouseSensitivity", "parasite.graphics" };
         readonly bool[] hadKey = new bool[Keys.Length];
         readonly float[] oldFloat = new float[Keys.Length];
-        int oldGraphics, oldPreset;
+        int oldGraphics;
+        bool hadGraphicsData;
+        string oldGraphicsData;
+        GraphicsSettingsData oldGraphicsSettings;
         float oldSensitivity, oldListener, oldAmbience;
         Keyboard keyboard;
         InputSettings.BackgroundBehavior oldBackgroundBehavior;
@@ -43,7 +46,10 @@ namespace Parasite.Tests
                 hadKey[i] = PlayerPrefs.HasKey(Keys[i]);
                 if (i < 3) oldFloat[i] = PlayerPrefs.GetFloat(Keys[i]);
             }
-            oldGraphics = PlayerPrefs.GetInt(Keys[3]); oldPreset = GraphicsPreset.Current;
+            oldGraphics = PlayerPrefs.GetInt(Keys[3]);
+            hadGraphicsData = PlayerPrefs.HasKey(GraphicsSettingsStore.PreferenceKey);
+            oldGraphicsData = PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey);
+            oldGraphicsSettings = GraphicsPreset.CaptureSettings();
             oldSensitivity = GameInput.MouseSensitivity; oldListener = AudioListener.volume; oldAmbience = Sfx.AmbienceVolume;
             oldBackgroundBehavior = InputSystem.settings.backgroundBehavior;
             oldUpdateMode = InputSystem.settings.updateMode;
@@ -72,13 +78,15 @@ namespace Parasite.Tests
             // Unload open overlays first: their OnDisable flushes the preferences they edited.
             SceneManager.LoadScene(GameManager.MenuScene);
             yield return null;
-            GraphicsPreset.Apply(oldPreset, save: false);
+            GraphicsPreset.ApplySettings(oldGraphicsSettings, save: false);
             for (int i = 0; i < Keys.Length; i++)
             {
                 if (!hadKey[i]) PlayerPrefs.DeleteKey(Keys[i]);
                 else if (i < 3) PlayerPrefs.SetFloat(Keys[i], oldFloat[i]);
                 else PlayerPrefs.SetInt(Keys[i], oldGraphics);
             }
+            if (hadGraphicsData) PlayerPrefs.SetString(GraphicsSettingsStore.PreferenceKey, oldGraphicsData);
+            else PlayerPrefs.DeleteKey(GraphicsSettingsStore.PreferenceKey);
             AudioPreferences.Load();
             GameInput.MouseSensitivity = oldSensitivity; AudioListener.volume = oldListener; Sfx.AmbienceVolume = oldAmbience;
             PlayerPrefs.Save();
@@ -100,6 +108,7 @@ namespace Parasite.Tests
             Assert.IsTrue(titleSettings.gameObject.activeInHierarchy);
             Assert.AreEqual(titleSettings.FirstSelection.gameObject, EventSystem.current.currentSelectedGameObject);
 
+            Click(titleSettings.transform, "Btn_Audio & Input");
             SliderFor(titleSettings, "MasterVolume").value = 0.37f;
             SliderFor(titleSettings, "AmbienceVolume").value = 0.23f;
             SliderFor(titleSettings, "Sensitivity").value = 0.19f;
@@ -107,8 +116,13 @@ namespace Parasite.Tests
             Assert.That(Sfx.AmbienceVolume, Is.EqualTo(0.23f).Within(0.001f));
             Assert.That(GameInput.MouseSensitivity, Is.EqualTo(0.19f).Within(0.001f));
             int nextPreset = (GraphicsPreset.Current + 1) % GraphicsPreset.Names.Length;
+            int beforePreset = GraphicsPreset.Current;
             titleSettings.FirstSelection.onClick.Invoke();
+            Assert.AreEqual(beforePreset, GraphicsPreset.Current, "Preset selection is staged until Apply.");
+            Assert.IsTrue(titleSettings.HasUnappliedGraphics);
+            Click(titleSettings.transform, "Btn_Apply");
             Assert.AreEqual(nextPreset, GraphicsPreset.Current);
+            Assert.IsFalse(titleSettings.HasUnappliedGraphics);
             AssertInsideScreen((RectTransform)titleSettings.transform.Find("Panel"));
             yield return Capture("01-title-settings.png");
             Click(titleSettings.transform, "Btn_Back");
@@ -145,6 +159,7 @@ namespace Parasite.Tests
             Click(pause, "Btn_Settings");
             Assert.IsTrue(pauseSettings.gameObject.activeInHierarchy);
             Assert.IsFalse(pause.Find("Content").gameObject.activeSelf, "Journal hides behind settings.");
+            Click(pauseSettings.transform, "Btn_Audio & Input");
             Assert.That(SliderFor(pauseSettings, "MasterVolume").value, Is.EqualTo(0.37f).Within(0.001f));
             Assert.That(SliderFor(pauseSettings, "AmbienceVolume").value, Is.EqualTo(0.23f).Within(0.001f));
             Assert.That(SliderFor(pauseSettings, "Sensitivity").value, Is.EqualTo(0.19f).Within(0.001f));
@@ -191,6 +206,99 @@ namespace Parasite.Tests
             Assert.That(SliderFor(titleSettings, "AmbienceVolume").value, Is.EqualTo(0.61f).Within(0.001f));
             Assert.That(SliderFor(titleSettings, "Sensitivity").value, Is.EqualTo(0.19f).Within(0.001f));
             Debug.Log("[SettingsUI] PASS title/pause settings, live audio, persistence, keyboard Back and paused gameplay isolation");
+        }
+
+        [UnityTest, Timeout(90000)]
+        public IEnumerator IndependentGraphicsDraftAppliesCancelsAndScrollsWithKeyboardNavigation()
+        {
+            if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
+                Assert.Ignore("Settings layout and applied rendering checks need a real graphics device.");
+            ClearInput(); Time.timeScale = 1;
+            SceneManager.LoadScene(GameManager.MenuScene);
+            yield return null; yield return new WaitForSecondsRealtime(1);
+            GraphicsPreset.ApplySettings(GraphicsSettingsData.ForPreset(2), save: false);
+            var baseline = GraphicsPreset.CaptureSettings();
+            string savedBefore = PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey);
+            var menu = Object.FindFirstObjectByType<MainMenuController>();
+            Click(menu.transform, "Btn_Settings");
+            var settings = menu.GetComponentInChildren<SettingsOverlay>(true);
+            AssertInsideScreen((RectTransform)settings.transform.Find("Panel"));
+            Click(settings.transform, "Btn_Audio & Input");
+            SliderFor(settings, "MasterVolume").value = .42f;
+            Click(settings.transform, "Btn_Quality");
+            Assert.AreEqual("Btn_PostAA", EventSystem.current.currentSelectedGameObject.name);
+            for (int i = 0; i < 5; i++) yield return PressMenuArrow(Key.DownArrow);
+            var selected = EventSystem.current.currentSelectedGameObject;
+            Assert.AreEqual("Btn_Reflections", selected.name, "Ordinary UI navigation reaches the final quality row.");
+            yield return null;
+            var scroll = settings.GetComponentsInChildren<ScrollRect>().Single();
+            Assert.That(scroll.content.anchoredPosition.y, Is.GreaterThan(1), "Keyboard focus scrolls the overflowing page.");
+            var bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(scroll.viewport, (RectTransform)selected.transform.parent);
+            Assert.That(bounds.min.y, Is.GreaterThanOrEqualTo(scroll.viewport.rect.yMin - 1));
+            Assert.That(bounds.max.y, Is.LessThanOrEqualTo(scroll.viewport.rect.yMax + 1));
+            yield return PressMenuArrow(Key.LeftArrow);
+            Assert.AreSame(selected, EventSystem.current.currentSelectedGameObject, "Left/right edits a choice while retaining row focus.");
+            Assert.IsTrue(settings.HasUnappliedGraphics);
+            Assert.IsTrue(GraphicsPreset.CaptureSettings().Equals(baseline), "Draft reflection changes must not touch the renderer.");
+            Assert.AreEqual(savedBefore, PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey), "A draft must not overwrite saved graphics.");
+            var previousGamepad = Gamepad.current;
+            var gamepad = InputSystem.AddDevice<Gamepad>("Settings UI regression gamepad");
+            try
+            {
+                yield return PressMenuDpad(gamepad, GamepadButton.DpadRight);
+                Assert.AreSame(selected, EventSystem.current.currentSelectedGameObject);
+                Assert.IsFalse(settings.HasUnappliedGraphics, "Queued gamepad Right restores the original reflection choice without applying it.");
+                yield return PressMenuDpad(gamepad, GamepadButton.DpadLeft);
+                Assert.AreSame(selected, EventSystem.current.currentSelectedGameObject);
+                Assert.IsTrue(settings.HasUnappliedGraphics, "Queued gamepad Left edits the focused real choice row.");
+                Assert.IsTrue(GraphicsPreset.CaptureSettings().Equals(baseline));
+                Assert.AreEqual(savedBefore, PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey));
+            }
+            finally
+            {
+                if (gamepad != null && gamepad.added)
+                {
+                    InputSystem.ResetDevice(gamepad);
+                    InputSystem.RemoveDevice(gamepad);
+                }
+                if (previousGamepad != null && previousGamepad.added) previousGamepad.MakeCurrent();
+            }
+            Click(settings.transform, "Btn_Cancel");
+            Assert.IsFalse(settings.HasUnappliedGraphics);
+            Assert.IsTrue(GraphicsPreset.CaptureSettings().Equals(baseline));
+            Assert.That(AudioListener.volume, Is.EqualTo(.42f).Within(.001f), "Cancel graphics preserves live audio changes.");
+
+            Click(settings.transform, "Btn_Display");
+            SliderFor(settings, "RenderScale").value = 83;
+            Click(settings.transform, "Btn_VSync");
+            Click(settings.transform, "Btn_FrameLimit");
+            Assert.That((GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).renderScale, Is.EqualTo(1).Within(.001f));
+            Click(settings.transform, "Btn_Apply");
+            Assert.IsFalse(settings.HasUnappliedGraphics);
+            Assert.IsTrue(GraphicsPreset.IsCustom);
+            Assert.AreEqual("Custom (High)", GraphicsPreset.DisplayName);
+            Assert.AreEqual(2, GraphicsPreset.Current, "Custom controls retain their named baseline for unrelated budgets.");
+            var applied = GraphicsPreset.CaptureSettings();
+            Assert.That(applied.renderScale, Is.EqualTo(.83f).Within(.001f));
+            Assert.AreEqual(baseline.reflectionLevel, applied.reflectionLevel);
+            Assert.AreEqual(baseline.ambientOcclusion, applied.ambientOcclusion);
+            Assert.That((GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).renderScale, Is.EqualTo(.83f).Within(.001f));
+            Assert.AreEqual(0, QualitySettings.vSyncCount);
+            Assert.AreEqual(30, Application.targetFrameRate);
+            Assert.IsTrue(GraphicsSettingsStore.TryDeserialize(PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey), out var persisted));
+            Assert.IsTrue(persisted.Equals(applied), "Apply saves the independent choices.");
+            yield return Capture("04-custom-graphics-display.png");
+            Click(settings.transform, "Btn_Back");
+            Click(menu.transform, "Btn_Settings");
+            Assert.IsFalse(settings.HasUnappliedGraphics);
+            Click(settings.transform, "Btn_Effects");
+            Click(settings.transform, "Btn_Bloom");
+            Assert.IsTrue(settings.HasUnappliedGraphics);
+            yield return PressEscape();
+            Assert.IsFalse(settings.gameObject.activeSelf);
+            Assert.IsTrue(GraphicsPreset.CaptureSettings().Equals(applied), "Back discards only the unapplied effect choice.");
+            Assert.That(AudioListener.volume, Is.EqualTo(.42f).Within(.001f));
+            Debug.Log("[SettingsUI] PASS staged independent graphics, real render scale/frame pacing, persistence, Cancel/Back isolation, queued-keyboard scrolling and queued-gamepad choice changes. Physical input is outside this proof.");
         }
 
         [UnityTest, Timeout(180000)]
@@ -498,6 +606,49 @@ namespace Parasite.Tests
                 Assert.IsTrue(RunState.Has(MissionFlags.Escaped));
             }
             Debug.Log("[SettingsUI] PASS left/right Ctrl+M demo shortcut, ordinary M isolation, protected drain story, no duplicate/no automatic choice and explicit resolution");
+        }
+
+        IEnumerator PressMenuDpad(Gamepad gamepad, GamepadButton button)
+        {
+            var module = EventSystem.current.currentInputModule as UnityEngine.InputSystem.UI.InputSystemUIInputModule;
+            Assert.IsNotNull(module);
+            var action = module.move.action;
+            Assert.IsTrue(action.enabled);
+            int performed = 0;
+            void OnMove(InputAction.CallbackContext context) { if (context.control.device == gamepad) performed++; }
+            action.performed += OnMove;
+            try
+            {
+                InputSystem.QueueStateEvent(gamepad, new GamepadState().WithButton(button));
+                for (int frame = 0; frame < 8 && performed == 0; frame++) yield return null;
+                Assert.That(performed, Is.GreaterThan(0), "The queued D-pad must reach the normal UI Move action.");
+                yield return null;
+                InputSystem.QueueStateEvent(gamepad, new GamepadState());
+                yield return null; yield return null;
+                Assert.IsFalse(gamepad.dpad.left.isPressed || gamepad.dpad.right.isPressed, "Neutral D-pad release is processed before the next navigation event.");
+            }
+            finally { action.performed -= OnMove; }
+        }
+
+        IEnumerator PressMenuArrow(Key key)
+        {
+            var module = EventSystem.current.currentInputModule as UnityEngine.InputSystem.UI.InputSystemUIInputModule;
+            Assert.IsNotNull(module);
+            var action = module.move.action;
+            Assert.IsTrue(action.enabled);
+            int performed = 0;
+            void OnMove(InputAction.CallbackContext context) { if (context.control.device == keyboard) performed++; }
+            action.performed += OnMove;
+            try
+            {
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState(key));
+                for (int frame = 0; frame < 8 && performed == 0; frame++) yield return null;
+                Assert.That(performed, Is.GreaterThan(0), "The queued arrow must reach the normal UI Move action.");
+                yield return null;
+                InputSystem.QueueStateEvent(keyboard, new KeyboardState());
+                yield return null; yield return null;
+            }
+            finally { action.performed -= OnMove; }
         }
 
         IEnumerator PressEscape()

@@ -1,0 +1,1847 @@
+{
+  "schema": 1,
+  "status": "EDITOR_FEATURE_GATES_WITH_OPEN_VULKAN_WARNING_GATE",
+  "recorded_utc": "2026-11-25T17:06:20.593665+00:00",
+  "scope": "Independent graphics model/store, staged title/pause UI and actual runtime pipeline/post/reflection behavior in Unity Editor on RTX4050/Vulkan. Not a current native-player build or performance result.",
+  "git_base_commit": "f3dd918b981845e77a9244c88b35e5ec0a40d808",
+  "working_tree": true,
+  "source_files": [
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsSettingsData.cs",
+      "bytes": 4367,
+      "sha256": "a2ad88c3aeb2500f5772e0dadbcd6a9fae83e715b4a9d4e8cc1b35e69c7852d3"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsSettingsStore.cs",
+      "bytes": 2883,
+      "sha256": "3d3964916deb83e7828923692ceb3bfdb81965ff7aaa6ab8f1765240e0bd0e55"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsSettingsRuntime.cs",
+      "bytes": 11411,
+      "sha256": "8245c3e3aa9d40fef85504c28317dca80e2827b03648acdb63de006f0284093a"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsPreset.cs",
+      "bytes": 9092,
+      "sha256": "b114fc860e67537969980ebbd6931722b4390b7b9c5471b5437956b29b44ff1d"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/UI/SettingsOverlay.cs",
+      "bytes": 28876,
+      "sha256": "8f319499188f3b5559a2201f6e1b5885b0b86c5b4b8afa54c986ee1cb9ca72be"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/UI/SettingsCycleControl.cs",
+      "bytes": 719,
+      "sha256": "85fbbbcc49299bd55bd052bd168d288540961dde6dd4c201465d8f5a36172678"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Missions/RiverReflectionCapture.cs",
+      "bytes": 11591,
+      "sha256": "c87c05dfc5aafcce625bba4c079d8d4c448c499756c84c311eead98e9820cc8b"
+    },
+    {
+      "path": "Assets/Parasite/Tests/EditMode/GraphicsSettingsDataTests.cs",
+      "bytes": 6433,
+      "sha256": "8e4b99cac30ab4592ec83720f4f6d238df2053565a002d406da6c7c0e29cb1b7"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/GraphicsSettingsRuntimeTests.cs",
+      "bytes": 18981,
+      "sha256": "06c559f1b79148cf9eb86c77a188e82e6aec3c8d7285eb1aa3e48206b62d052e"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/GraphicsPresetTests.cs",
+      "bytes": 4512,
+      "sha256": "2811da05427582f623634027516b1941ec527c21359b4aa8963d21c35b93fddc"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/SettingsUITests.cs",
+      "bytes": 51714,
+      "sha256": "469ee5c625e96700a5e490a42a42f9c876ea173943fb1a98c0326bcef177aeff"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/RiverReflectionQualityTests.cs",
+      "bytes": 16984,
+      "sha256": "60c58ad7ca3ee7d9e2f1770b26faa6e0020ae4c6295cb8293f31d460df8432ff"
+    }
+  ],
+  "editor_assemblies": [
+    {
+      "path": "Library/ScriptAssemblies/Parasite.Runtime.dll",
+      "bytes": 962560,
+      "sha256": "5bc7257986e54519cc1befb622d4358d1d10641042a2749c487a245eba3d9265"
+    },
+    {
+      "path": "Library/ScriptAssemblies/Parasite.Tests.PlayMode.dll",
+      "bytes": 208384,
+      "sha256": "0fe268543e9a21474209bce54ee063363dcef5e146da602d010f78b78ed4e9d2"
+    },
+    {
+      "path": "Library/ScriptAssemblies/Parasite.Tests.EditMode.dll",
+      "bytes": 57856,
+      "sha256": "e41304321d15eb248f1c5301f2af78840cc88d7bed1ac32517154a2f5ea0756d"
+    }
+  ],
+  "suites": [
+    {
+      "scope": "135 current EditMode rules, including13 new preferences/schema/model cases.",
+      "result": "Passed",
+      "total": 135,
+      "passed": 135,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.3132874,
+      "start_utc": "2026-11-25 16:06:54Z",
+      "end_utc": "2026-11-25 16:06:54Z",
+      "native_exit_code": 0,
+      "xml": {
+        "path": "Logs/independent-graphics-editmode.xml",
+        "bytes": 114484,
+        "sha256": "087545a57abc2430fc6c5705372bbb40a05ae3e31842a461e28df2a005e0f372"
+      },
+      "log": {
+        "path": "Logs/independent-graphics-editmode.log",
+        "bytes": 62889,
+        "sha256": "dff5323294d8da927ffbd777b8c8baeae96028385b36e6066a6158ba5b426a30"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.AccessRulesTests.CivilianDeniedEverywhereRestricted",
+          "result": "Passed",
+          "seconds": 0.007858
+        },
+        {
+          "name": "Parasite.Tests.AccessRulesTests.GuardOpensMainGateOnly",
+          "result": "Passed",
+          "seconds": 0.000159
+        },
+        {
+          "name": "Parasite.Tests.AccessRulesTests.MaintenanceOpensTunnelOnly",
+          "result": "Passed",
+          "seconds": 9.8e-05
+        },
+        {
+          "name": "Parasite.Tests.AccessRulesTests.ScientistUsesTerminalOnly",
+          "result": "Passed",
+          "seconds": 8.4e-05
+        },
+        {
+          "name": "Parasite.Tests.AccessRulesTests.StaffMayBeInsideLab",
+          "result": "Passed",
+          "seconds": 0.000194
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeRulesTests.ContinueKeepsTheFirstFutureAndCreatesExactlyOneRiversideCheckpoint(Peace)",
+          "result": "Passed",
+          "seconds": 0.005011
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeRulesTests.ContinueKeepsTheFirstFutureAndCreatesExactlyOneRiversideCheckpoint(Dominion)",
+          "result": "Passed",
+          "seconds": 0.000126
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeRulesTests.ContinueRequiresBothAnExplicitOutcomeAndResolvedExtraction",
+          "result": "Passed",
+          "seconds": 0.000183
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeRulesTests.NewGameResetsTheContinuationAndTheFutureTogether",
+          "result": "Passed",
+          "seconds": 0.000462
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeSurfaceUVTests.ArchitecturalTextureRepeatsMatchPhysicalMetres(\"Sidewalk\",9.0f,3.0f,True)",
+          "result": "Passed",
+          "seconds": 0.015066
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeSurfaceUVTests.ArchitecturalTextureRepeatsMatchPhysicalMetres(\"BrickDark\",6.0f,2.0f,False)",
+          "result": "Passed",
+          "seconds": 0.000419
+        },
+        {
+          "name": "Parasite.Tests.AfterlakeSurfaceUVTests.BlenderAssembliesKeepTheirAuthoredMeshesAndUVs",
+          "result": "Passed",
+          "seconds": 0.013119
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.AcousticZonesMatchTheCityLayout",
+          "result": "Passed",
+          "seconds": 0.002617
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.InvalidSavedValuesCannotPoisonAudio",
+          "result": "Passed",
+          "seconds": 0.000628
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.MasterAffectsListenerWithoutChangingEffectsOrAmbienceBalance",
+          "result": "Passed",
+          "seconds": 0.000315
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.MusicEffectsAndVoiceBusesPersistIndependently(0.0f,0.5f,1.0f)",
+          "result": "Passed",
+          "seconds": 0.000578
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.MusicEffectsAndVoiceBusesPersistIndependently(0.8f,0.0f,0.25f)",
+          "result": "Passed",
+          "seconds": 0.000181
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.MusicSliderDoesNotChangeAmbienceOrEffects",
+          "result": "Passed",
+          "seconds": 0.000244
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.ReloadRestoresVolumeIncludingMute(0.0f,0.65f)",
+          "result": "Passed",
+          "seconds": 0.000414
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.ReloadRestoresVolumeIncludingMute(0.35f,0.0f)",
+          "result": "Passed",
+          "seconds": 0.000188
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.SfxIdsAreAppendOnly",
+          "result": "Passed",
+          "seconds": 0.0002
+        },
+        {
+          "name": "Parasite.Tests.AudioPreferencesTests.VoiceKeysMatchTheOfflineGenerator",
+          "result": "Passed",
+          "seconds": 0.001282
+        },
+        {
+          "name": "Parasite.Tests.BioScanRulesTests.CloserReadsFasterAndFadesWhenBroken",
+          "result": "Passed",
+          "seconds": 0.001753
+        },
+        {
+          "name": "Parasite.Tests.BioScanRulesTests.ConeGeometry",
+          "result": "Passed",
+          "seconds": 0.000523
+        },
+        {
+          "name": "Parasite.Tests.BioScanRulesTests.OnlyPossessedHumansCarryASignature",
+          "result": "Passed",
+          "seconds": 0.000125
+        },
+        {
+          "name": "Parasite.Tests.BlackoutRulesTests.EveryIsolatorNeedsADifferentBody",
+          "result": "Passed",
+          "seconds": 0.000486
+        },
+        {
+          "name": "Parasite.Tests.BlackoutRulesTests.ThreeCutsCompleteTheBlackout",
+          "result": "Passed",
+          "seconds": 8.4e-05
+        },
+        {
+          "name": "Parasite.Tests.BlackoutRulesTests.WindowTiming",
+          "result": "Passed",
+          "seconds": 0.000525
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.DecoratedPetrovUsesTheRealNamedResourceEntry(\"Dr. Hana Petrov \u00b7 riverside\")",
+          "result": "Passed",
+          "seconds": 0.030733
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.DecoratedPetrovUsesTheRealNamedResourceEntry(\"DR. HANA PETROV \u00b7 RIVERSIDE\")",
+          "result": "Passed",
+          "seconds": 0.000192
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.DecoratedPetrovUsesTheRealNamedResourceEntry(\"Dr. Hana Petrov \u00b7 field clinic\")",
+          "result": "Passed",
+          "seconds": 0.000123
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.ExplicitDecoratedAliasKeepsPriorityOverItsUnderlyingBaseName",
+          "result": "Passed",
+          "seconds": 0.000972
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov Jr.\")",
+          "result": "Passed",
+          "seconds": 0.000251
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrovich \u00b7 riverside\")",
+          "result": "Passed",
+          "seconds": 8.3e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov\u00b7 riverside\")",
+          "result": "Passed",
+          "seconds": 5.3e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov - riverside\")",
+          "result": "Passed",
+          "seconds": 5e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov \u00b7\")",
+          "result": "Passed",
+          "seconds": 4.5e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov \u00b7 \")",
+          "result": "Passed",
+          "seconds": 4.4e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Dr. Hana Petrov \u00b7    \")",
+          "result": "Passed",
+          "seconds": 4.7e-05
+        },
+        {
+          "name": "Parasite.Tests.CharacterCatalogResourceTests.LongerNamesAndMalformedLabelsDoNotBecomeLoosePrefixAliases(\"Unknown \u00b7 riverside\")",
+          "result": "Passed",
+          "seconds": 4.3e-05
+        },
+        {
+          "name": "Parasite.Tests.CinematicArtResourceTests.BlenderSetsHaveRealMeshesAndTexturedSurfaces(\"ContainmentLaboratory\")",
+          "result": "Passed",
+          "seconds": 0.015732
+        },
+        {
+          "name": "Parasite.Tests.CinematicArtResourceTests.BlenderSetsHaveRealMeshesAndTexturedSurfaces(\"ServiceConduit\")",
+          "result": "Passed",
+          "seconds": 0.004718
+        },
+        {
+          "name": "Parasite.Tests.CinematicArtResourceTests.BlenderSetsHaveRealMeshesAndTexturedSurfaces(\"LakesideShore\")",
+          "result": "Passed",
+          "seconds": 0.019844
+        },
+        {
+          "name": "Parasite.Tests.CinematicArtResourceTests.BlenderSetsHaveRealMeshesAndTexturedSurfaces(\"LakesideBench\")",
+          "result": "Passed",
+          "seconds": 0.001155
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.FullOpeningRejectsWrongFormatOrEmbeddedSoundtrack(1920,1080,24,80,0,True)",
+          "result": "Passed",
+          "seconds": 0.000654
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.FullOpeningRejectsWrongFormatOrEmbeddedSoundtrack(1280,720,24,80,0,False)",
+          "result": "Passed",
+          "seconds": 0.0004
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.FullOpeningRejectsWrongFormatOrEmbeddedSoundtrack(1920,1080,30,80,0,False)",
+          "result": "Passed",
+          "seconds": 0.00041
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.FullOpeningRejectsWrongFormatOrEmbeddedSoundtrack(1920,1080,24,3,0,False)",
+          "result": "Passed",
+          "seconds": 7.5e-05
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.FullOpeningRejectsWrongFormatOrEmbeddedSoundtrack(1920,1080,24,80,1,False)",
+          "result": "Passed",
+          "seconds": 5.2e-05
+        },
+        {
+          "name": "Parasite.Tests.CinematicStoryPlanTests.NeutralHoldRepeatsWithoutConvertingTimeIntoAnOutcome",
+          "result": "Passed",
+          "seconds": 0.000355
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.CloneCanBeEditedAsDraftWithoutChangingItsAppliedSnapshot",
+          "result": "Passed",
+          "seconds": 0.001348
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.EditedPayloadWithStaleChecksumIsNotSilentlyApplied",
+          "result": "Passed",
+          "seconds": 0.002338
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.IndependentChoicesPersistWithoutMutatingCallerOrOtherPreferences",
+          "result": "Passed",
+          "seconds": 0.000545
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.InvalidNumbersAreNormalizedBeforeTheyReachRendererOrPersistence",
+          "result": "Passed",
+          "seconds": 0.0004
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MalformedPartialOrFuturePayloadFallsBackWithoutRewritingData(\"broken\")",
+          "result": "Passed",
+          "seconds": 0.000302
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MalformedPartialOrFuturePayloadFallsBackWithoutRewritingData(\"{}\")",
+          "result": "Passed",
+          "seconds": 0.000174
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MalformedPartialOrFuturePayloadFallsBackWithoutRewritingData(\"{\\\"version\\\":1,\\\"settings\\\":{\\\"version\\\":1}}\")",
+          "result": "Passed",
+          "seconds": 0.000183
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MalformedPartialOrFuturePayloadFallsBackWithoutRewritingData(\"{\\\"version\\\":1,\\\"settings\\\":{\\\"version\\\":1,\\\"preset\\\":0},\\\"checksum\\\":\\\"incomplete\\\"}\")",
+          "result": "Passed",
+          "seconds": 0.000159
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MalformedPartialOrFuturePayloadFallsBackWithoutRewritingData(\"{\\\"version\\\":2,\\\"settings\\\":{\\\"version\\\":2}}\")",
+          "result": "Passed",
+          "seconds": 0.000141
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MigratingLegacyPresetPreservesItsExistingImageBudget(0,0.7f,40.0f,False,1)",
+          "result": "Passed",
+          "seconds": 0.000445
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MigratingLegacyPresetPreservesItsExistingImageBudget(1,0.85f,70.0f,False,1)",
+          "result": "Passed",
+          "seconds": 0.000165
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MigratingLegacyPresetPreservesItsExistingImageBudget(2,1.0f,110.0f,True,1)",
+          "result": "Passed",
+          "seconds": 0.000136
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsDataTests.MigratingLegacyPresetPreservesItsExistingImageBudget(3,1.25f,180.0f,True,4)",
+          "result": "Passed",
+          "seconds": 0.000135
+        },
+        {
+          "name": "Parasite.Tests.GuardCaptureTests.CaptureUsesCurrentCoverInsteadOfCachedPursuitVisibility(True)",
+          "result": "Passed",
+          "seconds": 0.064667
+        },
+        {
+          "name": "Parasite.Tests.GuardCaptureTests.CaptureUsesCurrentCoverInsteadOfCachedPursuitVisibility(False)",
+          "result": "Passed",
+          "seconds": 0.002859
+        },
+        {
+          "name": "Parasite.Tests.IslandRosterRulesTests.AnUnvisitedCoverCannotBecomeTheRecoveryAnchor",
+          "result": "Passed",
+          "seconds": 0.000811
+        },
+        {
+          "name": "Parasite.Tests.IslandRosterRulesTests.AssemblyVolumeFitsTheRealForedeckAndRejectsTheGangwayAndWater",
+          "result": "Passed",
+          "seconds": 0.000457
+        },
+        {
+          "name": "Parasite.Tests.IslandRosterRulesTests.PartialCompletionAndBoardingDoNotInventAMissingPerson",
+          "result": "Passed",
+          "seconds": 0.000477
+        },
+        {
+          "name": "Parasite.Tests.IslandRosterRulesTests.PassengerParkingKeepsTheGangwayAisleAndCabinApproachClear",
+          "result": "Passed",
+          "seconds": 0.000432
+        },
+        {
+          "name": "Parasite.Tests.IslandStateRulesTests.ChapterEntryPreservesHistoryAndCannotEraseALaterCheckpoint(Peace)",
+          "result": "Passed",
+          "seconds": 0.000517
+        },
+        {
+          "name": "Parasite.Tests.IslandStateRulesTests.ChapterEntryPreservesHistoryAndCannotEraseALaterCheckpoint(Dominion)",
+          "result": "Passed",
+          "seconds": 0.000152
+        },
+        {
+          "name": "Parasite.Tests.IslandStateRulesTests.FallFallbackUsesNewestChapterWhileKeepingLegacyValues",
+          "result": "Passed",
+          "seconds": 0.000326
+        },
+        {
+          "name": "Parasite.Tests.IslandStateRulesTests.IslandNeedsResolvedLakeAndCompletedFerry",
+          "result": "Passed",
+          "seconds": 0.000168
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.AsymmetricFeaturesKeepTheirAuthoredSideAfterUnityImport(\"RiversideFerry\",\"CinemaGlow\",0.72f,4.18f)",
+          "result": "Passed",
+          "seconds": 0.001953
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.AsymmetricFeaturesKeepTheirAuthoredSideAfterUnityImport(\"RiversideFerry\",\"CinemaWarm\",0.0f,-2.5f)",
+          "result": "Passed",
+          "seconds": 0.000174
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.AsymmetricFeaturesKeepTheirAuthoredSideAfterUnityImport(\"ClinicConsole\",\"CinemaGlass\",-0.21f,0.12f)",
+          "result": "Passed",
+          "seconds": 0.002461
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.AsymmetricFeaturesKeepTheirAuthoredSideAfterUnityImport(\"RadioMast\",\"CinemaCream\",0.735f,0.1f)",
+          "result": "Passed",
+          "seconds": 0.0031
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.AsymmetricFeaturesKeepTheirAuthoredSideAfterUnityImport(\"RadioConsole\",\"CinemaCream\",0.0f,-0.348f)",
+          "result": "Passed",
+          "seconds": 0.00234
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.FarBankRisesAwayFromTheRiverWithoutReflectingIntoThePlayableBerth",
+          "result": "Passed",
+          "seconds": 0.001571
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"RiversideFerry\",6.0f,5.2511f,8.1975f,17398)",
+          "result": "Passed",
+          "seconds": 0.001625
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"FloodgateMachinery\",3.4f,2.45f,2.1f,15396)",
+          "result": "Passed",
+          "seconds": 0.002426
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"RadioMast\",2.2f,16.2411f,1.51f,19656)",
+          "result": "Passed",
+          "seconds": 0.00018
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"IndustrialConsole\",1.1f,1.32f,0.65f,6380)",
+          "result": "Passed",
+          "seconds": 0.001942
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"RadioConsole\",1.1f,1.32f,0.63f,9344)",
+          "result": "Passed",
+          "seconds": 0.000144
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"ClinicConsole\",1.1f,1.57f,0.63f,7020)",
+          "result": "Passed",
+          "seconds": 0.000151
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"ClinicScreen\",0.304f,1.885f,4.39f,4716)",
+          "result": "Passed",
+          "seconds": 0.00141
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.ImportedAssemblyKeepsItsMetreScaleMaterialsAndTriangleBudget(\"RiversideBanks\",360.0f,11.1614f,78.7657f,4800)",
+          "result": "Passed",
+          "seconds": 0.000175
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.OriginalSurfacesHaveAllThreeRuntimePbrMaps(\"MarinePaint\")",
+          "result": "Passed",
+          "seconds": 0.002928
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.OriginalSurfacesHaveAllThreeRuntimePbrMaps(\"Rubber\")",
+          "result": "Passed",
+          "seconds": 0.002191
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.OriginalSurfacesHaveAllThreeRuntimePbrMaps(\"ClinicEnamel\")",
+          "result": "Passed",
+          "seconds": 0.002108
+        },
+        {
+          "name": "Parasite.Tests.RiversideResourceTests.OriginalSurfacesHaveAllThreeRuntimePbrMaps(\"ClinicFabric\")",
+          "result": "Passed",
+          "seconds": 0.002339
+        },
+        {
+          "name": "Parasite.Tests.SecurityCameraTests.MaintenancePulseCannotUndoPermanentCampaignSabotage",
+          "result": "Passed",
+          "seconds": 0.000868
+        },
+        {
+          "name": "Parasite.Tests.SecurityCameraTests.RepeatPowerCutsOnlyExtendAnExistingOutage",
+          "result": "Passed",
+          "seconds": 0.000306
+        },
+        {
+          "name": "Parasite.Tests.SkylineWaterCutoutTests.ActualWaterUnionOpensBothSlabFacesAndKeepsWorldTexturePhase",
+          "result": "Passed",
+          "seconds": 0.0125
+        },
+        {
+          "name": "Parasite.Tests.SkylineWaterCutoutTests.RepeatedApplyAndDisposePreserveOtherRenderersAndPhysics",
+          "result": "Passed",
+          "seconds": 0.000795
+        },
+        {
+          "name": "Parasite.Tests.SkylineWaterCutoutTests.UnexpectedSourceGeometryCannotBeSilentlyReplaced",
+          "result": "Passed",
+          "seconds": 0.000807
+        },
+        {
+          "name": "Parasite.Tests.SplitRulesTests.MaxTwoAmoebas",
+          "result": "Passed",
+          "seconds": 0.000106
+        },
+        {
+          "name": "Parasite.Tests.SplitRulesTests.SwitchCycles",
+          "result": "Passed",
+          "seconds": 0.000137
+        },
+        {
+          "name": "Parasite.Tests.SuspicionGraceTests.EjectionGraceDefersBodyDiscoveryUntilWitnessCanReportIt(False)",
+          "result": "Passed",
+          "seconds": 0.002688
+        },
+        {
+          "name": "Parasite.Tests.SuspicionGraceTests.EjectionGraceDefersBodyDiscoveryUntilWitnessCanReportIt(True)",
+          "result": "Passed",
+          "seconds": 0.001178
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.AddClampsToRange",
+          "result": "Passed",
+          "seconds": 0.000128
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.ContinuousViolations",
+          "result": "Passed",
+          "seconds": 0.0001
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.DecayOnlyAfterDelay",
+          "result": "Passed",
+          "seconds": 0.000151
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(0.0f,Calm)",
+          "result": "Passed",
+          "seconds": 0.000201
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(29.9f,Calm)",
+          "result": "Passed",
+          "seconds": 7.4e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(30.0f,Curious)",
+          "result": "Passed",
+          "seconds": 5.7e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(59.9f,Curious)",
+          "result": "Passed",
+          "seconds": 5.5e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(60.0f,Investigating)",
+          "result": "Passed",
+          "seconds": 5.1e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(84.9f,Investigating)",
+          "result": "Passed",
+          "seconds": 5.1e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(85.0f,Pursuing)",
+          "result": "Passed",
+          "seconds": 4.9e-05
+        },
+        {
+          "name": "Parasite.Tests.SuspicionRulesTests.LevelThresholds(100.0f,Pursuing)",
+          "result": "Passed",
+          "seconds": 5.6e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(2.0f,TooClose)",
+          "result": "Passed",
+          "seconds": 0.000175
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(3.5f,InBand)",
+          "result": "Passed",
+          "seconds": 6.6e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(12.0f,InBand)",
+          "result": "Passed",
+          "seconds": 4.9e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(20.0f,InBand)",
+          "result": "Passed",
+          "seconds": 4.8e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(23.0f,Far)",
+          "result": "Passed",
+          "seconds": 4.7e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.Bands(30.0f,Lost)",
+          "result": "Passed",
+          "seconds": 4.2e-05
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.ComfortableUnseenFollowerCalmsHerDown",
+          "result": "Passed",
+          "seconds": 0.000246
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.CrowdingRaisesAlertnessUnlessSheIsStillPacking",
+          "result": "Passed",
+          "seconds": 0.000115
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.FreezingDuringAGlanceIsSaferThanMoving",
+          "result": "Passed",
+          "seconds": 0.00016
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.GlanceRhythmCycles",
+          "result": "Passed",
+          "seconds": 0.000121
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.SeeingAFreeAmoebaIsTheFastestWayToBlowIt",
+          "result": "Passed",
+          "seconds": 0.000121
+        },
+        {
+          "name": "Parasite.Tests.TailRulesTests.SpottedAndLostThresholds",
+          "result": "Passed",
+          "seconds": 0.000213
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.ExitNeedsAnActualTraversalFromOutside",
+          "result": "Passed",
+          "seconds": 0.000161
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PausedTimeDoesNotConsumeTheTraversalWindow",
+          "result": "Passed",
+          "seconds": 0.000129
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(0,Open)",
+          "result": "Passed",
+          "seconds": 0.000198
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(5.99f,Open)",
+          "result": "Passed",
+          "seconds": 7e-05
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(6,Warning)",
+          "result": "Passed",
+          "seconds": 5.6e-05
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(7.99f,Warning)",
+          "result": "Passed",
+          "seconds": 5e-05
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(8,Surge)",
+          "result": "Passed",
+          "seconds": 4.8e-05
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(11.99f,Surge)",
+          "result": "Passed",
+          "seconds": 4.6e-05
+        },
+        {
+          "name": "Parasite.Tests.TideRulesTests.PhaseBoundariesGiveAFullTelegraphedWindow(12,Open)",
+          "result": "Passed",
+          "seconds": 4.9e-05
+        },
+        {
+          "name": "Parasite.Tests.TrafficSafetyTests.FrameHitchCannotDriveThroughPedestrian(0.3f,3.7f)",
+          "result": "Passed",
+          "seconds": 0.008331
+        },
+        {
+          "name": "Parasite.Tests.TrafficSafetyTests.FrameHitchCannotDriveThroughPedestrian(3.0f,16.0f)",
+          "result": "Passed",
+          "seconds": 0.000749
+        },
+        {
+          "name": "Parasite.Tests.TrafficSafetyTests.YieldingTrafficStopsItsBumperOutsideOccupiedIntersection",
+          "result": "Passed",
+          "seconds": 0.002319
+        }
+      ],
+      "graphics_ring_buffer_raw_lines": 0,
+      "graphics_ring_buffer_warning_phrase_occurrences": 0
+    },
+    {
+      "scope": "Initial15-case GPU collection; retain both observed failures and expected Null-only skip.",
+      "result": "Failed(Child)",
+      "total": 15,
+      "passed": 12,
+      "failed": 2,
+      "skipped": 1,
+      "duration_seconds": 37.0042588,
+      "start_utc": "2026-11-25 16:08:02Z",
+      "end_utc": "2026-11-25 16:08:39Z",
+      "native_exit_code": 2,
+      "xml": {
+        "path": "Logs/independent-graphics-gpu.xml",
+        "bytes": 21150,
+        "sha256": "adee8ed629bcc63008b665eee12aed60acb14214b6ceae389df1075748b9e6f8"
+      },
+      "log": {
+        "path": "Logs/independent-graphics-gpu.log",
+        "bytes": 166806,
+        "sha256": "40cdc6c21053b22c499277dbb7bc083c4f9449eac3618b2e2c19daf6e108a9e0"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.IsolatedStreetLampKeepsFullIntensityWhenBudgetIsNotExhausted",
+          "result": "Passed",
+          "seconds": 0.011777
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.LoweringPresetReleasesHdrMsaaAndReflectionBudget",
+          "result": "Passed",
+          "seconds": 0.006027
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.NewlyCreatedCinematicCameraUsesSavedPolicyWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 0.000451
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.BloomOffRemovesActualRenderedHaloAndOnUsesAuthoredIntensity",
+          "result": "Failed",
+          "seconds": 2.494816,
+          "failure": "  Bloom Off must remove actual pixels outside the emissive quad.\n  Expected: greater than 0.00999999978f\n  But was:  0.000118076801f\n"
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.CustomSettingsSurviveSceneReloadAndDoNotModifyAuthoringAssets",
+          "result": "Passed",
+          "seconds": 3.958459
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.ReleasingRenderedOwnerRestoresOriginalsAndDestroysItsWholeGraph",
+          "result": "Passed",
+          "seconds": 1.604153
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.CustomLowBaselineCanPublishRealHighReflectionsAndDisableThemWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 10.252195
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.HiddenInfluenceStillCapturesAllSixMarkersAtTheActualRiverOrigin",
+          "result": "Passed",
+          "seconds": 2.251204
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.InitialLowToHighCompletesOneImageAndMediumReturnsToGlobalFallback",
+          "result": "Passed",
+          "seconds": 2.520983
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NativePolicyRoundTripsEveryPresetWithoutSaving",
+          "result": "Passed",
+          "seconds": 1.882515
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NullGraphicsNeverAllocatesOrRequestsEvenAfterHighSelection",
+          "result": "Skipped",
+          "seconds": 1.915973,
+          "skip_reason": "This focused contract runs in the headless device suite."
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes",
+          "result": "Failed",
+          "seconds": 2.349902,
+          "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.RepeatedPendingDowngradesRetireTargetsWhileNativeSchedulingIsOff",
+          "result": "Passed",
+          "seconds": 2.20976
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.IndependentGraphicsDraftAppliesCancelsAndScrollsWithKeyboardNavigation",
+          "result": "Passed",
+          "seconds": 1.874383
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.TitleAndPauseSettingsApplyPersistAndKeepGameplayPaused",
+          "result": "Passed",
+          "seconds": 3.622899
+        }
+      ],
+      "graphics_ring_buffer_raw_lines": 11,
+      "graphics_ring_buffer_warning_phrase_occurrences": 11
+    },
+    {
+      "scope": "Unchanged SingleCameraRequest fixture with raw frame/HDR/volume-state evidence.",
+      "result": "Failed(Child)",
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "duration_seconds": 2.4766558,
+      "start_utc": "2026-11-25 16:15:47Z",
+      "end_utc": "2026-11-25 16:15:50Z",
+      "native_exit_code": 2,
+      "xml": {
+        "path": "Logs/graphics-bloom-diagnostic.xml",
+        "bytes": 6121,
+        "sha256": "d4cc6a32bf8044196f8fdaeab14ce5b8a97419e83bf04d39a48c6e15a22932ec"
+      },
+      "log": {
+        "path": "Logs/graphics-bloom-diagnostic.log",
+        "bytes": 105384,
+        "sha256": "910b42c2b63a6ac244a5274aaaf32a31e138964b3830a7c1bd4bf09e34c22819"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.BloomOffRemovesActualRenderedHaloAndOnUsesAuthoredIntensity",
+          "result": "Failed",
+          "seconds": 2.453756,
+          "failure": "  Bloom Off must remove actual pixels outside the emissive quad.\n  Expected: greater than 0.00999999978f\n  But was:  0.000153362751f\n"
+        }
+      ],
+      "graphics_ring_buffer_raw_lines": 1,
+      "graphics_ring_buffer_warning_phrase_occurrences": 1
+    },
+    {
+      "scope": "Same emitter, ROI and threshold after fixture uses normal full camera-volume update path.",
+      "result": "Passed",
+      "total": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 2.4738706,
+      "start_utc": "2026-11-25 16:21:17Z",
+      "end_utc": "2026-11-25 16:21:19Z",
+      "native_exit_code": 0,
+      "xml": {
+        "path": "Logs/graphics-bloom-standard.xml",
+        "bytes": 4861,
+        "sha256": "68b10414bf6ff50c1966884c9251a2abc5aaff33e669e3bcdf015e8137fffc66"
+      },
+      "log": {
+        "path": "Logs/graphics-bloom-standard.log",
+        "bytes": 108135,
+        "sha256": "06c62868b9d41d8702955ad142cb73e060bd9a8acc07967eace23b2b06eb38c4"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.BloomOffRemovesActualRenderedHaloAndOnUsesAuthoredIntensity",
+          "result": "Passed",
+          "seconds": 2.45399
+        }
+      ],
+      "graphics_ring_buffer_raw_lines": 1,
+      "graphics_ring_buffer_warning_phrase_occurrences": 1
+    },
+    {
+      "scope": "Corrected Bloom fixture in original15-case collection. Thirteen cases pass, one native-warning guard fails, and the Null-only opposite-device case skips. No all-green collection is claimed.",
+      "result": "Failed(Child)",
+      "total": 15,
+      "passed": 13,
+      "failed": 1,
+      "skipped": 1,
+      "duration_seconds": 28.6041258,
+      "start_utc": "2026-11-25 16:25:06Z",
+      "end_utc": "2026-11-25 16:25:35Z",
+      "native_exit_code": 2,
+      "xml": {
+        "path": "Logs/independent-graphics-gpu-corrected.xml",
+        "bytes": 21537,
+        "sha256": "71008a87e1f1d0f29fa5e44220fe2d12e8c8f08faa9f46378a75a98e5d9b5206"
+      },
+      "log": {
+        "path": "Logs/independent-graphics-gpu-corrected.log",
+        "bytes": 179631,
+        "sha256": "aab75ce3b2bb72514b98c52521540a23eb9192130f451030a859b1730003a6c5"
+      },
+      "cases": [
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.IsolatedStreetLampKeepsFullIntensityWhenBudgetIsNotExhausted",
+          "result": "Passed",
+          "seconds": 0.011013
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.LoweringPresetReleasesHdrMsaaAndReflectionBudget",
+          "result": "Passed",
+          "seconds": 0.00545
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.NewlyCreatedCinematicCameraUsesSavedPolicyWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 0.000429
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.BloomOffRemovesActualRenderedHaloAndOnUsesAuthoredIntensity",
+          "result": "Passed",
+          "seconds": 2.361082
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.CustomSettingsSurviveSceneReloadAndDoNotModifyAuthoringAssets",
+          "result": "Passed",
+          "seconds": 2.539227
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.ReleasingRenderedOwnerRestoresOriginalsAndDestroysItsWholeGraph",
+          "result": "Passed",
+          "seconds": 1.543431
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.CustomLowBaselineCanPublishRealHighReflectionsAndDisableThemWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 3.369445
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.HiddenInfluenceStillCapturesAllSixMarkersAtTheActualRiverOrigin",
+          "result": "Passed",
+          "seconds": 2.229624
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.InitialLowToHighCompletesOneImageAndMediumReturnsToGlobalFallback",
+          "result": "Passed",
+          "seconds": 2.545469
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NativePolicyRoundTripsEveryPresetWithoutSaving",
+          "result": "Passed",
+          "seconds": 1.921922
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NullGraphicsNeverAllocatesOrRequestsEvenAfterHighSelection",
+          "result": "Skipped",
+          "seconds": 1.973904,
+          "skip_reason": "This focused contract runs in the headless device suite."
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes",
+          "result": "Failed",
+          "seconds": 2.34547,
+          "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.RepeatedPendingDowngradesRetireTargetsWhileNativeSchedulingIsOff",
+          "result": "Passed",
+          "seconds": 2.22147
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.IndependentGraphicsDraftAppliesCancelsAndScrollsWithKeyboardNavigation",
+          "result": "Passed",
+          "seconds": 1.849227
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.TitleAndPauseSettingsApplyPersistAndKeepGameplayPaused",
+          "result": "Passed",
+          "seconds": 3.644087
+        }
+      ],
+      "exit_receipt": "Root write_stdin session76389, tool chunkcb3454 returned exit_code2; confirmed by parent before publication.",
+      "graphics_ring_buffer_raw_lines": 11,
+      "graphics_ring_buffer_warning_phrase_occurrences": 11
+    },
+    {
+      "scope": "No-control-flag15-case GPU collection after serialized builder IndividualFaces and real GPU scene regeneration. The same warning guard still fails.",
+      "result": "Failed(Child)",
+      "total": 15,
+      "passed": 13,
+      "failed": 1,
+      "skipped": 1,
+      "duration_seconds": 28.2633134,
+      "start_utc": "2026-11-25 16:53:56Z",
+      "end_utc": "2026-11-25 16:54:24Z",
+      "native_exit_code": 2,
+      "exit_receipt": "Root session46692, tool chunk9da0e5 returned exit_code2.",
+      "xml": {
+        "path": "Logs/independent-graphics-serialized-probes.xml",
+        "bytes": 21389,
+        "sha256": "134836b974d386761a7712f254c99496a43a3303705c2745bdd2432d0045a5a7"
+      },
+      "log": {
+        "path": "Logs/independent-graphics-serialized-probes.log",
+        "bytes": 174987,
+        "sha256": "0770973b59a92609e8ea77881a183fdc8e75c97a00ef64e3c7b9446f8b773b14"
+      },
+      "graphics_ring_buffer_raw_lines": 9,
+      "graphics_ring_buffer_warning_phrase_occurrences": 9,
+      "cases": [
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.IsolatedStreetLampKeepsFullIntensityWhenBudgetIsNotExhausted",
+          "result": "Passed",
+          "seconds": 0.011073
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.LoweringPresetReleasesHdrMsaaAndReflectionBudget",
+          "result": "Passed",
+          "seconds": 0.005628
+        },
+        {
+          "name": "Parasite.Tests.GraphicsPresetTests.NewlyCreatedCinematicCameraUsesSavedPolicyWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 0.000401
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.BloomOffRemovesActualRenderedHaloAndOnUsesAuthoredIntensity",
+          "result": "Passed",
+          "seconds": 2.241516
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.CustomSettingsSurviveSceneReloadAndDoNotModifyAuthoringAssets",
+          "result": "Passed",
+          "seconds": 2.542822
+        },
+        {
+          "name": "Parasite.Tests.GraphicsSettingsRuntimeTests.ReleasingRenderedOwnerRestoresOriginalsAndDestroysItsWholeGraph",
+          "result": "Passed",
+          "seconds": 1.514427
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.CustomLowBaselineCanPublishRealHighReflectionsAndDisableThemWithoutChangingPreset",
+          "result": "Passed",
+          "seconds": 3.358533
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.HiddenInfluenceStillCapturesAllSixMarkersAtTheActualRiverOrigin",
+          "result": "Passed",
+          "seconds": 2.2815
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.InitialLowToHighCompletesOneImageAndMediumReturnsToGlobalFallback",
+          "result": "Passed",
+          "seconds": 2.568738
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NativePolicyRoundTripsEveryPresetWithoutSaving",
+          "result": "Passed",
+          "seconds": 1.884143
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.NullGraphicsNeverAllocatesOrRequestsEvenAfterHighSelection",
+          "result": "Skipped",
+          "seconds": 1.913342,
+          "skip_reason": "This focused contract runs in the headless device suite."
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes",
+          "result": "Failed",
+          "seconds": 2.226162,
+          "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+        },
+        {
+          "name": "Parasite.Tests.RiverReflectionQualityTests.RepeatedPendingDowngradesRetireTargetsWhileNativeSchedulingIsOff",
+          "result": "Passed",
+          "seconds": 2.223809
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.IndependentGraphicsDraftAppliesCancelsAndScrollsWithKeyboardNavigation",
+          "result": "Passed",
+          "seconds": 1.835402
+        },
+        {
+          "name": "Parasite.Tests.SettingsUITests.TitleAndPauseSettingsApplyPersistAndKeepGameplayPaused",
+          "result": "Passed",
+          "seconds": 3.609784
+        }
+      ]
+    }
+  ],
+  "pending": [
+    "Resolve or precisely characterize remaining Vulkan Graphics Ring Buffer warning failure without suppressing the guard.",
+    "Run Null-device allocation contract separately; one GPU-only skip does not prove its opposite-device condition.",
+    "Native Custom-control cycling/persistence and frame-pacing measurements, full current-player campaign, current-binary performance and physical input. Strict full-five media,14shortcuts and water22 now pass the named new candidate.",
+    "Unexpected direct owner destruction and OS/window close lifetime paths."
+  ],
+  "limits": [
+    "Prepared/simulated Unity fixtures are not a human campaign playthrough.",
+    "Keyboard/gamepad UI cases use queued Input System state events; no physical device input claim.",
+    "Bloom image proof verifies that control through actual native-rendered HDR images; other controls have the exact behavior/property/resource/image coverage named in their tests.",
+    "Owner cleanup case exercises normal ReleaseRuntime after observed frame rendering and native pipeline disposal. It does not establish unexpected object-destruction or OS-close behavior.",
+    "Existing four profiles retain their image budgets, including Ultra1.25render scale and4xrequestedMSAA; supported effectiveMSAA depends on the rendering device.",
+    "No hardware ray tracing, temporal reconstruction, display-mode rollback, baked GI, texture-source upgrade or new graphics-menu rows beyond actual existing backends are established by these tests."
+  ],
+  "bloom_fixture": {
+    "original_failure": "SingleCameraRequest skips the installed URP volume-framework update path; its effective global Bloom stack remained0.95 despite the isolated camera layer31 fixture intensity8 and player Off request. This was established by actual before/after-submit stack logs and three real images.",
+    "change": "Fixture only: use RenderPipeline.StandardRequest, which runs the normal camera volume-framework path. No production Bloom code, emitter, ROI or pass threshold changed.",
+    "unchanged_contract": {
+      "emitter_base_color_rgb": [
+        8,
+        8,
+        8
+      ],
+      "quad_scale": 0.25,
+      "target_resolution": [
+        256,
+        256
+      ],
+      "target_format": "ARGBHalf/R16G16B16A16_SFloat",
+      "readback_format": "RGBAFloat/linear",
+      "roi_x_inclusive": [
+        149,
+        183
+      ],
+      "roi_y_inclusive": [
+        119,
+        136
+      ],
+      "required_on_minus_off_greater_than": 0.01,
+      "restored_within": 0.025,
+      "authored_bloom_intensity": 8
+    },
+    "single_camera_negative": {
+      "on": {
+        "hdr_stats": {
+          "name": "on",
+          "format": "RGBAFloat",
+          "mean": 0.3841182291507721,
+          "maximum": 1.0172861814498901,
+          "minimum": 0.0221713874489069,
+          "centerMean": 1.0103789567947388,
+          "centerMaximum": 1.0143564939498901,
+          "halo": 0.8569257259368896,
+          "hotPixels": 48366,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 240
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/on.exr",
+            "bytes": 330031,
+            "sha256": "0159b11001e5d5bc374798cf6b013f82bf31fc18c97b82ca86f4c6d40bdb556d"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/on.png",
+            "bytes": 57633,
+            "sha256": "02375ad08c52ef71463ae0c211d1272329ea4adf79595bd75034719ebc8325b2"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/on-hdr-stats.json",
+            "bytes": 360,
+            "sha256": "55d199cd214c2fde5f35976c20d93878a3501289747936024d82d4c90c7f11f4"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/on-render-stage.txt",
+            "bytes": 1238,
+            "sha256": "99f85081f3a040573caa2a9b8796b744ec0639a95a4b200c9b7023c5b9a7a472"
+          }
+        ]
+      },
+      "off": {
+        "hdr_stats": {
+          "name": "off",
+          "format": "RGBAFloat",
+          "mean": 0.3841758072376251,
+          "maximum": 1.0153330564498901,
+          "minimum": 0.021454360336065292,
+          "centerMean": 1.0104819536209106,
+          "centerMaximum": 1.0153330564498901,
+          "halo": 0.8567723631858826,
+          "hotPixels": 48348,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 240
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/off.exr",
+            "bytes": 319032,
+            "sha256": "e45636f580ec9ac80c322720d6fa1a6e1932504652529648324f8128ea40b372"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/off.png",
+            "bytes": 55387,
+            "sha256": "ba570335a1675793fb4f59fe0b46f6fba4906ec97e032535e72712dd7230fbfb"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/off-hdr-stats.json",
+            "bytes": 363,
+            "sha256": "523c847593ccabf5ef945d040aede8ae0e7cc6910f1a14c8cb498c69ec3b733d"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/off-render-stage.txt",
+            "bytes": 1238,
+            "sha256": "99f85081f3a040573caa2a9b8796b744ec0639a95a4b200c9b7023c5b9a7a472"
+          }
+        ]
+      },
+      "restored": {
+        "hdr_stats": {
+          "name": "restored",
+          "format": "RGBAFloat",
+          "mean": 0.3841954171657562,
+          "maximum": 1.0172861814498901,
+          "minimum": 0.022012008354067802,
+          "centerMean": 1.0106269121170044,
+          "centerMaximum": 1.0153330564498901,
+          "halo": 0.8565790057182312,
+          "hotPixels": 48334,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 240
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/restored.exr",
+            "bytes": 332073,
+            "sha256": "1f31db68c0ed6bfc353632e506977698c2fe3f691383df96481b644861faf143"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/restored.png",
+            "bytes": 58072,
+            "sha256": "3539f01465e9cc969c1c969635d00890e015a8f7fff707e42c4698bd817420a6"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/restored-hdr-stats.json",
+            "bytes": 368,
+            "sha256": "19f9d93cfc1b06f2accc6d20b492dda86a157c2bd163a2689a75752af4be193f"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1615498151740Z/restored-render-stage.txt",
+            "bytes": 1238,
+            "sha256": "99f85081f3a040573caa2a9b8796b744ec0639a95a4b200c9b7023c5b9a7a472"
+          }
+        ]
+      }
+    },
+    "standard_camera_positive": {
+      "on": {
+        "hdr_stats": {
+          "name": "on",
+          "format": "RGBAFloat",
+          "mean": 1.052736520767212,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.7972895503044128,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 1.1786564588546753,
+          "hotPixels": 65536,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 255
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/on.exr",
+            "bytes": 108367,
+            "sha256": "86ab873e644141dc8782c545eedd3d7ec18ca5447d5d4ef37a0da65ff718e396"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/on.png",
+            "bytes": 14274,
+            "sha256": "84b61e33038852d0e4309f77990fb0f2f22130ae08341a1266dad37ebd47ad38"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/on-hdr-stats.json",
+            "bytes": 359,
+            "sha256": "33a059dc6a4244d13adb59b08c095b4fe30bcc5ad6b48493a56b1c937a0d813a"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/on-render-stage.txt",
+            "bytes": 1225,
+            "sha256": "f3cc787358011bd358976e438d807499e1cf2400d145cb8a25e11526e183b657"
+          }
+        ]
+      },
+      "off": {
+        "hdr_stats": {
+          "name": "off",
+          "format": "RGBAFloat",
+          "mean": 0.08229680359363556,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.0007401580805890262,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 0.13453353941440582,
+          "hotPixels": 1024,
+          "hotMinX": 112,
+          "hotMaxX": 143,
+          "hotMinY": 112,
+          "hotMaxY": 143
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/off.exr",
+            "bytes": 215846,
+            "sha256": "39a52283439bab7345b5f947d1678ac8924d92996e350eb6515c88e233751edc"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/off.png",
+            "bytes": 35317,
+            "sha256": "dbbe6febb593d150d8a5364569785e889dee87f2b543519fb2288eee5f5e60f3"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/off-hdr-stats.json",
+            "bytes": 369,
+            "sha256": "69870fa2451243d9f854ae008e921c23a266119f277c13c403b319a14f7cb14b"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/off-render-stage.txt",
+            "bytes": 1221,
+            "sha256": "05f1608659757da47446397b56223174b84de66234dabe1b504b0996ea8c32f3"
+          }
+        ]
+      },
+      "restored": {
+        "hdr_stats": {
+          "name": "restored",
+          "format": "RGBAFloat",
+          "mean": 1.052736520767212,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.7972895503044128,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 1.1786564588546753,
+          "hotPixels": 65536,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 255
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/restored.exr",
+            "bytes": 108367,
+            "sha256": "86ab873e644141dc8782c545eedd3d7ec18ca5447d5d4ef37a0da65ff718e396"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/restored.png",
+            "bytes": 14274,
+            "sha256": "84b61e33038852d0e4309f77990fb0f2f22130ae08341a1266dad37ebd47ad38"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/restored-hdr-stats.json",
+            "bytes": 365,
+            "sha256": "4dd52c07c209cc54b5f77670b4017d13546c7b6f6751ad10073b77d6f121020c"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1621194565310Z/restored-render-stage.txt",
+            "bytes": 1221,
+            "sha256": "e0a23cbaf942034bbbc1fe7984c87f31e02f97aefac5521557ef7bf50d0f50e6"
+          }
+        ]
+      }
+    },
+    "current_collection_positive": {
+      "on": {
+        "hdr_stats": {
+          "name": "on",
+          "format": "RGBAFloat",
+          "mean": 1.052736520767212,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.7972895503044128,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 1.1786564588546753,
+          "hotPixels": 65536,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 255
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/on.exr",
+            "bytes": 108367,
+            "sha256": "86ab873e644141dc8782c545eedd3d7ec18ca5447d5d4ef37a0da65ff718e396"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/on.png",
+            "bytes": 14274,
+            "sha256": "84b61e33038852d0e4309f77990fb0f2f22130ae08341a1266dad37ebd47ad38"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/on-hdr-stats.json",
+            "bytes": 359,
+            "sha256": "33a059dc6a4244d13adb59b08c095b4fe30bcc5ad6b48493a56b1c937a0d813a"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/on-render-stage.txt",
+            "bytes": 1225,
+            "sha256": "f3cc787358011bd358976e438d807499e1cf2400d145cb8a25e11526e183b657"
+          }
+        ]
+      },
+      "off": {
+        "hdr_stats": {
+          "name": "off",
+          "format": "RGBAFloat",
+          "mean": 0.08229680359363556,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.0007401580805890262,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 0.13453353941440582,
+          "hotPixels": 1024,
+          "hotMinX": 112,
+          "hotMaxX": 143,
+          "hotMinY": 112,
+          "hotMaxY": 143
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/off.exr",
+            "bytes": 215846,
+            "sha256": "39a52283439bab7345b5f947d1678ac8924d92996e350eb6515c88e233751edc"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/off.png",
+            "bytes": 35317,
+            "sha256": "dbbe6febb593d150d8a5364569785e889dee87f2b543519fb2288eee5f5e60f3"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/off-hdr-stats.json",
+            "bytes": 369,
+            "sha256": "69870fa2451243d9f854ae008e921c23a266119f277c13c403b319a14f7cb14b"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/off-render-stage.txt",
+            "bytes": 1221,
+            "sha256": "05f1608659757da47446397b56223174b84de66234dabe1b504b0996ea8c32f3"
+          }
+        ]
+      },
+      "restored": {
+        "hdr_stats": {
+          "name": "restored",
+          "format": "RGBAFloat",
+          "mean": 1.052736520767212,
+          "maximum": 1.2116221189498901,
+          "minimum": 0.7972895503044128,
+          "centerMean": 1.2116209268569946,
+          "centerMaximum": 1.2116221189498901,
+          "halo": 1.1786564588546753,
+          "hotPixels": 65536,
+          "hotMinX": 0,
+          "hotMaxX": 255,
+          "hotMinY": 0,
+          "hotMaxY": 255
+        },
+        "files": [
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/restored.exr",
+            "bytes": 108367,
+            "sha256": "86ab873e644141dc8782c545eedd3d7ec18ca5447d5d4ef37a0da65ff718e396"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/restored.png",
+            "bytes": 14274,
+            "sha256": "84b61e33038852d0e4309f77990fb0f2f22130ae08341a1266dad37ebd47ad38"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/restored-hdr-stats.json",
+            "bytes": 365,
+            "sha256": "4dd52c07c209cc54b5f77670b4017d13546c7b6f6751ad10073b77d6f121020c"
+          },
+          {
+            "path": "Logs/graphics-bloom-diagnostic/20261125T1625091440830Z/restored-render-stage.txt",
+            "bytes": 1221,
+            "sha256": "e0a23cbaf942034bbbc1fe7984c87f31e02f97aefac5521557ef7bf50d0f50e6"
+          }
+        ]
+      }
+    },
+    "visualization_policy": "EXRs preserve actual float readbacks; PNGs are a single gamma conversion for structure review, not source data for global brightness calibration.",
+    "effective_stack_after_standard_submission": {
+      "on_intensity": 8,
+      "off_intensity": 0,
+      "off_isActive": false,
+      "restored_intensity": 8
+    }
+  },
+  "verified_behavior": [
+    {
+      "claim": "Legacy4preset intent, independent persisted choices, checksummed complete-schema rejection, corrupt/future fallback and unrelated preference preservation",
+      "evidence": "All135EditMode methods pass, including13 GraphicsSettingsDataTests; exact methods in suite record."
+    },
+    {
+      "claim": "CustomLow baseline can use actual high river reflection image, then disable it; chosen settings persist across scene reload",
+      "evidence": "CustomLowBaselineCanPublishRealHighReflectionsAndDisableThemWithoutChangingPreset passes in bothGPU collections with actual native-capture ownership/image gates."
+    },
+    {
+      "claim": "Owned pipeline graph reuses clones across scene reload; original source URP/renderer/feature serialized state remains unchanged; late game cameras inherit options and internal reflection cameras are untouched",
+      "evidence": "CustomSettingsSurviveSceneReloadAndDoNotModifyAuthoringAssets passes in both collections."
+    },
+    {
+      "claim": "Normal ReleaseRuntime restores exact originalQualitySettings.renderPipeline override, waits actual native pipeline disposal and destroys owned pipeline/renderer/features/profile/components/host after real frame rendering",
+      "evidence": "ReleasingRenderedOwnerRestoresOriginalsAndDestroysItsWholeGraph passes in both collections; actual before/after scene captures retained."
+    },
+    {
+      "claim": "Staged graphics changes apply/persist onexplicitApply; Cancel/Back leave appliedsettings and savedJSON intact, while liveaudio changes remain; keyboard scroll-to-focus and queuedgamepadLeft/Right edit the actualchoice row",
+      "evidence": "IndependentGraphicsDraftAppliesCancelsAndScrollsWithKeyboardNavigation passes in both collections."
+    },
+    {
+      "claim": "Title/pause settings retain pause/input isolation and existingliveaudio/sensitivity behavior",
+      "evidence": "TitleAndPauseSettingsApplyPersistAndKeepGameplayPaused passes in both collections."
+    }
+  ],
+  "remaining_warning_gate": {
+    "case": "Parasite.Tests.RiverReflectionQualityTests.PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes",
+    "status": "OPEN",
+    "last_failure": "Original LogAssert.NoUnexpectedReceived catches real Graphics Ring Buffer warning. No warning suppression/expectation added.",
+    "cause": "Unproven; do not call the seven-city-probe startup hypothesis a confirmed cause or fix.",
+    "corrected_raw_warning_lines": 11,
+    "city_pair_limit": "Separate original diagnostic pair default/control each had0raw Ring warnings but exited2 because its wrapped Debug.Log was also caught by the original unexpected-log guard. Root changed only helper output to TestContext.WriteLine; that Explicit helper is not selected in the corrected full collection.",
+    "latest_collection": "Logs/independent-graphics-serialized-probes.xml",
+    "latest_raw_warning_lines": 9,
+    "mitigation_scope": "Builder Probe timeSlicingMode changed from NoTimeSlicing to IndividualFaces and scenes regenerated on a real GPU. No-flagEditor rerun still13pass/1warning-failure/1expectedNullskip; not a complete fix."
+  },
+  "scene_and_ui_captures": [
+    {
+      "path": "Logs/ui/04-custom-graphics-display.png",
+      "bytes": 585619,
+      "sha256": "e80b7cdbb153864a11336fa81a9c0670fd55fa331e55feea9b472ff45f02766e"
+    },
+    {
+      "path": "Logs/ui/12-graphics-custom-pipeline.png",
+      "bytes": 2269774,
+      "sha256": "542d595913106d8bf0403cb467196695bc8d8c9c4c2abe68af414a4a2810a0c8"
+    },
+    {
+      "path": "Logs/ui/12-graphics-owner-before-retirement.png",
+      "bytes": 2231341,
+      "sha256": "b69a63dd9f67074edca6c6f0c852110faaa15fe73a3395530ba3f63ef0a51d14"
+    },
+    {
+      "path": "Logs/ui/12-graphics-owner-source-restored.png",
+      "bytes": 2224466,
+      "sha256": "ef196a144a6a780e4b0a2b3df6c4b05615d2f196d32014e6a3269d4a0e1079f3"
+    }
+  ],
+  "editor_assembly_observation_scope": "Compiled Editor assembly hashes were read after the corrected collection became terminal, before later root-owned jobs. Library files are cache paths, not immutable shipped player artifacts; source/test/XML/image records establish the named feature scope.",
+  "source_scope": "Source hashes captured after the corrected collection; unrelated hunter-driver and staged art work are outside these feature claims. No native-player build is validated by this Editor record.",
+  "source_changes_between_runs": [
+    "Initial SingleCameraRequest Bloom proof failed its unchanged halo assertion. Read-only frame/HDR/volume-state diagnostics demonstrated the stale0.95stack.",
+    "Only the isolated Bloom fixture render-request path changed to RenderPipeline.StandardRequest, enabling its intended volume-layer update. Its emitter, measured ROI and thresholds remained unchanged; production Bloom code did not change.",
+    "A separate Explicit city-probe diagnostic helper changed its own informational Debug.Log calls to TestContext.WriteLine after those logs tripped its original unexpected-log guard. The helper is not selected in either15-case graphics collection; the remaining native warning is still caught."
+  ],
+  "environment": {
+    "unity_version": "6000.3.29f1 (96d2fe17529c)",
+    "gpu_renderer": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "graphics_api": "1.1.0 (1.4.329 supported by driver, 1.1.0 requested)",
+    "driver": "NVIDIA (4), 595.99.02"
+  },
+  "native_quick_gates": {
+    "status": "PASS_NARROW_NATIVE_GATES",
+    "version": "0.5.1-preview",
+    "source_build_state": {
+      "path": "Logs/full-story-candidate/build-runs/20261125T170047223995Z-63921b41/runner-state.json",
+      "bytes": 8186,
+      "sha256": "adca2e622208a71f49a9872c9ce4f03d7b82383276c689e739fdc3bb64555d95"
+    },
+    "build_summary": {
+      "result": "Succeeded",
+      "size_mb": 1101,
+      "time": "00:00:49.1768380",
+      "errors": 0,
+      "warnings": 0
+    },
+    "native_build_exit_code": 0,
+    "source_unchanged_during_build": true,
+    "preview_unchanged": true,
+    "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41",
+    "runtime_sha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+    "source_git_before": {
+      "commit": "bbebc8c2682b821de040a1c03aa5b9b9d25eeeb7",
+      "working_tree": true,
+      "porcelain": "M Assets/Parasite/Editor/CityBuilder.cs\n M Assets/Parasite/Scenes/Bootstrap.unity\n M Assets/Parasite/Scenes/Bootstrap/LightingData.asset\n M Assets/Parasite/Scenes/Bootstrap/ReflectionProbe-0.exr\n M Assets/Parasite/Scenes/Bootstrap/ReflectionProbe-1.exr\n M Assets/Parasite/Scenes/City.unity\n M Assets/Parasite/Scenes/City/LightingData.asset\n M Assets/Parasite/Scenes/City/ReflectionProbe-0.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-1.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-2.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-3.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-4.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-5.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-6.exr\n M Assets/Parasite/Scenes/City/ReflectionProbe-7.exr\n M Assets/Parasite/Scripts/Core/GraphicsPreset.cs\n M Assets/Parasite/Scripts/Missions/RiverReflectionCapture.cs\n M Assets/Parasite/Scripts/UI/SettingsOverlay.cs\n M Assets/Parasite/Settings/CityVolume.asset\n M Assets/Parasite/Tests/PlayMode/GraphicsPresetTests.cs\n M Assets/Parasite/Tests/PlayMode/RiverReflectionQualityTests.cs\n M Assets/Parasite/Tests/PlayMode/SettingsUITests.cs\n M ProjectSettings/ProjectSettings.asset\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsData.cs\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsData.cs.meta\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsRuntime.cs\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsRuntime.cs.meta\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsStore.cs\n?? Assets/Parasite/Scripts/Core/GraphicsSettingsStore.cs.meta\n?? Assets/Parasite/Scripts/UI/SettingsCycleControl.cs\n?? Assets/Parasite/Scripts/UI/SettingsCycleControl.cs.meta\n?? Assets/Parasite/Tests/EditMode/GraphicsSettingsDataTests.cs\n?? Assets/Parasite/Tests/EditMode/GraphicsSettingsDataTests.cs.meta\n?? Assets/Parasite/Tests/PlayMode/CityProbeBurstDiagnosticTests.cs\n?? Assets/Parasite/Tests/PlayMode/CityProbeBurstDiagnosticTests.cs.meta\n?? Assets/Parasite/Tests/PlayMode/CityProbeCollectionControlFixture.cs\n?? Assets/Parasite/Tests/PlayMode/CityProbeCollectionControlFixture.cs.meta\n?? Assets/Parasite/Tests/PlayMode/GraphicsSettingsRuntimeTests.cs\n?? Assets/Parasite/Tests/PlayMode/GraphicsSettingsRuntimeTests.cs.meta\n?? Docs/GRAPHICS_UPGRADE_PLAN.md\n?? Docs/verification/independent-graphics-settings-20261125.json"
+    },
+    "execution": {
+      "path": "Logs/full-story-candidate/graphics-player-validation/execution.json",
+      "bytes": 3301,
+      "sha256": "0897967202851a6d7ea40a9904eef5a65fc2889f8320902d67fb737e91bb0508"
+    },
+    "parent_exit_receipt": "Root validation session67882, tool chunk19477c returned exit_code0.",
+    "jobs": [
+      {
+        "name": "full-films",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-cinematicTestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/full-films/report.txt",
+          "-requireFullStoryFilms",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/full-films/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:08.251161+00:00",
+        "pid": 42799,
+        "exit_code": 0,
+        "elapsed_seconds": 8.24,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "fe4c83e24d71f949dc638a4d619d7c902476443f94d47732a63f891bbca49ee1",
+        "ring_warnings": 0,
+        "pngs": 7,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt",
+          "bytes": 2275,
+          "sha256": "fe4c83e24d71f949dc638a4d619d7c902476443f94d47732a63f891bbca49ee1"
+        },
+        "log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/full-films/player.log",
+          "bytes": 32384,
+          "sha256": "329d9c6617f7526e64bed63a86a2d33c3dfdb53ba3f9e8eb7b2ef07b141b23fa"
+        },
+        "raw_ring_warning_lines": 0,
+        "actual_media_pass_count": 8,
+        "actual_media_fail_count": 0,
+        "images": [
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.ContainmentOpening.png",
+            "bytes": 575256,
+            "sha256": "e0ce8a30b6be551d04e1e22c39168770b0f6d2a8572b9a152c8b8807e238999e"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeArrival.png",
+            "bytes": 1049090,
+            "sha256": "0ccfc5f8ea0f74237996d8ba79e61ce8f1b076c719ea20453d800dd27aadf32c"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeDominion.png",
+            "bytes": 2070772,
+            "sha256": "5af44775ed7bcd56c612134cb74d46ca2e647617dd08373b43feb93b93ca2c1e"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakeHold.png",
+            "bytes": 2132843,
+            "sha256": "3631be70f988963c11f6f69a2faaeeb577e3bd710395ec92a8b072a064e71c25"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakePeace.png",
+            "bytes": 2154908,
+            "sha256": "e617009cef2fd97cad40e3b9d38a453a3fef7fb0631f89e692d647b059b0ebc6"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.LakesideEnding.png",
+            "bytes": 523520,
+            "sha256": "bbce10ff47fb893b9e84738694c8ec380baae876cb11ae00c3ad751afe8d5fd5"
+          },
+          {
+            "path": "Logs/full-story-candidate/graphics-player-validation/full-films/report.txt.OpeningFull.png",
+            "bytes": 1264201,
+            "sha256": "51b76a3c94d0cff66ff829aaf136c8794f19ea3d1ff2590f3044bd47fe676d5b"
+          }
+        ]
+      },
+      {
+        "name": "shortcuts",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-shortcuttest",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/shortcuts/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/shortcuts/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:16.492873+00:00",
+        "pid": 42907,
+        "exit_code": 0,
+        "elapsed_seconds": 37.184,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "63971fdd0fd9b043d57be48123ee466d15f72097e9182ad3bdd51dabba59c563",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/shortcuts/report.txt",
+          "bytes": 1292,
+          "sha256": "63971fdd0fd9b043d57be48123ee466d15f72097e9182ad3bdd51dabba59c563"
+        },
+        "log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/shortcuts/player.log",
+          "bytes": 40120,
+          "sha256": "13706546f93ecf05bd03d57bf9aaa8cebafada00ffda930f2ef23ebadef7c76a"
+        },
+        "raw_ring_warning_lines": 0
+      },
+      {
+        "name": "water22",
+        "status": "exited",
+        "argv": [
+          "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T170047223995Z-63921b41/play.sh",
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-autotest",
+          "-autotestFilter",
+          "22",
+          "-autotestOut",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/water22/report.txt",
+          "-logFile",
+          "/home/mevlec/Data/Parasite/Logs/full-story-candidate/graphics-player-validation/water22/player.log"
+        ],
+        "started_utc": "2026-11-25T17:02:53.679499+00:00",
+        "pid": 43021,
+        "exit_code": 0,
+        "elapsed_seconds": 5.635,
+        "runtime_unchanged": true,
+        "expected_report": true,
+        "report_sha256": "133e91bd7b5065c2c57a70776341989812c340df5b0552a161814a5f79e0c262",
+        "ring_warnings": 0,
+        "pngs": 0,
+        "verified_pass": true,
+        "report": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/water22/report.txt",
+          "bytes": 258,
+          "sha256": "133e91bd7b5065c2c57a70776341989812c340df5b0552a161814a5f79e0c262"
+        },
+        "log": {
+          "path": "Logs/full-story-candidate/graphics-player-validation/water22/player.log",
+          "bytes": 33147,
+          "sha256": "cb406e7893850ce92889a961bcb5f2e59ffac4acc981c8ea18af6ff0bc2314cc"
+        },
+        "raw_ring_warning_lines": 0
+      }
+    ],
+    "scope": "Actual standalone RTX/Vulkan strictfull-five decoder/terminal-seek cleanup,14queuedshortcut cases and renderedwater22. Default isolated preferences; not native Custom-control cycling/persistence, frame-pacing measurements, physical input, allcampaign cases or a completed human playthrough.",
+    "interpretation": "These gates have zero native Graphics Ring Buffer warnings. The Editor combined-stress warning remains open; no new queue, allocator flag, quality reduction or log suppression was adopted from this contrast."
+  },
+  "serialized_probe_regeneration": {
+    "path": "Docs/verification/serialized-probe-regeneration-20261125.json",
+    "bytes": 15005,
+    "sha256": "0faacd694ffcef0d0b088fa6c75bc71efda3576ff777d3baab903dfea0e9e87c"
+  },
+  "source_hash_scope_after_native_update": "Existing source-file hashes pin the earlier Editor feature collection. Native build source identity is separately pinned by its runner-state/source-snapshot and runtime hash. Later gate-pilot integration is outside both snapshots."
+}

@@ -14,15 +14,19 @@ namespace Parasite.Tests
     /// <summary>Actual river/probe quality transitions and resource ownership, using the GPU when image proof is required.</summary>
     public class RiverReflectionQualityTests
     {
-        int oldPreset,oldPreference;
-        bool hadPreference,oldNativeFlag;
+        int oldPreference;
+        GraphicsSettingsData oldSettings;
+        string oldGraphicsPreference;
+        bool hadPreference,hadGraphicsPreference,oldNativeFlag;
         AfterlakeWater water;
         RiverReflectionCapture capture;
         [UnitySetUp]
         public IEnumerator LoadActualLowRiver()
         {
-            oldPreset=GraphicsPreset.Current;oldNativeFlag=QualitySettings.realtimeReflectionProbes;
+            oldSettings=GraphicsPreset.CaptureSettings();oldNativeFlag=QualitySettings.realtimeReflectionProbes;
             hadPreference=PlayerPrefs.HasKey("parasite.graphics");oldPreference=PlayerPrefs.GetInt("parasite.graphics",-1234);
+            hadGraphicsPreference=PlayerPrefs.HasKey(GraphicsSettingsStore.PreferenceKey);
+            oldGraphicsPreference=PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey,"");
             GraphicsPreset.Apply(0,save:false);
             yield return AutoTest.LoadCity();
             RunState.RecordLakesideOutcome(EndingOutcome.Peace);RunState.Flags.Add(MissionFlags.Escaped);
@@ -40,9 +44,11 @@ namespace Parasite.Tests
             if(water)Object.Destroy(water.gameObject);
             yield return null;yield return null;
             Time.timeScale=1;GameInput.Simulated=false;RunState.NewGame();SceneManager.LoadScene(GameManager.MenuScene);yield return null;
-            GraphicsPreset.Apply(oldPreset,save:false);QualitySettings.realtimeReflectionProbes=oldNativeFlag&&SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null;
+            GraphicsPreset.ApplySettings(oldSettings,save:false);QualitySettings.realtimeReflectionProbes=oldNativeFlag&&SystemInfo.graphicsDeviceType!=GraphicsDeviceType.Null;
             Assert.AreEqual(hadPreference,PlayerPrefs.HasKey("parasite.graphics"));
             Assert.AreEqual(oldPreference,PlayerPrefs.GetInt("parasite.graphics",-1234),"Functional checks must not save a different player preset.");
+            Assert.AreEqual(hadGraphicsPreference,PlayerPrefs.HasKey(GraphicsSettingsStore.PreferenceKey));
+            Assert.AreEqual(oldGraphicsPreference,PlayerPrefs.GetString(GraphicsSettingsStore.PreferenceKey,""));
         }
         static void NeedGpu()
         {
@@ -144,6 +150,36 @@ namespace Parasite.Tests
             yield return null;yield return null;Assert.IsFalse(complete,"Downgrade frees the completed owned texture.");
         }
         [UnityTest,Timeout(60000)]
+        public IEnumerator CustomLowBaselineCanPublishRealHighReflectionsAndDisableThemWithoutChangingPreset()
+        {
+            NeedGpu();Fallback();
+            var custom=GraphicsSettingsData.ForPreset(0);custom.reflectionLevel=3;
+            GraphicsPreset.ApplySettings(custom,save:false);
+            Assert.AreEqual(0,GraphicsPreset.Current);Assert.IsTrue(GraphicsPreset.IsCustom);
+            Assert.IsTrue(GraphicsPreset.RealtimeReflectionsEnabled);Assert.IsTrue(capture.HasPendingCapture);
+            yield return Ready();
+            var firstImage=capture.PublishedTexture;var previousDirector=World.CityDirector.Instance;
+            SceneManager.LoadScene(GameManager.CityScene);yield return null;
+            float reloadUntil=Time.realtimeSinceStartup+30;
+            while((!World.CityDirector.Instance||World.CityDirector.Instance==previousDirector||!World.CityDirector.Instance.Ready)&&Time.realtimeSinceStartup<reloadUntil)yield return null;
+            Assert.IsTrue(World.CityDirector.Instance&&World.CityDirector.Instance!=previousDirector&&World.CityDirector.Instance.Ready);
+            water=Object.FindFirstObjectByType<AfterlakeWater>();Assert.IsNotNull(water);capture=water.ReflectionCapture;
+            yield return null;yield return null;
+            Assert.IsFalse(firstImage,"A scene reload must retire its old owned publication.");
+            Assert.AreEqual(0,GraphicsPreset.Current);Assert.IsTrue(GraphicsPreset.IsCustom);
+            Assert.AreEqual(3,GraphicsPreset.CaptureSettings().reflectionLevel,"Scene loading must preserve the independent reflection request.");
+            yield return Ready();
+            var image=capture.PublishedTexture;int requests=capture.CaptureCount,epoch=capture.Epoch;
+            custom.reflectionLevel=2;GraphicsPreset.ApplySettings(custom,save:false);
+            yield return new WaitForSecondsRealtime(.3f);
+            Assert.AreEqual(requests,capture.CaptureCount);Assert.AreEqual(epoch,capture.Epoch);
+            Assert.AreSame(image,capture.PublishedTexture);Assert.IsTrue(water.ReflectionReady,capture.Status);
+            custom.reflectionLevel=1;GraphicsPreset.ApplySettings(custom,save:false);
+            Assert.AreEqual(0,GraphicsPreset.Current,"Custom reflection edits retain the Low baseline.");
+            Assert.IsFalse(QualitySettings.realtimeReflectionProbes);Fallback();
+            yield return null;yield return null;Assert.IsFalse(image,"The independent reflection setting must retire the actual completed cube.");
+        }
+        [UnityTest,Timeout(60000)]
         public IEnumerator PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes()
         {
             NeedGpu();GraphicsPreset.Apply(2,save:false);
@@ -197,6 +233,11 @@ namespace Parasite.Tests
             Assert.IsFalse(QualitySettings.realtimeReflectionProbes,"Null must suppress automatic city probes as well as explicit river requests.");
             Assert.AreEqual(0,capture.CaptureCount);Assert.IsFalse(capture.HasPendingCapture);Assert.IsNull(capture.PendingTarget);
             Assert.IsFalse(water.ReflectionReady);Assert.IsFalse(capture.Publisher.enabled);StringAssert.Contains("no graphics device",capture.Status);
+            var custom=GraphicsSettingsData.ForPreset(0);custom.reflectionLevel=3;
+            GraphicsPreset.ApplySettings(custom,save:false);yield return null;yield return null;
+            Assert.AreEqual(0,GraphicsPreset.Current);Assert.IsTrue(GraphicsPreset.IsCustom);
+            Assert.IsFalse(GraphicsPreset.RealtimeReflectionsEnabled);Assert.IsFalse(QualitySettings.realtimeReflectionProbes);
+            Assert.AreEqual(0,capture.CaptureCount);Assert.IsFalse(capture.HasPendingCapture);Assert.IsNull(capture.PendingTarget);
         }
     }
 }

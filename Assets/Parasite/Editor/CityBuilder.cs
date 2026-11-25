@@ -1172,7 +1172,7 @@ namespace Parasite.EditorTools
             var rp = go.AddComponent<ReflectionProbe>();
             rp.mode = ReflectionProbeMode.Realtime;
             rp.refreshMode = ReflectionProbeRefreshMode.OnAwake;
-            rp.timeSlicingMode = ReflectionProbeTimeSlicingMode.NoTimeSlicing;
+            rp.timeSlicingMode = ReflectionProbeTimeSlicingMode.IndividualFaces;
             rp.size = size;
             rp.boxProjection = box;
             rp.resolution = res > 0 ? res : box ? 128 : 256;

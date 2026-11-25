@@ -40,8 +40,8 @@ namespace Parasite.Missions
             publishedEpoch == epoch && publisher && publisher.enabled && published && publisher.customBakedTexture == published;
         public bool UsingFallback => !Ready;
         public string Status => (pending == null ? status : $"capturing epoch {pending.epoch}, request {pending.renderId}, {Time.realtimeSinceStartup-pending.started:0.00}s; sky/default fallback") +
-            $" | active={isActiveAndEnabled} disposed={disposed} preset={GraphicsPreset.Current} native={QualitySettings.realtimeReflectionProbes} device={SystemInfo.graphicsDeviceType} image={imageValidated} epoch={epoch}/{publishedEpoch} publisherExists={(bool)publisher} publisherEnabled={(publisher&&publisher.enabled)} textureExists={(bool)published} textureBound={(publisher&&published&&publisher.customBakedTexture==published)} captureCreatedBeforeRetire={sourceCreatedBeforeRetire} afterRetire={sourceCreatedAfterRetire}";
-        bool WantsCapture => GraphicsPreset.Current >= 2 && QualitySettings.realtimeReflectionProbes &&
+            $" | active={isActiveAndEnabled} disposed={disposed} preset={GraphicsPreset.DisplayName} native={QualitySettings.realtimeReflectionProbes} device={SystemInfo.graphicsDeviceType} image={imageValidated} epoch={epoch}/{publishedEpoch} publisherExists={(bool)publisher} publisherEnabled={(publisher&&publisher.enabled)} textureExists={(bool)published} textureBound={(publisher&&published&&publisher.customBakedTexture==published)} captureCreatedBeforeRetire={sourceCreatedBeforeRetire} afterRetire={sourceCreatedAfterRetire}";
+        bool WantsCapture => GraphicsPreset.RealtimeReflectionsEnabled && QualitySettings.realtimeReflectionProbes &&
             SystemInfo.graphicsDeviceType != GraphicsDeviceType.Null;
 
         public void Configure(Vector3 localOrigin)
