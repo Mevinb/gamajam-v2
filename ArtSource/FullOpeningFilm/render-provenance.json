@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "kind": "complete-rendered-opening-source-evidence",
+  "frame_count": 1920,
+  "first_frame": 1,
+  "last_frame": 1920,
+  "raw_png_total_bytes": 4064078605,
+  "render_evidence_sha256": "92f6b8b2c5d86953f0d92de2b7c1695033f5a317b721ce1acc446b05f346d9f7",
+  "render_provenance_sha256": "f57a6daa2a348016f71db9ce5878e7bb53582d24f6aa77025ca4df5c3e976d75",
+  "source": "ArtSource/FullCinematics/Opening/OpeningFull.blend",
+  "provenance": {
+    "schema": 2,
+    "source_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+    "scene": "Scene",
+    "view_layer": "ViewLayer",
+    "driver_sha256": "f68d774f25de63d96c08987b43573d9e6972fa14e276d1dbae397b794ec2bcd5",
+    "policy_sha256": "0a8d31b348ef7e9d1507d34867248d93163c2d564fe47a7ee44bb858be1e6bfd",
+    "blender": {
+      "version": [
+        4,
+        5,
+        16
+      ],
+      "version_string": "4.5.16 LTS",
+      "build_hash": "3f6797307da5"
+    },
+    "engine": "CYCLES",
+    "backend": "OPTIX",
+    "devices": [
+      {
+        "name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+        "type": "OPTIX",
+        "id": "CUDA_NVIDIA GeForce RTX 4050 Laptop GPU_0000:01:00_OptiX"
+      }
+    ],
+    "device_mode": "GPU",
+    "scene_frame_range": [
+      1,
+      1920
+    ],
+    "camera_schedule": [
+      {
+        "frame": 1,
+        "marker": "01-rhythm",
+        "camera": "Camera 01-rhythm"
+      },
+      {
+        "frame": 121,
+        "marker": "02-petrov",
+        "camera": "Camera 02-petrov"
+      },
+      {
+        "frame": 289,
+        "marker": "03-recognition",
+        "camera": "Camera 03-recognition"
+      },
+      {
+        "frame": 457,
+        "marker": "04-disagreement",
+        "camera": "Camera 04-disagreement"
+      },
+      {
+        "frame": 625,
+        "marker": "05-two-bodies",
+        "camera": "Camera 05-two-bodies"
+      },
+      {
+        "frame": 817,
+        "marker": "06-contact",
+        "camera": "Camera 06-contact"
+      },
+      {
+        "frame": 1033,
+        "marker": "07-restraint",
+        "camera": "Camera 07-restraint"
+      },
+      {
+        "frame": 1225,
+        "marker": "08-interlock",
+        "camera": "Camera 08-interlock"
+      },
+      {
+        "frame": 1417,
+        "marker": "09-conduit",
+        "camera": "Camera 09-conduit"
+      },
+      {
+        "frame": 1609,
+        "marker": "10-outside",
+        "camera": "Camera 10-outside"
+      },
+      {
+        "frame": 1801,
+        "marker": "11-next-beat",
+        "camera": "Camera 11-next-beat"
+      }
+    ],
+    "sampling": {
+      "samples": 48,
+      "use_adaptive_sampling": true,
+      "adaptive_threshold": 0.03999999910593033,
+      "adaptive_min_samples": 0,
+      "use_denoising": true,
+      "denoiser": "OPENIMAGEDENOISE",
+      "denoising_use_gpu": true,
+      "denoising_input_passes": "RGB_ALBEDO_NORMAL",
+      "denoising_prefilter": "ACCURATE",
+      "denoising_quality": "HIGH",
+      "seed": 0,
+      "use_animated_seed": false,
+      "sample_offset": 0,
+      "max_bounces": 12,
+      "diffuse_bounces": 4,
+      "glossy_bounces": 4,
+      "transmission_bounces": 12,
+      "volume_bounces": 0,
+      "transparent_max_bounces": 12,
+      "sample_clamp_direct": 0.0,
+      "sample_clamp_indirect": 10.0,
+      "light_sampling_threshold": 0.009999999776482582,
+      "use_light_tree": true,
+      "use_fast_gi": false,
+      "use_guiding": false,
+      "volume_step_rate": 1.0,
+      "volume_max_steps": 1024,
+      "rolling_shutter_type": "NONE",
+      "rolling_shutter_duration": 0.10000000149011612
+    },
+    "render": {
+      "fps": 24,
+      "fps_base": 1.0,
+      "resolution_x": 1920,
+      "resolution_y": 1080,
+      "resolution_percentage": 100,
+      "threads_mode": "FIXED",
+      "threads": 2,
+      "use_motion_blur": false,
+      "motion_blur_shutter": 0.5,
+      "use_persistent_data": true,
+      "image": {
+        "file_format": "PNG",
+        "color_mode": "RGB",
+        "color_depth": "8",
+        "compression": 15,
+        "color_management": "FOLLOW_SCENE"
+      }
+    },
+    "color": {
+      "view_transform": "AgX",
+      "look": "None",
+      "exposure": 0.0,
+      "gamma": 1.0,
+      "use_curve_mapping": false,
+      "display_device": "sRGB"
+    }
+  },
+  "frame_hash_file": "source-frame-hashes.csv",
+  "frame_hash_file_sha256": "5d2d35487238bbbb2094085e9dd3e7e1f811cdd181eb4a8c7b1169e1fbf75ec5",
+  "scope": "Every production PNG SHA256, byte count, PNG structure and packed-camera binding passed the real1920-frame gate; raw frames remain ignored render outputs. Movie encoding, publication and runtime presentation have separate evidence."
+}

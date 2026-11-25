@@ -9,7 +9,7 @@ or binary. Historical passing runs do not verify a newer player.
 
 - Linux/URP remains the target chosen by the user. Blender uses RTX/OptiX offline path tracing; the game's screen-space
   reflections and probes are separate features. Do not describe the Linux player as hardware ray traced.
-- Source through `ee0ff58` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
+- Source through `90bc520` is pushed to `origin/main` as Mevinb. The live source contains M18–M20, eight island voices, the
   Blender quarantine-wall kit, camera/reflection corrections and scoped native movie retirement. The physical rescue test
   walker's bounded NPC sidestep and focused regression are the remaining source changes beyond that commit.
 - `Tools/compile_check.sh all` passes 144 runtime / 23 editor / 144 Linux Mono sources. All 122 EditMode rules pass.
@@ -28,9 +28,11 @@ or binary. Historical passing runs do not verify a newer player.
   The final rebuilt player must rerun 24. Exact source/artifact scopes are in
   [the physical-walker proof](verification/island-walker-20261125.json). Headless runs do not prove graphics or physical input.
 - All 2,760 planned RTX frames are rendered: four lake sequences (840 frames) and the 80-second opening (1,920 frames),
-  at 1920×1080, 24 fps, 48 samples, OptiX and GPU OIDN. Every production job exits 0. The opening still needs final source/frame
-  provenance verification, visual review, encoding, publication and actual Unity/player story verification. A completed render
-  alone does not mean the movie is shipped. Four full lake films are already published and verified separately.
+  at 1920×1080, 24 fps, 48 samples, OptiX and GPU OIDN. Every production job exits 0. All five films pass exact source/frame
+  provenance and complete FFmpeg decoding and are published in live Resources. The opening is 79,993,655 bytes, silent VP8,
+  SHA-256 `e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27`.
+  Actual Unity story/audio/skip/handoff verification is running; built-player verification remains required.
+  [Portable opening evidence](../ArtSource/FullOpeningFilm/README.md) and tracked publishing tools retain the production.
 
 ## User playtest build retained
 
@@ -79,7 +81,7 @@ The retained 0.4.2 archive is an earlier release containing two short film inser
 
 ## Remaining release work
 
-1. Finish and review the full opening asset, then verify its actual decoder, all eleven story beats, first-image/audio timing,
+1. Verify the published full opening's actual decoder, all eleven story beats, first-image/audio timing,
    skip/debounce, explicit lake choice and clean restoration of gameplay/camera/audio state.
 2. Run native 24 with the corrected exposure fixture and the complete final-player campaign, settings/media and queued-shortcut
    regressions after final asset integration. Case 22 requires normal rendered Vulkan. Preserve real process exits and hashes.

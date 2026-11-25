@@ -46,8 +46,8 @@ checks; the rendered Vulkan standalone water case passes. Eight island voice cli
 checks. See [HANDOFF.md](HANDOFF.md) and the portable proofs it links for exact artifacts and limits.
 
 All 2,760 RTX/OptiX frames have completed, including the full 80-second opening and all four lake sequences at 1080p24.
-Four full lake films are already published. The opening is not yet a shipped verified asset: frame/source provenance, visual review,
-encoding, publication and Unity/player story gates must finish first. The scoped native movie lifetime fix passes default stress
+All five films are now published in live Resources after exact frame/source provenance, visual sample review, encoding and
+complete FFmpeg decode. Actual Unity story gates are running; final-player verification remains required. The scoped native movie lifetime fix passes default stress
 and actual pending-seek quit codes 0 and 1; OS/window-close pending-media routing remains separate.
 
 The immutable `Builds/Linux` 0.5.0 preview was built and launched for the user, then exited normally. It contains M18 and the

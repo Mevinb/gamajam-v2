@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "film": "OpeningFull",
+  "publication_state": "published_for_runtime_validation",
+  "runtime_file": "Assets/Parasite/Resources/Cinematics/FullStory/OpeningFull.webm",
+  "movie": {
+    "name": "OpeningFull",
+    "resource": "Cinematics/FullStory/OpeningFull",
+    "filename": "OpeningFull.webm",
+    "sha256": "e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27",
+    "bytes": 79993655,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "frames": 1920,
+    "seconds": 80.0,
+    "audio_tracks": 0,
+    "codec": "vp8",
+    "full_stream_decode": "PASS"
+  },
+  "editable_source": "ArtSource/FullCinematics/Opening/OpeningFull.blend",
+  "source_blend_sha256": "23af37e4b53dd56b1ad36571d8a8b88c81de990a33c9dfff5dc4247810f8aba8",
+  "render_provenance_file": "render-provenance.json",
+  "render_provenance_file_sha256": "5cff7cb8e64fa72c18a9d976b47b39931e329e5d5548638af486c54b41e25379",
+  "render_provenance_sha256": "f57a6daa2a348016f71db9ce5878e7bb53582d24f6aa77025ca4df5c3e976d75",
+  "raw_frame_records_sha256": "d5562673cb4b51b50b089c1d1f6a133bf524c447ad31330d0862f9d87dcceab2",
+  "source_frame_hashes": "source-frame-hashes.csv",
+  "source_frame_hashes_sha256": "5d2d35487238bbbb2094085e9dd3e7e1f811cdd181eb4a8c7b1169e1fbf75ec5",
+  "full_1920_frame_gate": "PASS",
+  "full_ffmpeg_decode": "PASS",
+  "encode_report_sha256": "045d5bb6280f22c756fd3ebe2fa96a7049e599b86940dc595084f513a402ba01",
+  "encoder_script_sha256": "eb550afd911e743d63ac5464a5a4dad5b1f3153023c5a35815be57f70ef99b7c",
+  "stream_validator_script_sha256": "4bc9e6abda9be6c704abc44e26637b42f842b2660e9f3647c576f2460a3a5ae7",
+  "ffmpeg": "ffmpeg version 8.0.1-3ubuntu2+esm5 Copyright (c) 2000-2025 the FFmpeg developers",
+  "review": {
+    "contact_sheet": "opening-11shot-contact.jpg",
+    "contact_sheet_sha256": "ab6e32264f1806348d3adbbc8067ad5e14433b835ca53f79e12a568e13fb4b7e",
+    "samples": "review-samples.json",
+    "scope": "Eleven actual production midpoints reviewed; contact/collapse34\u201342s reviewed in seven actual production frames. No definite torso interpenetration observed; hidden boot/vessel contact not proven from images."
+  },
+  "runtime_verification": {
+    "status": "PENDING",
+    "required": [
+      "Actual Unity imported metadata/decode",
+      "Normal-speed80s presentation with live voice and natural gameplay handoff",
+      "Keyboard release-aware skip/cleanup",
+      "Strict full5 native initial-image/seek/retirement acceptance"
+    ]
+  },
+  "limits": [
+    "Encoded footage is silent; captions, narration and music come from the running game.",
+    "OptiX Blender path tracing is offline RTX use; the Linux URP game remains a separate real-time shader renderer.",
+    "Full source-frame and ffmpeg decode checks do not by themselves prove normal80s Unity presentation or human playtesting."
+  ],
+  "publication": {
+    "group": "full",
+    "bundle_sha256": "3383b890cd55bfb1f1d07e0f37c2d04e07c5ce94ce7899543c771cd7f769f946",
+    "atomic_publication_receipt_sha256": "ce58c024ac25eca5f2c0f2f55c2af6ce9aaf8cd5d6574dc24e94f3c074a78de6",
+    "installed_movie_sha256": "e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27",
+    "scope": "Root published all five passed movie encodes atomically; actual imported Unity/runtime presentation remains a separate gate."
+  }
+}

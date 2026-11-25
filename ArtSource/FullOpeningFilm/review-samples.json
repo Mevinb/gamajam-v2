@@ -1,0 +1,93 @@
+{
+  "scope": "Derived contact sheet of real production frame midpoints; no synthetic imagery; full-resolution raw frames retained",
+  "samples": [
+    {
+      "shot": "01-rhythm",
+      "frame": 61,
+      "seconds": 2.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000061.png",
+      "sha256": "98742fbb0282d6c3e6c4781617b0e4d8a99f50f296a7dae3c3750f5f2fb55817",
+      "beat": "A living specimen answers a four-tap rhythm behind real glass."
+    },
+    {
+      "shot": "02-petrov",
+      "frame": 205,
+      "seconds": 8.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000205.png",
+      "sha256": "0889cbcbf622427313bc70ccd49a12934bbab9a925a5dde2a77091406d0e8514",
+      "beat": "Petrov approaches and physically taps the vessel four times."
+    },
+    {
+      "shot": "03-recognition",
+      "frame": 373,
+      "seconds": 15.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000373.png",
+      "sha256": "ab2b5d7e4b9f21f5f563a865c06767194abee6a007df54895218600327e104fc",
+      "beat": "The specimen repeats the rhythm; Petrov recognizes the response."
+    },
+    {
+      "shot": "04-disagreement",
+      "frame": 541,
+      "seconds": 22.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000541.png",
+      "sha256": "15427384ae8a01b461e117aabf649a2ee3c4266ae1ec073b0da5cb24face38dc",
+      "beat": "Vale dismisses the response; Petrov turns to challenge him."
+    },
+    {
+      "shot": "05-two-bodies",
+      "frame": 721,
+      "seconds": 30.0,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000721.png",
+      "sha256": "13de0369b09315d084f16a4d932710a82026037aeba26158bc05ff33cec009c3",
+      "beat": "One culture pinches into two synchronized, independently moving bodies."
+    },
+    {
+      "shot": "06-contact",
+      "frame": 925,
+      "seconds": 38.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-000925.png",
+      "sha256": "a18b77b538d8918fdde6c66d3568bb9679283d631c863684194c7f6517e7e48e",
+      "beat": "A living filament touches the worker wrist; he recoils and collapses while Petrov intervenes."
+    },
+    {
+      "shot": "07-restraint",
+      "frame": 1129,
+      "seconds": 47.0,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-001129.png",
+      "sha256": "2f6fc3700716ffeee59597f78ca08d5fbb9904d51b6dba1a01cef47cb15e1e65",
+      "beat": "Mechanical restraint closes; Petrov returns to the familiar rhythm."
+    },
+    {
+      "shot": "08-interlock",
+      "frame": 1321,
+      "seconds": 55.0,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-001321.png",
+      "sha256": "349b96e4fe11875c66379a998776e96b4ff27057b6e158cc5378b0c7588b8a4a",
+      "beat": "Vale secretly releases a physical interlock; the hatch opens and the culture finds a floor drain."
+    },
+    {
+      "shot": "09-conduit",
+      "frame": 1513,
+      "seconds": 63.0,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-001513.png",
+      "sha256": "6d2bb7c0866f317d6492b8b9c8603a3819b3380897902e4b1bda8aaa0483b79c",
+      "beat": "The culture crawls through a lit corrugated service duct, leaving a wet trace."
+    },
+    {
+      "shot": "10-outside",
+      "frame": 1705,
+      "seconds": 71.0,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-001705.png",
+      "sha256": "155eab3ef765d23267b81e04e159990385175fe797574dfb9361022f7da15c64",
+      "beat": "The creature squeezes through a real street grate into a wet, inhabited city alley."
+    },
+    {
+      "shot": "11-next-beat",
+      "frame": 1861,
+      "seconds": 77.5,
+      "source": "Logs/full-cinematic-renders/full-production-20261125T003711Z/OpeningFull/frame-001861.png",
+      "sha256": "ac1822d8c684c2246e9aaae8046db16f747809704f640f5193dd014f7b939f5c",
+      "beat": "Ordinary people pass beyond the alley as the creature chooses its next movement; gameplay receives control afterward."
+    }
+  ]
+}

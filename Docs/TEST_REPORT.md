@@ -1,3 +1,14 @@
+# Complete RTX opening production — 25 November 2026
+
+All 1,920 opening frames pass exact source, camera, byte/hash and PNG integrity checks. The complete 80-second silent VP8
+stream is 1920×1080 at 24 fps, 79,993,655 bytes, SHA-256 `e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27`.
+All five films pass complete FFmpeg decode and were atomically published to Resources. The new tracked publishing pipeline
+passes nine CPU tests; its render supervisor defaults to a read-only dry run. Frozen production inputs remain unchanged.
+[Portable production evidence](../ArtSource/FullOpeningFilm/README.md) pins every frame and the actual renderer profile.
+Unity continuous playback/story/audio/skip tests are running; this production result does not claim a player or human test.
+
+---
+
 # Physical rescue walker and exposure fixture — 25 November 2026
 
 The focused delivered-Morgan test first establishes a real stationary capsule blockage, then completes a full-body-clear

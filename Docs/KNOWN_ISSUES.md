@@ -9,9 +9,9 @@ The full realism/expansion request is active. See [UPGRADE_TRACKER.md](UPGRADE_T
 - The immutable `Builds/Linux` 0.5.0 preview was launched for the user and exited normally. It contains M18, four full lake films
   and the earlier island presentation. It does not contain M19/M20, eight island voices or the subsequent source fixes. Do not
   relabel it as the latest private candidate or a final release. The retained 0.4.2 archive is older and has two short film inserts.
-- All 1,920 frames of the new 80-second opening and all 840 lake frames have rendered at 1080p24. Four lake films are published;
-  the opening still needs final provenance/visual/encode/publication and actual Unity/player story verification. Render completion
-  alone does not establish that it is bundled or plays correctly.
+- All 1,920 opening frames and all 840 lake frames pass source/frame provenance, visual sample review and complete FFmpeg decode.
+  All five silent 1080p24 films are published in live Resources. Actual Unity story verification is running; the final player
+  still needs its movie and story checks. See [opening production evidence](../ArtSource/FullOpeningFilm/README.md).
 - The preview's strict movie tests decoded the footage but hung during native cleanup. The newer scoped lifetime fix passes
   rendered, batch and untraced default terminal-seek stress with normal native exit 0. Actual pending-seek Quit(0)/Quit(1) probes
   also pass after real acknowledgement and zero owned/pending/quarantined resources, preserving requested native codes. These
