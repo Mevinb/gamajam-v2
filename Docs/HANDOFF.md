@@ -6,6 +6,16 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- **Both exact0.6.1 native continuous branches pass independently:** Native90 proof below and Native91 root89789/native0/
+  supervisor0/chunk7cd985, case529.5s/elapsed536.556s. Exact PASS91/SUMMARY1/1/Null/nice10, no cancellation and all seven
+  final integrity checks pass. The one leased Northline Prepare Editor ended normally. Both native processes are gone;
+  the immutable overlap lease is complete, so the next serialized worktree Editor is permitted. [Dominion proof](verification/0.6.1-native-dominion-20261126.json).
+  No full27/GPU/media/settings/performance/human claim. No0.6.1result transfers to26-source.
+- **Worktree imported-data verification now active:** root99364 via `northline_verify_20261126a`, Null/two job workers/
+  nice15/idle I/O and its own validation-user directories,600s timeout. Target
+  `/home/mevlec/.local/share/parasite-work/northline/Logs/northline-import-20261126a.json`. Do not launch a second Editor or
+  change that checkout's C# until this actual job is terminal. Preparation already passed; this is the actual data gate.
+  Base-Logs0.6.1 docs overlay is being prepared separately; no archive or extraction has run.
 - **Isolated Northline preparation is terminal0:** root39401/Editor106526/chunk72c504. All eleven FBXs copied/imported
   into that checkout's owned Resources namespace and shared material prepared; root independently matches all eleven
   source/export byte hashes. Status is explicitly PREPARED_IMPORT_VERIFICATION_PENDING, not a mesh/physics/visual pass.

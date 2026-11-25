@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "status": "EXACT_0_6_1_NATIVE_CONTINUOUS_DOMINION_23_PASS",
+  "recordedUtc": "2026-11-25T22:54:45.574489+00:00",
+  "terminal": {
+    "rootSession": 89789,
+    "chunk": "7cd985",
+    "supervisorExit": 0,
+    "nativeExit": 0,
+    "elapsedSeconds": 536.556,
+    "exactSelectedPass": true,
+    "summary": [
+      [
+        "1",
+        "1"
+      ]
+    ],
+    "nullMarker": true,
+    "watchdogOrCancel": false,
+    "signalEvents": [],
+    "ownedStopRequests": [
+      {
+        "signal": 15,
+        "label": "TERM",
+        "owned_pid": 111852,
+        "owned_pgid": 111852,
+        "checked_utc": "2026-11-25T22:53:37.417710+00:00",
+        "native_exit_before_request": 0,
+        "outcome": "already_exited_no_signal"
+      }
+    ]
+  },
+  "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T222359513713Z-2389d119",
+  "runtimeSha256": "13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f",
+  "buildInfoSha256": "fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b",
+  "sourceContract": {
+    "build_source_snapshot": "/home/mevlec/Data/Parasite/Logs/full-story-candidate/build-runs/20261125T222359513713Z-2389d119/source-snapshot-before.json",
+    "build_source_sha256": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b",
+    "scope": "This reviewed fresh candidate contains its pinned continuity/filter/driver source. Current live source must remain exactly that build snapshot."
+  },
+  "beforeChecks": {
+    "current_source_matches_rebuilt_binary": true,
+    "build_snapshot_json_unchanged": true,
+    "retained_preview_matches_build": true,
+    "user_preview_matches_build": true,
+    "candidate_matches_build": true,
+    "runtime_unchanged": true,
+    "build_info_unchanged": true
+  },
+  "afterChecks": {
+    "current_source_matches_rebuilt_binary": true,
+    "build_snapshot_json_unchanged": true,
+    "retained_preview_matches_build": true,
+    "user_preview_matches_build": true,
+    "candidate_matches_build": true,
+    "runtime_unchanged": true,
+    "build_info_unchanged": true
+  },
+  "postIntegrityPass": true,
+  "files": [
+    {
+      "path": "Logs/native-shore-061-91-overlap/execution.json",
+      "bytes": 12942,
+      "sha256": "bce71061cf39aa85c6e782ca876f1dcc7ebf3fa3960fce628aa0d2a469352224"
+    },
+    {
+      "path": "Logs/native-shore-061-91-overlap/player.log",
+      "bytes": 35369,
+      "sha256": "0fe74ab0769b2ad0a93758acd8d743ee7b7a20c8be809dbe967720dc660f02a4"
+    },
+    {
+      "path": "Logs/native-shore-061-91-overlap/report.txt",
+      "bytes": 332,
+      "sha256": "a519452d46fd0f20e71f58b2b4f38cbc4f36cd3cc3dd4562b0f10c7b0be529d4"
+    },
+    {
+      "path": "Logs/native-shore-061-91-overlap/source-before.json",
+      "bytes": 610240,
+      "sha256": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b"
+    },
+    {
+      "path": "Logs/native-shore-061-91-overlap/source-after.json",
+      "bytes": 610240,
+      "sha256": "dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b"
+    },
+    {
+      "path": "Logs/native-shore-continuity-stage/observed-northline-prepare-20261126a.json",
+      "bytes": 3447,
+      "sha256": "0885b971a52986446619603c99b9d90e142b0d47cf1352b654dfa0643575fc5c"
+    }
+  ],
+  "report": "PARASITE autotest \u2014 2026-11-26 04:14:42 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  91 Continuous 23 missions: Service Tunnel Dominion through all three earned chapter continuations  (529.5s)  The same campaign reaches its implemented twenty-three-mission summary through three real Continue buttons.\nSUMMARY: 1/1 passed\n",
+  "editorOverlap": {
+    "policy_path": "/home/mevlec/Data/Parasite/Logs/native-shore-continuity-stage/observed-northline-prepare-20261126a.json",
+    "policy_sha256": "0885b971a52986446619603c99b9d90e142b0d47cf1352b654dfa0643575fc5c",
+    "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+    "git": {
+      "branch": "codex/northline-runtime",
+      "head": "623c47af54363ea841ab1d2958a23c17353704db",
+      "common_dir": "/home/mevlec/Data/Parasite/.git"
+    },
+    "worktree_identity": {
+      "device": 66307,
+      "inode": 800488
+    },
+    "provenance": [
+      {
+        "path": "/home/mevlec/Data/Parasite/Logs/rail-chapter-stage/feature.patch",
+        "sha256": "e97aa855aa6b123b5e66e940ec23b3c941409725323c147410c30d12b4b0ef80"
+      },
+      {
+        "path": "/home/mevlec/Data/Parasite/Logs/rail-art-binding-stage/art-feature.patch",
+        "sha256": "0797332b40097cd5efac23e7c54956ad356da316299deb8632893afb9ae691c3"
+      },
+      {
+        "path": "/home/mevlec/Data/Parasite/Logs/rail-native-stage-20261126/feature.patch",
+        "sha256": "98fede05a4725d2a25f4eca98561370f6c1717e844e6966678bed1f207b4e4e4"
+      }
+    ],
+    "unity_lock_identity": {
+      "device": 48,
+      "inode": 1045
+    },
+    "currently_live_leased_pids": [],
+    "allowed_editor_observations": [
+      {
+        "role": "primary",
+        "identity": {
+          "pid": 106526,
+          "uid": 1000,
+          "start_ticks": 2538693,
+          "ppid": 106459,
+          "nice": 15,
+          "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+          "exe": "/home/mevlec/Data/Unity/Editor/6000.3.29f1/Editor/Unity",
+          "cwd": "/home/mevlec/.local/share/parasite-work/northline",
+          "argv": [
+            "/home/mevlec/Data/Unity/Editor/6000.3.29f1/Editor/Unity",
+            "-batchmode",
+            "-projectPath",
+            "/home/mevlec/.local/share/parasite-work/northline",
+            "-logFile",
+            "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_prepare_20261126a.log",
+            "-nographics",
+            "-job-worker-count",
+            "2",
+            "-executeMethod",
+            "Parasite.EditorTools.RailArtImporter.PrepareBatch",
+            "-northlineArtSource",
+            "/home/mevlec/.local/share/parasite-work/northline/ArtSource/NorthlineRail",
+            "-northlineArtPrepareOut",
+            "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-prepare-20261126a.json"
+          ],
+          "environment": {
+            "XDG_DATA_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/validation-user/data",
+            "XDG_CONFIG_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/validation-user/config",
+            "TMPDIR": "/home/mevlec/.local/share/parasite-work/northline/Logs/validation-user/tmp",
+            "XDG_CACHE_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/validation-user/cache"
+          }
+        },
+        "first_seen_utc": "2026-11-25T22:44:34.262128+00:00",
+        "action": {
+          "kind": "executeMethod",
+          "name": "Parasite.EditorTools.RailArtImporter.PrepareBatch",
+          "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_prepare_20261126a.log"
+        },
+        "io_priority": "idle",
+        "last_seen_utc": "2026-11-25T22:50:49.088134+00:00"
+      }
+    ],
+    "scope": "Only exact root-observed Null worktree Editor/worker leases. Unseen/replacement processes fail closed. Base0.6.1 native proof does not validate Northline source."
+  },
+  "mutableWorktreeSourceBefore": {
+    "path": "/home/mevlec/Data/Parasite/Logs/native-shore-061-91-overlap/northline-source-before.json",
+    "sha256": "c71a41afcad976574c2b4e50051a2ae933d617bf6a6def1ac7dc76316885afcb",
+    "files": 3392,
+    "git": {
+      "branch": "codex/northline-runtime",
+      "head": "623c47af54363ea841ab1d2958a23c17353704db",
+      "common_dir": "/home/mevlec/Data/Parasite/.git"
+    },
+    "scope": "Observed mutable isolated worktree source; Prepare may create authored import assets. No equality/pass transfer to base0.6.1 candidate."
+  },
+  "mutableWorktreeSourceAfter": {
+    "path": "/home/mevlec/Data/Parasite/Logs/native-shore-061-91-overlap/northline-source-after.json",
+    "sha256": "191e56d69489f539bf2316757e6e2d6133419dff39cc8b5de2385729165e41fa",
+    "files": 3417,
+    "git": {
+      "branch": "codex/northline-runtime",
+      "head": "623c47af54363ea841ab1d2958a23c17353704db",
+      "common_dir": "/home/mevlec/Data/Parasite/.git"
+    },
+    "scope": "Observed mutable isolated worktree source; Prepare may create authored import assets. No equality/pass transfer to base0.6.1 candidate."
+  },
+  "limits": [
+    "Native91 ServiceTunnel/Dominion only; paired90 independently passed on the same binary in its separate named run. Not one combined/default27-suite invocation.",
+    "Existing within-chapter role force, body placement, Calm, checkpoint and timeScale fixtures remain; no human/fixture-free stealth/GPU/performance proof.",
+    "One exact observed nice15/idle/Null Northline Prepare Editor overlapped this nice10 run; no performance measurement is claimed. That invocation ended before native finalization.",
+    "All seven base source/candidate/protected-preview checks pass; mutable isolated26-source snapshots are observations, not equality/acceptance claims.",
+    "No Northline physical/import verification result is inferred from this older0.6.1binary."
+  ]
+}
