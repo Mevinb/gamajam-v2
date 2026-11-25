@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "status": "ARCHIVE_AND_ISOLATED_EXTRACTED_BASIC_NATIVE_PASS",
+  "recorded_utc": "2026-11-25T19:35:46.209536+00:00",
+  "archive": {
+    "path": "Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz",
+    "bytes": 615809169,
+    "sha256": "4a5252f915eebdad78aef2584ffe119581bb50258b8c0a517d880a9063e07b31"
+  },
+  "receipt": {
+    "path": "Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz.receipt.json",
+    "bytes": 2198,
+    "sha256": "09a032e3beff2a5162acd4ad09e9821bc467f64e36ec9856635b0383004a89cb"
+  },
+  "manifest": {
+    "path": "Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz.manifest.json",
+    "bytes": 115284,
+    "sha256": "f2758e55824a91ffd7e4ce77f9d2f0bea0071253193938e0d09d153e7fc24ccf"
+  },
+  "candidate_unchanged": true,
+  "docs_overlay_unchanged": true,
+  "verified_local_doc_links": 32,
+  "root_archive_receipt": {
+    "session_id": 23529,
+    "chunk_id": "c3ccd5",
+    "exit_code": 0
+  },
+  "extracted_verification": {
+    "status": "passed",
+    "state": "Logs/extracted-candidate-basic/20261125T193351004552Z-33165d7b/execution.json",
+    "state_sha256": "15ab7952eaf25fc4fe17dce028f1222893039f0713689efe01922942e36b643c",
+    "agent_session_id": 67252,
+    "root_receipt_chunk": "6081e8",
+    "native_exit_code": 0,
+    "supervisor_exit_code": 0,
+    "selected_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05"
+    ],
+    "passed": 5,
+    "backend": "Null",
+    "extracted_files": 190,
+    "extracted_directories": 16,
+    "all_file_hashes_and_modes_match": true,
+    "before_after_manifest_sha256": "1db55527c5a28453c4b4aa25c5de0983ae86614ab6ff3abaf5b394631d5b696f",
+    "runtime_sha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b",
+    "cleanup": {
+      "removed": "/home/mevlec/Data/Parasite/Logs/extracted-candidate-basic/20261125T193351004552Z-33165d7b/owned-extract-nh1g7ym1",
+      "identity_verified": true,
+      "child_terminal": true,
+      "exists_after": false
+    },
+    "scope": "Fresh isolated extracted runtime, five basic simulated-input logic scenarios; no native graphics, physical-input, complete-suite or human claim."
+  },
+  "limits": [
+    "Read-only archive integrity and four selected candidate-native logic cases do not establish rendered appearance, physical input, full suite or human playthrough.",
+    "Existing user0.5.1playtest remains a separate running20-mission artifact."
+  ]
+}

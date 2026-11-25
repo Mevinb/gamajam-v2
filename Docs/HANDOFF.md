@@ -6,6 +6,12 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- Portable **0.6.0 preview archive**: `Builds/Releases/PARASITE-0.6.0-preview-Linux.tar.gz`, 615,809,169 bytes,
+  SHA256 `4a5252f915eebdad78aef2584ffe119581bb50258b8c0a517d880a9063e07b31`. Read-only packaging checks pass with
+  candidate/overlay unchanged and32local links. Fresh isolated extraction verifies all190files/16directories and then passes
+  native01–05 **5/5, exit0** on Null. Its owned temporary extraction was removed after terminal; archive, candidate and all
+  logs/manifests remain. [Package proof](verification/0.6.0-package-20261126.json). Do not infer RTX visuals/performance or
+  all27coverage. The existing0.5.1user playtest remains separately open; no new rendered player was launched.
 - New private **0.6.0-preview** candidate: `Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c`, source `aa9ec70`,
   1,118 MB, zero build errors/warnings, native build exit0, actual Null backend. Source, immutable `Builds/Linux` and the
   entire existing rendered user-preview tree remain unchanged. Runtime SHA begins `0435dd5e`; see
