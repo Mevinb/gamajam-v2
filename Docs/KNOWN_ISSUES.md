@@ -18,7 +18,8 @@ all bugs are fixed or every new cinematic has been verified in the final player.
 - Corrected M19/M20 runtime is applied beyond the preview. Its first Peace rescue fixture timed out on a physical movement leg;
   a later diagnostic reached two boarded passengers, then recorded a sustained collision with Morgan at the gangway. It exited
   natively without XML. A stricter berth-arrival/off-aisle parking correction now passes the actual gangway round trip and
-  both outer-slot cases (3/3). Remaining motion/custody/capture/recovery checks and a completed full run are required.
+  both outer-slot cases (3/3). The full Peace branch now passes 1/1 with checkpoint/assembly/departure checks and clean exit.
+  Dominion, remaining custody/capture/recovery cases and rebuilt-player checks are still required.
 - The reflection diagnostic proves native probe capture completes when realtime probes are enabled in QualitySettings; both
   saved quality levels currently disable it. The preset/lifecycle fix remains staged and needs transition/cleanup GPU checks.
 - The old skyline slab hid the river/berth water in 0.4.1. Version 0.4.2 cuts only that backdrop's rendering; before/after

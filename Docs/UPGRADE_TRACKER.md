@@ -67,6 +67,7 @@ The 0.4.2 player passes both river chapters, actual media readback and queued sh
 The island entry package is integrated into the newer preview; all four route/outcome traversals and tide recovery pass
 headless and GPU checks. Its camera correction still needs a focused GPU rerun. M19/M20 runtime is now applied beyond the
 preview, but the first Peace rescue motion fixture failed; the later gangway obstruction now has an applied clearance fix
-with 3/3 passing focused physics cases, while full branches remain unverified. Eight island voice clips and finite spoken cue timing are integrated beyond the
+with 3/3 passing focused physics cases and a full passing Peace branch. Dominion and remaining recovery cases are pending.
+Eight island voice clips and finite spoken cue timing are integrated beyond the
 preview; five focused Editor source-tail/timing cases pass, with listening and built-player gates pending. Reflection quality lifecycle work,
 remaining mission execution, strict built-player full-lake decode and the full opening remain required work.

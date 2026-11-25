@@ -34,7 +34,11 @@ offline reproducer are retained. The boarding-clearance correction passes `Logs/
 actual NPCs reach the .35m arrival sphere, the occupied human walks down/up the same gangway in 2.12/2.13s after all three
 park, and both outer-slot inset gates pass unchanged. Real berth vertical deltas .073–.086m leave .339–.342m planar
 allowance against the existing .25m navigation stopping distance. No collider, body size or extraction bound changed.
-The full corrected Peace branch is running separately; this focused result does not establish both complete missions.
+`Logs/island-rescue-peace-fixed.xml` now passes the full Peace branch (1/1, 383.074s): three physical clinic deliveries,
+same-host signal custody/mounting, partial boarding reload, clear return past Morgan, all-free/transit/ashore and direct-call
+defences, every passenger aboard and protected departure. The detached supervisor exits 0 after 400.853s and reports
+`source_changed: []` across 174 runtime/test/settings files. The earlier native exit remains unexplained; no native-engine
+repair is claimed. Dominion is running separately; remaining recovery cases and built-player execution are not yet verified.
 Full opening render and strict built-player full-lake decode are still required.
 
 ---

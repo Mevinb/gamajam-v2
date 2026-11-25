@@ -17,8 +17,9 @@ process/checkpoint before GPU work; request a safe STOP and wait for terminal co
 
 Post-build CPU-only work has advanced the live source beyond that immutable preview: corrected M19/M20 v2 is applied
 from `Logs/island-followup-v2-apply-manifest.json`, plus the staged reflection diagnostic helper. Runtime/editor/Linux API
-compilation passes 138/22/138 sources after the island voice timing helper. The first M19 Peace motion fixture failed;
-no passing Unity/player execution is claimed for M19/M20. The source-execution
+compilation passes 138/22/138 sources after the island voice timing helper. After the measured boarding correction,
+the full Peace M19/M20 branch passes actual headless Unity execution; Dominion and remaining recovery cases are pending.
+No new built-player claim is made. The source-execution
 ownership harness improves from 3/9 on v1 to 9/9 on v2 using stand-ins; real motion/capture/recovery/boarding fixtures remain
 required. The current preview still contains only M18 and the full lake films. Do not overwrite its running binary.
 The four lake films and island art kit are committed; the new island runtime/camera/visual work remains uncommitted until
@@ -37,8 +38,10 @@ The diagnostic Peace fixture (`Logs/island-rescue-peace-diagnostic.*`) delivered
 boarded two, then measured a sustained capsule collision with Morgan at the gangway. It exited natively (139) without XML;
 no passing result is assigned and the native cause is unproven. The physical boarding-clearance correction is now applied:
 Morgan's berth leaves the central aisle, final arrival is .35m, and all original deck/ownership gates remain. Focused gangway
-and both outer-slot checks pass 3/3 under `Logs/island-boarding-clearance.*`; the full Peace branch is now running under
-`Logs/island-rescue-peace-fixed.*`, with a detached exit/source-hash supervisor. Full branch execution remains required.
+and both outer-slot checks pass 3/3 under `Logs/island-boarding-clearance.*`. The full Peace branch passes 1/1 in
+`Logs/island-rescue-peace-fixed.xml` (383.07s), including partial boarding reload, all-free/transit/ashore gates and departure.
+Its detached supervisor exits 0 and confirms all 174 source/settings hashes unchanged. Dominion is running under
+`Logs/island-rescue-dominion-fixed.*`; its detached supervisor records actual process exit, XML and source hashes.
 User playtest details are under `Logs/user-playtest/`.
 
 ## Active cinematic production — 25 November 2026
