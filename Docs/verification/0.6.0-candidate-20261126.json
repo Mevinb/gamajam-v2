@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "BUILT_SOURCE_AND_BOTH_PREVIEWS_UNCHANGED_NATIVE_ACCEPTANCE_PENDING",
+  "status": "BUILT_NATIVE_SELECTED_4_PASS_SOURCE_AND_BOTH_PREVIEWS_UNCHANGED",
   "recorded_utc": "2026-11-25T19:17:21.064555+00:00",
   "candidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
   "version": "0.6.0-preview",
@@ -36,10 +36,37 @@
   },
   "free_bytes_after_build": 3124584448,
   "limits": [
-    "This private0.6.0 candidate has23source missions; it has not yet completed native acceptance.",
+    "This private 0.6.0 candidate implements 23 missions; native cases 08/25/26/27 pass 4/4. This does not establish a pass for all 27 scenarios.",
     "The existing rendered user0.5.1preview remains separately running; no new graphical player was launched.",
     "Build/source/file-integrity success is not a graphical, performance or complete human playthrough claim.",
-    "Scoped native logic08/25/26/27 will run with Null graphics. Render-dependent21, movie/water/settings visuals and performance remain separate.",
+    "Selected native logic cases 08/25/26/27 pass with Null graphics. Rendered case 21, movie/water/settings visuals and performance remain separate.",
     "The standalone security-booth saved-scene integration and fresh gate-capture pair remain pending."
-  ]
+  ],
+  "native_selected_validation": {
+    "proof": {
+      "path": "Docs/verification/0.6.0-native-selected-20261126.json",
+      "bytes": 13114,
+      "sha256": "07aa1d9bdcc918f48c4c184d85519f5a0f8b17982a34e7eaa924a1f6f54e5a13"
+    },
+    "selected_ids": [
+      "08",
+      "25",
+      "26",
+      "27"
+    ],
+    "passed": 4,
+    "failed": 0,
+    "summary": "4/4 passed",
+    "native_exit_code": 0,
+    "supervisor_exit_code": 0,
+    "native_elapsed_seconds": 550.726,
+    "root_receipt": {
+      "sessionId": 98029,
+      "chunkId": "2bec76",
+      "exitCode": 0,
+      "authority": "Root authoritative final process receipt"
+    },
+    "source_and_both_previews_unchanged": true,
+    "actual_graphics_backend": "Null"
+  }
 }

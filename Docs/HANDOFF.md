@@ -9,13 +9,16 @@ The full request remains **in progress**. Evidence applies to its named source o
 - New private **0.6.0-preview** candidate: `Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c`, source `aa9ec70`,
   1,118 MB, zero build errors/warnings, native build exit0, actual Null backend. Source, immutable `Builds/Linux` and the
   entire existing rendered user-preview tree remain unchanged. Runtime SHA begins `0435dd5e`; see
-  [candidate proof](verification/0.6.0-candidate-20261126.json). Native acceptance is pending; no second graphical player was
+  [candidate proof](verification/0.6.0-candidate-20261126.json). Selected native logic now passes 4/4; no second graphical player was
   launched. The reviewed exact-session guard allowed this Null build while the user continued the separate0.5.1playtest.
-- **Active native0.6logic run:** root session98029, supervisor PID76279, child PID76281 at the recorded observation; exact
-  cases08/25/26/27 with `-batchmode -nographics`, nice10 and isolated absolute configuration/cache paths. Outputs are
-  `Logs/harbor-native-0.6-selected/{execution.json,player.log,report.txt}`. The child was confirmed live after launch. Inspect
-  that process/session and final native exit/report before repeating it or claiming a pass. Source/assets are held stable
-  until its integrity checks finish. This is a separate headless player; the user's rendered0.5.1 PID51569 remains open.
+- **Native 0.6 selected logic passes 4/4:** cases 08/25/26/27 pass in 550.726 seconds; native player and supervisor exit 0
+  (root session 98029, chunk `2bec76`). Reported case times are 231.1/124.3/136.9/51.0 seconds. Route 08 completes the original
+  Service Tunnel route through lakeside Dominion. Harbor Peace, Dominion and recovery of two in-flight cargo lots complete
+  on this exact candidate. The nice 10 `-batchmode -nographics` run uses isolated absolute configuration/cache paths and Null
+  graphics. Source, runtime/BUILD_INFO, candidate tree and both protected preview trees match their before snapshots; the
+  user's separate rendered 0.5.1 PID 51569 remains open. Both test processes are terminal; do not rerun because an older note
+  calls them active. [Native selected proof](verification/0.6.0-native-selected-20261126.json). This covers prepared fixtures
+  and simulated logic. All 27 scenarios, GPU/performance, physical keyboard and human acceptance remain separate.
 - **Active harbor expansion:** missions 21–23, runtime district and acceptance fixtures are in the working tree; the verified
   nine-model art checkpoint is pushed as `ffcc920`. Source **0.6.0-preview** compiles 162/31/162. Continuation, pressure recovery,
   initial full Peace/Dominion, actual cargo recovery red/green and arrival cancellation red/green pass their named Null Editor

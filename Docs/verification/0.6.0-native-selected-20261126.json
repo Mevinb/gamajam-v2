@@ -1,0 +1,270 @@
+{
+  "schema": 1,
+  "status": "NATIVE_SELECTED_4_OF_4_PASS_NULL_GRAPHICS",
+  "recordedUtc": "2026-11-25T19:29:06.495995+00:00",
+  "candidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
+  "version": "0.6.0-preview",
+  "implementedMissionCount": 23,
+  "sourceCommit": "aa9ec701fe46af2dfec23e1ad7508f0f5b38dbd4",
+  "repositoryHeadAtProof": "b47d7bf56972cf590b8507c201b17628fc6eeac2",
+  "sourceIdentityMeaning": "The binary was built from aa9ec70. Later documentation commits do not replace that source identity; actual source snapshots match the build before and after this run.",
+  "rootReceipt": {
+    "sessionId": 98029,
+    "chunkId": "2bec76",
+    "exitCode": 0,
+    "authority": "Root authoritative final process receipt"
+  },
+  "nativeExitCode": 0,
+  "supervisorExitCode": 0,
+  "nativePlayerPid": 76281,
+  "supervisorPid": 76279,
+  "playerStartedUtc": "2026-11-25T19:18:12.488071+00:00",
+  "playerFinishedUtc": "2026-11-25T19:27:23.214364+00:00",
+  "verificationFinishedUtc": "2026-11-25T19:27:28.329808+00:00",
+  "nativeElapsedSeconds": 550.726,
+  "timeoutSeconds": 1800,
+  "watchdogTriggered": false,
+  "selectedCases": [
+    {
+      "id": "08",
+      "name": "Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape",
+      "reportedSeconds": 231.1,
+      "detail": "Maintenance \u2192 tail \u2192 Service Tunnel \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Dominion (route ServiceTunnel, 222s)",
+      "result": "PASS"
+    },
+    {
+      "id": "25",
+      "name": "Harbor Peace: pressure lock, moving antidote manifest, two-free-body relay and checkpoint recovery",
+      "reportedSeconds": 124.3,
+      "detail": "",
+      "result": "PASS"
+    },
+    {
+      "id": "26",
+      "name": "Harbor Dominion: pressure lock, moving relay manifest, two-free-body relay and checkpoint recovery",
+      "reportedSeconds": 136.9,
+      "detail": "",
+      "result": "PASS"
+    },
+    {
+      "id": "27",
+      "name": "Harbor cargo recovery: two actual in-flight reroutes, separate physical restore and bay arrivals",
+      "reportedSeconds": 51.0,
+      "detail": "",
+      "result": "PASS"
+    }
+  ],
+  "summary": "4/4 passed",
+  "perCaseTimePrecision": "The raw native report rounds each case duration to 0.1 seconds.",
+  "command": [
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite.x86_64",
+    "-batchmode",
+    "-nographics",
+    "-autotest",
+    "-autotestFilter",
+    "08,25,26,27",
+    "-autotestOut",
+    "/home/mevlec/Data/Parasite/Logs/harbor-native-0.6-selected/report.txt",
+    "-logFile",
+    "/home/mevlec/Data/Parasite/Logs/harbor-native-0.6-selected/player.log"
+  ],
+  "isolatedEnvironment": {
+    "XDG_CONFIG_HOME": "/home/mevlec/Data/Parasite/Logs/harbor-native-0.6-selected/config",
+    "XDG_CACHE_HOME": "/home/mevlec/Data/Parasite/Logs/harbor-native-0.6-selected/cache"
+  },
+  "observedNativeNice": 10,
+  "backend": {
+    "actual": "Null",
+    "nullMarker": true,
+    "logMarkers": [
+      "Forcing GfxDevice: Null",
+      "NullGfxDevice:",
+      "Renderer: Null Device"
+    ],
+    "reportHeader": "PARASITE autotest \u2014 2026-11-26 00:48:14 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit"
+  },
+  "runtime": {
+    "path": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/Parasite_Data/Managed/Parasite.Runtime.dll",
+    "bytes": 1101824,
+    "sha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b"
+  },
+  "buildInfo": {
+    "path": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/BUILD_INFO.json",
+    "bytes": 1278,
+    "sha256": "1009a8afed2434112b5ac23f5acc02b393d4b8a30f06605f354c06bfdeb62117"
+  },
+  "buildState": {
+    "path": "Logs/full-story-candidate/build-runs/20261125T191303012539Z-a6d70d5c/runner-state.json",
+    "bytes": 8124,
+    "sha256": "0df9934566a5ae1da9a0f96748800261d541b4a978be6c0a034539578094cd5c"
+  },
+  "buildResult": {
+    "sourceCommit": "aa9ec701fe46af2dfec23e1ad7508f0f5b38dbd4",
+    "version": "0.6.0-preview",
+    "nativeBuildExitCode": 0,
+    "summary": {
+      "result": "Succeeded",
+      "size_mb": 1118,
+      "time": "00:02:17.5304680",
+      "errors": 0,
+      "warnings": 0
+    },
+    "rootSessionId": 41159,
+    "rootChunkId": "c0a851"
+  },
+  "execution": {
+    "path": "Logs/harbor-native-0.6-selected/execution.json",
+    "bytes": 7065,
+    "sha256": "ba694e511000574200eba8ce658f32c5a6390b76663a54b456c7f097bd34a240"
+  },
+  "report": {
+    "path": "Logs/harbor-native-0.6-selected/report.txt",
+    "bytes": 913,
+    "sha256": "afbfe92dab7766626b08ec3c7d4b7fafc2dfa98ee4436cf858a7a3cea578322a"
+  },
+  "playerLog": {
+    "path": "Logs/harbor-native-0.6-selected/player.log",
+    "bytes": 38023,
+    "sha256": "0f44576c0e5dc5c4d3589fefabd48c64c5cc344df4325b5548d388a1b70951c2"
+  },
+  "launcherLog": {
+    "path": "Logs/harbor-native-0.6-selected/launcher.log",
+    "bytes": 1801,
+    "sha256": "97b6c0df0de05c8fd2f79f54dc647af5786b2d7508a4758607108b8a12eef15e"
+  },
+  "rawReport": "PARASITE autotest \u2014 2026-11-26 00:48:14 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  08 Route C: leads \u2192 tail \u2192 maintenance + substation \u2192 Service Tunnel \u2192 research \u2192 Vale \u2192 hunters \u2192 evidence \u2192 containment \u2192 blackout \u2192 escape  (231.1s)  Maintenance \u2192 tail \u2192 Service Tunnel \u2192 Vale reveal \u2192 hunters \u2192 signed evidence \u2192 relay sabotage \u2192 shadow uplink \u2192 black site vault \u2192 protocol epsilon \u2192 blackout \u2192 master broadcast \u2192 drain \u2192 lakeside choice Dominion (route ServiceTunnel, 222s)\nPASS  25 Harbor Peace: pressure lock, moving antidote manifest, two-free-body relay and checkpoint recovery  (124.3s)  \nPASS  26 Harbor Dominion: pressure lock, moving relay manifest, two-free-body relay and checkpoint recovery  (136.9s)  \nPASS  27 Harbor cargo recovery: two actual in-flight reroutes, separate physical restore and bay arrivals  (51.0s)  \nSUMMARY: 4/4 passed\n",
+  "supervisor": {
+    "path": "Logs/harbor-native-validation-stage/run_selected_native.py",
+    "bytes": 10540,
+    "sha256": "2965c02c8766eceb28b0452319608a0f54798af37c3670f724c334565625cd27"
+  },
+  "readOnlyBuildHelper": {
+    "path": "Logs/full-story-candidate/build_candidate.py",
+    "bytes": 29512,
+    "sha256": "6239e0ecca49d467596a6f3942aa6d6fb488b5c507c7099e3548cda40f5c59b1"
+  },
+  "integrity": {
+    "verifiedPass": true,
+    "postIntegrityPass": true,
+    "before": {
+      "source_matches_build": true,
+      "retained_preview_matches_build": true,
+      "rendered_preview_matches_build": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "candidate_output_matches_build": true,
+      "protected_user_process": {
+        "utc": "2026-11-25T19:18:12.480466+00:00",
+        "process_status": "running_identity_matches",
+        "start_ticks": 683333
+      },
+      "source_snapshot_sha256": "8946a4d803d3b01ebf9bb84c6f586a6d96f162c4db34b8fca6486e4ca54d5970",
+      "retained_preview_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "rendered_preview_tree_sha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "candidate_tree_sha256": "643e3db8397fca464e7f1af664bfd15e395f763721e4c7bed02a7cb1b063128c"
+    },
+    "after": {
+      "source_matches_build": true,
+      "retained_preview_matches_build": true,
+      "rendered_preview_matches_build": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "candidate_output_matches_build": true,
+      "protected_user_process": {
+        "utc": "2026-11-25T19:27:28.323570+00:00",
+        "process_status": "running_identity_matches",
+        "start_ticks": 683333
+      },
+      "source_snapshot_sha256": "8946a4d803d3b01ebf9bb84c6f586a6d96f162c4db34b8fca6486e4ca54d5970",
+      "retained_preview_tree_sha256": "4c42f42d8ddc6c46a95627236391e9d929877b4b74fac030f6f05cf5e629fd25",
+      "rendered_preview_tree_sha256": "82491ff17abcdc3feba44300cf2c80837c4f6ae217a76f8812251584a4a0852d",
+      "candidate_tree_sha256": "643e3db8397fca464e7f1af664bfd15e395f763721e4c7bed02a7cb1b063128c"
+    },
+    "allFourMetadataSnapshotsByteIdentical": true,
+    "snapshotFiles": [
+      {
+        "path": "Logs/harbor-native-0.6-selected/source-before.json",
+        "bytes": 609486,
+        "sha256": "8946a4d803d3b01ebf9bb84c6f586a6d96f162c4db34b8fca6486e4ca54d5970"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/source-after.json",
+        "bytes": 609486,
+        "sha256": "8946a4d803d3b01ebf9bb84c6f586a6d96f162c4db34b8fca6486e4ca54d5970"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/retained-preview-before.json",
+        "bytes": 65547,
+        "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/retained-preview-after.json",
+        "bytes": 65547,
+        "sha256": "072d84a788796cbb8a24704c8fc91f051839f2cddcd9aed8f996e94fa9a157bd"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/rendered-preview-before.json",
+        "bytes": 64215,
+        "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/rendered-preview-after.json",
+        "bytes": 64215,
+        "sha256": "45efa6ba56408d82ed97ef6c3c17c7625cc1cfc5856c8f0ff887d3ed516b94f6"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/candidate-before.json",
+        "bytes": 56224,
+        "sha256": "df6c2a286fb6a8e36fa6629c3c2893f6c4bc6e4bf2b28c1ba28cd807093bf403"
+      },
+      {
+        "path": "Logs/harbor-native-0.6-selected/candidate-after.json",
+        "bytes": 56224,
+        "sha256": "df6c2a286fb6a8e36fa6629c3c2893f6c4bc6e4bf2b28c1ba28cd807093bf403"
+      }
+    ]
+  },
+  "userPreview": {
+    "pid": 51569,
+    "candidate": "/home/mevlec/Data/Parasite/Builds/Candidates/full-story-20261125T173043238618Z-0f595731",
+    "runtimeSha256": "80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290",
+    "version": "0.5.1-preview",
+    "missionCount": 20,
+    "processAfter": {
+      "utc": "2026-11-25T19:27:28.323570+00:00",
+      "process_status": "running_identity_matches",
+      "start_ticks": 683333
+    },
+    "fullTreeUnchanged": true,
+    "separateFromTestedCandidate": true,
+    "newGraphicalPlayerLaunched": false
+  },
+  "scope": {
+    "08": "Full original Service Tunnel route and lakeside Dominion, including the corrected moving-host aim/physical retreat driver.",
+    "25": "Harbor Peace: real pressure, moving antidote lots, checkpoint recovery and two-free-body relay through branch summary.",
+    "26": "Harbor Dominion: real pressure, moving relay lots, checkpoint recovery and two-free-body relay through branch summary.",
+    "27": "Two actual same-cycle A32\u2192A17 scans, real checkpoint, four separate physical bodies and actual subsequent bay arrivals."
+  },
+  "fixtureLimits": [
+    "The chapter fixtures prepare the summary for the prior twenty missions and initial role ownership. They do not replay the island/prior campaign to enter Harbor.",
+    "Harbor completion flags and objective positions are not fixture-granted; normal simulated movement/E, runtime timing, physical crate travel and pad/LOS rules are exercised.",
+    "Controlled guard-capture callbacks, suspicion values and pending-leap negative fixtures probe rules; they are not observations of a human stealth playthrough or a live guard catch.",
+    "Checkpoint recovery retains earned sorting and restages each undelivered crate on its own final three-metre approach; exact pre-reload world position is not persisted.",
+    "All six actual BoxCollider pairs are checked at Rigidbody poses after reload and on each coroutine frame through resumed arrivals. False ComputePenetration output directions are undefined and are not physical measurements."
+  ],
+  "limits": [
+    "Exactly cases 08/25/26/27 pass on this candidate. This does not establish a pass for all 27 scenarios.",
+    "Null graphics and simulated input do not establish rendered case 21, films/water/settings visuals, GPU performance, physical keyboard input or a human playthrough.",
+    "The user remains on the separate rendered 0.5.1 binary with twenty missions; this headless 0.6 validation did not replace or control that window.",
+    "Older binaries and source proofs retain their named scope. Future builds require their own validation."
+  ],
+  "candidateBuildProofPath": "Docs/verification/0.6.0-candidate-20261126.json",
+  "earlierEditorProof": {
+    "path": "Docs/verification/harbor-chapter-20261126.json",
+    "bytes": 58866,
+    "sha256": "48a8cadf6063aa0c0dd6b2d6d874eb4a632c17334629253259bbd29746a93e78"
+  }
+}
