@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "status": "FIRST_PHYSICAL_REGROUP_RECOVERS_RILEY_BUT_STANCE_TOLERANCE_BLOCKS_MORGAN",
+  "recordedUtc": "2026-11-25T21:46:30.668515+00:00",
+  "terminal": {
+    "rootSession": 91361,
+    "chunk": "03f370",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 21:37:25Z",
+      "end-time": "2026-11-25 21:43:16Z",
+      "duration": "350.7466455"
+    }
+  },
+  "failedSourceSha256": "99384da728365e251ac4432b964dea548db07dff4bcb4877ee18a567dbde7843",
+  "log": {
+    "path": "Logs/continuity_regroup_physical.log",
+    "bytes": 219962517,
+    "sha256": "bd41f2464f4d5b238e6d078e269086fb99a26bd040669249a050ea85711cbb19"
+  },
+  "xml": {
+    "path": "Logs/continuity-regroup-physical.xml",
+    "bytes": 24267502,
+    "sha256": "7dd07ec3c2436d295ac9e8bcc6acf0eee9f47e63802b7d3b61de331c50f26af8"
+  },
+  "observed": {
+    "riley": "Actual approach, .300s guard-clear, one fresh E and resume to unchanged original target/deadline. Remaining budget17.807s at E.",
+    "morgan": "Nested approach returns at2.050m, outside the1.9m regroup boundary, and immediately replans until the original26.3s deadline. No fresh E is reached."
+  },
+  "cause": {
+    "plannedStandoff": 1.6,
+    "existingArrivalTolerance": 0.45,
+    "maximumArrivalGap": 2.05,
+    "regroupApproachBoundary": 1.9,
+    "missingYield": "Already-satisfied nested paths can return without yielding. Repeated diagnostics generated a210MiB log, retained unchanged."
+  },
+  "sourceCorrectionUnderTest": {
+    "sha256": "ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703",
+    "plannedStandoff": 1.2,
+    "maximumArrivalGap": 1.65,
+    "minimumArrivalGap": 0.75,
+    "combinedHumanCapsuleRadii": 0.6,
+    "unconditionalYieldAfterApproach": true
+  },
+  "limits": [
+    "The whole case failed; no full continuous campaign pass.",
+    "Current correction API-compiles but its rerun is active, not passed.",
+    "Production exposure/visibility/leash/interaction rules, original target and original individual leg deadlines are unchanged.",
+    "No native player, rendered acceptance or human-input proof."
+  ]
+}

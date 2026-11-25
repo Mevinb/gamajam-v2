@@ -6,14 +6,19 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
-- **Physical regroup correction is under test:** Root applied the reviewed staged driver with `git apply -p0`;
-  current IslandRescueAcceptance SHA `99384da728365e251ac4432b964dea548db07dff4bcb4877ee18a567dbde7843`.
+- **Physical regroup arrival correction is under test:** current IslandRescueAcceptance SHA
+  `ab53eedbba5d21817643b014163352d8a8ed4bbceb241270b74ef295fb503703`.
   It uses the public Regroup prompt, normal approach/aim/fresh E after actual patrol visibility clears, maximum3attempts,
   exact leader identity/generations and the original outer leg deadline/target/3.2m wait. No gameplay rules changed.
-  Runtime/Editor/Linux-Mono API compilation passes162/31/162. Root exec91361/PID96589 is currently running only90 through
-  `Tools/unity.sh continuity_regroup_physical -nographics -runTests -testPlatform PlayMode`
-  with exact AcceptanceTests filter, `Logs/continuity-regroup-physical.xml` and1200s owned timeout. No result yet.
+  Runtime/Editor/Linux-Mono API compilation passes162/31/162. Root exec87607/PID97980 is currently running only90 through
+  `Tools/unity.sh continuity_regroup_arrival -nographics -runTests -testPlatform PlayMode`
+  with exact AcceptanceTests filter, `Logs/continuity-regroup-arrival.xml` and1200s owned timeout. No result yet.
   Do not edit live C# or launch another Editor/Blender/player until this actual process is terminal. User51569 remains open.
+- The first regroup run91361 is terminal FAIL/native2 (chunk03f370),350.747s for one NUnit case. Riley recovered with one
+  normal E, but Morgan exposed a driver tolerance mismatch:1.6m stand-off plus.45m path arrival permits2.05m, outside1.9m.
+  Already-satisfied paths then replanned without yielding, producing a retained210MiB log within the original deadline.
+  Current correction uses1.2m stand-off (arrival.75–1.65m, outside two.3m capsules) and always yields after approach.
+  Neither gameplay thresholds nor original target/deadline changed. [Red evidence](verification/island-regroup-arrival-red-20261126.json).
 - **Northline source art is authored and promoted:** `ArtSource/NorthlineRail` contains the packed editable blend,
   eleven FBXs, manufacturing manifests and credits; reproducible CPU tools are under `Tools/blender/northline`.
   Actual authoring and independent FBX round-trip both exit0:7,336triangles/178outward closed components, exact counts/
