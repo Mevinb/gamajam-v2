@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "created_utc": "2026-11-25T00:29:13.316840+00:00",
+  "created_utc": "2026-11-25T00:39:44.400352+00:00",
   "publication_state": "full_story_authoring_sources",
   "final_movies_rendered": false,
   "manifest_path": "ArtSource/FullCinematics/source-publication-manifest.json",
@@ -14,7 +14,7 @@
     "render caches",
     "Python bytecode"
   ],
-  "total_bytes": 206722113,
+  "total_bytes": 206722456,
   "largest_file_bytes": 57040716,
   "file_count": 91,
   "files": [
@@ -405,8 +405,8 @@
     {
       "path": "ArtSource/FullCinematics/STATUS.md",
       "category": "documentation",
-      "bytes": 3924,
-      "sha256": "895df59229bb867e022f10c45d057ff17ec5d78940f20465a99ff93dbc750fb2"
+      "bytes": 4267,
+      "sha256": "6958f4d9d50792519c21ad4e9141c071cd5883fc252acc18787bc63040269ecf"
     },
     {
       "path": "ArtSource/FullCinematics/driver-smoke-evidence.json",
