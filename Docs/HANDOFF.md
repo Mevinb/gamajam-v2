@@ -6,6 +6,11 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- New private **0.6.0-preview** candidate: `Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c`, source `aa9ec70`,
+  1,118 MB, zero build errors/warnings, native build exit0, actual Null backend. Source, immutable `Builds/Linux` and the
+  entire existing rendered user-preview tree remain unchanged. Runtime SHA begins `0435dd5e`; see
+  [candidate proof](verification/0.6.0-candidate-20261126.json). Native acceptance is pending; no second graphical player was
+  launched. The reviewed exact-session guard allowed this Null build while the user continued the separate0.5.1playtest.
 - **Active harbor expansion:** missions 21–23, runtime district and acceptance fixtures are in the working tree; the verified
   nine-model art checkpoint is pushed as `ffcc920`. Source **0.6.0-preview** compiles 162/31/162. Continuation, pressure recovery,
   initial full Peace/Dominion, actual cargo recovery red/green and arrival cancellation red/green pass their named Null Editor

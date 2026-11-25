@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "status": "BUILT_SOURCE_AND_BOTH_PREVIEWS_UNCHANGED_NATIVE_ACCEPTANCE_PENDING",
+  "recorded_utc": "2026-11-25T19:17:21.064555+00:00",
+  "candidate": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c",
+  "version": "0.6.0-preview",
+  "source_commit": "aa9ec701fe46af2dfec23e1ad7508f0f5b38dbd4",
+  "source_unchanged_during_build": true,
+  "native_build_exit_code": 0,
+  "build_summary": {
+    "result": "Succeeded",
+    "size_mb": 1118,
+    "time": "00:02:17.5304680",
+    "errors": 0,
+    "warnings": 0
+  },
+  "runtime_sha256": "0435dd5e00913a4e341492690547536778c33f5fd522009d15a9ea6dd92a375b",
+  "build_state": {
+    "path": "Logs/full-story-candidate/build-runs/20261125T191303012539Z-a6d70d5c/runner-state.json",
+    "bytes": 8124,
+    "sha256": "0df9934566a5ae1da9a0f96748800261d541b4a978be6c0a034539578094cd5c"
+  },
+  "build_info": {
+    "path": "Builds/Candidates/full-story-20261125T191303012539Z-a6d70d5c/BUILD_INFO.json",
+    "bytes": 1278,
+    "sha256": "1009a8afed2434112b5ac23f5acc02b393d4b8a30f06605f354c06bfdeb62117"
+  },
+  "immutable_linux_preview_unchanged": true,
+  "user_preview_full_tree_unchanged": true,
+  "user_preview_info_and_runtime_unchanged": true,
+  "actual_null_backend": true,
+  "root_receipt": {
+    "session_id": 41159,
+    "chunk_id": "c0a851",
+    "exit_code": 0
+  },
+  "free_bytes_after_build": 3124584448,
+  "limits": [
+    "This private0.6.0 candidate has23source missions; it has not yet completed native acceptance.",
+    "The existing rendered user0.5.1preview remains separately running; no new graphical player was launched.",
+    "Build/source/file-integrity success is not a graphical, performance or complete human playthrough claim.",
+    "Scoped native logic08/25/26/27 will run with Null graphics. Render-dependent21, movie/water/settings visuals and performance remain separate.",
+    "The standalone security-booth saved-scene integration and fresh gate-capture pair remain pending."
+  ]
+}
