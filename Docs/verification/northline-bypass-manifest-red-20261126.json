@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "status": "NORTHLINE_CROSSING_PROGRESS_LATER_MANIFEST_LOS_DENIAL",
+  "recordedUtc": "2026-11-25T23:28:04.100192+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "source": {
+    "RailAcceptance": "d4b2738c36963da9a765018e29c65d2c96b64c34807ee615035405a6b3319a69",
+    "AutoTest": "e1891f1f950ceaadcae3a7201a5972df7707fa8fe0141bff48bab2b989a85772"
+  },
+  "terminal": {
+    "rootSession": 91852,
+    "chunk": "bb0e33",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:23:10Z",
+      "end-time": "2026-11-25 23:23:57Z",
+      "duration": "46.8626297"
+    },
+    "failure": "System.InvalidOperationException : RealE targets intended Manifest; got Validate docked seal \u2014 SCIENTIST \u00b7 NLR-07 relay carriage  \u2014  The real carriage seal must be visible from the manifest desk.",
+    "stack": "  at Parasite.Testing.RailAcceptance+<Press>d__30.MoveNext () [0x0017d] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:361 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+  },
+  "observedBypass": [
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1477.350, 0.180, -253.000) actual=(1477.350, 0.180, -253.139) actionDeadline=22.873 originalDeadline=38.997",
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1479.350, 0.180, -253.000) actual=(1479.201, 0.180, -253.010) actionDeadline=22.873 originalDeadline=38.997",
+    "[NorthlineWalk] SIDESTEP_REPLAN caller=Crossing actual=(1479.201, 0.180, -253.010) originalTarget=(1492.000, 0.150, -247.400) originalSampledEnd=(1492.000, 0.183, -247.400) actualValidatedRejoin=(1480.542, 0.180, -253.413) remainingOriginalBudget=19.422 originalDeadline=38.997",
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1482.158, 0.180, -254.671) actual=(1482.197, 0.180, -254.530) actionDeadline=24.735 originalDeadline=38.997",
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1484.088, 0.180, -255.197) actual=(1483.963, 0.180, -255.153) actionDeadline=24.735 originalDeadline=38.997",
+    "[NorthlineWalk] SIDESTEP_REPLAN caller=Crossing actual=(1483.963, 0.180, -255.153) originalTarget=(1492.000, 0.150, -247.400) originalSampledEnd=(1492.000, 0.183, -247.400) actualValidatedRejoin=(1484.971, 0.180, -254.181) remainingOriginalBudget=17.546 originalDeadline=38.997",
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1482.360, 0.190, -255.000) actual=(1482.360, 0.190, -254.856) actionDeadline=28.920 originalDeadline=43.206",
+    "[NorthlineWalk] BYPASS_POINT_REACHED caller=Crossing point=(1484.360, 0.190, -255.000) actual=(1484.214, 0.190, -254.990) actionDeadline=28.920 originalDeadline=43.206",
+    "[NorthlineWalk] SIDESTEP_REPLAN caller=Crossing actual=(1484.214, 0.190, -254.990) originalTarget=(1492.000, 0.150, -247.400) originalSampledEnd=(1492.000, 0.183, -247.400) actualValidatedRejoin=(1485.217, 0.190, -254.012) remainingOriginalBudget=17.230 originalDeadline=43.206"
+  ],
+  "crossingAndFreightScope": "Enter/Crossing returned successfully; Scientist then physically reached the original manifest approach. Press selected the exact Manifest control but CanValidate denied seal visibility. No validation/freight/signal/departure/lifecycle pass.",
+  "possessionDiagnostics": {
+    "only02": {
+      "rootSession": 34363,
+      "chunk": "c32fdb",
+      "result": "PASS02 in Editor; Amara/eyeDist4.4289/LOStrue"
+    },
+    "sequence01_02": {
+      "rootSession": 21764,
+      "chunk": "ee0baa",
+      "result": "Both AutoTest01/02 pass in Editor; Amara moved/eyeDist3.6828/LOStrue"
+    },
+    "limit": "These Editor poses do not reproduce or replace the fresh-native4.9m/LOSfalse failure; its actual target/blocker remains unknown."
+  },
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-npc-bypass-20261126a.xml",
+      "bytes": 52163,
+      "sha256": "a2ab99738417c6cae12e31eae077ce6c51dc1a467a4dbb607c8c9027dd4d5c57"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_npc_bypass_20261126a.log",
+      "bytes": 176731,
+      "sha256": "343902e6703f5bda109b26b086881b51b62442aa411c0e2f3fb3c8fa38683eb8"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/possess02-diagnostic-20261126a.xml",
+      "bytes": 10566,
+      "sha256": "36cd719601419d3bec86a4b92ab415559784c6616b2e2269961980a7ee68c4d7"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/possess02_diagnostic_20261126a.log",
+      "bytes": 73519,
+      "sha256": "309d8ae1a27b4f3aadd01271fb1bb9a839e4208a6a9b905cb785bc3c87e0cbc8"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/possess0102-diagnostic-20261126a.xml",
+      "bytes": 10797,
+      "sha256": "ce1ec0ac2466c736990a189fb30d2223e0e576906d502ebde56a5c707dae996e"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/possess0102_diagnostic_20261126a.log",
+      "bytes": 80116,
+      "sha256": "93146e982193824712d937bf4124b03303cec5df21508c1d9be12529e7ca85fb"
+    }
+  ],
+  "next": "Bounded one-shot actual manifest eye\u2192seal ray receipt before changing alignment; robust possession setup proposal remains staged, not applied.",
+  "limits": [
+    "Original targets/tolerances/deadlines/physics/NPCs remain; no full Northline gameplay acceptance.",
+    "Source-based grille intersection is an inference until actual ray hit is captured.",
+    "0.6.1base/archive/extracted bytes remain unchanged; no Native02 fix or fresh smoke5/5 claim."
+  ]
+}

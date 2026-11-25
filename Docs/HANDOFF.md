@@ -6,6 +6,17 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Two-leg bypass reaches new phase; whole Dominion case still RED:** root91852/native2/chunkbb0e33,46.863s.
+  d4b2738c… completes actual free/human bypasses and same-body crossing, then scientist reaches original manifest approach
+  local(-30.843,.190,3.423), error.2365 in12.959s/45.404s. Exact Manifest target is selected but allowedfalse: seal visibility
+  denied. Source-predicted grille bar at(-27,1.4,4.5) intersects eye→seal; actual hit is not logged, so still inference.
+  [Progress + preserved failure](verification/northline-bypass-manifest-red-20261126.json). Editor125741 is gone.
+- **02Editor diagnostic passes without reproducing native failure:** root34363/native0/chunkc32fdb only02 PASS;
+  root21764/native0/chunkee0baa sequence01,02 bothPASS (one NUnit10.832s). Both target Amara but different actual poses,
+  eye distances4.4289/3.6828 andLOStrue. This never replaces the actual extracted02negative4.9/LOSfalse.
+  Rail agent is preparing one-shot Manifest ray logging only; Hunter is staging a same-target possession setup proposal.
+  No active Editor/player test now; no fixture/production LOS change yet. Wait for both agents' compile coordination before
+  new Unity; base0.6.1and release artifacts remain unchanged.
 - **Two-leg Northline bypass is now under test:** WORKRailAcceptance SHA
   `d4b2738c36963da9a765018e29c65d2c96b64c34807ee615035405a6b3319a69`, independent source-only review passes.
   Actual continuous.4s grounded NPC contact triggers before the old.8s hop; planned lateral+forward points clear the actual
