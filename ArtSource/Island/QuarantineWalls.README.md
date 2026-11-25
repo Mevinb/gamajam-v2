@@ -48,5 +48,14 @@ contains unedited same-camera before/after PNGs; actor renderers and UI are hidd
 owned lights/normal fog remain. These are staged art-QA images, not a native gameplay/UI record. Exact output/report hashes and
 scope live in `quarantine-wall-runtime-verification.json`.
 
-The first actual1920x1080/Vulkan island baseline completes20/20waypoints: High25.5FPS,Ultra26.7FPS. This is below the desired
-playability target and is being profiled; no performance improvement or new measured result is implied by the mesh budget.
+The first actual1920x1080/Vulkan island baseline completes20/20waypoints: High25.5FPS,Ultra26.7FPS. Those runs used the private `:97` display and were unfocused in the profiled control. Native desktop/focus comparisons are
+pending; these numbers do not yet establish a gameplay bottleneck. No performance improvement is implied by the mesh budget.
+
+
+## Actual desktop performance control
+
+The same143-source profiled candidate completes20/20waypoints on the actual Xwayland desktop `:0`, with every sampled frame
+focused and normal native exit0: High265.6FPS/p999.44ms,Ultra179.0FPS/p9911.28ms at1920x1080/Vulkan. AI remains active.
+These are seeded route measurements with instrumentation, not a full mission/physical-input pass. The earlier25–27FPS
+private `:97` results remain retained as presentation-confounded controls, not evidence of a game bottleneck. Display and
+focus differ together in this desktop control, so improvement is not attributed uniquely to focus.

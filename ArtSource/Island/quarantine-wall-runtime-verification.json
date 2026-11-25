@@ -52,6 +52,36 @@
       "render_scale": 1.25,
       "report_sha256": "15417962aec3cda92d2bed885abaa22b9310d33db25703bda35afa569e4e72d4"
     },
-    "scope": "AI active,20point seeded benchmark route, native exits0. Current measured baseline, not an improvement claim; CPU/scheduling profiling pending."
+    "scope": "AI active,20point seeded benchmark route, normal binary exits0. Private-display baseline only; focus/presentation is a confound, so no game bottleneck or optimization conclusion is established. Actual desktop focused results are stored separately; no single-variable focus attribution.",
+    "display": ":97",
+    "presentation": "Private X11 test surface; profiled run was unfocused throughout. Not native desktop presentation."
+  },
+  "desktop_performance": {
+    "High": {
+      "fps": 265.6,
+      "p99_ms": 9.44,
+      "focused_samples": 10382,
+      "unfocused_samples": 0,
+      "reached": 20,
+      "total_waypoints": 20,
+      "native_exit": 0,
+      "report_sha256": "c45430798d2a31156340b16371cc08977fcda2785fe6732800a4a402e283cdd4",
+      "profile_sha256": "a46a86b11e51f39aaf0a9175c10456b3ef6ad7e43208f0ca8077f4905211ec3b",
+      "profile_build_guid": "932b5dd4fdc2441b8ef8d800f4caa2bf",
+      "scope": "Native Linux Vulkan player,1920x1080,actual Xwayland desktop:0,AI active,seeded20point route. Profile instrumentation enabled; not physical input or full mission proof."
+    },
+    "Ultra": {
+      "fps": 179.0,
+      "p99_ms": 11.28,
+      "focused_samples": 6991,
+      "unfocused_samples": 0,
+      "reached": 20,
+      "total_waypoints": 20,
+      "native_exit": 0,
+      "report_sha256": "cb3e34fddcf399b2a3aced1fa379766ad0a4fd215a3683ce7d64d90246db8e70",
+      "profile_sha256": "f01195624df87b61534a2842adfc71181014e1e9cccbe9321414140a7b7f207a",
+      "profile_build_guid": "932b5dd4fdc2441b8ef8d800f4caa2bf",
+      "scope": "Native Linux Vulkan player,1920x1080,actual Xwayland desktop:0,AI active,seeded20point route. Profile instrumentation enabled; not physical input or full mission proof."
+    }
   }
 }

@@ -52,3 +52,8 @@ Current native verification: rendered RTX/Vulkan water passes, while standalone 
 The default forced-terminal movie stress still hangs during native cleanup even in normal rendering; bounded retirement is
 being developed. The new wall kit passes import/routes/camera/raster and staged HDR review. Its first native1080p island
 baselines are25.5FPS High/26.7FPS Ultra; performance optimization remains open. No old benchmark is a new island FPS claim.
+
+
+Performance scope correction: the25–27FPS island results were from the private :97 display; the profiled run was unfocused
+throughout and dominated by render-thread waits. They are not desktop-presentation FPS and do not yet prove a game bottleneck.
+Same-build focus and actual desktop controls are pending; no game quality/AI reduction is justified by these numbers.

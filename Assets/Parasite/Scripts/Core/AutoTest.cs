@@ -68,7 +68,7 @@ namespace Parasite.Testing
             Write($"SUMMARY: {Results.Count - failed}/{Results.Count} passed");
             File.WriteAllText(OutPath(), Log.ToString());
             yield return null;
-            Application.Quit(failed == 0 ? 0 : 1);
+            CinematicFilmLifetime.Quit(failed == 0 ? 0 : 1);
         }
 
         // Built-player input regression mode. These are queued Input System events, not native OS key injection.
@@ -122,7 +122,7 @@ namespace Parasite.Testing
             Directory.CreateDirectory(Path.GetDirectoryName(report));
             File.WriteAllText(report, Log.ToString());
             yield return null;
-            Application.Quit(failed == 0 ? 0 : 1);
+            CinematicFilmLifetime.Quit(failed == 0 ? 0 : 1);
         }
 
         static IEnumerator ShortcutKeyboardCase(Keyboard keyboard, Key control, bool letterFirst, bool possessed, bool fastTap)
@@ -1812,7 +1812,7 @@ namespace Parasite.Testing
             {
                 Write("ERROR: benchmark requires a graphics device, -benchmarkPreset Low/Medium/High/Ultra (or 0-3), and -benchmarkDistrict city/riverside/island.");
                 File.WriteAllText(reportPath, Log.ToString());
-                Application.Quit(2);
+                CinematicFilmLifetime.Quit(2);
                 yield break;
             }
             yield return LoadCity();
@@ -1828,7 +1828,7 @@ namespace Parasite.Testing
                     if (!RunState.BeginIsland())
                     {
                         Write("ERROR: island benchmark chapter setup was rejected.");
-                        File.WriteAllText(reportPath, Log.ToString()); Application.Quit(2); yield break;
+                        File.WriteAllText(reportPath, Log.ToString()); CinematicFilmLifetime.Quit(2); yield break;
                     }
                     RunState.Flags.Add(IslandCampaign.ArrivalSeen); // Exclude protected travel presentation from performance samples.
                     RunState.Flags.Add(IslandCampaign.ServiceOpen); // Authorized Maintenance service route; never the blob-only tunnel.
@@ -1850,7 +1850,7 @@ namespace Parasite.Testing
                 tourHost.Profession != Profession.Maintenance || (tourHost.Permissions & AccessPermission.ServiceTunnel) == 0))
             {
                 Write("ERROR: island benchmark requires its actual ready district and unoccupied Maintenance/ServiceTunnel jetty engineer.");
-                File.WriteAllText(reportPath, Log.ToString()); Application.Quit(2); yield break;
+                File.WriteAllText(reportPath, Log.ToString()); CinematicFilmLifetime.Quit(2); yield break;
             }
             if (tourHost)
             {
@@ -1889,6 +1889,7 @@ namespace Parasite.Testing
             int shot = 0, reachedCount = 0;
             bool interrupted = false;
             yield return new WaitForSeconds(2f);
+            using var benchmarkProfile = arguments.Contains("-benchmarkProfile") ? new BenchmarkProfile() : null;
             float total = 0;
             foreach (var wp in waypoints)
             {
@@ -1923,6 +1924,7 @@ namespace Parasite.Testing
                     pathLength += Vector3.Distance(plannedCorners[point - 1], plannedCorners[point]);
                 float travelBudget = Mathf.Max(35f, pathLength / sprintSpeed * 1.5f + 10f);
                 Write($"Waypoint {shot} plan: {pathStatus}, {pathLength:0.00}m at {sprintSpeed:0.00}m/s, budget {travelBudget:0.0}s; original target {wp}; target planar offset {targetPlanarOffset:0.00}m");
+                benchmarkProfile?.BeginLeg();
                 var walk = WalkTo(wp, travelBudget, r => reached = r);
                 while (true)
                 {
@@ -1935,10 +1937,12 @@ namespace Parasite.Testing
                     {
                         frameTimes.Add(Time.unscaledDeltaTime);
                         total += Time.unscaledDeltaTime;
+                        benchmarkProfile?.Sample();
                     }
                     yield return walk.Current;
                 }
                 (walk as IDisposable)?.Dispose();
+                benchmarkProfile?.EndLeg();
                 if (interrupted) { Write("ERROR: gameplay reset/capture interrupted the tour; samples are incomplete"); break; }
                 if (reached) reachedCount++;
                 Write($"Waypoint {shot}: {(reached ? "REACHED" : "TIMEOUT")} {wp}; body {PM.ActiveBody.Root.position}; sampled {frameTimes.Count - firstFrame} frames");
@@ -1946,11 +1950,18 @@ namespace Parasite.Testing
                 yield return new WaitForSecondsRealtime(0.5f);
             }
             ClearSim();
+            if (benchmarkProfile != null)
+            {
+                string profilePath = Path.ChangeExtension(reportPath,"profile.json");
+                benchmarkProfile.Write(profilePath,district,GraphicsPreset.Names[GraphicsPreset.Current],frameTimes.Count,reachedCount,waypoints.Length);
+                Write("Profiler: optional actual-marker sidecar " + profilePath + "; first profile sample per leg excluded; baseline frame statistics unchanged.");
+                benchmarkProfile.Dispose();
+            }
             if (frameTimes.Count == 0)
             {
                 Write("ERROR: benchmark collected no frames");
                 File.WriteAllText(reportPath, Log.ToString());
-                Application.Quit(1);
+                CinematicFilmLifetime.Quit(1);
                 yield break;
             }
             frameTimes.Sort();
@@ -1964,7 +1975,7 @@ namespace Parasite.Testing
             Write($"Final vSync={QualitySettings.vSyncCount}; route {(interrupted ? "INTERRUPTED" : complete ? "COMPLETE" : "INCOMPLETE")}, {reachedCount}/{waypoints.Length} waypoints reached");
             File.WriteAllText(reportPath, Log.ToString());
             yield return new WaitForSecondsRealtime(1f);
-            Application.Quit(complete ? 0 : 1);
+            CinematicFilmLifetime.Quit(complete ? 0 : 1);
         }
     }
 }

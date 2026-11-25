@@ -15,6 +15,14 @@ namespace Parasite.Tests
 {
     public class FullStoryFilmTests
     {
+        [UnityTearDown]
+        public IEnumerator DrainNativeMedia()
+        {
+            CinematicFilmLifetime.RetireAll();
+            bool drained=false;
+            yield return CinematicFilmLifetime.Drain(CinematicFilmLifetime.DrainTimeout,result=>drained=result);
+            Assert.IsTrue(drained,"Retiring real footage cannot be left for Editor/native class shutdown.");
+        }
         [UnityTest, Timeout(60000)]
         public IEnumerator OptionalFootageFallbackPreservesChoiceAudioAndCleanup()
         {
@@ -129,14 +137,16 @@ namespace Parasite.Tests
                     float start=Time.realtimeSinceStartup;
                     while (Time.realtimeSinceStartup-start<7.1f)
                     { sequence.TickChoice(Time.realtimeSinceStartup-start,Time.unscaledDeltaTime); yield return null; }
-                    var peace=canvas.GetComponentsInChildren<VideoPlayer>().Single(p=>p.clip==Resources.Load<VideoClip>(CinematicStoryPlan.Peace.ResourcePath));
-                    var dominion=canvas.GetComponentsInChildren<VideoPlayer>().Single(p=>p.clip==Resources.Load<VideoClip>(CinematicStoryPlan.Dominion.ResourcePath));
+                    var peace=Object.FindObjectsByType<VideoPlayer>(FindObjectsSortMode.None).Single(p=>p.clip==Resources.Load<VideoClip>(CinematicStoryPlan.Peace.ResourcePath));
+                    var dominion=Object.FindObjectsByType<VideoPlayer>(FindObjectsSortMode.None).Single(p=>p.clip==Resources.Load<VideoClip>(CinematicStoryPlan.Dominion.ResourcePath));
                     Assert.IsFalse(peace.isPlaying); Assert.IsFalse(dominion.isPlaying);
-                    Assert.IsFalse(peace.GetComponent<RawImage>().enabled); Assert.IsFalse(dominion.GetComponent<RawImage>().enabled);
+                    var peacePicture=canvas.GetComponentsInChildren<RawImage>(true).Single(image=>image.name=="RTX Cycles Film - LakePeace");
+                    var dominionPicture=canvas.GetComponentsInChildren<RawImage>(true).Single(image=>image.name=="RTX Cycles Film - LakeDominion");
+                    Assert.IsFalse(peacePicture.enabled); Assert.IsFalse(dominionPicture.enabled);
                     start=Time.realtimeSinceStartup;
                     while (Time.realtimeSinceStartup-start<1f)
                     { sequence.TickResolution(EndingOutcome.Peace,Time.realtimeSinceStartup-start,Time.unscaledDeltaTime); yield return null; }
-                    Assert.IsTrue(peace.GetComponent<RawImage>().enabled); Assert.IsFalse(dominion.isPlaying);
+                    Assert.IsTrue(peacePicture.enabled); Assert.IsFalse(dominion.isPlaying);
                 }
                 finally { Time.timeScale=old; Object.Destroy(canvas); }
             }

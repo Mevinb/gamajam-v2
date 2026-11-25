@@ -17,6 +17,14 @@ namespace Parasite.Testing
         readonly StringBuilder report = new();
         bool passed = true;
         CinematicFilm film;
+        static readonly bool TraceRequested = Array.IndexOf(Environment.GetCommandLineArgs(), "-traceCinematicLifetime") >= 0;
+        void TraceLifetime(string action)
+        {
+            if (TraceRequested) Debug.Log($"[CinematicLifetime] owner=acceptance action={action} frame={Time.frameCount} real={Time.realtimeSinceStartupAsDouble:F4} passed={passed}");
+        }
+        void OnEnable() { if (TraceRequested) Application.quitting += OnApplicationQuitting; }
+        void OnDisable() { if (TraceRequested) Application.quitting -= OnApplicationQuitting; }
+        void OnApplicationQuitting() => TraceLifetime("application.quitting");
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void StartWhenRequested()
@@ -37,9 +45,12 @@ namespace Parasite.Testing
             // Let Bootstrap initialize its camera before freezing gameplay time.
             yield return null; yield return null;
             report.AppendLine("GPU: " + SystemInfo.graphicsDeviceName + " / " + SystemInfo.graphicsDeviceType);
+            bool noFinalSeek = Array.IndexOf(Environment.GetCommandLineArgs(), "-cinematicNoFinalSeek") >= 0;
+            report.AppendLine("Experimental acceptance no-final-seek: " + noFinalSeek + "; default control retains Tick(end). This switch is not a runtime fix.");
+            TraceLifetime("start no-final-seek=" + noFinalSeek);
             if (SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null)
             {
-                Record(false, "A graphics device is required for actual Linux video decode."); Finish(); yield break;
+                Record(false, "A graphics device is required for actual Linux video decode."); yield return Finish(); yield break;
             }
             var canvasObject = new GameObject("Standalone film canvas", typeof(RectTransform), typeof(Canvas));
             canvasObject.transform.SetParent(transform, false);
@@ -86,10 +97,22 @@ namespace Parasite.Testing
                     { film.Tick(definition.Seconds - .5f + Time.realtimeSinceStartup - loopStarted); yield return null; }
                     Record(film.LoopCount > previousLoops && player.isPlaying && Time.timeScale == 0, resource + " neutral hold wraps and continues without publishing a game outcome");
                 }
-                film.Tick(definition.Seconds); film.Dispose(); film = null;
-                yield return null;
+                if (noFinalSeek)
+                    TraceLifetime("experimental final-tick.omitted " + resource);
+                else
+                {
+                    TraceLifetime("control final-tick.before " + resource);
+                    film.Tick(definition.Seconds);
+                    TraceLifetime("control final-tick.after " + resource);
+                }
+                TraceLifetime("film.dispose.before " + resource); var retiring = film; film.Dispose(); film = null; TraceLifetime("film.dispose.after " + resource);
+                bool drained = false;
+                yield return CinematicFilmLifetime.Drain(CinematicFilmLifetime.DrainTimeout, result => drained = result);
+                if (!drained || !retiring.RetirementComplete || retiring.RetirementError != null)
+                    Record(false, resource + " native retirement did not complete cleanly: " + retiring.RetirementError);
+                TraceLifetime("post-dispose-drain " + resource + " clean=" + drained + " seekAck=" + retiring.RetirementSeekAcknowledged);
             }
-            Finish();
+            yield return Finish();
         }
 
         bool InspectFrame(RenderTexture frame, string resource, CinematicFilmSpec definition)
@@ -119,18 +142,27 @@ namespace Parasite.Testing
             report.AppendLine(line); Debug.Log(line);
         }
 
-        void Finish()
+        IEnumerator Finish()
         {
+            TraceLifetime("finish.enter");
+            bool drained = false;
+            yield return CinematicFilmLifetime.Drain(CinematicFilmLifetime.DrainTimeout, result => drained = result);
+            if (!drained) Record(false, "Native cinematic retirement drain failed before quit.");
             Time.timeScale = 1f;
             string path = Path.GetFullPath(output); Directory.CreateDirectory(Path.GetDirectoryName(path));
             report.AppendLine("RESULT: " + (passed ? "PASS" : "FAIL")); File.WriteAllText(path, report.ToString());
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.Exit(passed ? 0 : 1);
-#else
-            Application.Quit(passed ? 0 : 1);
-#endif
+            TraceLifetime("finish.report-written " + path);
+            TraceLifetime("finish.pre-quit exit=" + (passed ? 0 : 1));
+            CinematicFilmLifetime.Quit(passed ? 0 : 1);
+            TraceLifetime("finish.post-quit-return");
         }
 
-        void OnDestroy() { film?.Dispose(); Time.timeScale = 1f; }
+        void OnDestroy()
+        {
+            TraceLifetime("owner.on-destroy.enter");
+            if (TraceRequested) Application.quitting -= OnApplicationQuitting;
+            film?.Dispose(); Time.timeScale = 1f;
+            TraceLifetime("owner.on-destroy.exit");
+        }
     }
 }

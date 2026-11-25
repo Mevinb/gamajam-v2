@@ -1,3 +1,7 @@
+<!-- Current cleanup milestone: candidate build20261125T055158369729Z-c3ce6bed succeeds1025MB/0errors/0warnings,original preview unchanged. New scoped cinematic lifetime code API144/23/144; Editor12pass/0fail/1expectedmissingOpening skip; native originaldefault forcedendTick7PASS/6PNG exits0 rendered+batch; missingOpening exits1; normaluntraced default7PASS exits0. Portable proof Docs/verification/cinematic-retirement-20261125.json. ExplicitQuit0/1 whilepending source cases are still staging. Native mission24 passes1/1 native0/Null;23failed only static walker Morgan capsule contact. Physical sidestep fixture-only candidate still staging/peerreview corrections, no runtime size/collision/deadline change. Packed opening currently stopped757 forGPUtests; oldPIDs4076169/4076838 gone. -->
+<!-- Latest desktop control: same profiled build20261125T052551506572Z-024d2666 on actualXwayland:0 at1080p/Vulkan,20/20+native0: High265.6FPS/p999.44ms/all10382samplesfocused;Ultra179.0FPS/p9911.28ms/all6991focused. Private:97 focus helper initialPASS did NOT persist in game samples (all990unfocused), so no focus-only causal claim. No game optimization was required from those confounded results. Native headless23/24 sequential supervisor4073890/job234073892 is active under Logs/native-island-headless-private-candidate; immutable78197DLL. Frozen opening resumed after safe stop750, current session12477/PIDs4076169,4076838; verify beforeGPU. Cinematicretirement candidate remains staged pendingpeerreview/APIcompile. -->
+<!-- Current continuation: all122EditMode rules pass; opt-in profiler applied/API143/23/143 and private build20261125T052551506572Z-024d2666 succeeds1025MB/0errors/0warnings/original preview unchanged. Native profiledHigh20/20 exits0. Main39.37ms dominated by render-thread wait35.43ms; renderCPU0.878ms, present wait0.0025ms,target wait0. All981samples unfocused on Xvfb:97, so no game-bottleneck inference. One game camera/1000rendered of1000update frames/no reflection callbacks. Focused:97 then actual desktopXwayland:0 controls are being prepared. Packed opening resumed again after stop737, session44984; check actual process IDs. Movie-retirement candidate remains staging, not applied. -->
+<!-- Latest source commits: 5092418 wall kit/HDR evidence/guide;98a25b7 isolated build output/island benchmark; both pushed as Mevinb. -->
 # PARASITE — developer handoff
 
 Read this before changing the project. The active request is a full realism/cinematic upgrade and continued mission expansion,
@@ -20,11 +24,13 @@ The full requested upgrade is **in progress**; see `Docs/UPGRADE_TRACKER.md`. Ne
   normal rendering; watchdog137. Experimental no-final-seek arm exits0 on the same candidate. It is not a production fix.
   Exact Unity symbols locate native video cleanup lock. Cine agent stages bounded per-film retirement/quit drain preserving
   immediate visual skip, default stress and requested exit codes; no live cleanup candidate is applied yet.
-- Native island1920x1080/Vulkan baselines reach20/20waypoints,exit0: High25.5FPS/p9963.23ms/scale1.00;
+- Linux-binary island1920x1080/Vulkan private-display baselines reach20/20waypoints,exit0: High25.5FPS/p9963.23ms/scale1.00;
   Ultra26.7FPS/p9966.76ms/scale1.25. AI/traffic active. Low GPU utilization and weak scaling warrant CPU/scheduling profiling.
-  No optimization claim; historical city/river results are different routes/builds. Profiling sidecar is being staged.
-- Packed opening is currently safely stopped at frame699; PIDs3620827/3621501 actually exited. Resume frozen production after
-  GPU jobs terminate. API check passes142runtime/23editor/142Linux player with optional HDR art helper.
+  Display was :97 (private), with all981profile samples unfocused. Main39.37ms is dominated by render-thread wait35.43ms;
+  one game camera, no recurring reflection cameras, rendered/update counts1:1. Actual focused:97 and desktop:0 controls
+  are pending. Do not infer a game bottleneck or optimize from these presentation-confounded results.
+- Packed opening resumed after the native/asset GPU window, prior safe stop699; current exec session60482. Verify actual
+  processes/checkpoints and request safe STOP before further graphics tests. API check passes142/23/142 with HDR art helper.
 
 ## User playtest build retained
 
@@ -74,7 +80,7 @@ inside video-class engine cleanup; the lock owner/cause is unproven. Evidence li
 A two-file optional lifecycle trace / final-seek A/B patch is now applied from `Logs/cinematic-native-lifetime`; no new
 player build or runtime repair is claimed. Preserve the old forced-seek stress path until the native issue is understood.
 
-The frozen RTX production resumed again after the wall GPU window (last safe stop Opening 671). Current session 50611;
+The frozen RTX production resumed again after the wall GPU window (last safe stop Opening 671). That earlier resume used session50611;
 check actual processes/checkpoints before GPU work. Campaign agent is staging full aperture images/sample/camera diagnostics.
 The island benchmark patch is applied and API-compiles141/23/141: explicit20-point Maintenance route, no performance run yet.
 

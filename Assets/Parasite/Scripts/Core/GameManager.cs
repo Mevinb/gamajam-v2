@@ -305,9 +305,9 @@ namespace Parasite
         public static void QuitApp()
         {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+            CinematicFilmLifetime.QuitPlayMode();
 #else
-            Application.Quit();
+            CinematicFilmLifetime.Quit(0);
 #endif
         }
     }

@@ -1,0 +1,114 @@
+{
+  "scope": "Real published movies and normal native process exits. Default terminal Tick(end), image/frame/loop gates retained. Missing opening remains an expected failure. Does not prove all engine failures or OS-window-close pending-media routing.",
+  "editor": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 1,
+    "xml_sha256": "bbdf67e442888d20bc4f490c2819ba592d59bd4494aba8bc99a972a0faf896ae",
+    "cases": [
+      {
+        "name": "CancelBeforeFirstImageDrainsRealPreparationWithoutPlayingAudio",
+        "result": "Passed"
+      },
+      {
+        "name": "DisabledAndDestroyedSceneOwnerCannotDestroyPendingNativePlayer",
+        "result": "Passed"
+      },
+      {
+        "name": "ForcedTerminalSeekIsAcknowledgedBeforeStopAndTargetRelease",
+        "result": "Passed"
+      },
+      {
+        "name": "LegacyInsertEndRetiresItsPendingDriftSeekWithoutStoppingEarly",
+        "result": "Passed"
+      },
+      {
+        "name": "MissingAndDisabledMediaRemainBoundedAndSilent",
+        "result": "Passed"
+      },
+      {
+        "name": "RealLocalBackendErrorRetiresWithoutKeepingAnAudibleOrVisiblePlayer",
+        "result": "Passed"
+      },
+      {
+        "name": "ZeroBudgetDrainReturnsFailureWithoutAbortingOwnedRetirement",
+        "result": "Passed"
+      },
+      {
+        "name": "LakesideArrivalShowsTheDecodedFilmUnderStoryCaptions",
+        "result": "Passed"
+      },
+      {
+        "name": "RtxFilmsDecodeAndAdvanceWhileGameplayTimeIsFrozen",
+        "result": "Passed"
+      },
+      {
+        "name": "CompleteLakeFootageDecodesWhileOpeningMayUseFallback",
+        "result": "Passed"
+      },
+      {
+        "name": "FinalFullFootageDecodesAtItsDeclaredFormatAndHoldLoops",
+        "result": "Skipped"
+      },
+      {
+        "name": "OptionalFootageFallbackPreservesChoiceAudioAndCleanup",
+        "result": "Passed"
+      },
+      {
+        "name": "OutcomeFramesRemainHiddenUntilExplicitOutcomeSelection",
+        "result": "Passed"
+      }
+    ]
+  },
+  "native": [
+    {
+      "case": "default-batch",
+      "exit": 0,
+      "expected": 0,
+      "passes": 7,
+      "failures": 0,
+      "verified": true,
+      "execution_sha256": "e6ab5e669a50ca726392f739fb79a638fb5e52543373bf4f41568b315b2816ec",
+      "report_sha256": "eb1109dda5cfb32633c0b21cc95688e10a2fd1b7eee8f81df9b6f63a78f8a345",
+      "log_sha256": "1defce80bda316bd1f4d08a99459fb84f231d327098e0346820deb0dc3eb34be"
+    },
+    {
+      "case": "default-rendered",
+      "exit": 0,
+      "expected": 0,
+      "passes": 7,
+      "failures": 0,
+      "verified": true,
+      "execution_sha256": "27fc151b40aead5fb154b19a7d78ef21845ac0b2904e241f787bc43771b73f3b",
+      "report_sha256": "c772121c140308a0d51c18c0a246e4ce099d6067b3439e97c4ed6e2c80a4f3f6",
+      "log_sha256": "3a235ad75b19de63dbc5c76236267e9df3774b9b11deab623ac113fac13abdaa"
+    },
+    {
+      "case": "strict-missing-opening",
+      "exit": 1,
+      "expected": 1,
+      "passes": 7,
+      "failures": 1,
+      "verified": true,
+      "execution_sha256": "b3fc7bb8e1ae23472f4bafbc0cc887304b9ded9088411c0a4b523b47863b0b48",
+      "report_sha256": "b1c698b3ad2fa356cde2528b139ff5f5c9811b4f6d23dd04eca1383467968518",
+      "log_sha256": "a93c9f4fc322283eb14097dc7b1a420d563583820ef8fe9fb0f65c9d33cf0809"
+    },
+    {
+      "case": "untraced-rendered-default",
+      "exit": 0,
+      "passes": 7,
+      "failures": 0,
+      "verified": true,
+      "execution_sha256": "019712bb6fc4170240d33647256e9093893bdb6612daabe0209282b13d2a97cf",
+      "report_sha256": "fd131a443c9fd9fc18d9d913d027dfeccb516b90b0174187b6fab4ff938c70b0"
+    }
+  ],
+  "native_runtime_sha256": "candidates are pinned per execution JSON",
+  "source": {
+    "Assets/Parasite/Scripts/Core/CinematicFilm.cs": "dde4cf21dfa964a0304a653af448160f54ffa54c831c359985c5fa5149ba2db7",
+    "Assets/Parasite/Scripts/Core/CinematicFilmLifetime.cs": "108dfc473df034baf158d6c7babb91b45f4a12eb60941b5d12fed5ddf724b4d7",
+    "Assets/Parasite/Scripts/Core/CinematicFilmAcceptance.cs": "5514e5e5da5d6c09e1a4155d862bb3433099256674ebac424602c345641e8e09"
+  },
+  "remaining": "Explicit Quit(code) during actual pending seek optional native cases are being staged; caller/owner state regressions remain scoped."
+}

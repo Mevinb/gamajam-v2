@@ -1,3 +1,26 @@
+# Cinematic native retirement verification
+
+The scoped native lifetime fix preserves default forced terminal Tick(end), immediate visual removal, native acknowledgement
+and safe resource ordering. API144/23/144 passes. `cinematic-retirement-fixed-fixtures.xml` passes12cases/0failures with one
+expected missing-opening skip. Original default stress now has7media checks/6PNGs and normal native exit0 in rendered and
+batch Vulkan; untraced normal mode also exits0. Strict unfinished-opening negative case exits1 with RESULTFAIL. No experimental
+no-final-seek flag is needed. Portable source/report hashes and exact scope: `verification/cinematic-retirement-20261125.json`.
+Pending explicit Quit(code) and OSclose routing remain separate validations. Native mission24 passes;23still needs a fixture
+walker sidestep around a real delivered NPC, without changing gameplay collision or original deadline.
+
+---
+
+# Actual desktop performance control
+
+Same profiled candidate,1920x1080/Vulkan,actualXwayland `:0`,AI active,20/20waypoints,native0:
+High265.6FPS/p999.44ms (10382focused/0unfocused samples);Ultra179.0FPS/p9911.28ms (6991/0).
+Reports: `Logs/island-profile-desktop-0` and `Logs/island-profile-desktop-0-ultra`. Portable hashes/values:
+`ArtSource/Island/quarantine-wall-runtime-verification.json`. Private:97 results are retained as confounded presentation
+controls; startupXfocus success did not establish in-game focus. No game bottleneck or optimization claim follows from them.
+Native headless23/24 are running separately for physics/ownership, without graphics/performance scope.
+
+---
+
 # Wall/native checkpoint
 
 Current proof and limits are recorded in the latest HANDOFF checkpoint and portable

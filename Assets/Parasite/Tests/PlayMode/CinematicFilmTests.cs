@@ -13,6 +13,14 @@ namespace Parasite.Tests
 {
     public class CinematicFilmTests
     {
+        [UnityTearDown]
+        public IEnumerator DrainNativeMedia()
+        {
+            CinematicFilmLifetime.RetireAll();
+            bool drained = false;
+            yield return CinematicFilmLifetime.Drain(CinematicFilmLifetime.DrainTimeout, result => drained = result);
+            Assert.IsTrue(drained, "Real native movie retirements finish before this test owner/Editor exits.");
+        }
         [UnityTest, Timeout(90000)]
         public IEnumerator RtxFilmsDecodeAndAdvanceWhileGameplayTimeIsFrozen()
         {
@@ -30,7 +38,7 @@ namespace Parasite.Tests
                     Assert.That(clip.length, Is.EqualTo(3f).Within(.1f));
                     using (var film = new CinematicFilm(resource, canvas.transform))
                     {
-                        var player = canvas.GetComponentInChildren<VideoPlayer>();
+                        var player = film.Player;
                         float deadline = Time.realtimeSinceStartup + 20f;
                         while (player.frame < 2 && Time.realtimeSinceStartup < deadline)
                         { film.Tick(.1f); yield return null; }
@@ -40,7 +48,7 @@ namespace Parasite.Tests
                         // Drive the same per-frame lifecycle as OpeningCinematic/LakesideEpilogue before observing UI state.
                         film.Tick(.1f);
                         Assert.IsTrue(film.Ready, "The owning story can advance after its first decoded image: " + resource);
-                        var picture = player.GetComponent<RawImage>();
+                        var picture = film.Picture;
                         Assert.IsTrue(picture.enabled, "A decoded film is visible after its owner updates: " + resource);
                         long frame = player.frame;
                         float observationStart = Time.realtimeSinceStartup;
@@ -94,13 +102,14 @@ namespace Parasite.Tests
             {
                 Assert.IsNotNull(epilogue);
                 string arrival = epilogue.UsingFullArrival ? "LakeArrival" : "LakesideEnding";
-                var movie = epilogue.GetComponentsInChildren<VideoPlayer>(true)
+                var movie = Object.FindObjectsByType<VideoPlayer>(FindObjectsSortMode.None)
                     .Single(player => player.clip && player.clip.name == arrival);
                 Assert.IsNotNull(movie);
                 float deadline = Time.realtimeSinceStartup + 8f;
                 while (movie.frame < 2 && Time.realtimeSinceStartup < deadline) yield return null;
                 Assert.That(movie.frame, Is.GreaterThanOrEqualTo(2));
-                var picture = movie.GetComponent<RawImage>();
+                var picture = epilogue.GetComponentsInChildren<RawImage>(true)
+                    .Single(image => image.name == "RTX Cycles Film - " + arrival);
                 Assert.IsTrue(picture.enabled && picture.color.a > .9f, "The actual arrival movie is visible beneath the caption canvas.");
                 Assert.AreEqual(EndingOutcome.Unchosen, epilogue.Outcome);
                 Assert.IsFalse(epilogue.ChoicesReady);

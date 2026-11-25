@@ -106,6 +106,7 @@ def main():
     parser.add_argument("--presets", nargs="+", choices=["Low", "Medium", "High", "Ultra"], default=["High", "Ultra"])
     parser.add_argument("--districts", nargs="+", choices=["city", "riverside", "island"], default=["city", "riverside"])
     parser.add_argument("--timeout", type=float, default=900, help="Per-process diagnostic timeout, seconds")
+    parser.add_argument("--profile", action="store_true", help="Opt in to actual available runtime recorder/focus/render diagnostics; retain baseline samples separately")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     if args.width < 320 or args.height < 200 or args.timeout <= 0:
@@ -119,7 +120,7 @@ def main():
     cases = [(district, preset) for district in args.districts for preset in args.presets]
     if args.dry_run:
         print(json.dumps({"build": build["source_commit"], "resolution": [args.width, args.height],
-                          "graphics_api": args.graphics_api, "output": str(folder), "cases": cases}, indent=2))
+                          "graphics_api": args.graphics_api, "profile": args.profile, "output": str(folder), "cases": cases}, indent=2))
         return 0
     active = active_render_processes()
     if active:
@@ -129,7 +130,7 @@ def main():
     folder.mkdir(parents=True, exist_ok=True)
     evidence = {"started_utc": utc(), "build": build, "resolution": [args.width, args.height],
                 "display": os.environ.get("DISPLAY"), "batch_mode": False,
-                "graphics_api_requested": args.graphics_api, "popup_window": args.popup_window, "cases": []}
+                "graphics_api_requested": args.graphics_api, "popup_window": args.popup_window, "profile_requested": args.profile, "cases": []}
     for district, preset in cases:
         if sha256(runtime) != expected:
             raise SystemExit("Runtime changed between benchmark cases.")
@@ -140,6 +141,8 @@ def main():
                    "-benchmarkDistrict", district, "-screen-width", str(args.width),
                    "-screen-height", str(args.height), "-screen-fullscreen", "0",
                    "-autotestOut", str(report), "-logFile", str(directory / "player.log")]
+        if args.profile:
+            command.append("-benchmarkProfile")
         if args.graphics_api != "default":
             command.append("-force-" + args.graphics_api)
         if args.popup_window:
@@ -170,6 +173,11 @@ def main():
         text = report.read_text() if report.exists() else ""
         measured = parse_report(text)
         case["measurements"] = measured
+        if args.profile:
+            profiler = directory / "report.profile.json"
+            case["profiler"] = {"path": str(profiler), "exists": profiler.is_file()}
+            if profiler.is_file():
+                case["profiler"]["sha256"] = sha256(profiler)
         case["gpu_telemetry"] = parse_telemetry(directory / "gpu.csv")
         case["status"] = "PASS" if (case["exit_code"] == 0 and measured.get("route") == "COMPLETE"
             and measured.get("reached", 0) == measured.get("waypoints", -1)
