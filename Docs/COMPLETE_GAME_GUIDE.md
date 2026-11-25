@@ -1,22 +1,24 @@
 # PARASITE — complete game guide
 
-**Linux x86-64 · Fourteen initial missions, three riverside missions and three island missions in later source**
+**Linux x86-64 · 0.6.0 preview · 23 missions: city 1–14, riverside 15–17, island 18–20, Harbor 21–23**
 
 You are Specimen 7, an escaped amoeba that can possess humans and split into two independent bodies. A borrowed host changes
 where you can go and which controls you can use. Many later tasks need one host to hold a console while your other body acts.
 
-The original story ends at the lake with an explicit Peace or Dominion choice. Its summary offers **Continue · After the lake**
-to start the riverside chapter. The chosen future persists and changes that chapter's story and radio roles.
+The original story ends at the lake with an explicit Peace or Dominion choice. **Continue · After the lake** starts the riverside;
+its ferry summary offers **Continue · The Far Shore**. The island rescue summary then offers **Continue · The Working Harbor**.
+The first choice stays fixed and changes later story, roles and cargo requirements.
 
 **Spoilers below.** For an unspoiled start, read the controls and host roles, then follow the yellow waypoints. This guide
-explains current source behavior; the exact built-player validation belongs to [TEST_REPORT.md](TEST_REPORT.md).
+explains the 0.6.0 preview mechanics. Check the `BUILD_INFO.json` beside your executable: the separately retained 0.5.1 player
+remains a twenty-mission build. A walkthrough is not a full playthrough or final validation report.
 
 ## Getting started
 
-From the project root or the extracted Linux build folder, run `./play.sh`. Keep the executable, `Parasite_Data` and the Unity
+From the extracted candidate folder, run the `./play.sh` beside its executable. Keep the executable, `Parasite_Data` and the Unity
 libraries together. If permissions were lost during transfer, run `chmod +x play.sh Parasite.x86_64` in the extracted folder.
-The project launcher selects NVIDIA; extracted builds can use PRIME offload with
-`__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia ./play.sh`.
+The supplied launcher selects NVIDIA offload where available and prefers Vulkan. To select OpenGL, use
+`PARASITE_GRAPHICS_API=glcore ./play.sh`. A project-root launcher may select an older retained build.
 
 Choose **Begin Infiltration**. The eighty-second opening tells the backstory before giving control at the storm drain.
 Press Space, Enter or Esc and release to skip; gamepad South/East is also bound. Restart and checkpoint reloads do not replay it.
@@ -38,7 +40,7 @@ Settings on the title and pause menus save graphics, sensitivity and audio level
 | F1 / F3 | Controls / FPS |
 | Ctrl + M | Presentation jump to the original drain escape and explicit lake choice |
 
-Aim inside five metres for possession. Read the contextual E prompt: it explains profession, permission and prerequisite
+Aim inside five metres for possession. If the close-range prompt asks you to step back, make space and aim at the host's upper body. Read the contextual E prompt: it explains profession, permission and prerequisite
 requirements. The objective panel and compass show the active mission and controls. Esc also opens the scrollable mission journal.
 
 The presentation shortcut works from initial title, opening, pause, dialogue and gameplay. It never chooses a lake outcome.
@@ -118,9 +120,9 @@ See the [post-lake walkthrough](AFTERLAKE_GUIDE.md) for precise cooperative-cont
 
 ## Missions 18–20: The Far Shore
 
-**Build scope:** the retained **0.5.0-preview** playtest binary contains mission 18 only. Missions 19–20 here describe the
-later live source. Use [TEST_REPORT.md](TEST_REPORT.md) for exact rebuilt-player and validation scope; this walkthrough does
-not upgrade the retained binary or establish a human playthrough.
+**Build scope:** the 0.6.0 preview includes this full island chapter and the Harbor continuation below. The separately
+retained 0.5.1 build stops after mission 20. The older 0.5.0 preview contains mission 18 but not 19–20; this guide does not
+upgrade either older executable.
 
 After mission 17's ferry summary, choose **Continue · The Far Shore**. The first lake outcome, earlier flags and statistics
 persist. Travel reunites your free halves into one amoeba at the island jetty; the island adds no third amoeba capacity.
@@ -136,8 +138,7 @@ Reach the inner refuge by either route; both are optional alternatives to the sa
 - **Maintenance:** borrow the **Island jetty engineer** on the public outer jetty. Use **E** at the mechanical service latch,
   then walk through the human service gate. The latch is immediate, not a held console. A human cannot fit the low culvert.
 
-Continue to the dry-refuge marker to establish the island checkpoint. The later M19–M20 source then introduces Riley, Morgan
-and Avery.
+Continue to the dry-refuge marker to establish the island checkpoint. Missions 19–20 then introduce Riley, Morgan and Avery.
 
 ### 19. THE QUARANTINE WALK / EVERY VOICE
 
@@ -180,32 +181,53 @@ boarded people restore at their berths. No duplicate people or extra amoebae are
 attempts with a fresh E interaction; collect an unmounted case again. A completed mounting needs no repeat. Campaign progress
 lasts within this running session; this is not an on-disk save.
 
-## Graphics and cinematics
+## Missions 21–23: The Working Harbor
 
-Low/Medium/High/Ultra trade resolution, shadows, anti-aliasing, ambient occlusion, local lights and reflection quality. Ultra
-uses 125% render scale and 4x MSAA and can be expensive on a 6 GB GPU; benchmark results must name the settings. Try High if frame times
-are uneven. F3 shows FPS. Presets should apply consistently to new cinematic cameras as well as the gameplay camera.
+After the island rescue departure, choose **Continue · The Working Harbor** on its summary. The earlier choice and statistics
+persist; you arrive as one free amoeba. This is a deliberate continuation, not an automatic scene or a new choice of future.
 
-The new sets are authored in Blender: containment laboratory, service conduit, slatted bench and detailed shoreline.
-The current upgrade also adds RTX/OptiX path-traced Blender film inserts. Real-time Linux gameplay remains URP with screen-space
-reflections and probes; this is distinct from hardware ray tracing. See the current test report for actual footage/player-decode
-verification, and the handoff for rebuild instructions.
+### 21. A MEASURE OF PRESSURE
 
-![Blender-authored laboratory rendered in Unity](Screenshots/upgrade/01-blender-laboratory.png)
+Borrow Maintenance and toggle **A (+3), B (+2), C bleed (−1)** with E. The target and maximum pressure are **4**. One safe order
+from closed is **C → A → B**. At 4, wait **two gameplay seconds** for the physical gate to lift. A+B without bleed exceeds the
+maximum and safely resets all three handles, without moving or damaging anyone. Retry the puzzle rather than forcing the gate.
+Pause freezes it. Checkpoints retain earned handle settings but restart an unfinished two-second balance; a completed gate stays open.
 
-![The corrected, illuminated service conduit](Screenshots/upgrade/02-blender-conduit.png)
+### 22. COLD CHAIN / SIGNAL IN TRANSIT
 
-![RTX-rendered lake arrival playing beneath Unity story captions](Screenshots/upgrade/03-rtx-lake-arrival.png)
+As Scientist, press **E at the scanner while the required physical lot is inside the moving arch**. Peace needs antidote lots
+**A17 and A32**; Dominion needs relay lots **R09 and R21**. The prompt shows the actual current/next lot and scan window. An
+empty arch, wrong lot or wrong profession is denied. Each normal moving window lasts about two gameplay seconds.
 
-These are real Editor/GPU verification captures. The lake image shows the decoded Blender film; the laboratory and conduit
-show the authored game sets. They are not a claim of an extended human playthrough or final-player benchmark.
+Maintenance can brake the main belt for **five gameplay seconds** as an optional two-role strategy. One scientist can instead
+time both scans. A validated lot physically diverts to its bay; both actual arrivals are required. Stay outside the fenced trench.
+After a checkpoint, scanned but undelivered lots resume from separate bay approaches and must finish moving; delivered lots
+remain in place, unscanned lots circulate, and no duplicate crate is added. The brake must be activated again after a reload.
 
-## Verification and credits
+### 23. AN OPEN FREQUENCY / TWO MINDS, ONE SIGNAL
 
-[TEST_REPORT.md](TEST_REPORT.md) names exact tested artifacts, suites and remaining checks. Automated scenarios use simulated
-movement/queued input and do not establish a human playthrough or physical gamepad pass. Old screenshots and benchmarks belong
-to their original build, not automatically to the current upgrade.
+Split with **V** if needed. Use **Tab/Q** to release every host, then put **two distinct FREE amoebas fully on separate pads**.
+Both must be grounded, clear of pursuit and able to see their emitter points. At either nearby node, press **E once** and keep
+both bodies still for **three gameplay seconds**. Moving, leaving a pad, capture, possession, pursuit or a blocked beam cancels
+progress and needs a new E attempt. Pause freezes the timer; resume continues only if the requirements still hold. Checkpoints
+restart an unfinished handshake. The completed link leads to the branch's captioned resolution and summary.
 
-[KNOWN_ISSUES.md](KNOWN_ISSUES.md) records validation limits. [THIRD_PARTY_ASSETS.md](THIRD_PARTY_ASSETS.md) records models, textures,
-fonts, animation and audio provenance. [HANDOFF.md](HANDOFF.md) describes source architecture, generated scenes and serialized Unity
-commands. [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) preserves the full active expansion request and completion criteria.
+The [Harbor walkthrough](HARBOR_GUIDE.md) gives the valve solution, lot timing and recovery details. There is still a two-amoeba
+limit, and the original Peace/Dominion choice remains unchanged.
+
+## Graphics, progress and credits
+
+Title/pause Settings separates Display, Quality, Effects and Audio & Input. Stage graphics, then choose **Apply** to save them;
+**Cancel/Back** discard the draft. Audio and sensitivity apply immediately. The High baseline uses 100% game render scale;
+Ultra requests 125% scale and 4x MSAA. Post AA and MSAA are separate; unsupported samples fall back to the renderer's effective value.
+Custom choices persist, while selecting a quality preset keeps VSync/frame cap. Real-time effects do not change the story movies.
+
+The Linux player uses real-time URP shaders, screen-space reflections and probes. Blender story films use offline RTX/OptiX
+path tracing; gameplay does not use built-in hardware ray tracing. Existing voices are synthesized. The new Harbor scenes use
+captions without newly recorded narration.
+
+**Campaign progress lasts within the running game, not a disk save.** Checkpoints survive scene reloads in that session; closing
+the game or beginning a new run loses that campaign. Graphics/audio/input preferences persist separately. This preview's
+walkthrough does not establish a complete human playthrough, physical-controller pass or final performance result.
+
+Keep the supplied licence texts and [asset credits](THIRD_PARTY_ASSETS.md) with the player when sharing it.

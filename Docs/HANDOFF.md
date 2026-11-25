@@ -23,7 +23,8 @@ The full request remains **in progress**. Evidence applies to its named source o
   No rerun is required merely because an older note calls that job active. Actual art import passes267checks.
   The user's running 0.5.1 player remains the separate
   twenty-mission artifact. Read [HARBOR_EXPANSION.md](HARBOR_EXPANSION.md) before resuming or starting more Unity jobs.
-- Source is now **0.5.2-preview**, not yet built. The moving-host driver tracks the live chest and uses normal physical retreat
+- The earlier **0.5.2 source checkpoint** introduced the moving-host driver, now included in source and candidate0.6.0.
+  It tracks the live chest and uses normal physical retreat
   for a crowded duty officer within the original approach deadline. Full Route 08 passes all fourteen original missions and
   Dominion in the Null Editor (235.0 seconds, exit 0), pinned before the subsequent player hint. The player-facing close-range
   hint then passes two focused cases: denied targeting, interaction priority, real occlusion, looking away, physical retreat
@@ -53,7 +54,8 @@ The full request remains **in progress**. Evidence applies to its named source o
   all3gates. [WIP build proof](verification/0.5.1-gate-playtest-20261125.json) preserves both runner outcomes and exact scope.
   User-controlled RTX4050/Vulkan playtest is live on`:0`, PID51569/window`0xc0000a` at the recorded observation; session/logs are
   under`Logs/user-playtest-full-story-20261125T173043238618Z-0f595731`. Do not interrupt it with Unity/GPU jobs. Launch is not a
-  completed human playthrough, native gate acceptance or inherited campaign pass. The AFTERstatic capture contract remains open.
+  completed human playthrough, native gate acceptance or inherited campaign pass. Rendered Unity/Blender jobs and benchmarks
+  must not compete for its GPU. The scoped Null build/test coexistence checks are separate. The AFTERstatic capture contract remains open.
 - The earlier **0.5.1-preview pre-gate graphics candidate** is `Builds/Candidates/full-story-20261125T170047223995Z-63921b41`.
   It is a working-tree build over `bbebc8c`, 1,101 MB, zero build errors/warnings, native build exit 0. Runtime SHA-256:
   `80e65c6b734eab98fddb9db177e0718882bc7681bb22f5ba57c23ef6c8612290`. Source and the immutable preview tree were unchanged
@@ -101,7 +103,8 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Artifact and verification boundaries
 
-The source has twenty missions: original14, riverside15–17 and island18–20, with immutable explicit Peace/Dominion continuation.
+Source and candidate0.6.0 have twenty-three missions: original14, riverside15–17, island18–20 and harbor21–23, with immutable
+explicit Peace/Dominion continuation. The running0.5.1user player remains the separate twenty-mission build.
 The full five films, eight island voices and Blender quarantine-wall kit are integrated. Film source/frame/full-decode provenance,
 normal80s Editor story/voice/skip/handoff, wall import/traversal/raster/camera and reflection ownership proofs remain named in
 [TEST_REPORT.md](TEST_REPORT.md), [UPGRADE_TRACKER.md](UPGRADE_TRACKER.md) and their linked records. Normal80s story is Editor

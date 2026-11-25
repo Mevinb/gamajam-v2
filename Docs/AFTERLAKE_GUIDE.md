@@ -11,9 +11,9 @@ persist within this game session; they are not a disk save.
 ## Mission 15 — After the Still Water
 
 You arrive at a riverside landing, beyond the old city. Petrov's emergency receiver is in the open-front landing office.
-Borrow a nearby host, face the receiver and hold **E** to hear her distress signal. The mission waypoints point to each control.
+Borrow a nearby host, face the receiver and press **E** to start hearing her distress signal; remain in range. The mission waypoints point to each control.
 
-Take the maintenance engineer near flood control. Hold **E** at the bypass for six seconds to isolate the polluted intake.
+Take the maintenance engineer near flood control. Press **E** at the bypass, then remain close for six seconds to isolate the polluted intake.
 Work stops if you leave its range or enter a pursuit. Finishing the floodgate creates a checkpoint.
 
 Peace treats this as a rescue undertaken despite the promise of a quiet life. Dominion treats it as the beginning of a wider network.
@@ -42,7 +42,9 @@ creates another checkpoint. A cancelled attempt can be rearmed and retried witho
 Go to the south ferry waypoint. Release every borrowed host before leaving: **Q** frees the active body, then **Tab** and
 **Q** free any other occupied host. Switch back to the free amoeba at the ferry and use its intake with **E**. A pending
 possession leap must also finish before departure.
-The final chapter summary reflects the original chosen future. The old presentation shortcut does not replay the lake from here.
+The ferry summary reflects the original chosen future and offers **Continue · The Far Shore** for island missions 18–20.
+The island rescue summary later offers **Continue · The Working Harbor** for missions 21–23 in the 0.6.0 preview. The old
+presentation shortcut does not replay the lake from these chapters.
 
 ## Quick recovery checks
 
@@ -53,4 +55,5 @@ The final chapter summary reflects the original chosen future. The old presentat
 - Ferry refuses: finish the radio transmission, release all hosts with Tab/Q, lose pursuit, then use the gangway to reach
   the intake at the front of the ferry deck. The prompt identifies any remaining occupied host or pending leap.
 
-For current verification and remaining limits, see [TEST_REPORT.md](TEST_REPORT.md) and [KNOWN_ISSUES.md](KNOWN_ISSUES.md).
+Read [COMPLETE_GAME_GUIDE.md](COMPLETE_GAME_GUIDE.md) for the island route and [HARBOR_GUIDE.md](HARBOR_GUIDE.md) for the new
+Harbor tasks. The separately retained 0.5.1 build stops after mission 20; later documentation does not upgrade it.

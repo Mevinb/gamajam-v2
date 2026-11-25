@@ -1,8 +1,8 @@
-# PARASITE 0.5.1 graphics preview — controls and play
+# PARASITE 0.6.0 preview — controls and play
 
-The candidate contains fourteen initial missions, three riverside missions and three Far Shore island missions.
-[TEST_REPORT.md](TEST_REPORT.md) identifies the actual binary and completed verification; final candidate checks remain in progress.
-The retained 0.5.0-preview contains M18 only, and the older 0.4.2 archive has a different mission/cinematic scope.
+The 0.6.0 preview has fourteen city missions, three riverside missions, three island missions and three Harbor missions:
+**23 in all**. The separately retained 0.5.1 player still has twenty missions. Use the `BUILD_INFO.json` beside your executable
+to identify the build; these controls do not imply complete human, physical-controller or graphical validation.
 
 ## Opening and deliberate continuation
 
@@ -13,7 +13,8 @@ during protected story presentation.
 After mission 14, the sunset lake requires **Live quietly (Peace)** or **Become the world (Dominion)**. Use the mouse or menu
 navigation and confirm. Waiting, Escape and dialogue-skip input never choose an outcome. The first choice is locked.
 Its summary offers **Continue · After the lake** for missions 15–17. The ferry summary then offers **Continue · The Far Shore**
-for missions 18–20. Continuation preserves the original choice, earlier flags and campaign statistics.
+for missions 18–20. The island rescue summary offers **Continue · The Working Harbor** for missions 21–23.
+Continuation preserves the original choice, earlier flags and campaign statistics.
 
 ## Controls
 
@@ -37,7 +38,7 @@ Menus accept mouse input or keyboard/D-pad navigation and Enter/A confirmation. 
 Esc/Start returns from pause submenus. Audio and sensitivity sliders apply/save immediately. Graphics are staged until Apply;
 Cancel/Back discard only unapplied graphics and preserve the pause state and saved audio/input values.
 
-## Graphics settings in0.5.1-preview
+## Graphics settings
 
 - **Display:** game render scale50–150%, VSync and frame limit(Unlimited/30/60/90/120/144/240). The cap is used when VSync is off;
   compositor/display behavior can still limit presentation. Menus/captions retain output resolution.
@@ -50,8 +51,7 @@ Cancel/Back discard only unapplied graphics and preserve the pause state and sav
 Use mouse, Up/Down or D-pad to focus a row, Left/Right to change a choice and scroll wheel/drag to move a page. Apply saves;
 Cancel reloads applied graphics; Defaults stages the normal starting profile; Back discards an unapplied draft. A changed profile
 shows **Custom**, retaining its named baseline for other quality budgets. Selecting quality preserves separately chosen VSync/frame cap.
-The older0.5.0 menu has one preset-cycle control; these pages belong to the newer graphics preview. Automated queued navigation
-passes in the Editor; physical input and native Custom editing remain separate verification.
+Older builds can have a different menu. Queued-input automation and physical keyboard/gamepad behavior are separate checks.
 
 Ctrl+M works from the initial title, opening, pause menus, Vale dialogue and gameplay. A request waits through loading or body
 changes. An ending already underway continues without restarting or choosing for you. The shortcut skips the remaining original
@@ -83,7 +83,7 @@ press E during the ejection window. Losing every playable amoeba returns you to 
 ## Mission route
 
 Follow the objective panel, compass and yellow waypoints. The [complete guide](COMPLETE_GAME_GUIDE.md) gives route details;
-the [riverside guide](AFTERLAKE_GUIDE.md) expands missions 15–17.
+the [riverside guide](AFTERLAKE_GUIDE.md) expands missions 15–17 and the [Harbor guide](HARBOR_GUIDE.md) covers 21–23.
 
 1. **OUT OF THE DRAIN:** leave the alley and take a host.
 2. **WORD ON THE STREET:** read the plaza newsstand and listen at the café.
@@ -105,6 +105,9 @@ the [riverside guide](AFTERLAKE_GUIDE.md) expands missions 15–17.
 18. **UNDER THE WATERLINE:** reach the island refuge by tidal culvert as a blob or service gate as maintenance.
 19. **THE QUARANTINE WALK / EVERY VOICE:** escort protected survivors on Peace or complete marked courier handoffs on Dominion.
 20. **A LIGHT IN THE FOG / A SIGNAL BEYOND THE ISLAND:** carry and mount the signal, board every passenger and depart with all amoebas free.
+21. **A MEASURE OF PRESSURE:** Maintenance balances A (+3), B (+2), C (−1) at 4 for two seconds; overflow safely resets the handles.
+22. **COLD CHAIN / SIGNAL IN TRANSIT:** Scientist scans moving A17/A32 on Peace or R09/R21 on Dominion; wait for physical bay arrivals.
+23. **AN OPEN FREQUENCY / TWO MINDS, ONE SIGNAL:** two free bodies fully on separate pads hold a clear, stationary three-second link after E.
 
 On Peace, ask survivors to follow with E in a civilian/scientist host and lead them through cover they physically reach.
 Losing or releasing the leader requires a fresh E regroup, even if you reclaim the same body. On Dominion, mark each possessed
@@ -115,5 +118,11 @@ host change or checkpoint reload returns an unmounted case to the cache. Before 
 unoccupied and physically on deck. Release every borrowed host with Tab/Q, bring every surviving free half aboard, finish pending
 leaps and lose pursuit. Merely standing on the gangway is insufficient.
 
-Automated tests use simulated movement or queued input. They do not establish physical keyboard/gamepad behavior, physical
-speaker output or an extended human playthrough. See [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for current limits.
+In the Harbor, E toggles a valve, scans the lot currently in the arch, or starts a relay attempt; none of those actions requires
+holding the key down. The optional Maintenance brake lasts five gameplay seconds. A relay needs both whole grounded free bodies
+on separate pads, no pursuit and clear emitter sight lines. Movement, capture, possession or obstruction cancels it; pause freezes
+it, and checkpoint reloads restart it. See the [Harbor guide](HARBOR_GUIDE.md) for recovery details.
+
+Campaign progress/checkpoints last only in this running game; closing it does not create a campaign save. Graphics/audio/input
+preferences persist separately. Automated simulated movement and queued input do not establish a complete human playthrough,
+physical keyboard/gamepad behavior or physical speaker output.
