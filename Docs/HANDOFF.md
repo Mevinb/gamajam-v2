@@ -6,6 +6,11 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 25 November 2026
 
+- Source is now **0.6.1-preview** for the corrected regroup/boarding driver and a shorter Peace M20 route hint.
+  Only the Peace briefing/objective copy changes: it suggests the real clinic exit/west wall/north shore and natural
+  regrouping; no extra waypoint arrows, gameplay gates or voice clips change. Runtime/Editor/Linux API162/31/162 passes.
+  The new hint's actual text layout remains a rendered check; the prior full Editor result below predates this copy/version.
+  Existing0.6.0 archive/candidate and the open0.5.1player remain separate. A fresh native build is next, not yet claimed.
 - **Full Peace continuity rerun passes:** root exec53314, timeout101415/Editor101416, source5689 below.
   `Tools/unity.sh continuity_north_shore -nographics -runTests -testPlatform PlayMode`
   uses exact AcceptanceTests filter, `Logs/continuity-north-shore.xml`, only `-autotestFilter 90` and an owned1800s wrapper.

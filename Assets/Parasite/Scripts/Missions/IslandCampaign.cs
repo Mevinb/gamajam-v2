@@ -73,12 +73,14 @@ namespace Parasite.Missions
             missions.Add(new Mission
             {
                 title=RunState.LakesideOutcome==EndingOutcome.Peace?"A LIGHT IN THE FOG":"A SIGNAL BEYOND THE ISLAND",
-                briefing="Recover the physical signal, carry it in the same host to the northern mount, then bring every person and surviving free amoeba aboard the docked launch. Sailing begins only after everyone is safe.",
+                briefing=RunState.LakesideOutcome==EndingOutcome.Peace
+                    ?"Carry the signal in the same host and mount it at the jetty. Lead survivors via the clinic front exit, west wall and north shore. Regroup after patrols turn away; bring everyone aboard."
+                    :"Recover the physical signal, carry it in the same host to the northern mount, then bring every person and surviving free amoeba aboard the docked launch. Sailing begins only after everyone is safe.",
                 objectives=
                 {
                     new(){text="As a human, recover the physical signal case; a lost carrier returns it to the safe cache",doneWhen=()=>RunState.Has(IslandRoster.SignalMounted)||(IslandSignalTransport.Instance&&IslandSignalTransport.Instance.Held),waypoints=new[]{At(18,.15f,18)},waypointLabel="SIGNAL CACHE"},
                     new(){text="Carry the case in the same body and mount it at the northern jetty [E]",flag=IslandRoster.SignalMounted,waypoints=new[]{At(32,.15f,37)},waypointLabel="SIGNAL MOUNT"},
-                    new(){text=RunState.LakesideOutcome==EndingOutcome.Peace?"Regroup and lead all three survivors onto the rescue deck":"Let all three released couriers follow the mounted signal onto the rescue deck",doneWhen=()=>IslandRoster.AllBoarded,waypoints=new[]{At(34,.55f,44.5f)},waypointLabel="RESCUE DECK"},
+                    new(){text=RunState.LakesideOutcome==EndingOutcome.Peace?"Lead all three aboard; try the clinic front exit, west wall, then north shore":"Let all three released couriers follow the mounted signal onto the rescue deck",doneWhen=()=>IslandRoster.AllBoarded,waypoints=new[]{At(34,.55f,44.5f)},waypointLabel="RESCUE DECK"},
                     new(){text="Release ALL hosts, bring every free amoeba aboard with [Tab], then signal departure [E]",flag=IslandRoster.Departed,waypoints=new[]{At(34,.55f,42.8f)},waypointLabel="RESCUE LAUNCH"},
                 },
             });
