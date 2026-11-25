@@ -6,6 +6,14 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Actual Manifest ray confirms correct grille rejection:** root96256/native2/chunk174ade. Scientist eye→seal distance
+  9.222m is within11m, target/role/docked body are correct, but the first actual hit is the solid freight grille bar at
+  world(1472.960,1.569484,-215.4759),3.960871m away. [Ray proof](verification/northline-manifest-ray-red-20261126.json).
+  The generic.25m approach ends at local(-30.834,.190,3.4131), clipping a bar. Root tightened ONLY that call's arrival
+  tolerance to.05 at the same target/budget, leaving LOS/range/role/physics/NPCs intact; sourceWORKRailAcceptance
+  `f48451171402674c889acb840136e920f6224929937f3de01db1e93788b4c9a9`, AutoTeste189. API175/33/175+3classes pass
+  root56988/chunk5f730e. Root93109 now runs only DominionPhysicalChapter via`northline_manifest_arrival_20261126a`,
+ 600s/Null/nice15/idle/two workers. No new pass yet; hold WORKC# and other Editors until actual terminal.
 - **Manifest actual-ray diagnostic is active:** root96256 via WORK`northline_manifest_los_20261126a`, only existing
   DominionPhysicalChapter,600s/Null/nice15/idle/two workers. WORKRailAcceptance SHA
   `bfced27c8ff5a04e23aab15a526cb32a5385023f3f600805ca66edb0851fcb66`; AutoTeste189 unchanged. Logging-only addition to

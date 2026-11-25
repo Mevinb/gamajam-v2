@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "ACTUAL_MANIFEST_RAY_BLOCKED_BY_FREIGHT_GRILLE",
+  "recordedUtc": "2026-11-25T23:32:19.279768+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 96256,
+    "chunk": "174ade",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "1",
+      "result": "Failed(Child)",
+      "total": "1",
+      "passed": "0",
+      "failed": "1",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:30:12Z",
+      "end-time": "2026-11-25 23:30:59Z",
+      "duration": "47.074069"
+    }
+  },
+  "sourceSha256": "bfced27c8ff5a04e23aab15a526cb32a5385023f3f600805ca66edb0851fcb66",
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_manifest_los_20261126a.log",
+      "bytes": 180522,
+      "sha256": "0d0f2d0db1b6a182acb26f155769ebc6fb103cc57b88fd161bdbb3a19f8c7377"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-manifest-los-20261126a.xml",
+      "bytes": 54484,
+      "sha256": "c991cc0ba17346c70f330c25c9e777c52de3ce6e1ac4a2a4c7ff273337343a4f"
+    }
+  ],
+  "actualRay": "[NorthlineManifestLOS] ONCE expectedAllowed=True selectedControl=True targetKind=Interact targetAllowed=False prompt=Validate docked seal \u2014 SCIENTIST \u00b7 NLR-07 relay carriage  \u2014  The real carriage seal must be visible from the manifest desk. actualCanValidate=False reason=The real carriage seal must be visible from the manifest desk. clearLine=False actor=1 actualBody=NPC_Northline south scientist#-45900 bodyPosition=(1469.166000, 0.190000, -216.586900) host=Northline south scientist profession=Scientist permissions=StaffTerminal, LabInterior hostState=Possessed reciprocalOwner=True eye=(1469.166000, 1.810000, -216.586900) control=World/Northline Railway Works/Northline sealed manifest desk#-42038 controlPosition=(1469.000000, 0.150000, -215.000000) controlPoint=(1469.000000, 1.250000, -215.000000) carriage=World/Northline Railway Works/Northline actual sealed transfer cradle#-41622 carriageBodyPosition=(1478.000000, 0.150000, -214.000000) carriageTransformPosition=(1478.000000, 0.150000, -214.000000) carriageBounds=Center: (1478.000000, 0.900000, -214.000000), Extents: (1.500000, 0.750000, 1.000000) physical=True atLoading=True moving=False seal=(1478.000000, 1.250000, -214.000000) eyeSealDistance=9.222227 maximumDistance=11 rayMask=-1 queryTriggers=Ignore hitCount=2 nonAllocCapacity=64 nonAllocMaySaturate=False sortedFullRayHits=[0:World/Northline Railway Works/Northline freight real grille bar type=BoxCollider layer=0 bounds=(1473.000, 1.400, -215.500)/(0.080, 2.500, 0.080) colliderId=-37680 hitTransform=World/Northline Railway Works/Northline freight real grille bar#-37674 colliderTransform=World/Northline Railway Works/Northline freight real grille bar#-37674 distance=3.960871 point=(1472.960000, 1.569484, -215.475900) ownIgnored=False carriageIgnored=False blocksSamePredicate=True; 1:World/Northline Railway Works/Northline actual sealed transfer cradle type=BoxCollider layer=0 bounds=(1478.000, 0.900, -214.000)/(3.000, 1.500, 2.000) colliderId=-41624 hitTransform=World/Northline Railway Works/Northline actual sealed transfer cradle#-41622 colliderTransform=World/Northline Railway Works/Northline actual sealed transfer cradle#-41622 distance=7.656347 point=(1476.500000, 1.345085, -214.439300) ownIgnored=False carriageIgnored=True blocksSamePredicate=False]",
+  "established": {
+    "actorBodyWorld": [
+      1469.166,
+      0.19,
+      -216.5869
+    ],
+    "eyeWorld": [
+      1469.166,
+      1.81,
+      -216.5869
+    ],
+    "sealWorld": [
+      1478,
+      1.25,
+      -214
+    ],
+    "eyeSealDistance": 9.222227,
+    "rangeLimit": 11,
+    "firstHit": "Northline freight real grille bar",
+    "firstHitDistance": 3.960871,
+    "firstHitPointWorld": [
+      1472.96,
+      1.569484,
+      -215.4759
+    ],
+    "realCanValidate": false,
+    "targetSelected": true,
+    "role": "Scientist",
+    "atLoading": true,
+    "moving": false
+  },
+  "correctionNowUnderTest": {
+    "sourceSha256": "f48451171402674c889acb840136e920f6224929937f3de01db1e93788b4c9a9",
+    "change": "Only Manifest approach arrival tolerance .25\u2192.05 at same original target, with original path budget and real production LOS/grille/range unchanged.",
+    "combinedApiCompileSession": 56988,
+    "compileChunk": "5f730e",
+    "allApiResults": 0,
+    "runSession": 93109,
+    "log": "Logs/northline_manifest_arrival_20261126a.log",
+    "result": "RUNNING_NOT_PASSED"
+  },
+  "limits": [
+    "Correct production LOS rejection confirmed; no gameplay LOS bypass or geometry change.",
+    "Tighter fixture arrival is under test, not passed.",
+    "No seal validation/freight/signal/departure/lifecycle acceptance on this failed run."
+  ]
+}
