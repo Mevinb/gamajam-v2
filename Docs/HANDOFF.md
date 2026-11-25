@@ -6,6 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
+- **Two-leg Northline bypass is now under test:** WORKRailAcceptance SHA
+  `d4b2738c36963da9a765018e29c65d2c96b64c34807ee615035405a6b3319a69`, independent source-only review passes.
+  Actual continuous.4s grounded NPC contact triggers before the old.8s hop; planned lateral+forward points clear the actual
+  NPC bounds, with actual-position floor/nav/full-capsule rechecks at each leg and fresh original-target rejoin. Both legs
+  share one4s cap/one original deadline, max3bypasses; no pass/range/physics/NPC criteria changed.
+  Root91852 via WORK`northline_npc_bypass_20261126a` runs only DominionPhysicalChapter,600s wrapper/Null/nice15/idle/two
+  workers. XML target `Logs/northline-npc-bypass-20261126a.xml`. No runtime pass yet; keep WORKC# fixed/no other Editor.
+- The35line02logging patch is now applied only in WORKAutoTest, SHA
+  `e1891f1f950ceaadcae3a7201a5972df7707fa8fe0141bff48bab2b989a85772`. Root combined compile7919/chunkb87cac passes
+  actual175/33/175+3testclasses. It changes no target pick/FindFreeSpot/.8s aim/assertion/E/WASD/LOS behavior. After the current
+  Dominion run is truly terminal, run existing AcceptanceTests with only`-autotestFilter 02` for actual target/ray evidence;
+  no fixture or production LOS fix is authorized without that evidence. Base0.6.1and all release artifacts remain unchanged.
 - **First Northline sidestep rerun is terminal RED:** root50443/native2/chunke7f034,one Dominion FAIL37.237s.
   Sourcec3de85c1… physically bypasses the first maintenance worker, then stops at local(-17.579,.593,-33.706) beside the
   south scientist/cover corner; actual casts hit scientist.02973m ahead and cover.04638m ahead, while existing WalkTo hops
