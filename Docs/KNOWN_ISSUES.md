@@ -41,6 +41,11 @@ current work; every pass applies to its recorded source or binary.
   1expectedNullskip/native2,9raw Graphics Ring Buffer warnings. Diagnostic controls with14passes still have warnings; no
   production all-green result or allocator cause is established. Narrow native gates currently have none. No allocator flag,
   quality reduction or warning suppression is a verified fix. [Settings proof](verification/independent-graphics-settings-20261125.json).
+- Read-only stack mapping finds eight native reflection-loop emissions and one ordinary-camera emission across City loads;
+  the failed test's log guard does not establish ownership of all nine. Two diagnostic files still contain three obsolete
+  NoTimeSlicing expectations. Their correction to current IndividualFaces is staged and API-compiles all28PlayMode sources,
+  but remains unapplied during the native source freeze. Optional attribution tracing is also staged, not GPU-tested.
+  No production warning cause or fix is confirmed. [Review evidence](verification/reflection-warning-review-20261126.json).
 - New independent settings have135passing EditMode rules and passing named GPU ownership/Custom/UI/Bloom cases. The initial
   Bloom metric used a stale SingleCameraRequest volume stack; the corrected StandardRequest fixture passes with unchanged
   emitter/ROI/threshold and actual On1.178656/Off0.1345335/restored1.178656 HDR halo values. This is a rendered effect proof,

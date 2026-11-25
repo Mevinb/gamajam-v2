@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_WARNING_REVIEW_AND_STAGED_DIAGNOSTIC_INPUT_FIX",
+  "recordedUtc": "2026-11-25T20:24:57.461758+00:00",
+  "repositoryHeadAtReview": "f90c91d9b50a1a9b5d3749c5ba08234535726e03",
+  "scope": "Current source/read-only historical warning evidence plus staged test-only API compilation. No production correction, actual trace execution, GPU acceptance or warning-free collection is proved.",
+  "checks": {
+    "noConfirmedProductionCause": true,
+    "inputContractCorrectionStagedOnly": true,
+    "liveDiagnosticFilesUnchanged": true,
+    "primaryApiCompileExit": 0,
+    "optionalTraceApiCompileExit": 0,
+    "sourceFilesCompiled": 28,
+    "unityJobsLaunched": 0,
+    "playerJobsLaunched": 0,
+    "blenderJobsLaunched": 0,
+    "gpuJobsLaunched": 0,
+    "foreignProcessesSignaled": 0
+  },
+  "warningEvidence": {
+    "rawLog": {
+      "path": "Logs/independent-graphics-serialized-probes.log",
+      "sha256": "0770973b59a92609e8ea77881a183fdc8e75c97a00ef64e3c7b9446f8b773b14",
+      "bytes": 174987
+    },
+    "xml": {
+      "path": "Logs/independent-graphics-serialized-probes.xml",
+      "sha256": "134836b974d386761a7712f254c99496a43a3303705c2745bdd2432d0045a5a7"
+    },
+    "counts": {
+      "rawWarnings": 9,
+      "nativeReflectionLoop": 8,
+      "nativeReflectionSubmit": 7,
+      "nativeReflectionForwardLightsBufferUpload": 1,
+      "gameCameraSubmit": 1
+    },
+    "warningMap": {
+      "path": "Logs/reflection-warning-review-20261126/warning-map.json",
+      "bytes": 35477,
+      "sha256": "a617cf06c1b194cac159ca8067b79ddce213055df5a0dd7e5d068cc0b77e095a"
+    },
+    "failedGuard": {
+      "test": "Parasite.Tests.RiverReflectionQualityTests.PendingDowngradeCancelsOldEpochAndFreshUpgradePublishesThenDisposes",
+      "startedUtc": "2026-11-25 16:54:14Z",
+      "endedUtc": "2026-11-25 16:54:16Z",
+      "durationSeconds": 2.226162,
+      "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect",
+      "stack": "UnityEngine.Experimental.Rendering.ScriptableRuntimeReflectionSystemWrapper:Internal_ScriptableRuntimeReflectionSystemWrapper_TickRealtimeProbes (bool&)\n\n",
+      "specificRawWarningOrdinal": null,
+      "limit": "XML attributes a caught warning to this test guard. It does not map each raw emission or identify the responsible probe."
+    },
+    "attributionLimit": "All nine emissions lack per-warning frame/time/camera/probe identity in the raw log. Nearest preceding City-load records are context only. The XML interval identifies the catching test guard, not all warning producers; no specific raw ordinal can be assigned from this evidence."
+  },
+  "confirmedInputMismatch": {
+    "currentBuilder": "CityBuilder.Probe sets ReflectionProbeTimeSlicingMode.IndividualFaces. All seven saved City probes and the one Bootstrap probe serialize m_TimeSlicingMode1.",
+    "savedScenes": [
+      {
+        "path": "Assets/Parasite/Scenes/City.unity",
+        "bytes": 72663883,
+        "sha256": "f638cd31c8777233b02e4bc13f56059dfe271b73b87f5391adafcb3d75a086fb",
+        "reflectionTimeSlicingValues": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "path": "Assets/Parasite/Scenes/Bootstrap.unity",
+        "bytes": 30875993,
+        "sha256": "d54211859c1838faf6ed0f2a61f8c7eff338b8af666bd451d26930eca3dcc4f2",
+        "reflectionTimeSlicingValues": [
+          1
+        ]
+      }
+    ],
+    "staleDiagnostics": [
+      {
+        "livePath": "Assets/Parasite/Tests/PlayMode/CityProbeBurstDiagnosticTests.cs",
+        "liveSha256": "f964983e24906416971b3683ab789a8d3db3601198d9f88e7b8db4203baddf6f",
+        "stagedPath": "Logs/reflection-warning-review-20261126/CityProbeBurstDiagnosticTests.cs",
+        "stagedSha256": "fd64067d21f8800af0ce0a8e683cadef36382be08c7d2915486aeaba3380ce9e",
+        "expectationReplacements": 2
+      },
+      {
+        "livePath": "Assets/Parasite/Tests/PlayMode/CityProbeCollectionControlFixture.cs",
+        "liveSha256": "e5156ff44e95c82ceda5356cf10cd628e36bb2b6fe72ddc10fc0125fe0d6b817",
+        "stagedPath": "Logs/reflection-warning-review-20261126/CityProbeCollectionControlFixture.cs",
+        "stagedSha256": "ccd791866cc60f33b375d1de7b72b99a0394c7523a34efe83030b45a904c07bc",
+        "expectationReplacements": 1
+      }
+    ],
+    "correction": "Exactly three NoTimeSlicing expectations become IndividualFaces. Report wording states that the individualFaces control now re-enables the same authored slicing, not a newly serialized mitigation. No inventory/restoration/range/image/wait/warning guard is relaxed."
+  },
+  "sourceLifecycleReview": {
+    "graphicsOwner": "Normal BeginRetirement restores original state and waits for nativePipeline.disposed before destroying owned pipeline/feature/profile objects. Source review finds no confirmed ownership defect.",
+    "riverOwner": "Retire disables/detaches the pending probe and defers Destroy for its target; it does not explicitly Release a live render target. Automatic native cancellation/retirement remains unacknowledged, so source review alone cannot prove safe or unsafe native completion.",
+    "warningCause": "UNPROVEN. Eight native-reflection-loop stacks justify discriminating automatic-probe versus explicit-river capture observations. They do not establish a seven-probe burst as the sole cause."
+  },
+  "reviewedLiveSource": [
+    {
+      "path": "Assets/Parasite/Editor/CityBuilder.cs",
+      "bytes": 91288,
+      "sha256": "30cc654c5ad5952bd07a39301ade35998b867d7c96437b3eb8944cb5bfdfaa13"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsSettingsRuntime.cs",
+      "bytes": 11411,
+      "sha256": "8245c3e3aa9d40fef85504c28317dca80e2827b03648acdb63de006f0284093a"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Core/GraphicsPreset.cs",
+      "bytes": 9092,
+      "sha256": "b114fc860e67537969980ebbd6931722b4390b7b9c5471b5437956b29b44ff1d"
+    },
+    {
+      "path": "Assets/Parasite/Scripts/Missions/RiverReflectionCapture.cs",
+      "bytes": 11591,
+      "sha256": "c87c05dfc5aafcce625bba4c079d8d4c448c499756c84c311eead98e9820cc8b"
+    },
+    {
+      "path": "Assets/Parasite/Tests/PlayMode/RiverReflectionQualityTests.cs",
+      "bytes": 16984,
+      "sha256": "60c58ad7ca3ee7d9e2f1770b26faa6e0020ae4c6295cb8293f31d460df8432ff"
+    }
+  ],
+  "primaryPatch": {
+    "path": "Logs/reflection-warning-review-20261126/diagnostic-current-slicing.patch",
+    "bytes": 4757,
+    "sha256": "3201bae43ddbbd59719f48544172da2555805d9956db061198f08613b7ee6412"
+  },
+  "primaryCompile": {
+    "path": "Logs/reflection-warning-review-20261126/compile/receipt.json",
+    "bytes": 1331,
+    "sha256": "bd86b4412d8507a1a3b011537bb7dd4c2d230afc42a067785a6c518b40695f02"
+  },
+  "optionalTrace": {
+    "combinedPatch": {
+      "path": "Logs/reflection-warning-review-20261126/diagnostic-current-slicing-with-trace.patch",
+      "bytes": 15326,
+      "sha256": "41a087dc7762b107a5f42772eaf929f9c7c7e2dc2745aea0e49c6e91005184d2"
+    },
+    "afterPrimaryOnlyPatch": {
+      "path": "Logs/reflection-warning-review-20261126/optional-trace-after-contract.patch",
+      "bytes": 11943,
+      "sha256": "4fe613239720e065b9f67e75688c3d0713d17f15e239c2acc2f9eff8631ad5d4"
+    },
+    "source": {
+      "path": "Logs/reflection-warning-review-20261126/CityProbeCollectionControlFixture.trace.cs",
+      "bytes": 29206,
+      "sha256": "3c21ed1d307e779d686ea38c1004fd16ce37ecd28fab165c334cc0f1a3fe73be"
+    },
+    "apiCompile": {
+      "path": "Logs/reflection-warning-review-20261126/trace-compile/receipt.json",
+      "bytes": 812,
+      "sha256": "5206ee4d03dd08509734578afec42d884a97ab063e18b3c1b330341783a3b873"
+    },
+    "guard": "Requires existing explicit collection-control mode plus -cityProbeCollectionTrace; otherwise installs no trace. Actual Warning log type + native phrase only; it neither emits warnings nor changes LogAssert expectations.",
+    "bounds": {
+      "cameraRows": 20000,
+      "warningRows": 1000,
+      "overflowDisposition": "Diagnostic attribution invalid, never a pass."
+    },
+    "observations": "SRP camera begin/end snapshots, frame/time, current river epoch/request/target and automatic-probe origin matches; warning callback links to the currently active camera serial when available. Installed URP wraps non-game cameras in CameraRenderingScope at UniversalRenderPipeline.cs503\u2013513.",
+    "limits": "Runtime correctness and tracing overhead are unrun. Trace snapshots and origin matches are not native request/cancellation acknowledgements. Delayed callbacks can leave active ownership unknown; tracing stops before helper cleanup while the whole raw log remains authoritative. Compare instrumented arms consistently and preserve an uninstrumented baseline."
+  },
+  "futureExperiments": {
+    "path": "Logs/reflection-warning-review-20261126/future-experiments.json",
+    "bytes": 9317,
+    "sha256": "159643531d6ad0255d13c9838c1f84cfb9400513da72336ea0fe4619167dbb63"
+  },
+  "readme": {
+    "path": "Logs/reflection-warning-review-20261126/README.md",
+    "bytes": 4183,
+    "sha256": "5564631dc551e7a421eb52c87e0e1301ff8ae4e2db861d99c66e4c2144c94898"
+  },
+  "applyPolicy": "Root may apply exactly one of the primary or combined patches only after both the existing native run and its separate terminal order-guard reanalysis are complete. Preserve frozen source9532 through those final integrity checks. No patch has been applied; all graphics execution waits for GPU release. Do not substitute diagnostic disable, allocator flags, reduced quality or warning suppression for a production fix."
+}

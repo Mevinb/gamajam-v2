@@ -21,6 +21,7 @@ The full request remains **in progress**. Evidence applies to its named source o
   It requires the exact unique ID set, verified declaration order, native0, unchanged scenario/source hashes and all full
   before/after/current artifact checks. Preserve the supervisor failure alongside a separate read-only verification receipt;
   never reinterpret a genuine scenario failure or rerun already-passed native work to fix this metadata error.
+  Keep source9532 frozen through that separate terminal reanalysis, including its fresh integrity checks.
 - Two additional physical harbor recovery cases pass together **2/2 in 209.358 seconds, Null Editor exit 0**
   (agent session 92343, terminal chunk `f38e71`). A real obstruction holds the moving crate without delivery credit;
   removing only that fixture permits its physical arrival. Actual inactive free-body containment cancels a running relay.
@@ -73,6 +74,14 @@ The full request remains **in progress**. Evidence applies to its named source o
 - The gate capture fixture now records schema-2 raw semantic lighting/camera fields, stages known runtime light contributions
   and checks exact restoration. CPU compilation passes; fresh old-scene BEFORE/new-scene AFTER renders are still required.
   [Fixture proof](verification/gate-capture-fixture-20261125.json). Historical hash-only captures remain unmatched.
+- Read-only reflection-warning review maps eight of the nine raw emissions to native reflection-loop stacks and one to the
+  ordinary camera path; missing frame/probe/test ownership remains unknown. Three stale NoTimeSlicing expectations in two
+  diagnostic files are staged for correction to the current serialized IndividualFaces contract. All28PlayMode sources
+  compile with that patch; no live file or GPU result changed. After the remaining-native run **and terminal reanalysis** finish,
+  review `Logs/reflection-warning-review-20261126/diagnostic-current-slicing.patch` (SHA256
+  `3201bae43ddbbd59719f48544172da2555805d9956db061198f08613b7ee6412`) before future diagnostic GPU runs.
+  An optional bounded camera/warning trace also compiles, but its runtime behavior is unrun. No production cause/fix is proved.
+  [Review proof](verification/reflection-warning-review-20261126.json).
 - Linux/URP remains the chosen target. The game uses real-time shaders, screen-space reflections and probes. The completed
   Blender films use offline RTX/OptiX path tracing; this does not make the Linux player hardware ray traced.
 - Local feature commit `a993723` records independent graphics settings/tests and the pre-gate probe-only scene regeneration.
