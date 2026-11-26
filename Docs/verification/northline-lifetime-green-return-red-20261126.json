@@ -1,0 +1,43 @@
+{
+  "project": "/home/mevlec/.local/share/parasite-work/northline",
+  "session": 89727,
+  "native_exit_code": 2,
+  "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-fixes-20261126a.xml",
+  "xml_sha256": "cc236d893b87e4379d2b9d291160cfcce2181d99c8734e9201dd8a188ba80e82",
+  "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_fixes_20261126a.log",
+  "log_sha256": "f116b952287c162c223cd96a6ae497699447916072dc8c8fbdbced4bde675bf9",
+  "result": "Failed(Child)",
+  "total": 4,
+  "passed": 3,
+  "failed": 1,
+  "duration_seconds": 257.6957325,
+  "cases": [
+    {
+      "name": "Parasite.Tests.BodyLifetimeTests.ActualActiveBlobDestructionFailsClosedUntilNormalCheckpointRecovery",
+      "result": "Passed",
+      "duration_seconds": 7.024014,
+      "failure": null
+    },
+    {
+      "name": "Parasite.Tests.BodyLifetimeTests.LiveHiddenAndDisabledBlobRetainsTheSameBodyIdentity",
+      "result": "Passed",
+      "duration_seconds": 0.539626,
+      "failure": null
+    },
+    {
+      "name": "Parasite.Tests.RailCampaignTests.ActualCoachDestroyDuringMotion",
+      "result": "Passed",
+      "duration_seconds": 116.528748,
+      "failure": null
+    },
+    {
+      "name": "Parasite.Tests.RailCampaignTests.PeacePhysicalChapterAndRecovery",
+      "result": "Failed",
+      "duration_seconds": 133.538294,
+      "failure": "System.InvalidOperationException : Wrong routing physically returns the same carriage to loading."
+    }
+  ],
+  "body_lifetime_patch_sha256": "26c250013dd45f8b23e6ca6fc2b060c214dd09a666e85d313043186016997853",
+  "wrong_route_final": "[NorthlineFreightWrongRoute] phase=FINAL_BEFORE_CHECK originalPredicate=False elapsedReal=70.00124 elapsedSim=70.00240 frame=71771 realNow=260.55680 time=220.08620 fixedTime=220.07990 fixedDt=0.020000 timeScale=1 originalBudget=70 actualWaitDeadline=260.55560 manager=Playing railActive=True mission=24 validated=True arrivedFlag=False coordinator=World/Northline Railway Works#-160720 coordinatorEnabled=True body=World/Northline Railway Works/Northline actual sealed transfer cradle#-165566 expectedBody=World/Northline Railway Works/Northline actual sealed transfer cradle#-165566 exactBodyReference=True physical=True moving=True returning=True atLoading=False failedRoutes=1 validDispatch=False ARight=False BRight=False pointsSettled=True rbAt=(1501.83800, 0.15000, -197.00280) transformAt=(1501.83800, 0.15000, -197.00280) rbLocal=(1.83838, 0.15000, 22.99716) velocity=(0.00000, 0.00000, 0.00000) angularVelocity=(0.00000, 0.00000, 0.00000) interpolation=Interpolate kinematic=True detectCollisions=True boxCenter=(1501.83800, 0.90000, -197.00280) boxHalfExtents=(1.50000, 0.75000, 1.00000) boxLocalCenter=(0.00000, 0.75000, 0.00000) boxLocalSize=(3.00000, 1.50000, 2.00000) privateLeg=6/8 privateTarget=(1478.00000, 0.15000, -197.00000) privateReachedByProduction=False nextMovementLeg=6 terminalLeg=False movementGuard=True nextMovementTarget=(1478.00000, 0.15000, -197.00000) nextDestination=(1501.77400, 0.15000, -197.00280) exactStepDirection=(-1.000000, 0.000000, 0.000000) exactStepDistance=0.063965 sweepDistanceWithLookAhead=0.068965 route=[0:(1493.0000, 0.1500, -214.0000) local=(-7.0000, 0.1500, 6.0000); 1:(1493.0000, 0.1500, -212.0000) local=(-7.0000, 0.1500, 8.0000); 2:(1511.0000, 0.1500, -212.0000) local=(11.0000, 0.1500, 8.0000); 3:(1511.0000, 0.1500, -202.0000) local=(11.0000, 0.1500, 18.0000); 4:(1528.0000, 0.1500, -202.0000) local=(28.0000, 0.1500, 18.0000); 5:(1528.0000, 0.1500, -197.0000) local=(28.0000, 0.1500, 23.0000); 6:(1478.0000, 0.1500, -197.0000) local=(-22.0000, 0.1500, 23.0000); 7:(1478.0000, 0.1500, -214.0000) local=(-22.0000, 0.1500, 6.0000)] activeAgent=1 activeBody=NPC_Northline yard maintenance worker#-171574 activeAt=(1468.93300, 0.19000, -197.64070) sweepCount=1 blockingCount=1 sortedExactProductionSweep=[0:collider=World/Northline Railway Works/Northline signal wall south#-165622 type=BoxCollider layer=0 hitTransform=World/Northline Railway Works/Northline signal wall south#-165622 attachedBody=unavailable bounds=Center: (1500.00000, 1.65000, -192.50000), Extents: (0.30005, 1.50000, 5.50000) distance=0.036879 point=(1500.30000, 1.15000, -196.31010) normal=(1.00000, 0.00000, 0.00000) normalDotDirection=-1.000000 selfByProduction=False colliderBelowCarriage=False blocksByProduction=True]",
+  "scope": "Body loss and real moving-coach destruction pass. Original 70-second Peace wrong-route wait fails against the actual signal wall; original red receipt retained. Return fix not in this invocation."
+}

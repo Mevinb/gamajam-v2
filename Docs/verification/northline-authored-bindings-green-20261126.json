@@ -1,0 +1,29 @@
+{
+  "project": "/home/mevlec/.local/share/parasite-work/northline",
+  "session": 66666,
+  "native_exit_code": 0,
+  "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-bindings-20261126a.xml",
+  "xml_sha256": "ab26027d106183974c6c80437c423c3b52aac3d1b6e90ee7b2bc401723a1ea2a",
+  "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_bindings_20261126a.log",
+  "log_sha256": "f529119bc1eda8edfa95b42c4496df32add3cb89ddd7b7ff795f7ac696597402",
+  "result": "Passed",
+  "total": 2,
+  "passed": 2,
+  "failed": 0,
+  "duration_seconds": 120.6121748,
+  "cases": [
+    {
+      "name": "Parasite.Tests.RailArtBindingTests.AuthoredModelsFollowActualCrossingAndCoachChapter",
+      "result": "Passed",
+      "duration_seconds": 106.625609,
+      "failure": null
+    },
+    {
+      "name": "Parasite.Tests.RailArtBindingTests.CompleteAuthoredKitPreservesMetreScaleAndPhysics",
+      "result": "Passed",
+      "duration_seconds": 13.934646,
+      "failure": null
+    }
+  ],
+  "scope": "Actual headless Editor authored-model binding, scale, moving attachments and physical chapter checks. No native, GPU, visual-quality or human pass."
+}

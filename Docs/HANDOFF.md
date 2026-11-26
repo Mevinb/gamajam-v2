@@ -6,89 +6,46 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
-The broad graphics/realism/cinematic/bug-fix/continued-mission goal remains active. Current development is isolated from the existing user playtest.
-[Historical checkpoints](HANDOFF_HISTORY_20261126.md) retain every prior source pin, failure, job receipt and retirement pointer; old active-job labels there are historical.
+The full graphics/cinematic/mission expansion goal remains active. The immediate user request is a fresh build and launch for testing.
 
-### Live job and source lease
+- **CURRENT BUILD IS LIVE:** root exec session **10336**, supervisor **150195**, owned Editor **150218**.
+  State: `/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T002329795146Z-7e40abcb/runner-state.json`.
+  Fresh output: `Builds/Candidates/full-story-20261126T002329795146Z-7e40abcb` relative to that worktree.
+  It is a cold shader compile, Null backend, two job workers, unchanged `Tools/unity.sh`/global flock. No build result yet.
+  **Keep WORK source/metadata/HEAD fixed; poll this actual job, never restart because observation expired.**
+- WORK: `/home/mevlec/.local/share/parasite-work/northline`, branch `codex/northline-runtime`, pushed HEAD
+  `6e1240565612035fd6cf9d8c9236dd592f9abf3f`; feature commit `c9282a1`, separate importer normalization `6e12405`.
+  Version **0.7.0-preview**, **26 missions**. Reviewed full source SHA `95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648`.
+  Includes three Northline missions, eleven Blender models, moving attachments, compound-collider LOS fix and central destroyed-body guards.
+- **Focused fixes and bindings are proved:** [authored binding tests2/2](verification/northline-authored-bindings-green-20261126.json);
+  [body lifetime2/2 and actual coach destruction pass](verification/northline-lifetime-green-return-red-20261126.json);
+  [full Peace physical recovery passes](verification/northline-peace-recovery-green-20261126.json), root76466/native0,193.036s.
+  The exact earlier wrong-route failure is preserved: same carriage hit the solid signal wall at local(1.838,.15,22.997).
+  Return corridor/visible rails now useZ20.5; same carriage returns physically in40.404s within the unchanged70s deadline.
+  Earlier full mechanics5/7 result remains historical; its two failures now have passing focused retests. No fresh whole-suite7/7 claim.
+  Earlier Dominion, coordinator disable/destroy, rebind, continuation, four LOS controls, import35449/selection13 and possession obstruction proofs remain named.
+- Seven film `.meta` changes are a separately reviewed/committed Unity cold-import normalization: only unused customWidth/customHeight −1→1.
+  All seven movie files match the original media bytes; resizing/transcoding settings are unchanged. No rendered decode claim follows from this metadata review.
+- Runner: BASE `Logs/worktree-build-stage/build_worktree_candidate.py` SHA `396abbe9d0b31856417e20a32525c259d46469de269a32a34767db74c9f010b2`.
+  Ready plan `Logs/worktree-build-stage/reviewed-plan-070-20261126.json`; actual dry preflight passed. It protects BASE artifacts/source before/after,
+  uses WORK/root storage with10GiB reserve and exact owned Editor/import-worker identity checks. No relocation/deletion was performed.
+- Next: actual build terminal/integrity receipt, `Tools/compile_check.sh all` using the new WORK player cache, native01–05 via
+  WORK `Logs/smoke_preview_070.py`, then user launch via WORK `Logs/launch_preview_070.py` with the actual build-state path.
+  No native26/earned94–95/rendered graphics/FPS/human-playthrough pass is claimed. Source and candidate tests are separate.
+- The old user **0.5.1** player is still PID51569/start683333. Preserve it during build/native checks. The immediate build-and-run request
+  will be fulfilled by replacing that old session with the new preview after the new build passes smoke checks. WORK
+  `Logs/close_previous_preview.py` verifies that exact process/window and uses standard WM_DELETE_WINDOW; it has only been run read-only so far.
+  Never use broad kill commands or inject gameplay inputs. The user controls the launched preview.
+- BASE/main code remains0.6.1, source `dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b` while the build protection lease is active.
+  Untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` is unrelated: preserve it unstaged. All retained `Builds/Linux`0.5.0, old user0.5.1,
+  0.6.0/0.6.1 candidates/archives and all2760 completed RTX/OptiX film frames remain protected. Do not rerender completed films.
+  [0.6.1 candidate](verification/0.6.1-candidate-20261126.json), [native90](verification/0.6.1-native-peace-20261126.json),
+  [native91](verification/0.6.1-native-dominion-20261126.json), [portable basic4/5](verification/0.6.1-portable-basic-red-20261126.json).
+  The old archive is immutable and does not contain the new possession setup correction.
 
-- **The seven-case run below is now TERMINAL:** root80827/native2/chunkf9e4be,667.796s,5PASS/2FAIL; Editor139250 is gone.
-  [Exact named results](verification/northline-mechanics-5-of-7-20261126.json). Pass: continuation, Dominion, coordinator
-  disable, coordinator destroy and coach rebind. Fail: coach destroy MissingReference from destroyedBlob/IControllable;
-  separate Peace recovery70s wrong-route return timeout. No whole-suite green claim. The old live-job lines below retain
-  invocation identity only; revalidate rather than rerun. Source lease is lifted; no new Editor job has started.
-  Rail agent is staging central lifetime/PM fail-closed proposal+body-loss controls; Hunter is diagnosing Peace return
-  read-only. Neither fix is applied. Whitelist and worktree-build draft remain paused; no Gitindex/HEAD/storage changes.
-- **Worktree mechanics suite is LIVE:** root session **80827**, timeout **139183**, Editor **139250** at last actual observation.
-  Worktree `/home/mevlec/.local/share/parasite-work/northline`, branch `codex/northline-runtime`, HEAD `623c47af54363ea841ab1d2958a23c17353704db`.
-  Wrapper log `Logs/northline_mechanics_20261126b.log`; XML `Logs/northline-mechanics-20261126b.xml`.
-  Exact class `Parasite.Tests.RailCampaignTests`, seven cases, owned3600s timeout, Null, nice15, idle I/O, two job workers.
-  **Keep that checkout's C#/assets/metas fixed and do not launch another Editor until the actual process is terminal.**
-  Poll the same handle/process; an observation timeout or old note never authorizes restart. No current whole-suite result.
-- The live suite has emitted a real destroyed-body defect: five MissingReferenceException stacks from AmoebaController.Root
-  via AudioBus.FocusPosition (music/listener/ambience), MissionManager.Update and HUD.TickCompass. AmoebaAgent.Body casts a
-  destroyed Unity Blob to non-null IControllable; the2.2s checkpoint reload gap exposes it. Rail agent is preparing a Logs-only
-  central lifetime/fail-closed proposal and actual body-loss tests; no live source edits are allowed before suite terminal.
-  Later method-level PASS markers exist for coach rebind and coordinator destruction, but final NUnit counts remain pending.
-- Frozen current worktree sources: RailCampaign `e4488bc6137b0f334097fbc6d901713f631b7f86c65ac6db75413ed37e6480c8`;
-  RailAcceptance `6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca`;
-  AutoTest `1f998595a804a199fb6b7b780b2122360b94d1568abc7fa087a95e1591aede5c`.
-  Actual worktree API compilation passes175runtime/33Editor/175LinuxMono plus five NUnit classes.
-- The worktree contains the three reviewed Northline patches, actual imported Resources kit, movement/LOS fixes and the possession setup/control fixture.
-  No source merge/build or code commit from this branch yet. A read-only explicit staging whitelist is being prepared; review it before any Git staging.
-  Exclude InitTestScene/Temp/Logs/Library/Builds and seven unrelated cold-import film `.meta` normalizations. Do not revert metadata during the live suite.
-
-### Proved Northline results and next actions
-
-- Actual import passes35,449 checks: eleven models,7,336triangles, three original texture references, unchanged scene/dirty state.
-  Exact selection registry/filter tests pass13/13. [Import/selection proof](verification/northline-import-selection-20261126.json).
-- Actual production bug: parent-Rigidbody `hit.transform` falsely rejected the departure control's own child collider.
-  The narrow `hit.collider.transform` ownership fix passes four real physics controls, including sibling/foreign occluders.
-  [Red receipt](verification/northline-departure-own-collider-red-20261126.json), [green controls](verification/northline-collider-los-green-20261126.json).
-- Full prepared-M23 **Dominion chapter passes** through real crossing/freight/signal/both-free boarding/coach endpoint/M26 summary:
-  root59655/native0/chunkc2610e,106.664s. [Proof](verification/northline-dominion-editor-green-20261126.json).
-  Prepared prior-summary/initial-role fixtures remain explicit; this is neither earned continuous26 nor native/GPU/human acceptance.
-- Controlled possession-obstruction fixture passes: root74517/native0/chunk432b92,7.338s. Actual wall remains enabled through blocked original LOS,
-  different same-NPC fallback, normalE/reciprocal ownership and2.5661m WASD movement. [Proof](verification/possession-obstruction-green-20261126.json).
-  This does not reconstruct the unknown old native02 blocker or make a new native binary pass.
-- Current movement driver uses full-capsule/floor/nav checks, max3physical bypasses, one4s lateral+forward action cap inside the original leg deadline.
-  Manifest arrival alone is tightened `.25→.05` at the same authored target/budget to see through the actual grille gap.
-  No NPC relocation, collision ignore, range/cone/LOS relaxation or artificial progress grants were used for these fixes.
-- After the live seven-case suite is terminal, preserve exact exit/XML/counts; fix real failures without weakening predicates.
-  Then run the **two RailArtBindingTests** serially in the worktree. Their physics/nav/control signatures, moving attachments, scaling and full physical chapter are still unverified.
-  New native opt-ins92/93 are prepared rail branches;94/95 earn M23→M26. Default27 and90/91 scopes stay unchanged.
-  All need an actual fresh build and runtime evidence; do not transfer old binary results.
-
-### Base checkout, release and user preview
-
-- Main checkout `/home/mevlec/Data/Parasite` still has0.6.1 code; its source snapshot is
-  `dc5fb1ed8fe416e4c1333943ca00564fa8c89231200e4b8ac645e0dd40e27d7b`. Untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` belongs to unrelated work: preserve it unstaged.
-- Candidate `Builds/Candidates/full-story-20261125T222359513713Z-2389d119`, source commit `8f7b0e77be4ff73110d4816fdcf0bf9526bba31f`;
-  Runtime `13334130a851d6717c34f7619ae41395afe6cf847bf341bdc03bf709553f6d9f`, BUILD_INFO `fab619d772a3951307d73ca1dff8bdb9b2d2ee08ae20ba3d629981c00633273b`.
-  Build succeeds0/1,118MB/127.806s/zero BuildReport errors/warnings; source and both previews unchanged. Separate Kestrel heartbeat notices remain raw.
-  [Build proof](verification/0.6.1-candidate-20261126.json).
-- Exact native continuous23 branches **90Peace and91Dominion pass independently**, native0/supervisor0/SUMMARY1/1 each and all final integrity checks.
-  [Peace](verification/0.6.1-native-peace-20261126.json), [Dominion](verification/0.6.1-native-dominion-20261126.json).
-  One tightly leased worktree import overlapped91; that lease ended. These are fixture-declared Null logic checks, not graphics/FPS/human/default27 coverage.
-- Portable archive `Builds/Releases/PARASITE-0.6.1-preview-Linux.tar.gz`:615836474B,
-  SHA `fee38fdc4cab9593a9025a999b65ca6f27c7b5c20412b79c3c8383b54096fe8e`. Packaging verifies211entries/39links and immutable candidate/docs.
-  Fresh extraction verifies193files/17dirs and all hashes/modes in
-  `/home/mevlec/.local/share/parasite-artifacts/extractions/061-20261125T230520564657Z-5ce965f6/PARASITE-0.6.1-preview-Linux`.
-  **Fresh native01–05 is4/5/native1**,02 LOSfalse at4.9m; not a full portable runtime pass. [Exact result](verification/0.6.1-portable-basic-red-20261126.json).
-  New setup correction exists only in the worktree, not this binary. Original archive/overlay/extraction remain unchanged.
-- **User graphical0.5.1 playtest remains open:** PID51569/start683333, candidate `Builds/Candidates/full-story-20261125T173043238618Z-0f595731`, RTX/Vulkan.
-  Do not close, restart or inject input without user steering. Earlier async GPU-release question remains unanswered; silence is not approval.
-  GPU benchmarks/rendered checks require that session to be released. No new rendered0.6.1/26 playtest is claimed.
-- Retained `Builds/Linux`0.5.0, prior0.6.0 candidate/archive, source art, all2,760 completed RTX/OptiX frames and user preview are protected.
-  The superseded3894 verification data is retired with exact reconstruction/retained-code/lossless-log receipts; see history, never call it runnable.
-- Disk last observed: Data~2.6GiB free, root filesystem~14GiB. A read-only full-candidate archival plan to root storage is being reviewed for the next build.
-  Never delete/move protected artifacts blindly or lower the build helper's2.5GiB minimum reserve. Recheck actual capacity before writing.
-  The storage audit finds that relocating private0.6.1alone still does not meet the former3GiB Data reserve. Hunter is preparing
-  a dry-default runner adaptation for a fresh candidate under the isolated worktree's root filesystem while retaining all
-  protected-preview paths in the base project. No build/relocation/removal is authorized or executed from that plan yet.
-
-The current runtime annex does not require scene regeneration. Any later CityBuilder/MissionLayout/CityLayout builder change still requires the real-GPU generation workflow, never a Null lightmap bake.
-Use existing `Tools/unity.sh` in the intended checkout with its unchanged global flock. All test launches are root-owned and serialized.
-Commit/push as Mevinb only; do not merge the26 feature merely because its API/import or one branch is green.
+Linux/URP plus offline RTX-rendered Blender cinematics and improved real-time shaders is the user's selected direction.
+No gameplay hardware ray tracing is implemented. Physical input, final graphics/performance acceptance, disk campaign saving and continued expansion remain separate work.
+Historical invocation identities and source pins are in [HANDOFF_HISTORY_20261126.md](HANDOFF_HISTORY_20261126.md); their old live labels are not current liveness.
 
 ## Artifact and verification boundaries
 
