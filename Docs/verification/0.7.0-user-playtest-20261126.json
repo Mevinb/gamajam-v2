@@ -1,0 +1,30 @@
+{
+  "verified_utc": "2026-11-26T00:56:25.286634+00:00",
+  "root_exec_session": 10985,
+  "session": "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/session.json",
+  "pid": 155953,
+  "start_ticks": 3334957,
+  "version": "0.7.0-preview",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+  "runtime_sha256": "408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5",
+  "renderer": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "graphics_api": "Vulkan",
+  "window": {
+    "id": "0xc0000a",
+    "pid": 155953,
+    "title": "PARASITE",
+    "map_state": "IsViewable",
+    "width": 1600,
+    "height": 862
+  },
+  "player_log": "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log",
+  "observed_log_prefix_bytes": 31134,
+  "observed_log_prefix_sha256": "da702511ba6e106d93f654958d0a9d52c7dd0b53efb74db130f5f820d7fb0db0",
+  "replaced_preview": {
+    "version": "0.5.1-preview",
+    "pid": 51569,
+    "close_method": "standard WM_DELETE_WINDOW",
+    "exit_code": 0
+  },
+  "scope": "Actual visible native desktop launch for user control, no synthetic gameplay input or automatic quit. No completed manual playthrough, rendered quality or FPS claim."
+}

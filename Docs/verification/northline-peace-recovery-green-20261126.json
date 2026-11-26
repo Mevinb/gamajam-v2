@@ -1,0 +1,24 @@
+{
+  "project": "/home/mevlec/.local/share/parasite-work/northline",
+  "session": 76466,
+  "native_exit_code": 0,
+  "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-peace-fix-20261126a.xml",
+  "xml_sha256": "36a675c083de31cd03a70db41f9c57f8af0e7e8e49d0947635785cee82015694",
+  "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_peace_fix_20261126a.log",
+  "log_sha256": "ade947092c9622db4aade21897c925da78bf9cac09bbfa129d02c049585a052d",
+  "result": "Passed",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "duration_seconds": 193.0357876,
+  "cases": [
+    {
+      "name": "Parasite.Tests.RailCampaignTests.PeacePhysicalChapterAndRecovery",
+      "result": "Passed",
+      "duration_seconds": 192.972213
+    }
+  ],
+  "return_fix_patch_sha256": "2542dcd10fba551b133841029733ce8c1fab164616c06dda6f75527110b0ca3b",
+  "return_final_receipt": "[NorthlineFreightWrongRoute] phase=FINAL_BEFORE_CHECK originalPredicate=True elapsedReal=40.40421 elapsedSim=40.40350 frame=30461 realNow=108.55490 time=90.30013 fixedTime=90.29996 fixedDt=0.020000 timeScale=1 originalBudget=70 actualWaitDeadline=138.15070 manager=Playing railActive=True mission=24 validated=True arrivedFlag=False coordinator=World/Northline Railway Works#-36776 coordinatorEnabled=True body=World/Northline Railway Works/Northline actual sealed transfer cradle#-41622 expectedBody=World/Northline Railway Works/Northline actual sealed transfer cradle#-41622 exactBodyReference=True physical=True moving=False returning=False atLoading=True failedRoutes=1 validDispatch=False ARight=False BRight=False pointsSettled=True rbAt=(1478.00000, 0.15000, -214.00000) transformAt=(1478.00000, 0.15000, -214.00000) rbLocal=(-22.00000, 0.15000, 6.00000) velocity=(0.00000, 0.00000, 0.00000) angularVelocity=(0.00000, 0.00000, 0.00000) interpolation=Interpolate kinematic=True detectCollisions=True boxCenter=(1478.00000, 0.90000, -214.00000) boxHalfExtents=(1.50000, 0.75000, 1.00000) boxLocalCenter=(0.00000, 0.75000, 0.00000) boxLocalSize=(3.00000, 1.50000, 2.00000) privateLeg=7/8 privateTarget=(1478.00000, 0.15000, -214.00000) privateReachedByProduction=True nextMovementLeg=7 terminalLeg=True movementGuard=False nextMovementTarget=(1478.00000, 0.15000, -214.00000) nextDestination=(1478.00000, 0.15000, -214.00000) exactStepDirection=(0.000000, 0.000000, 0.000000) exactStepDistance=0.000000 sweepDistanceWithLookAhead=0.005000 route=[0:(1493.0000, 0.1500, -214.0000) local=(-7.0000, 0.1500, 6.0000); 1:(1493.0000, 0.1500, -212.0000) local=(-7.0000, 0.1500, 8.0000); 2:(1511.0000, 0.1500, -212.0000) local=(11.0000, 0.1500, 8.0000); 3:(1511.0000, 0.1500, -202.0000) local=(11.0000, 0.1500, 18.0000); 4:(1528.0000, 0.1500, -202.0000) local=(28.0000, 0.1500, 18.0000); 5:(1528.0000, 0.1500, -199.5000) local=(28.0000, 0.1500, 20.5000); 6:(1478.0000, 0.1500, -199.5000) local=(-22.0000, 0.1500, 20.5000); 7:(1478.0000, 0.1500, -214.0000) local=(-22.0000, 0.1500, 6.0000)] activeAgent=1 activeBody=NPC_Northline yard maintenance worker#-43020 activeAt=(1468.93600, 0.19000, -197.62970) sweepCount=0 blockingCount=0 sortedExactProductionSweep=[]",
+  "scope": "Actual prepared-Peace Editor physical chapter with original recovery predicates and deadlines. Same carriage returns at40.40421s; later route correction, checkpoint recovery, boarding and full departure complete. No earned-continuous26/native/GPU/human coverage is asserted."
+}

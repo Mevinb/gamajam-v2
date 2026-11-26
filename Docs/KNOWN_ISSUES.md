@@ -113,7 +113,7 @@ current work; every pass applies to its recorded source or binary.
   current-candidate media stress and queued shortcuts are already recorded separately.
 - Two historical long Editor attempts ended in native SIGSEGV without final XML; a subsequent complete run on that earlier
   source passed. Their initiating cause remains unproven. Do not present later narrow native passes as a universal engine-crash repair.
-- Campaign checkpoints survive scene reloads within the running process. Persistent on-disk campaign saving is not implemented.
+- Retained0.6.1/0.7.2 checkpoints are in-process only. [0.7.3 disk checkpoints](CAMPAIGN_SAVES.md) now pass storage24/24, menu5/5 and private native initial checkpoint/time quit/relaunch/resume. Full native chapter-summary/26-mission save/resume and physical-human input remain unverified.
 
 Caches, render frames, captures and builds consume substantial disk space. Check live free space before large jobs, retain
 source/provenance and the user's immutable preview, and keep generated output out of Git. The existing package shell script

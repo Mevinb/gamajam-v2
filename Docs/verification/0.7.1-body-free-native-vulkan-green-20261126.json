@@ -1,0 +1,454 @@
+{
+  "status": "passed",
+  "supervisor_pid": 222763,
+  "runner_sha256": "de6b160790e82fb43e2048d919738ed16d9139b8542a0103715f1638882a3a38",
+  "started_utc": "2026-11-26T07:20:56.933464+00:00",
+  "selected_case": "96",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+  "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+  "build_info_sha256": "bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0",
+  "source_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+  "head": "70259deafd711f841c07225949b55733eaf2101a",
+  "version": "0.7.1-preview",
+  "reviewed_build_pins": {
+    "path": "/home/mevlec/Data/Parasite/Logs/native-071-focused-stage/pins-reviewed-071.json",
+    "sha256": "0a447edcbcaca113d7981720bd6569062b5a35ee40c4adefac530a2ed433cb0a"
+  },
+  "reviewed_current_source": "/home/mevlec/.local/share/parasite-work/northline/Logs/supported96-reviewed-current-source-20261126.json",
+  "reviewed_current_source_sha256": "49856690da41a1776d66ea00f03b1407aa3eb469c1734791c6b853c3ab6c1c49",
+  "exact_source_delta_from_compiled_player": {
+    "added": [
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach.meta",
+        "bytes": 172,
+        "sha256": "0e5fe6b181f8c2f0a26e9b860651b1987fba6d2d3ed6cc3b034fe8b11301ef18"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/RailCoachGlass.mat",
+        "bytes": 3925,
+        "sha256": "b96cf9c77b77720f5f196e753f690e4cc9c45e691c6e3b6177a2a7a61b6ebf1c"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/RailCoachGlass.mat.meta",
+        "bytes": 188,
+        "sha256": "ad33890c99755ba01c52e2e1b45bf81b429cdf3494be8686d2c496f81c5296d1"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/RailCoachOpaquePBR.mat",
+        "bytes": 4070,
+        "sha256": "d33eb13752d849cc386c003252c3a624435a10283e712dd65cf2cb0f3a8fc8d9"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/RailCoachOpaquePBR.mat.meta",
+        "bytes": 188,
+        "sha256": "ac8ed9de67ed60fea206fc98345a82419e32bf9a77144632c31ace10dd97ed13"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures.meta",
+        "bytes": 172,
+        "sha256": "e0329e671670779cf3f5dd65a2a5ab1e9bdbb2516e1f26f9b44dab228e816f11"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_A.png",
+        "bytes": 63918,
+        "sha256": "dc8634e2507ef6e541c2ebdc2029ac09792bd480185080c005ad8060384a16bf"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_A.png.meta",
+        "bytes": 2654,
+        "sha256": "2f18bd1d19069fee059edf9c2ee41257dcf4f95f735c7606faf8aac631f4c359"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_M.png",
+        "bytes": 267499,
+        "sha256": "4b58d7d946ef46c905b1f4a78eed14bd61a3eba0f63090108c650ea4d4fd0e60"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_M.png.meta",
+        "bytes": 2654,
+        "sha256": "01a473459a4d7affc312383b554ce213e45075736ef9b2cdada39338c9e57e1b"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_N.png",
+        "bytes": 86286,
+        "sha256": "db5cdd7330a964c330210802682b4793af7663f2c76d46a7465965bdf348dc02"
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/Coach/Textures/RailCoach_N.png.meta",
+        "bytes": 2654,
+        "sha256": "001940e317442a4be277409bab3830a7be5e3f8c098ad78022c57b1faf976552"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/RailCoachFittingTests.cs",
+        "bytes": 8915,
+        "sha256": "62ed76c48ac43ac89ec443d4954586f5eca759273b5cb643fb838152d7190963"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/RailCoachFittingTests.cs.meta",
+        "bytes": 243,
+        "sha256": "97b32e44126f4a91d0814802093de914d07881ffe8cd441626f890b758a5c77e"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/RailCoachMaterialTests.cs",
+        "bytes": 10076,
+        "sha256": "65e4adbddce5f81c07f95db4eabe854c42b463859a19f0643233a3a11a2b4597"
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/RailCoachMaterialTests.cs.meta",
+        "bytes": 60,
+        "sha256": "3414a592507a60a33d1e1b565ac472e5d909582628fade1ea322b7517758b1d9"
+      }
+    ],
+    "removed": [],
+    "modified": [
+      {
+        "path": "Assets/Parasite/Editor/RailArtImporter.cs",
+        "built": {
+          "path": "Assets/Parasite/Editor/RailArtImporter.cs",
+          "bytes": 9488,
+          "sha256": "1a9ca1f174febe9a85c67604d6e85f5a0732eb630c4aedade12b9d3073e6b81a"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Editor/RailArtImporter.cs",
+          "bytes": 19665,
+          "sha256": "cc5411afcabb7b661111b552f50c925c64df41767aae6fc516190a96f5be462a"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Editor/RailArtVerification.cs",
+        "built": {
+          "path": "Assets/Parasite/Editor/RailArtVerification.cs",
+          "bytes": 13329,
+          "sha256": "e104e0408a3751b387c076988bfbcb6263229d5e3671e7c21dc02a4ecd99fd20"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Editor/RailArtVerification.cs",
+          "bytes": 18314,
+          "sha256": "5019e5658fe41c917380e1910f2c1f3ea165462919210041221fa058a480f00d"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Resources/NorthlineRail/RailDepartureCoach.fbx",
+        "built": {
+          "path": "Assets/Parasite/Resources/NorthlineRail/RailDepartureCoach.fbx",
+          "bytes": 68060,
+          "sha256": "9617e03537fbd206776dca703c32b0f57cf779ac2709ad51f07c506b5d287cc0"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Resources/NorthlineRail/RailDepartureCoach.fbx",
+          "bytes": 251740,
+          "sha256": "9e1a0dcbbc15a61a9e0bf9962bab9918af01f2a21980cfc5550b57dcd9d0d70b"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Missions/RailArtContract.cs",
+        "built": {
+          "path": "Assets/Parasite/Scripts/Missions/RailArtContract.cs",
+          "bytes": 3222,
+          "sha256": "28d25fb1d66105e7600623f732f31a448b965fd0b62fae3bb7a8e76e071471ba"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Scripts/Missions/RailArtContract.cs",
+          "bytes": 5873,
+          "sha256": "9f5a2e68fd9e31b2d2ae3c5cb42daa00105632e3048b7238f0ecffc3b818e779"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Missions/RailAuthoredArt.cs",
+        "built": {
+          "path": "Assets/Parasite/Scripts/Missions/RailAuthoredArt.cs",
+          "bytes": 15154,
+          "sha256": "77bdf3ad83c241f8664af2170451f692c2a46ec54af4104c94a002e6c5809ae3"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Scripts/Missions/RailAuthoredArt.cs",
+          "bytes": 24876,
+          "sha256": "197b3e6d27dade6cc5fc42e4536894866fab9137eb65ec0f7df701b2062f4f36"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Missions/RailDistrict.cs",
+        "built": {
+          "path": "Assets/Parasite/Scripts/Missions/RailDistrict.cs",
+          "bytes": 18981,
+          "sha256": "561687f6ee10863e467f9773ac9dec35a296d78403349466f7ac7f0889136abb"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Scripts/Missions/RailDistrict.cs",
+          "bytes": 19836,
+          "sha256": "1f0ee195609faf25cee796e8ede81770491f71cab9c0eccf4f7e1cce7660931a"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Scripts/Missions/RailLayout.cs",
+        "built": {
+          "path": "Assets/Parasite/Scripts/Missions/RailLayout.cs",
+          "bytes": 2818,
+          "sha256": "0897fb592e09e7a7d4a914eb881bb28b35be3d5a8da33530b163fa9ffc8214b3"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Scripts/Missions/RailLayout.cs",
+          "bytes": 6066,
+          "sha256": "840a314e221a93bb4ca40e57e493b84be4a2f97307e9b5f5f28bd16704fd0edb"
+        }
+      },
+      {
+        "path": "Assets/Parasite/Tests/PlayMode/RailArtBindingTests.cs",
+        "built": {
+          "path": "Assets/Parasite/Tests/PlayMode/RailArtBindingTests.cs",
+          "bytes": 4039,
+          "sha256": "f114a72531af8af35b1cc1e186dc266dab94d56e2c6984c66d90576438f237f8"
+        },
+        "reviewed_current": {
+          "path": "Assets/Parasite/Tests/PlayMode/RailArtBindingTests.cs",
+          "bytes": 7705,
+          "sha256": "26d504145af2731badb5e987870983ded4ace250b231b971dcc3707451efb8e2"
+        }
+      }
+    ]
+  },
+  "display": ":99",
+  "original_smoke_sha256": "d7476ef5b76f074e9e27ee8c3e690161281e26248171c6b215defd77a8805ad3",
+  "argv": [
+    "/usr/bin/nice",
+    "-n",
+    "0",
+    "/usr/bin/ionice",
+    "-c",
+    "3",
+    "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31/Parasite.x86_64",
+    "-force-vulkan",
+    "-screen-fullscreen",
+    "0",
+    "-screen-width",
+    "1600",
+    "-screen-height",
+    "900",
+    "-job-worker-count",
+    "2",
+    "-autotest",
+    "-autotestFilter",
+    "96",
+    "-autotestOut",
+    "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/report.txt",
+    "-logFile",
+    "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/player.log"
+  ],
+  "timeout_seconds": 300,
+  "native_exit_code": 0,
+  "watchdog_or_cancel": false,
+  "signal_events": [],
+  "cancel_signal": null,
+  "scope": "Actual compiled071 case96 on RTX/Vulkan, isolated virtual display. Declared radio/deck fixture and simulated input remain. Current development-source delta is frozen/recorded, not claimed in this immutable player. No physical-key/human/current-coach/performance acceptance.",
+  "protected_user_identity": {
+    "pid": 155953,
+    "uid": 1000,
+    "start_ticks": 3334957,
+    "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+    "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+    "user_arguments": [
+      "-force-vulkan",
+      "-screen-fullscreen",
+      "0",
+      "-screen-width",
+      "1600",
+      "-screen-height",
+      "900",
+      "-logFile",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+    ]
+  },
+  "before": {
+    "checks": {
+      "work_source_matches_reviewed_delta": true,
+      "reviewed_delta_file_unchanged": true,
+      "head_still70259de": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true,
+      "reviewed_pins_unchanged": true,
+      "user070_runtime_unchanged": true,
+      "user070_build_info_unchanged": true
+    },
+    "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+    "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "49856690da41a1776d66ea00f03b1407aa3eb469c1734791c6b853c3ab6c1c49",
+    "protected_user": {
+      "utc": "2026-11-26T07:21:00.152715+00:00",
+      "process_status": "exited_since_initial_observation",
+      "saved_status": "exited",
+      "user_exit_code": 0,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "isolated_environment": {
+    "XDG_CONFIG_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/profile/config",
+    "XDG_CACHE_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/profile/cache",
+    "XDG_DATA_HOME": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/profile/data",
+    "TMPDIR": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/profile/tmp"
+  },
+  "player_pid": 222770,
+  "player_started_utc": "2026-11-26T07:21:00.159308+00:00",
+  "child_identity": {
+    "pid": 222770,
+    "uid": 1000,
+    "start_ticks": 5650068,
+    "state": "S",
+    "exe": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31/Parasite.x86_64",
+    "cwd": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+    "argv": [
+      "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31/Parasite.x86_64",
+      "-force-vulkan",
+      "-screen-fullscreen",
+      "0",
+      "-screen-width",
+      "1600",
+      "-screen-height",
+      "900",
+      "-job-worker-count",
+      "2",
+      "-autotest",
+      "-autotestFilter",
+      "96",
+      "-autotestOut",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/report.txt",
+      "-logFile",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/player.log"
+    ],
+    "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+    "nice": 15,
+    "io_priority": "idle"
+  },
+  "elapsed_seconds": 12.059,
+  "heartbeat_utc": "2026-11-26T07:21:10.217744+00:00",
+  "protected_user_observation": {
+    "utc": "2026-11-26T07:21:10.212767+00:00",
+    "process_status": "exited_since_initial_observation",
+    "saved_status": "exited",
+    "user_exit_code": 0,
+    "identity": {
+      "pid": 155953,
+      "uid": 1000,
+      "start_ticks": 3334957,
+      "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+      "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+      "user_arguments": [
+        "-force-vulkan",
+        "-screen-fullscreen",
+        "0",
+        "-screen-width",
+        "1600",
+        "-screen-height",
+        "900",
+        "-logFile",
+        "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+      ]
+    }
+  },
+  "player_finished_utc": "2026-11-26T07:21:12.218114+00:00",
+  "report_rows": [
+    [
+      "PASS",
+      "96",
+      "Body free state: prepared river radio/deck, actual inactive destruction denial and checkpoint recovery  (4.4s)  Prepared radio/deck: real inactive destruction denies free/ferry/finalizer credit; only explicit checkpoint/new body/fresh E departs; live hidden/disabled identity remains free; unexpected log=none"
+    ]
+  ],
+  "report_summaries": [
+    [
+      "1",
+      "1"
+    ]
+  ],
+  "exact_selected_pass": true,
+  "rendered_marker": true,
+  "hdr_warning_count": 0,
+  "ring_warnings": [],
+  "raw_report": "PARASITE autotest \u2014 2026-11-26 12:51:01 \u2014 NVIDIA GeForce RTX 4050 Laptop GPU / Linux 7.0 Ubuntu 26.04 64bit\nPASS  96 Body free state: prepared river radio/deck, actual inactive destruction denial and checkpoint recovery  (4.4s)  Prepared radio/deck: real inactive destruction denies free/ferry/finalizer credit; only explicit checkpoint/new body/fresh E departs; live hidden/disabled identity remains free; unexpected log=none\nSUMMARY: 1/1 passed\n",
+  "report_sha256": "9201bc2f6f1bf35ef2bded3febb0fb914cd4e602e0fcb6aeaac5244e62e0cbf1",
+  "player_log_sha256": "d36d4990855e12598d9c9ab7173ce350cfe8897bad93e97292e23bf3204ed4dd",
+  "owned_stop_requests": [
+    {
+      "signal": 15,
+      "label": "TERM",
+      "owned_pid": 222770,
+      "owned_pgid": 222770,
+      "checked_utc": "2026-11-26T07:21:12.219045+00:00",
+      "native_exit_before_request": 0,
+      "outcome": "already_exited_no_signal"
+    }
+  ],
+  "after": {
+    "checks": {
+      "work_source_matches_reviewed_delta": true,
+      "reviewed_delta_file_unchanged": true,
+      "head_still70259de": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true,
+      "reviewed_pins_unchanged": true,
+      "user070_runtime_unchanged": true,
+      "user070_build_info_unchanged": true
+    },
+    "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+    "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "49856690da41a1776d66ea00f03b1407aa3eb469c1734791c6b853c3ab6c1c49",
+    "protected_user": {
+      "utc": "2026-11-26T07:21:16.501015+00:00",
+      "process_status": "exited_since_initial_observation",
+      "saved_status": "exited",
+      "user_exit_code": 0,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "post_integrity_pass": true,
+  "verified_pass": true,
+  "supervisor_exit_code": 0,
+  "finished_utc": "2026-11-26T07:21:16.512656+00:00",
+  "root_exec_session": 53840,
+  "execution": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-supported96/96-20261126a/execution.json",
+  "execution_sha256": "ed7f8195d5d1dea0b4330f88c7384c014904b68bebc2d2c1b3134249b5447ce8"
+}

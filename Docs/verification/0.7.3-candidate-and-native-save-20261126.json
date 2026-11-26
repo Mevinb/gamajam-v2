@@ -1,0 +1,79 @@
+{
+  "status": "BUILD_AND_NATIVE_INITIAL_CHECKPOINT_RESUME_PASS",
+  "version": "0.7.3-preview",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T141830932558Z-ad668a55",
+  "source_commit": "cf8b57e9c89b84919fa11e17f77baf78d202aefb",
+  "source_snapshot_sha256": "4badf2f4a57c832277743e902a6e4cb1d1291635a7f05b9d4188d3a13aff1634",
+  "runtime_sha256": "34b4156eb0ab4585f0d73c5fd589b4215c2d559663e9b03550d15fe1e56258f1",
+  "build_info_sha256": "1ba07ec5e5ced7f1c0ca12d803e66e6780e6b3dc878e6192f7fb96ea2cb07020",
+  "build_receipt": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T141830932558Z-ad668a55/runner-state.json",
+  "build_receipt_sha256": "16bb2930b1a1e716af51e25076255ff469d259200c9b3239cca1ad3cead18f29",
+  "build_summary": {
+    "result": "Succeeded",
+    "size_mb": 1135,
+    "time": "00:00:16.1984000",
+    "errors": 0,
+    "warnings": 0
+  },
+  "native_build_exit": 0,
+  "source_and_older_artifacts_unchanged": true,
+  "linux_api": "Post-build compile_check.sh all: runtime180/editor33/LinuxMono180 pass; old stale dependency gate resolved by actual build.",
+  "basic_native": {
+    "receipt": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-basic-full-story-20261126T141830932558Z-ad668a55/execution.json",
+    "sha256": "ab43aa86cb34e14c75b185a1824e23c9066deecfd7dd2b73c4d3a9acf887b6db",
+    "result": "5/5",
+    "exit_code": 0,
+    "seconds": 29.665
+  },
+  "native_save_ui": {
+    "receipt": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-save-ui-073/20261126c/execution.json",
+    "sha256": "9736dc31d09432c1a482977972ae5ec7420b505ab6934e10ae3280680e13b580",
+    "result": "passed",
+    "seconds": 80.414,
+    "cycle_exit_codes": [
+      0,
+      0
+    ],
+    "old_play_time": 2.389281749725342,
+    "resumed_play_time": 2.411679983139038,
+    "checkpoint": "Storm Drain",
+    "profile": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-save-ui-073/20261126c/profile",
+    "normal_application_path": true,
+    "automated_scenario_flags": false,
+    "input": "Synthetic X11/XTest keys in private Xvfb; title/gameplay screenshots manually inspected before own review gates. Not physical-human input.",
+    "opening": "Actual opening image inspected, then deliberately skipped; Resume reaches gameplay without a new opening. No full80s/audio-listening verdict.",
+    "artifact_integrity": true,
+    "logs": [
+      {
+        "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-save-ui-073/20261126c/cycle1/player.log",
+        "sha256": "4c89898c649b4aaf8a8630141b4018f57ceefc9abe65870da17e75dabae3378b",
+        "ring_warnings": 0,
+        "hdr_warnings": 0,
+        "null_exceptions": 0
+      },
+      {
+        "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-save-ui-073/20261126c/cycle2/player.log",
+        "sha256": "6e5154b3d8115eebf4dd09c203c1ffa88f91b3f42a83415f68a67afd71332a4c",
+        "ring_warnings": 0,
+        "hdr_warnings": 0,
+        "null_exceptions": 0
+      }
+    ]
+  },
+  "retained_harness_failures": [
+    {
+      "directory": "Logs/native-save-ui-073/20261126a",
+      "cause": "A cold render window was still empty; size readiness assertion rejected it. Owned child was stopped."
+    },
+    {
+      "directory": "Logs/native-save-ui-073/20261126b",
+      "cause": "Initial X focus happened before menu readiness; XTest Enter did not submit. Owned child stopped; supervisor143 retained. Refocus after readiness fixes the test harness, not product bindings."
+    }
+  ],
+  "limits": [
+    "Native production proof covers initial checkpoint/time persistence across two processes; nonempty flags and earned-summary restore additionally have scoped Editor tests, not a whole native26-mission save/resume run.",
+    "Campaign remains26 playable missions. Exchange27\u201329 blueprint is documentation only.",
+    "Strict coach Editor tests retain ring-buffer warning failures. Final performance/graphics/full-story acceptance remains active.",
+    "No user desktop player was launched or closed by this private test. Prior0.7.2user session exited normally0/821.103s."
+  ]
+}

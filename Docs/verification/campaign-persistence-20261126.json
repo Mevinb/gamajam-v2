@@ -1,5 +1,5 @@
 {
-  "status": "SOURCE_EDITMODE_AND_PLAYMODE_VERIFIED_NATIVE_BUILD_PENDING",
+  "status": "EDITOR_AND_NATIVE_INITIAL_CHECKPOINT_RESUME_VERIFIED",
   "feature": "Versioned durable campaign checkpoint autosave and title Resume, including completed chapter summaries",
   "schema": 1,
   "storage": "campaign-v1.json plus last valid .bak under Application.persistentDataPath; tests use explicit owned temporary directories",
@@ -61,8 +61,8 @@
   "retained_red": "First PlayMode3/4 used an invented checkpoint name inside the authored Storm Drain trigger; normal reload re-labelled it. Corrected fixture uses actual authored checkpoint. Original red preserved.",
   "environment_failure": "First isolated XDG profile Editor invocation198 failed license validation; normal environment succeeded. All actual save files remained in owned temporary directories.",
   "remaining": [
-    "New Linux player build and actual target API check pending; old cached fast API check currently refuses stale test-assembly dependency timestamp.",
-    "This feature is not in the retained0.7.2 user binary.",
-    "Full campaign/rendered performance acceptance and continued mission expansion remain active."
-  ]
+    "Full native chapter-summary and26-mission save/resume acceptance remain broader work.",
+    "Physical-human input, audio listening and final performance remain unexercised."
+  ],
+  "native_followup": "0.7.3-candidate-and-native-save-20261126.json"
 }

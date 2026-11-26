@@ -1,0 +1,44 @@
+{
+  "status": "PASSED",
+  "build_state": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T005055601457Z-875bb782/runner-state.json",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+  "version": "0.7.0-preview",
+  "source_snapshot_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+  "before": {
+    "Parasite_Data/Managed/Parasite.Runtime.dll": "408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5",
+    "BUILD_INFO.json": "94ea9c39b354649ed6f686c29a33087a57a0cb4a2f01eca04c88364fcac041ba",
+    "Parasite.x86_64": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "UnityPlayer.so": "3b26442489353730902fffaa6378f19fe7945c4e1af8fc66787acbad5740e53a",
+    "play.sh": "09465df614a5d06571347a1da88f7e2d19f0dcf9f355bf7c0a72841491d8d2c8"
+  },
+  "argv": [
+    "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782/play.sh",
+    "-batchmode",
+    "-nographics",
+    "-autotest",
+    "-autotestFilter",
+    "01,02,03,04,05",
+    "-autotestOut",
+    "/home/mevlec/.local/share/parasite-work/northline/Logs/native-070-basic/20261126T005412Z/report.txt",
+    "-logFile",
+    "/home/mevlec/.local/share/parasite-work/northline/Logs/native-070-basic/20261126T005412Z/player.log"
+  ],
+  "started_utc": "2026-11-26T00:54:12.976269+00:00",
+  "scope": "Five native Null logic cases only; no rendering, full campaign or human-input acceptance.",
+  "pid": 155754,
+  "native_exit_code": 0,
+  "elapsed_seconds": 30.246,
+  "after": {
+    "Parasite_Data/Managed/Parasite.Runtime.dll": "408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5",
+    "BUILD_INFO.json": "94ea9c39b354649ed6f686c29a33087a57a0cb4a2f01eca04c88364fcac041ba",
+    "Parasite.x86_64": "8027f7d1f9ae7dacfc826fb218adcc1ae7464af098a8a59397e7531c0f7ec0bc",
+    "UnityPlayer.so": "3b26442489353730902fffaa6378f19fe7945c4e1af8fc66787acbad5740e53a",
+    "play.sh": "09465df614a5d06571347a1da88f7e2d19f0dcf9f355bf7c0a72841491d8d2c8"
+  },
+  "report": "PARASITE autotest \u2014 2026-11-26 06:24:14 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  01 Start, move, camera, jump  (2.2s)  moved 4.6 m, camera turned 90\u00b0, hop 0.55 m\nPASS  02 Aim + E possesses host within 5 m (camera + WASD follow)  (3.9s)  far host (>5 m) not targetable\nPASS  03 Q release: host unconscious 8 s then recovers  (9.8s)  host unconscious 8.0 s, recovered, AI resumed on NavMesh\nPASS  04 V split max two, Tab switch, inactive stays put  (1.6s)  2 amoebas max, Tab switch OK, active moved 3.8 m, inactive drift 0.00 m, camera on active (3.2 m)\nPASS  05 Civilian denied at restricted doors  (3.9s)  civilian denied at Main Gate, Staff Terminal and Service Tunnel\nSUMMARY: 5/5 passed\n",
+  "unchanged": true,
+  "finished_utc": "2026-11-26T00:54:43.277312+00:00",
+  "root_exec_session": 99496,
+  "receipt_path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-070-basic/20261126T005412Z/execution.json",
+  "receipt_sha256": "73ecb5a8e43cb25f177ec0ae3ae2e756a3af8faa31ced9c15a4b399e6aaac4df"
+}

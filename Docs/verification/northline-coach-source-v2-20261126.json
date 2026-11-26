@@ -1,0 +1,61 @@
+{
+  "author_root_exec_session": 70532,
+  "author_native_exit_code": 0,
+  "verifier_root_exec_session": 83423,
+  "verifier_native_exit_code": 0,
+  "manifest": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-coach-author/20261126a/production-manifest.json",
+  "manifest_sha256": "a8e0648bf9a061baa356c404bdb677ad97462ebdecc736a6036a44932676b204",
+  "verification": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-coach-verification/20261126a/coach-verification.json",
+  "verification_sha256": "56114ad2cf9e6e519dfcfbf7e6b23b3b738e30a6af478aa8ec9ce738fa6df2df",
+  "authoring_source_request": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-coach-profile/20261126a/request.json",
+  "source_patch": "/home/mevlec/Data/Parasite/Logs/northline-realism-stage/coach-source.patch",
+  "distinct_kit_triangles": 15972,
+  "coach_triangles": 11144,
+  "closed_components": 198,
+  "glass_closed_components": 10,
+  "aperture_probes": 10,
+  "actual_bounds": [
+    [
+      -1.6019999980926514,
+      0.14999963343143463,
+      -7.009500026702881
+    ],
+    [
+      1.6019999980926514,
+      3.2900004386901855,
+      7.009500026702881
+    ]
+  ],
+  "unchanged_exports": [
+    "RailTram",
+    "RailTransferCradle",
+    "RailControl",
+    "RailLowSignal",
+    "RailPointBlade",
+    "RailCrossingBarrier",
+    "RailServiceGate",
+    "RailPlatformGate",
+    "RailPortalGate",
+    "RailBoardingRamp"
+  ],
+  "textures": {
+    "size": 2048,
+    "maps": [
+      "A:sRGB RGB/opaque A",
+      "N:linear tangent normal",
+      "M:linear R metallic/A smoothness"
+    ],
+    "bands": [
+      "blue_paint",
+      "interior_enamel",
+      "brushed_steel",
+      "wheel_steel",
+      "rubber",
+      "nonslip_floor",
+      "seat_vinyl",
+      "safety_yellow"
+    ]
+  },
+  "renders": 0,
+  "scope": "Actual CPU-only Blender authored source, new maps, packed material/mesh and independent FBX round-trip. Runtime import, two-material integration, eight-seat collisions, movement/LOS, game appearance and measured VRAM/FPS remain pending; user preview unchanged."
+}

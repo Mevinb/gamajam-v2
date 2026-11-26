@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "selected_case": "93",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+  "runtime_sha256": "408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5",
+  "build_info_sha256": "94ea9c39b354649ed6f686c29a33087a57a0cb4a2f01eca04c88364fcac041ba",
+  "source_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+  "head": "6e1240565612035fd6cf9d8c9236dd592f9abf3f",
+  "runner_sha256": "7b87241c7658f26495dbe1d1f5b6d2697e42b83c069f5384ab25fe41c7900149",
+  "scope": "Focused native Northline Dominion only. Prepared M23 summary and initial role/body/input fixtures remain; actual chapter mechanics are unchanged. No continuous26/default27/graphics/movie/settings/performance/physical-key/human acceptance claim.",
+  "native_exit_code": 0,
+  "supervisor_exit_code": 0,
+  "elapsed_seconds": 106.747,
+  "exact_selected_pass": true,
+  "null_marker": true,
+  "watchdog_or_cancel": false,
+  "cancel_signal": null,
+  "signal_events": [],
+  "post_integrity_pass": true,
+  "verified_pass": true,
+  "raw_report": "PARASITE autotest \u2014 2026-11-26 06:38:11 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  93 Northline Dominion: prepared M23 summary and physical chapter  (101.8s)  \nSUMMARY: 1/1 passed\n",
+  "report_sha256": "186bdf8c0dc8fea0f399bebe90842f43a5861e678de754432d3626384268ab77",
+  "player_log_sha256": "38a7e590506ccb577bcad45109384a1f05b0b628d84975d00459ad2958b58f70",
+  "before": {
+    "checks": {
+      "work_source_matches_built95d9": true,
+      "head_still6e12405": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true
+    },
+    "candidate_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+    "protected_user": {
+      "utc": "2026-11-26T01:08:10.285107+00:00",
+      "process_status": "running_identity_matches",
+      "saved_status": "running",
+      "user_exit_code": null,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "after": {
+    "checks": {
+      "work_source_matches_built95d9": true,
+      "head_still6e12405": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true
+    },
+    "candidate_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+    "protected_user": {
+      "utc": "2026-11-26T01:09:59.532326+00:00",
+      "process_status": "running_identity_matches",
+      "saved_status": "running",
+      "user_exit_code": null,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "started_utc": "2026-11-26T01:08:07.699330+00:00",
+  "finished_utc": "2026-11-26T01:09:59.544561+00:00",
+  "root_exec_session": 66651,
+  "execution": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-070-focused/93-20261126a/execution.json",
+  "execution_sha256": "ca7397bd4c44603b5a4b2eeb4daee8668dc29d92c3f2451218a188b13fe46981"
+}
