@@ -2,8 +2,8 @@
   "version": 4,
   "film": "dominion",
   "path": "ArtSource/RealisticFinales/Lake/Lake_Dominion.blend",
-  "bytes": 61231910,
-  "sha256": "19f61eef69e1f6cd63cec6d6e2fac79848ab7e8bc203a0f1b455c5008a6ae27f",
+  "bytes": 61227986,
+  "sha256": "b83aef6db4a7c7555352d485634839d3d5b9bffc93f67e22c9200b5d98962765",
   "source_sha256": "2e335ff0075b8e7008f03f9ec9c7ee9ed6ec2e8687ed23c580eb711f647601bb",
   "original_rig_animation_preserved": true,
   "original_geometry_counts_preserved": [
@@ -65,5 +65,46 @@
     "portrait.py": "e33ce2cae25d6740b2c3f68a0265b7a5b5a1e83382e77da501396edbe4cf9ece",
     "scenery.py": "31cf3a6ae63b79eb27c14e9fa74e98e2b5906e2014df3069afed0ba2932be2d9",
     "cinematic_surfaces.py": "70f1210f54299c6a4937c4fe34ceec7cd3b882f70a75ea5f7f3a231738ba99ee"
+  },
+  "dominion_iris_revision": 2,
+  "previous_v4_sha256": "19f61eef69e1f6cd63cec6d6e2fac79848ab7e8bc203a0f1b455c5008a6ae27f",
+  "iris_mask_audit": {
+    "centresUV": [
+      [
+        0.29138493650047037,
+        0.28946511384348544
+      ],
+      [
+        0.7072312441819875,
+        0.7015827721375378
+      ]
+    ],
+    "atlasSize": [
+      1024,
+      1024
+    ],
+    "innerFadePx": [
+      42,
+      46
+    ],
+    "outerFadePx": [
+      112,
+      116
+    ],
+    "pupilMaskMax": 0.0,
+    "outsideIrisMaskMax": 0.0,
+    "nonzeroMaskPixels": 73465,
+    "peakEmissionStrength": 0.25,
+    "emissionLinearRGB": [
+      0.015,
+      0.22,
+      0.045
+    ],
+    "maskedColourMultiplier": [
+      0.25,
+      1.8,
+      0.75
+    ],
+    "photographLuminanceUsedForMask": false
   }
 }

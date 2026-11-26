@@ -178,10 +178,8 @@ def focus_pin(scene, rig, length):
 
 
 def dominion_iris(material,length):
-    nt=material.node_tree;bs=nt.nodes.get('Principled BSDF');tx=next(n for n in nt.nodes if n.type=='TEX_IMAGE' and n.image.name.startswith('brown'))
-    ramp=nt.nodes.new('ShaderNodeValToRGB');ramp.name='Explicit Dominion iris mask; pale sclera stays ordinary';ramp.color_ramp.elements[0].position=.12;ramp.color_ramp.elements[0].color=(1,1,1,1);ramp.color_ramp.elements[1].position=.52;ramp.color_ramp.elements[1].color=(0,0,0,1);nt.links.new(tx.outputs['Color'],ramp.inputs[0])
-    mult=nt.nodes.new('ShaderNodeMath');mult.name='Explicit Dominion reveal only';mult.operation='MULTIPLY';nt.links.new(ramp.outputs[0],mult.inputs[0]);nt.links.new(mult.outputs[0],bs.inputs['Emission Strength']);bs.inputs['Emission Color'].default_value=(.09,.45,.15,1)
-    for f,value in [(1,0),(24,0),(48,.65),(84,1.15),(length,.85)]:mult.inputs[1].default_value=value;mult.inputs[1].keyframe_insert('default_value',frame=f)
+    from dominion_iris import apply_annulus
+    apply_annulus(material,length)
 
 
 def camera(scene,name,start,end,targets,lens,frames,focus,aperture):

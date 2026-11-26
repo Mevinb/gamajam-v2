@@ -1,5 +1,5 @@
 {
-  "total_blend_bytes": 244967499,
+  "total_blend_bytes": 244963575,
   "films": {
     "arrival": {
       "version": 4,
@@ -102,8 +102,8 @@
     },
     "dominion": {
       "version": 4,
-      "bytes": 61231910,
-      "sha256": "19f61eef69e1f6cd63cec6d6e2fac79848ab7e8bc203a0f1b455c5008a6ae27f",
+      "bytes": 61227986,
+      "sha256": "b83aef6db4a7c7555352d485634839d3d5b9bffc93f67e22c9200b5d98962765",
       "all_images_packed": true,
       "rig_animation_preserved": true,
       "hold_rig_delta": 0.0,
@@ -131,7 +131,47 @@
         94,
         155
       ],
-      "rendered": false
+      "rendered": false,
+      "dominion_iris_revision": 2,
+      "iris_mask_audit": {
+        "centresUV": [
+          [
+            0.29138493650047037,
+            0.28946511384348544
+          ],
+          [
+            0.7072312441819875,
+            0.7015827721375378
+          ]
+        ],
+        "atlasSize": [
+          1024,
+          1024
+        ],
+        "innerFadePx": [
+          42,
+          46
+        ],
+        "outerFadePx": [
+          112,
+          116
+        ],
+        "pupilMaskMax": 0.0,
+        "outsideIrisMaskMax": 0.0,
+        "nonzeroMaskPixels": 73465,
+        "peakEmissionStrength": 0.25,
+        "emissionLinearRGB": [
+          0.015,
+          0.22,
+          0.045
+        ],
+        "maskedColourMultiplier": [
+          0.25,
+          1.8,
+          0.75
+        ],
+        "photographLuminanceUsedForMask": false
+      }
     }
   },
   "verification_scope": "CPU authoring/data and packing only; GPU image quality remains pending"
