@@ -1,7 +1,7 @@
 {
   "status": "ISOLATED_STUDIES_UNACCEPTED",
   "live_character_assets_changed": false,
-  "production_queue": "Temporarily frame-safely stopped at93 LakeArrival frames for these comparisons; global and per-film STOP markers remain. Do not start Unity/Blender without fresh process checks.",
+  "production_queue": "Resumed from93 frames while clock/material-helper integration is prepared; current queue receipt Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261126T233706235581Z-256a5ef6/receipt.json. Fresh actual process checks are required before any graphics action.",
   "normal_diagnosis": {
     "report": "Logs/hair-cap-normal-diagnostic-v1/README.md",
     "finding": "No flat-normal/export fault:3563 smooth LOD0 cap triangles/18 disconnected components; ordinary smoothing is a no-op. Remaining silhouette/strand response is an art issue."

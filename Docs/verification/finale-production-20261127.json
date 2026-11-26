@@ -15,9 +15,9 @@
       "path": "Logs/realism-build-stage/finale_queue.py",
       "sha256": "80064050ada05c95c724899ef823947b0778d88ace9d5225d450f73d5bf9a653"
     },
-    "receipt": "Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261126T223443237881Z-6ca68f85/receipt.json",
-    "supervisor_pid": 130421,
-    "started_utc": "2026-11-26T22:34:43.237991+00:00",
+    "receipt": "Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261126T233706235581Z-256a5ef6/receipt.json",
+    "supervisor_pid": 156582,
+    "started_utc": "2026-11-26T23:37:06.235673+00:00",
     "scope": "All5 films sequential render/encode only; no publication or build. Per-film/global STOP, source pins, live-player check,1GiB disk minimum and safe owned-child retirement."
   },
   "producer": {
