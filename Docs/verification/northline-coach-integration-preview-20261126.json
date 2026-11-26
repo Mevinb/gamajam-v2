@@ -1,0 +1,92 @@
+{
+  "status": "INTEGRATED_PREVIEW_GRAPHICS_WARNING_REMAINS",
+  "scope": "Current WORK coach source; not a final campaign, performance or aesthetic acceptance.",
+  "source_manifest_sha256": "0de23f46b09641b5cfe94ff2fdb52bdaf9adb9f544e3359784b1ab51e915c5e1",
+  "coach_triangles": 11144,
+  "kit_triangles": 15972,
+  "precise_seat_parts": 32,
+  "seat_assemblies": 8,
+  "submesh_triangles": [
+    11024,
+    120
+  ],
+  "textures": "Dedicated 2048x2048 albedo, normal and metallic/smoothness maps, 12 mips; separate transparent URP glass.",
+  "import_receipt": "Logs/coach-import32-20261126a.json",
+  "import_checks": 67247,
+  "prior_fitting_pass": "Logs/coach-fitting32-20261126c.xml",
+  "expanded_smoke": {
+    "path": "Logs/coach-preview-smoke-20261126.xml",
+    "sha256": "217e77872b0eeb5983b624edd675f97a6c9517486f47e5d1f9982b27c054d2b5",
+    "passed": 9,
+    "failed": 2,
+    "duration_seconds": 146.0604994,
+    "cases": [
+      {
+        "name": "AuthoredModelsFollowActualCrossingAndCoachChapter",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "CompleteAuthoredKitPreservesMetreScaleAndPhysics",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualSeatBlocksNormalFreeMovementWhileOriginalAisleAndControlRemainReachable",
+        "result": "Failed",
+        "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+      },
+      {
+        "name": "ActualGlassRejectsOpaqueDepthShadowBlendOrMapRegressions(\"ZWrite\")",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualGlassRejectsOpaqueDepthShadowBlendOrMapRegressions(\"ShadowCaster\")",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualGlassRejectsOpaqueDepthShadowBlendOrMapRegressions(\"DepthOnly\")",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualGlassRejectsOpaqueDepthShadowBlendOrMapRegressions(\"Blend\")",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualGlassRejectsOpaqueDepthShadowBlendOrMapRegressions(\"Texture\")",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualImportedCoachHasTwoOrderedSubmeshesAndDedicatedPbrGlassAssets",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "CompatibleOriginalGateAlbedoCannotReplaceTheDedicatedCoachSource",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "ActualGlassTransmitsAnOwnedMarkerAndCoachViewsAreCaptured",
+        "result": "Failed",
+        "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+      }
+    ]
+  },
+  "rendered_review": {
+    "directory": "Logs/coach-rendered-review-20261126T0731306979010Z",
+    "measurements": {
+      "transmittedGreenDominance": 0.225648627,
+      "opacityControlGreenDominance": -0.08237163,
+      "width": 1600,
+      "height": 900
+    },
+    "review": "Exterior and aisle PNGs inspected. Geometry and actual glass comparison captured; visual polish remains ongoing."
+  },
+  "known_issue": "Two strict Editor tests fail on Graphics Ring Buffer exhaustion warning. No logs were suppressed, no HDR/probe quality was disabled, and this is not a clean expanded-suite pass. Full chapter/bindings and seven material tests pass."
+}

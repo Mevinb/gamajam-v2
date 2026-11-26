@@ -1,0 +1,48 @@
+{
+  "observed_utc": "2026-11-26T02:03:52.789385+00:00",
+  "message": "HDR Render Texture not supported, disabling HDR on reflection probe.",
+  "logs": [
+    {
+      "label": "070 native basic",
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-070-basic/20261126T005412Z/player.log",
+      "observed_bytes": 14024,
+      "observed_prefix_sha256": "b71abc94f10e0ac52ed67d0b75f2df347d7d4eda544e4cdb2310786970fe7ffe",
+      "exact_warning_count": 36,
+      "live_log": false
+    },
+    {
+      "label": "071 strict96",
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/96-20261126a/player.log",
+      "observed_bytes": 6081,
+      "observed_prefix_sha256": "d0b55e281b0d9a0a327dc6b2a4fd06415a52f472630060e56e86b060be72c123",
+      "exact_warning_count": 23,
+      "live_log": false
+    },
+    {
+      "label": "071 river17",
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/17-20261126a/player.log",
+      "observed_bytes": 6247,
+      "observed_prefix_sha256": "b236f6544437fbe31dc1ced97044724079533758e821c1706208f24883248bc7",
+      "exact_warning_count": 29,
+      "live_log": false
+    },
+    {
+      "label": "071 river18",
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/18-20261126a/player.log",
+      "observed_bytes": 6247,
+      "observed_prefix_sha256": "3c8b3904172a7a9524b03ba6a03b152e8b2e5377dca7fd7c6830745559e29577",
+      "exact_warning_count": 29,
+      "live_log": false
+    },
+    {
+      "label": "070 rendered user",
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log",
+      "observed_bytes": 31134,
+      "observed_prefix_sha256": "da702511ba6e106d93f654958d0a9d52c7dd0b53efb74db130f5f820d7fb0db0",
+      "exact_warning_count": 0,
+      "live_log": true
+    }
+  ],
+  "finding": "The exact HDR warning also occurs on the older070Null basic run and both071Null normal river runs, while it is absent from the observed current070Vulkan user log prefix. This supports a Null/rendering-support explanation and shows the warning predates the new body-loss probe. It does not prove causation, explain every warning or establish a supported-renderer07196pass.",
+  "scope": "Read-only cross-log characterization. No player launch, probe/HDR/quality/log-policy changes or pass reinterpretation."
+}

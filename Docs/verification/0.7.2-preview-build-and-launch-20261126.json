@@ -1,0 +1,86 @@
+{
+  "status": "BUILT_BASIC_SMOKE_PASSED_DESKTOP_RUNNING",
+  "observed_utc": "2026-11-26T07:39:58.973272+00:00",
+  "version": "0.7.2-preview",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T073327996101Z-8c413e3e",
+  "runtime_sha256": "998430159a0a7899d39d8e75272a89b2d35c35cb0bff301265a5a6320d8c8aac",
+  "build_info_sha256": "4f194ab392cfcb72cc7362c8df2cf677cf5e959a6d83372ca1961841c21f4bb7",
+  "build_receipt": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T073327996101Z-8c413e3e/runner-state.json",
+  "build_receipt_sha256": "08f3815e02cb90c98a5ae486476d8af223add715e5b223ab53ae1c5c8c361c54",
+  "build_summary": {
+    "result": "Succeeded",
+    "size_mb": 1135,
+    "time": "00:01:48.9796940",
+    "errors": 0,
+    "warnings": 0
+  },
+  "source_commit": "1cf8bfb85ae0d33dbfad64d09a79f863e098fb97",
+  "source_snapshot_sha256": "8a26a001607197d173116fe377a06dd628fbe78583f6948628e7ecd873db05c0",
+  "source_and_older_artifacts_unchanged": true,
+  "native_basic": {
+    "status": "passed",
+    "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T073327996101Z-8c413e3e",
+    "runtime_sha256": "998430159a0a7899d39d8e75272a89b2d35c35cb0bff301265a5a6320d8c8aac",
+    "argv": [
+      "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T073327996101Z-8c413e3e/play.sh",
+      "-batchmode",
+      "-nographics",
+      "-job-worker-count",
+      "2",
+      "-autotest",
+      "-autotestFilter",
+      "01,02,03,04,05",
+      "-autotestOut",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/native-basic-full-story-20261126T073327996101Z-8c413e3e/report.txt",
+      "-logFile",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/native-basic-full-story-20261126T073327996101Z-8c413e3e/player.log"
+    ],
+    "started_utc": "2026-11-26T07:36:26.019742+00:00",
+    "scope": "Native Null-renderer basic simulated-input smoke only; no graphics or human playthrough verdict.",
+    "pid": 267885,
+    "exit_code": 0,
+    "elapsed_seconds": 29.296,
+    "runtime_unchanged": true,
+    "report_sha256": "98d0cf7be6a92a78d416e79b5f9e77f451fa7a5dc7425dbcea0ddf8b2f6d4f02",
+    "report_text": "PARASITE autotest \u2014 2026-11-26 13:06:27 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  01 Start, move, camera, jump  (2.2s)  moved 4.6 m, camera turned 90\u00b0, hop 0.55 m\nPASS  02 Aim + E possesses host within 5 m (camera + WASD follow)  (3.9s)  far host (>5 m) not targetable\nPASS  03 Q release: host unconscious 8 s then recovers  (9.8s)  host unconscious 8.0 s, recovered, AI resumed on NavMesh\nPASS  04 V split max two, Tab switch, inactive stays put  (1.6s)  2 amoebas max, Tab switch OK, active moved 3.8 m, inactive drift 0.00 m, camera on active (3.2 m)\nPASS  05 Civilian denied at restricted doors  (3.9s)  civilian denied at Main Gate, Staff Terminal and Service Tunnel\nSUMMARY: 5/5 passed\n"
+  },
+  "desktop_launch": {
+    "status": "running",
+    "version": "0.7.2-preview",
+    "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T073327996101Z-8c413e3e",
+    "runtime_sha256": "998430159a0a7899d39d8e75272a89b2d35c35cb0bff301265a5a6320d8c8aac",
+    "build_state": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T073327996101Z-8c413e3e/runner-state.json",
+    "argv": [
+      "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T073327996101Z-8c413e3e/play.sh",
+      "-screen-fullscreen",
+      "0",
+      "-screen-width",
+      "1600",
+      "-screen-height",
+      "900",
+      "-logFile",
+      "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T073327996101Z-8c413e3e-desktop/player.log"
+    ],
+    "started_utc": "2026-11-26T07:39:13.693901+00:00",
+    "scope": "User-controlled native desktop playtest; no synthetic inputs or automatic quit. Launch is not a completed human playthrough.",
+    "pid": 289391
+  },
+  "desktop_observation": {
+    "service": "parasite-playtest-072-8c413e3e.service",
+    "client_window": "0x100000a",
+    "client_window_pid": 289391,
+    "renderer": "RTX4050 / Vulkan",
+    "title_menu_visually_inspected": true,
+    "screenshot": "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T073327996101Z-8c413e3e-desktop/client-window.png",
+    "screenshot_sha256": "06195102e00bbb992b48cd33b985f1194fee1c0ec9908bd2927fd71f81509f92",
+    "synthetic_inputs": false,
+    "ring_warnings_at_observation": 0
+  },
+  "first_launcher_interruption": "BASE Logs/worktree-build-072-stage/first-launcher-interruption.json preserves143, native final code unavailable; same build relaunched under independent desktop service.",
+  "limits": [
+    "Preview; full upgrade goal remains active.",
+    "Expanded coach Editor9/11 retains two ring-buffer warning failures; functional physical/glass assertions completed.",
+    "No complete human26-mission playthrough or final performance/graphics verdict.",
+    "Preserve user session; no close/restart/input injection or competing GPU work."
+  ]
+}

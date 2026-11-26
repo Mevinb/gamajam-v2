@@ -31,11 +31,11 @@ Primary references: [Unity render-pipeline feature comparison](https://docs.unit
 
 ## Current build and worktree — 26 November 2026
 
-The user is testing **0.7.0-preview**, a26-mission Linux build from the isolated `codex/northline-runtime` branch.
+The earlier **0.7.0-preview** user playtest, a26-mission Linux build from the isolated `codex/northline-runtime` branch, ended normally0 at2026-11-26T06:57:00.686080Z after21711.645s. The user now requests a fresh build and launch;0.7.2preview preparation is in progress, with no new build/launch result claimed yet.
 Its runtime SHA is `408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5`, source snapshot
 `95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648`, source commit `6e12405`.
-The actual visible player uses RTX4050/Vulkan. The existing0.5.1session was replaced through a normal window close and exited0.
-The new preview remains under user control. Main runtime code remains0.6.1; the0.7feature branch is pushed and awaits further acceptance.
+That player used RTX4050/Vulkan. The earlier0.5.1session was replaced through a normal window close and exited0.
+The0.7candidate remains retained. Main runtime code remains0.6.1; the0.7feature branch is pushed and awaits further acceptance.
 [Build/API proof](verification/0.7.0-candidate-20261126.json), [native basic5/5](verification/0.7.0-native-basic-20261126.json),
 [visible launch](verification/0.7.0-user-playtest-20261126.json).
 
@@ -54,21 +54,20 @@ binding tests pass2/2. These results do not turn the older full run into a fresh
 
 Native prepared92 Peace/recovery passes with native0 and all integrity checks in193.311s.
 [Native92 proof](verification/0.7.0-native-northline-peace-20261126.json).[Native93 Dominion](verification/0.7.0-native-northline-dominion-20261126.json) also passes with native0/integrity in106.747s.
-Earned continuous94/95 remain separate, unrun checks.
-See `Docs/HANDOFF.md` for the actual live process/state path. No GPU benchmark, full human playthrough, physical-input,
-latest-binary movie/settings or final realism pass is claimed. Preserve the user's playtest while staging further fixes/artwork.
+On the exact private0.7.1candidate, [earned continuous95 Dominion26](verification/0.7.1-native-continuous-dominion26-20261126.json) now passes native0/supervisor0 in634.37s with full integrity; its within-chapter fixtures remain explicit. EarnedPeace94 remains unrun.
+See `Docs/HANDOFF.md` for session and run-state paths. No GPU benchmark, full human playthrough, physical-input,
+latest-binary movie/settings or final realism pass is claimed. Preserve any newly launched user playtest while developing further fixes/artwork.
 The older graphics runners and0.6snapshots below require explicit retargeting before use with0.7.
 
 The next0.7.1source fixes an actual missing-inactive-body ferry-credit defect and adds a usable pause-menu checkpoint action.
 The original wrong-credit red and corrected recovery are preserved in [regression history](verification/body-free-state-regression-20261126.json);
 [sharedhelper/default-selection17/17](verification/body-free-shared-editor-green-20261126.json) passes. [Fresh0.7.1build](verification/0.7.1-candidate-20261126.json) passes0/1119MB/zero BuildReport errors/warnings.
 [Native17/18](verification/0.7.1-native-riverside-green-20261126.json) pass separately with final integrity.
-[Strict96](verification/0.7.1-body-free-native-red-20261126.json) remains failed on a Null-backend HDR reflection-probe warning after the shared functional calls; no warning/quality guard was weakened.
-Supported-renderer96 remains required. Continuous95 is currently running with no final result;94 remains unrun.
+[Original strict96 Null red](verification/0.7.1-body-free-native-red-20261126.json) remains retained: an HDR reflection-probe warning followed the shared functional calls. [Supported RTX4050/Vulkan96](verification/0.7.1-body-free-native-vulkan-green-20261126.json) now passes native0/supervisor0 in12.059s, with no unexpected logs, HDR warnings or ring-buffer warnings and all integrity checks passing. No warning/quality guard was weakened. The distinct earlier Editor Vulkan warning gate remains open. Continuous95 is terminal/pass;94 remains unrun.
 
 A separately versioned detailed coach package is authored and CPU-round-trip verified:11144coach/15972kit triangles,10real glass apertures,
 198closed components and three original2K PBR maps. [Source proof](verification/northline-coach-source-v2-20261126.json).
-Runtime two-material/texture integration, eight seat colliders and declared GPU appearance/performance checks remain; it is not in the open0.7test or the0.7.1bug-fix build.
+A newer uncommitted WORK revision is now integrated in Assets/runtime with two owned URP materials, three dedicated2048 A/N/M maps and32 precise seat-part colliders for eight assemblies. WORK `Logs/coach-import32-20261126a.json` passes67247structure/data checks; material tests pass7/7 and `Logs/coach-fitting32-20261126c.xml` passes1/1 physical blocking/hop/landing/aisle/boarding checks in14.4128031s. The expanded root-owned RTX/Vulkan smoke is in progress, with no result claimed here. Declared rendered appearance/performance and remaining binding/chapter checks remain scoped separately; this coach is not in either retained0.7or private0.7.1binary.
 
 ## Historical source and delivery boundary — 25 November 2026
 
@@ -154,3 +153,5 @@ High spike remains unexplained. Their FPS numbers do not predict0.5.1 or the pil
 - Continue the requested mission/realism expansion. Compilation, completed films and narrow passing suites do not close the goal.
 
 `TEST_REPORT.md` retains artifact-specific history; `KNOWN_ISSUES.md` records limits. Builds, caches and captures remain ignored.
+
+Latest delivery: [0.7.2-preview build and RTX/Vulkan desktop launch](verification/0.7.2-preview-build-and-launch-20261126.json). Zero build errors/warnings; native basic5/5. New detailed coach included. Preserve PID289391 desktop service user test. Expanded Editor9/11 retains two known ring-buffer warning failures; full goal remains active.
