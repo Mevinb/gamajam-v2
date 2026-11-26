@@ -24,6 +24,8 @@ namespace Parasite.EditorTools
 
         static void Build(BuildTarget target, string folder, string exe)
         {
+            try { FullStoryFilmImporter.VerifyAllImported(); }
+            catch (Exception error) { Fail("Cinematic import preflight failed: " + error.Message); return; }
             string outDir;
             try { outDir = RequestedBuildDirectory(folder); Directory.CreateDirectory(outDir); }
             catch (Exception error) { Fail("Invalid build output: " + error.Message); return; }

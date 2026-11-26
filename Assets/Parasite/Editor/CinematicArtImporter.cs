@@ -12,6 +12,7 @@ namespace Parasite.EditorTools
             // The source is already Linux-compatible VP8/WebM. Keep it intact; avoid platform-dependent auto transcoding.
             var settings = video.defaultTargetSettings;
             settings.enableTranscoding = false; video.defaultTargetSettings = settings;
+            video.ClearTargetSettings("Standalone");
             video.importAudio = false; video.sRGBClip = true;
         }
 

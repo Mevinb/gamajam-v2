@@ -137,12 +137,14 @@ def movie_info(path, name):
     stream = streams[0]
     require(stream['codec_name'] == 'vp8' and stream['pix_fmt'] == 'yuv420p' and stream['width'] == 1920 and stream['height'] == 1080 and
             stream['avg_frame_rate'] == '24/1' and int(stream['nb_read_frames']) == FILMS[name][1], 'Wrong movie stream contract')
+    colour = {key: stream.get(key) for key in ('color_range', 'color_space', 'color_transfer', 'color_primaries')}
+    require(colour == dict(color_range='tv', color_space='bt709', color_transfer='bt709', color_primaries='bt709'), 'Wrong movie colour metadata: ' + str(colour))
     require(abs(float(data['format']['duration']) - FILMS[name][1] / 24) <= 1 / 24 + .005, 'Wrong movie duration')
     require(0 < path.stat().st_size < 95_000_000, 'Movie exceeds ordinary source blob budget')
     decoded = subprocess.run(['ffmpeg', '-v', 'error', '-threads', '2', '-i', str(path), '-map', '0:v:0', '-f', 'null', '-'], capture_output=True, text=True)
     require(decoded.returncode == 0 and not decoded.stderr.strip(), 'Full movie decode failed')
     return dict(sha256=sha(path), bytes=path.stat().st_size, frames=FILMS[name][1], seconds=FILMS[name][1] / 24,
-                width=1920, height=1080, fps=24, audio_tracks=0, codec='vp8', full_decode='PASS')
+                width=1920, height=1080, fps=24, audio_tracks=0, codec='vp8', colour=colour, full_decode='PASS')
 
 
 def encode(job, name):
