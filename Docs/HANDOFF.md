@@ -11,6 +11,13 @@ The broad graphics/realism/cinematic/bug-fix/continued-mission goal remains acti
 
 ### Live job and source lease
 
+- **The seven-case run below is now TERMINAL:** root80827/native2/chunkf9e4be,667.796s,5PASS/2FAIL; Editor139250 is gone.
+  [Exact named results](verification/northline-mechanics-5-of-7-20261126.json). Pass: continuation, Dominion, coordinator
+  disable, coordinator destroy and coach rebind. Fail: coach destroy MissingReference from destroyedBlob/IControllable;
+  separate Peace recovery70s wrong-route return timeout. No whole-suite green claim. The old live-job lines below retain
+  invocation identity only; revalidate rather than rerun. Source lease is lifted; no new Editor job has started.
+  Rail agent is staging central lifetime/PM fail-closed proposal+body-loss controls; Hunter is diagnosing Peace return
+  read-only. Neither fix is applied. Whitelist and worktree-build draft remain paused; no Gitindex/HEAD/storage changes.
 - **Worktree mechanics suite is LIVE:** root session **80827**, timeout **139183**, Editor **139250** at last actual observation.
   Worktree `/home/mevlec/.local/share/parasite-work/northline`, branch `codex/northline-runtime`, HEAD `623c47af54363ea841ab1d2958a23c17353704db`.
   Wrapper log `Logs/northline_mechanics_20261126b.log`; XML `Logs/northline-mechanics-20261126b.xml`.

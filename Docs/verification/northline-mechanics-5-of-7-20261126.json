@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "status": "NORTHLINE_MECHANICS_5_OF_7_LIFETIME_AND_PEACE_RETURN_FAILURES",
+  "recordedUtc": "2026-11-26T00:05:57.544830+00:00",
+  "worktree": "/home/mevlec/.local/share/parasite-work/northline",
+  "terminal": {
+    "rootSession": 80827,
+    "chunk": "f9e4be",
+    "nativeEditorExit": 2,
+    "nunit": {
+      "id": "2",
+      "testcasecount": "7",
+      "result": "Failed(Child)",
+      "total": "7",
+      "passed": "5",
+      "failed": "2",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-11-25 23:52:28Z",
+      "end-time": "2026-11-26 00:03:35Z",
+      "duration": "667.7959426"
+    }
+  },
+  "cases": [
+    {
+      "name": "ActualCoachDestroyDuringMotion",
+      "result": "Failed",
+      "seconds": "96.983628",
+      "failure": "Unhandled log message: '[Exception] MissingReferenceException: The object of type 'Parasite.Possession.AmoebaController' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object.'. Use UnityEngine.TestTools.LogAssert.Expect",
+      "stack": "UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/UnityEngineObject.bindings.cs:1071)\nUnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/BindingsHelpers.cs:61)\nUnityEngine.Component.get_transform () (at <e2f97911c4f14352a11a64f1339c3be4>:0)\nParasite.Possession.AmoebaController.get_Root () (at Assets/Parasite/Scripts/Possession/AmoebaController.cs:32)\nParasite.Audio.AudioBus.get_FocusPosition () (at Assets/Parasite/Scripts/Audio/AudioBus.cs:90)\nParasite.Audio.MusicDirector.Update () (at Assets/Parasite/Scripts/Audio/MusicDirector.cs:234)\n\n"
+    },
+    {
+      "name": "ActualCoachRebindDuringMotion",
+      "result": "Passed",
+      "seconds": "98.963351",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "ActualCoordinatorDestroyDuringMotion",
+      "result": "Passed",
+      "seconds": "116.247623",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "ActualCoordinatorDisableDuringMotion",
+      "result": "Passed",
+      "seconds": "101.203834",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "ContinuationRequiresTheCompleted23Summary",
+      "result": "Passed",
+      "seconds": "15.554255",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "DominionPhysicalChapter",
+      "result": "Passed",
+      "seconds": "105.242404",
+      "failure": null,
+      "stack": null
+    },
+    {
+      "name": "PeacePhysicalChapterAndRecovery",
+      "result": "Failed",
+      "seconds": "133.543321",
+      "failure": "System.InvalidOperationException : Wrong routing physically returns the same carriage to loading.",
+      "stack": "  at Parasite.Testing.RailAcceptance+<Wait>d__7.MoveNext () [0x00072] in /home/mevlec/.local/share/parasite-work/northline/Assets/Parasite/Scripts/Core/RailAcceptance.cs:26 \n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0003a] in ./Library/PackageCache/com.unity.test-framework@0bd5c5194236/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 "
+    }
+  ],
+  "files": [
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline-mechanics-20261126b.xml",
+      "bytes": 562980,
+      "sha256": "3fbd9d0526de936cf9a4a2071c6852875c48d7acd7240f8339665be5d77ba04d"
+    },
+    {
+      "path": "/home/mevlec/.local/share/parasite-work/northline/Logs/northline_mechanics_20261126b.log",
+      "bytes": 1315836,
+      "sha256": "93fe55854b70ed47cc859044c8c0ea0f3fd454fe72d7ea75243b072192a57a4f"
+    }
+  ],
+  "source": {
+    "RailCampaign": "e4488bc6137b0f334097fbc6d901713f631b7f86c65ac6db75413ed37e6480c8",
+    "RailAcceptance": "6d2b653b38260431225a67e05253de0698c1b5dae16feafdcbd2874b806cb3ca",
+    "AutoTest": "1f998595a804a199fb6b7b780b2122360b94d1568abc7fa087a95e1591aede5c"
+  },
+  "established": [
+    "Continuation, completeDominion, coordinator-disable recovery, coordinator-destroy checkpoint recovery and actualcoach rebind recovery pass as named NUnitcases.",
+    "ActualCoachDestroy triggers unexpected MissingReference from destroyedAmoebaController cast as IControllable; observed consumers AudioBus\u2192music/listener/ambience, MissionManager andHUD.",
+    "Peace recovery fails a separate70s wait for wrong-route physical return; actual route state/blocker not logged and needs diagnosis."
+  ],
+  "limits": [
+    "Whole mechanics suite remainsred5/7; no completeNorthlineacceptance/merge/build/native26/pixels/performance claim.",
+    "Destroyed-body fix and Peace-return diagnosis are separate; no suppressedlogs or weakenedconditions.",
+    "Two runtimeart-binding cases remainunrun.",
+    "Old0.6.1artifacts/23missionnativepasses and4/5extractedsmoke remainseparatelypinned."
+  ]
+}
