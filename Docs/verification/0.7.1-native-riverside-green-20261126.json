@@ -1,0 +1,247 @@
+{
+  "version": "0.7.1-preview",
+  "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+  "passed_distinct_cases": [
+    "17",
+    "18"
+  ],
+  "runs": [
+    {
+      "status": "passed",
+      "selected_case": "17",
+      "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+      "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+      "build_info_sha256": "bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0",
+      "source_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+      "head": "70259deafd711f841c07225949b55733eaf2101a",
+      "version": "0.7.1-preview",
+      "runner_sha256": "f752286fe2574516bb7ff106853eec08cc960d31e6dbf42306a3dfa9508c23c5",
+      "scope": "Prepared lake choice/initial role fixtures; actual Peace riverside chapter and checkpoint/ferry mechanics. One selected native Null case only. No default27, graphics/movie/settings/FPS, physical-key or human acceptance claim.",
+      "native_exit_code": 0,
+      "supervisor_exit_code": 0,
+      "elapsed_seconds": 28.234,
+      "exact_selected_pass": true,
+      "null_marker": true,
+      "watchdog_or_cancel": false,
+      "cancel_signal": null,
+      "signal_events": [],
+      "post_integrity_pass": true,
+      "verified_pass": true,
+      "raw_report": "PARASITE autotest \u2014 2026-11-26 07:23:39 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  17 Peace: explicit lake choice \u2192 Continue \u2192 riverside missions \u2192 checkpoint recovery \u2192 ferry  (22.6s)  \nSUMMARY: 1/1 passed\n",
+      "report_sha256": "72e9086705a2e275f94a41223d6134ece2c02bfe4334c6d1603cceb858a9b7f6",
+      "player_log_sha256": "b236f6544437fbe31dc1ced97044724079533758e821c1706208f24883248bc7",
+      "before": {
+        "checks": {
+          "work_source_matches_built_de2acc": true,
+          "head_still70259de": true,
+          "build_receipt_unchanged": true,
+          "build_source_before_unchanged": true,
+          "build_source_after_unchanged": true,
+          "candidate_matches_build_output": true,
+          "runtime_unchanged": true,
+          "build_info_unchanged": true,
+          "runner_unchanged": true,
+          "original_smoke_unchanged": true,
+          "reviewed_pins_unchanged": true,
+          "user070_runtime_unchanged": true,
+          "user070_build_info_unchanged": true
+        },
+        "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+        "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+        "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+        "protected_user": {
+          "utc": "2026-11-26T01:53:38.140465+00:00",
+          "process_status": "running_identity_matches",
+          "saved_status": "running",
+          "user_exit_code": null,
+          "identity": {
+            "pid": 155953,
+            "uid": 1000,
+            "start_ticks": 3334957,
+            "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+            "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+            "user_arguments": [
+              "-force-vulkan",
+              "-screen-fullscreen",
+              "0",
+              "-screen-width",
+              "1600",
+              "-screen-height",
+              "900",
+              "-logFile",
+              "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+            ]
+          }
+        }
+      },
+      "after": {
+        "checks": {
+          "work_source_matches_built_de2acc": true,
+          "head_still70259de": true,
+          "build_receipt_unchanged": true,
+          "build_source_before_unchanged": true,
+          "build_source_after_unchanged": true,
+          "candidate_matches_build_output": true,
+          "runtime_unchanged": true,
+          "build_info_unchanged": true,
+          "runner_unchanged": true,
+          "original_smoke_unchanged": true,
+          "reviewed_pins_unchanged": true,
+          "user070_runtime_unchanged": true,
+          "user070_build_info_unchanged": true
+        },
+        "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+        "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+        "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+        "protected_user": {
+          "utc": "2026-11-26T01:54:12.146533+00:00",
+          "process_status": "running_identity_matches",
+          "saved_status": "running",
+          "user_exit_code": null,
+          "identity": {
+            "pid": 155953,
+            "uid": 1000,
+            "start_ticks": 3334957,
+            "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+            "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+            "user_arguments": [
+              "-force-vulkan",
+              "-screen-fullscreen",
+              "0",
+              "-screen-width",
+              "1600",
+              "-screen-height",
+              "900",
+              "-logFile",
+              "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+            ]
+          }
+        }
+      },
+      "started_utc": "2026-11-26T01:53:32.093086+00:00",
+      "finished_utc": "2026-11-26T01:54:12.161574+00:00",
+      "root_exec_session": 91824,
+      "execution": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/17-20261126a/execution.json",
+      "execution_sha256": "c4cd2bb29e5c8e2360645cc0ed8122d28dbc8b08c5376a61f11effa1291f5f3e"
+    },
+    {
+      "status": "passed",
+      "selected_case": "18",
+      "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+      "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+      "build_info_sha256": "bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0",
+      "source_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+      "head": "70259deafd711f841c07225949b55733eaf2101a",
+      "version": "0.7.1-preview",
+      "runner_sha256": "f752286fe2574516bb7ff106853eec08cc960d31e6dbf42306a3dfa9508c23c5",
+      "scope": "Prepared lake choice/initial role fixtures; actual Dominion riverside chapter and checkpoint/ferry mechanics. One selected native Null case only. No default27, graphics/movie/settings/FPS, physical-key or human acceptance claim.",
+      "native_exit_code": 0,
+      "supervisor_exit_code": 0,
+      "elapsed_seconds": 28.188,
+      "exact_selected_pass": true,
+      "null_marker": true,
+      "watchdog_or_cancel": false,
+      "cancel_signal": null,
+      "signal_events": [],
+      "post_integrity_pass": true,
+      "verified_pass": true,
+      "raw_report": "PARASITE autotest \u2014 2026-11-26 07:24:40 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nPASS  18 Dominion: explicit lake choice \u2192 Continue \u2192 branch relay \u2192 checkpoint recovery \u2192 ferry  (22.6s)  \nSUMMARY: 1/1 passed\n",
+      "report_sha256": "1ea0a3bb5724738e075d9e208ddb989746947f165fe606b60908ec24af31091e",
+      "player_log_sha256": "3c8b3904172a7a9524b03ba6a03b152e8b2e5377dca7fd7c6830745559e29577",
+      "before": {
+        "checks": {
+          "work_source_matches_built_de2acc": true,
+          "head_still70259de": true,
+          "build_receipt_unchanged": true,
+          "build_source_before_unchanged": true,
+          "build_source_after_unchanged": true,
+          "candidate_matches_build_output": true,
+          "runtime_unchanged": true,
+          "build_info_unchanged": true,
+          "runner_unchanged": true,
+          "original_smoke_unchanged": true,
+          "reviewed_pins_unchanged": true,
+          "user070_runtime_unchanged": true,
+          "user070_build_info_unchanged": true
+        },
+        "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+        "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+        "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+        "protected_user": {
+          "utc": "2026-11-26T01:54:38.683856+00:00",
+          "process_status": "running_identity_matches",
+          "saved_status": "running",
+          "user_exit_code": null,
+          "identity": {
+            "pid": 155953,
+            "uid": 1000,
+            "start_ticks": 3334957,
+            "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+            "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+            "user_arguments": [
+              "-force-vulkan",
+              "-screen-fullscreen",
+              "0",
+              "-screen-width",
+              "1600",
+              "-screen-height",
+              "900",
+              "-logFile",
+              "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+            ]
+          }
+        }
+      },
+      "after": {
+        "checks": {
+          "work_source_matches_built_de2acc": true,
+          "head_still70259de": true,
+          "build_receipt_unchanged": true,
+          "build_source_before_unchanged": true,
+          "build_source_after_unchanged": true,
+          "candidate_matches_build_output": true,
+          "runtime_unchanged": true,
+          "build_info_unchanged": true,
+          "runner_unchanged": true,
+          "original_smoke_unchanged": true,
+          "reviewed_pins_unchanged": true,
+          "user070_runtime_unchanged": true,
+          "user070_build_info_unchanged": true
+        },
+        "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+        "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+        "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+        "protected_user": {
+          "utc": "2026-11-26T01:55:12.643055+00:00",
+          "process_status": "running_identity_matches",
+          "saved_status": "running",
+          "user_exit_code": null,
+          "identity": {
+            "pid": 155953,
+            "uid": 1000,
+            "start_ticks": 3334957,
+            "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+            "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+            "user_arguments": [
+              "-force-vulkan",
+              "-screen-fullscreen",
+              "0",
+              "-screen-width",
+              "1600",
+              "-screen-height",
+              "900",
+              "-logFile",
+              "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+            ]
+          }
+        }
+      },
+      "started_utc": "2026-11-26T01:54:34.276068+00:00",
+      "finished_utc": "2026-11-26T01:55:12.654584+00:00",
+      "root_exec_session": 20467,
+      "execution": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/18-20261126a/execution.json",
+      "execution_sha256": "29b921e4794e89bdc025a356713a377e764a53d94b75f55ee0b95fa8cb785113"
+    }
+  ],
+  "scope": "Two separate native Null riverside branch invocations with the new live-body guard; existing prior lake/role/position/calm/input fixtures remain. This does not close strict96 HDR warning or prove continuous26/default27/rendered/human acceptance."
+}

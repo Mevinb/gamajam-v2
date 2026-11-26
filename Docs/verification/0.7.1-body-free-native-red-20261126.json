@@ -1,0 +1,119 @@
+{
+  "status": "failed",
+  "selected_case": "96",
+  "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+  "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+  "build_info_sha256": "bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0",
+  "source_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+  "head": "70259deafd711f841c07225949b55733eaf2101a",
+  "version": "0.7.1-preview",
+  "runner_sha256": "f752286fe2574516bb7ff106853eec08cc960d31e6dbf42306a3dfa9508c23c5",
+  "scope": "Prepared river radio/deck slice: actual inactive-body destruction/readiness/finalizer denial, real pause checkpoint action, new body/fresh E and hidden/disabled positive. Earlier river work is prepared; not a chapter playthrough. One selected native Null case only. No default27, graphics/movie/settings/FPS, physical-key or human acceptance claim.",
+  "native_exit_code": 1,
+  "supervisor_exit_code": 1,
+  "elapsed_seconds": 10.101,
+  "exact_selected_pass": false,
+  "null_marker": true,
+  "watchdog_or_cancel": false,
+  "cancel_signal": null,
+  "signal_events": [],
+  "post_integrity_pass": true,
+  "verified_pass": false,
+  "raw_report": "PARASITE autotest \u2014 2026-11-26 07:21:37 \u2014 Null Device / Linux 7.0 Ubuntu 26.04 64bit\nFAIL  96 Body free state: prepared river radio/deck, actual inactive destruction denial and checkpoint recovery  (3.7s)  FAILED: Prepared radio/deck: real inactive destruction denies free/ferry/finalizer credit; only explicit checkpoint/new body/fresh E departs; live hidden/disabled identity remains free; unexpected log=Warning: HDR Render Texture not supported, disabling HDR on reflection probe.\nSUMMARY: 0/1 passed\n",
+  "report_sha256": "597aacf02f055d0ebf3e910f321d9d76847a86d3270c498f934338832ee8bb8c",
+  "player_log_sha256": "d0b55e281b0d9a0a327dc6b2a4fd06415a52f472630060e56e86b060be72c123",
+  "before": {
+    "checks": {
+      "work_source_matches_built_de2acc": true,
+      "head_still70259de": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true,
+      "reviewed_pins_unchanged": true,
+      "user070_runtime_unchanged": true,
+      "user070_build_info_unchanged": true
+    },
+    "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+    "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+    "protected_user": {
+      "utc": "2026-11-26T01:51:35.575019+00:00",
+      "process_status": "running_identity_matches",
+      "saved_status": "running",
+      "user_exit_code": null,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "after": {
+    "checks": {
+      "work_source_matches_built_de2acc": true,
+      "head_still70259de": true,
+      "build_receipt_unchanged": true,
+      "build_source_before_unchanged": true,
+      "build_source_after_unchanged": true,
+      "candidate_matches_build_output": true,
+      "runtime_unchanged": true,
+      "build_info_unchanged": true,
+      "runner_unchanged": true,
+      "original_smoke_unchanged": true,
+      "reviewed_pins_unchanged": true,
+      "user070_runtime_unchanged": true,
+      "user070_build_info_unchanged": true
+    },
+    "candidate_tree_sha256": "d5757a2a911fb456e4ad1b4e155cf8f7306ff2c83eb8e35af1602e5382a80987",
+    "user070_tree_sha256": "c917294bfe6b5d854ea5a6ae45e9fc3775d7201b832f080b5c218b615424bbed",
+    "source_json_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+    "protected_user": {
+      "utc": "2026-11-26T01:51:51.228230+00:00",
+      "process_status": "running_identity_matches",
+      "saved_status": "running",
+      "user_exit_code": null,
+      "identity": {
+        "pid": 155953,
+        "uid": 1000,
+        "start_ticks": 3334957,
+        "boot_id": "f676a396-c478-46e0-a47b-82e5b3fe946f",
+        "candidate": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+        "user_arguments": [
+          "-force-vulkan",
+          "-screen-fullscreen",
+          "0",
+          "-screen-width",
+          "1600",
+          "-screen-height",
+          "900",
+          "-logFile",
+          "/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/player.log"
+        ]
+      }
+    }
+  },
+  "started_utc": "2026-11-26T01:51:30.278520+00:00",
+  "finished_utc": "2026-11-26T01:51:51.246552+00:00",
+  "root_exec_session": 53749,
+  "execution": "/home/mevlec/.local/share/parasite-work/northline/Logs/native-071-focused/96-20261126a/execution.json",
+  "execution_sha256": "ab238ec68a9c91b3350b3a9ce04aa574d612b241ef4a26174a6336d42e8faa9e",
+  "interpretation": "Case96 remains FAILED. The report reaches the final case-local log predicate after the shared physical denial/menu-reset/new-body/fresh-E and hidden-body helper calls, then rejects an HDR reflection-probe warning on the Null backend. That sequence supports a limited functional observation; it is not a clean native96 pass. No warning expectation/guard/probe/HDR quality setting was changed to obtain a pass. Actual supported-renderer case96 remains required."
+}

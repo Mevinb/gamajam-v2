@@ -12,14 +12,27 @@ The full upgrade/continued-expansion goal remains active. The user's immediate b
   runtime408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5, actual RTX4050/Vulkan and visible window0xc0000a.
   Session WORK `Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/session.json`.
   **No close/restart/input injection or GPU jobs without new steering.** The private0.7.1 build below does not replace this player.
-- **CURRENT0.7.1 BUILD LIVE:** root exec **9396**, supervisor194338, owned Editor194358 at last process observation.
-  WORK `/home/mevlec/.local/share/parasite-work/northline`; state `Logs/full-story-candidate/build-runs/20261126T014554516966Z-b287ee31/runner-state.json`;
-  fresh candidate `Builds/Candidates/full-story-20261126T014554516966Z-b287ee31`. No result yet. Poll this actual job; observation expiry is not terminal.
-  **Freeze WORK source/metadata/HEAD until terminal.** Serialized `Tools/unity.sh`, Null,two job workers,nice15,idle I/O,3600s owned watchdog.
-  Reviewed runner BASE `Logs/worktree-build-071-stage/build_worktree_candidate.py` SHA746bb384… protects exact new0.7 user session and full candidate,
-  all older BASE builds/releases/source, common supervisor/Unity locks and10GiB root reserve. Actual reviewed dry preflight passed.
-  Ready plan `Logs/worktree-build-071-stage/reviewed-plan-071-20261126.json`; source **de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f**,
-  version0.7.1-preview, clean pushed WORK HEAD **70259deafd711f841c07225949b55733eaf2101a** on`codex/northline-runtime`.
+- **PRIVATE0.7.1 BUILD TERMINAL/PASS:** root9396/native0, old owned Editor194358 gone;1119MB/121.229s pipeline/0errors/0warnings.
+  [Build proof](verification/0.7.1-candidate-20261126.json). Candidate WORK `Builds/Candidates/full-story-20261126T014554516966Z-b287ee31`;
+  runtime **66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f**, BUILD_INFO **bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0**.
+  Source before/after **de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f**, HEAD **70259deafd711f841c07225949b55733eaf2101a**,
+  clean pushed WORK branch `codex/northline-runtime`; all older BASE artifacts/source/current070user candidate unchanged. No071graphical launch.
+  State WORK `Logs/full-story-candidate/build-runs/20261126T014554516966Z-b287ee31/runner-state.json`.
+- **CURRENT NATIVE95 LIVE:** root exec **54898**, supervisor195558, actual player195561 last confirmed live against exact071exe.
+  WORK `Logs/native-071-focused/95-20261126a/execution.json`; same folder report/player log. Exactcase95 ServiceTunnel Dominion continuous26,
+ 1800s owned watchdog, Null,nice15,idle I/O,two job workers,isolatedXDG. Existing within-chapter role/position/Calm/timeScale/simulated-input fixtures remain;
+  chapter boundaries require earned prior summaries/flags/stats and actualContinue. **No final result yet.** Poll the actual handle/process; observation expiry is not terminal.
+  **Freeze WORK source/metadata/HEAD until genuine terminal**; no other Editor/player/Blender while this supervisor is active. No source-art integration/build during this lease.
+  BASE `Logs/native-071-focused-stage/run.py` SHA f752286f…, `pins-reviewed-071.json` SHA0a447edc… binds actual071build/runtime/de2acc/source/HEAD702.
+  Exact current155953user identity/fulltree is protected separately; common070headlesslock is shared across these runners.
+- **071 native normal river branches pass:** [17Peace and18Dominion](verification/0.7.1-native-riverside-green-20261126.json), two separate invocations,
+  roots91824/20467, native0/super0,28.234/28.188s, exactselectedPASS/SUMMARY1/1 each,allsource/071artifact/070user integrity pass,no cancellation.
+  Those existing chapter fixtures are explicit; these passes do not close96's distinct strict-log failure or prove continuous26/default27/rendered/human acceptance.
+- **Native96 strict check FAILED:** root53749/native1/super1,10.101s,allsource/new071/user070integrity passes,no cancellation.
+  [Retained red](verification/0.7.1-body-free-native-red-20261126.json). Shared helper calls finish before the final log predicate, which rejects
+  `Warning: HDR Render Texture not supported, disabling HDR on reflection probe.` on Null. Limited functional observation is not a clean96pass.
+  **Do not suppress/whitelist that warning, disable probes/HDR, or rewrite96criteria to claim green.** Verify96 with a supported rendered backend afteruserGPUrelease;
+  characterize the Null limitation separately. The earlier Vulkan ring-warning gate is a distinct still-open issue.
 - **0.7 native branches now pass independently:** [92Peace/recovery](verification/0.7.0-native-northline-peace-20261126.json),root22591/native0/super0,193.311s;
   [93Dominion](verification/0.7.0-native-northline-dominion-20261126.json),root66651/native0/super0,106.747s. ExactonePASS/SUMMARY1/1/Null,
   all source/HEAD/full-candidate/user checks pass, no cancellation. They prepareM23/initialroles; they do not prove earned94/95, default27 or graphics/human acceptance.
@@ -34,7 +47,7 @@ The full upgrade/continued-expansion goal remains active. The user's immediate b
   Both normalriverbranches and earlier lifetime controls also pass in named runs. No fresh single6/6 claim is made for the mixed earlier batch.
   [Sharedhelper/selection17/17](verification/body-free-shared-editor-green-20261126.json),root30574/native0,8.311s,
   exercises actual menu recovery plus exact96/default27 registry. Actual compile176runtime/33Editor/176LinuxMono passes.
-  Commit674b8e6 contains fix/UI/sharedacceptance/exactopt-in96; current running0.7 does not contain it. Native96 remains unrun pending current build.
+  Commit674b8e6 contains fix/UI/sharedacceptance/exactopt-in96; current running0.7 does not contain it. Native96 now has the separate retained strict-log failure above; it is not accepted as passed.
 - **Detailed coach source authored/verified/pushed separately:** WORK `ArtSource/NorthlineCoach`, commit70259de, reproducible4module Tools/blender/northline recipe.
   [CPU source proof](verification/northline-coach-source-v2-20261126.json): author70532/native0, verifier83423/native0; coach11144triangles,
   wholekit15972,198closedcomponents,10real thin-glass panes/10aperture rays, original bounds/pivot, ten other exports byte-identical,
@@ -52,8 +65,8 @@ The full upgrade/continued-expansion goal remains active. The user's immediate b
   Preserve unrelated untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` unstaged. Keep all retained BASE0.5.0/0.5.1/0.6.0/0.6.1builds/releases, currentuser0.7,
   failed cold-build evidence and2760completed RTX/OptiX film frames. No rerender needed. No0.7/0.7.1portable archive exists yet.
 
-Next: actual0.7.1 build result/integrity, actual new-player96 and normal17/18 checks; earned94/95 and current full/default/rendered/media/settings/performance gates remain.
-Native071 supervisor is being staged Logs-only under BASE `Logs/native-071-focused-stage`; its runtime/build pins must come from the actual completed candidate.
+Next: actual95terminal result; earned94 remainsunrun, supported-renderer96 remainsrequired, and current full/default/rendered/media/settings/performance gates remain.
+Native071 supervisor is reviewed/pinned to the actual completed candidate; preserve its original pending-pins refusal and all real run receipts.
 Never transfer0.7 source95d9 passes to0.7.1/de2acc or claim the newcoach is live. Continue the requested gameplay/realism expansion with the current userGPU reservation respected.
 Linux/URP plus offline RTX Blender films and improved real-time shaders is the chosen direction; gameplay hardware RT is not implemented.
 Disk campaign saving, physical input/listening, final realism quality and measured performance remain separate work. Historical checkpoint labels are in HANDOFF_HISTORY_20261126.md.

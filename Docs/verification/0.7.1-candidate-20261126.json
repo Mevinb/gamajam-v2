@@ -1,0 +1,29 @@
+{
+  "status": "READY_NOT_RUN",
+  "application_version": "0.7.1-preview",
+  "candidate_path": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T014554516966Z-b287ee31",
+  "native_build_pid": 194358,
+  "native_build_exit_code": 0,
+  "build_summary": {
+    "result": "Succeeded",
+    "size_mb": 1119,
+    "time": "00:02:01.2291100",
+    "errors": 0,
+    "warnings": 0
+  },
+  "source_snapshot_before_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+  "source_snapshot_after_sha256": "de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f",
+  "source_unchanged_during_build": true,
+  "protected_base_unchanged": true,
+  "preview_unchanged": true,
+  "rendered_preview_unchanged": true,
+  "candidate_build_info_sha256": "bc9045f5574b8d43b600e20b1217a26f9d8142f851272ae2d19df14e3df02ff0",
+  "root_free_after_bytes": 11668574208,
+  "finished_utc": "2026-11-26T01:49:14.503440+00:00",
+  "build_state": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T014554516966Z-b287ee31/runner-state.json",
+  "build_state_sha256": "1c096190782865c83a10285c40015484ddd56cc9a23c44a83489e7f63330b920",
+  "runtime_sha256": "66e4289a8c4ecaeb379334ba360f57512251c11275fcefa7aa34c1ecb2cd7b8f",
+  "source_commit": "70259deafd711f841c07225949b55733eaf2101a",
+  "root_exec_session": 9396,
+  "scope": "Actual private Linux0.7.1 build with ferry live-body fix, explicit pause checkpoint recovery and opt-in96. Source/protected older artifacts/current user070 unchanged. Newcoach source is outside Assets and not integrated. This proof grants no native, rendered, performance or human acceptance; user070 was not replaced."
+}

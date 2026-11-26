@@ -61,7 +61,10 @@ The older graphics runners and0.6snapshots below require explicit retargeting be
 
 The next0.7.1source fixes an actual missing-inactive-body ferry-credit defect and adds a usable pause-menu checkpoint action.
 The original wrong-credit red and corrected recovery are preserved in [regression history](verification/body-free-state-regression-20261126.json);
-[sharedhelper/default-selection17/17](verification/body-free-shared-editor-green-20261126.json) passes. A fresh0.7.1candidate is currently building; native96 is pending.
+[sharedhelper/default-selection17/17](verification/body-free-shared-editor-green-20261126.json) passes. [Fresh0.7.1build](verification/0.7.1-candidate-20261126.json) passes0/1119MB/zero BuildReport errors/warnings.
+[Native17/18](verification/0.7.1-native-riverside-green-20261126.json) pass separately with final integrity.
+[Strict96](verification/0.7.1-body-free-native-red-20261126.json) remains failed on a Null-backend HDR reflection-probe warning after the shared functional calls; no warning/quality guard was weakened.
+Supported-renderer96 remains required. Continuous95 is currently running with no final result;94 remains unrun.
 
 A separately versioned detailed coach package is authored and CPU-round-trip verified:11144coach/15972kit triangles,10real glass apertures,
 198closed components and three original2K PBR maps. [Source proof](verification/northline-coach-source-v2-20261126.json).
