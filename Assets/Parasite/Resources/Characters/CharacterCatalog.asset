@@ -331,7 +331,7 @@ MonoBehaviour:
     paletteA: sweater
     paletteB: denim
     paletteC: 
-    lodTriangles: 1d4e0000531b0000c1090000
+    lodTriangles: 4a6e0000891f0000250a0000
   - id: MaintEli
     profession: 3
     names: []

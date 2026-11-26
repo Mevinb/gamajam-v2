@@ -1,0 +1,103 @@
+{
+  "scope": "isolated oral pilot; no Assets/catalog promotion",
+  "source": "/home/mevlec/Data/parasite-work/characters/out/LakeGirl.blend",
+  "source_sha256": "b8dada7dcd0cd95477a506581f35c4411927665b1995476bbaf5d9b4704d0387",
+  "source_original_lod_geometry_sha256": {
+    "LakeGirl_LOD0": "f6f5f03a7aca37959e13d46aa1775c6f31d5065f36e6b80475ef1256c387b5c5",
+    "LakeGirl_LOD1": "729f658d40a5ee25f412c16c53a7fee31b6813714a23f0f6f0105d6cc42e833c",
+    "LakeGirl_LOD2": "c13be2322c8d0610120b8d3b20f9b40a024a780199a6896f641c5214094501a3"
+  },
+  "skeleton_rest_sha256": "6008cdb96717e7c56fd3f05977210638f40924cb86172fae6da5fd20c123c99e",
+  "new_fitted_rest_max_delta": 0.0,
+  "original_rig_rest_preserved": true,
+  "rest_lip_silhouette_preserved": true,
+  "lods": [
+    {
+      "original_vertices": 11769,
+      "original_faces": 19631,
+      "added_vertices": 4478,
+      "added_triangles": 8237,
+      "material_slots": 4,
+      "original_geometry_and_weights_preserved": true
+    },
+    {
+      "original_vertices": 4678,
+      "original_faces": 6813,
+      "added_vertices": 698,
+      "added_triangles": 1078,
+      "material_slots": 4,
+      "original_geometry_and_weights_preserved": true
+    },
+    {
+      "original_vertices": 1952,
+      "original_faces": 2411,
+      "added_vertices": 57,
+      "added_triangles": 100,
+      "material_slots": 4,
+      "original_geometry_and_weights_preserved": true
+    }
+  ],
+  "restored_cavity_faces": 398,
+  "cloth_original_texels": {
+    "clothA": {
+      "old_cloth_max_channel_error": 0.0,
+      "dimensions": [
+        2048,
+        2112
+      ],
+      "path": "ArtSource/Characters/OralPilotV2/Textures/LakeGirl_OralPilotV2_Cloth_A.png"
+    },
+    "clothN": {
+      "old_cloth_max_channel_error": 0.0,
+      "dimensions": [
+        2048,
+        2112
+      ],
+      "path": "ArtSource/Characters/OralPilotV2/Textures/LakeGirl_OralPilotV2_Cloth_N.png"
+    },
+    "clothM": {
+      "old_cloth_max_channel_error": 0.0,
+      "dimensions": [
+        1024,
+        1056
+      ],
+      "path": "ArtSource/Characters/OralPilotV2/Textures/LakeGirl_OralPilotV2_Cloth_M.png"
+    }
+  },
+  "oral_sources": {
+    "teeth": {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/.user/user_default/mpfb/data/teeth/teeth_base/teeth.png",
+      "sha256": "d0afb57869c6fbb56b98f5efc4aec629ee7593e70d8dd2bfb9de923acfb65f43",
+      "license": "CC02020 Data Collection AB, Joel Palmius, Jonas Hauquier"
+    },
+    "tongue": {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/.user/user_default/mpfb/data/tongue/tongue01/tongue01_diffuse.png",
+      "sha256": "3150be398e48e8ba1feac164c3143c16c0b2e959d9ffb6155f0171f59cfb4ea9",
+      "license": "CC02020 Data Collection AB, Joel Palmius, Jonas Hauquier"
+    }
+  },
+  "blend_sha256": "1372e5f2938a175ec4f6e911677dc4f66c9d1b5319a90f62dcd83870bdb213c0",
+  "blend_bytes": 28848767,
+  "fbx_sha256": "8ef1aa8ec61c5e548ea3c08921d807a80578d0d984c56af2f004b0efc1445c05",
+  "author_source_sha256": "21a830a18f79aff0f1385059bbe7467969d52ed1e13896f1b5ef054a7a947745",
+  "rendered": false,
+  "review_camera": "Oral frontal review or Oral three-quarter review; neutral lighting,1600x1000",
+  "mouth_focus_world": [
+    0.0,
+    -0.1484040766954422,
+    1.429203748703003
+  ],
+  "jaw_examples": "frames1/25/49: local X0/15/27degrees; review-only action, FBX animation disabled",
+  "texture_prototype": "compact A/N2048x2112, M1024x1056; exact32/33 original cloth V scale;8/4px strip guards; BC7 albedo/BC5 normal intended on later import",
+  "version": 2,
+  "upper_arch_adjustment_mm": {
+    "z": -1.5,
+    "y": -0.3
+  },
+  "enamel_bevel_mm": 0.12,
+  "render_colour_management": "FOLLOW_SCENE/AgX/MediumHigh/exposure0",
+  "lighting_watts": {
+    "key": 5,
+    "fill": 2
+  }
+}

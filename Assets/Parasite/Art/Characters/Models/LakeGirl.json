@@ -37,9 +37,9 @@
   "B": "denim"
  },
  "lodTris": [
-  19997,
-  6995,
-  2497
+  28234,
+  8073,
+  2597
  ],
  "assets": [
   {
@@ -77,16 +77,51 @@
   {
    "kind": "clothes",
    "name": "toigo_ankle_boots_female"
+  },
+  {
+   "kind": "teeth",
+   "name": "teeth_base"
+  },
+  {
+   "kind": "tongue",
+   "name": "tongue01"
   }
  ],
  "textures": {
   "skin": "Skins/young_caucasian_female.jpg",
   "eyes": "Eyes/brown.png",
-  "clothA": "LakeGirl_Cloth_A.jpg",
-  "clothN": "LakeGirl_Cloth_N.jpg",
+  "clothA": "LakeGirl_Cloth_A.png",
+  "clothN": "LakeGirl_Cloth_N.png",
   "clothM": "LakeGirl_Cloth_M.png",
   "hairA": "LakeGirl_Hair_A.png",
   "skinN": "Skins/Surface/Adult_N.png",
   "skinM": "Skins/Surface/Adult_M.png"
+ },
+ "oralAnatomy": true,
+ "oralPilot": {
+  "revision": 4,
+  "outsideGeometryPreserved": true,
+  "clothVScale": [
+   1,
+   2
+  ],
+  "albedoNormalDimensions": [
+   2048,
+   4096
+  ],
+  "maskDimensions": [
+   1024,
+   2048
+  ],
+  "guardPixelsA_N": 8,
+  "guardPixelsM": 4,
+  "sourceBlendSha256": "1372e5f2938a175ec4f6e911677dc4f66c9d1b5319a90f62dcd83870bdb213c0",
+  "integrationRevision": 4,
+  "previousCompactAtlasUVScale": [
+   33,
+   64
+  ],
+  "sourceUnitPolicy": "FBX_SCALE_UNITS",
+  "padding": "exact NPOT lower rows plus repeated final row"
  }
 }

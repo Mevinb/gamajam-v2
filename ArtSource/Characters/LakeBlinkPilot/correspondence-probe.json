@@ -1,0 +1,161 @@
+{
+  "status": "NO_PILOT_UNRELIABLE_DECIMATED_CORRESPONDENCE",
+  "scope": "One isolated blink pilot; four frozen finale files unchanged",
+  "source": "ArtSource/RealisticFinales/Lake/Lake_Hold.blend",
+  "source_sha256": "0c14d9bbd8a09df508f9a3b9dd96fff6cc631cc312675dfc05ac5228fa6ca018",
+  "original_vertex_count": 11769,
+  "existing_shape_keys": [],
+  "existing_eyelid_bones": [],
+  "native_scale": 1.1531433470049037,
+  "native_head_rest_error_metres": 3.5832567979130295e-07,
+  "targets": [
+    {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/user_default/mpfb/data/targets/expression/units/caucasian/eye-left-closure.target.gz",
+      "sha256": "ff0d21ceb6da55fe51e03b48a7562a650924fea9bef0c686fcd7aa44d16422ed",
+      "weight": 0.9,
+      "key": "Pilot_caucasian_left"
+    },
+    {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/user_default/mpfb/data/targets/expression/units/caucasian/eye-right-closure.target.gz",
+      "sha256": "2b7be6bc65845d77e5f83b7bf852090854747e448644997795fa59b6cf76122d",
+      "weight": 0.9,
+      "key": "Pilot_caucasian_right"
+    },
+    {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/user_default/mpfb/data/targets/expression/units/asian/eye-left-closure.target.gz",
+      "sha256": "0d52fee2d66b933ece83f3c7aa48e85bfe85e8adbed0931dbd37025866a1a67d",
+      "weight": 0.1,
+      "key": "Pilot_asian_left"
+    },
+    {
+      "path": "/home/mevlec/Data/parasite-work/characters/blender_user/extensions/user_default/mpfb/data/targets/expression/units/asian/eye-right-closure.target.gz",
+      "sha256": "0c99a5f559a1d67f630a329b9724fe3742a2c35709b8baa8a6d37903f35b9b77",
+      "weight": 0.1,
+      "key": "Pilot_asian_right"
+    }
+  ],
+  "skin_correspondence": {
+    "candidates": 164,
+    "exact_mapped": 138,
+    "unreliable": 26,
+    "max_correspondence_error_metres": 0.0006540380418300629,
+    "samples": [
+      {
+        "hero_vertex": 1929,
+        "native_vertex": 6806,
+        "distance_metres": 0.0006540380418300629
+      },
+      {
+        "hero_vertex": 19,
+        "native_vertex": 22,
+        "distance_metres": 0.0006539798341691494
+      },
+      {
+        "hero_vertex": 1958,
+        "native_vertex": 6843,
+        "distance_metres": 0.0005947215831838548
+      },
+      {
+        "hero_vertex": 47,
+        "native_vertex": 59,
+        "distance_metres": 0.0005942524876445532
+      },
+      {
+        "hero_vertex": 20,
+        "native_vertex": 28,
+        "distance_metres": 0.0005755306920036674
+      },
+      {
+        "hero_vertex": 1931,
+        "native_vertex": 6812,
+        "distance_metres": 0.0005754117155447602
+      },
+      {
+        "hero_vertex": 2505,
+        "native_vertex": 7772,
+        "distance_metres": 0.0005404091207310557
+      },
+      {
+        "hero_vertex": 652,
+        "native_vertex": 1080,
+        "distance_metres": 0.0005403861869126558
+      },
+      {
+        "hero_vertex": 48,
+        "native_vertex": 60,
+        "distance_metres": 0.0004895803867839277
+      },
+      {
+        "hero_vertex": 1959,
+        "native_vertex": 6844,
+        "distance_metres": 0.0004895260208286345
+      },
+      {
+        "hero_vertex": 1962,
+        "native_vertex": 11486,
+        "distance_metres": 0.0004183017008472234
+      },
+      {
+        "hero_vertex": 51,
+        "native_vertex": 4868,
+        "distance_metres": 0.0004179566167294979
+      },
+      {
+        "hero_vertex": 1930,
+        "native_vertex": 6811,
+        "distance_metres": 0.00038536955253221095
+      },
+      {
+        "hero_vertex": 1464,
+        "native_vertex": 27,
+        "distance_metres": 0.0003852761583402753
+      },
+      {
+        "hero_vertex": 18,
+        "native_vertex": 18,
+        "distance_metres": 0.00032536170328967273
+      }
+    ]
+  },
+  "lash_correspondence": {
+    "candidates": 144,
+    "exact_mapped": 142,
+    "unreliable": 2,
+    "max_correspondence_error_metres": 0.0018614445580169559,
+    "samples": [
+      {
+        "hero_vertex": 4162,
+        "native_vertex": 192,
+        "distance_metres": 0.0018614445580169559
+      },
+      {
+        "hero_vertex": 4100,
+        "native_vertex": 67,
+        "distance_metres": 0.0018614062573760748
+      }
+    ]
+  },
+  "required_exact_tolerance_metres": 2e-06,
+  "eyes_globes_excluded": true,
+  "geometry_guessed": false,
+  "finale_source_pins": {
+    "ArtSource/RealisticFinales/Lake/Lake_Arrival.blend": "01329e944d221a588a13fd744dd9db7a4b1e99de4c2f7a63177445d9dfe71277",
+    "ArtSource/RealisticFinales/Lake/Lake_Dominion.blend": "19f61eef69e1f6cd63cec6d6e2fac79848ab7e8bc203a0f1b455c5008a6ae27f",
+    "ArtSource/RealisticFinales/Lake/Lake_Hold.blend": "0c14d9bbd8a09df508f9a3b9dd96fff6cc631cc312675dfc05ac5228fa6ca018",
+    "ArtSource/RealisticFinales/Lake/Lake_Peace.blend": "61e6ea208f3d615b9cf67c104dd60e3aa2ccaa2da9eb0585a87f3c5cf4ae510b"
+  },
+  "reliable_exact_transfer": false,
+  "reason": "Native MPFB closure deltas cannot be transferred by exact coordinates to every affected skin/lash candidate; no shape key was added.",
+  "exact_preservation": {
+    "all_11769_base_vertices": true,
+    "all_vertex_weights": true,
+    "all_faces_and_material_assignments": true,
+    "all_uv_coordinates": true,
+    "all_rest_and_pose_rig_matrices": true,
+    "all_rig_action_curves": true,
+    "camera_and_world": true,
+    "new_shape_keys_added": 0,
+    "outside_eye_region_unchanged": true,
+    "eye_globes_unchanged": true
+  }
+}

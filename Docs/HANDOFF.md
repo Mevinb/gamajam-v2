@@ -23,8 +23,15 @@ opaque scalp cores and writing forward depth. The neutral humanoid jaw/default r
 four actual Animator regressions pass, with authored/custom curves and additive gestures protected. The initial2/3
 failure and ordered callback observation are retained under WORK Logs. Fresh ordinary-avatar portraits show closed lips.
 The LakeGirl-only oral pilot is installed for testing, with all16GUIDs and528 other-character files preserved, but its
-first Unity render exposed a100x FBX local-unit representation mismatch. It is NOT accepted or rolled out; fix the
-export representation and validate actual head/BakeMesh dimensions before building a player from this checkout.
+first Unity render exposed a100x FBX local-unit representation mismatch. Correcting the exporter to preserve
+`FBX_SCALE_UNITS` now passes actual metre-scale head/bone/BakeMesh checks and a fresh Vulkan portrait.
+Its compact NPOT textures failed the actual compressed-format gate: mipmapped A/N loaded as RGBA32/RGB24.
+The separate power-of-two revision now passes actual BC7/BC5/BC7 loading,13/13/1 mips, three metre-scale
+LODs and selected neutral/open/tint/possession pixel review on RTX4050/Vulkan. It is accepted for this visual pass;
+the other24 anatomy meshes remain unchanged. See `verification/lakegirl-oral-pilot-20261127.json`.
+The first POT stress helper logged unreadable-texture-copy errors despite its old completed flag; preserve that
+failure. The corrected GPU-copy helper produced26 images with no captured render errors and unchanged input assets.
+Artificial coarsest-mip bias loses cloth detail/colour; it is a stress control, not natural-distance acceptance.
 
 The amoeba gel calibration now passes actual Vulkan inactive/active/infection visual API checks with HDR, bloom and
 SSR enabled. Internal parts remain visible and feedback grows with activity/infection. This is an edit-mode visual
@@ -41,10 +48,16 @@ These are not earned full-campaign or new-movie decoding proofs. Runtime changes
 before fallible notifications and protect departure cleanup from subtitle/media failures.
 
 Lake v4 uses a surface-conforming native hair groom and its Arrival165 RTX portrait is accepted for this pass;
-remaining branch keyframes/full production are pending. Train v4 has a sealed curved shell, readable lit interior,
+Hold73, Peace168 and corrected Dominion52 keyframes are also accepted for this pass; full production remains pending.
+Train v4 has a sealed curved shell, readable lit interior,
 standard-gauge running gear and revised bogie shot; its declared RTX views have been reviewed. All finale sources
 remain under `ArtSource/RealisticFinales`; the current train source ends in `_v4.blend`.
 Full finale production has started at WORK `Logs/full-cinematic-renders/realistic-finales-production-20261127` (1,176 frames,192samples,1080p24,OptiX4050,OIDNGPU). Source contract and reviewed keyframes are pinned there; LakeArrival is the first running film. Use its `<film>/STOP` and wait for actual Blender/supervisor completion before any Unity graphics job; remove STOP before the identical render command resumes. The driver inherits the global Unity lock. Production encoding, native media acceptance and the new Linux candidate are still in progress.
+The producer now enforces actual limited-range BT709 matrix/transfer/primaries tags as well as complete silent VP8
+decode; a one-frame encode probe confirms the requested conversion/tag chain. Render driver, policy and sources
+remain frozen. The build's new eight-film import preflight is implemented/API-compiled, but its actual reimport gate
+must wait for all revised movies and the new train resource. It disables audio import and separately rejects source
+audio tracks, so audio stripping cannot conceal an invalid source.
 Root added optional Northline film presentation without replacing the actual coach/boarder/endpoint authority.
 Its new 14-second film must be produced and decoded before accepting this change.
 

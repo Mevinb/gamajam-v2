@@ -73,6 +73,7 @@ namespace Parasite.EditorTools
             public string id, profession, skin, eyes;
             public string[] names;
             public bool unique;
+            public bool oralAnatomy;
             public float gender, age, height;
             public float[] skinTint;
             public Tints tints;
@@ -84,7 +85,9 @@ namespace Parasite.EditorTools
         // ------------------------------------------------------------------ batch
 
         [MenuItem("Parasite/Characters/Rebuild Character Prefabs")]
-        public static void Rebuild()
+        public static void Rebuild() => RebuildInternal(false);
+
+        static void RebuildInternal(bool lakeGirlOnly)
         {
             AssetDatabase.Refresh();
             EnsureFolder(ResourcesDir);
@@ -98,26 +101,32 @@ namespace Parasite.EditorTools
             {
                 var m = JsonUtility.FromJson<Meta>(File.ReadAllText(json));
                 if (m == null || string.IsNullOrEmpty(m.id)) continue;
+                if (lakeGirlOnly && m.id != "LakeGirl") continue;
                 if (!File.Exists(Path.Combine(ModelsDir, m.id + ".fbx"))) { Debug.LogWarning("[Chars] missing fbx for " + m.id); continue; }
                 metas.Add(m);
             }
             metas.Sort((a, b) => string.CompareOrdinal(a.id, b.id));
+            if (lakeGirlOnly && (metas.Count != 1 || !metas[0].oralAnatomy))
+                throw new System.InvalidOperationException("LakeGirl oral pilot metadata is not installed.");
 
             // textures first (explicit settings, no project-wide texture postprocessor)
-            ConfigureTexture(TexturesDir + "/Skin_VeinMask.png", TexKind.Data, 2048);
+            if (!lakeGirlOnly) ConfigureTexture(TexturesDir + "/Skin_VeinMask.png", TexKind.Data, 2048);
             var configuredSurfaces = new HashSet<string>();
             foreach (var m in metas)
             {
-                ConfigureTexture(TexturesDir + "/" + m.textures.skin, TexKind.SkinAlbedo, 2048);
-                if (!string.IsNullOrEmpty(m.textures.skinN) && configuredSurfaces.Add(m.textures.skinN))
-                    ConfigureTexture(TexturesDir + "/" + m.textures.skinN, TexKind.SkinNormal, 2048);
-                if (!string.IsNullOrEmpty(m.textures.skinM) && configuredSurfaces.Add(m.textures.skinM))
-                    ConfigureTexture(TexturesDir + "/" + m.textures.skinM, TexKind.SkinSurface, 1024);
-                ConfigureTexture(TexturesDir + "/" + m.textures.eyes, TexKind.EyeAlbedo, 1024);
-                ConfigureTexture(TexturesDir + "/" + m.textures.clothA, TexKind.Albedo, 2048);
-                ConfigureTexture(TexturesDir + "/" + m.textures.clothN, TexKind.Normal, 2048);
-                ConfigureTexture(TexturesDir + "/" + m.textures.clothM, TexKind.Mask, 1024);
-                ConfigureTexture(TexturesDir + "/" + m.textures.hairA, TexKind.Hair, 2048);
+                if (!lakeGirlOnly)
+                {
+                    ConfigureTexture(TexturesDir + "/" + m.textures.skin, TexKind.SkinAlbedo, 2048);
+                    if (!string.IsNullOrEmpty(m.textures.skinN) && configuredSurfaces.Add(m.textures.skinN))
+                        ConfigureTexture(TexturesDir + "/" + m.textures.skinN, TexKind.SkinNormal, 2048);
+                    if (!string.IsNullOrEmpty(m.textures.skinM) && configuredSurfaces.Add(m.textures.skinM))
+                        ConfigureTexture(TexturesDir + "/" + m.textures.skinM, TexKind.SkinSurface, 1024);
+                    ConfigureTexture(TexturesDir + "/" + m.textures.eyes, TexKind.EyeAlbedo, 1024);
+                }
+                ConfigureTexture(TexturesDir + "/" + m.textures.clothA, m.oralAnatomy ? TexKind.OralAlbedo : TexKind.Albedo, m.oralAnatomy ? 4096 : 2048);
+                ConfigureTexture(TexturesDir + "/" + m.textures.clothN, m.oralAnatomy ? TexKind.OralNormal : TexKind.Normal, m.oralAnatomy ? 4096 : 2048);
+                ConfigureTexture(TexturesDir + "/" + m.textures.clothM, m.oralAnatomy ? TexKind.OralMask : TexKind.Mask, m.oralAnatomy ? 2048 : 1024);
+                if (!lakeGirlOnly) ConfigureTexture(TexturesDir + "/" + m.textures.hairA, TexKind.Hair, 2048);
             }
             // models (force our import settings even if Unity imported them before this postprocessor existed)
             foreach (var m in metas)
@@ -136,7 +145,9 @@ namespace Parasite.EditorTools
                 catalog = ScriptableObject.CreateInstance<CharacterCatalog>();
                 AssetDatabase.CreateAsset(catalog, CatalogPath);
             }
-            catalog.entries.Clear();
+            if (!lakeGirlOnly) catalog.entries.Clear();
+            else if (!catalog.entries.Exists(e => e.id == "LakeGirl"))
+                throw new System.InvalidOperationException("Existing LakeGirl catalog entry is required for the pilot.");
             var vein = AssetDatabase.LoadAssetAtPath<Texture2D>(TexturesDir + "/Skin_VeinMask.png");
             int ok = 0;
             foreach (var m in metas)
@@ -144,7 +155,12 @@ namespace Parasite.EditorTools
                 try
                 {
                     var entry = BuildCharacter(m, shader, vein);
-                    if (entry != null) { catalog.entries.Add(entry); ok++; }
+                    if (entry != null)
+                    {
+                        if (lakeGirlOnly) catalog.entries[catalog.entries.FindIndex(e => e.id == entry.id)] = entry;
+                        else catalog.entries.Add(entry);
+                        ok++;
+                    }
                 }
                 catch (System.Exception e)
                 {
@@ -160,6 +176,13 @@ namespace Parasite.EditorTools
         public static void RebuildBatch()
         {
             try { Rebuild(); EditorApplication.Exit(0); }
+            catch (System.Exception e) { Debug.LogException(e); EditorApplication.Exit(1); }
+        }
+
+        // Explicit pilot entry: reuse shared maps and leave other 24 catalog entries/prefabs alone.
+        public static void RebuildLakeGirlOralPilotBatch()
+        {
+            try { RebuildInternal(true); EditorApplication.Exit(0); }
             catch (System.Exception e) { Debug.LogException(e); EditorApplication.Exit(1); }
         }
 
@@ -376,29 +399,32 @@ namespace Parasite.EditorTools
             return m;
         }
 
-        enum TexKind { Albedo, SkinAlbedo, EyeAlbedo, Normal, SkinNormal, SkinSurface, Mask, Hair, Data }
+        enum TexKind { Albedo, SkinAlbedo, EyeAlbedo, Normal, SkinNormal, SkinSurface, Mask, Hair, Data, OralAlbedo, OralNormal, OralMask }
 
         static void ConfigureTexture(string path, TexKind kind, int maxSize)
         {
             var ti = AssetImporter.GetAtPath(path) as TextureImporter;
             if (ti == null) { Debug.LogWarning("[Chars] texture missing: " + path); return; }
             bool skinSurface = kind == TexKind.SkinNormal || kind == TexKind.SkinSurface;
+            bool oral = kind == TexKind.OralAlbedo || kind == TexKind.OralNormal || kind == TexKind.OralMask;
+            bool mask = kind == TexKind.Mask || kind == TexKind.OralMask;
+            if (oral) ti.npotScale = TextureImporterNPOTScale.None;
             bool portraitAlbedo = kind == TexKind.SkinAlbedo || kind == TexKind.EyeAlbedo;
-            ti.textureType = kind == TexKind.Normal || kind == TexKind.SkinNormal ? TextureImporterType.NormalMap : TextureImporterType.Default;
-            ti.sRGBTexture = kind == TexKind.Albedo || portraitAlbedo || kind == TexKind.Hair;
+            ti.textureType = kind == TexKind.Normal || kind == TexKind.SkinNormal || kind == TexKind.OralNormal ? TextureImporterType.NormalMap : TextureImporterType.Default;
+            ti.sRGBTexture = kind == TexKind.Albedo || portraitAlbedo || kind == TexKind.OralAlbedo || kind == TexKind.Hair;
             ti.maxTextureSize = maxSize;
-            ti.mipmapEnabled = kind != TexKind.Mask;
-            ti.filterMode = kind == TexKind.Mask ? FilterMode.Point : FilterMode.Trilinear;
-            ti.anisoLevel = kind == TexKind.Mask ? 0 : 4;
+            ti.mipmapEnabled = !mask;
+            ti.filterMode = mask ? FilterMode.Point : FilterMode.Trilinear;
+            ti.anisoLevel = mask ? 0 : 4;
             ti.wrapMode = TextureWrapMode.Clamp;
             ti.alphaSource = kind == TexKind.Hair ? TextureImporterAlphaSource.FromInput : TextureImporterAlphaSource.None;
             ti.alphaIsTransparency = kind == TexKind.Hair;
             ti.mipMapsPreserveCoverage = kind == TexKind.Hair;
             if (kind == TexKind.Hair) ti.alphaTestReferenceValue = 0.4f;
-            ti.textureCompression = kind == TexKind.Mask || kind == TexKind.Hair ? TextureImporterCompression.CompressedHQ : TextureImporterCompression.Compressed;
+            ti.textureCompression = mask || kind == TexKind.Hair ? TextureImporterCompression.CompressedHQ : TextureImporterCompression.Compressed;
             ti.crunchedCompression = false;
             ti.streamingMipmaps = skinSurface;
-            if (skinSurface || portraitAlbedo)
+            if (skinSurface || portraitAlbedo || oral)
             {
                 // The filtered surface atlas must never inherit the cloth mask's
                 // point sampling/no-mip policy. +Y tangent normals need no flip.
@@ -406,7 +432,7 @@ namespace Parasite.EditorTools
                 ti.SetPlatformTextureSettings(new TextureImporterPlatformSettings
                 {
                     name = "Standalone", overridden = true, maxTextureSize = maxSize,
-                    format = kind == TexKind.SkinNormal ? TextureImporterFormat.BC5 : TextureImporterFormat.BC7,
+                    format = kind == TexKind.SkinNormal || kind == TexKind.OralNormal ? TextureImporterFormat.BC5 : TextureImporterFormat.BC7,
                     textureCompression = TextureImporterCompression.CompressedHQ,
                     compressionQuality = 100,
                 });

@@ -1,0 +1,179 @@
+{
+  "scope": "LakeGirl-only oral anatomy/POT import and static baked-pose Vulkan controls. Other24 anatomy unchanged; general skin/shader/jaw improvements are separate. Not native gameplay/real-frame animation/FPS/VRAM acceptance.",
+  "result": "ACCEPTED_FOR_THIS_VISUAL_PASS",
+  "actual_receipt": {
+    "path": "Logs/oral-pilot-pot-unity-review-v2/receipt.json",
+    "sha256": "cfabbf0aa9387ede929c26aaea1478fba2839122023f18caa51d054407a9277d"
+  },
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "graphics_api": "Vulkan",
+  "format_policy": [
+    {
+      "property": "_BaseMap",
+      "format": "BC7",
+      "size": [
+        2048,
+        4096
+      ],
+      "mips": 13
+    },
+    {
+      "property": "_BumpMap",
+      "format": "BC5",
+      "size": [
+        2048,
+        4096
+      ],
+      "mips": 13
+    },
+    {
+      "property": "_MaskMap",
+      "format": "BC7",
+      "size": [
+        1024,
+        2048
+      ],
+      "mips": 1
+    }
+  ],
+  "catalog_entries": 25,
+  "all_humanoid_prefabs_checked": 25,
+  "lods": [
+    {
+      "lod": 0,
+      "triangles": 28234,
+      "bones": 56,
+      "slots": 4,
+      "cpu_baked_height_m": 1.6087617874145508
+    },
+    {
+      "lod": 1,
+      "triangles": 8073,
+      "bones": 56,
+      "slots": 4,
+      "cpu_baked_height_m": 1.6086640357971191
+    },
+    {
+      "lod": 2,
+      "triangles": 2597,
+      "bones": 56,
+      "slots": 4,
+      "cpu_baked_height_m": 1.6115449666976929
+    }
+  ],
+  "images_captured": 26,
+  "selected_images_reviewed": [
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_neutral_lod0_portrait.png",
+      "sha256": "5f5ddb557a79c7c9863bc554a93c20e47e7a317e41ad388681f2efc12f0f34ae",
+      "name": "baked_neutral_lod0_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_open_lod0_portrait.png",
+      "sha256": "338b31fa63fe0a0c08c27b2b005602fe8d8b0a7891374821dc86ea2835d1bb02",
+      "name": "baked_open_lod0_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_tint_open_lod0_portrait.png",
+      "sha256": "8b84f3f887a506ba5954089f5d212f45d49f450337366747684fb314af95485f",
+      "name": "baked_tint_open_lod0_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_possession_open_lod0_portrait.png",
+      "sha256": "61ee93217226e61d25c35dc24e62294a420504b6f7b6a1ecc29d6a65501292e0",
+      "name": "baked_possession_open_lod0_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_open_lod1_portrait.png",
+      "sha256": "9d72f89e05e4e3aece5daf9f6c09244d1c844741733a9a56fd9cb0fb0e267e92",
+      "name": "baked_open_lod1_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_open_lod2_portrait.png",
+      "sha256": "28c814685ccf38449956e787d795ecb59a470e8f1b282c9fda32cd0ed4679fde",
+      "name": "baked_open_lod2_portrait"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_neutral_lod0_full.png",
+      "sha256": "009d2951f9992dfe0836a8bcdcfca62bc6a30e6cd9ebd179a3d2cf9d623b6375",
+      "name": "baked_neutral_lod0_full"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_possession_open_lod2_full.png",
+      "sha256": "cc4d09d84de0856e5625be0b36cb4d816be13fe5b283eafab9ea2b0ab964aec2",
+      "name": "baked_possession_open_lod2_full"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_neutral_lod2_portrait_mip6.png",
+      "sha256": "fdd2765f0207e4c0a345cf9cc90453254159116301af83e5935c98d26b9122c9",
+      "name": "baked_neutral_lod2_portrait_mip6"
+    },
+    {
+      "path": "Logs/oral-pilot-pot-unity-review-v2/baked_neutral_lod2_portrait_mip12.png",
+      "sha256": "1e158aea61ecd282c48404eb9efb6a45659732015867fa99ae6dbc086777a4f9",
+      "name": "baked_neutral_lod2_portrait_mip12"
+    }
+  ],
+  "ordinary_v1_v2_identity": {
+    "baked_neutral_lod0_portrait": false,
+    "baked_open_lod0_portrait": false
+  },
+  "limits": [
+    "LOD2 was deliberately rendered at portrait scale; its existing simplified hair/clothing edges remain visible.",
+    "Artificial +6/+12 cloth mip bias shows expected detail loss and a colour shift at the coarsest whole-atlas average; these are stress controls, not natural-distance proof.",
+    "Oral anatomy remains LakeGirl-only; no blanket anatomy rollout."
+  ],
+  "retained_failures": [
+    {
+      "receipt": {
+        "path": "Logs/oral-pilot-unity-baked-review-v1/receipt.json",
+        "sha256": "76253733e0330b21e8d90585b8c2f575fbea0e90412254d955115915fba84049"
+      },
+      "reason": "NPOT mipmapped A/N loaded uncompressed; strict BC gate failed."
+    },
+    {
+      "receipt": {
+        "path": "Logs/oral-pilot-pot-unity-review-v1/receipt.json",
+        "sha256": "f5dc7a28f32b930ed2ada7ddf16c1a5d5e88742fc6c0fb8a8607adc980f41b59"
+      },
+      "reason": "Texture instantiation logged four non-readable-copy errors; two mip stress controls invalid despite its old completed field. Ordinary captured controls and format/unit checks are separately scoped."
+    },
+    {
+      "receipt": {
+        "path": "Logs/oral-units-observed-v1/receipt.json",
+        "sha256": "08d5e00a8c297b6a0897dfc68acb270dd7e524cf0025194cf1e33ac9aa4cade7"
+      },
+      "reason": "Initial pilot normalized to different raw FBX unit representation, placing actual Unity Head near142m; fixed using FBX_SCALE_UNITS, raw60-transform parity and actual CPU-baked dimensions."
+    }
+  ],
+  "correction": "GPU CopyTexture into matching format/mip textures, error-log receipt gate, detach camera before render-target release. Fresh v2 native exit0,26 images,zero captured render errors,source unchanged.",
+  "review_helper": {
+    "path": "Assets/Parasite/Editor/OralPilotPotUnityReview.cs",
+    "sha256": "c795d4cdd5c7927d3f6128565881c60eaa8c961d13665359ff0f0e3e6daeb243"
+  },
+  "actual_unity_log": {
+    "path": "Logs/realism-oral-pot-gpu-review-v2.log",
+    "sha256": "6a8eafb84f9c684b82d8061ecf163555496eaf2d3065306743c2baeca6e732f6"
+  },
+  "ordinary_v1_v2_identity_note": "The two ordinary images are not byte-identical across invocations; both fresh v2 images were inspected directly. No exact pixel-equivalence claim is made.",
+  "portable_reproduction": {
+    "result": "PASS_CPU_ONLY",
+    "tool": {
+      "path": "Tools/blender/characters/rebuild_lakegirl_oral_runtime.py",
+      "sha256": "e6b9b026905e60b74f8f7c6ab1dca4069f84afb3d1c567b14988aee7d577d544"
+    },
+    "recipe": {
+      "path": "ArtSource/Characters/OralPilotV2/runtime-integration.json",
+      "sha256": "d0ed5d1cde2fdb498a617f7959a8e4802c03c0b094753f9074ffca9bee99edf4"
+    },
+    "proof": {
+      "path": "Logs/oral-runtime-portable-replay-v2/verification/final-reproduction.json",
+      "sha256": "ddd6c434839eead00061bce65db62e623204a1f0aaa724c07b19fba8da4bfa84"
+    },
+    "semantic_comparison": {
+      "path": "Logs/oral-runtime-portable-replay-v2/verification/semantic-runtime-comparison.json",
+      "sha256": "516cd05e74f437d996384d514cc5d1ea9c947aadf04281fc89c730a4829746d6"
+    },
+    "limits": "FBX bytes differ with export metadata; exact geometry/weights/UVs/rest/binds and raw units/transforms, max tangent/binormal delta1.1920929e-7 <=1e-6. Source PNG/metadata bytes exact; no runtime copyback."
+  }
+}

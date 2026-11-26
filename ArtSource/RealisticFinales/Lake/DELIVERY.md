@@ -3,7 +3,7 @@
 Four standalone compressed, packed Blender4.5 sources preserve the existing
 story boundaries and original LakeGirl armature animation:
 
-| Film | Duration | Frames | Initial GPU QA frames |
+| Film | Duration | Frames | Authored review points |
 | --- | --- | --- | --- |
 | Arrival | 15s | 1–360 | 1,100 wide;165 portrait;280,360 choice approach |
 | Hold | 6s looping | 1–144 | 1,73,144 |
@@ -15,6 +15,17 @@ Dominion are intended only after explicit choices. Dominion retains the
 existing delayed iris-only reveal, under a wet corneal reflection; the previous
 42 glowing hearts and populated bank are removed. These files change no
 runtime mission/save/trigger logic or existing game video.
+
+Dominion's eye material has a later iris-revision2 correction: its former
+luminance mask colored pupils and shaded sclera in the actual frame52 review.
+The replacement uses measured UV annuli, preserving dark pupils and ordinary
+sclera, photographic iris detail and a restrained jade signal. The mask is0
+inside42px radius and beyond116px, with smooth42–46/112–116px fades. Only
+Dominion's packed source changed; the other three hashes remain exact. The old
+V4 source/receipts are preserved under
+`Logs/realistic-lake-author/dominion-v4-iris-before`. Corrected frame52 passed
+the root agent's RTX pixel review at
+`Logs/full-cinematic-renders/realistic-lake-qa-v5/dominion-iris/frame-000052.png`.
 
 The rebuild uses shared Blender-baked age-appropriate skin micro normals and
 surface response, physical1.25mm random-walk skin scattering, a tear-film eye
@@ -53,17 +64,19 @@ ordinary human shore.
 
 Saved quality:192samples, adaptive threshold.008, denoising,10bounces,
 8transmission bounces,12transparent bounces and0.5shutter motion blur,1080p24fps.
-The four files total244,967,499bytes. All used images are packed. The root agent
+The four files total244,963,575bytes. All used images are packed. The root agent
 rendered/reviewed earlier RTX revisions: revision1 exposed eye, hair, bare bank,
 grass and floating-foot defects; revision2 improved the sclera and its wide
 shore/forest/scale were accepted for this pass. Revision3 established visible
 native strand response but exposed overly brown raised guide bands. Revision4
 changes only that groom. The root agent's actual RTX Arrival165 review accepted
 revision4 for this pass: the raised ledge/brown layer are fixed, and ordinary
-eyes/skin/cloth/bench are coherent. Hold73, Peace168 and Dominion52 rendered QA,
-full motion/codec verification
-and runtime integration remain separate. No production frames are authored by
-these build commands.
+eyes/skin/cloth/bench are coherent. Hold73, Peace168 and the corrected Dominion52
+also passed the declared keyframe review. The pinned production job is
+`Logs/full-cinematic-renders/realistic-finales-production-20261127`; it includes
+these four films and the revised train departure. Full motion, codec and native
+runtime verification remain pending. The authoring commands below do not render
+production frames.
 
 `audit.json` verifies saved packing/settings, unchanged rig animation and
 branch isolation, native hair data and measured ground contact. Hold's rig
