@@ -59,7 +59,7 @@
     },
     "native": {
       "path": "Logs/realism-native-stage/run.py",
-      "sha256": "e16bf17b389f0ddbe35c124f85c7bc4f58c54d131873352e0a722a62cad97b91"
+      "sha256": "5ac4a526fd998355c0a2200022bb84bfe921d4087669a0e40505e781b25d22c9"
     },
     "private_focus": {
       "path": "Logs/realism-native-stage/focus_owned.py",
@@ -69,6 +69,12 @@
       "path": "Logs/realism-user-launch-stage/launch.py",
       "sha256": "a67ae91e886a49185b606fb24c6d89f271ab35dc3f1dd15a9a4ff4c9b290d976",
       "validation": "AST syntax and root source review only; no launcher invocation. Requires all6 exact native jobs and unchanged accepted source/candidate, then ordinary desktop play.sh with normal profile and inherited GPU lock."
+    },
+    "process_gpu_memory_parser": {
+      "path": "Logs/realism-native-stage/pmon.py",
+      "sha256": "d99b7e2f9ec94a6f897545d5ba26c144fc34616f91c287e164b016b5c7abd86e",
+      "calibration": "Logs/realism-native-stage/pmon-render-calibration-v1/receipt.json",
+      "scope": "Actual3-sample Blender PID calibration only, not native-game measurement. Future benchmark logs report exact owned-PID framebuffer MB, preserve unavailable metrics, and keep whole-GPU data separate."
     }
   },
   "limits": "No new candidate or complete new-movie/native-gameplay/performance pass. Only declared source/API/keyframe/static-baked character and queued-production scopes are accepted. Existing26 missions unchanged; Exchange stash remains parked.",
