@@ -150,13 +150,23 @@ namespace Parasite.Missions
             var westPatrol = Patrol("Northline west signal patrol", new Vector3(-33, .15f, 30), new Vector3(-27, .15f, 30), new Vector3(-27, .15f, 44), new Vector3(-33, .15f, 44));
             Spawn("Northline southern crossing guard", Profession.Guard, new Vector3(30, .15f, -35), 2403, NpcBehaviour.Patrol, southPatrol);
             Spawn("Northline signal approach guard", Profession.Guard, new Vector3(-33, .15f, 44), 2601, NpcBehaviour.Patrol, westPatrol);
-            void Sign(string text, Vector3 at, float yaw = 180)
-            { var item = new GameObject("Northline sign " + text); item.transform.SetParent(root, false); item.transform.localPosition = at; item.transform.localRotation = Quaternion.Euler(0, yaw, 0); var label = item.AddComponent<TextMesh>(); label.text = text; label.font = Resources.Load<Font>("UI/Rajdhani-Medium"); label.fontSize = 64; label.characterSize = .10f; label.anchor = TextAnchor.MiddleCenter; label.alignment = TextAlignment.Center; label.color = new Color(.96f, .81f, .45f); }
+            // TextMesh's front faces local -Z. The first three signs are read on the northbound approach.
+            void Sign(string text, Vector3 at, float yaw = 0)
+            {
+                var item = new GameObject("Northline sign " + text); item.transform.SetParent(root, false);
+                item.transform.localPosition = at; item.transform.localRotation = Quaternion.Euler(0, yaw, 0);
+                var label = item.AddComponent<TextMesh>(); label.text = text;
+                var font = Resources.Load<Font>("UI/Rajdhani-Medium");
+                label.font = font ? font : Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                label.fontSize = 64; label.characterSize = .10f; label.anchor = TextAnchor.MiddleCenter;
+                label.alignment = TextAlignment.Center; label.color = new Color(.96f, .81f, .45f);
+                item.AddComponent<RailWorldLabelMaterial>();
+            }
             Sign("NORTHLINE\nREQUEST BEFORE CROSSING", new Vector3(-8, 2.4f, -25.8f));
             Sign(RailCampaign.Peace ? "MEDICAL COLD STORE\nA LEFT / B RIGHT" : "RELAY CARRIAGE\nA RIGHT / B LEFT", new Vector3(-30, 2.5f, 8));
             Sign("MAINTENANCE: HOLD CRANK\nTAB / FREE BODY: LOW DUCT", new Vector3(-9, 2.6f, 34));
-            Sign("INSIDE RELEASE\nE / FREE BODY / RETURN ONLY", new Vector3(4, 1.5f, 35.8f));
-            Sign("BOTH FREE BODIES ABOARD\nE TO DEPART", new Vector3(4.5f, 2.4f, 45));
+            Sign("INSIDE RELEASE\nE / FREE BODY / RETURN ONLY", new Vector3(4, 1.5f, 35.8f), 180);
+            Sign("BOTH FREE BODIES ABOARD\nE TO DEPART", new Vector3(4.5f, 2.4f, 45), 180);
             // Validate the complete eleven-model kit before hiding a single captured provisional face.
             // Physical primitive parents stay scaled for collision/navigation; the owned art child cancels only that scale.
             void Hero(string asset, Transform physicalParent, Vector3 metreOffset, params Transform[] except)

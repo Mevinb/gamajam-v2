@@ -1,0 +1,74 @@
+{
+  "status": "OWNERSHIP_AND_ISOLATED_RENDERED_LABEL_PASS_COACH_STRICT_WARNING_REMAINS",
+  "changes": [
+    "Five Northline signs bind the actual Rajdhani font atlas through owned Parasite/WorldText materials, with atlas-refresh and release/restore semantics.",
+    "First three signs face the south approach; inside-release and carriage signs retain their north-facing side. No geometry/collider changes."
+  ],
+  "runs": [
+    {
+      "path": "Logs/northline-label-gpu-20261126.xml",
+      "sha256": "c02e3d37fd66027037ed0a067f10feacf7d0688ceab2234e345da293f6b89f62",
+      "result": "Failed(Child)",
+      "passed": 0,
+      "failed": 1,
+      "seconds": 0.4439184,
+      "failures": [
+        {
+          "name": "ActualFontIsVisibleFromFrontCulledFromBackAndBlockedByOpaqueGeometry",
+          "message": "  Opaque scene geometry must hide the text through depth testing.\n  Expected: less than or equal to 3\n  But was:  43760\n"
+        }
+      ]
+    },
+    {
+      "path": "Logs/northline-label-gpu-20261126b.xml",
+      "sha256": "68c45f900fc0b7e63c86ddccad053b8ab53657142611cd6dbdd1f5920128f6d9",
+      "result": "Passed",
+      "passed": 1,
+      "failed": 0,
+      "seconds": 0.4477098,
+      "failures": []
+    },
+    {
+      "path": "Logs/northline-coach-labels-gpu-20261126.xml",
+      "sha256": "cec2b7f1097ec70d7d9605d1f4c484d92b25dffc36d054cad5cc57f0968c0bc0",
+      "result": "Failed(Child)",
+      "passed": 0,
+      "failed": 2,
+      "seconds": 28.7294021,
+      "failures": [
+        {
+          "name": "ActualSeatBlocksNormalFreeMovementWhileOriginalAisleAndControlRemainReachable",
+          "message": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+        },
+        {
+          "name": "ActualGlassTransmitsAnOwnedMarkerAndCoachViewsAreCaptured",
+          "message": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+        }
+      ]
+    }
+  ],
+  "paired_pixels": {
+    "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "backend": "Vulkan",
+    "metric": "Same-camera, same-frame text-on/text-off pairs; count pixels with maximum absolute RGB-channel difference greater than 20.",
+    "width": 640,
+    "height": 320,
+    "rgbDifferenceThreshold": 20,
+    "frontChangedPixels": 14043,
+    "backChangedPixels": 0,
+    "occludedChangedPixels": 0
+  },
+  "original_metric_failure": "Whole-image brightness counted production atmosphere outside a fully black occluder:0 bright pixels inside100300px wall,43760 outside. Corrected metric compares same-frame text-on/off; atmosphere and quality unchanged.",
+  "coach_images": "Logs/coach-rendered-review-20261126T0804492564310Z",
+  "coach_review": "Exterior/aisle PNGs inspected: mirrored glyph artifact no longer renders through the carriage. Actual glass functional comparison completed. Both strict tests still fail on graphics ring-buffer warnings; no suppression or quality cut.",
+  "coach_measurement": {
+    "transmittedGreenDominance": 0.225634351,
+    "opacityControlGreenDominance": -0.0823828653,
+    "width": 1600,
+    "height": 900
+  },
+  "limits": [
+    "Isolated legibility/depth and ownership proven, not every normal gameplay approach or final performance.",
+    "No new player acceptance yet. Broader expansion and graphics work remain active."
+  ]
+}
