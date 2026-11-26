@@ -19,8 +19,16 @@ and new packed finale sources under `ArtSource/RealisticFinales`. Source and CPU
 The initial RTX lake QA images exposed dark eyes, solid-looking hair and an under-dressed shoreline; those are being revised.
 All 25 characters and the five-body/taxi-sign vehicle kit import successfully. Generated city, character and vehicle
 views render on RTX/Vulkan with no shader compiler errors. Real-time hair now blends the brow/lash row while retaining
-opaque scalp cores and writing forward depth. The neutral humanoid jaw/default retarget offset and an isolated oral
-anatomy pilot are under investigation; the pilot has not been promoted into Assets.
+opaque scalp cores and writing forward depth. The neutral humanoid jaw/default retarget offset is corrected at import:
+four actual Animator regressions pass, with authored/custom curves and additive gestures protected. The initial2/3
+failure and ordered callback observation are retained under WORK Logs. Fresh ordinary-avatar portraits show closed lips.
+The LakeGirl-only oral pilot is installed for testing, with all16GUIDs and528 other-character files preserved, but its
+first Unity render exposed a100x FBX local-unit representation mismatch. It is NOT accepted or rolled out; fix the
+export representation and validate actual head/BakeMesh dimensions before building a player from this checkout.
+
+The amoeba gel calibration now passes actual Vulkan inactive/active/infection visual API checks with HDR, bloom and
+SSR enabled. Internal parts remain visible and feedback grows with activity/infection. This is an edit-mode visual
+fixture, not a native gameplay/possession proof. WORK `Logs/realism-gel-state-review-v1/receipt.json` records the scope.
 
 Generated city meshes now use binary assets. Two actual regenerations preserve all 2,334 City and 937 Bootstrap
 renderer/collider payloads exactly; the second also passes existing GUID/main-local-ID reuse checks and eliminates
@@ -36,7 +44,7 @@ Lake v4 uses a surface-conforming native hair groom and its Arrival165 RTX portr
 remaining branch keyframes/full production are pending. Train v4 has a sealed curved shell, readable lit interior,
 standard-gauge running gear and revised bogie shot; its declared RTX views have been reviewed. All finale sources
 remain under `ArtSource/RealisticFinales`; the current train source ends in `_v4.blend`.
-Production rendering/encoding, native media acceptance and the new Linux candidate are still in progress.
+Full finale production has started at WORK `Logs/full-cinematic-renders/realistic-finales-production-20261127` (1,176 frames,192samples,1080p24,OptiX4050,OIDNGPU). Source contract and reviewed keyframes are pinned there; LakeArrival is the first running film. Use its `<film>/STOP` and wait for actual Blender/supervisor completion before any Unity graphics job; remove STOP before the identical render command resumes. The driver inherits the global Unity lock. Production encoding, native media acceptance and the new Linux candidate are still in progress.
 Root added optional Northline film presentation without replacing the actual coach/boarder/endpoint authority.
 Its new 14-second film must be produced and decoded before accepting this change.
 

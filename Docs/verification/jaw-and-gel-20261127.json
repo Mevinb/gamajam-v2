@@ -1,0 +1,28 @@
+{
+  "status": "EDITOR_IMPORT_AND_VULKAN_REVIEW_PASS_NATIVE_PENDING",
+  "jaw": {
+    "evidence": "Logs/realism-neutral-jaw-v5-tests.xml",
+    "sha256": "87da8342f8914d3451c52a425d9f20d181fdcd2e88dabdc8e92bb2f57528a799",
+    "passed": 4,
+    "failed": 0,
+    "scope": "Actual four-avatar Animator idle/gesture and authored-curve controls; source-proven generated-zero replacement only",
+    "prior_failed_evidence": "Logs/realism-neutral-jaw-tests.xml"
+  },
+  "gel": {
+    "evidence": "Logs/realism-gel-state-review-v1/receipt.json",
+    "sha256": "94a5e9bc570fe3f3e64dd7398440a67cb49f2f9b2fd7482dfa8ecc966cab5ba8",
+    "states": [
+      "inactive",
+      "active",
+      "infection"
+    ],
+    "quality_features_retained": [
+      "HDR",
+      "bloom",
+      "SSR",
+      "shader/depth/shadow passes"
+    ],
+    "scope": "Edit-mode public-API visual fixture and actual Vulkan shader/pixel review; no native gameplay or FPS claim"
+  },
+  "open": "LakeGirl oral pilot unit representation currently being corrected separately; do not inherit these passes as oral-pilot acceptance."
+}

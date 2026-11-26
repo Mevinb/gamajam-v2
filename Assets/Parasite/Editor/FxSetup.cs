@@ -35,13 +35,16 @@ namespace Parasite.EditorTools
             {
                 var m = Ensure("AmoebaMaterial", amoebaShader);
                 m.renderQueue = 3050;   // after the other transparents: the jelly refracts the scene behind it
-                m.SetFloat("_Alpha", 0.34f);
-                m.SetFloat("_Emission", 0.42f);
-                m.SetFloat("_Refraction", 0.07f);
-                m.SetFloat("_RefractWeight", 0.85f);
-                m.SetColor("_AbsorbColor", new Color(0.16f, 0.7f, 0.22f, 1f));
-                m.SetColor("_BaseColor", new Color(0.26f, 0.9f, 0.32f, 1f));
-                m.SetColor("_DeepColor", new Color(0.015f, 0.16f, 0.05f, 1f));
+                m.SetFloat("_Alpha", 0.26f);
+                m.SetFloat("_Emission", 0.12f);
+                m.SetFloat("_Refraction", 0.012f);
+                m.SetFloat("_RefractWeight", 0.9f);
+                m.SetColor("_AbsorbColor", new Color(0.52f, 0.84f, 0.64f, 1f));
+                m.SetColor("_BaseColor", new Color(0.16f, 0.42f, 0.24f, 1f));
+                m.SetColor("_DeepColor", new Color(0.02f, 0.075f, 0.035f, 1f));
+                m.SetColor("_RimColor", new Color(0.16f, 0.40f, 0.24f, 1f));
+                m.SetColor("_SSSColor", new Color(0.18f, 0.38f, 0.22f, 1f));
+                m.SetColor("_CoreColor", new Color(0.12f, 0.32f, 0.18f, 1f));
                 m.SetFloat("_Gloss", 96f);
                 m.SetFloat("_PodAmount", 0.09f);
                 EditorUtility.SetDirty(m);
@@ -49,6 +52,7 @@ namespace Parasite.EditorTools
             if (nucleusShader)
             {
                 var m = Ensure("AmoebaNucleus", nucleusShader);
+                m.SetFloat("_RadianceScale", 0.18f);
                 EditorUtility.SetDirty(m);
             }
             var water = LoadShader("Assets/Parasite/Shaders/GroundWater.shader", FxMaterials.SlimeShader);

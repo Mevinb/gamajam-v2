@@ -8,17 +8,17 @@ Shader "Parasite/Amoeba"
 {
     Properties
     {
-        [HDR] _BaseColor ("Jelly Colour", Color) = (0.30, 0.95, 0.35, 1)
-        _DeepColor ("Deep Colour", Color) = (0.02, 0.22, 0.06, 1)
-        [HDR] _RimColor ("Rim Colour", Color) = (0.55, 1.4, 0.55, 1)
+        [HDR] _BaseColor ("Jelly Colour", Color) = (0.16, 0.42, 0.24, 1)
+        _DeepColor ("Deep Colour", Color) = (0.02, 0.075, 0.035, 1)
+        [HDR] _RimColor ("Rim Colour", Color) = (0.16, 0.40, 0.24, 1)
         _RimPower ("Rim Power", Range(0.5, 8)) = 2.6
-        [HDR] _SSSColor ("Subsurface Colour", Color) = (0.45, 1.2, 0.30, 1)
-        [HDR] _CoreColor ("Inner Glow Colour", Color) = (0.8, 1.6, 0.5, 1)
-        _AbsorbColor ("Absorption Tint", Color) = (0.18, 0.75, 0.24, 1)
-        _Refraction ("Refraction", Range(0, 0.2)) = 0.06
-        _RefractWeight ("Refraction Weight", Range(0, 1)) = 0.75
-        _Emission ("Emission", Range(0, 4)) = 0.35
-        _Alpha ("Alpha (centre)", Range(0, 1)) = 0.62
+        [HDR] _SSSColor ("Subsurface Colour", Color) = (0.18, 0.38, 0.22, 1)
+        [HDR] _CoreColor ("Inner Glow Colour", Color) = (0.12, 0.32, 0.18, 1)
+        _AbsorbColor ("Absorption Tint", Color) = (0.52, 0.84, 0.64, 1)
+        _Refraction ("Refraction", Range(0, 0.2)) = 0.012
+        _RefractWeight ("Refraction Weight", Range(0, 1)) = 0.9
+        _Emission ("Emission", Range(0, 4)) = 0.12
+        _Alpha ("Alpha (centre)", Range(0, 1)) = 0.26
         _Gloss ("Gloss", Range(4, 256)) = 72
         _WobbleAmp ("Wobble Amplitude", Range(0, 0.2)) = 0.045
         _WobbleFreq ("Wobble Frequency", Range(0.5, 12)) = 4.5
@@ -196,7 +196,13 @@ Shader "Parasite/Amoeba"
                 half wrap = saturate((dot(N, L) + 0.6h) / 1.6h);
                 half3 H = normalize(L + V);
                 half nh = saturate(dot(N, H));
-                half spec = pow(nh, gloss) * 1.8h + pow(nh, max(4.0h, gloss * 0.22h)) * 0.4h;
+                // IOR 1.37 wet gel: F0 ~= 0.0244, not an unbounded white additive lobe.
+                // Retain both highlight widths, with normalized Blinn energy and dielectric Fresnel.
+                half wideGloss = max(4.0h, gloss * 0.22h);
+                half specSharp = pow(nh, gloss) * (gloss + 2.0h) / (8.0h * PI);
+                half specWide = pow(nh, wideGloss) * (wideGloss + 2.0h) / (8.0h * PI);
+                half specF = 0.0244h + 0.9756h * pow(1.0h - saturate(dot(V, H)), 5.0h);
+                half spec = (specSharp * 0.85h + specWide * 0.15h) * specF;
                 half sss = pow(saturate(dot(V, -normalize(L + N * 0.4h))), 2.6h) * 1.1h;
                 return col * (wrap * _BaseColor.rgb * 0.55h + _SSSColor.rgb * sss * 0.8h + spec);
             }
@@ -256,7 +262,7 @@ Shader "Parasite/Amoeba"
 
                 // wet environment reflection
                 half3 R = reflect(-V, N);
-                half envF = 0.04h + 0.96h * pow(rimBase, 5.0h);
+                half envF = 0.0244h + 0.9756h * pow(rimBase, 5.0h);
                 half3 env = GlossyEnvironmentReflection(R, input.positionWS, 0.06h, 1.0h, inputData.normalizedScreenSpaceUV) * envF;
 
                 // bioluminescent core + cellular glow
@@ -270,12 +276,12 @@ Shader "Parasite/Amoeba"
                 surf += _CoreColor.rgb * core * (_Emission * 1.1h) * act * (0.75h + 0.5h * cells);
                 surf += _SSSColor.rgb * cells * thick * 0.35h * act * _Emission;
                 surf += _BaseColor.rgb * _Emission * act * 0.35h * (0.8h + 0.2h * pulse);
-                surf += rimCol * fresnel * (0.8h + 0.8h * act);
+                surf += rimCol * fresnel * _Emission * (0.12h + 0.18h * act);
                 surf += _RimColor.rgb * (band * 1.5h + _InfectPulse * 0.6h);
                 surf += env;
 
                 // premultiplied composite: surface over refracted background, a little real framebuffer shows through
-                half a = saturate(_Alpha * (0.55h + 0.45h * thick) + fresnel * 0.45h + _InfectPulse * 0.15h);
+                half a = saturate(_Alpha * (0.55h + 0.45h * thick) + envF * (1.0h - _Alpha) + _InfectPulse * 0.15h);
                 half r = _RefractWeight;
                 half3 col = surf * a + behind * (1.0h - a) * r;
                 col = MixFog(col, input.fogFactor);

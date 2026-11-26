@@ -29,6 +29,7 @@ Material:
     - _Phase: 0
     - _PulseAmount: 0.45
     - _PulseRate: 3
+    - _RadianceScale: 0.18
     m_Colors:
     - _Color: {r: 0.75, g: 1.8, b: 0.45, a: 1}
     - _EdgeColor: {r: 0.049999982, g: 0.34999996, b: 0.079999976, a: 1}

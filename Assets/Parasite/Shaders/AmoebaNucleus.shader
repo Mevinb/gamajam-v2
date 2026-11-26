@@ -7,6 +7,7 @@ Shader "Parasite/AmoebaNucleus"
         [HDR] _Color ("Glow Colour", Color) = (0.75, 1.8, 0.45, 1)
         _EdgeColor ("Edge Colour", Color) = (0.05, 0.35, 0.08, 1)
         _Intensity ("Intensity", Range(0, 8)) = 1.6
+        _RadianceScale ("Bioluminescence Radiance Scale", Range(0, 1)) = 0.18
         _PulseRate ("Pulse Rate", Range(0, 12)) = 3.0
         _PulseAmount ("Pulse Amount", Range(0, 1)) = 0.45
         _Phase ("Phase", Float) = 0
@@ -24,6 +25,7 @@ Shader "Parasite/AmoebaNucleus"
             half4 _Color;
             half4 _EdgeColor;
             half _Intensity;
+            half _RadianceScale;
             float _PulseRate;
             half _PulseAmount;
             float _Phase;
@@ -117,6 +119,7 @@ Shader "Parasite/AmoebaNucleus"
                 half facing = saturate(dot(N, V));
                 half pulse = 1.0h + _PulseAmount * sin(_Time.y * _PulseRate + _Phase);
                 half3 col = lerp(_EdgeColor.rgb, _Color.rgb * _Intensity * pulse, pow(facing, 1.5h));
+                col *= _RadianceScale;
                 col = MixFog(col, input.fogFactor);
                 return half4(col, 1);
             }

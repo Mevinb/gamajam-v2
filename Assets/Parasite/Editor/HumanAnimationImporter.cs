@@ -16,7 +16,7 @@ namespace Parasite.EditorTools
     {
         public const string Folder = "Assets/Parasite/Art/Characters/Animations/";
         public const string PreviewFolder = Folder + "Preview/";
-        const uint Version = 3;
+        const uint Version = 5;
 
         public override uint GetVersion() => Version;
 
@@ -59,6 +59,88 @@ namespace Parasite.EditorTools
             mi.animationScaleError = 0.5f;
         }
 
+        // The project UAL source has no jaw bone. Humanoid retargeting then
+        // supplies muscle 0, which is 10.2855 degrees from the MPFB closed rest on the
+        // four measured avatars. This is an import default, never a runtime clamp.
+        // Additive gestures retain an absent/zero jaw delta rather than adding
+        // another full closure over the base layer.
+        public static bool SupplyNeutralJawCurve(AnimationClip clip, bool sourceHasJaw, bool additive)
+        {
+            if (!clip || !clip.humanMotion || sourceHasJaw || additive) return false;
+            foreach (var binding in AnimationUtility.GetCurveBindings(clip))
+            {
+                bool muscle = binding.type == typeof(Animator) && binding.propertyName.StartsWith("Jaw ", System.StringComparison.Ordinal);
+                string bone = binding.path.Substring(binding.path.LastIndexOf('/') + 1);
+                bool transform = binding.type == typeof(Transform) && bone.IndexOf("jaw", System.StringComparison.OrdinalIgnoreCase) >= 0;
+                if (muscle || transform) return false; // Preserve every explicitly authored jaw channel, including constant curves.
+            }
+            var jaw = EditorCurveBinding.FloatCurve("", typeof(Animator), "Jaw Close");
+            AnimationUtility.SetEditorCurve(clip, jaw, AnimationCurve.Constant(0, clip.length, 1f));
+            return true;
+        }
+
+        static bool IsGeneratedZero(AnimationCurve curve, float length)
+        {
+            if (curve == null || curve.length != 2) return false;
+            var keys = curve.keys;
+            if (keys[0].time != 0 || Mathf.Abs(keys[1].time - length) > .00001f) return false;
+            foreach (var key in keys) if (key.value != 0) return false;
+            // Two-key cubic/weighted curves with zero endpoints can still vary.
+            // Test the interval, including stepped constant representations.
+            return curve.Evaluate(length * .25f) == 0 && curve.Evaluate(length * .5f) == 0 && curve.Evaluate(length * .75f) == 0;
+        }
+
+        public static bool HasExplicitJawImportCurve(ModelImporterClipAnimation[] definitions)
+        {
+            foreach (var definition in definitions ?? System.Array.Empty<ModelImporterClipAnimation>())
+                foreach (var curve in definition.curves ?? System.Array.Empty<ClipAnimationInfoCurve>())
+                    if (!string.IsNullOrEmpty(curve.name) && curve.name.IndexOf("jaw", System.StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            return false;
+        }
+
+        public static void RetainConfiguredCurves(ModelImporterClipAnimation destination, ModelImporterClipAnimation[] configured, string name)
+        {
+            var previous = System.Array.Find(configured ?? System.Array.Empty<ModelImporterClipAnimation>(), clip => clip.name == name);
+            if (previous == null)
+                previous = System.Array.Find(configured ?? System.Array.Empty<ModelImporterClipAnimation>(), clip => clip.takeName == destination.takeName);
+            if (previous?.curves != null && previous.curves.Length > 0) destination.curves = previous.curves;
+        }
+
+        // Unity synthesizes this exact zero pair even when the source has no
+        // jaw. Curve shape alone does not prove authorship: consult source/raw
+        // bones and explicit importer curves before replacing generated defaults.
+        public static bool SupplyNeutralJawCurveFromSource(AnimationClip clip, bool mappedJaw, bool rawJaw, bool customJaw, bool additive)
+        {
+            if (!clip || !clip.humanMotion || mappedJaw || rawJaw || customJaw || additive) return false;
+            int close = 0, side = 0, total = 0;
+            foreach (var binding in AnimationUtility.GetCurveBindings(clip))
+            {
+                string bone = binding.path.Substring(binding.path.LastIndexOf('/') + 1);
+                if (binding.type == typeof(Transform) && bone.IndexOf("jaw", System.StringComparison.OrdinalIgnoreCase) >= 0) return false;
+                if (binding.type != typeof(Animator) || !binding.propertyName.StartsWith("Jaw ", System.StringComparison.Ordinal)) continue;
+                total++;
+                if (binding.path != "" || !IsGeneratedZero(AnimationUtility.GetEditorCurve(clip, binding), clip.length)) return false;
+                if (binding.propertyName == "Jaw Close") close++;
+                else if (binding.propertyName == "Jaw Left-Right") side++;
+                else return false;
+            }
+            if (total == 0) return SupplyNeutralJawCurve(clip, false, false);
+            if (close != 1 || side != 1 || total != 2) return false;
+            AnimationUtility.SetEditorCurve(clip, EditorCurveBinding.FloatCurve("", typeof(Animator), "Jaw Close"), AnimationCurve.Constant(0, clip.length, 1f));
+            return true; // Preserve the generated lateral zero; do not add lateral motion.
+        }
+
+        void OnPostprocessAnimation(GameObject root, AnimationClip clip)
+        {
+            if (!IsOurs(assetPath) || IsPreview(assetPath)) return;
+            var mi = (ModelImporter)assetImporter;
+            bool mappedJaw = System.Array.Exists(mi.humanDescription.human ?? System.Array.Empty<HumanBone>(), bone => bone.humanName == "Jaw");
+            bool rawJaw = root && System.Array.Exists(root.GetComponentsInChildren<Transform>(true), bone => bone.name.IndexOf("jaw", System.StringComparison.OrdinalIgnoreCase) >= 0);
+            bool customJaw = HasExplicitJawImportCurve(mi.clipAnimations);
+            bool additive = Path.GetFileNameWithoutExtension(assetPath).StartsWith("Gesture_", System.StringComparison.Ordinal);
+            SupplyNeutralJawCurveFromSource(clip, mappedJaw, rawJaw, customJaw, additive);
+        }
+
         void OnPreprocessAnimation()
         {
             if (!IsOurs(assetPath) || IsPreview(assetPath)) return;
@@ -72,6 +154,9 @@ namespace Parasite.EditorTools
             string name = Path.GetFileNameWithoutExtension(assetPath);
             bool loop = IsLoop(name);
             var c = defs[0];
+            // Inspector/custom animation curves are authored input, including
+            // intentional jaw zeros. Keep them when rebuilding clip policies.
+            RetainConfiguredCurves(c, mi.clipAnimations, name);
             c.name = name;
             c.loopTime = loop;
             c.loopPose = loop;

@@ -13,6 +13,7 @@ namespace Parasite.FX
     public class AmoebaVisual : MonoBehaviour
     {
         public float radius = 0.38f;
+        const float PointLightGain = 0.24f;
 
         Transform pivot, body, nucleus;
         Transform[] organelles;
@@ -127,7 +128,7 @@ namespace Parasite.FX
             glow.type = LightType.Point;
             glow.color = new Color(0.28f, 1.0f, 0.42f);
             glow.range = 4.2f;
-            glow.intensity = 1.6f;
+            glow.intensity = 1.6f * PointLightGain;
             glow.shadows = LightShadows.None;
             glow.renderMode = LightRenderMode.Auto;
 
@@ -349,7 +350,7 @@ namespace Parasite.FX
             // Enhanced light emission response
             if (glow)
             {
-                glow.intensity = Mathf.Lerp(0.55f, 1.85f, activity) * (0.9f + 0.2f * pulse01) + infect * 2.2f;
+                glow.intensity = (Mathf.Lerp(0.55f, 1.85f, activity) * (0.9f + 0.2f * pulse01) + infect * 2.2f) * PointLightGain;
                 glow.range = Mathf.Lerp(3.4f, 4.5f, activity) + infect * 1.5f;
             }
         }
