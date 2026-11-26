@@ -1,0 +1,11 @@
+# Northline detailed coach source
+
+This separately versioned source package contains the actual Blender-authored coach upgrade, its three original2K PBR trim maps and eleven exports. The ten noncoach exports are exact copies of the frozen NorthlineRail baseline. The existing runtime Resources kit is unchanged; this package is not integrated into the running0.7 preview.
+
+The coach has11,144triangles,198closed components and ten closed thin glass panes occupying actual window openings. The complete kit has15,972triangles. Independent Blender4.5.16 FBX round-trip verifies bounds, winding/normals, UV bands, two material slots, ten aperture rays and packed texture/material identity. `cpu-verification.json` records the named CPU result. It proves no game lighting, runtime material, collision, native-input, VRAM or FPS result.
+
+The unchanged outer envelope is(-1.602,.15,-7.0095) to(1.602,3.29,7.0095)m. The deck, west door, control zone and motion pivot retain their original coordinates. Eight interior benches require the eight explicit compound boxes in `coach-seat-layout.json` before runtime integration; do not ship the visible seats as noncolliding decorations. Other mesh imports remain collider-free.
+
+`Textures/RailCoach_A.png` is sRGB albedo; N is a linear tangent normal; M is linear R=metallic/A=smoothness. The eight bands separate paint, enamel, steel, wheel contact/oxidation, rubber, floor tread, vinyl and safety yellow. Blender glass uses Principled transmission/IOR1.5. The proposed two-slot URP transparent material/import path remains unimplemented and unverified; it will approximate transmission without adding gameplay hardware ray tracing.
+
+Reproduce into a fresh project Logs directory with Blender4.5 background/two threads and `Tools/blender/northline/coach_upgrade.py -- --project <project> --out <fresh-Logs-output> --go`, then independently run `verify_coach_upgrade.py -- --project <project> --source <that-output> --out <fresh-Logs-verification>`. The scripts default to a dry plan, never render, validate original source pins and never overwrite the canonical NorthlineRail source. Individual file hashes identify this output; byte-identical exporter metadata across different execution times is not claimed.

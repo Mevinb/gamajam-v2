@@ -1,0 +1,40 @@
+{
+  "status": "CPU_GEOMETRY_ONLY_PASS",
+  "source_manifest_sha256": "a8e0648bf9a061baa356c404bdb677ad97462ebdecc736a6036a44932676b204",
+  "unchanged_exports": [
+    "RailTram",
+    "RailTransferCradle",
+    "RailControl",
+    "RailLowSignal",
+    "RailPointBlade",
+    "RailCrossingBarrier",
+    "RailServiceGate",
+    "RailPlatformGate",
+    "RailPortalGate",
+    "RailBoardingRamp"
+  ],
+  "triangles": 11144,
+  "glass_triangles": 120,
+  "closed_components": 198,
+  "glass_closed_components": 10,
+  "minimum_signed_volume": 8.55320978795741e-05,
+  "minimum_corner_normal_dot": 0.47006645798683167,
+  "actual_bounds": [
+    [
+      -1.6019999980926514,
+      0.14999963343143463,
+      -7.009500026702881
+    ],
+    [
+      1.6019999980926514,
+      3.2900004386901855,
+      7.009500026702881
+    ]
+  ],
+  "aperture_probes": 10,
+  "renders": 0,
+  "limits": [
+    "No Unity import/material/GPU/in-game appearance/physics/nav/LOS/seat-input result.",
+    "Runtime eight-seat collider/layout proposal remains separately reviewed and unrun."
+  ]
+}

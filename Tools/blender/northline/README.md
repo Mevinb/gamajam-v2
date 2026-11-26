@@ -44,3 +44,18 @@ To inspect the promoted source instead, pass `--source "$PWD/ArtSource/Northline
 The independently executed ancestor, `Logs/rail-review-stage/review_and_verify.py`, passed all eleven FBX checks and four CPU reviews. The tracked copy changes only the accepted promoted-input path and explicit reporting of omitted original author PNGs. Those portability branches are syntax-checked, not separately run through Blender during the active Editor diagnostic. Geometry checks and review code are otherwise unchanged. Reproduction proves geometry/UV/material contracts; Blender file metadata, relative external image paths, output paths and timing are not promised to be byte-identical.
 
 The established gate/booth handedness boundary, exact bounds, material provenance and remaining Unity/native scope are documented in [the source package](../../../ArtSource/NorthlineRail/README.md). No map regeneration, runtime collider import or source-asset material mutation is performed.
+
+
+## Coach-only manufactured detail extension
+
+The separate `coach_upgrade.py` is dry by default and pins the original packed source/manifest. Its companion `coach_geometry.py` defines real framed apertures, flanged wheel/bearing/brake/spring details and eight reachable bench fittings; `coach_surfaces.py` defines original 2K rail paint/steel/rubber/vinyl maps. It exports only the upgraded coach and copies the other ten FBXs byte for byte. `verify_coach_upgrade.py` is a separate strict no-render CPU verifier for this schema; the original source author/verifier and historical results are retained.
+
+This extension requires reviewed explicit two-slot opaque/glass runtime import and binding contracts, plus eight intentional runtime seat colliders and actual movement/LOS/departure/lifecycle acceptance. It does not modify those live systems or imply graphics/performance acceptance. Use Root-reviewed fresh Logs paths, isolated user config/cache, two threads and an owned-child watchdog. No Blender authoring may start beside an active native guard; rendered playtests retain GPU ownership. There is no render option in either extension script.
+
+```sh
+# First: stdlib-only dry plan, no Blender or outputs.
+python3 Tools/blender/northline/coach_upgrade.py --project "$PWD" --out "$PWD/Logs/coach-unused-dry"
+# Later, only after authoring approval/serialization, with isolated environment:
+# blender --background --threads 2 --python-exit-code 1 --python Tools/blender/northline/coach_upgrade.py -- --project "$PWD" --out "$fresh_author_out" --go
+# blender --background --threads 2 --python-exit-code 1 --python Tools/blender/northline/verify_coach_upgrade.py -- --project "$PWD" --source "$fresh_author_out" --out "$fresh_verify_out"
+```

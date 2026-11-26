@@ -1,0 +1,359 @@
+{
+  "schema": 2,
+  "status": "SOURCE_ONLY_RUNTIME_AND_VISUAL_ACCEPTANCE_PENDING",
+  "baseline_manifest_sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
+  "author_script_sha256": "cd2614bb26a669df91c150a3a36d5a3d384786333a9610dd159e6d98f5b6ad9c",
+  "source_atlas": {
+    "gate_blend": {
+      "path": "ArtSource/CityGatePilot/CityGatePilot.blend",
+      "sha256": "9f088f150a96b206355489abbc63bd279912398c4db25da0a93c0662b13b048d"
+    },
+    "textures": {
+      "A": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_A.png",
+        "sha256": "5bcbce1ec0eb19b0aa709b2ce75d571037fa0dc029a25fd9a74e0cf187976006"
+      },
+      "N": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_N.png",
+        "sha256": "60882f3511d1c629881e4a0bb9787331efad59700895bdeea67fd343ec323a64"
+      },
+      "M": {
+        "path": "ArtSource/CityGatePilot/Textures/CityGatePilot_M.png",
+        "sha256": "c075395e26934f8ad21990ed9340c9b1548f78cc9068ecf716c9bc59f3b83cfb"
+      }
+    }
+  },
+  "exports": [
+    {
+      "name": "RailTram",
+      "file": "Exports/RailTram.fbx",
+      "vertices": 936,
+      "triangles": 1724,
+      "bounds_unity": [
+        [
+          -3.0,
+          0.02000001072883606,
+          -1.2000000476837158
+        ],
+        [
+          3.0,
+          1.7899999618530273,
+          1.2000000476837158
+        ]
+      ],
+      "closed_solids": 37,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailTransferCradle",
+      "file": "Exports/RailTransferCradle.fbx",
+      "vertices": 416,
+      "triangles": 736,
+      "bounds_unity": [
+        [
+          -1.5,
+          0.019999995827674866,
+          -1.0
+        ],
+        [
+          1.5,
+          1.4649999141693115,
+          1.0
+        ]
+      ],
+      "closed_solids": 24,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailControl",
+      "file": "Exports/RailControl.fbx",
+      "vertices": 256,
+      "triangles": 464,
+      "bounds_unity": [
+        [
+          -0.3499999940395355,
+          0.0,
+          -0.2619999945163727
+        ],
+        [
+          0.3499999940395355,
+          1.4375,
+          0.25
+        ]
+      ],
+      "closed_solids": 12,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailLowSignal",
+      "file": "Exports/RailLowSignal.fbx",
+      "vertices": 128,
+      "triangles": 236,
+      "bounds_unity": [
+        [
+          -0.23999999463558197,
+          0.0,
+          -0.20000000298023224
+        ],
+        [
+          0.23999999463558197,
+          0.7900000214576721,
+          0.20000000298023224
+        ]
+      ],
+      "closed_solids": 5,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailPointBlade",
+      "file": "Exports/RailPointBlade.fbx",
+      "vertices": 144,
+      "triangles": 264,
+      "bounds_unity": [
+        [
+          -1.399999976158142,
+          -0.04500000178813934,
+          -0.05000000074505806
+        ],
+        [
+          1.399999976158142,
+          0.04500000178813934,
+          0.05000000074505806
+        ]
+      ],
+      "closed_solids": 6,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailCrossingBarrier",
+      "file": "Exports/RailCrossingBarrier.fbx",
+      "vertices": 208,
+      "triangles": 364,
+      "bounds_unity": [
+        [
+          -4.0,
+          -1.2999999523162842,
+          -0.0925000011920929
+        ],
+        [
+          4.0,
+          1.2999999523162842,
+          0.07000000029802322
+        ]
+      ],
+      "closed_solids": 13,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailServiceGate",
+      "file": "Exports/RailServiceGate.fbx",
+      "vertices": 128,
+      "triangles": 236,
+      "bounds_unity": [
+        [
+          -0.08999999612569809,
+          -0.5,
+          -0.699999988079071
+        ],
+        [
+          0.07000000029802322,
+          0.5,
+          0.699999988079071
+        ]
+      ],
+      "closed_solids": 5,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailPlatformGate",
+      "file": "Exports/RailPlatformGate.fbx",
+      "vertices": 152,
+      "triangles": 280,
+      "bounds_unity": [
+        [
+          -0.15000000596046448,
+          -1.5,
+          -2.0
+        ],
+        [
+          0.125,
+          1.5,
+          2.0
+        ]
+      ],
+      "closed_solids": 6,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailPortalGate",
+      "file": "Exports/RailPortalGate.fbx",
+      "vertices": 200,
+      "triangles": 368,
+      "bounds_unity": [
+        [
+          -2.0999999046325684,
+          -1.7000000476837158,
+          -0.125
+        ],
+        [
+          2.0999999046325684,
+          1.7000000476837158,
+          0.10000000149011612
+        ]
+      ],
+      "closed_solids": 8,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    },
+    {
+      "name": "RailDepartureCoach",
+      "file": "Exports/RailDepartureCoach.fbx",
+      "vertices": 5952,
+      "triangles": 11144,
+      "bounds_unity": [
+        [
+          -1.6019999980926514,
+          0.15000000596046448,
+          -7.009500026702881
+        ],
+        [
+          1.6019999980926514,
+          3.2899999618530273,
+          7.009500026702881
+        ]
+      ],
+      "closed_solids": 198,
+      "physics": "visual only; runtime retains original authored collider contract",
+      "material_slots": [
+        "RailCoachOpaquePBR",
+        "RailCoachGlass"
+      ]
+    },
+    {
+      "name": "RailBoardingRamp",
+      "file": "Exports/RailBoardingRamp.fbx",
+      "vertices": 104,
+      "triangles": 156,
+      "bounds_unity": [
+        [
+          0.0,
+          0.12999999523162842,
+          -1.0
+        ],
+        [
+          3.3499999046325684,
+          0.75,
+          1.0
+        ]
+      ],
+      "closed_solids": 13,
+      "material": "CityGatePilot_SharedPBR",
+      "physics": "visual only; runtime retains original authored collider contract"
+    }
+  ],
+  "distinct_triangles": 15972,
+  "new_textures": 3,
+  "new_imported_colliders": 0,
+  "required_runtime_seat_colliders": 8,
+  "coach_texture_contract": {
+    "size": 2048,
+    "maps": [
+      "A:sRGB RGB/opaque A",
+      "N:linear tangent normal",
+      "M:linear R metallic/A smoothness"
+    ],
+    "bands": [
+      "blue_paint",
+      "interior_enamel",
+      "brushed_steel",
+      "wheel_steel",
+      "rubber",
+      "nonslip_floor",
+      "seat_vinyl",
+      "safety_yellow"
+    ]
+  },
+  "unchanged_fbx_count": 10,
+  "closed_solids": 327,
+  "files": {
+    "NorthlineRail.blend": {
+      "bytes": 9200128,
+      "sha256": "1d499fbd709e4a884d63ba3df6b98b9ae0a0429f557386659c444126405c2d27"
+    },
+    "coach-seat-layout.json": {
+      "bytes": 1865,
+      "sha256": "4acd84c16e8e864ad452d1eeee9cc4a5fd123ec063c59bf4c6e9630800a00548"
+    },
+    "piece-map.json": {
+      "bytes": 130294,
+      "sha256": "6908b0d9933875854fbf4b897eb4be263a44703642abc74765587e6f5d2fec69"
+    },
+    "Exports/RailTram.fbx": {
+      "bytes": 54108,
+      "sha256": "8a525bfec240a0801d3b2ac36dad2201ea4385fb1e3db7610037ee26a907706a"
+    },
+    "Exports/RailBoardingRamp.fbx": {
+      "bytes": 21980,
+      "sha256": "b88c25cb431e4263ed7e2198ba423ebfee0fb4655ac0fd22a666b12519a14e3d"
+    },
+    "Exports/RailPortalGate.fbx": {
+      "bytes": 27212,
+      "sha256": "5d6df3ae90de25a99443f8ef113e39f34de4e7a0c6678eb1f5b167655c11edaf"
+    },
+    "Exports/RailPointBlade.fbx": {
+      "bytes": 24812,
+      "sha256": "44e0fdd769084c55cbe5aca61b4c19d07c679229613409aa4f3b02abab142783"
+    },
+    "Exports/RailControl.fbx": {
+      "bytes": 29628,
+      "sha256": "3fcd06215f7e7974055a8d73b643fcc9cbb84fd19ba1fac92706e8488c7fdad3"
+    },
+    "Exports/RailPlatformGate.fbx": {
+      "bytes": 25532,
+      "sha256": "45953d537a0db33bf0dd8cbc26e444526531152e58de5fb34e2ac5885f19e35d"
+    },
+    "Exports/RailTransferCradle.fbx": {
+      "bytes": 34348,
+      "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a"
+    },
+    "Exports/RailCrossingBarrier.fbx": {
+      "bytes": 26860,
+      "sha256": "661bcc7ddeaf6bf850d6b2863fe93a0efa8bf98ff35312cc808c0bb1a4aa3917"
+    },
+    "Exports/RailDepartureCoach.fbx": {
+      "bytes": 251740,
+      "sha256": "3c05c598e6b1d4b4a88885b09e27209314f405886680599451ac1ba1db417527"
+    },
+    "Exports/RailServiceGate.fbx": {
+      "bytes": 24540,
+      "sha256": "17cb557af9810ffc9fe75a932967596489f5d491d7610d4555d6abaccf95e964"
+    },
+    "Exports/RailLowSignal.fbx": {
+      "bytes": 24892,
+      "sha256": "1358c817e91a9191554f46ce25db52406cfc303d7fd3b6ecf9586e62bcb70541"
+    },
+    "Textures/RailCoach_M.png": {
+      "bytes": 267499,
+      "sha256": "4b58d7d946ef46c905b1f4a78eed14bd61a3eba0f63090108c650ea4d4fd0e60"
+    },
+    "Textures/RailCoach_A.png": {
+      "bytes": 63918,
+      "sha256": "dc8634e2507ef6e541c2ebdc2029ac09792bd480185080c005ad8060384a16bf"
+    },
+    "Textures/RailCoach_N.png": {
+      "bytes": 86286,
+      "sha256": "db5cdd7330a964c330210802682b4793af7663f2c76d46a7465965bdf348dc02"
+    }
+  },
+  "blender": "4.5.16 LTS",
+  "renders": 0,
+  "elapsed_seconds": 137.634
+}
