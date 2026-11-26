@@ -85,6 +85,8 @@
   "clothA": "DrPetrov_Cloth_A.jpg",
   "clothN": "DrPetrov_Cloth_N.jpg",
   "clothM": "DrPetrov_Cloth_M.png",
-  "hairA": "DrPetrov_Hair_A.png"
+  "hairA": "DrPetrov_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

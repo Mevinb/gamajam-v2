@@ -95,6 +95,8 @@
   "clothA": "GuardVictor_Cloth_A.jpg",
   "clothN": "GuardVictor_Cloth_N.jpg",
   "clothM": "GuardVictor_Cloth_M.png",
-  "hairA": "GuardVictor_Hair_A.png"
+  "hairA": "GuardVictor_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

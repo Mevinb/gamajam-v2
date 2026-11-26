@@ -95,6 +95,8 @@
   "clothA": "GuardPriya_Cloth_A.jpg",
   "clothN": "GuardPriya_Cloth_N.jpg",
   "clothM": "GuardPriya_Cloth_M.png",
-  "hairA": "GuardPriya_Hair_A.png"
+  "hairA": "GuardPriya_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

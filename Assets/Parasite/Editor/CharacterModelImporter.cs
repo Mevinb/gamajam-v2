@@ -65,7 +65,7 @@ namespace Parasite.EditorTools
         class Palettes { public string A = "", B = "", C = ""; }
 
         [System.Serializable]
-        class TexNames { public string skin, eyes, clothA, clothN, clothM, hairA; }
+        class TexNames { public string skin, skinN, skinM, eyes, clothA, clothN, clothM, hairA; }
 
         [System.Serializable]
         class Meta
@@ -105,10 +105,15 @@ namespace Parasite.EditorTools
 
             // textures first (explicit settings, no project-wide texture postprocessor)
             ConfigureTexture(TexturesDir + "/Skin_VeinMask.png", TexKind.Data, 2048);
+            var configuredSurfaces = new HashSet<string>();
             foreach (var m in metas)
             {
-                ConfigureTexture(TexturesDir + "/" + m.textures.skin, TexKind.Albedo, 2048);
-                ConfigureTexture(TexturesDir + "/" + m.textures.eyes, TexKind.Albedo, 512);
+                ConfigureTexture(TexturesDir + "/" + m.textures.skin, TexKind.SkinAlbedo, 2048);
+                if (!string.IsNullOrEmpty(m.textures.skinN) && configuredSurfaces.Add(m.textures.skinN))
+                    ConfigureTexture(TexturesDir + "/" + m.textures.skinN, TexKind.SkinNormal, 2048);
+                if (!string.IsNullOrEmpty(m.textures.skinM) && configuredSurfaces.Add(m.textures.skinM))
+                    ConfigureTexture(TexturesDir + "/" + m.textures.skinM, TexKind.SkinSurface, 1024);
+                ConfigureTexture(TexturesDir + "/" + m.textures.eyes, TexKind.EyeAlbedo, 1024);
                 ConfigureTexture(TexturesDir + "/" + m.textures.clothA, TexKind.Albedo, 2048);
                 ConfigureTexture(TexturesDir + "/" + m.textures.clothN, TexKind.Normal, 2048);
                 ConfigureTexture(TexturesDir + "/" + m.textures.clothM, TexKind.Mask, 1024);
@@ -197,36 +202,64 @@ namespace Parasite.EditorTools
             var skin = Mat(m.id + "_Skin", shader, mat =>
             {
                 mat.SetTexture("_BaseMap", T(m.textures.skin));
+                var normal = T(m.textures.skinN);
+                var surface = T(m.textures.skinM);
+                if ((!string.IsNullOrEmpty(m.textures.skinN) && !normal) || (!string.IsNullOrEmpty(m.textures.skinM) && !surface))
+                    throw new System.InvalidOperationException(m.id + ": authored skin surface is missing; run the Blender skin bake before rebuilding.");
+                bool authored = normal && surface;
+                mat.SetTexture("_BumpMap", normal);
+                mat.SetTexture("_SkinSurfaceMap", surface);
+                if (authored) mat.EnableKeyword("_NORMALMAP");
+                mat.EnableKeyword("_SPECULAR_SETUP");
+                // Plain Color (no HDR/Gamma flag): SetColor stores raw linear F0.
+                mat.SetColor("_SpecColor", new Color(0.028f, 0.028f, 0.028f));
+                mat.SetFloat("_BumpScale", m.age < 0.45f ? 0.75f : 1f);
+                mat.SetFloat("_SkinSurfaceEnabled", authored ? 1f : 0f);
+                mat.SetFloat("_OcclusionStrength", 0.65f);
                 var st = m.skinTint != null && m.skinTint.Length >= 3 ? new Color(m.skinTint[0], m.skinTint[1], m.skinTint[2], 1) : Color.white;
                 mat.SetColor("_BaseColor", st);
-                mat.SetFloat("_Smoothness", 0.42f);
+                mat.SetFloat("_Smoothness", authored ? 1f : 0.42f);
                 mat.SetFloat("_Metallic", 0f);
                 mat.SetFloat("_CharacterMode", 0f);
                 mat.SetTexture("_VeinMap", vein);
                 mat.SetColor("_VeinColor", Color.black);
-                mat.SetFloat("_Wrap", 0.5f);
+                mat.SetFloat("_Wrap", 0.45f);
                 mat.SetFloat("_Cull", 2f);
             });
             var eyes = Mat(m.id + "_Eyes", shader, mat =>
             {
                 mat.SetTexture("_BaseMap", T(m.textures.eyes));
                 mat.SetColor("_BaseColor", Color.white);
-                mat.SetFloat("_Smoothness", 0.88f);
+                mat.SetFloat("_Smoothness", 0.38f);
+                mat.SetColor("_SpecColor", new Color(0.025f, 0.025f, 0.025f));
+                mat.EnableKeyword("_SPECULAR_SETUP");
+                mat.EnableKeyword("_CLEARCOAT");
+                mat.SetFloat("_ClearCoatMask", 0.9f);
+                mat.SetFloat("_ClearCoatSmoothness", 0.94f);
                 mat.SetFloat("_CharacterMode", 1f);
+                // Close-view LakeGirl pilot only; other eye proportions await
+                // their own rendered review. The original FBX/outer UV is intact.
+                mat.SetFloat("_IrisUVScale", m.id == "LakeGirl" ? 1.42f : 1f);
                 mat.SetFloat("_Cull", 2f);
             });
             var hair = Mat(m.id + "_Hair", shader, mat =>
             {
                 mat.SetTexture("_BaseMap", T(m.textures.hairA));
                 mat.SetColor("_BaseColor", Color.white);
-                mat.SetFloat("_Smoothness", 0.32f);
+                mat.SetFloat("_Smoothness", 0.43f);
                 mat.SetFloat("_CharacterMode", 2f);
                 mat.SetFloat("_Cutoff", 0.4f);
                 mat.SetFloat("_AlphaClip", 1f);
                 mat.EnableKeyword("_ALPHATEST_ON");
+                mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                mat.SetFloat("_Surface", 1f);
+                mat.SetFloat("_HairForwardCutoff", 0.02f);
+                mat.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+                mat.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
+                mat.SetFloat("_ZWrite", 1f);
                 mat.SetFloat("_Cull", 0f);
-                mat.renderQueue = (int)RenderQueue.AlphaTest;
-                mat.SetOverrideTag("RenderType", "TransparentCutout");
+                mat.renderQueue = (int)RenderQueue.Transparent;
+                mat.SetOverrideTag("RenderType", "Transparent");
             });
             var cloth = Mat(m.id + "_Cloth", shader, mat =>
             {
@@ -237,7 +270,7 @@ namespace Parasite.EditorTools
                 mat.SetColor("_BaseColor", Color.white);
                 mat.SetFloat("_Smoothness", 1f);
                 mat.SetFloat("_Metallic", 1f);
-                mat.SetFloat("_BumpScale", 1f);
+                mat.SetFloat("_BumpScale", m.id == "LakeGirl" ? 0.30f : 0.65f);
                 mat.SetFloat("_CharacterMode", 3f);
                 mat.SetFloat("_Cull", 2f);
                 mat.SetColor("_TintA", Lin(m.tints?.A));
@@ -330,20 +363,29 @@ namespace Parasite.EditorTools
             if (!m) { m = new Material(shader) { name = name }; created = true; }
             m.shader = shader;
             m.shaderKeywords = new string[0];
+            // Explicit opaque defaults: only Hair opts into blended coverage.
+            m.SetFloat("_Surface", 0f);
+            m.SetFloat("_SrcBlend", (float)BlendMode.One);
+            m.SetFloat("_DstBlend", (float)BlendMode.Zero);
+            m.SetFloat("_ZWrite", 1f);
+            m.renderQueue = -1;
+            m.SetOverrideTag("RenderType", "Opaque");
             setup(m);
             if (created) AssetDatabase.CreateAsset(m, path);
             else EditorUtility.SetDirty(m);
             return m;
         }
 
-        enum TexKind { Albedo, Normal, Mask, Hair, Data }
+        enum TexKind { Albedo, SkinAlbedo, EyeAlbedo, Normal, SkinNormal, SkinSurface, Mask, Hair, Data }
 
         static void ConfigureTexture(string path, TexKind kind, int maxSize)
         {
             var ti = AssetImporter.GetAtPath(path) as TextureImporter;
             if (ti == null) { Debug.LogWarning("[Chars] texture missing: " + path); return; }
-            ti.textureType = kind == TexKind.Normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
-            ti.sRGBTexture = kind == TexKind.Albedo || kind == TexKind.Hair;
+            bool skinSurface = kind == TexKind.SkinNormal || kind == TexKind.SkinSurface;
+            bool portraitAlbedo = kind == TexKind.SkinAlbedo || kind == TexKind.EyeAlbedo;
+            ti.textureType = kind == TexKind.Normal || kind == TexKind.SkinNormal ? TextureImporterType.NormalMap : TextureImporterType.Default;
+            ti.sRGBTexture = kind == TexKind.Albedo || portraitAlbedo || kind == TexKind.Hair;
             ti.maxTextureSize = maxSize;
             ti.mipmapEnabled = kind != TexKind.Mask;
             ti.filterMode = kind == TexKind.Mask ? FilterMode.Point : FilterMode.Trilinear;
@@ -355,7 +397,20 @@ namespace Parasite.EditorTools
             if (kind == TexKind.Hair) ti.alphaTestReferenceValue = 0.4f;
             ti.textureCompression = kind == TexKind.Mask || kind == TexKind.Hair ? TextureImporterCompression.CompressedHQ : TextureImporterCompression.Compressed;
             ti.crunchedCompression = false;
-            ti.streamingMipmaps = false;
+            ti.streamingMipmaps = skinSurface;
+            if (skinSurface || portraitAlbedo)
+            {
+                // The filtered surface atlas must never inherit the cloth mask's
+                // point sampling/no-mip policy. +Y tangent normals need no flip.
+                ti.flipGreenChannel = false;
+                ti.SetPlatformTextureSettings(new TextureImporterPlatformSettings
+                {
+                    name = "Standalone", overridden = true, maxTextureSize = maxSize,
+                    format = kind == TexKind.SkinNormal ? TextureImporterFormat.BC5 : TextureImporterFormat.BC7,
+                    textureCompression = TextureImporterCompression.CompressedHQ,
+                    compressionQuality = 100,
+                });
+            }
             ti.SaveAndReimport();
         }
 

@@ -85,6 +85,8 @@
   "clothA": "LakeGirl_Cloth_A.jpg",
   "clothN": "LakeGirl_Cloth_N.jpg",
   "clothM": "LakeGirl_Cloth_M.png",
-  "hairA": "LakeGirl_Hair_A.png"
+  "hairA": "LakeGirl_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

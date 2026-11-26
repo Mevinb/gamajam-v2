@@ -1,0 +1,138 @@
+{
+  "total_blend_bytes": 244967499,
+  "films": {
+    "arrival": {
+      "version": 4,
+      "bytes": 61240749,
+      "sha256": "01329e944d221a588a13fd744dd9db7a4b1e99de4c2f7a63177445d9dfe71277",
+      "all_images_packed": true,
+      "rig_animation_preserved": true,
+      "hold_rig_delta": 0.0,
+      "hold_environment_delta": 0.0,
+      "minimum_boot_clearance_to_actual_terrain_m": 0.006111085414886475,
+      "hair_strands": 31211,
+      "native_hair_primitives": true,
+      "groom_conforms_to_render_subdivision": 2,
+      "iris_uv_central_scale": 1.42,
+      "scenery": {
+        "realism_grass_linked_instances": 4741,
+        "realism_grass_unique_meshes": 8,
+        "realism_leaf_litter_count": 5462,
+        "realism_far_forest_linked_trees": 1010,
+        "realism_far_understory_instances": 210,
+        "realism_near_tree_instances": 88,
+        "realism_near_low_shrubs": 271,
+        "realism_tree_unique_meshes": 2,
+        "realism_shrub_unique_meshes": 1
+      },
+      "objects": 6439,
+      "qa_frames": [
+        1,
+        100,
+        165,
+        280,
+        360
+      ],
+      "rendered": false
+    },
+    "hold": {
+      "version": 4,
+      "bytes": 61312183,
+      "sha256": "0c14d9bbd8a09df508f9a3b9dd96fff6cc631cc312675dfc05ac5228fa6ca018",
+      "all_images_packed": true,
+      "rig_animation_preserved": true,
+      "hold_rig_delta": 2.564894346444214e-18,
+      "hold_environment_delta": 0.0,
+      "minimum_boot_clearance_to_actual_terrain_m": 0.006111085414886475,
+      "hair_strands": 31211,
+      "native_hair_primitives": true,
+      "groom_conforms_to_render_subdivision": 2,
+      "iris_uv_central_scale": 1.42,
+      "scenery": {
+        "realism_grass_linked_instances": 4741,
+        "realism_grass_unique_meshes": 8,
+        "realism_leaf_litter_count": 5462,
+        "realism_far_forest_linked_trees": 1010,
+        "realism_far_understory_instances": 210,
+        "realism_near_tree_instances": 88,
+        "realism_near_low_shrubs": 271,
+        "realism_tree_unique_meshes": 2,
+        "realism_shrub_unique_meshes": 1
+      },
+      "objects": 6437,
+      "qa_frames": [
+        1,
+        73,
+        144
+      ],
+      "rendered": false
+    },
+    "peace": {
+      "version": 4,
+      "bytes": 61182657,
+      "sha256": "61e6ea208f3d615b9cf67c104dd60e3aa2ccaa2da9eb0585a87f3c5cf4ae510b",
+      "all_images_packed": true,
+      "rig_animation_preserved": true,
+      "hold_rig_delta": 0.0,
+      "hold_environment_delta": 0.0,
+      "minimum_boot_clearance_to_actual_terrain_m": 0.006111085414886475,
+      "hair_strands": 31211,
+      "native_hair_primitives": true,
+      "groom_conforms_to_render_subdivision": 2,
+      "iris_uv_central_scale": 1.42,
+      "scenery": {
+        "realism_grass_linked_instances": 4741,
+        "realism_grass_unique_meshes": 8,
+        "realism_leaf_litter_count": 5462,
+        "realism_far_forest_linked_trees": 1010,
+        "realism_far_understory_instances": 210,
+        "realism_near_tree_instances": 88,
+        "realism_near_low_shrubs": 271,
+        "realism_tree_unique_meshes": 2,
+        "realism_shrub_unique_meshes": 1
+      },
+      "objects": 6440,
+      "qa_frames": [
+        1,
+        62,
+        103,
+        168
+      ],
+      "rendered": false
+    },
+    "dominion": {
+      "version": 4,
+      "bytes": 61231910,
+      "sha256": "19f61eef69e1f6cd63cec6d6e2fac79848ab7e8bc203a0f1b455c5008a6ae27f",
+      "all_images_packed": true,
+      "rig_animation_preserved": true,
+      "hold_rig_delta": 0.0,
+      "hold_environment_delta": 0.0,
+      "minimum_boot_clearance_to_actual_terrain_m": 0.006111085414886475,
+      "hair_strands": 31211,
+      "native_hair_primitives": true,
+      "groom_conforms_to_render_subdivision": 2,
+      "iris_uv_central_scale": 1.42,
+      "scenery": {
+        "realism_grass_linked_instances": 4741,
+        "realism_grass_unique_meshes": 8,
+        "realism_leaf_litter_count": 5462,
+        "realism_far_forest_linked_trees": 1010,
+        "realism_far_understory_instances": 210,
+        "realism_near_tree_instances": 88,
+        "realism_near_low_shrubs": 271,
+        "realism_tree_unique_meshes": 2,
+        "realism_shrub_unique_meshes": 1
+      },
+      "objects": 6440,
+      "qa_frames": [
+        1,
+        52,
+        94,
+        155
+      ],
+      "rendered": false
+    }
+  },
+  "verification_scope": "CPU authoring/data and packing only; GPU image quality remains pending"
+}

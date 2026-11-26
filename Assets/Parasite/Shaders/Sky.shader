@@ -1,4 +1,4 @@
-// PARASITE — dusk skybox: HDRI cubemap with exposure/tint/rotation, slow cloud drift (rotation over time),
+// PARASITE — dusk skybox: HDRI cubemap with exposure/tint/rotation,
 // a graded zenith and a below-horizon haze so the puresky's fake ground never shows behind the skyline.
 Shader "Parasite/Sky"
 {
@@ -8,7 +8,7 @@ Shader "Parasite/Sky"
         _Tint ("Tint", Color) = (1, 1, 1, 1)
         _Exposure ("Exposure", Range(0, 8)) = 1
         _Rotation ("Rotation (deg)", Range(0, 360)) = 0
-        _DriftSpeed ("Cloud Drift (deg/s)", Range(0, 1)) = 0.12
+        _DriftSpeed ("HDRI Rotation Rate (deg/s)", Range(0, 1)) = 0
         _ZenithColor ("Zenith Grade", Color) = (0.55, 0.6, 0.85, 1)
         _ZenithAmount ("Zenith Grade Amount", Range(0, 1)) = 0.35
         _HorizonColor ("Horizon / Ground Haze", Color) = (0.45, 0.42, 0.5, 1)

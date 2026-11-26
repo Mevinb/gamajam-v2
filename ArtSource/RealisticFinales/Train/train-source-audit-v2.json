@@ -1,0 +1,190 @@
+{
+  "passed": true,
+  "version": 2,
+  "scope": "CPU Blender source audit only; no rendered appearance, encoding, Unity/native acceptance or performance claim",
+  "packed_source_sha256": "086fe5ff32719247a4efad339f078190557d1c681d672458373438ca4d343bb1",
+  "packed_source_bytes": 81198165,
+  "frame_count": 336,
+  "duration_seconds": 14,
+  "samples": 192,
+  "rail_gauge_inner_faces_metres": 1.435,
+  "rail_top_metres": 0.24,
+  "wheel_tread_radius_metres": 0.42,
+  "framewise_rolling_checks": 1348,
+  "free_gel_bodies": 2,
+  "captive_humans_aboard": 0,
+  "unpacked_images": [],
+  "scene_object_count": 197,
+  "mesh_polygons_with_instances": 876288,
+  "qa_frame_transforms": [
+    {
+      "frame": 1,
+      "train_y": 0.0,
+      "wheel_rotation_x": 0.0,
+      "camera": "01 - 28 mm industrial departure establishing"
+    },
+    {
+      "frame": 60,
+      "train_y": 0.0,
+      "wheel_rotation_x": 0.0,
+      "camera": "01 - 28 mm industrial departure establishing"
+    },
+    {
+      "frame": 100,
+      "train_y": 0.17763157188892365,
+      "wheel_rotation_x": -0.42293232679367065,
+      "camera": "02 - 50 mm running gear and real ballast"
+    },
+    {
+      "frame": 144,
+      "train_y": 1.2283138036727905,
+      "wheel_rotation_x": -2.9245567321777344,
+      "camera": "02 - 50 mm running gear and real ballast"
+    },
+    {
+      "frame": 168,
+      "train_y": 2.0701754093170166,
+      "wheel_rotation_x": -4.928988933563232,
+      "camera": "03 - 50 mm two free bodies behind real glass"
+    },
+    {
+      "frame": 204,
+      "train_y": 3.3333332538604736,
+      "wheel_rotation_x": -7.936507701873779,
+      "camera": "03 - 50 mm two free bodies behind real glass"
+    },
+    {
+      "frame": 256,
+      "train_y": 5.157894611358643,
+      "wheel_rotation_x": -12.280701637268066,
+      "camera": "04 - 38 mm depart through the layered depot"
+    },
+    {
+      "frame": 336,
+      "train_y": 7.964912414550781,
+      "wheel_rotation_x": -18.96407699584961,
+      "camera": "04 - 38 mm depart through the layered depot"
+    },
+    {
+      "frame": 337,
+      "train_y": 8.0,
+      "wheel_rotation_x": -19.047618865966797,
+      "camera": "04 - 38 mm depart through the layered depot"
+    }
+  ],
+  "window_camera_ray_checks": [
+    {
+      "frame": 145,
+      "target": "FREE BODY A",
+      "screen": [
+        0.6918082237243652,
+        0.4205894470214844
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 145,
+      "target": "FREE BODY B",
+      "screen": [
+        0.33527615666389465,
+        0.5716217756271362
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 168,
+      "target": "FREE BODY A",
+      "screen": [
+        0.6968763470649719,
+        0.4111698269844055
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 168,
+      "target": "FREE BODY B",
+      "screen": [
+        0.33893221616744995,
+        0.5790195465087891
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 192,
+      "target": "FREE BODY A",
+      "screen": [
+        0.7016618251800537,
+        0.3930583596229553
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 192,
+      "target": "FREE BODY B",
+      "screen": [
+        0.3428490161895752,
+        0.5954850912094116
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 216,
+      "target": "FREE BODY A",
+      "screen": [
+        0.7012566924095154,
+        0.38385891914367676
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    },
+    {
+      "frame": 216,
+      "target": "FREE BODY B",
+      "screen": [
+        0.34319007396698,
+        0.6057285666465759
+      ],
+      "transparent_surfaces": [
+        "Coach closed 8 mm / 12 mm laminated dielectric glass",
+        "Coach closed 8 mm / 12 mm laminated dielectric glass"
+      ],
+      "reached": true
+    }
+  ],
+  "interior_strip_lights": 4,
+  "interior_radiant_watts": 72.0,
+  "window_glass_roughness": 0.003000000026077032,
+  "window_lens_mm": 50.0,
+  "window_fstop": 8.0,
+  "window_focus_distance_frame168_metres": 3.533489386505752,
+  "brick_course_metres": 0.075,
+  "old_source_hashes_preserved": true,
+  "runtime_modified": false
+}

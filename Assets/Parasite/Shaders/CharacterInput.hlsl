@@ -4,6 +4,7 @@
 // Surface input for Parasite/Character: URP Lit inputs (same CBUFFER members so the stock URP pass files compile)
 // plus character extras:
 //   _MaskMap  (cloth)  R = tint group (0 none, 1/3 A, 2/3 B, 1 C), G = metallic, B = smoothness
+//   _SkinSurfaceMap   filtered linear R smoothness, G local AO, B optical thickness
 //   _TintA/B/C         per-instance garment colours (linear multipliers, HDR allowed)
 //   _VeinMap  (skin)   R = vein mask in body UV space, lit by _VeinColor (possession veins)
 //   _EmissionColor     uniform emission (HostGlow pulse, glowing eyes)
@@ -39,11 +40,15 @@ half4 _TintC;
 half4 _VeinColor;
 half _CharacterMode;
 half _Wrap;
+half _SkinSurfaceEnabled;
+half _IrisUVScale;
+half _HairForwardCutoff;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
 TEXTURE2D(_MaskMap);
 TEXTURE2D(_VeinMap);        SAMPLER(sampler_VeinMap);
+TEXTURE2D(_SkinSurfaceMap); SAMPLER(sampler_SkinSurfaceMap);
 SAMPLER(sampler_point_clamp_MaskMap);
 
 half4 SampleCharacterMask(float2 uv)
@@ -53,12 +58,35 @@ half4 SampleCharacterMask(float2 uv)
 
 inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfaceData)
 {
-    half4 albedoAlpha = SampleAlbedoAlpha(uv, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
-    outSurfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, _Cutoff);
+    float2 albedoUV = uv;
+    // Opt-in MPFB two-island eye atlas correction. Only the iris-centred field
+    // changes; exterior sclera UVs, geometry and every other material keep uv0.
+    if (_CharacterMode > 0.5h && _CharacterMode < 1.5h && _IrisUVScale > 1.001h)
+    {
+        float2 centre = uv.x + uv.y > 1.0 ? float2(0.707, 0.704) : float2(0.292, 0.289);
+        float2 delta = uv - centre;
+        float fade = smoothstep(0.15, 0.27, length(delta));
+        albedoUV = centre + delta * (1.0 + (_IrisUVScale - 1.0) * (1.0 - fade));
+    }
+    half4 albedoAlpha = SampleAlbedoAlpha(albedoUV, TEXTURE2D_ARGS(_BaseMap, sampler_BaseMap));
+#if defined(PARASITE_CHARACTER_FORWARD)
+    // Exported hair atlases reserve the upper three quarters for scalp cards.
+    // Restore opaque core coverage while the bottom-row brows/lashes stay soft.
+    if (_CharacterMode > 1.5h && _CharacterMode < 2.5h && uv.y >= 0.25)
+        albedoAlpha.a = saturate(albedoAlpha.a / 0.4h);
+#endif
+    half cutoff = _Cutoff;
+#if defined(PARASITE_CHARACTER_FORWARD)
+    // Only forward Hair blends fine fibre coverage. Shadow/depth passes retain
+    // the original0.4 cutoff and cannot become broad solid brow/lash shadows.
+    if (_CharacterMode > 1.5h && _CharacterMode < 2.5h) cutoff = _HairForwardCutoff;
+#endif
+    outSurfaceData.alpha = Alpha(albedoAlpha.a, _BaseColor, cutoff);
 
     half3 albedo = albedoAlpha.rgb * _BaseColor.rgb;
     half metallic = _Metallic;
     half smoothness = _Smoothness;
+    half occlusion = 1.0h;
     half3 emission = _EmissionColor.rgb;
 
     UNITY_BRANCH
@@ -77,19 +105,24 @@ inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfa
         // skin: veins light up while possessed (vein map is in the shared MakeHuman body UV layout)
         half vein = SAMPLE_TEXTURE2D(_VeinMap, sampler_VeinMap, uv).r;
         emission += vein * _VeinColor.rgb;
-        // subtle wrap: lift the darkest skin a little (cheap stand-in for subsurface scattering)
-        albedo = lerp(albedo, albedo * half3(1.04h, 0.98h, 0.96h), _Wrap);
+        if (_SkinSurfaceEnabled > 0.5h)
+        {
+            half3 surface = SAMPLE_TEXTURE2D(_SkinSurfaceMap, sampler_SkinSurfaceMap, uv).rgb;
+            smoothness *= surface.r;
+            occlusion = lerp(1.0h, surface.g, _OcclusionStrength);
+        }
     }
 
     outSurfaceData.albedo = AlphaModulate(albedo, outSurfaceData.alpha);
     outSurfaceData.metallic = metallic;
-    outSurfaceData.specular = half3(0.0, 0.0, 0.0);
+    outSurfaceData.specular = _SpecColor.rgb;
     outSurfaceData.smoothness = smoothness;
     outSurfaceData.normalTS = SampleNormal(uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
-    outSurfaceData.occlusion = half(1.0);
+    outSurfaceData.occlusion = occlusion;
     outSurfaceData.emission = emission;
-    outSurfaceData.clearCoatMask = half(0.0);
-    outSurfaceData.clearCoatSmoothness = half(0.0);
+    // Eye wet film uses URP's energy-conserving coat BRDF in the same material slot.
+    outSurfaceData.clearCoatMask = _CharacterMode > 0.5h && _CharacterMode < 1.5h ? _ClearCoatMask : 0.0h;
+    outSurfaceData.clearCoatSmoothness = _ClearCoatSmoothness;
 }
 
 #endif

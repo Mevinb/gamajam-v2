@@ -85,6 +85,8 @@
   "clothA": "CivLena_Cloth_A.jpg",
   "clothN": "CivLena_Cloth_N.jpg",
   "clothM": "CivLena_Cloth_M.png",
-  "hairA": "CivLena_Hair_A.png"
+  "hairA": "CivLena_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

@@ -11,7 +11,7 @@ namespace Parasite.Missions
     public sealed class RailResolution : MonoBehaviour
     {
         public static RailResolution Instance { get; private set; }
-        public const float TravelMetres = 8f, Speed = 2f, MaximumSeconds = 12f;
+        public const float TravelMetres = 8f, Speed = 2f, MaximumSeconds = 24f;
         public float Elapsed { get; private set; }
         public float Travelled { get; private set; }
         public bool Running => initialized && !finished && !retired;
@@ -25,6 +25,7 @@ namespace Parasite.Missions
             public Transform parent; public Vector3 position; public Quaternion rotation; public bool enabled;
         }
         readonly List<Passenger> passengers = new();
+        RailDepartureFilm presentation;
         void Awake() => Instance = this;
         public static bool Begin(GameManager owner, RailDeparture actualDeparture)
         {
@@ -59,6 +60,7 @@ namespace Parasite.Missions
             foreach (var passenger in passengers)
             { passenger.body.ClearControlInput(); passenger.controller.enabled = false; passenger.body.transform.SetParent(capturedCarriage, true); }
             Physics.SyncTransforms();
+            presentation = RailDepartureFilm.Create(transform);
         }
         bool OwnsCapturedManager(GameManager owner) => initialized && manager && manager == owner && manager == GameManager.Instance && Instance == this
             && manager.State == GameState.Ending && manager.gameObject.scene.handle == scene && gameObject.scene.handle == scene && SceneManager.GetActiveScene().handle == scene;
@@ -70,7 +72,7 @@ namespace Parasite.Missions
         {
             if (finished || finishing) return;
             Failure = "The captured departure coordinator retired during the protected trip.";
-            try { StopAllCoroutines(); } finally { FinishOrRollback(); Retire(); }
+            try { StopAllCoroutines(); } finally { FinalizeAndRetire(); }
         }
         bool ActualPassengersAttached()
         {
@@ -94,18 +96,19 @@ namespace Parasite.Missions
         }
         IEnumerator Start()
         {
-            if (!Owns(manager) || retired) { FinishOrRollback(); Retire(); yield break; }
+            if (!Owns(manager) || retired) { FinalizeAndRetire(); yield break; }
             released = !GameInput.InteractPressed && !GameInput.JumpPressed;
-            GameEvents.RaiseSubtitle("NORTHLINE RADIO", RailCampaign.Peace ? "The medical carriage has its signal. Both free bodies are aboard. Northline is moving."
-                : "Your relay has its line. Both free bodies are aboard. The next city is listening.");
             double started = Time.realtimeSinceStartupAsDouble;
             try
             {
+                NotifySubtitle("NORTHLINE RADIO", RailCampaign.Peace ? "The medical carriage has its signal. Both free bodies are aboard. Northline is moving."
+                    : "Your relay has its line. Both free bodies are aboard. The next city is listening.");
                 while ((Elapsed = (float)(Time.realtimeSinceStartupAsDouble - started)) < MaximumSeconds && Owns(manager))
                 {
                     if (!ActualPassengersAttached() || !departure.TransitHardwareReady) { Failure = "A real passenger or the physical coach/portal changed."; break; }
                     if (!GameInput.InteractPressed && !GameInput.JumpPressed) released = true;
                     if (released && (GameInput.InteractPressed || GameInput.JumpPressed || GameInput.PausePressed)) skipRequested = true;
+                    presentation?.Tick(Time.unscaledDeltaTime);
                     Vector3 position = capturedCoach.position;
                     if (Vector3.Distance(position, endpoint) > .001f)
                     {
@@ -115,13 +118,12 @@ namespace Parasite.Missions
                         capturedCoach.position = next; capturedCarriage.SetPositionAndRotation(next, coachRotation); Physics.SyncTransforms();
                         Travelled = Vector3.Distance(coachStart, capturedCoach.position);
                     }
-                    if (ReadyToPublish && (skipRequested || Elapsed >= 5f)) break;
+                    if (ReadyToPublish && (skipRequested || (Elapsed >= 5f && (presentation == null || presentation.Finished)))) break;
                     yield return null;
                 }
                 if (!ReadyToPublish && string.IsNullOrEmpty(Failure)) Failure = "The bounded departure ended before the actual endpoint.";
             }
-            finally { FinishOrRollback(); }
-            Retire();
+            finally { FinalizeAndRetire(); }
         }
         void FinishOrRollback()
         {
@@ -131,7 +133,7 @@ namespace Parasite.Missions
             {
                 if (owned && ReadyToPublish)
                 {
-                    endpointVerified = true; GameEvents.RaiseSubtitle("", ""); published = manager.PublishRailEnding(this);
+                    endpointVerified = true; NotifySubtitle("", ""); published = manager.PublishRailEnding(this);
                     if (!published) Failure = "The owning manager rejected the actual endpoint handoff.";
                 }
             }
@@ -149,7 +151,7 @@ namespace Parasite.Missions
                     if (owned && !published && manager && manager == GameManager.Instance && manager.State == GameState.Ending)
                     {
                         if (departure) departure.CancelDepartureAuthorization();
-                        GameEvents.RaiseSubtitle("", ""); manager.ResumeAfterDialogue();
+                        NotifySubtitle("", ""); manager.ResumeAfterDialogue();
                         int usable = 0;
                         if (possession && possession == PossessionManager.Instance)
                             foreach (var agent in possession.Agents) if (RailCampaign.Free(agent)) usable++;
@@ -162,8 +164,14 @@ namespace Parasite.Missions
                 finally { finished = true; finishing = false; }
             }
         }
+        static void NotifySubtitle(string speaker, string line)
+        {
+            try { GameEvents.RaiseSubtitle(speaker, line); }
+            catch (Exception error) { Debug.LogWarning("[NorthlineDeparture] Subtitle listener failed: " + error.Message); }
+        }
         void RestoreOwned(bool completed)
         {
+            presentation?.Dispose(); presentation = null;
             // Exact captured objects only; never discover or move a replacement player after a scene change.
             foreach (var passenger in passengers)
             {
@@ -184,7 +192,8 @@ namespace Parasite.Missions
             Physics.SyncTransforms();
         }
         void Retire() { if (retired) return; retired = true; if (departure) departure.AvailabilityLost -= OnCoordinatorUnavailable; if (Instance == this) Instance = null; Destroy(gameObject); }
-        void OnDisable() { try { StopAllCoroutines(); } finally { FinishOrRollback(); Retire(); } }
+        void FinalizeAndRetire() { try { FinishOrRollback(); } finally { Retire(); } }
+        void OnDisable() { try { StopAllCoroutines(); } finally { FinalizeAndRetire(); } }
         void OnDestroy() { FinishOrRollback(); if (departure) departure.AvailabilityLost -= OnCoordinatorUnavailable; if (Instance == this) Instance = null; }
     }
 }

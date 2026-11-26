@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "blender": "4.5.16 LTS",
+  "device": "CPU",
+  "threads": 2,
+  "normalConvention": "MikkTSpace tangent +X +Y +Z; no green flip",
+  "maskChannels": {
+    "R": "smoothness",
+    "G": "local AO, radius 0.035 m",
+    "B": "optical thickness / 0.030 m"
+  },
+  "albedoInputs": [],
+  "profiles": {
+    "Adult": {
+      "authoring": {
+        "age": 0.53,
+        "pore_depth": 7e-05,
+        "crease_depth": 2.5e-05
+      },
+      "geometry": {
+        "vertices": 13380,
+        "rayHits": 13136,
+        "thicknessNormalizedPercentiles": [
+          0.019772447246747715,
+          0.3601727646589279,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "normal": {
+        "sha256": "edbe7559d00a2febf75d289dfe6e3c37edc4cfa02f0f2b71d1b599c3f153b39f",
+        "bytes": 11492036,
+        "size": 2048,
+        "channelMin": [
+          0.37185460329055786,
+          0.3552102744579315,
+          0.9721755981445312
+        ],
+        "channelMax": [
+          0.6366245746612549,
+          0.64467453956604,
+          1.0000100135803223
+        ],
+        "channelMean": [
+          0.5000152136589904,
+          0.5000119186457397,
+          0.9999357117752368
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      },
+      "mask": {
+        "sha256": "1bd1e96801c47faddd2b31fdc25b5420eba2b9c5a2272a6e0b6777390fe1ac4c",
+        "bytes": 2276957,
+        "size": 1024,
+        "channelMin": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          0.5626271367073059,
+          1.0,
+          1.0
+        ],
+        "channelMean": [
+          0.22818956183456862,
+          0.683998139820801,
+          0.6753612218174325
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      }
+    },
+    "Mature": {
+      "authoring": {
+        "age": 0.68,
+        "pore_depth": 8.5e-05,
+        "crease_depth": 7.5e-05
+      },
+      "geometry": {
+        "vertices": 13380,
+        "rayHits": 13126,
+        "thicknessNormalizedPercentiles": [
+          0.02009873805101961,
+          0.35337367524703345,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "normal": {
+        "sha256": "fda6712c44555ec6d6034eefb8ec4f5b09beaa881e12243c1e0b52331d1714ce",
+        "bytes": 11724422,
+        "size": 2048,
+        "channelMin": [
+          0.3344131112098694,
+          0.31665676832199097,
+          0.9615195989608765
+        ],
+        "channelMax": [
+          0.6718936562538147,
+          0.6803355813026428,
+          1.0000100135803223
+        ],
+        "channelMean": [
+          0.5000045161854132,
+          0.5000201438366574,
+          0.9999023749468421
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      },
+      "mask": {
+        "sha256": "cdbd691f3930ccfe903c9d10413d6b41b968abff663b1f00a1ba3623b47a774c",
+        "bytes": 2277729,
+        "size": 1024,
+        "channelMin": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          0.5648244619369507,
+          1.0,
+          1.0
+        ],
+        "channelMean": [
+          0.22822625797201113,
+          0.6839059210714582,
+          0.6748676883096323
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      }
+    },
+    "Elder": {
+      "authoring": {
+        "age": 0.84,
+        "pore_depth": 9.5e-05,
+        "crease_depth": 0.000145
+      },
+      "geometry": {
+        "vertices": 13380,
+        "rayHits": 13132,
+        "thicknessNormalizedPercentiles": [
+          0.020904785127689444,
+          0.34575782835483554,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "normal": {
+        "sha256": "d172b837358d61e4ae626a500b9f9962d9a32ce5ee34fd57833c6e811744d158",
+        "bytes": 11880098,
+        "size": 2048,
+        "channelMin": [
+          0.31866317987442017,
+          0.3117811679840088,
+          0.9578770995140076
+        ],
+        "channelMax": [
+          0.6959277987480164,
+          0.6783266067504883,
+          1.0000100135803223
+        ],
+        "channelMean": [
+          0.5000109880427459,
+          0.5000134044724405,
+          0.9998722088668472
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      },
+      "mask": {
+        "sha256": "9bd708a1d39a487fa1318593a0652e219ee682425dd06490d51fa44a4928dc41",
+        "bytes": 2282309,
+        "size": 1024,
+        "channelMin": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "channelMax": [
+          0.5660191178321838,
+          1.0,
+          1.0
+        ],
+        "channelMean": [
+          0.22825642343087793,
+          0.6836665177206316,
+          0.6746160298922419
+        ],
+        "statisticsSource": "saved PNG reloaded as Non-Color, float64 accumulation"
+      }
+    }
+  },
+  "elapsedSeconds": 124.54406794100032,
+  "authoringSourceSha256": {
+    "bake_skin_surface.py": "6dcc570b00f8ea34aa76b183fb4d20dd39903b877a36aa4f73b0b0adfb1f8dea",
+    "skin_profiles.py": "3a3ecd971762f6055bcf89c867c956b8490835940ab32ba17207c22ca7b25b8d"
+  }
+}

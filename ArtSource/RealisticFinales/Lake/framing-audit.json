@@ -1,0 +1,214 @@
+{
+  "arrival": {
+    "original_source_unchanged": true,
+    "sampled_framing": [
+      {
+        "frame": 1,
+        "camera": "Arrival - a photographed human shore",
+        "lens_mm": 28.0,
+        "fstop": 5.599999904632568,
+        "eye_camera_normalized_xyz": [
+          0.6399242877960205,
+          0.5128932595252991,
+          10.178091049194336
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 100,
+        "camera": "Arrival - a photographed human shore",
+        "lens_mm": 28.0,
+        "fstop": 5.599999904632568,
+        "eye_camera_normalized_xyz": [
+          0.6299641132354736,
+          0.5270158052444458,
+          7.4241790771484375
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 165,
+        "camera": "Arrival - quiet face at the water",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.49762672185897827,
+          0.6422494649887085,
+          2.4252309799194336
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 280,
+        "camera": "Arrival - approach deliberate choice",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5029569268226624,
+          0.6173163652420044,
+          3.0526576042175293
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 360,
+        "camera": "Arrival - approach deliberate choice",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5000000596046448,
+          0.629051148891449,
+          2.7469310760498047
+        ],
+        "focus_eye_error_m": 0.0
+      }
+    ]
+  },
+  "hold": {
+    "original_source_unchanged": true,
+    "sampled_framing": [
+      {
+        "frame": 1,
+        "camera": "Choice - ordinary eyes and patient breathing",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5000001192092896,
+          0.6290510296821594,
+          2.7469310760498047
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 73,
+        "camera": "Choice - ordinary eyes and patient breathing",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5000001192092896,
+          0.6290510296821594,
+          2.7469310760498047
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 144,
+        "camera": "Choice - ordinary eyes and patient breathing",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5002152919769287,
+          0.629187822341919,
+          2.7472708225250244
+        ],
+        "focus_eye_error_m": 0.0
+      }
+    ]
+  },
+  "peace": {
+    "original_source_unchanged": true,
+    "sampled_framing": [
+      {
+        "frame": 1,
+        "camera": "Peace - breath releases",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5000001192092896,
+          0.6290510296821594,
+          2.7469310760498047
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 62,
+        "camera": "Peace - breath releases",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.4908481240272522,
+          0.6284869313240051,
+          2.5040442943573
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 103,
+        "camera": "Peace - relaxed hand detail",
+        "lens_mm": 65.0,
+        "fstop": 4.0,
+        "eye_camera_normalized_xyz": [
+          0.5359601974487305,
+          1.6936966180801392,
+          1.389456868171692
+        ],
+        "focus_eye_error_m": null
+      },
+      {
+        "frame": 168,
+        "camera": "Peace - leave her human on the shore",
+        "lens_mm": 32.0,
+        "fstop": 5.599999904632568,
+        "eye_camera_normalized_xyz": [
+          0.6451098322868347,
+          0.4677598178386688,
+          11.891855239868164
+        ],
+        "focus_eye_error_m": 0.0
+      }
+    ]
+  },
+  "dominion": {
+    "original_source_unchanged": true,
+    "sampled_framing": [
+      {
+        "frame": 1,
+        "camera": "Dominion - chosen iris reveal",
+        "lens_mm": 65.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5000001192092896,
+          0.6398053169250488,
+          2.7469310760498047
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 52,
+        "camera": "Dominion - chosen iris reveal",
+        "lens_mm": 65.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5036452412605286,
+          0.5811189413070679,
+          1.7891782522201538
+        ],
+        "focus_eye_error_m": 0.0
+      },
+      {
+        "frame": 94,
+        "camera": "Dominion - deliberate hand curl",
+        "lens_mm": 65.0,
+        "fstop": 4.0,
+        "eye_camera_normalized_xyz": [
+          0.547698974609375,
+          1.7223925590515137,
+          1.4021391868591309
+        ],
+        "focus_eye_error_m": null
+      },
+      {
+        "frame": 155,
+        "camera": "Dominion - quiet altered gaze",
+        "lens_mm": 60.0,
+        "fstop": 3.5,
+        "eye_camera_normalized_xyz": [
+          0.5129430890083313,
+          0.6719427704811096,
+          2.129499673843384
+        ],
+        "focus_eye_error_m": 0.0
+      }
+    ]
+  }
+}

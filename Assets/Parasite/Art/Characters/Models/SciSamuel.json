@@ -83,6 +83,8 @@
   "clothA": "SciSamuel_Cloth_A.jpg",
   "clothN": "SciSamuel_Cloth_N.jpg",
   "clothM": "SciSamuel_Cloth_M.png",
-  "hairA": "SciSamuel_Hair_A.png"
+  "hairA": "SciSamuel_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

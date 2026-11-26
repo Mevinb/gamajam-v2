@@ -89,6 +89,8 @@
   "clothA": "SciIngrid_Cloth_A.jpg",
   "clothN": "SciIngrid_Cloth_N.jpg",
   "clothM": "SciIngrid_Cloth_M.png",
-  "hairA": "SciIngrid_Hair_A.png"
+  "hairA": "SciIngrid_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

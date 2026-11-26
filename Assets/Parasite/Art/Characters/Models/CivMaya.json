@@ -81,6 +81,8 @@
   "clothA": "CivMaya_Cloth_A.jpg",
   "clothN": "CivMaya_Cloth_N.jpg",
   "clothM": "CivMaya_Cloth_M.png",
-  "hairA": "CivMaya_Hair_A.png"
+  "hairA": "CivMaya_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

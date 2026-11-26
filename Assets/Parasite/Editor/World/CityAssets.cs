@@ -75,6 +75,7 @@ namespace Parasite.EditorTools
             AssetDatabase.Refresh();
             ConfigureImporters();
             CreateMaterials();
+            EnvironmentRealismAssets.Prepare();
             CreateFacades();
             LoadProps();
             LoadTrees();
@@ -892,9 +893,10 @@ namespace Parasite.EditorTools
                 m.SetColor("_Tint", new Color(1.0f, 0.95f, 0.92f));
                 m.SetFloat("_Exposure", 0.62f);
                 m.SetFloat("_Rotation", 0f);
-                m.SetFloat("_DriftSpeed", 0.12f);
+                // A photographed sun must stay aligned with the directional lighting and reflection captures.
+                m.SetFloat("_DriftSpeed", 0f);
                 m.SetColor("_ZenithColor", new Color(0.5f, 0.58f, 0.82f));
-                m.SetFloat("_ZenithAmount", 0.3f);
+                m.SetFloat("_ZenithAmount", 0.1f);
                 m.SetColor("_HorizonColor", new Color(0.4f, 0.38f, 0.44f));
                 m.SetFloat("_HorizonHeight", 0.05f);
                 m.SetFloat("_Saturation", 0.95f);
@@ -926,17 +928,17 @@ namespace Parasite.EditorTools
             foreach (var c in p.components.ToArray()) { AssetDatabase.RemoveObjectFromAsset(c); Object.DestroyImmediate(c, true); }
             p.components.Clear();
 
-            // filmic dusk grade: ACES, warm highlights / cool shadows, lifted blue blacks, bloom on every emissive
+            // Photographic dusk response. Keep bloom available without washing out skin, glass and small emitters.
             var tm = p.Add<Tonemapping>(); tm.mode.Override(TonemappingMode.ACES);
             var bl = p.Add<Bloom>();
-            bl.threshold.Override(0.95f); bl.intensity.Override(0.95f); bl.scatter.Override(0.74f);
+            bl.threshold.Override(1.1f); bl.intensity.Override(0.24f); bl.scatter.Override(0.62f);
             bl.tint.Override(new Color(1f, 0.92f, 0.84f)); bl.highQualityFiltering.Override(true);
             var dirt = AssetDatabase.LoadAssetAtPath<Texture2D>($"{CityArt}/Generated/LensDirt.png");
-            if (dirt) { bl.dirtTexture.Override(dirt); bl.dirtIntensity.Override(1.6f); }
+            if (dirt) { bl.dirtTexture.Override(dirt); bl.dirtIntensity.Override(0.15f); }
             var ca = p.Add<ColorAdjustments>();
-            ca.postExposure.Override(0.4f); ca.contrast.Override(14f); ca.saturation.Override(2f);
-            var vg = p.Add<Vignette>(); vg.intensity.Override(0.3f); vg.smoothness.Override(0.42f);
-            var wb = p.Add<WhiteBalance>(); wb.temperature.Override(4f); wb.tint.Override(-3f);
+            ca.postExposure.Override(0.1f); ca.contrast.Override(7f); ca.saturation.Override(0f);
+            var vg = p.Add<Vignette>(); vg.intensity.Override(0.12f); vg.smoothness.Override(0.5f);
+            var wb = p.Add<WhiteBalance>(); wb.temperature.Override(1f); wb.tint.Override(0f);
             var sp = p.Add<SplitToning>();
             sp.shadows.Override(new Color(0.4f, 0.5f, 0.6f)); sp.highlights.Override(new Color(0.8f, 0.66f, 0.5f)); sp.balance.Override(-12f);
             var lgg = p.Add<LiftGammaGain>();
@@ -946,8 +948,8 @@ namespace Parasite.EditorTools
             var smh = p.Add<ShadowsMidtonesHighlights>();
             smh.shadows.Override(new Vector4(0.95f, 0.98f, 1.06f, 0f));
             smh.highlights.Override(new Vector4(1.05f, 1.0f, 0.94f, 0f));
-            var fg = p.Add<FilmGrain>(); fg.type.Override(FilmGrainLookup.Thin2); fg.intensity.Override(0.14f); fg.response.Override(0.85f);
-            var chr = p.Add<ChromaticAberration>(); chr.intensity.Override(0.04f);
+            var fg = p.Add<FilmGrain>(); fg.type.Override(FilmGrainLookup.Thin2); fg.intensity.Override(0.035f); fg.response.Override(0.85f);
+            var chr = p.Add<ChromaticAberration>(); chr.intensity.Override(0.008f);
             foreach (var c in p.components)
             {
                 c.name = c.GetType().Name;

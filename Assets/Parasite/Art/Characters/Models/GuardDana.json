@@ -85,6 +85,8 @@
   "clothA": "GuardDana_Cloth_A.jpg",
   "clothN": "GuardDana_Cloth_N.jpg",
   "clothM": "GuardDana_Cloth_M.png",
-  "hairA": "GuardDana_Hair_A.png"
+  "hairA": "GuardDana_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

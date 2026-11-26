@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "version": 4,
+  "status": "AUTHORED_SOURCE_ONLY_UNRENDERED",
+  "path": "ArtSource/RealisticFinales/Train/Northline_RealisticDeparture_v4.blend",
+  "sha256": "e65f76034469b94f4d97749a79e86ac8230d06684eda7509bdfb279c159f3f62",
+  "bytes": 81190663,
+  "fps": 24,
+  "frames": [
+    1,
+    336
+  ],
+  "duration_seconds": 14,
+  "endpoint_frame": 337,
+  "travel_metres": 8,
+  "rail_gauge_metres": 1.435,
+  "wheel_radius_metres": 0.42,
+  "wheel_tread_centres_x": [
+    -0.7535,
+    0.7535
+  ],
+  "rail_top_metres": 0.24,
+  "wheel_centres_z": 0.6599999999999999,
+  "body_source_unchanged_read_only": {
+    "ArtSource/NorthlineCoach/NorthlineRail.blend": "78eeb72db07f21e42d41850eccbfa4eea586bf53c0b9304cfdf2e72f2c4415dd",
+    "ArtSource/NorthlineCoach/piece-map.json": "31ae9790f18ced5c8c38ca7c3ed4856ca59ead288f5230a75bbc444d9d43019d",
+    "ArtSource/NorthlineCoach/production-manifest.json": "0de23f46b09641b5cfe94ff2fdb52bdaf9adb9f544e3359784b1ab51e915c5e1"
+  },
+  "removed_old_running_gear": {
+    "underframe C section web": 2,
+    "underframe C section flange": 4,
+    "underframe crossmember": 5,
+    "unchanged canopy": 1,
+    "side lower painted sheet": 3,
+    "side upper painted sheet": 3,
+    "side window structural pier": 8,
+    "window vertical gasket": 16,
+    "window horizontal gasket": 16,
+    "side remaining window pier": 3,
+    "end lower panel": 2,
+    "end upper panel": 2,
+    "end windscreen pillar": 4,
+    "end vertical gasket": 4,
+    "end horizontal gasket": 4,
+    "unchanged west door jamb": 2,
+    "unchanged free-body boarding mark": 2,
+    "cast bogie side beam": 4,
+    "bogie transverse bolster": 4,
+    "coil spring": 4,
+    "turned axle": 4,
+    "flanged steel wheel": 8,
+    "wheel bearing boss": 8,
+    "axle end cap": 8,
+    "brake disc": 8,
+    "brake caliper": 8
+  },
+  "body_deck_raised_metres": 0.45,
+  "body_size_preserved_metres": [
+    3.204,
+    14.019
+  ],
+  "coach_floor_above_rail_top_metres": 0.96,
+  "free_gel_passengers": 2,
+  "captive_humans_aboard": 0,
+  "background_platform_workers": [
+    {
+      "cid": "MaintEli",
+      "source": "/home/mevlec/Data/parasite-work/characters/out/MaintEli.blend",
+      "source_sha256": "df473f2cc729269380e2c1904e0efce6c72b0ce0d5acb0a3124a0ae865f54470",
+      "grounded_z": 1.18
+    },
+    {
+      "cid": "GuardMarcus",
+      "source": "/home/mevlec/Data/parasite-work/characters/out/GuardMarcus.blend",
+      "source_sha256": "e1ee44798be345fcffd3fc747c6ed0bb5b70a888540dd2dde5778a0bec0234ad",
+      "grounded_z": 1.18
+    }
+  ],
+  "environment": {
+    "path": "Assets/Parasite/Art/City/sky/belfast_sunset_puresky_4k.hdr",
+    "sha256": "cafc52b99ce15d84bd039826a0333f5ab0259d8c1f4feb2f7faf5fafa039108a",
+    "strength": 0.75,
+    "independent_sun_lights": 0
+  },
+  "shots": [
+    {
+      "first": 1,
+      "last": 84,
+      "camera": "01 - 28 mm industrial departure establishing",
+      "lens_mm": 28,
+      "fstop": 5.6,
+      "follows_actual_train": false
+    },
+    {
+      "first": 85,
+      "last": 144,
+      "camera": "02 - 50 mm running gear and real ballast",
+      "lens_mm": 50,
+      "fstop": 11.0,
+      "follows_actual_train": true
+    },
+    {
+      "first": 145,
+      "last": 216,
+      "camera": "03 - 50 mm two free bodies behind real glass",
+      "lens_mm": 50,
+      "fstop": 8.0,
+      "follows_actual_train": true
+    },
+    {
+      "first": 217,
+      "last": 336,
+      "camera": "04 - 38 mm depart through the layered depot",
+      "lens_mm": 38,
+      "fstop": 8.0,
+      "follows_actual_train": false
+    }
+  ],
+  "gpu_qa_frames": [
+    1,
+    60,
+    100,
+    144,
+    168,
+    204,
+    256,
+    336
+  ],
+  "samples": 192,
+  "adaptive_threshold": 0.008,
+  "motion_blur_shutter": 0.5,
+  "loop": "One-shot only; no wrap. Gel/idle secondary motion does not grant completion.",
+  "reusable_track_export": {
+    "path": "ArtSource/RealisticFinales/Train/Exports/DepotTrackSegment12m.fbx",
+    "sha256": "65ebe0fda7e9111ff8f1422bbe3747f99c9b007d68e94db35270e8f5d94528f6",
+    "bytes": 157548,
+    "gauge_metres": 1.435
+  },
+  "rendered": false,
+  "runtime_integration": "None. Protected runtime physical departure and flags are unchanged.",
+  "derived_from_v2": {
+    "path": "ArtSource/RealisticFinales/Train/Northline_RealisticDeparture_v2.blend",
+    "sha256": "086fe5ff32719247a4efad339f078190557d1c681d672458373438ca4d343bb1"
+  },
+  "roof_end_caps": {
+    "width_metres": 3.12,
+    "bottom_z_metres": 3.22,
+    "end_y_metres": [
+      -6.985,
+      6.985
+    ],
+    "depth_metres": 0.08,
+    "top": "exact roof_z(x) - .179, overlaps inner roof by 6 mm at Y+/-7.025",
+    "glass": "No window/pane/panel removed, hidden or edited. New geometry stays above windscreen."
+  },
+  "patch_script_sha256": "0b4ecbc5d6a205b3d9001573d2d0283e757e5c16a0704b62ecc6627abdaddab7",
+  "derived_from_v3": {
+    "path": "ArtSource/RealisticFinales/Train/Northline_RealisticDeparture_v3.blend",
+    "sha256": "d7b2dfaaca96ac8a79698bc6c49b3c201f74eaac38375efb1645674ae80333c9"
+  },
+  "bogie_focus": {
+    "object": "Rotating wheelset -5.4",
+    "face": 1216,
+    "local_surface_point": [
+      0.8108506202697754,
+      -5.755984783172607,
+      0.4395124018192291
+    ],
+    "world_surface_point_frame100": [
+      0.8108506202697754,
+      -5.578353404998779,
+      0.4395124018192291
+    ],
+    "distance_metres_frame100": 4.290175767679037,
+    "lens_mm": 50.0,
+    "fstop": 11.0
+  },
+  "bogie_framing": [
+    {
+      "frame": 85,
+      "screen_min": [
+        0.0574750080704689,
+        0.11119728535413742
+      ],
+      "screen_max": [
+        0.9380767941474915,
+        0.7389922142028809
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.288292598587729
+    },
+    {
+      "frame": 100,
+      "screen_min": [
+        0.06187315285205841,
+        0.11192882806062698
+      ],
+      "screen_max": [
+        0.9417272210121155,
+        0.7391701340675354
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.290175767679037
+    },
+    {
+      "frame": 120,
+      "screen_min": [
+        0.07539667189121246,
+        0.11602545529603958
+      ],
+      "screen_max": [
+        0.950267493724823,
+        0.739754855632782
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.307269486858762
+    },
+    {
+      "frame": 144,
+      "screen_min": [
+        0.08624665439128876,
+        0.12101750820875168
+      ],
+      "screen_max": [
+        0.9545011520385742,
+        0.7402506470680237
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.331600315684928
+    }
+  ],
+  "bogie_fill": {
+    "radiant_watts": 28,
+    "size_metres": [
+      3,
+      1.6
+    ],
+    "active_shot_frames": [
+      85,
+      144
+    ],
+    "zero_in_other_shots": true
+  },
+  "other_transforms_exact": true,
+  "geometry_uv_material_assignments_exact": true,
+  "other_cameras_exact": true
+}

@@ -13,13 +13,20 @@ Shader "Parasite/Character"
         [Normal] _BumpMap("Normal Map", 2D) = "bump" {}
         [HDR] _EmissionColor("Emission", Color) = (0,0,0,1)
         _MaskMap("Cloth Mask (R tint group, G metal, B smooth)", 2D) = "black" {}
+        _SkinSurfaceMap("Skin Surface (R smooth, G AO, B thickness)", 2D) = "white" {}
+        [HideInInspector] _SkinSurfaceEnabled("Skin surface enabled", Float) = 0
+        [HideInInspector] _IrisUVScale("Central iris UV scale", Float) = 1
+        [HideInInspector] _HairForwardCutoff("Hair forward fine-fibre cutoff", Range(0,1)) = 0.02
+        [HideInInspector] _SrcBlend("Source blend", Float) = 1
+        [HideInInspector] _DstBlend("Destination blend", Float) = 0
+        [HideInInspector] _ZWrite("Depth write", Float) = 1
         [HDR] _TintA("Tint A", Color) = (1,1,1,1)
         [HDR] _TintB("Tint B", Color) = (1,1,1,1)
         [HDR] _TintC("Tint C", Color) = (1,1,1,1)
         _VeinMap("Vein Mask", 2D) = "black" {}
         [HDR] _VeinColor("Vein Emission", Color) = (0,0,0,1)
         _CharacterMode("Mode (0 skin 1 eyes 2 hair 3 cloth)", Float) = 3
-        _Wrap("Skin warmth", Range(0,1)) = 0.5
+        _Wrap("Thin-skin transmission approximation", Range(0,1)) = 0.5
 
         [HideInInspector] _SpecColor("Specular", Color) = (0.2, 0.2, 0.2)
         [HideInInspector] _Parallax("Scale", Float) = 0.005
@@ -45,15 +52,19 @@ Shader "Parasite/Character"
             Name "ForwardLit"
             Tags { "LightMode" = "UniversalForward" }
             Cull[_Cull]
-            ZWrite On
+            Blend[_SrcBlend][_DstBlend]
+            ZWrite[_ZWrite]
 
             HLSLPROGRAM
             #pragma target 3.5
             #pragma vertex LitPassVertex
-            #pragma fragment LitPassFragment
+            #pragma fragment CharacterLitPassFragment
 
             #pragma shader_feature_local _NORMALMAP
+            #pragma shader_feature_local_fragment _SPECULAR_SETUP
+            #pragma shader_feature_local_fragment _CLEARCOAT
             #pragma shader_feature_local_fragment _ALPHATEST_ON
+            #pragma shader_feature_local_fragment _SURFACE_TYPE_TRANSPARENT
 
             #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
             #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
@@ -75,8 +86,9 @@ Shader "Parasite/Character"
             #include_with_pragmas "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ProbeVolumeVariants.hlsl"
             #pragma multi_compile_instancing
 
+            #define PARASITE_CHARACTER_FORWARD 1
             #include "CharacterInput.hlsl"
-            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
+            #include "CharacterForwardPass.hlsl"
             ENDHLSL
         }
 

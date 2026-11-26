@@ -53,7 +53,8 @@ namespace Parasite
         public static readonly CinematicFilmSpec Hold = new("Cinematics/FullStory/LakeHold", 6, 1920, 1080, loop: true);
         public static readonly CinematicFilmSpec Peace = new("Cinematics/FullStory/LakePeace", 7, 1920, 1080);
         public static readonly CinematicFilmSpec Dominion = new("Cinematics/FullStory/LakeDominion", 7, 1920, 1080);
-        public static CinematicFilmSpec[] FullSet => new[] { Opening, Arrival, Hold, Peace, Dominion };
+        public static readonly CinematicFilmSpec NorthlineDeparture = new("Cinematics/FullStory/NorthlineDeparture", 14, 1920, 1080);
+        public static CinematicFilmSpec[] FullSet => new[] { Opening, Arrival, Hold, Peace, Dominion, NorthlineDeparture };
         public static CinematicFilmSpec[] LakeSet => new[] { Arrival, Hold, Peace, Dominion };
         public static bool ValidOutcome(EndingOutcome outcome) => outcome == EndingOutcome.Peace || outcome == EndingOutcome.Dominion;
     }

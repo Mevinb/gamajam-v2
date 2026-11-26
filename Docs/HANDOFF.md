@@ -1,8 +1,48 @@
 # PARASITE — developer handoff
 
-Read this before changing the project. The active request is a full realism/cinematic upgrade and continued mission expansion,
-with frequent commits and pushes as **Mevinb**. This supersedes the historical scope freeze and local-only capture session.
+Read this before changing the project. The active request is a full realism/cinematic upgrade,
+with frequent commits and pushes as **Mevinb** when publication access works.
 The full request remains **in progress**. Evidence applies to its named source or binary; do not transfer an older pass to a new build.
+
+## Current checkpoint — 27 November 2026
+
+**User steering: pause mission expansion and concentrate on visual realism everywhere.** Both the lake ending and
+Northline train departure must be rebuilt. Linux/URP with RTX/OptiX Blender cinematics remains the selected platform.
+The older mission-expansion next steps below are historical, not the current work queue.
+
+Development checkout: `/home/mevlec/.local/share/parasite-work/northline`, branch `codex/visual-realism` from `f19a5eb`.
+Unfinished Exchange work was preserved in stash `5e5b49ebe28e622ecfb261d316a852b6321fa7eb`; do not restore it into this visual pass.
+The existing playable campaign remains 26 missions. Older candidates and their evidence remain unchanged.
+
+Three agents authored skin normal/surface bakes and character shading, Blender road vehicles, environment modules,
+and new packed finale sources under `ArtSource/RealisticFinales`. Source and CPU checks are not visual acceptance.
+The initial RTX lake QA images exposed dark eyes, solid-looking hair and an under-dressed shoreline; those are being revised.
+All 25 characters and the five-body/taxi-sign vehicle kit import successfully. Generated city, character and vehicle
+views render on RTX/Vulkan with no shader compiler errors. Real-time hair now blends the brow/lash row while retaining
+opaque scalp cores and writing forward depth. The neutral humanoid jaw/default retarget offset and an isolated oral
+anatomy pilot are under investigation; the pilot has not been promoted into Assets.
+
+Generated city meshes now use binary assets. Two actual regenerations preserve all 2,334 City and 937 Bootstrap
+renderer/collider payloads exactly; the second also passes existing GUID/main-local-ID reuse checks and eliminates
+the initial main-object/filename warnings. Scene sizes are 6,633,186 and 2,603,258 bytes. Evidence is in WORK
+`Logs/worldkit-binary-storage-stage/final-verification.json`; current generated meshes must be committed alongside scenes.
+
+Focused EditMode checks pass 23/23. Three additional Vulkan PlayMode callback-fault cases pass through a prepared real
+coach/deck/two-grounded-capsule fixture, including actual eight-metre departure and coordinator-disable rollback.
+These are not earned full-campaign or new-movie decoding proofs. Runtime changes commit satisfied mission indices
+before fallible notifications and protect departure cleanup from subtitle/media failures.
+
+Lake v4 uses a surface-conforming native hair groom and its Arrival165 RTX portrait is accepted for this pass;
+remaining branch keyframes/full production are pending. Train v4 has a sealed curved shell, readable lit interior,
+standard-gauge running gear and revised bogie shot; its declared RTX views have been reviewed. All finale sources
+remain under `ArtSource/RealisticFinales`; the current train source ends in `_v4.blend`.
+Production rendering/encoding, native media acceptance and the new Linux candidate are still in progress.
+Root added optional Northline film presentation without replacing the actual coach/boarder/endpoint authority.
+Its new 14-second film must be produced and decoded before accepting this change.
+
+No canonical Blender source was deleted: the storage audit found no unused exact duplicates in ArtSource.
+Check current free space and processes before GPU work. Never overlap Unity graphics jobs and RTX film renders.
+GitHub authentication remains unresolved as described below; continue local work without repeated denied writes.
 
 ## Current checkpoint — 26 November 2026
 

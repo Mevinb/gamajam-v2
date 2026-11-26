@@ -85,6 +85,8 @@
   "clothA": "CivLeo_Cloth_A.jpg",
   "clothN": "CivLeo_Cloth_N.jpg",
   "clothM": "CivLeo_Cloth_M.png",
-  "hairA": "CivLeo_Hair_A.png"
+  "hairA": "CivLeo_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

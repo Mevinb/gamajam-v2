@@ -79,6 +79,8 @@
   "clothA": "CivSofia_Cloth_A.jpg",
   "clothN": "CivSofia_Cloth_N.jpg",
   "clothM": "CivSofia_Cloth_M.png",
-  "hairA": "CivSofia_Hair_A.png"
+  "hairA": "CivSofia_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

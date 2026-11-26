@@ -9,9 +9,14 @@ OUT="$WORK/out"
 if [ $# -gt 0 ]; then ids=("$@"); else ids=(); for f in "$OUT"/Models/*.fbx; do ids+=("$(basename "$f" .fbx)"); done; fi
 # install: same filesystem -> mv is an atomic rename, so a concurrent Unity import never sees half-written files
 A="$P/Assets/Parasite/Art/Characters"
-mkdir -p "$A/Models" "$A/Textures/Skins" "$A/Textures/Eyes"
+mkdir -p "$A/Models" "$A/Textures/Skins/Surface" "$A/Textures/Eyes"
 install() { cp "$1" "$(dirname "$2")/.$(basename "$2").tmp~" && mv "$(dirname "$2")/.$(basename "$2").tmp~" "$2"; }
 for f in "$OUT"/Textures/Skins/* "$OUT"/Textures/Eyes/*; do
+  [ -f "$f" ] || continue
+  rel=${f#$OUT/Textures/}
+  if ! cmp -s "$f" "$A/Textures/$rel" 2>/dev/null; then install "$f" "$A/Textures/$rel"; fi
+done
+for f in "$OUT"/Textures/Skins/Surface/*; do
   [ -f "$f" ] || continue
   rel=${f#$OUT/Textures/}
   if ! cmp -s "$f" "$A/Textures/$rel" 2>/dev/null; then install "$f" "$A/Textures/$rel"; fi

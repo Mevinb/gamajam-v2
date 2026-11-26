@@ -75,6 +75,8 @@
   "clothA": "MaintNoor_Cloth_A.jpg",
   "clothN": "MaintNoor_Cloth_N.jpg",
   "clothM": "MaintNoor_Cloth_M.png",
-  "hairA": "MaintNoor_Hair_A.png"
+  "hairA": "MaintNoor_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

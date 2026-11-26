@@ -1,0 +1,388 @@
+{
+  "schema": 1,
+  "status": "AUTHORED_CPU_SOURCE_ONLY_UNITY_VISUAL_ACCEPTANCE_PENDING",
+  "author_sha256": "59fb40263ff17274a9dd73974e66c38d99d57203f717bc156575afbbc1c561f8",
+  "materials": [
+    "VehiclePaint",
+    "VehicleTrim",
+    "VehicleRubber",
+    "VehicleAlloy",
+    "VehicleInterior",
+    "VehicleHeadlamp",
+    "VehicleTaillamp",
+    "VehicleAmber",
+    "VehiclePlate",
+    "VehicleGlass"
+  ],
+  "models": [
+    {
+      "name": "VehicleSedan",
+      "file": "Exports/VehicleSedan.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 45616
+        },
+        {
+          "lod": 1,
+          "triangles": 14459
+        },
+        {
+          "lod": 2,
+          "triangles": 3573
+        }
+      ],
+      "wheel_centres": [
+        [
+          -0.8250000000000001,
+          0.34,
+          -1.35
+        ],
+        [
+          -0.8250000000000001,
+          0.34,
+          1.35
+        ],
+        [
+          0.8250000000000001,
+          0.34,
+          -1.35
+        ],
+        [
+          0.8250000000000001,
+          0.34,
+          1.35
+        ]
+      ],
+      "wheel_radius": 0.34,
+      "bounds_unity": [
+        [
+          -1.0600000619888306,
+          -0.0036800000816583633,
+          -2.258500099182129
+        ],
+        [
+          1.0600000619888306,
+          1.4869999885559082,
+          2.258500099182129
+        ]
+      ],
+      "sha256": "09465eafef86f3d86d5e4c042b92b3050844c89c2ece2651892dbb66eff7ac86"
+    },
+    {
+      "name": "VehicleHatch",
+      "file": "Exports/VehicleHatch.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 45616
+        },
+        {
+          "lod": 1,
+          "triangles": 14459
+        },
+        {
+          "lod": 2,
+          "triangles": 3573
+        }
+      ],
+      "wheel_centres": [
+        [
+          -0.78,
+          0.31,
+          -1.275
+        ],
+        [
+          -0.78,
+          0.31,
+          1.275
+        ],
+        [
+          0.78,
+          0.31,
+          -1.275
+        ],
+        [
+          0.78,
+          0.31,
+          1.275
+        ]
+      ],
+      "wheel_radius": 0.31,
+      "bounds_unity": [
+        [
+          -1.0149999856948853,
+          -0.0036200000904500484,
+          -2.0835001468658447
+        ],
+        [
+          1.0149999856948853,
+          1.5269999504089355,
+          2.0835001468658447
+        ]
+      ],
+      "sha256": "d66740b665dc906f9839b534a1d58c4708b9db4a3fced00a0c29debe1c11479e"
+    },
+    {
+      "name": "VehicleSuv",
+      "file": "Exports/VehicleSuv.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 45656
+        },
+        {
+          "lod": 1,
+          "triangles": 14486
+        },
+        {
+          "lod": 2,
+          "triangles": 3586
+        }
+      ],
+      "wheel_centres": [
+        [
+          -0.85,
+          0.37,
+          -1.4
+        ],
+        [
+          -0.85,
+          0.37,
+          1.4
+        ],
+        [
+          0.85,
+          0.37,
+          -1.4
+        ],
+        [
+          0.85,
+          0.37,
+          1.4
+        ]
+      ],
+      "wheel_radius": 0.37,
+      "bounds_unity": [
+        [
+          -1.0850000381469727,
+          -0.0037400000728666782,
+          -2.383500099182129
+        ],
+        [
+          1.0850000381469727,
+          1.839918613433838,
+          2.383500099182129
+        ]
+      ],
+      "sha256": "cf5895d52e5965f634e0e3051e8052daa189cd7923b59cedba69c0afb2ec3035"
+    },
+    {
+      "name": "VehicleVan",
+      "file": "Exports/VehicleVan.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 44320
+        },
+        {
+          "lod": 1,
+          "triangles": 14058
+        },
+        {
+          "lod": 2,
+          "triangles": 3484
+        }
+      ],
+      "wheel_centres": [
+        [
+          -0.8250000000000001,
+          0.34,
+          -1.6
+        ],
+        [
+          -0.8250000000000001,
+          0.34,
+          1.6
+        ],
+        [
+          0.8250000000000001,
+          0.34,
+          -1.6
+        ],
+        [
+          0.8250000000000001,
+          0.34,
+          1.6
+        ]
+      ],
+      "wheel_radius": 0.34,
+      "bounds_unity": [
+        [
+          -1.0600000619888306,
+          -0.0036800000816583633,
+          -2.508500099182129
+        ],
+        [
+          1.0600000619888306,
+          1.8869999647140503,
+          2.508500099182129
+        ]
+      ],
+      "sha256": "c8a146fd2cba8475992442d7fd87db61af4fe7ccba23df286931474743e93078"
+    },
+    {
+      "name": "VehicleBoxTruck",
+      "file": "Exports/VehicleBoxTruck.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 60358
+        },
+        {
+          "lod": 1,
+          "triangles": 19064
+        },
+        {
+          "lod": 2,
+          "triangles": 5085
+        }
+      ],
+      "wheel_centres": [
+        [
+          -1.05,
+          0.48,
+          -3.0
+        ],
+        [
+          -1.05,
+          0.48,
+          -1.9
+        ],
+        [
+          -1.05,
+          0.48,
+          3.1
+        ],
+        [
+          1.05,
+          0.48,
+          -3.0
+        ],
+        [
+          1.05,
+          0.48,
+          -1.9
+        ],
+        [
+          1.05,
+          0.48,
+          3.1
+        ]
+      ],
+      "wheel_radius": 0.48,
+      "bounds_unity": [
+        [
+          -1.315000057220459,
+          -0.00395999988541007,
+          -4.300000190734863
+        ],
+        [
+          1.315000057220459,
+          3.6024999618530273,
+          4.058500289916992
+        ]
+      ],
+      "sha256": "e717abe5f441c31d7b2262cc296a4606106ae71af09a84bd430b02ff5f429791"
+    },
+    {
+      "name": "VehicleTaxiSign",
+      "file": "Exports/VehicleTaxiSign.fbx",
+      "lods": [
+        {
+          "lod": 0,
+          "triangles": 728
+        }
+      ],
+      "wheel_centres": [],
+      "wheel_radius": 0,
+      "bounds_unity": [
+        [
+          -0.31,
+          1.4675,
+          -0.415
+        ],
+        [
+          0.31,
+          1.635,
+          -0.185
+        ]
+      ],
+      "sha256": "6ed80177f6b99f773765940416ce278b7dd30998d4d4f3c28c650f4b647ca9c0"
+    }
+  ],
+  "files": {
+    "Vehicles.blend": {
+      "bytes": 14604791,
+      "sha256": "b39de95ad0c8b81cdf3c59703f6160e13657b277fbe5d4879ae36d1804bb167d"
+    },
+    "Exports/VehicleHatch.fbx": {
+      "bytes": 1823868,
+      "sha256": "d66740b665dc906f9839b534a1d58c4708b9db4a3fced00a0c29debe1c11479e"
+    },
+    "Exports/VehicleVan.fbx": {
+      "bytes": 1766428,
+      "sha256": "c8a146fd2cba8475992442d7fd87db61af4fe7ccba23df286931474743e93078"
+    },
+    "Exports/VehicleTaxiSign.fbx": {
+      "bytes": 51596,
+      "sha256": "6ed80177f6b99f773765940416ce278b7dd30998d4d4f3c28c650f4b647ca9c0"
+    },
+    "Exports/VehicleBoxTruck.fbx": {
+      "bytes": 2384876,
+      "sha256": "e717abe5f441c31d7b2262cc296a4606106ae71af09a84bd430b02ff5f429791"
+    },
+    "Exports/VehicleSedan.fbx": {
+      "bytes": 1823276,
+      "sha256": "09465eafef86f3d86d5e4c042b92b3050844c89c2ece2651892dbb66eff7ac86"
+    },
+    "Exports/VehicleSuv.fbx": {
+      "bytes": 1822972,
+      "sha256": "cf5895d52e5965f634e0e3051e8052daa189cd7923b59cedba69c0afb2ec3035"
+    },
+    "Textures/VehicleDetail_M.png": {
+      "bytes": 5096382,
+      "sha256": "7ca4982e1e6986633f1c72fc24d8bffd617c8c5908d3e6f31a9c1ee7434be8fa"
+    },
+    "Textures/VehicleDetail_N.png": {
+      "bytes": 6663457,
+      "sha256": "76b9efdbd4d0cb2f535ee6ce7058bb6c415bdd1707c1d3ade2e858f2a238b92c"
+    },
+    "Textures/VehicleDetail_A.png": {
+      "bytes": 3436342,
+      "sha256": "5b35625b9ca8868f5b030ea10b512c3a633da2f8ffb66857fa60c248e7c451ea"
+    }
+  },
+  "texture_size": 2048,
+  "physics": "visual only; no exported colliders, rigs, cameras or lights; gameplay colliders remain authoritative",
+  "geometry": "crowned roofs, wheel arch apertures, separate curved glazing, seat/dashboard/steering cabin, door seams, recessed lighting, revolved tyres and alloys",
+  "provenance": "Original procedural manufacture in Blender; no third-party meshes or textures",
+  "renders": 0,
+  "textures": [
+    {
+      "name": "VehicleDetail_A",
+      "file": "Textures/VehicleDetail_A.png",
+      "sha256": "5b35625b9ca8868f5b030ea10b512c3a633da2f8ffb66857fa60c248e7c451ea"
+    },
+    {
+      "name": "VehicleDetail_N",
+      "file": "Textures/VehicleDetail_N.png",
+      "sha256": "76b9efdbd4d0cb2f535ee6ce7058bb6c415bdd1707c1d3ade2e858f2a238b92c"
+    },
+    {
+      "name": "VehicleDetail_M",
+      "file": "Textures/VehicleDetail_M.png",
+      "sha256": "7ca4982e1e6986633f1c72fc24d8bffd617c8c5908d3e6f31a9c1ee7434be8fa"
+    }
+  ]
+}

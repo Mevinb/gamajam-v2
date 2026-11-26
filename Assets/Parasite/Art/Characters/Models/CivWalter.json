@@ -93,6 +93,8 @@
   "clothA": "CivWalter_Cloth_A.jpg",
   "clothN": "CivWalter_Cloth_N.jpg",
   "clothM": "CivWalter_Cloth_M.png",
-  "hairA": "CivWalter_Hair_A.png"
+  "hairA": "CivWalter_Hair_A.png",
+  "skinN": "Skins/Surface/Elder_N.png",
+  "skinM": "Skins/Surface/Elder_M.png"
  }
 }

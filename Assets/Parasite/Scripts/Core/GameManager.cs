@@ -267,10 +267,17 @@ namespace Parasite
         public bool PublishRailEnding(Missions.RailResolution owner)
         {
             if (!owner || !owner.Owns(this) || !owner.ReadyToPublish || State != GameState.Ending || !RunState.RailStarted || RunState.Has(Missions.RailCampaign.Departed)) return false;
-            Missions.MissionManager.SetFlag(Missions.RailCampaign.Departed);
+            var ending = new EndingData { route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
+                peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome };
             State = GameState.Ended; Time.timeScale = 0; SetCursorLocked(false);
-            GameEvents.RaiseEnding(new EndingData { route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
-                peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome });
+            try { Missions.MissionManager.SetFlag(Missions.RailCampaign.Departed); }
+            finally
+            {
+                // A mission notification cannot prevent the earned summary. A
+                // reentrant scene/new-game handoff must not notify a new owner.
+                if (this && Instance == this && State == GameState.Ended && RunState.Has(Missions.RailCampaign.Departed))
+                    GameEvents.RaiseEnding(ending);
+            }
             return true;
         }
 

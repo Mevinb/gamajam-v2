@@ -86,7 +86,7 @@ namespace Parasite.EditorTools
             var skyline = new GameObject("Skyline").transform;
             var gameplay = new GameObject("Gameplay").transform;
             var lighting = new GameObject("Lighting").transform;
-            var k = new WorldKit(world, 1337);
+            var k = new WorldKit(world, 1337, "City");
             CityProps.ResetLamps();
 
             Ground(k);
@@ -138,12 +138,7 @@ namespace Parasite.EditorTools
         static void Slab(WorldKit k, Material m, float x0, float x1, float z0, float z1, Faces curbs)
         {
             k.BoxMM(m, x0, x1, 0f, GY, z0, z1);
-            var c = M("Curb");
-            const float w = 0.3f, o = 0.02f, h = GY + 0.012f;
-            if ((curbs & Faces.E) != 0) k.BoxMM(c, x1 - w, x1 + o, 0f, h, z0, z1, false);
-            if ((curbs & Faces.W) != 0) k.BoxMM(c, x0 - o, x0 + w, 0f, h, z0, z1, false);
-            if ((curbs & Faces.N) != 0) k.BoxMM(c, x0, x1, 0f, h, z1 - w, z1 + o, false);
-            if ((curbs & Faces.S) != 0) k.BoxMM(c, x0, x1, 0f, h, z0 - o, z0 + w, false);
+            EnvironmentRealismAssets.Curb(k, x0, x1, z0, z1, curbs, GY + 0.012f);
         }
 
         // Road markings are flat quads 6 mm above the asphalt (never boxes, never overlapping each other or the curbs).
@@ -201,9 +196,7 @@ namespace Parasite.EditorTools
             foreach (var (p, alongX) in new[] { (new Vector3(-6.75f, 0f, -55f), false), (new Vector3(6.75f, 0f, -8f), false), (new Vector3(-6.75f, 0f, 20f), false),
                                                 (new Vector3(-40f, 0f, -33.75f), true), (new Vector3(36f, 0f, -22.25f), true), (new Vector3(-30f, 0f, 40.25f), true), (new Vector3(44f, 0f, 51.75f), true) })
             {
-                var s = alongX ? new Vector3(0.9f, 0.012f, 0.45f) : new Vector3(0.45f, 0.012f, 0.9f);
-                k.Box(M("MetalDark"), p + Vector3.up * 0.003f, s);
-                for (int i = -3; i <= 3; i++) k.Box(M("Tire"), p + Vector3.up * 0.0095f + (alongX ? new Vector3(i * 0.11f, 0, 0) : new Vector3(0, 0, i * 0.11f)), alongX ? new Vector3(0.05f, 0.002f, 0.36f) : new Vector3(0.36f, 0.002f, 0.05f));
+                EnvironmentRealismAssets.Drain(k, p, alongX ? 0f : 90f);
             }
             var rng = new System.Random(77);
             float R(float a, float b) => a + (float)rng.NextDouble() * (b - a);
@@ -1243,7 +1236,7 @@ namespace Parasite.EditorTools
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var backdrop = new GameObject("Backdrop").transform;
             var lighting = new GameObject("Lighting").transform;
-            var k = new WorldKit(backdrop, 4242);
+            var k = new WorldKit(backdrop, 4242, "Bootstrap");
             CityProps.ResetLamps();
 
             k.BoxMM(M("Asphalt"), -60f, 60f, -1f, 0f, -40f, 200f, false);

@@ -1,0 +1,118 @@
+{
+  "scope": "Blender CPU source/export verification; no Unity import, navigation, gameplay or GPU timing claim",
+  "models": {
+    "WindowReveal": {
+      "triangles": 492,
+      "roundtrip_axis_bound_error_metres": 9.12696123123169e-08,
+      "bounds_min": [
+        -0.5899999737739563,
+        -0.6010000109672546,
+        -0.18999990820884705
+      ],
+      "bounds_max": [
+        0.5899999737739563,
+        0.5900000333786011,
+        0.020000094547867775
+      ],
+      "material_slots": 1
+    },
+    "EntranceSurround": {
+      "triangles": 1076,
+      "roundtrip_axis_bound_error_metres": 4.76837158203125e-07,
+      "bounds_min": [
+        -1.0399999618530273,
+        0.04999992996454239,
+        -0.7800004482269287
+      ],
+      "bounds_max": [
+        1.0399999618530273,
+        3.059999942779541,
+        0.0349995419383049
+      ],
+      "material_slots": 1
+    },
+    "Condenser": {
+      "triangles": 1880,
+      "roundtrip_axis_bound_error_metres": 1.7881393432617188e-07,
+      "bounds_min": [
+        -0.824999988079071,
+        -9.188725869080372e-08,
+        -0.6090001463890076
+      ],
+      "bounds_max": [
+        1.0199999809265137,
+        1.1008565425872803,
+        0.5999998450279236
+      ],
+      "material_slots": 1
+    },
+    "CurbStone": {
+      "triangles": 92,
+      "roundtrip_axis_bound_error_metres": 2.9802322387695312e-08,
+      "bounds_min": [
+        -0.4984999895095825,
+        -2.394933851235237e-08,
+        -0.15900002419948578
+      ],
+      "bounds_max": [
+        0.4984999895095825,
+        0.16200003027915955,
+        0.1589999943971634
+      ],
+      "material_slots": 1
+    },
+    "DrainGrate": {
+      "triangles": 920,
+      "roundtrip_axis_bound_error_metres": 4.563480615615845e-08,
+      "bounds_min": [
+        -0.3100000023841858,
+        -0.01400004606693983,
+        -0.3199999928474426
+      ],
+      "bounds_max": [
+        0.3100000023841858,
+        0.03300004452466965,
+        0.3199999928474426
+      ],
+      "material_slots": 1
+    },
+    "FracturedStone": {
+      "triangles": 80,
+      "roundtrip_axis_bound_error_metres": 2.9802322387695312e-08,
+      "bounds_min": [
+        -0.39479702711105347,
+        -0.05000003054738045,
+        -0.3542165160179138
+      ],
+      "bounds_max": [
+        0.39902859926223755,
+        0.32707542181015015,
+        0.3216455280780792
+      ],
+      "material_slots": 1
+    },
+    "GrassClump": {
+      "triangles": 348,
+      "roundtrip_axis_bound_error_metres": 4.470348358154297e-08,
+      "bounds_min": [
+        -0.14985863864421844,
+        -1.9209647206253067e-08,
+        -0.1947452276945114
+      ],
+      "bounds_max": [
+        0.21161402761936188,
+        0.31123000383377075,
+        0.22141548991203308
+      ],
+      "material_slots": 1
+    }
+  },
+  "packed_images": [
+    "A",
+    "M",
+    "N"
+  ],
+  "total_source_triangles": 4888,
+  "new_asset_bytes": 22303000,
+  "passed": true
+}

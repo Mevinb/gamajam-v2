@@ -1,0 +1,34 @@
+{
+  "scope": "Static source comparison only; not a Unity physics/NavMesh or visual acceptance result",
+  "baseline": "f19a5ebfb7dd5a730bd901d52dc8754fc55b416a",
+  "files": {
+    "Assets/Parasite/Editor/CityBuilder.cs": {
+      "explicit_collision_calls": {
+        "count": 10,
+        "sequence_unchanged": true
+      },
+      "random_calls": {
+        "count": 30,
+        "sequence_unchanged": true
+      },
+      "sha256": "ab173a891cf30e1ccaddc86a69d792070e450a4d179d9305ba8cc27e46faa832"
+    },
+    "Assets/Parasite/Editor/World/CityProps.cs": {
+      "explicit_collision_calls": {
+        "count": 16,
+        "sequence_unchanged": true
+      },
+      "random_calls": {
+        "count": 76,
+        "sequence_unchanged": true
+      },
+      "sha256": "7213afbdcc27d89d708471164d59e85e8af7fc66048eb77a43eb8dc82b77df26"
+    }
+  },
+  "binding": {
+    "visual_mesh_calls_only": true,
+    "creates_colliders_lights_or_gameplay_components": false,
+    "consumes_rng": false
+  },
+  "passed": true
+}

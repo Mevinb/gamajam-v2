@@ -71,6 +71,8 @@
   "clothA": "DrVale_Cloth_A.jpg",
   "clothN": "DrVale_Cloth_N.jpg",
   "clothM": "DrVale_Cloth_M.png",
-  "hairA": "DrVale_Hair_A.png"
+  "hairA": "DrVale_Hair_A.png",
+  "skinN": "Skins/Surface/Elder_N.png",
+  "skinM": "Skins/Surface/Elder_M.png"
  }
 }

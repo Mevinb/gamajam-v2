@@ -93,6 +93,8 @@
   "clothA": "GuardJonas_Cloth_A.jpg",
   "clothN": "GuardJonas_Cloth_N.jpg",
   "clothM": "GuardJonas_Cloth_M.png",
-  "hairA": "GuardJonas_Hair_A.png"
+  "hairA": "GuardJonas_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

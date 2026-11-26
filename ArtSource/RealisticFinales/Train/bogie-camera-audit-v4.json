@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "scope": "CPU source/geometry/framing/focus audit only; no render or visual acceptance",
+  "parent_v3_sha256": "d7b2dfaaca96ac8a79698bc6c49b3c201f74eaac38375efb1645674ae80333c9",
+  "source_v4_sha256": "e65f76034469b94f4d97749a79e86ac8230d06684eda7509bdfb279c159f3f62",
+  "all_mesh_payload_hashes": {
+    "A internal suspended organelles": "2633418566bad8f2e5f60b0d7746135e1f3b3c3f7697681c5dd283c2fd1aeea7",
+    "B internal suspended organelles": "317d7dccdca6ae6a65225babfecf91180519ff7ce81db06b954b6bfeee9161fc",
+    "Catenary portals insulators droppers and cable anchors": "098cc466dcc95d350984a1b86b64a154505897f12f1e17b52c43c86b9bcc3dc3",
+    "Depot service details pipes signage ducts pallets and cabinets": "e874751e436d62fb14e373ad5f681bda906708d05bcc63ccc6fe90620074370a",
+    "DepotTrackSegment12m": "f20d9ba6143e87b8884c0d7fdb9811d4c4b3031e59e9d35e8bdb2a18f4d101f5",
+    "GuardMarcus_LOD0": "633d8f976aeae4c554bcf5bed2ea5413c6bcae1f489289d164b3faf864951a33",
+    "Individual fractured granite ballast - close and middle distanc": "21065cb14b93b863a11e14f34b12e234ea28168d65d03ba4e1446fb615ae0404",
+    "Industrial middle distance - multiple scales and silhouettes": "64b864a239f05447027bfcb8f3c492cd97ddff6c72360b09bb096e4e72189c89",
+    "MaintEli_LOD0": "e5e67d1f43e17c06488902dc4306307cc415821388389666368c36b7bfdabc17",
+    "Masonry workshop with sawtooth roofs and glazed north lights": "b8ee456b975a7cd731e8bcb0a08b62e615800ecf7eb8047a7d081381627617e6",
+    "Platform dressed coping tactile edge and service yard": "950ea1134f1d82f3badc7582fb8b3e939ace551745ebcd4b59d49f78ad8ee06f",
+    "RailDepartureCoach_v2": "26130ad4e2447be6d59eaba94a94919e44c2727763816cbd50ed255281cd066f",
+    "Raised granular ballast banks with sloped shoulders": "02d2191c71d1435ec90ca0c95c3f8e5d348849d62288105489edfddbe9f99a68",
+    "Roof-mounted diamond pantograph and real contact shoe": "529ce1919a0a4c0649f6d97837c7c528a9b16ea095e791c06c4e0ada73832cdb",
+    "Rotating wheelset -3.6": "e815c1728b3554842c6117990190a3636198ff3e46c6b92748874f1163664916",
+    "Rotating wheelset -5.4": "e815c1728b3554842c6117990190a3636198ff3e46c6b92748874f1163664916",
+    "Rotating wheelset 3.6": "e815c1728b3554842c6117990190a3636198ff3e46c6b92748874f1163664916",
+    "Rotating wheelset 5.4": "e815c1728b3554842c6117990190a3636198ff3e46c6b92748874f1163664916",
+    "Sphere": "671949af5f40cdc59f99d9d9bd370393a358a8a95c86b8c7b96f0e21cb35815e",
+    "Sphere.001": "005f4ef7f2a9dece1331228eaef6621aebbf2cba03e86ca44cea7d82db2caf85",
+    "Standard gauge bogies - brakes springs air bags and transmissio": "dc25650453b0410e3697a8f7effa56f5cfdebcb76cfea9bbbc6e7d70f9883b72",
+    "V2 coach formed shell curved roof rounded frames real doors and": "fcc15de3095ac979b16fdc3bfa2f2914df5d624ed9118404b64f98eaa9342664",
+    "V3 sealed formed roof end-caps - additive above glazing": "8592788f64c5257aca41720381b1ac592dba572c9d74da621d52227a07525697",
+    "Visible coach ceiling strip housings and diffusers": "19f2e4e5d7c9d3c2e8698e7244508b91704c3a3e9fe4b79b952686de196393ad"
+  },
+  "other_sampled_transforms_exact": true,
+  "other_camera_controls_exact": true,
+  "no_geometry_change": true,
+  "frame_range": [
+    1,
+    336
+  ],
+  "fps": 24,
+  "bogie_focus": {
+    "object": "Rotating wheelset -5.4",
+    "face": 1216,
+    "local_surface_point": [
+      0.8108506202697754,
+      -5.755984783172607,
+      0.4395124018192291
+    ],
+    "world_surface_point_frame100": [
+      0.8108506202697754,
+      -5.578353404998779,
+      0.4395124018192291
+    ],
+    "distance_metres_frame100": 4.290175767679037,
+    "lens_mm": 50.0,
+    "fstop": 11.0
+  },
+  "bogie_framing": [
+    {
+      "frame": 85,
+      "screen_min": [
+        0.0574750080704689,
+        0.11119728535413742
+      ],
+      "screen_max": [
+        0.9380767941474915,
+        0.7389922142028809
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.288292598587729
+    },
+    {
+      "frame": 100,
+      "screen_min": [
+        0.06187315285205841,
+        0.11192882806062698
+      ],
+      "screen_max": [
+        0.9417272210121155,
+        0.7391701340675354
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.290175767679037
+    },
+    {
+      "frame": 120,
+      "screen_min": [
+        0.07539667189121246,
+        0.11602545529603958
+      ],
+      "screen_max": [
+        0.950267493724823,
+        0.739754855632782
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.307269486858762
+    },
+    {
+      "frame": 144,
+      "screen_min": [
+        0.08624665439128876,
+        0.12101750820875168
+      ],
+      "screen_max": [
+        0.9545011520385742,
+        0.7402506470680237
+      ],
+      "fill_watts": 28.0,
+      "focus_distance_metres": 4.331600315684928
+    }
+  ],
+  "fill_zero_at_frames": [
+    1,
+    84,
+    145,
+    168,
+    256,
+    336
+  ],
+  "unpacked_images": []
+}

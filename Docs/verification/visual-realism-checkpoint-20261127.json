@@ -1,0 +1,53 @@
+{
+  "status": "SOURCE_EDITOR_CHECKPOINT_NOT_PLAYER_RELEASE",
+  "campaign_missions": 26,
+  "mission_expansion": "paused by user",
+  "source_branch": "codex/visual-realism",
+  "storage": {
+    "status": "PASS",
+    "geometry_records": {
+      "City": 2334,
+      "Bootstrap": 937
+    },
+    "same_renderer_collider_payloads": true,
+    "existing_mesh_guid_and_local_id_guards_passed": true,
+    "mesh_name_import_warnings": 0,
+    "shader_messages": 0,
+    "graphics_api": "Vulkan",
+    "scene_bytes": {
+      "City": 6633186,
+      "Bootstrap": 2603258
+    },
+    "scope": "Editor source generation and Vulkan captures; no native gameplay, performance or final-film claim."
+  },
+  "editmode": {
+    "passed": 23,
+    "failed": 0,
+    "scope": "focused assets/traffic/film-format/progression notification cases; Null graphics",
+    "xml_sha256": "a959d849365986f61eed8f6eecb44d6219521b1d8d22c92e71722eae94c98e1f"
+  },
+  "playmode": {
+    "passed": 3,
+    "failed": 0,
+    "scope": "Vulkan Editor prepared real coach/deck/two-grounded-capsule callback faults, not campaign earning or new movie decoding",
+    "xml_sha256": "3a3b6388fb1b6660c8374e6a9c0cbeda106f54d5ff724f3ec202cd62bad2a49a"
+  },
+  "vulkan_asset_review": {
+    "receipt_sha256": "8bb9002e2fb2ebbec8fb79261d38a96707e46d56c22c2ce33f08943882a495d6",
+    "scope": "generated city, representative runtime humans/possession and sedan/van, not native FPS or final visual acceptance"
+  },
+  "cinematics": {
+    "lake": "v4 packed source; Arrival165 RTX accepted for this pass, branch images/full films pending",
+    "train": "v4 packed source and declared RTX views reviewed; full film pending",
+    "producer": "Tools/blender/cinematics/finale_production.py",
+    "production_frames": 1176,
+    "full_production_started": false
+  },
+  "open_work": [
+    "neutral humanoid jaw/rest retarget correction and mouth anatomy review",
+    "remaining finale branch QA and full production/encoding",
+    "new Linux build, native gameplay/media and isolated performance checks"
+  ],
+  "latest_existing_binary": "Builds/Candidates/full-story-20261126T141830932558Z-ad668a55",
+  "publication": "GitHub auth unresolved; local source checkpoint only"
+}

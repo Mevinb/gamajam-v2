@@ -73,6 +73,8 @@
   "clothA": "CivGrace_Cloth_A.jpg",
   "clothN": "CivGrace_Cloth_N.jpg",
   "clothM": "CivGrace_Cloth_M.png",
-  "hairA": "CivGrace_Hair_A.png"
+  "hairA": "CivGrace_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

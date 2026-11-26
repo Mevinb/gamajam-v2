@@ -79,6 +79,8 @@
   "clothA": "MaintGus_Cloth_A.jpg",
   "clothN": "MaintGus_Cloth_N.jpg",
   "clothM": "MaintGus_Cloth_M.png",
-  "hairA": "MaintGus_Hair_A.png"
+  "hairA": "MaintGus_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

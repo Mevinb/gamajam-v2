@@ -230,67 +230,27 @@ namespace Parasite.World
             if (wheels != null) foreach (var w in wheels) w.Rotate(spin, 0f, 0f, Space.Self);
         }
 
-        // ------------------------------------------------------------------ procedural body
+        // Visual geometry comes from Blender; the original kinematic box and movement contract stay here.
         public static TrafficCar Build(Transform parent, Color paint, int seed)
         {
             var rnd = new System.Random(seed);
             var go = new GameObject("TrafficCar");
             go.transform.SetParent(parent, false);
             var car = go.AddComponent<TrafficCar>();
-            var body = new GameObject("Body").transform;
-            body.SetParent(go.transform, false);
             bool van = rnd.NextDouble() < 0.2, taxi = !van && rnd.NextDouble() < 0.2;
             if (taxi) paint = new Color(0.95f, 0.72f, 0.05f);
-            var paintM = MatFactory.Lit(paint, 0.82f, 0.45f);
-            var glass = MatFactory.Lit(new Color(0.04f, 0.05f, 0.06f), 0.95f, 0.2f);
-            var trim = MatFactory.Lit(new Color(0.03f, 0.03f, 0.03f), 0.4f);
-            var chrome = MatFactory.Lit(new Color(0.8f, 0.8f, 0.82f), 0.9f, 1f);
-            var tyre = MatFactory.Lit(new Color(0.03f, 0.03f, 0.03f), 0.15f);
-            var head = MatFactory.Emissive(new Color(1f, 0.95f, 0.8f), new Color(1f, 0.92f, 0.75f) * 2.2f);
-            var tail = MatFactory.Emissive(new Color(0.5f, 0.02f, 0.02f), new Color(1f, 0.05f, 0.03f) * 1.6f);
-            float L = van ? 4.9f : 4.4f, W = 1.85f;
-            Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 0.62f, 0), new Vector3(W, 0.62f, L), paintM);
-            Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 0.36f, 0), new Vector3(W + 0.02f, 0.16f, L - 0.2f), trim);
-            if (van)
-            {
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.38f, -0.35f), new Vector3(W - 0.05f, 0.95f, L - 1.2f), paintM);
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.38f, L * 0.5f - 0.95f), new Vector3(W - 0.15f, 0.6f, 0.08f), glass, false, null, Quaternion.Euler(-12, 0, 0));
-            }
-            else
-            {
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.17f, -0.25f), new Vector3(W - 0.18f, 0.52f, 2.2f), glass);
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.45f, -0.3f), new Vector3(W - 0.24f, 0.06f, 1.8f), paintM);
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.1f, 0.95f), new Vector3(W - 0.2f, 0.06f, 0.75f), glass, false, null, Quaternion.Euler(-28, 0, 0));
-            }
-            if (taxi)
-            {
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 1.58f, -0.3f), new Vector3(0.6f, 0.18f, 0.25f), MatFactory.Emissive(Color.white, new Color(1f, 0.9f, 0.5f) * 1.5f));
-            }
-            foreach (float x in new[] { -0.62f, 0.62f })
-            {
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(x, 0.72f, L * 0.5f + 0.005f), new Vector3(0.34f, 0.12f, 0.03f), head);
-                Prim.Make(PrimitiveType.Cube, body, new Vector3(x, 0.78f, -L * 0.5f - 0.005f), new Vector3(0.32f, 0.12f, 0.03f), tail);
-            }
-            Prim.Make(PrimitiveType.Cube, body, new Vector3(0, 0.55f, L * 0.5f + 0.01f), new Vector3(0.8f, 0.14f, 0.03f), chrome);
-            var ws = new List<Transform>();
-            foreach (float x in new[] { -W * 0.5f + 0.08f, W * 0.5f - 0.08f })
-                foreach (float z in new[] { L * 0.5f - 0.85f, -L * 0.5f + 0.85f })
-                {
-                    var pivot = new GameObject("Wheel").transform;
-                    pivot.SetParent(body, false);
-                    pivot.localPosition = new Vector3(x, 0.34f, z);
-                    Prim.Make(PrimitiveType.Cylinder, pivot, Vector3.zero, new Vector3(0.68f, 0.11f, 0.68f), tyre, false, null, Quaternion.Euler(0, 0, 90));
-                    Prim.Make(PrimitiveType.Cylinder, pivot, new Vector3(Mathf.Sign(x) * 0.115f, 0, 0), new Vector3(0.42f, 0.01f, 0.42f), chrome, false, null, Quaternion.Euler(0, 0, 90));
-                    ws.Add(pivot);
-                }
-            car.wheels = ws.ToArray();
+            bool hatch = !van && !taxi && rnd.NextDouble() < 0.35;
+            var visual = VehicleVisuals.Create(go.transform, van ? VehicleBody.Van : hatch ? VehicleBody.Hatch : VehicleBody.Sedan,
+                paint, taxi, out car.wheels);
+            // Hatch visual fits the same 1.85 x 4.4m traffic envelope; simulation and braking dimensions are unchanged.
+            if (hatch) visual.transform.localScale = new Vector3(1.85f / 1.76f, .34f / .31f, 4.4f / 4.05f);
+            float length = van ? 4.9f : 4.4f;
             var col = go.AddComponent<BoxCollider>();
-            col.center = new Vector3(0, 0.85f, 0); col.size = new Vector3(W, 1.3f, L);
+            col.center = new Vector3(0, 0.85f, 0); col.size = new Vector3(1.85f, 1.3f, length);
             var rb = go.AddComponent<Rigidbody>();
             rb.isKinematic = true; rb.interpolation = RigidbodyInterpolation.None;
             car.renderers = go.GetComponentsInChildren<Renderer>();
             car.box = col;
-            foreach (var r in car.renderers) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
             return car;
         }
     }

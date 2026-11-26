@@ -1,4 +1,8 @@
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using Parasite.World;
 using UnityEditor;
 using UnityEngine;
@@ -30,12 +34,17 @@ namespace Parasite.EditorTools
         readonly Dictionary<Transform, Transform> colliderRoots = new();
         readonly Dictionary<string, (int instances, int triangles)> propCosts = new();
         readonly Mesh cylinder, sphere;
+        readonly string meshAssetDirectory;
         public Transform Root;
         public readonly System.Random Rng;
         int colliderCount;
 
-        public WorldKit(Transform root, int seed)
+        public WorldKit(Transform root, int seed, string assetScope)
         {
+            if (assetScope != "City" && assetScope != "Bootstrap")
+                throw new System.ArgumentException("Generated mesh scope must be City or Bootstrap.", nameof(assetScope));
+            meshAssetDirectory = CityAssets.GenDir + "/Meshes/" + assetScope;
+            EnsureAssetFolder(meshAssetDirectory);
             Root = root;
             Rng = new System.Random(seed);
             cylinder = PrimitiveMesh(PrimitiveType.Cylinder);
@@ -440,6 +449,73 @@ namespace Parasite.EditorTools
             return l;
         }
 
+        // Generated meshes live in binary assets, so scene YAML contains GUID references only.
+        // The batch geometry, names and render bindings below stay exactly as before.
+        static void EnsureAssetFolder(string path)
+        {
+            if (AssetDatabase.IsValidFolder(path)) return;
+            int split = path.LastIndexOf('/');
+            string parent = path.Substring(0, split), name = path.Substring(split + 1);
+            EnsureAssetFolder(parent);
+            if (string.IsNullOrEmpty(AssetDatabase.CreateFolder(parent, name)))
+                throw new System.InvalidOperationException("Cannot create owned generated mesh folder: " + path);
+        }
+
+        static string HierarchyKey(Transform root)
+        {
+            var names = new List<string>();
+            for (var current = root; current; current = current.parent) names.Add(current.name);
+            names.Reverse();
+            return string.Join("/", names);
+        }
+
+        string MeshAssetPath(Transform root, Material material, int cx, int cz)
+        {
+            if (!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(material, out string materialGuid, out long materialId))
+                throw new System.InvalidOperationException("Generated batch material must have a stable asset identity: " + material.name);
+            string identity = meshAssetDirectory + "|" + HierarchyKey(root) + "|" + materialGuid + ":" +
+                materialId.ToString(CultureInfo.InvariantCulture) + "|" + cx.ToString(CultureInfo.InvariantCulture) + "|" + cz.ToString(CultureInfo.InvariantCulture);
+            using var hash = SHA256.Create();
+            string digest = System.BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(identity))).Replace("-", "").ToLowerInvariant().Substring(0, 32);
+            var readable = new StringBuilder();
+            foreach (char value in root.name + "_" + material.name)
+                readable.Append(char.IsLetterOrDigit(value) || value == '_' || value == '-' ? value : '_');
+            string prefix = readable.Length > 40 ? readable.ToString(0, 40) : readable.ToString();
+            return meshAssetDirectory + "/" + prefix + "_" + cx.ToString(CultureInfo.InvariantCulture) + "_" +
+                cz.ToString(CultureInfo.InvariantCulture) + "_" + digest + ".asset";
+        }
+
+        Mesh PersistMesh(Mesh generated, Transform root, Material material, int cx, int cz)
+        {
+            string path = MeshAssetPath(root, material, cx, cz);
+            string previousGuid = AssetDatabase.AssetPathToGUID(path);
+            var previous = AssetDatabase.LoadMainAssetAtPath(path);
+            if (previous && !(previous is Mesh))
+                throw new System.InvalidOperationException("Owned generated mesh path is occupied by another asset type: " + path);
+            string previousMainGuid = null;
+            long previousMainId = 0;
+            bool hadPreviousMain = previous;
+            if (hadPreviousMain && !AssetDatabase.TryGetGUIDAndLocalFileIdentifier(previous, out previousMainGuid, out previousMainId))
+                throw new System.InvalidOperationException("Cannot read existing generated mesh main-object identity: " + path);
+            string absolute = Path.GetFullPath(Path.Combine(Application.dataPath, "..", path));
+            // NativeFormatImporter requires the main object name to match its filename.
+            // Flush retains the original display name separately for the renderer hierarchy.
+            generated.name = Path.GetFileNameWithoutExtension(path);
+            // Do not delete/recreate the asset or its .meta: regeneration preserves the existing GUID.
+            UnityEditorInternal.InternalEditorUtility.SaveToSerializedFileAndForget(new UnityEngine.Object[] { generated }, absolute, allowTextSerialization: false);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+            var stored = AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            if (!stored || !EditorUtility.IsPersistent(stored))
+                throw new System.InvalidOperationException("Generated binary mesh could not be imported: " + path);
+            if (!string.IsNullOrEmpty(previousGuid) && previousGuid != AssetDatabase.AssetPathToGUID(path))
+                throw new System.InvalidOperationException("Generated mesh GUID changed during regeneration: " + path);
+            if (hadPreviousMain && (!AssetDatabase.TryGetGUIDAndLocalFileIdentifier(stored, out string currentMainGuid, out long currentMainId) ||
+                currentMainGuid != previousMainGuid || currentMainId != previousMainId))
+                throw new System.InvalidOperationException("Generated mesh main-object GUID/local ID changed during regeneration: " + path);
+            if (!EditorUtility.IsPersistent(generated)) Object.DestroyImmediate(generated);
+            return stored;
+        }
+
         // ------------------------------------------------------------------ flush
         public int LastTriangles;
 
@@ -465,7 +541,9 @@ namespace Parasite.EditorTools
                 tris += b.t.Count / 3;
                 mesh.RecalculateBounds();
                 if (m.IsKeywordEnabled("_NORMALMAP")) mesh.RecalculateTangents();
-                var go = new GameObject(mesh.name);
+                string displayName = mesh.name;
+                mesh = PersistMesh(mesh, root, m, cx, cz);
+                var go = new GameObject(displayName);
                 go.transform.SetParent(gr, false);
                 go.AddComponent<MeshFilter>().sharedMesh = mesh;
                 var mr = go.AddComponent<MeshRenderer>();

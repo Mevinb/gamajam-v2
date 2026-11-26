@@ -65,6 +65,8 @@
   "clothA": "CivKenji_Cloth_A.jpg",
   "clothN": "CivKenji_Cloth_N.jpg",
   "clothM": "CivKenji_Cloth_M.png",
-  "hairA": "CivKenji_Hair_A.png"
+  "hairA": "CivKenji_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

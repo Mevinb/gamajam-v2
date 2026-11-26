@@ -89,6 +89,7 @@ namespace Parasite.EditorTools
                 float v0 = 0.5f * tileV + k.Rng.Next(6) * tileV, vPer = tileV / fh;
                 // upper storeys
                 k.WallQuad(st.Mat, face.origin, face.dir, face.normal, 0f, face.length, GF, yTop, u0, uPer, v0, vPer, 0.01f);
+                EnvironmentRealismAssets.Windows(k, face, GF, B, fh, floors, bays);
                 // cornice + parapet + string course at the ground floor top
                 k.Box(st.Trim, face.At(face.length * 0.5f, yTop + 0.16f, 0.14f), face.Size(face.length + 0.56f, 0.32f, 0.28f));
                 k.Box(st.Trim, face.At(face.length * 0.5f, yTop - 0.05f, 0.06f), face.Size(face.length + 0.36f, 0.1f, 0.12f));
@@ -148,12 +149,7 @@ namespace Parasite.EditorTools
             for (int i = bayA + 1; i <= bayB - 1; i += k.Rng.Next(4, 7))
             {
                 float s = (i + 0.5f) * B;
-                var q = face.Rot;
-                k.Box(M("Stone"), face.At(s, 1.45f, 0.05f), face.Size(1.9f, 2.9f, 0.12f));
-                k.Box(M("DoorWood"), face.At(s, 1.3f, 0.1f), face.Size(1.3f, 2.4f, 0.06f));
-                k.Box(M("GlassDark"), face.At(s, 2.2f, 0.135f), face.Size(1.1f, 0.4f, 0.02f));
-                k.Box(M("Chrome"), face.At(s + 0.45f, 1.15f, 0.16f), face.Size(0.04f, 0.3f, 0.05f));
-                k.Box(M("Stone"), face.At(s, 3.0f, 0.4f), face.Size(2.1f, 0.12f, 0.8f));
+                EnvironmentRealismAssets.Entrance(k, face, s);
                 k.Box(M("Stone"), face.At(s, 0.08f + Sidewalk, 0.35f), face.Size(1.9f, 0.16f, 0.5f));
                 WallLamp(k, face.At(s + 1.25f, 2.55f, 0.06f), face.Yaw);
             }
@@ -341,9 +337,7 @@ namespace Parasite.EditorTools
                 if (r < 0.55f)
                 {   // condenser unit: casing + fan grille + pipes
                     var s = new Vector3(k.Rand(1.2f, 2.2f), k.Rand(0.9f, 1.3f), k.Rand(1.0f, 1.6f));
-                    k.Box(M("RoofMetal"), p + Vector3.up * (s.y * 0.5f + 0.1f), s);
-                    k.Box(M("MetalDark"), p + Vector3.up * 0.05f, s + new Vector3(0.1f, -s.y + 0.1f, 0.1f));
-                    k.Cylinder(M("MetalDark"), p + Vector3.up * (s.y + 0.1f), Mathf.Min(s.x, s.z) * 0.36f, 0.06f);
+                    EnvironmentRealismAssets.Condenser(k, p, s);
                     k.Pipe(M("Pipe"), p + new Vector3(s.x * 0.5f, 0.3f, 0f), p + new Vector3(s.x * 0.5f + 1.2f, 0.3f, 0f), 0.05f);
                 }
                 else if (r < 0.75f && st.Residential)
@@ -509,6 +503,7 @@ namespace Parasite.EditorTools
             }
 
             uint h = PosHash(p);
+            EnvironmentRealismAssets.TreeBed(k, p, h);
             float h0 = (h & 0xffff) / 65535f, h1 = ((h >> 16) & 0xffff) / 65535f;
             string species = autumn ? "Maple" : h0 < 0.58f ? "Plane" : "Linden";
             string leaves = species == "Linden" && h1 > 0.78f ? "Yellow" : null;

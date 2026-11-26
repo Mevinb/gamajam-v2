@@ -81,6 +81,8 @@
   "clothA": "MaintRita_Cloth_A.jpg",
   "clothN": "MaintRita_Cloth_N.jpg",
   "clothM": "MaintRita_Cloth_M.png",
-  "hairA": "MaintRita_Hair_A.png"
+  "hairA": "MaintRita_Hair_A.png",
+  "skinN": "Skins/Surface/Mature_N.png",
+  "skinM": "Skins/Surface/Mature_M.png"
  }
 }

@@ -1,0 +1,69 @@
+{
+  "version": 4,
+  "film": "peace",
+  "path": "ArtSource/RealisticFinales/Lake/Lake_Peace.blend",
+  "bytes": 61182657,
+  "sha256": "61e6ea208f3d615b9cf67c104dd60e3aa2ccaa2da9eb0585a87f3c5cf4ae510b",
+  "source_sha256": "cc2d3b8c3fed908714397b3ce3976c4bc8396d7c1862eaad00e7f2aae0ccd8f2",
+  "original_rig_animation_preserved": true,
+  "original_geometry_counts_preserved": [
+    11769,
+    19631
+  ],
+  "cinematic_eye_uv_loops_refined": 344,
+  "iris_uv_central_scale": 1.42,
+  "boot_ground_support": {
+    "minimum_original_sole_ground_gap_m": 0.04345188011556852,
+    "bench_and_actor_lowered_m": 0.03745188011556852,
+    "intended_minimum_sole_clearance_m": 0.006
+  },
+  "hair_strands": 31211,
+  "flyaways": 600,
+  "native_hair_primitives": true,
+  "groom_conforms_to_render_subdivision": 2,
+  "guided_part_side_strands": 7200,
+  "face_framing_strands": 800,
+  "render_subdivision": 2,
+  "eye_position_world": [
+    -1.7288715839385986,
+    -0.21775026619434357,
+    1.2273024320602417
+  ],
+  "shots": [
+    {
+      "first": 1,
+      "last": 72,
+      "camera": "Peace - breath releases",
+      "lens_mm": 60,
+      "fstop": 3.5
+    },
+    {
+      "first": 73,
+      "last": 120,
+      "camera": "Peace - relaxed hand detail",
+      "lens_mm": 65,
+      "fstop": 4.0
+    },
+    {
+      "first": 121,
+      "last": 168,
+      "camera": "Peace - leave her human on the shore",
+      "lens_mm": 32,
+      "fstop": 5.6
+    }
+  ],
+  "gpu_qa_frames": [
+    1,
+    62,
+    103,
+    168
+  ],
+  "saved_samples": 192,
+  "rendered": false,
+  "authoring_source_sha256": {
+    "author.py": "f4221827a44dae6bc267298250ce07690756923be16074f460e2f80b66a5d0ed",
+    "portrait.py": "e33ce2cae25d6740b2c3f68a0265b7a5b5a1e83382e77da501396edbe4cf9ece",
+    "scenery.py": "31cf3a6ae63b79eb27c14e9fa74e98e2b5906e2014df3069afed0ba2932be2d9",
+    "cinematic_surfaces.py": "70f1210f54299c6a4937c4fe34ceec7cd3b882f70a75ea5f7f3a231738ba99ee"
+  }
+}

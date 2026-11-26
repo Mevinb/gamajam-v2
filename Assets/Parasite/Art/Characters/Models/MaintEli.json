@@ -79,6 +79,8 @@
   "clothA": "MaintEli_Cloth_A.jpg",
   "clothN": "MaintEli_Cloth_N.jpg",
   "clothM": "MaintEli_Cloth_M.png",
-  "hairA": "MaintEli_Hair_A.png"
+  "hairA": "MaintEli_Hair_A.png",
+  "skinN": "Skins/Surface/Adult_N.png",
+  "skinM": "Skins/Surface/Adult_M.png"
  }
 }

@@ -1,0 +1,1780 @@
+{
+  "version": 1,
+  "authoring": "Blender 4.5 LTS; deterministic bmesh solids; CPU Cycles 8-sample procedural atlas bake",
+  "axes": "Unity X-right/Y-up/-Z front -> Blender X-right/Z-up/+Y front; FBX -Z forward Y-up; metres",
+  "physics": "All exports are visual only, without colliders, lights, cameras, animation or gameplay scripts.",
+  "atlas": {
+    "size": 2048,
+    "tiles": [
+      "cut limestone",
+      "powder coated steel",
+      "oxidised cast iron",
+      "moss and leaf"
+    ],
+    "channels": {
+      "A": "sRGB unlit base colour",
+      "N": "linear tangent-space normal OpenGL +Y",
+      "M": "linear R metallic, G neutral 0.98 occlusion, B unused, A smoothness"
+    },
+    "compressed_full_mips_estimate_MiB": 16,
+    "A": {
+      "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_A.png",
+      "bytes": 2091321,
+      "sha256": "038421aa0e0aa46219da738b0d04707be4d0beb5ee2875ffcb4701f500fd203e"
+    },
+    "N": {
+      "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_N.png",
+      "bytes": 5817395,
+      "sha256": "1886de0fb700bf00e3955031e2568b61483d54a024178c34338c4827955d6260"
+    },
+    "M": {
+      "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_M.png",
+      "bytes": 3079740,
+      "sha256": "50b4d318f33c02c5d7ee911c986b84fa7d605ef6f84f6188a35bd7b284f1cd42"
+    }
+  },
+  "models": {
+    "WindowReveal": {
+      "triangles": 492,
+      "vertices": 264,
+      "bounds_min": [
+        -0.5899999737739563,
+        -0.6010000109672546,
+        -0.1899999976158142
+      ],
+      "bounds_max": [
+        0.5899999737739563,
+        0.5900000333786011,
+        0.020000003278255463
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/WindowReveal.fbx",
+      "bytes": 29868,
+      "sha256": "105d4f4015a8e00e1c36762551164148b9dcc79b4c89f420f68baac1ff5217e4"
+    },
+    "EntranceSurround": {
+      "triangles": 1076,
+      "vertices": 592,
+      "bounds_min": [
+        -1.0399999618530273,
+        0.04999995231628418,
+        -0.7799999713897705
+      ],
+      "bounds_max": [
+        1.0399999618530273,
+        3.059999942779541,
+        0.03500000387430191
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/EntranceSurround.fbx",
+      "bytes": 41276,
+      "sha256": "8d3c7c274a603042b7052ac4cc7c832801b7840fea04d5aead29ac873ec00b2c"
+    },
+    "Condenser": {
+      "triangles": 1880,
+      "vertices": 1028,
+      "bounds_min": [
+        -0.824999988079071,
+        0.0,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        1.0199999809265137,
+        1.1008564233779907,
+        0.6000000238418579
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/Condenser.fbx",
+      "bytes": 60524,
+      "sha256": "17f9c7438cd7d651c304e811f5fb672c8d2e4f0af90f2379f3931135c4e5b007"
+    },
+    "CurbStone": {
+      "triangles": 92,
+      "vertices": 48,
+      "bounds_min": [
+        -0.4984999895095825,
+        0.0,
+        -0.1589999943971634
+      ],
+      "bounds_max": [
+        0.4984999895095825,
+        0.16200000047683716,
+        0.1589999943971634
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/CurbStone.fbx",
+      "bytes": 22412,
+      "sha256": "433707e91f94a26f976e91bceb5c1eaa34b17f6ce0e5f37a5bee82a334e25ea7"
+    },
+    "DrainGrate": {
+      "triangles": 920,
+      "vertices": 496,
+      "bounds_min": [
+        -0.3100000023841858,
+        -0.014000000432133675,
+        -0.3199999928474426
+      ],
+      "bounds_max": [
+        0.3100000023841858,
+        0.032999999821186066,
+        0.3199999928474426
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/DrainGrate.fbx",
+      "bytes": 37260,
+      "sha256": "95fab74016d3578b54fb600b7dbd96b0de76898872399d3ed99b407b8fb8e70a"
+    },
+    "FracturedStone": {
+      "triangles": 80,
+      "vertices": 42,
+      "bounds_min": [
+        -0.39479702711105347,
+        -0.05000000074505806,
+        -0.35421648621559143
+      ],
+      "bounds_max": [
+        0.39902859926223755,
+        0.32707545161247253,
+        0.3216455578804016
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/FracturedStone.fbx",
+      "bytes": 23180,
+      "sha256": "fc66a86bc24fcefece01096d1f93c4dda54fed9d7b0ac9df9b685269436b3c67"
+    },
+    "GrassClump": {
+      "triangles": 348,
+      "vertices": 812,
+      "bounds_min": [
+        -0.14985863864421844,
+        0.0,
+        -0.19474519789218903
+      ],
+      "bounds_max": [
+        0.21161402761936188,
+        0.31122997403144836,
+        0.22141553461551666
+      ],
+      "export": "Assets/Parasite/Art/EnvironmentRealism/GrassClump.fbx",
+      "bytes": 33916,
+      "sha256": "72c02c8ffe7b82325bde73eef7d9fd318a4fcde4cd543a177fda3f0a69d223b4"
+    }
+  },
+  "pieces": [
+    {
+      "model": "WindowReveal",
+      "piece": "deep stone jamb",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.5674999952316284,
+        -0.5699999928474426,
+        -0.12999999523162842
+      ],
+      "bounds_max": [
+        -0.492499977350235,
+        0.5699999928474426,
+        0.020000003278255463
+      ],
+      "signed_volume": 0.012631896992679142
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "rebated bronze frame",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.5149399638175964,
+        -0.5099999904632568,
+        -0.12849999964237213
+      ],
+      "bounds_max": [
+        -0.48993998765945435,
+        0.5099999904632568,
+        -0.09350000321865082
+      ],
+      "signed_volume": 0.0008540519826266031
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "deep stone jamb",
+      "material_tile": 0,
+      "bounds_min": [
+        0.492499977350235,
+        -0.5699999928474426,
+        -0.12999999523162842
+      ],
+      "bounds_max": [
+        0.5674999952316284,
+        0.5699999928474426,
+        0.020000003278255463
+      ],
+      "signed_volume": 0.012631896992679142
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "rebated bronze frame",
+      "material_tile": 1,
+      "bounds_min": [
+        0.48993998765945435,
+        -0.5099999904632568,
+        -0.12849999964237213
+      ],
+      "bounds_max": [
+        0.5149399638175964,
+        0.5099999904632568,
+        -0.09350000321865082
+      ],
+      "signed_volume": 0.0008540519826266031
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "recessed lintel",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.5699999928474426,
+        0.5199999809265137,
+        -0.12999999523162842
+      ],
+      "bounds_max": [
+        0.5699999928474426,
+        0.5900000333786011,
+        0.020000003278255463
+      ],
+      "signed_volume": 0.011777616480418354
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "sloping projecting sill",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.5899999737739563,
+        -0.5925000309944153,
+        -0.1899999976158142
+      ],
+      "bounds_max": [
+        0.5899999737739563,
+        -0.5074999928474426,
+        0.0
+      ],
+      "signed_volume": 0.01869271104606483
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "drip edge under sill",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.5600000023841858,
+        -0.6010000109672546,
+        -0.17650000751018524
+      ],
+      "bounds_max": [
+        0.5600000023841858,
+        -0.5869999527931213,
+        -0.15150000154972076
+      ],
+      "signed_volume": 0.0003827706867673198
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "thin vertical mullion",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.010999999940395355,
+        -0.5,
+        -0.032999999821186066
+      ],
+      "bounds_max": [
+        0.010999999940395355,
+        0.5,
+        -0.006999999284744263
+      ],
+      "signed_volume": 0.000563658672002315
+    },
+    {
+      "model": "WindowReveal",
+      "piece": "thin transom",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.5,
+        0.1274999976158142,
+        -0.032999999821186066
+      ],
+      "bounds_max": [
+        0.5,
+        0.1525000035762787,
+        -0.006999999284744263
+      ],
+      "signed_volume": 0.0006416346864272555
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "dressed stone jamb",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.949999988079071,
+        0.04999995231628418,
+        -0.13499999046325684
+      ],
+      "bounds_max": [
+        -0.8100000023841858,
+        2.950000047683716,
+        0.02499999850988388
+      ],
+      "signed_volume": 0.06414899272533983
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.9524999856948853,
+        0.3739999830722809,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        -0.8075000047683716,
+        0.38600000739097595,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.9524999856948853,
+        0.9640000462532043,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        -0.8075000047683716,
+        0.9760000109672546,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.9524999856948853,
+        1.553999900817871,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        -0.8075000047683716,
+        1.565999984741211,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.9524999856948853,
+        2.1440000534057617,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        -0.8075000047683716,
+        2.1560001373291016,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.9524999856948853,
+        2.7339999675750732,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        -0.8075000047683716,
+        2.746000051498413,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "dressed stone jamb",
+      "material_tile": 0,
+      "bounds_min": [
+        0.8100000023841858,
+        0.04999995231628418,
+        -0.13499999046325684
+      ],
+      "bounds_max": [
+        0.949999988079071,
+        2.950000047683716,
+        0.02499999850988388
+      ],
+      "signed_volume": 0.06414899272533983
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        0.8075000047683716,
+        0.3739999830722809,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        0.9524999856948853,
+        0.38600000739097595,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        0.8075000047683716,
+        0.9640000462532043,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        0.9524999856948853,
+        0.9760000109672546,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        0.8075000047683716,
+        1.553999900817871,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        0.9524999856948853,
+        1.565999984741211,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        0.8075000047683716,
+        2.1440000534057617,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        0.9524999856948853,
+        2.1560001373291016,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "jamb block joint",
+      "material_tile": 2,
+      "bounds_min": [
+        0.8075000047683716,
+        2.7339999675750732,
+        -0.14350000023841858
+      ],
+      "bounds_max": [
+        0.9524999856948853,
+        2.746000051498413,
+        -0.140500009059906
+      ],
+      "signed_volume": 5.2199999405443646e-06
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "stone lintel",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.949999988079071,
+        2.830000162124634,
+        -0.14500001072883606
+      ],
+      "bounds_max": [
+        0.949999988079071,
+        3.009999990463257,
+        0.03500000387430191
+      ],
+      "signed_volume": 0.06098963546746819
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "brushed door leaf",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6499999761581421,
+        0.1499999761581421,
+        -0.1264999955892563
+      ],
+      "bounds_max": [
+        0.6499999761581421,
+        2.5500001907348633,
+        -0.07150000333786011
+      ],
+      "signed_volume": 0.17064690940141697
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "door stile",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.622499942779541,
+        0.18500006198883057,
+        -0.15449999272823334
+      ],
+      "bounds_max": [
+        -0.5575000047683716,
+        2.5149998664855957,
+        -0.11949999630451202
+      ],
+      "signed_volume": 0.005213701620274323
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "door stile",
+      "material_tile": 2,
+      "bounds_min": [
+        0.5575000047683716,
+        0.18500006198883057,
+        -0.15449999272823334
+      ],
+      "bounds_max": [
+        0.622499942779541,
+        2.5149998664855957,
+        -0.11949999630451202
+      ],
+      "signed_volume": 0.005213701620274323
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "door rail",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.6150000095367432,
+        0.22749999165534973,
+        -0.1574999988079071
+      ],
+      "bounds_max": [
+        0.6150000095367432,
+        0.29249998927116394,
+        -0.12250000238418579
+      ],
+      "signed_volume": 0.00275080192177398
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "door rail",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.6150000095367432,
+        1.5674999952316284,
+        -0.1574999988079071
+      ],
+      "bounds_max": [
+        0.6150000095367432,
+        1.6325000524520874,
+        -0.12250000238418579
+      ],
+      "signed_volume": 0.00275080192177398
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "door rail",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.6150000095367432,
+        2.4574999809265137,
+        -0.1574999988079071
+      ],
+      "bounds_max": [
+        0.6150000095367432,
+        2.5225000381469727,
+        -0.12250000238418579
+      ],
+      "signed_volume": 0.00275080192177398
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "nonemissive upper glazed panel",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.5199999809265137,
+        1.6999999284744263,
+        -0.14900000393390656
+      ],
+      "bounds_max": [
+        0.5199999809265137,
+        2.4200000762939453,
+        -0.13500000536441803
+      ],
+      "signed_volume": 0.010419768188578838
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "bottom kick plate",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.550000011920929,
+        0.16999998688697815,
+        -0.15600000321865082
+      ],
+      "bounds_max": [
+        0.550000011920929,
+        0.4699999988079071,
+        -0.14000000059604645
+      ],
+      "signed_volume": 0.005229456520711546
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "pull handle post",
+      "material_tile": 2,
+      "bounds_min": [
+        0.41600000858306885,
+        1.016685128211975,
+        -0.20000001788139343
+      ],
+      "bounds_max": [
+        0.4440000057220459,
+        1.043314814567566,
+        -0.15000000596046448
+      ],
+      "signed_volume": 2.880147728675321e-05
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "pull handle post",
+      "material_tile": 2,
+      "bounds_min": [
+        0.41600000858306885,
+        1.266685128211975,
+        -0.20000001788139343
+      ],
+      "bounds_max": [
+        0.4440000057220459,
+        1.293314814567566,
+        -0.15000000596046448
+      ],
+      "signed_volume": 2.880147728675321e-05
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "pull handle",
+      "material_tile": 2,
+      "bounds_min": [
+        0.414000004529953,
+        1.0299999713897705,
+        -0.2160000205039978
+      ],
+      "bounds_max": [
+        0.44600000977516174,
+        1.2799999713897705,
+        -0.18399998545646667
+      ],
+      "signed_volume": 0.00019200003376232053
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "stone canopy",
+      "material_tile": 0,
+      "bounds_min": [
+        -1.0399999618530273,
+        2.940000057220459,
+        -0.7799999713897705
+      ],
+      "bounds_max": [
+        1.0399999618530273,
+        3.059999942779541,
+        0.0
+      ],
+      "signed_volume": 0.19373412744869595
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "canopy support",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.699999988079071,
+        2.7649998664855957,
+        -0.42500001192092896
+      ],
+      "bounds_max": [
+        -0.5999999642372131,
+        2.9549999237060547,
+        -0.05499999225139618
+      ],
+      "signed_volume": 0.006966000122979283
+    },
+    {
+      "model": "EntranceSurround",
+      "piece": "canopy support",
+      "material_tile": 2,
+      "bounds_min": [
+        0.5999999642372131,
+        2.7649998664855957,
+        -0.42500001192092896
+      ],
+      "bounds_max": [
+        0.699999988079071,
+        2.9549999237060547,
+        -0.05499999225139618
+      ],
+      "signed_volume": 0.006966000122979283
+    },
+    {
+      "model": "Condenser",
+      "piece": "sealed folded casing",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.7900000214576721,
+        0.09999999403953552,
+        -0.5649999976158142
+      ],
+      "bounds_max": [
+        0.7900000214576721,
+        1.0199999809265137,
+        0.5649999976158142
+      ],
+      "signed_volume": 1.6383490157444172
+    },
+    {
+      "model": "Condenser",
+      "piece": "raised lid",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.824999988079071,
+        1.0124999284744263,
+        -0.6000000238418579
+      ],
+      "bounds_max": [
+        0.824999988079071,
+        1.0674999952316284,
+        0.6000000238418579
+      ],
+      "signed_volume": 0.10797044594258465
+    },
+    {
+      "model": "Condenser",
+      "piece": "anti vibration foot",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.6599999666213989,
+        0.0,
+        -0.5699999928474426
+      ],
+      "bounds_max": [
+        -0.47999998927116394,
+        0.11999999731779099,
+        0.5699999928474426
+      ],
+      "signed_volume": 0.02442009622642568
+    },
+    {
+      "model": "Condenser",
+      "piece": "anti vibration foot",
+      "material_tile": 2,
+      "bounds_min": [
+        0.47999998927116394,
+        0.0,
+        -0.5699999928474426
+      ],
+      "bounds_max": [
+        0.6599999666213989,
+        0.11999999731779099,
+        0.5699999928474426
+      ],
+      "signed_volume": 0.02442009622642568
+    },
+    {
+      "model": "Condenser",
+      "piece": "dark radiator recess",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.6949999928474426,
+        0.18000000715255737,
+        -0.581000030040741
+      ],
+      "bounds_max": [
+        0.6949999928474426,
+        0.9000000357627869,
+        -0.5630000233650208
+      ],
+      "signed_volume": 0.017881911453475056
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.21299999952316284,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.22699999809265137,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.25200000405311584,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.26600000262260437,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.29100000858306885,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.3050000071525574,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.33000001311302185,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.3440000116825104,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.36899998784065247,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.382999986410141,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.40799999237060547,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.421999990940094,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.44699999690055847,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.460999995470047,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.4860000014305115,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.5,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.5249999761581421,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.5390000343322754,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.5639999508857727,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.578000009059906,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.6029999852180481,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.6170000433921814,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.6419999599456787,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.656000018119812,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.6809999942779541,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.6950000524520874,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.7199999690055847,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.734000027179718,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.7589999437332153,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.7730000019073486,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.7979999780654907,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.812000036239624,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "radiator louvre",
+      "material_tile": 1,
+      "bounds_min": [
+        -0.6700000166893005,
+        0.8369999527931213,
+        -0.609000027179718
+      ],
+      "bounds_max": [
+        0.6700000166893005,
+        0.8510000109672546,
+        -0.581000030040741
+      ],
+      "signed_volume": 0.0005142667121693502
+    },
+    {
+      "model": "Condenser",
+      "piece": "rolled fan guard rim",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.41600000858306885,
+        1.0731436014175415,
+        -0.41600000858306885
+      ],
+      "bounds_max": [
+        0.41600000858306885,
+        1.1008564233779907,
+        0.41600000858306885
+      ],
+      "signed_volume": 0.0016525686945423755
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.3034641146659851,
+        1.0810000896453857,
+        -0.2332380712032318
+      ],
+      "bounds_max": [
+        -0.2965359091758728,
+        1.0889999866485596,
+        0.2332380712032318
+      ],
+      "signed_volume": 1.939105113270954e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.22346410155296326,
+        1.0810000896453857,
+        -0.3098386824131012
+      ],
+      "bounds_max": [
+        -0.21653589606285095,
+        1.0889999866485596,
+        0.3098386824131012
+      ],
+      "signed_volume": 2.575950702459997e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.1434641033411026,
+        1.0810000896453857,
+        -0.35327044129371643
+      ],
+      "bounds_max": [
+        -0.1365358978509903,
+        1.0889999866485596,
+        0.35327044129371643
+      ],
+      "signed_volume": 2.9370356029193576e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.06346409767866135,
+        1.0810000896453857,
+        -0.3752332627773285
+      ],
+      "bounds_max": [
+        -0.05653589591383934,
+        1.0889999866485596,
+        0.3752332627773285
+      ],
+      "signed_volume": 3.1196310909587874e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        0.016535896807909012,
+        1.0810000896453857,
+        -0.37947332859039307
+      ],
+      "bounds_max": [
+        0.023464102298021317,
+        1.0889999866485596,
+        0.37947332859039307
+      ],
+      "signed_volume": 3.1548823398492594e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        0.09653589874505997,
+        1.0810000896453857,
+        -0.36660605669021606
+      ],
+      "bounds_max": [
+        0.10346410423517227,
+        1.0889999866485596,
+        0.36660605669021606
+      ],
+      "signed_volume": 3.0479058389428533e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        0.17653590440750122,
+        1.0810000896453857,
+        -0.3346640169620514
+      ],
+      "bounds_max": [
+        0.18346410989761353,
+        1.0889999866485596,
+        0.3346640169620514
+      ],
+      "signed_volume": 2.7823446797133313e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        0.2565358877182007,
+        1.0810000896453857,
+        -0.277128130197525
+      ],
+      "bounds_max": [
+        0.263464093208313,
+        1.0889999866485596,
+        0.277128130197525
+      ],
+      "signed_volume": 2.3040002497233543e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.2569046914577484,
+        1.0860000848770142,
+        -0.28346413373947144
+      ],
+      "bounds_max": [
+        0.2569046914577484,
+        1.093999981880188,
+        -0.27653586864471436
+      ],
+      "signed_volume": 2.1358662114102553e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.3346640467643738,
+        1.0860000848770142,
+        -0.18346412479877472
+      ],
+      "bounds_max": [
+        0.3346640467643738,
+        1.093999981880188,
+        -0.17653588950634003
+      ],
+      "signed_volume": 2.78233370699814e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.37148353457450867,
+        1.0860000848770142,
+        -0.0834641307592392
+      ],
+      "bounds_max": [
+        0.37148353457450867,
+        1.093999981880188,
+        -0.07653586566448212
+      ],
+      "signed_volume": 3.0884439778772614e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.37947335839271545,
+        1.0860000848770142,
+        0.016535867005586624
+      ],
+      "bounds_max": [
+        0.37947335839271545,
+        1.093999981880188,
+        0.023464132100343704
+      ],
+      "signed_volume": 3.154876567705777e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.36055517196655273,
+        1.0860000848770142,
+        0.11653586477041245
+      ],
+      "bounds_max": [
+        0.36055517196655273,
+        1.093999981880188,
+        0.12346412986516953
+      ],
+      "signed_volume": 2.997593916257956e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.3098387122154236,
+        1.0860000848770142,
+        0.21653588116168976
+      ],
+      "bounds_max": [
+        0.3098387122154236,
+        1.093999981880188,
+        0.22346411645412445
+      ],
+      "signed_volume": 2.5759405620790464e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "fan safety grid",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.20493902266025543,
+        1.0860000848770142,
+        0.3165358901023865
+      ],
+      "bounds_max": [
+        0.20493902266025543,
+        1.093999981880188,
+        0.3234640955924988
+      ],
+      "signed_volume": 1.703826178354094e-05
+    },
+    {
+      "model": "Condenser",
+      "piece": "motor hub",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.06499999761581421,
+        1.062999963760376,
+        -0.0650000050663948
+      ],
+      "bounds_max": [
+        0.06499999761581421,
+        1.1000001430511475,
+        0.0650000050663948
+      ],
+      "signed_volume": 0.0004785846997205501
+    },
+    {
+      "model": "Condenser",
+      "piece": "captive lid fastener",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.7138563990592957,
+        1.0699999332427979,
+        -0.4860000014305115
+      ],
+      "bounds_max": [
+        -0.6861435770988464,
+        1.0829999446868896,
+        -0.45399999618530273
+      ],
+      "signed_volume": 8.646328054275346e-06
+    },
+    {
+      "model": "Condenser",
+      "piece": "captive lid fastener",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.7138563990592957,
+        1.0699999332427979,
+        0.45399999618530273
+      ],
+      "bounds_max": [
+        -0.6861435770988464,
+        1.0829999446868896,
+        0.4860000014305115
+      ],
+      "signed_volume": 8.646328054275346e-06
+    },
+    {
+      "model": "Condenser",
+      "piece": "captive lid fastener",
+      "material_tile": 2,
+      "bounds_min": [
+        0.6861435770988464,
+        1.0699999332427979,
+        -0.4860000014305115
+      ],
+      "bounds_max": [
+        0.7138563990592957,
+        1.0829999446868896,
+        -0.45399999618530273
+      ],
+      "signed_volume": 8.646328054275346e-06
+    },
+    {
+      "model": "Condenser",
+      "piece": "captive lid fastener",
+      "material_tile": 2,
+      "bounds_min": [
+        0.6861435770988464,
+        1.0699999332427979,
+        0.45399999618530273
+      ],
+      "bounds_max": [
+        0.7138563990592957,
+        1.0829999446868896,
+        0.4860000014305115
+      ],
+      "signed_volume": 8.646328054275346e-06
+    },
+    {
+      "model": "Condenser",
+      "piece": "refrigerant connection",
+      "material_tile": 2,
+      "bounds_min": [
+        0.7950000166893005,
+        0.2750000059604645,
+        -0.26377642154693604
+      ],
+      "bounds_max": [
+        1.0199999809265137,
+        0.32500001788139343,
+        -0.2162235677242279
+      ],
+      "signed_volume": 0.000413286509068238
+    },
+    {
+      "model": "Condenser",
+      "piece": "refrigerant connection",
+      "material_tile": 2,
+      "bounds_min": [
+        0.7950000166893005,
+        0.2750000059604645,
+        0.2162235677242279
+      ],
+      "bounds_max": [
+        1.0199999809265137,
+        0.32500001788139343,
+        0.26377642154693604
+      ],
+      "signed_volume": 0.000413286509068238
+    },
+    {
+      "model": "CurbStone",
+      "piece": "worn dressed curb",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.4984999895095825,
+        0.0,
+        -0.1589999943971634
+      ],
+      "bounds_max": [
+        0.4984999895095825,
+        0.16200000047683716,
+        0.1589999943971634
+      ],
+      "signed_volume": 0.05060793521061604
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast outer frame",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.3100000023841858,
+        0.0,
+        -0.3199999928474426
+      ],
+      "bounds_max": [
+        -0.26999998092651367,
+        0.024000000208616257,
+        0.3199999928474426
+      ],
+      "signed_volume": 0.0005703679588451372
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast outer frame",
+      "material_tile": 2,
+      "bounds_min": [
+        0.26999998092651367,
+        0.0,
+        -0.3199999928474426
+      ],
+      "bounds_max": [
+        0.3100000023841858,
+        0.024000000208616257,
+        0.3199999928474426
+      ],
+      "signed_volume": 0.0005703679588451372
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast outer frame",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.27000001072883606,
+        0.0,
+        -0.3100000023841858
+      ],
+      "bounds_max": [
+        0.27000001072883606,
+        0.024000000208616257,
+        -0.26999998092651367
+      ],
+      "signed_volume": 0.0004807680057420718
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast outer frame",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.27000001072883606,
+        0.0,
+        0.26999998092651367
+      ],
+      "bounds_max": [
+        0.27000001072883606,
+        0.024000000208616257,
+        0.3100000023841858
+      ],
+      "signed_volume": 0.0004807680057420718
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "black drainage cavity",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.2800000011920929,
+        -0.014000000432133675,
+        -0.2800000011920929
+      ],
+      "bounds_max": [
+        0.2800000011920929,
+        -0.0020000003278255463,
+        0.2800000011920929
+      ],
+      "signed_volume": 0.0037452160251848646
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.2409999966621399,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        -0.21900001168251038,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.1834999918937683,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        -0.1615000069141388,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.12600000202655792,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        -0.10400000214576721,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.06849999725818634,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        -0.04650000110268593,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.010999999940395355,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        0.010999999940395355,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        0.04650000110268593,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        0.06849999725818634,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        0.10400000214576721,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        0.12600000202655792,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        0.1615000069141388,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        0.1834999918937683,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "cast slotted bar",
+      "material_tile": 2,
+      "bounds_min": [
+        0.21900001168251038,
+        0.0,
+        -0.2750000059604645
+      ],
+      "bounds_max": [
+        0.2409999966621399,
+        0.03200000151991844,
+        0.2750000059604645
+      ],
+      "signed_volume": 0.0003495680135612072
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "recessed frame anchor",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.2703922986984253,
+        0.023999998345971107,
+        -0.2719999849796295
+      ],
+      "bounds_max": [
+        -0.24960768222808838,
+        0.032999999821186066,
+        -0.24799999594688416
+      ],
+      "signed_volume": 3.367106869754747e-06
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "recessed frame anchor",
+      "material_tile": 2,
+      "bounds_min": [
+        -0.2703922986984253,
+        0.023999998345971107,
+        0.24799999594688416
+      ],
+      "bounds_max": [
+        -0.24960768222808838,
+        0.032999999821186066,
+        0.2719999849796295
+      ],
+      "signed_volume": 3.367106869754747e-06
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "recessed frame anchor",
+      "material_tile": 2,
+      "bounds_min": [
+        0.24960768222808838,
+        0.023999998345971107,
+        -0.2719999849796295
+      ],
+      "bounds_max": [
+        0.2703922986984253,
+        0.032999999821186066,
+        -0.24799999594688416
+      ],
+      "signed_volume": 3.367106869754747e-06
+    },
+    {
+      "model": "DrainGrate",
+      "piece": "recessed frame anchor",
+      "material_tile": 2,
+      "bounds_min": [
+        0.24960768222808838,
+        0.023999998345971107,
+        0.24799999594688416
+      ],
+      "bounds_max": [
+        0.2703922986984253,
+        0.032999999821186066,
+        0.2719999849796295
+      ],
+      "signed_volume": 3.367106869754747e-06
+    },
+    {
+      "model": "FracturedStone",
+      "piece": "fractured weathered stone",
+      "material_tile": 0,
+      "bounds_min": [
+        -0.39479702711105347,
+        -0.05000000074505806,
+        -0.35421648621559143
+      ],
+      "bounds_max": [
+        0.39902859926223755,
+        0.32707545161247253,
+        0.3216455578804016
+      ],
+      "signed_volume": 0.10660258888614771
+    }
+  ],
+  "packed_source": {
+    "path": "ArtSource/EnvironmentRealism/EnvironmentRealism.blend",
+    "bytes": 11066108,
+    "sha256": "873542d74ea64d6809b3f4845e904d3c2401a346fb2b0a80f1c4985997c6c9a5"
+  }
+}

@@ -150,12 +150,15 @@ namespace Parasite.Missions
         {
             int guard = 0;
             bool advanced = false;
+            string firstCompletedTitle = null;
             while (Current != null && Current.IsComplete && guard++ < Missions.Count)
             {
-                if (announce && !advanced) GameEvents.RaiseToast($"MISSION COMPLETE — {Current.title}", Palette.Amoeba);
+                if (!advanced) firstCompletedTitle = Current.title;
                 RunState.MissionIndex++;
                 advanced = true;
             }
+            // Durable progress must precede fallible presentation callbacks.
+            if (announce && advanced) GameEvents.RaiseToast($"MISSION COMPLETE — {firstCompletedTitle}", Palette.Amoeba);
             if ((advanced || announce) && Current != null)
             {
                 Banner?.Invoke($"MISSION {RunState.MissionIndex + 1}/{Missions.Count} · {Current.title}", Current.briefing);

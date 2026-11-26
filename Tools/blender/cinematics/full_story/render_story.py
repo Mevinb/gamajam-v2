@@ -15,7 +15,7 @@ sys.path.insert(0,str(HERE))
 import render_policy as policy
 
 ROOT=HERE.parents[3]
-SOURCE_ROOT=(ROOT/'ArtSource/FullCinematics').resolve()
+SOURCE_ROOTS=tuple((ROOT/path).resolve() for path in ('ArtSource/FullCinematics','ArtSource/RealisticFinales'))
 SCHEMA=2
 
 
@@ -90,8 +90,8 @@ def run(args):
     import bpy
     output=policy.output_path(ROOT,args.out)
     source=Path(bpy.data.filepath).resolve()
-    if not source.is_relative_to(SOURCE_ROOT) or not source.is_file():
-        raise ValueError('Open a packed source under ArtSource/FullCinematics before running this driver')
+    if not any(source.is_relative_to(root) for root in SOURCE_ROOTS) or not source.is_file():
+        raise ValueError('Open a packed source under ArtSource/FullCinematics or ArtSource/RealisticFinales before running this driver')
     # Reload the exact hashed packed source; an interactive in-memory edit must not masquerade as those bytes.
     source_sha=sha(source);bpy.ops.wm.open_mainfile(filepath=str(source))
     if sha(source)!=source_sha:raise RuntimeError('Source bytes changed while loading')

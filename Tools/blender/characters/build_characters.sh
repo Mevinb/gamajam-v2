@@ -15,6 +15,10 @@ export BLENDER_USER_RESOURCES="$WORK/blender_user"
 OUT="$WORK/out"
 LOGS="$WORK/logs"
 mkdir -p "$OUT/Models" "$OUT/Textures" "$LOGS"
+# Shared colour-independent surface sets (CPU, two threads; no GPU scheduling surprise).
+if [ ! -f "$OUT/Textures/Skins/Surface/SkinSurface.provenance.json" ]; then
+  nice -n 15 "$BLENDER" -b -t 2 --python-exit-code 1 --python "$HERE/bake_skin_surface.py" -- "$OUT" > "$LOGS/skin-surface.log" 2>&1
+fi
 if [ $# -gt 0 ]; then ids=("$@"); else mapfile -t ids < <(cd "$HERE" && python3 -c "import specs; print('\n'.join(c['id'] for c in specs.CHARACTERS))"); fi
 if [ ! -f "$OUT/Textures/Skin_VeinMask.png" ]; then
   "$BLENDER" -b --python-exit-code 1 --python "$HERE/bake_veins.py" -- "$OUT" > "$LOGS/veins.log" 2>&1

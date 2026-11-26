@@ -15,6 +15,7 @@ import chartools as ct
 import garments as gm
 import atlas
 import specs
+import skin_profiles
 
 LOD0_BUDGET = 20000
 LOD1_TARGET = 7000
@@ -473,6 +474,7 @@ def main():
                      "clothA": cid + "_Cloth_A.jpg", "clothN": cid + "_Cloth_N.jpg", "clothM": cid + "_Cloth_M.png",
                      "hairA": cid + "_Hair_A.png"},
     }
+    meta["textures"].update(skin_profiles.textures_for(spec.get("age", 0.5)))
     with open(os.path.join(models, cid + ".json"), "w") as fp:
         json.dump(meta, fp, indent=1)
     if save_blend:
