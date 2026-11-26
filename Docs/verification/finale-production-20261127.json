@@ -64,7 +64,13 @@
     "private_focus": {
       "path": "Logs/realism-native-stage/focus_owned.py",
       "sha256": "8323e1c61cac99ae02e832eea8595da4400b65d2c4bfac260280c4e3c9c254ab"
+    },
+    "ordinary_user_launch": {
+      "path": "Logs/realism-user-launch-stage/launch.py",
+      "sha256": "a67ae91e886a49185b606fb24c6d89f271ab35dc3f1dd15a9a4ff4c9b290d976",
+      "validation": "AST syntax and root source review only; no launcher invocation. Requires all6 exact native jobs and unchanged accepted source/candidate, then ordinary desktop play.sh with normal profile and inherited GPU lock."
     }
   },
-  "limits": "No new candidate or complete new-movie/native-gameplay/performance pass. Only declared source/API/keyframe/static-baked character and queued-production scopes are accepted. Existing26 missions unchanged; Exchange stash remains parked."
+  "limits": "No new candidate or complete new-movie/native-gameplay/performance pass. Only declared source/API/keyframe/static-baked character and queued-production scopes are accepted. Existing26 missions unchanged; Exchange stash remains parked.",
+  "publication_access": "Read-only gh auth status recheck on27Nov local still reports activeMevinb token invalid. No Git-data write, push, identity switch or credential mutation attempted. Continue local work; wait for restored access."
 }
