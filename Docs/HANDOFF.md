@@ -53,6 +53,13 @@ Train v4 has a sealed curved shell, readable lit interior,
 standard-gauge running gear and revised bogie shot; its declared RTX views have been reviewed. All finale sources
 remain under `ArtSource/RealisticFinales`; the current train source ends in `_v4.blend`.
 Full finale production has started at WORK `Logs/full-cinematic-renders/realistic-finales-production-20261127` (1,176 frames,192samples,1080p24,OptiX4050,OIDNGPU). Source contract and reviewed keyframes are pinned there; LakeArrival is the first running film. Use its `<film>/STOP` and wait for actual Blender/supervisor completion before any Unity graphics job; remove STOP before the identical render command resumes. The driver inherits the global Unity lock. Production encoding, native media acceptance and the new Linux candidate are still in progress.
+The reviewed sequential queue is now running; exact receipt/tool pins and remaining gates are in
+`verification/finale-production-20261127.json`. It renders/encodes all five films, preserves a live player and
+stops at any per-film/global STOP or its1GiB free-space minimum. It never clears STOP, publishes, builds or
+deletes footage. For a safe full-queue pause create `<job>/STOP` and wait for its actual supervisor/Blender
+to finish; individual film STOPs also stop the queue. After review, manually remove only the intended STOP
+and rerun `python3 Logs/realism-build-stage/finale_queue.py --go`; validated complete output is reused.
+Current source version is0.8.0-preview, committed locally; no0.8candidate has been built or launched.
 The producer now enforces actual limited-range BT709 matrix/transfer/primaries tags as well as complete silent VP8
 decode; a one-frame encode probe confirms the requested conversion/tag chain. Render driver, policy and sources
 remain frozen. The build's new eight-film import preflight is implemented/API-compiled, but its actual reimport gate

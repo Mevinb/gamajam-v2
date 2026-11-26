@@ -1,0 +1,70 @@
+{
+  "status": "IN_PROGRESS_NOT_PUBLISHED_NOT_BUILT",
+  "source_checkpoint": "b41e001f2e00b36b14ad7098895080baef7fb0c6",
+  "planned_version": "0.8.0-preview",
+  "contract": {
+    "path": "Logs/full-cinematic-renders/realistic-finales-production-20261127/contract.json",
+    "sha256": "b096cb202632252822b6fdc89f636d2446707c33bcb533d8d37d744cd29f6e34"
+  },
+  "reviewed_keyframes": {
+    "path": "Logs/full-cinematic-renders/realistic-finales-production-20261127/keyframe-review.json",
+    "sha256": "e291d3c453746c84ffdc8a5b0d5ce308a5499501d5504126d9c2a6b9e7cfa000"
+  },
+  "queue": {
+    "script": {
+      "path": "Logs/realism-build-stage/finale_queue.py",
+      "sha256": "80064050ada05c95c724899ef823947b0778d88ace9d5225d450f73d5bf9a653"
+    },
+    "receipt": "Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261126T223443237881Z-6ca68f85/receipt.json",
+    "supervisor_pid": 130421,
+    "started_utc": "2026-11-26T22:34:43.237991+00:00",
+    "scope": "All5 films sequential render/encode only; no publication or build. Per-film/global STOP, source pins, live-player check,1GiB disk minimum and safe owned-child retirement."
+  },
+  "producer": {
+    "path": "Tools/blender/cinematics/finale_production.py",
+    "sha256": "0d81efe3a34042ccf91c96c97c7d3ec33e8867ce9d65cc85fe2ff2c5e27de6c0"
+  },
+  "frame_total": 1176,
+  "render_policy": {
+    "resolution": [
+      1920,
+      1080
+    ],
+    "fps": 24,
+    "samples": 192,
+    "adaptive_threshold": 0.008,
+    "backend": "OPTIX",
+    "denoiser": "OPENIMAGEDENOISE_GPU"
+  },
+  "colour_encode_probe": {
+    "path": "Logs/finale-colour-contract-probe-v1/receipt.json",
+    "sha256": "3489ebbe62396d75555f9a707277b591d2600ae3a8cd19c5c20def397ef025db"
+  },
+  "later_gates": [
+    "All5 complete render evidence and strict encode/full-decode/colour/audio validation",
+    "Atomic publication with original Resources GUIDs preserved",
+    "Actual Unity8-film reimport with sourceAudio0 and no transcoding/audio import",
+    "Reviewed new-job raw-PNG retirement only if disk budget requires it",
+    "Final source freeze and isolated Linux candidate",
+    "Exact-candidate private-display native films/basic/settings/recovery/city performance, then ordinary user launch"
+  ],
+  "prepared_tools": {
+    "build": {
+      "path": "Logs/realism-build-stage/build_candidate.py",
+      "sha256": "7036a2fc923a08c3acee25306ff960751752a46d18a474b078bd4bb7128e3043"
+    },
+    "retirement": {
+      "path": "Logs/realism-build-stage/retire_finale_frames.py",
+      "sha256": "0ce5cf4f6a4815b8d3624d8366f31fb502fcf13f3c6117389f4b61c8bb538e0d"
+    },
+    "native": {
+      "path": "Logs/realism-native-stage/run.py",
+      "sha256": "e16bf17b389f0ddbe35c124f85c7bc4f58c54d131873352e0a722a62cad97b91"
+    },
+    "private_focus": {
+      "path": "Logs/realism-native-stage/focus_owned.py",
+      "sha256": "8323e1c61cac99ae02e832eea8595da4400b65d2c4bfac260280c4e3c9c254ab"
+    }
+  },
+  "limits": "No new candidate or complete new-movie/native-gameplay/performance pass. Only declared source/API/keyframe/static-baked character and queued-production scopes are accepted. Existing26 missions unchanged; Exchange stash remains parked."
+}
