@@ -8,6 +8,13 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 The full realism/bug-fix/continued-expansion goal remains **active**. Linux/URP plus offline RTX Blender films and real-time shader improvements is the chosen direction. Gameplay hardware ray tracing is not implemented.
 
+**Publication access needs restoration.** Code features `b624faa`/`883de97` and initial Exchange blueprint `cf8b57e` are confirmed on GitHub.
+Later verification/handoff commits and the saved-summary/schema design correction are committed locally but not pushed.
+The active Mevinb CLI token is invalid; SSH is denied; the connected account is Mevinb but Git-data writes return403.
+An asynchronous request asks the user to restore `gh auth login -h github.com` as Mevinb. Do not switch identities or repeat denied writes without changed access.
+Continue local game work while waiting. Queue evidence: BASE `Logs/worktree-build-073-stage/publication-pending.json`; inspect fresh local/remote heads before retry.
+
+
 - **LATEST PRIVATE CANDIDATE0.7.3 PASSES BUILD + INITIAL NATIVE SAVE/RESUME.**
   [Exact proof](verification/0.7.3-candidate-and-native-save-20261126.json). WORK `Builds/Candidates/full-story-20261126T141830932558Z-ad668a55`;
   source commit `cf8b57e9c89b84919fa11e17f77baf78d202aefb`, snapshot `4badf2f4a57c832277743e902a6e4cb1d1291635a7f05b9d4188d3a13aff1634`.
