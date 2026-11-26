@@ -14,7 +14,8 @@ namespace Parasite.Possession
         public float CaptureTimer;
 
         public bool IsFree => Host == null && !InTransit;
-        public IControllable Body => Host != null ? Host : (IControllable)Blob;
+        // Interfaces do not apply Unity's destroyed-object null check. Keep live hidden/disabled bodies valid.
+        public IControllable Body => Host ? (IControllable)Host : Blob ? Blob : null;
         public Vector3 Position => Host != null ? Host.transform.position : Blob ? Blob.transform.position : Vector3.zero;
         public string Describe() => Host != null ? $"{Host.DisplayName} — {Host.Profile.title}" : InTransit ? "Leaping…" : "Free amoeba";
     }

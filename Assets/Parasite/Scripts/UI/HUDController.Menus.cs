@@ -223,7 +223,7 @@ namespace Parasite.UI
         // ================================================================== end screen
         RectTransform endRoot;
         CanvasGroup endGroup;
-        Button endPlay, endReplay, endContinue, endContinueIsland, endContinueHarbor;
+        Button endPlay, endReplay, endContinue, endContinueIsland, endContinueHarbor, endContinueRail;
         readonly List<Selectable> endActionRow = new();
         Text[] endValues;
         Text endHeadline, endEpilogue, endOutcome;
@@ -303,6 +303,13 @@ namespace Parasite.UI
             }, 640, 62, 28, TextAnchor.MiddleCenter);
             ((RectTransform)endContinueHarbor.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
             endContinueHarbor.gameObject.SetActive(false);
+            endContinueRail = UIKit.Btn(col, "Continue · Northline", () =>
+            {
+                var gm = GameManager.Instance;
+                if (gm) gm.ContinueRail();
+            }, 640, 62, 28, TextAnchor.MiddleCenter);
+            ((RectTransform)endContinueRail.transform).Place(top, top, new Vector2(0, -714), new Vector2(640, 62));
+            endContinueRail.gameObject.SetActive(false);
             var row = endActionRow;
             string[] labels = { "Play Again", "Main Menu", "Quit" };
             UnityEngine.Events.UnityAction[] actions =
@@ -328,6 +335,7 @@ namespace Parasite.UI
             endContinue.navigation = continueNavigation;
             endContinueIsland.navigation = continueNavigation;
             endContinueHarbor.navigation = continueNavigation;
+            endContinueRail.navigation = continueNavigation;
             foreach (var selectable in row)
             {
                 var navigation = selectable.navigation;
@@ -366,7 +374,8 @@ namespace Parasite.UI
             endContinue.gameObject.SetActive(!RunState.AfterlakeStarted && RunState.LakesideOutcome != EndingOutcome.Unchosen);
             endContinueIsland.gameObject.SetActive(afterlakeComplete && !RunState.IslandStarted);
             endContinueHarbor.gameObject.SetActive(RunState.Has(IslandRoster.Departed) && !RunState.HarborStarted);
-            endPlay = endContinueHarbor.gameObject.activeSelf ? endContinueHarbor : endContinueIsland.gameObject.activeSelf ? endContinueIsland : endContinue.gameObject.activeSelf ? endContinue : endReplay;
+            endContinueRail.gameObject.SetActive(RunState.Has(HarborCampaign.RelayComplete) && !RunState.RailStarted && RunState.MissionIndex == 23);
+            endPlay = endContinueRail.gameObject.activeSelf ? endContinueRail : endContinueHarbor.gameObject.activeSelf ? endContinueHarbor : endContinueIsland.gameObject.activeSelf ? endContinueIsland : endContinue.gameObject.activeSelf ? endContinue : endReplay;
             foreach (var action in endActionRow)
             {
                 var navigation = action.navigation;
@@ -394,6 +403,14 @@ namespace Parasite.UI
                 endEpilogue.text = d.outcome == EndingOutcome.Peace
                     ? "The harbor sends medicine beyond the quarantine. Workers keep their bodies, the city keeps its choices, and two small lives share one signal without taking another mind."
                     : "The consignments carry your relay beyond Vale's reach. Two free bodies held the channel open; every borrowed worker is released as the harbor carries your answer onward.";
+            }
+            if (RunState.Has(RailCampaign.Departed))
+            {
+                endHeadline.text = d.outcome == EndingOutcome.Peace ? "THE NORTHLINE OPENS." : "THE NEXT CITY HEARS.";
+                endOutcome.text = d.outcome == EndingOutcome.Peace ? "MEDICINE DELIVERED  ·  MANUAL SIGNAL SECURED  ·  HOSTS RELEASED" : "RELAY DELIVERED  ·  NORTHLINE LINKED  ·  HOSTS RELEASED";
+                endEpilogue.text = d.outcome == EndingOutcome.Peace
+                    ? "The cold store reached its bay, and the last signal opened under human hands. Both borrowed workers are free. Two small lives are aboard a carriage that can carry help beyond the quarantine."
+                    : "The sealed relay reached its bay. A borrowed hand held the crank only as long as it had to. Both free bodies are aboard; another city has a line that Vale can no longer close.";
             }
             int secs = Mathf.Max(0, Mathf.FloorToInt(d.timeSeconds));
             float peak = Mathf.Clamp(d.peakSuspicion, 0f, SuspicionRules.Max);

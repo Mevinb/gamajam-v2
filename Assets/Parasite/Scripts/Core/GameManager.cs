@@ -27,7 +27,8 @@ namespace Parasite
         public static bool AfterlakeStarted => Has(Missions.AfterlakeCampaign.Started);
         public static bool IslandStarted => Has(Missions.IslandCampaign.Started);
         public static bool HarborStarted => Has(Missions.HarborCampaign.Started);
-        public static Vector3 CurrentChapterSpawn => HarborStarted ? Missions.HarborLayout.Spawn : IslandStarted ? Missions.IslandCampaign.Spawn : AfterlakeStarted ? Missions.AfterlakeCampaign.Spawn : World.CityLayout.PlayerSpawn;
+        public static bool RailStarted => Has(Missions.RailCampaign.Started);
+        public static Vector3 CurrentChapterSpawn => RailStarted ? Missions.RailLayout.Spawn : HarborStarted ? Missions.HarborLayout.Spawn : IslandStarted ? Missions.IslandCampaign.Spawn : AfterlakeStarted ? Missions.AfterlakeCampaign.Spawn : World.CityLayout.PlayerSpawn;
 
         /// <summary>The first resolved lakeside choice stays true through later chapters and reloads.</summary>
         public static bool RecordLakesideOutcome(EndingOutcome outcome)
@@ -71,6 +72,16 @@ namespace Parasite
             return true;
         }
 
+        public static bool BeginRail()
+        {
+            if (LakesideOutcome == EndingOutcome.Unchosen || !Has(Missions.MissionFlags.Escaped) || !AfterlakeStarted || !Has(Missions.AfterlakeCampaign.Departed)
+                || !IslandStarted || !Has(Missions.IslandRoster.Departed) || !HarborStarted || !Has(Missions.HarborCampaign.CanalOpen)
+                || !Has(Missions.HarborCampaign.ManifestComplete) || !Missions.HarborCampaign.RequiredCargoDelivered || !Has(Missions.HarborCampaign.RelayComplete) || RailStarted) return false;
+            Flags.Add(Missions.RailCampaign.Started); MissionIndex = Missions.RailCampaign.FirstMissionIndex;
+            HasCheckpoint = true; CheckpointPosition = Missions.RailLayout.Spawn; CheckpointName = "Northline southern approach";
+            return true;
+        }
+
         public static void NewGame()
         {
             HasCheckpoint = false; CheckpointPosition = Vector3.zero; CheckpointName = "";
@@ -90,6 +101,7 @@ namespace Parasite
         public GameState State { get; private set; } = GameState.Playing;
         public bool IsPlaying => State == GameState.Playing;
         Missions.HarborRelay harborRelay;
+        Missions.RailDeparture railDeparture;
 
         void Awake()
         {
@@ -98,7 +110,12 @@ namespace Parasite
             SetCursorLocked(true);
             PresentationShortcut.Ensure();
             // CityDirector adds this manager before baking its NavMesh and spawning markers.
-            if (RunState.HarborStarted)
+            if (RunState.RailStarted)
+            {
+                Missions.RailDistrict.Build(); railDeparture = Missions.RailDeparture.Instance;
+                if (railDeparture) railDeparture.Completed += OnRailDepartureComplete;
+            }
+            else if (RunState.HarborStarted)
             {
                 Missions.HarborDistrict.Build();
                 harborRelay = Missions.HarborRelay.Instance;
@@ -111,11 +128,16 @@ namespace Parasite
         void OnDestroy()
         {
             if (harborRelay) harborRelay.Completed -= OnHarborRelayComplete;
+            if (railDeparture) railDeparture.Completed -= OnRailDepartureComplete;
             if (Instance == this) Instance = null;
         }
 
         void Update()
         {
+            // A disabled coordinator can be re-enabled after rollback; a destroyed one requires the ordinary chapter checkpoint.
+            if (IsPlaying && RunState.RailStarted && !railDeparture && !RunState.Has(Missions.RailCampaign.Departed))
+            { ResetToCheckpoint("Northline departure coordinator was lost"); return; }
+
             if (State == GameState.Playing) RunState.PlayTime += Time.deltaTime;
             if (GameInput.PausePressed)
             {
@@ -208,6 +230,32 @@ namespace Parasite
             State = GameState.Resetting;
             Time.timeScale = 1f;
             SceneManager.LoadScene(CityScene);
+            return true;
+        }
+
+        /// <summary>One deliberate continuation from the completed M23 summary; never a checkpoint/timeout shortcut.</summary>
+        public bool ContinueRail()
+        {
+            if (State != GameState.Ended || RunState.MissionIndex != 23 || !Missions.MissionManager.Instance || Missions.MissionManager.Instance.Missions.Count != 23
+                || !Missions.AfterlakeDeparture.AllAmoebaeFree(out _) || !RunState.BeginRail()) return false;
+            State = GameState.Resetting; Time.timeScale = 1; SceneManager.LoadScene(CityScene); return true;
+        }
+
+        void OnRailDepartureComplete() => FinishRail();
+        public bool FinishRail()
+        {
+            if (!IsPlaying || !RunState.RailStarted || RunState.Has(Missions.RailCampaign.Departed) || !railDeparture || !railDeparture.DepartureAuthorized || !railDeparture.ReadyToDepart(out _)) return false;
+            BeginEnding();
+            if (Missions.RailResolution.Begin(this, railDeparture)) return true;
+            railDeparture.CancelDepartureAuthorization(); ResumeAfterDialogue(); return false;
+        }
+        public bool PublishRailEnding(Missions.RailResolution owner)
+        {
+            if (!owner || !owner.Owns(this) || !owner.ReadyToPublish || State != GameState.Ending || !RunState.RailStarted || RunState.Has(Missions.RailCampaign.Departed)) return false;
+            Missions.MissionManager.SetFlag(Missions.RailCampaign.Departed);
+            State = GameState.Ended; Time.timeScale = 0; SetCursorLocked(false);
+            GameEvents.RaiseEnding(new EndingData { route = RunState.Route, timeSeconds = RunState.PlayTime, hostsPossessed = RunState.HostsPossessed,
+                peakSuspicion = RunState.PeakSuspicion, captures = RunState.Captures, outcome = RunState.LakesideOutcome });
             return true;
         }
 
@@ -332,7 +380,7 @@ namespace Parasite
             if (NavMesh.SamplePosition(fallback, out var landing, 2f, NavMesh.AllAreas)) fallback = landing.position;
             RunState.HasCheckpoint = true;
             RunState.CheckpointPosition = fallback;
-            RunState.CheckpointName = RunState.HarborStarted ? "Harbor landing" : RunState.IslandStarted ? "Island outer jetty" : RunState.AfterlakeStarted ? "Riverside landing" : "Storm Drain";
+            RunState.CheckpointName = RunState.RailStarted ? "Northline southern approach" : RunState.HarborStarted ? "Harbor landing" : RunState.IslandStarted ? "Island outer jetty" : RunState.AfterlakeStarted ? "Riverside landing" : "Storm Drain";
         }
 
         /// <summary>No playable amoeba left: reload the city at the last checkpoint.</summary>

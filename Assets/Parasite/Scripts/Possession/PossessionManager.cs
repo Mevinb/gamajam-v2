@@ -67,7 +67,8 @@ namespace Parasite.Possession
             if (InputLocked || Active == null) { SetTarget(TargetInfo.None); return; }
 
             var body = Active.Body;
-            if (body != null && !Active.InTransit)
+            if (body == null) { SetTarget(TargetInfo.None); return; }
+            if (!Active.InTransit)
             {
                 var ci = new ControlInput
                 {
@@ -114,10 +115,11 @@ namespace Parasite.Possession
         {
             var a = Active;
             if (a == null || a.InTransit) return TargetInfo.None;
+            var body = a.Body;
+            if (body == null) return TargetInfo.None;
             if (a.CapturedPendingEject)
                 return new TargetInfo { kind = TargetKind.Eject, prompt = "EJECT! Escape the host", allowed = true, worldPos = a.Position + Vector3.up * 1.6f };
 
-            var body = a.Body;
             Vector3 eye = body.EyePosition;
             Vector3 camPos = cam ? cam.Position : eye;
             Vector3 camFwd = cam ? cam.Forward : body.Root.forward;
@@ -419,6 +421,8 @@ namespace Parasite.Possession
         {
             var a = Active;
             if (a == null || a.InTransit) return false;
+            var body = a.Body;
+            if (body == null) return false;
             if (!SplitRules.CanSplit(Agents.Count))
             {
                 GameEvents.RaiseToast($"You can only split into {SplitRules.MaxAmoebas}. [Tab] switches.", Palette.Warning);
@@ -426,7 +430,6 @@ namespace Parasite.Possession
                 return false;
             }
             if (a.CapturedPendingEject) return false;
-            var body = a.Body;
             Vector3 origin = body.Root.position;
             Vector3 spot = FindFreeSpot(origin, -body.Root.right);
             int id = 1; foreach (var o in Agents) if (o.Id == id) id = 2;

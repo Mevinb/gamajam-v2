@@ -271,14 +271,10 @@ namespace Parasite.Testing
                 phase + " preserves explicit ending choice");
         }
 
-        // ================================================================ scenarios
-        public static IEnumerator RunAll()
+        // The native runner and non-executing selection tests share this actual registry/policy.
+        static (string name, Func<IEnumerator> run)[] RegisteredScenarios()
         {
-            Running = true;
-            Results.Clear();
-            Log.Clear();
-            Write($"PARASITE autotest — {DateTime.Now:yyyy-MM-dd HH:mm:ss} — {SystemInfo.graphicsDeviceName} / {SystemInfo.operatingSystem}");
-            var scenarios = new (string, Func<IEnumerator>)[]
+            return new (string, Func<IEnumerator>)[]
             {
                 ("01 Start, move, camera, jump", ScenarioMove),
                 ("02 Aim + E possesses host within 5 m (camera + WASD follow)", ScenarioPossess),
@@ -309,8 +305,32 @@ namespace Parasite.Testing
                 ("27 Harbor cargo recovery: two actual in-flight reroutes, separate physical restore and bay arrivals", HarborAcceptance.TwoInflightCargoReroutesRecoverWithoutOverlap),
                 ("90 Continuous 23 missions: Main Gate Peace through all three earned chapter continuations", () => ScenarioContinuousCampaign(EntryRoute.MainGate)),
                 ("91 Continuous 23 missions: Service Tunnel Dominion through all three earned chapter continuations", () => ScenarioContinuousCampaign(EntryRoute.ServiceTunnel)),
+                ("92 Northline Peace: prepared M23 summary, physical chapter and checkpoint recovery", () => RailAcceptance.RunChapter(EndingOutcome.Peace, true)),
+                ("93 Northline Dominion: prepared M23 summary and physical chapter", () => RailAcceptance.RunChapter(EndingOutcome.Dominion, false)),
+                ("94 Continuous 26 missions: Main Gate Peace through four earned chapter continuations", () => ScenarioContinuousNorthline(EntryRoute.MainGate)),
+                ("95 Continuous 26 missions: Service Tunnel Dominion through four earned chapter continuations", () => ScenarioContinuousNorthline(EntryRoute.ServiceTunnel)),
             };
-            // Optional iteration aid: -autotestFilter 06,14 runs only scenarios whose number prefix matches.
+        }
+        static bool ScenarioSelected(string name, string[] only)
+        {
+            string id = name.Substring(0, 2);
+            bool explicitOnly = id == "90" || id == "91" || id == "92" || id == "93" || id == "94" || id == "95";
+            if (explicitOnly && (only == null || !only.Any(token => token.Trim() == id))) return false;
+            return only == null || only.Any(token => name.StartsWith(token.Trim(), StringComparison.Ordinal));
+        }
+        /// <summary>Lists actual selected registrations without executing or loading any scenario.</summary>
+        public static string[] SelectedScenarioNames(string[] only)
+            => RegisteredScenarios().Where(s => ScenarioSelected(s.name, only)).Select(s => s.name).ToArray();
+
+        // ================================================================ scenarios
+        public static IEnumerator RunAll()
+        {
+            Running = true;
+            Results.Clear();
+            Log.Clear();
+            Write($"PARASITE autotest — {DateTime.Now:yyyy-MM-dd HH:mm:ss} — {SystemInfo.graphicsDeviceName} / {SystemInfo.operatingSystem}");
+            var scenarios = RegisteredScenarios();
+            // Legacy IDs retain prefix filtering; expensive IDs90–95 require their exact comma-separated token.
             var args = Environment.GetCommandLineArgs();
             int fi = Array.IndexOf(args, "-autotestFilter");
             if (fi >= 0 && (fi + 1 >= args.Length || args[fi + 1].StartsWith("-", StringComparison.Ordinal)))
@@ -322,8 +342,7 @@ namespace Parasite.Testing
             var only = fi >= 0 && fi + 1 < args.Length ? args[fi + 1].Split(',') : null;
             foreach (var (name, fn) in scenarios)
             {
-                if ((name.StartsWith("90 ") || name.StartsWith("91 ")) && (only == null || !only.Any(token => token.Trim() == name.Substring(0, 2)))) continue;
-                if (only != null && !only.Any(o => name.StartsWith(o.Trim()))) continue;
+                if (!ScenarioSelected(name, only)) continue;
                 yield return LoadCity();
                 current = new Result { name = name, pass = true };
                 float t0 = Time.realtimeSinceStartup;
@@ -482,6 +501,251 @@ namespace Parasite.Testing
                 + " prompt=" + target.prompt + " rayHits=[" + string.Join("; ", rayHits) + "]");
         }
 
+        // Diagnostic only: retain the original02 setup, aim budget and targeting assertion.
+        static void NotePossess02(string phase, HostCharacter intended, TargetInfo sampledTarget, bool targetWasSampled, bool registry = false)
+        {
+            var body = PM.ActiveBody;
+            if (!intended || body == null || !Cam) return;
+            string Hierarchy(Transform node)
+            {
+                string path = node.name;
+                for (var parent = node.parent; parent; parent = parent.parent) path = parent.name + "/" + path;
+                return path;
+            }
+            Note("possess02 phase=" + phase + " intended=" + intended.DisplayName + " instance=" + intended.GetInstanceID()
+                + " profession=" + intended.Profession + " targetWasSampled=" + targetWasSampled
+                + " targetAt=" + intended.transform.position.ToString("F4") + " targetForward=" + intended.transform.forward.ToString("F4")
+                + " frame=" + Time.frameCount + " time=" + Time.time.ToString("F4") + " fixedTime=" + Time.fixedTime.ToString("F4"));
+            if (registry)
+                Note("possess02 registry=[" + string.Join("; ", HostCharacter.All.Where(h => h).OrderBy(h => (h.transform.position - body.Root.position).sqrMagnitude)
+                    .Select(h => h.DisplayName + "#" + h.GetInstanceID() + " profession=" + h.Profession + " state=" + h.State
+                        + " possessable=" + h.CanBePossessed + " at=" + h.transform.position.ToString("F4")
+                        + " distance=" + Vector3.Distance(h.transform.position, body.Root.position).ToString("F4"))) + "]");
+            NoteHunterTarget("possess02 " + phase, intended, sampledTarget);
+            Vector3 ray = intended.ChestPosition - body.EyePosition;
+            Note("possess02 fullLosHits=[" + string.Join("; ", Physics.RaycastAll(body.EyePosition, ray.normalized, ray.magnitude, ~0, QueryTriggerInteraction.Ignore)
+                .OrderBy(hit => hit.distance).Select(hit => "path=" + Hierarchy(hit.collider.transform) + " instance=" + hit.collider.GetInstanceID()
+                    + " type=" + hit.collider.GetType().Name + " layer=" + hit.collider.gameObject.layer
+                    + " distance=" + hit.distance.ToString("F4") + " point=" + hit.point.ToString("F4") + " normal=" + hit.normal.ToString("F4")
+                    + " boundsCenter=" + hit.collider.bounds.center.ToString("F4") + " boundsSize=" + hit.collider.bounds.size.ToString("F4")
+                    + " self=" + hit.collider.transform.IsChildOf(body.Root) + " intended=" + hit.collider.transform.IsChildOf(intended.transform))) + "]");
+        }
+
+        // Prepared test placement only. The production target gate and the real E/WASD checks stay unchanged.
+        static bool Possess02PhysicalSetupPose(HostCharacter intended, Vector3 position, out string reason)
+        {
+            reason = null;
+            if (PM.ActiveBody is not AmoebaController blob || !blob.Controller || !intended || !intended.CanBePossessed)
+            { reason = "requires the same possessable target and actual free body"; return false; }
+            var controller = blob.Controller;
+            Vector3 scale = controller.transform.lossyScale;
+            float radius = controller.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z));
+            float halfLine = Mathf.Max(0f, controller.height * Mathf.Abs(scale.y) * .5f - radius);
+            Vector3 center = controller.transform.TransformPoint(controller.center) + position - blob.transform.position;
+            Vector3 bottom = center - Vector3.up * halfLine, top = center + Vector3.up * halfLine;
+            bool BlocksBody(Collider c) => c && !c.transform.IsChildOf(blob.transform)
+                && !Physics.GetIgnoreLayerCollision(controller.gameObject.layer, c.gameObject.layer)
+                && !Physics.GetIgnoreCollision(controller, c);
+            var blocker = Physics.OverlapCapsule(bottom, top, radius, ~0, QueryTriggerInteraction.Ignore).FirstOrDefault(BlocksBody);
+            if (blocker)
+            { reason = "full unchanged controller capsule overlaps " + blocker.name + " at " + blocker.bounds.center.ToString("F4"); return false; }
+            Vector3 foot = bottom - Vector3.up * radius;
+            var floor = Physics.RaycastAll(foot + Vector3.up * .1f, Vector3.down, .3f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore)
+                .OrderBy(hit => hit.distance).FirstOrDefault(hit => BlocksBody(hit.collider));
+            if (!floor.collider || Vector3.Angle(floor.normal, Vector3.up) > controller.slopeLimit
+                || foot.y - floor.point.y < 0f || foot.y - floor.point.y > controller.skinWidth)
+            { reason = "full controller foot lacks nearby physical support within unchanged slope/skin limits"; return false; }
+            var hostFloor = Physics.RaycastAll(intended.transform.position + Vector3.up * .1f, Vector3.down, .3f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore)
+                .OrderBy(hit => hit.distance).FirstOrDefault(hit => BlocksBody(hit.collider) && !hit.collider.transform.IsChildOf(intended.transform));
+            if (!hostFloor.collider || Mathf.Abs(floor.point.y - hostFloor.point.y) > controller.stepOffset)
+            { reason = "returned footing differs from actual host-floor support beyond the unchanged step offset"; return false; }
+            return true;
+        }
+
+        static bool Possess02SetupPose(HostCharacter intended, Vector3 position, out string reason)
+        {
+            if (!Possess02PhysicalSetupPose(intended, position, out reason)) return false;
+            var blob = (AmoebaController)PM.ActiveBody;
+            // Use the actual body's eye offset at the final returned landing, not the request or camera boom.
+            Vector3 eye = position + (blob.EyePosition - blob.transform.position);
+            float distance = Vector3.Distance(eye, intended.ChestPosition);
+            if (distance > PossessionManager.PossessRange)
+            { reason = "returned eye distance " + distance.ToString("F4") + " exceeds unchanged possession range"; return false; }
+            if (!PM.LineOfSight(eye, intended.ChestPosition, blob.transform, intended.transform))
+            { reason = "returned body eye has no production line of sight to the same target"; return false; }
+            return true;
+        }
+
+        static bool TryPossess02Setup(HostCharacter intended, Vector3 originalRequest, out Vector3 request, out Vector3 position)
+        {
+            var requests = new List<Vector3> { originalRequest };
+            Vector3 center = intended.transform.position;
+            // Fixed world-direction order: no random reseed, new NPC selection, AI freeze or collider change.
+            foreach (float radius in new[] { 3.5f, 2.8f })
+                for (int i = 0; i < 8; i++)
+                    requests.Add(center + Quaternion.Euler(0f, i * 45f, 0f) * Vector3.forward * radius);
+            request = position = Vector3.zero;
+            for (int i = 0; i < requests.Count; i++)
+            {
+                request = requests[i];
+                position = PossessionManager.FindFreeSpot(request, Vector3.zero);
+                bool valid = Possess02SetupPose(intended, position, out string reason);
+                Note("possess02 setup sample=" + i + "/" + requests.Count + " intended=" + intended.DisplayName
+                    + " requested=" + request.ToString("F4") + " returned=" + position.ToString("F4")
+                    + " accepted=" + valid + " reason=" + (reason ?? "full controller clearance, same-level floor, eye range and production LOS"));
+                if (valid) return true;
+            }
+            return false;
+        }
+
+        // Opt-in focused fixture only; it is not registered in the native/default scenario list.
+        public static IEnumerator Possess02OwnedObstructionAcceptance()
+        {
+            var previous = current;
+            current = new Result { name = "Owned possession02 obstruction fixture", pass = true };
+            GameObject wall = null;
+            BoxCollider box = null;
+            Vector3 wallPosition = default, wallScale = default;
+            Quaternion wallRotation = default;
+            void RequireFixture(bool valid, string reason)
+            { if (!valid) throw new InvalidOperationException("Possess02 obstruction: " + reason); }
+            void WallIntact()
+            {
+                RequireFixture(wall && box && box.enabled && !box.isTrigger && wall.layer == 0
+                    && wall.GetComponent<Renderer>().enabled && wall.transform.position.Equals(wallPosition)
+                    && wall.transform.rotation.Equals(wallRotation) && wall.transform.localScale.Equals(wallScale),
+                    "the actual owned opaque Environment box must stay enabled at its recorded pose");
+            }
+            try
+            {
+                yield return LoadCity();
+                Calm();
+                RequireFixture(PM && PM.Active != null, "loaded City has the actual possession manager and active agent");
+                var pm = PM;
+                var agent = pm.Active;
+                var blob = agent.Blob;
+                var target = NearestHost(agent.Position, h => h.CanBePossessed && h.Profession == Profession.Civilian)
+                    ?? NearestHost(agent.Position, h => h.CanBePossessed);
+                RequireFixture(target && agent.IsFree && blob && blob.Controller.enabled, "same ordinary target pick and real free body required");
+                Vector3 scenarioRequest = target.transform.position + target.transform.forward * 3.5f;
+                RequireFixture(TryPossess02Setup(target, scenarioRequest, out var controlRequest, out var controlSpot), "a legal baseline vantage must exist before adding the wall");
+                TeleportBody(blob, controlSpot, 0f); // Explicit existing-style test setup, not movement evidence.
+                target.Brain.Notice(controlSpot, 3f); // One existing fixture Notice; never stun or reset the target during the checks.
+                RequireFixture(Possess02SetupPose(target, blob.transform.position, out var baselineReason), "actual baseline must be legal: " + baselineReason);
+                Vector3 originalEye = blob.EyePosition;
+                RequireFixture(Physics.Raycast(blob.transform.position + Vector3.up * .1f, Vector3.down, out var originalFloor, .3f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore), "baseline has physical floor");
+                Note("possess02 obstruction baseline intended=" + target.DisplayName + " instance=" + target.GetInstanceID()
+                    + " scenarioRequest=" + scenarioRequest.ToString("F4") + " controlRequest=" + controlRequest.ToString("F4")
+                    + " originalReturnedSpot=" + controlSpot.ToString("F4") + " actualEye=" + originalEye.ToString("F4")
+                    + " scope=controlled obstruction of a verified baseline; not the unrecorded native blocker");
+
+                wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                wall.name = "Owned possession02 opaque Environment box";
+                wall.layer = 0;
+                box = wall.GetComponent<BoxCollider>();
+                RequireFixture((Layers.EnvironmentMask & (1 << wall.layer)) != 0 && !box.isTrigger && wall.GetComponent<Renderer>().enabled,
+                    "owned cube must be a solid rendered Environment collider");
+                wall.transform.localScale = new Vector3(.9f, .9f, .08f);
+                Vector3 ray = target.ChestPosition - originalEye;
+                wall.transform.rotation = Quaternion.LookRotation(Flat(ray).normalized, Vector3.up);
+                bool isolated = false;
+                // Finite owned-wall placements; endpoint AABBs enclose their complete collider shapes.
+                foreach (float fraction in new[] { .5f, .6f, .4f })
+                {
+                    wall.transform.position = originalEye + ray * fraction;
+                    Physics.SyncTransforms(); // Publish only the explicit owned fixture before querying its collider.
+                    if (box.bounds.Intersects(blob.Controller.bounds)
+                        || target.GetComponentsInChildren<Collider>().Any(c => c.enabled && c.gameObject.activeInHierarchy && box.bounds.Intersects(c.bounds))) continue;
+                    if (Vector3.Distance(PossessionManager.FindFreeSpot(controlRequest, Vector3.zero), controlSpot) > .005f) continue;
+                    if (pm.LineOfSight(blob.EyePosition, target.ChestPosition, blob.transform, target.transform)) continue;
+                    if (!Physics.RaycastAll(blob.EyePosition, (target.ChestPosition - blob.EyePosition).normalized,
+                        Vector3.Distance(blob.EyePosition, target.ChestPosition), ~0, QueryTriggerInteraction.Ignore).Any(hit => hit.collider == box)) continue;
+                    isolated = true;
+                    break;
+                }
+                RequireFixture(isolated, "wall must block the actual original eye ray without touching either participant or changing FindFreeSpot's original returned point");
+                wallPosition = wall.transform.position; wallRotation = wall.transform.rotation; wallScale = wall.transform.localScale;
+                WallIntact();
+                RequireFixture(Physics.Raycast(blob.transform.position + Vector3.up * .1f, Vector3.down, out var afterWallFloor, .3f, Layers.EnvironmentMask, QueryTriggerInteraction.Ignore)
+                    && afterWallFloor.collider == originalFloor.collider && Vector3.Distance(afterWallFloor.point, originalFloor.point) < .002f,
+                    "adding the isolated wall must leave original physical footing unchanged");
+                RequireFixture(Vector3.Distance(blob.EyePosition, target.ChestPosition) <= PossessionManager.PossessRange, "the blocked original pose stays within production range");
+                RequireFixture(Possess02PhysicalSetupPose(target, blob.transform.position, out var originalPhysicalReason),
+                    "original full capsule and physical floor remain valid with the wall enabled: " + originalPhysicalReason);
+                RequireFixture(!Possess02SetupPose(target, blob.transform.position, out var blockedReason), "actual setup helper must reject the occluded original pose");
+                yield return AimSettle(target);
+                WallIntact();
+                RequireFixture(pm.Active == agent && object.ReferenceEquals(pm.ActiveBody, blob) && agent.IsFree, "blocked control keeps the original free-body identity");
+                RequireFixture(Vector3.Angle(Cam.Forward, target.ChestPosition - Cam.Position) <= PossessionManager.AimConeDegrees
+                    && Vector3.Distance(blob.EyePosition, target.ChestPosition) <= PossessionManager.PossessRange, "original blocked target is aimed and in range");
+                RequireFixture(!pm.LineOfSight(blob.EyePosition, target.ChestPosition, blob.transform, target.transform), "owned wall must still occlude after actual aiming");
+                var denied = pm.ComputeTarget();
+                RequireFixture(!(denied.kind == TargetKind.Possess && denied.host == target), "production targeting cannot accept that NPC through the wall");
+                Note("possess02 obstruction original denied kind=" + denied.kind + " intended=" + target.DisplayName + " rejectReason=" + blockedReason
+                    + " wallAt=" + wallPosition.ToString("F4") + " wallBounds=" + box.bounds + " originalBody=" + blob.transform.position.ToString("F4"));
+
+                RequireFixture(Vector3.Distance(PossessionManager.FindFreeSpot(controlRequest, Vector3.zero), controlSpot) < .005f,
+                    "occluded original request still returns the same body point immediately before fallback");
+                RequireFixture(Possess02PhysicalSetupPose(target, controlSpot, out var stillPhysicalReason),
+                    "original returned pose retains full capsule/floor validity immediately before search: " + stillPhysicalReason);
+                RequireFixture(!Possess02SetupPose(target, controlSpot, out _), "original candidate must be rejected immediately before the actual bounded search");
+                RequireFixture(TryPossess02Setup(target, controlRequest, out var selectedRequest, out var fallback), "actual bounded setup helper finds an unoccluded same-NPC vantage while the wall remains");
+                RequireFixture(Vector3.Distance(selectedRequest, controlRequest) > .005f && Vector3.Distance(fallback, controlSpot) > .05f,
+                    "fallback must select a different physical request and returned body point");
+                WallIntact();
+                TeleportBody(blob, fallback, 0f); // Prepared vantage only; normal E and subsequent locomotion are measured below.
+                RequireFixture(Possess02SetupPose(target, blob.transform.position, out var fallbackReason), "actual fallback body meets the real setup guard: " + fallbackReason);
+                yield return AimSettle(target); // The same unchanged .8-second positive aiming helper.
+                WallIntact();
+                var actual = pm.ComputeTarget();
+                RequireFixture(actual.kind == TargetKind.Possess && actual.allowed && actual.host == target
+                    && Vector3.Distance(blob.EyePosition, target.ChestPosition) <= PossessionManager.PossessRange
+                    && Vector3.Angle(Cam.Forward, target.ChestPosition - Cam.Position) <= PossessionManager.AimConeDegrees
+                    && pm.LineOfSight(blob.EyePosition, target.ChestPosition, blob.transform, target.transform),
+                    "real camera/cone/range/LOS must accept exactly the same NPC from the fallback body");
+                Note("possess02 obstruction fallback selected=" + selectedRequest.ToString("F4") + " body=" + blob.transform.position.ToString("F4")
+                    + " sameTarget=" + target.DisplayName + " wallRetained=True");
+                yield return PressInteract();
+                yield return new WaitForSeconds(PossessionManager.LaunchSeconds + .4f);
+                RequireFixture(pm.Active == agent && agent.Host == target && target.IsPossessed && target.Possessor == agent,
+                    "fresh ordinary E must possess that same NPC, with reciprocal ownership");
+                WallIntact();
+
+                // Original-style WASD proof; include this owned dynamic wall in route planning because it was not NavMesh-baked.
+                Vector3 start = target.transform.position, direction = Vector3.zero;
+                var cc = target.Controller;
+                Vector3 scale = cc.transform.lossyScale, center = cc.transform.TransformPoint(cc.center);
+                float radius = cc.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z));
+                float halfLine = Mathf.Max(0f, cc.height * Mathf.Abs(scale.y) * .5f - radius), best = -1f;
+                for (int i = 0; i < 16; i++)
+                {
+                    Vector3 candidate = Quaternion.Euler(0f, i * 22.5f, 0f) * Vector3.forward;
+                    float length = NavMesh.Raycast(start, start + candidate * 6f, out var edge, NavMesh.AllAreas) ? edge.distance : 6f;
+                    foreach (var hit in Physics.CapsuleCastAll(center - Vector3.up * halfLine, center + Vector3.up * halfLine, radius, candidate, 6f, ~0, QueryTriggerInteraction.Ignore))
+                        if (hit.collider == box) length = Mathf.Min(length, hit.distance);
+                    if (length > best) { best = length; direction = candidate; }
+                }
+                RequireFixture(best > 2f, "physical owned-wall clearance and existing navigation allow a real movement leg");
+                Cam.SetYaw(0f); GameInput.SimSprint = false; GameInput.SimMove = new Vector2(direction.x, direction.z);
+                yield return new WaitForSeconds(1f);
+                GameInput.SimMove = Vector2.zero;
+                float moved = Flat(target.transform.position - start).magnitude;
+                RequireFixture(moved > 1f && agent.Host == target && target.Possessor == agent,
+                    "normal WASD must physically displace the same possessed host by more than1m");
+                WallIntact();
+                Note("possess02 obstruction PASS actual E, same-host WASD metres=" + moved.ToString("F4")
+                    + " originalReturned=" + controlSpot.ToString("F4") + " fallback=" + fallback.ToString("F4") + " wallRetained=True");
+            }
+            finally
+            {
+                ClearSim();
+                if (box) box.enabled = false;
+                if (wall) Destroy(wall);
+                Physics.SyncTransforms();
+                current = previous;
+            }
+        }
+
         static HostCharacter NearestHost(Vector3 p, Func<HostCharacter, bool> pred) =>
             HostCharacter.All.Where(h => h && pred(h)).OrderBy(h => (h.transform.position - p).sqrMagnitude).FirstOrDefault();
 
@@ -589,16 +853,27 @@ namespace Parasite.Testing
                          ?? NearestHost(PM.Active.Position, h => h.CanBePossessed);
             Check(target != null, "found a host");
             if (!target) yield break;
-            // stand 3.5 m in front of the host, aim at it
+            // Existing teleport fixture: first try its original request, then bounded verified vantages around this same host.
             Vector3 hp = target.transform.position;
-            Vector3 spot = PossessionManager.FindFreeSpot(hp + target.transform.forward * 3.5f, Vector3.zero);
+            Vector3 originalRequest = hp + target.transform.forward * 3.5f;
+            bool setupReady = TryPossess02Setup(target, originalRequest, out Vector3 request, out Vector3 spot);
+            Check(setupReady, "same target has a collision/floor/range/LOS-valid prepared vantage within 17 finite samples");
+            if (!setupReady) yield break;
+            Note("possess02 placement hp=" + hp.ToString("F4") + " originalRequest=" + originalRequest.ToString("F4") + " selectedRequest=" + request.ToString("F4")
+                + " returnedSpot=" + spot.ToString("F4") + " originalBody=" + PM.ActiveBody.Root.position.ToString("F4"));
+            NotePossess02("before placement", target, default, false, true);
             TeleportBody(PM.ActiveBody, spot, 0);
             target.Brain.Notice(spot, 3f);
+            NotePossess02("after placement before aim", target, default, false);
+            bool actualSetupReady = Possess02SetupPose(target, PM.ActiveBody.Root.position, out string actualSetupReason);
+            Check(actualSetupReady, "actual placed body satisfies unchanged physical setup: " + (actualSetupReason ?? "clear capsule, floor, range and LOS"));
+            if (!actualSetupReady) yield break;
             yield return AimSettle(target);
             var tg = PM.ComputeTarget();
             float ang = Vector3.Angle(Cam.Forward, target.ChestPosition - Cam.Position);
             float dst = Vector3.Distance(PM.ActiveBody.EyePosition, target.ChestPosition);
             bool los = PM.LineOfSight(PM.ActiveBody.EyePosition, target.ChestPosition, PM.ActiveBody.Root, target.transform);
+            NotePossess02("after unchanged aim", target, tg, true);
             Check(tg.kind == TargetKind.Possess && tg.host == target, $"aim target = {tg.kind} {(tg.host ? tg.host.DisplayName : "-")} (angle {ang:0.0}°, dist {dst:0.0} m, LOS {los}, canPossess {target.CanBePossessed})");
             if (!current.pass) yield break;
             yield return PressInteract();
@@ -1051,6 +1326,35 @@ namespace Parasite.Testing
             Check(GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 23 && MissionManager.Instance.Missions.Count == 23,
                 "The same campaign reaches its implemented twenty-three-mission summary through three real Continue buttons.");
             Note("CONTINUITY SCOPE: original and chapter driver fixtures remain; no inter-chapter LoadCity/NewGame/SeedPriorChapter, prior flag grants, fabricated summary or stat reset.");
+        }
+
+        // Extends the existing90/91 driver only AFTER its actual M23 result, without replacing its scope.
+        static IEnumerator ScenarioContinuousNorthline(EntryRoute route)
+        {
+            yield return ScenarioContinuousCampaign(route);
+            if (!current.pass) yield break;
+            var outcome = route == EntryRoute.ServiceTunnel ? EndingOutcome.Dominion : EndingOutcome.Peace;
+            var carried = new HashSet<string>(RunState.Flags);
+            float playTime = RunState.PlayTime, peakSuspicion = RunState.PeakSuspicion;
+            int hosts = RunState.HostsPossessed, captures = RunState.Captures, resets = RunState.Resets;
+            Check(GameManager.Instance && GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 23
+                && MissionManager.Instance.Missions.Count == 23 && RunState.Route == route && RunState.LakesideOutcome == outcome
+                && RunState.Has(HarborCampaign.RelayComplete) && HarborCampaign.RequiredCargoDelivered
+                && PM.Agents.Count == 2 && PM.Agents.All(RailCampaign.Free) && !RunState.RailStarted,
+                "Continuous26 extends the actual earned M23 summary, branch cargo/relay and two valid free bodies.");
+            if (!current.pass) yield break;
+            yield return RailAcceptance.RunChapter(outcome, false, continueCurrentSummary: true);
+            if (!current.pass) yield break;
+            Check(carried.IsSubsetOf(RunState.Flags) && RunState.Route == route && RunState.LakesideOutcome == outcome
+                && RunState.PlayTime >= playTime && RunState.PeakSuspicion >= peakSuspicion && RunState.HostsPossessed >= hosts
+                && RunState.Captures >= captures && RunState.Resets >= resets,
+                "Earned M23→M26 retains all prior flags, first route/outcome and accumulated campaign statistics.");
+            Check(GameManager.Instance.State == GameState.Ended && RunState.MissionIndex == 26 && MissionManager.Instance.Missions.Count == 26
+                && RunState.Has(RailCampaign.Departed) && PM.Agents.Count == 2 && PM.Agents.All(RailCampaign.Free),
+                "The same campaign finishes M26 only after the actual coach/body endpoints and final summary.");
+            Note("CONTINUITY26 SCOPE: existing original/chapter role, position, calm, checkpoint and timeScale fixtures remain; "
+                + "no M23→Northline boundary LoadCity/NewGame/Seed23, split fixture, fabricated summary, prior flag grant or statistic reset. "
+                + "Northline uses its shared physical/input driver with initial role ownership fixtures; this is not human input or graphics acceptance.");
         }
 
         // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.
