@@ -46,6 +46,11 @@ Focused EditMode checks pass 23/23. Three additional Vulkan PlayMode callback-fa
 coach/deck/two-grounded-capsule fixture, including actual eight-metre departure and coordinator-disable rollback.
 These are not earned full-campaign or new-movie decoding proofs. Runtime changes commit satisfied mission indices
 before fallible notifications and protect departure cleanup from subtitle/media failures.
+The bounded read-only audit of the old strict coach failures finds16 retained warnings in native
+`TickRealtimeProbes` submissions immediately after City loads, without identifying an allocator defect or
+a coach capture request. After GPU release, rerun the two original strict fixtures unchanged on current source;
+clean callback/city captures do not close that gate. If it reproduces, collect warning frame/camera/probe
+identity before choosing a fix. No log suppression, quality change or allocator override has been applied.
 
 Lake v4 uses a surface-conforming native hair groom and its Arrival165 RTX portrait is accepted for this pass;
 Hold73, Peace168 and corrected Dominion52 keyframes are also accepted for this pass; full production remains pending.
