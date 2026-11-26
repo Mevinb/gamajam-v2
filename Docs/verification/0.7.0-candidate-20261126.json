@@ -1,0 +1,43 @@
+{
+  "status": "READY_NOT_RUN",
+  "application_version": "0.7.0-preview",
+  "candidate_path": "/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782",
+  "native_build_pid": 154634,
+  "native_build_exit_code": 0,
+  "build_summary": {
+    "result": "Succeeded",
+    "size_mb": 1119,
+    "time": "00:02:01.2578050",
+    "errors": 0,
+    "warnings": 0
+  },
+  "source_snapshot_before_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+  "source_snapshot_after_sha256": "95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648",
+  "source_unchanged_during_build": true,
+  "protected_base_unchanged": true,
+  "preview_unchanged": true,
+  "rendered_preview_unchanged": true,
+  "candidate_build_info_sha256": "94ea9c39b354649ed6f686c29a33087a57a0cb4a2f01eca04c88364fcac041ba",
+  "root_free_after_bytes": 11410165760,
+  "finished_utc": "2026-11-26T00:53:47.768820+00:00",
+  "build_state": "/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T005055601457Z-875bb782/runner-state.json",
+  "build_state_sha256": "9820fe74dac8d4bdfd19302f4a5bb3c2b67d772dd199620b3f70492eac5ec710",
+  "runtime_sha256": "408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5",
+  "source_commit": "6e1240565612035fd6cf9d8c9236dd592f9abf3f",
+  "mission_count": 26,
+  "root_exec_session": 47031,
+  "compile_check": {
+    "command": "Tools/compile_check.sh all",
+    "root_exec_session": 45758,
+    "exit_code": 0,
+    "runtime_files": 175,
+    "editor_files": 33,
+    "player_files": 175,
+    "player_cache": "Library/Bee/artifacts/2400b0aP.dag/Parasite.Runtime.rsp",
+    "scope": "Actual fresh WORK Linux Mono API references"
+  },
+  "local_shader_cache_hits": 4430,
+  "shader_variants_compiled": 0,
+  "cache_reuse_receipt": "/home/mevlec/Data/Parasite/Logs/worktree-build-stage/shader-cache-offline-reuse.json",
+  "scope": "Successful fresh isolated Linux build and API checks. Earlier cold attempt was deliberately cancelled for offline cache reuse; its failure and exact preload restoration are retained. This proof grants no native gameplay, rendered quality, FPS or human-playthrough pass."
+}
