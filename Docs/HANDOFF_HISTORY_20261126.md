@@ -533,3 +533,64 @@ The current runtime annex does not require scene regeneration. Any later CityBui
 Use existing `Tools/unity.sh` in the intended checkout with its unchanged global flock. All test launches are root-owned and serialized.
 Commit/push as Mevinb only; do not merge the26 feature merely because its API/import or one branch is green.
 
+
+## Superseded checkpoint before the 0.7.1 bug-fix build at 01:45 UTC
+
+Historical invocation labels only; current checkpoint wins.
+
+## Current checkpoint — 26 November 2026
+
+The full graphics/cinematic/mission expansion goal remains active. **The immediate fresh-build-and-run request is fulfilled.**
+
+- **USER PLAYTEST IS LIVE:** `0.7.0-preview`, **26 missions**, PID **155953**, start ticks **3334957**, root exec **10985**.
+  Actual visible `PARASITE` window0xc0000a,1600×862, RTX4050/Vulkan. [Launch receipt](verification/0.7.0-user-playtest-20261126.json).
+  Session: `/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/session.json`.
+  Candidate: `/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782`. Runtime SHA `408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5`.
+  **Do not close/restart/inject gameplay inputs or begin GPU work while the user tests without new steering.** No automatic quit was installed.
+  The old0.5.1PID51569 exited normally0 via standard window close before this launch. Its files remain unchanged.
+- **Fresh build PASSES:** root47031/native0, owned Editor154634 is gone; 1119MB, BuildReport0errors/0warnings,121.258s pipeline/141.57s supervisor.
+  [Build/API proof](verification/0.7.0-candidate-20261126.json). Actual `Tools/compile_check.sh all`:175runtime/33Editor/175LinuxMono pass using fresh WORK player references.
+  Source before/after is exactly `95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648`; all protected BASE source/build/release trees unchanged.
+  Build state: `/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T005055601457Z-875bb782/runner-state.json`.
+- **Fresh native basic PASSES5/5:** root99496/native0,30.246s, exact01–05 and SUMMARY5/5, Null, all five pinned artifact files unchanged.
+  [Native proof](verification/0.7.0-native-basic-20261126.json). Includes actual possession02 with the new same-NPC placement setup.
+  This does not amend the immutable0.6.1archive's earlier4/5 result or claim native full26/default27/rendered/movie/FPS/human acceptance.
+- WORK: `/home/mevlec/.local/share/parasite-work/northline`, pushed branch `codex/northline-runtime`, clean HEAD
+  `6e1240565612035fd6cf9d8c9236dd592f9abf3f` (feature `c9282a1`, separate film importer normalization `6e12405`).
+  Includes three earned Northline missions, eleven Blender models, moving attachments, compound-collider LOS fix and central destroyed-body guards.
+  Code remains isolated from main pending further native/full-campaign/graphics acceptance. Main runtime source remains0.6.1/DC5; documentation records the newer build.
+  Preserve unrelated untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` unstaged.
+- **Editor proofs:** [authored bindings2/2](verification/northline-authored-bindings-green-20261126.json),
+  [body lifetime2/2 and moving-coach destruction](verification/northline-lifetime-green-return-red-20261126.json),
+  [full Peace recovery1/1](verification/northline-peace-recovery-green-20261126.json),193.036s. Earlier full mechanics5/7 is retained;
+  its two failures now have passing focused retests, not a fresh whole-suite7/7. Earlier Dominion/coordinator/rebind/continuation/import/selection/LOS/obstruction proofs remain named.
+  Real wrong return hit the solid signal wall at local(1.838,.15,22.997). Return path and noncolliding visible rails now useZ20.5;
+  the same carriage physically returns in40.404s under the original70s deadline, then full route/checkpoint/boarding/departure recovery passes.
+- **Cold-cache restart is fully recorded:** first root10336/super150195/Editor150218 was deliberately stopped by the agent for cache reuse, native−15,
+  not a user pause. Its failed receipt is retained under `.../build-runs/20261126T002329795146Z-7e40abcb/`.
+  Cancellation left exactly one temporary InputSystem preload entry; it was reviewed and restored to the exact original95d9 source.
+  Installed InputSystem `ProjectWideActionsBuildProvider` adds/removes that entry in normal pre/post build callbacks; successful retry restored it normally.
+  With Unity and compilers terminal, only5452 missing content-key `.bin` cache entries/152078272B were copied offline from matching BASE shader cache;
+  all3077 overlapping entries were byte-identical, existingWORK/BASE caches unchanged, no temp/non-bin/AssetDatabase/Bee/otherLibrary copy.
+  Receipt: BASE `Logs/worktree-build-stage/shader-cache-offline-reuse.json`. Actual retry confirms4430local cache hits/0compiledvariants.
+  Unity version, packages and all14shader/HLSL sources match; shader quality/settings/stripping/source were not reduced.
+- **IMPORTANT FUTURE RUNNER RETARGET:** BASE `Logs/worktree-build-stage/build_worktree_candidate.py` SHA396abbe9… and ready plan070 are pinned to the
+  now-exited old rendered51569 allowance. Do not reuse that exception for the new155953 preview. Review/pin the new exact session/candidate identity and protection root before future builds.
+  Current root storage has~10.6GiB free; Data remains nearly full. Recheck actual free space. No artifact relocation/deletion was performed.
+- Retain `Builds/Linux`0.5.0, old0.5.1,0.6.0/0.6.1candidates/archives, failed cold-attempt evidence and all2760 completed RTX/OptiX film frames.
+  The latest0.7candidate is local/unpacked; no0.7portable archive exists yet. Project-root `./play.sh` still selects retained0.5.0; use the exact candidate launcher for0.7.
+
+**Latest native Northline checks:**92 Peace/recovery is TERMINAL/pass, root22591/native0/supervisor0,193.311s;
+exactPASS92/SUMMARY1/1, all source/HEAD/artifact checks pass, no cancellation, user session unchanged.
+[Native Peace proof](verification/0.7.0-native-northline-peace-20261126.json).
+93 Dominion is LIVE in root exec **66651**, WORK `Logs/native-070-focused/93-20261126a/execution.json`.
+Poll that actual process/receipt; keep WORK source/metadata/HEAD fixed until terminal. Runner BASE `Logs/native-070-focused-stage/run.py`
+SHA7b87241c…,900s,Null,nice15,idle I/O,two job workers, separate XDG profiles and exact155953user protection.
+No other Editor/player/Blender is allowed by this supervisor. Coach geometry/PBR/glass and missing-inactive-body ferry-guard proposals remain Logs-only, unapplied/unexecuted.
+
+Next: preserve the user's new test session; native prepared93 and earned94/95 plus full current regression remain unrun, as do declared current-binary GPU/media/settings/performance checks.
+Retarget stale runners before execution. Continue the graphics/gameplay expansion after this deliverable; do not recreate the completed films.
+Linux/URP plus offline RTX-rendered Blender cinematics and improved real-time shaders remains the user's selected direction; gameplay hardware ray tracing is not implemented.
+Physical input, subjective listening, final realism quality, disk campaign saving and continued mission expansion remain distinct work.
+Historical invocation/source pins are in [HANDOFF_HISTORY_20261126.md](HANDOFF_HISTORY_20261126.md); old live labels there are not liveness.
+

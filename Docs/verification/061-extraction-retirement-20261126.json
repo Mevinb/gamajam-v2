@@ -1,0 +1,42 @@
+{
+  "status": "RETIRED_RECONSTRUCTIBLE",
+  "utc": "2026-11-26T01:41:37.119254+00:00",
+  "finished_utc": "2026-11-26T01:41:37.864730+00:00",
+  "root": "/home/mevlec/.local/share/parasite-artifacts/extractions/061-20261125T230520564657Z-5ce965f6/PARASITE-0.6.1-preview-Linux",
+  "root_identity": {
+    "path": ".",
+    "mode": 493,
+    "uid": 1000,
+    "gid": 1000,
+    "mtime_ns": 1795647943221027970,
+    "device": 66307,
+    "inode": 1059168,
+    "nlink": 5,
+    "allocated_bytes": 4096,
+    "type": "directory"
+  },
+  "archive": "/home/mevlec/Data/Parasite/Builds/Releases/PARASITE-0.6.1-preview-Linux.tar.gz",
+  "archive_sha256": "fee38fdc4cab9593a9025a999b65ca6f27c7b5c20412b79c3c8383b54096fe8e",
+  "allocated_bytes_expected": 1173475328,
+  "actual_free_delta_bytes": 1173475328,
+  "root_free_after_bytes": 12849123328,
+  "ownership_unchanged": true,
+  "outside_paths_still_exist": true,
+  "review": "Root reviewed exact full archive/extraction equality, ownership, no unique data and same system-service visibility limits. Only the generated package directory is retired; archive/candidate/reports/profiles/parent token remain. Original inode/timestamp identities are historical and not reconstructed.",
+  "reconstruction_command_argv": [
+    "/usr/bin/nice",
+    "-n",
+    "15",
+    "/usr/bin/ionice",
+    "-c",
+    "3",
+    "python3",
+    "-B",
+    "/home/mevlec/Data/Parasite/Logs/package-extraction-verifier/verify_061_extraction_only.py"
+  ],
+  "execution": "/home/mevlec/Data/Parasite/Logs/extraction-retirement-061-stage/retirement-execution.json",
+  "execution_sha256": "9e90b35dc6b2e7fb91b37cc4b1897365289d59091ded996721d10206fb13708f",
+  "root_exec_session": 87248,
+  "exit_code": 0,
+  "limits": "Process fields unavailable for the same four reviewed systemd/PAM/SSH identities and other-UID privileged services are recorded in the full receipt; no universal reference-inspection claim. Original archive/candidate/reports/profiles/ownership token preserved; historical extraction/native4/5 receipts remain unchanged."
+}

@@ -1,0 +1,145 @@
+{
+  "runtime_source": {
+    "Assets/Parasite/Scripts/Possession/AmoebaController.cs": "75a870c9f179a7f1ce5fb684848c3bf2f78de6ec5164aab35edbd2d5316d036f",
+    "Assets/Parasite/Scripts/Missions/AfterlakeDeparture.cs": "ee58dc6b9a249b1a5ee2eb7ffb1f444881d4dcf03652e1b72af43a8706021258"
+  },
+  "runtime_patch_sha256": "ea1f3bdb27202304a52716f01a3ecd90f503e124d687aa61167ae3886c67e41e",
+  "red_observation": "[BodyFreeState] actualInactiveDestroyed=true registry=2 deadIsFree=True allFree=True allFreeReason= ferryAllowed=True ferryReason= afterFinalizerState=Ended departed=True missionIndex=17",
+  "green_observation": "[BodyFreeState] actualInactiveDestroyed=true registry=2 deadIsFree=False allFree=False allFreeReason=Every amoeba must have a live free body before boarding. ferryAllowed=False ferryReason=Every amoeba must have a live free body before boarding. afterFinalizerState=Playing departed=False missionIndex=16",
+  "runs": [
+    {
+      "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/body-free-red-20261126a.xml",
+      "xml_sha256": "328fc331e7e730e3f1e47320fe1b5f01b6766b77335a7e3ebf183501f485a174",
+      "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/body_free_red_20261126a.log",
+      "log_sha256": "a714a8655fc6aa3cd0ef0ee919c76d7a3341948d68f270d0b68a149987a75e75",
+      "root_exec_session": 77623,
+      "native_exit_code": 2,
+      "result": "Failed(Child)",
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "duration_seconds": 4.4361586,
+      "cases": [
+        {
+          "name": "DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization",
+          "result": "Failed",
+          "duration_seconds": 3.833406,
+          "failure": "  Actual inactive-body destruction/finalization must not grant credit: deadIsFree=True allFree=True ferryAllowed=True state=Ended departed=True missionIndex=17\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity",
+          "result": "Passed",
+          "duration_seconds": 0.55323,
+          "failure": null
+        }
+      ]
+    },
+    {
+      "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/body-free-green-20261126a.xml",
+      "xml_sha256": "cb0323242cdb4257268de56b286d0a93c7b9ea0c0a95404cb1e42138dd978756",
+      "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/body_free_green_20261126a.log",
+      "log_sha256": "ff18b31671403c3b00cc1b7290088694bd159c0767e9fee58b1af6731ee2ab00",
+      "root_exec_session": 66296,
+      "native_exit_code": 2,
+      "result": "Failed(Child)",
+      "total": 6,
+      "passed": 5,
+      "failed": 1,
+      "duration_seconds": 62.5619731,
+      "cases": [
+        {
+          "name": "LiveBodiesCompleteDominionAndCheckpointRecovery",
+          "result": "Passed",
+          "duration_seconds": 27.635076,
+          "failure": null
+        },
+        {
+          "name": "LiveBodiesCompletePeaceAndCheckpointRecovery",
+          "result": "Passed",
+          "duration_seconds": 25.940704,
+          "failure": null
+        },
+        {
+          "name": "DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization",
+          "result": "Failed",
+          "duration_seconds": 2.064791,
+          "failure": "Unhandled log message: '[Log] [BodyFreeState] actualInactiveDestroyed=true registry=2 deadIsFree=False allFree=False allFreeReason=Every amoeba must have a live free body before boarding. ferryAllowed=False ferryReason=Every amoeba must have a live free body before boarding. afterFinalizerState=Playing departed=False missionIndex=16'. Use UnityEngine.TestTools.LogAssert.Expect"
+        },
+        {
+          "name": "LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity",
+          "result": "Passed",
+          "duration_seconds": 0.618047,
+          "failure": null
+        },
+        {
+          "name": "ActualActiveBlobDestructionFailsClosedUntilNormalCheckpointRecovery",
+          "result": "Passed",
+          "duration_seconds": 5.678442,
+          "failure": null
+        },
+        {
+          "name": "LiveHiddenAndDisabledBlobRetainsTheSameBodyIdentity",
+          "result": "Passed",
+          "duration_seconds": 0.550858,
+          "failure": null
+        }
+      ]
+    },
+    {
+      "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/body-free-green-20261126b.xml",
+      "xml_sha256": "74238521cfc8447886ef16d48016753e8aaf7bcecb54541cfb79ae65bcfc74ac",
+      "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/body_free_green_20261126b.log",
+      "log_sha256": "6713909ac878949275c26b81ebb7cbfb67ab5020c0d3da7d14a28aa1ca67adfb",
+      "root_exec_session": 51341,
+      "native_exit_code": 2,
+      "result": "Failed(Child)",
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "duration_seconds": 7.8641231,
+      "cases": [
+        {
+          "name": "DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization",
+          "result": "Failed",
+          "duration_seconds": 7.246369,
+          "failure": "  A real new free body and fresh E can earn departure after explicit recovery.\n  Expected: True\n  But was:  False\n"
+        },
+        {
+          "name": "LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity",
+          "result": "Passed",
+          "duration_seconds": 0.566043,
+          "failure": null
+        }
+      ]
+    },
+    {
+      "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/body-free-green-20261126c.xml",
+      "xml_sha256": "a06b026b15cab6ef9e3df5850a400cb99f1688dbf544e79ae0ff6d154f2925a3",
+      "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/body_free_green_20261126c.log",
+      "log_sha256": "7b0b31af89f7fd1250f1feeca56c81084d5959d957e41952e06c3f239941934f",
+      "root_exec_session": 99870,
+      "native_exit_code": 0,
+      "result": "Passed",
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 8.0167607,
+      "cases": [
+        {
+          "name": "DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization",
+          "result": "Passed",
+          "duration_seconds": 7.38661,
+          "failure": null
+        },
+        {
+          "name": "LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity",
+          "result": "Passed",
+          "duration_seconds": 0.579021,
+          "failure": null
+        }
+      ]
+    }
+  ],
+  "interpretation": "Original code grants actual ferry/M17 credit after inactive-body destruction. Fixed source denies it, preserves the registry/progress, and passes explicit normal checkpoint/new-body/fresh E recovery. Six distinct named cases pass across the first green batch and final focused run; there is no single fresh6/6 claim. Intermediate failures are retained: the test-owned Info log was not expected, then the test driver was not rearmed after CityDirector resets simulation mode on scene reload. Production assertions/guards/deadlines were not relaxed.",
+  "scope": "Editor source checks with declared completed-radio/ferry-checkpoint fixture; both normal live river branches and earlier lifetime controls pass. This fix is not yet in the running0.7 binary or a new native build."
+}

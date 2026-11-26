@@ -1,0 +1,101 @@
+{
+  "xml": "/home/mevlec/.local/share/parasite-work/northline/Logs/body-free-shared-20261126a.xml",
+  "xml_sha256": "62b1202cd871554226dde24e3986d3eed4a3bf05f08264ca99f1ba9f0d7a31cc",
+  "log": "/home/mevlec/.local/share/parasite-work/northline/Logs/body_free_shared_20261126a.log",
+  "log_sha256": "07d984dc155ce49f808e11ca57b50bdabb1dc343552c8675d9e375974bc0283b",
+  "root_exec_session": 30574,
+  "editor_exit_code": 0,
+  "passed": 17,
+  "failed": 0,
+  "duration_seconds": 8.311304,
+  "cases": [
+    {
+      "name": "Parasite.Tests.BodyFreeStateTests.DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization",
+      "result": "Passed",
+      "duration_seconds": 7.641849
+    },
+    {
+      "name": "Parasite.Tests.BodyFreeStateTests.LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity",
+      "result": "Passed",
+      "duration_seconds": 0.578931
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.CommaTokenListSelectsOnlyExplicitOptInCases",
+      "result": "Passed",
+      "duration_seconds": 0.013283
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.DefaultSuiteStillContainsExactlyTheOriginal27Ids",
+      "result": "Passed",
+      "duration_seconds": 0.00525
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"90\")",
+      "result": "Passed",
+      "duration_seconds": 0.000883
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"91\")",
+      "result": "Passed",
+      "duration_seconds": 0.000243
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"92\")",
+      "result": "Passed",
+      "duration_seconds": 0.000138
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"93\")",
+      "result": "Passed",
+      "duration_seconds": 0.00012
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"94\")",
+      "result": "Passed",
+      "duration_seconds": 0.000133
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"95\")",
+      "result": "Passed",
+      "duration_seconds": 0.000112
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.ExactOptInSelectsOnlyItsOwnRegisteredCase(\"96\")",
+      "result": "Passed",
+      "duration_seconds": 0.000102
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.LegacyPrefixAndEmptyTokenNeverAccidentallyOptIn",
+      "result": "Passed",
+      "duration_seconds": 0.000894
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.UnknownOrBroadNineFilterSelectsNothing(\"9\")",
+      "result": "Passed",
+      "duration_seconds": 0.001017
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.UnknownOrBroadNineFilterSelectsNothing(\"92x\")",
+      "result": "Passed",
+      "duration_seconds": 0.000219
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.UnknownOrBroadNineFilterSelectsNothing(\"94extra\")",
+      "result": "Passed",
+      "duration_seconds": 0.00014
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.UnknownOrBroadNineFilterSelectsNothing(\"96x\")",
+      "result": "Passed",
+      "duration_seconds": 0.000107
+    },
+    {
+      "name": "Parasite.Tests.RailNativeSelectionTests.UnknownOrBroadNineFilterSelectsNothing(\"999\")",
+      "result": "Passed",
+      "duration_seconds": 9.9e-05
+    }
+  ],
+  "source_commit": "674b8e6",
+  "checks": "Shared real inactive-body destruction, denied ferry/finalizer credit, actual pause checkpoint button, normal scene reload/new body/fresh E departure, live hidden/disabled identity, exact96 opt-in/default27 selection.",
+  "scope": "Headless Editor source checks. Native96 requires the fresh0.7.1candidate and remains unrun at this checkpoint."
+}

@@ -6,51 +6,57 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 26 November 2026
 
-The full graphics/cinematic/mission expansion goal remains active. **The immediate fresh-build-and-run request is fulfilled.**
+The full upgrade/continued-expansion goal remains active. The user's immediate build-and-run request was fulfilled; preserve their open test session.
 
-- **USER PLAYTEST IS LIVE:** `0.7.0-preview`, **26 missions**, PID **155953**, start ticks **3334957**, root exec **10985**.
-  Actual visible `PARASITE` window0xc0000a,1600×862, RTX4050/Vulkan. [Launch receipt](verification/0.7.0-user-playtest-20261126.json).
-  Session: `/home/mevlec/.local/share/parasite-work/northline/Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/session.json`.
-  Candidate: `/home/mevlec/.local/share/parasite-work/northline/Builds/Candidates/full-story-20261126T005055601457Z-875bb782`. Runtime SHA `408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5`.
-  **Do not close/restart/inject gameplay inputs or begin GPU work while the user tests without new steering.** No automatic quit was installed.
-  The old0.5.1PID51569 exited normally0 via standard window close before this launch. Its files remain unchanged.
-- **Fresh build PASSES:** root47031/native0, owned Editor154634 is gone; 1119MB, BuildReport0errors/0warnings,121.258s pipeline/141.57s supervisor.
-  [Build/API proof](verification/0.7.0-candidate-20261126.json). Actual `Tools/compile_check.sh all`:175runtime/33Editor/175LinuxMono pass using fresh WORK player references.
-  Source before/after is exactly `95d9939345f074a855c6f32da39aa6f622b25c4512998b86be038541d5a6a648`; all protected BASE source/build/release trees unchanged.
-  Build state: `/home/mevlec/.local/share/parasite-work/northline/Logs/full-story-candidate/build-runs/20261126T005055601457Z-875bb782/runner-state.json`.
-- **Fresh native basic PASSES5/5:** root99496/native0,30.246s, exact01–05 and SUMMARY5/5, Null, all five pinned artifact files unchanged.
-  [Native proof](verification/0.7.0-native-basic-20261126.json). Includes actual possession02 with the new same-NPC placement setup.
-  This does not amend the immutable0.6.1archive's earlier4/5 result or claim native full26/default27/rendered/movie/FPS/human acceptance.
-- WORK: `/home/mevlec/.local/share/parasite-work/northline`, pushed branch `codex/northline-runtime`, clean HEAD
-  `6e1240565612035fd6cf9d8c9236dd592f9abf3f` (feature `c9282a1`, separate film importer normalization `6e12405`).
-  Includes three earned Northline missions, eleven Blender models, moving attachments, compound-collider LOS fix and central destroyed-body guards.
-  Code remains isolated from main pending further native/full-campaign/graphics acceptance. Main runtime source remains0.6.1/DC5; documentation records the newer build.
-  Preserve unrelated untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` unstaged.
-- **Editor proofs:** [authored bindings2/2](verification/northline-authored-bindings-green-20261126.json),
-  [body lifetime2/2 and moving-coach destruction](verification/northline-lifetime-green-return-red-20261126.json),
-  [full Peace recovery1/1](verification/northline-peace-recovery-green-20261126.json),193.036s. Earlier full mechanics5/7 is retained;
-  its two failures now have passing focused retests, not a fresh whole-suite7/7. Earlier Dominion/coordinator/rebind/continuation/import/selection/LOS/obstruction proofs remain named.
-  Real wrong return hit the solid signal wall at local(1.838,.15,22.997). Return path and noncolliding visible rails now useZ20.5;
-  the same carriage physically returns in40.404s under the original70s deadline, then full route/checkpoint/boarding/departure recovery passes.
-- **Cold-cache restart is fully recorded:** first root10336/super150195/Editor150218 was deliberately stopped by the agent for cache reuse, native−15,
-  not a user pause. Its failed receipt is retained under `.../build-runs/20261126T002329795146Z-7e40abcb/`.
-  Cancellation left exactly one temporary InputSystem preload entry; it was reviewed and restored to the exact original95d9 source.
-  Installed InputSystem `ProjectWideActionsBuildProvider` adds/removes that entry in normal pre/post build callbacks; successful retry restored it normally.
-  With Unity and compilers terminal, only5452 missing content-key `.bin` cache entries/152078272B were copied offline from matching BASE shader cache;
-  all3077 overlapping entries were byte-identical, existingWORK/BASE caches unchanged, no temp/non-bin/AssetDatabase/Bee/otherLibrary copy.
-  Receipt: BASE `Logs/worktree-build-stage/shader-cache-offline-reuse.json`. Actual retry confirms4430local cache hits/0compiledvariants.
-  Unity version, packages and all14shader/HLSL sources match; shader quality/settings/stripping/source were not reduced.
-- **IMPORTANT FUTURE RUNNER RETARGET:** BASE `Logs/worktree-build-stage/build_worktree_candidate.py` SHA396abbe9… and ready plan070 are pinned to the
-  now-exited old rendered51569 allowance. Do not reuse that exception for the new155953 preview. Review/pin the new exact session/candidate identity and protection root before future builds.
-  Current root storage has~10.6GiB free; Data remains nearly full. Recheck actual free space. No artifact relocation/deletion was performed.
-- Retain `Builds/Linux`0.5.0, old0.5.1,0.6.0/0.6.1candidates/archives, failed cold-attempt evidence and all2760 completed RTX/OptiX film frames.
-  The latest0.7candidate is local/unpacked; no0.7portable archive exists yet. Project-root `./play.sh` still selects retained0.5.0; use the exact candidate launcher for0.7.
+- **USER0.7 PLAYTEST LIVE:** PID155953/start3334957, root exec10985. Candidate WORK `Builds/Candidates/full-story-20261126T005055601457Z-875bb782`,
+  runtime408112a0899965a49a95c656e34b8161a942135ce8455793efafed49b8040ca5, actual RTX4050/Vulkan and visible window0xc0000a.
+  Session WORK `Logs/user-playtest-full-story-20261126T005055601457Z-875bb782/session.json`.
+  **No close/restart/input injection or GPU jobs without new steering.** The private0.7.1 build below does not replace this player.
+- **CURRENT0.7.1 BUILD LIVE:** root exec **9396**, supervisor194338, owned Editor194358 at last process observation.
+  WORK `/home/mevlec/.local/share/parasite-work/northline`; state `Logs/full-story-candidate/build-runs/20261126T014554516966Z-b287ee31/runner-state.json`;
+  fresh candidate `Builds/Candidates/full-story-20261126T014554516966Z-b287ee31`. No result yet. Poll this actual job; observation expiry is not terminal.
+  **Freeze WORK source/metadata/HEAD until terminal.** Serialized `Tools/unity.sh`, Null,two job workers,nice15,idle I/O,3600s owned watchdog.
+  Reviewed runner BASE `Logs/worktree-build-071-stage/build_worktree_candidate.py` SHA746bb384… protects exact new0.7 user session and full candidate,
+  all older BASE builds/releases/source, common supervisor/Unity locks and10GiB root reserve. Actual reviewed dry preflight passed.
+  Ready plan `Logs/worktree-build-071-stage/reviewed-plan-071-20261126.json`; source **de2acc082e446d2ef9420eea7912cdc35431439a2b6db3a762133a2ad4f6533f**,
+  version0.7.1-preview, clean pushed WORK HEAD **70259deafd711f841c07225949b55733eaf2101a** on`codex/northline-runtime`.
+- **0.7 native branches now pass independently:** [92Peace/recovery](verification/0.7.0-native-northline-peace-20261126.json),root22591/native0/super0,193.311s;
+  [93Dominion](verification/0.7.0-native-northline-dominion-20261126.json),root66651/native0/super0,106.747s. ExactonePASS/SUMMARY1/1/Null,
+  all source/HEAD/full-candidate/user checks pass, no cancellation. They prepareM23/initialroles; they do not prove earned94/95, default27 or graphics/human acceptance.
+  Existing [0.7 build/API](verification/0.7.0-candidate-20261126.json), [basic5/5](verification/0.7.0-native-basic-20261126.json),
+  [visible launch](verification/0.7.0-user-playtest-20261126.json) remain tied to the unchanged0.7 binary/source95d9/commit6e12405.
+- **New actual ferry defect fixed in source:** a destroyed inactive blob remainedIsFree; the shared ferry guard could publishM17 with no physical second body.
+  Root77623 actualred1/2/native2 records deadIsFree/allFree/ferryAllowedTrue, StateEnded/DepartedTrue/MissionIndex17.
+  Source `IsFree` now requires liveBlob, preserving hidden/disabled identities; sharedAllFree rejects the missing body without pruning/spawning/autoReset.
+  The pause menu now has separate **Restart checkpoint** and **Restart game** actions; seven rows fit its panel. The recovery test invokes the actual checkpoint button,
+  reloads the real scene/new registry, and uses fresh normalE to earn the ferry. Player-facing denial points to that action.
+  [Exact regression history](verification/body-free-state-regression-20261126.json) preserves own-log/input-driver fixture failures and final focused2/2/native0.
+  Both normalriverbranches and earlier lifetime controls also pass in named runs. No fresh single6/6 claim is made for the mixed earlier batch.
+  [Sharedhelper/selection17/17](verification/body-free-shared-editor-green-20261126.json),root30574/native0,8.311s,
+  exercises actual menu recovery plus exact96/default27 registry. Actual compile176runtime/33Editor/176LinuxMono passes.
+  Commit674b8e6 contains fix/UI/sharedacceptance/exactopt-in96; current running0.7 does not contain it. Native96 remains unrun pending current build.
+- **Detailed coach source authored/verified/pushed separately:** WORK `ArtSource/NorthlineCoach`, commit70259de, reproducible4module Tools/blender/northline recipe.
+  [CPU source proof](verification/northline-coach-source-v2-20261126.json): author70532/native0, verifier83423/native0; coach11144triangles,
+  wholekit15972,198closedcomponents,10real thin-glass panes/10aperture rays, original bounds/pivot, ten other exports byte-identical,
+  three dedicated2K A/N/M maps and packed Blender materials.0renders. Source promotion record verifies all22files; canonicalNorthlineRail remains unchanged.
+  **Not integrated into Assets/runtime.** Current0.7.1 retains the existing7336tri kit. Stage BASE `Logs/northline-realism-stage` includes reviewed
+  `coach-fittings.patch` (+8explicit solid seat boxes outside control/1.56m aisle) and an uncompiled/unrun fitting-input test. Do not apply seat colliders alone.
+  Next implement coach-only two-slot/material/texture import contracts, preserving strict original10model checks, then actual import/seat/LOS/bindings/fullchapter/lifecycle
+  acceptance. Newglassmust be real URP transparent material; renderedappearance/VRAM/FPS need later declared GPU checks. No partial art-only promotion.
+- **Temporary061 extraction retired after full review:** [retirement proof](verification/061-extraction-retirement-20261126.json),root87248/native0.
+  Exact193files/17dirs matched retained fee38 archive/CRC/modes and originalmanifest;0unique/userfiles/links/specials/xattrs. Fresh content/identity/reference checks,
+  recorded same4opaque systemd/PAM/SSH identities and otherUID visibility limits. Only generated package directory removed; **1173475328B actually reclaimed**.
+  Archive/candidate/reports/native4/5 history/profiles/parentownership token remain. Reconstruction command/evidence BASE `Logs/extraction-retirement-061-stage`.
+  Historical extraction is now reconstructible evidence, not a runnable present directory. Current0.7 source/build/session unaffected. Recheck space before writes.
+- Main runtime source remains0.6.1/DC5; WORK feature/bug/source-art commits are pushed, code integration to main awaits further native/graphics acceptance.
+  Preserve unrelated untracked `Docs/GRAPHICS_UPGRADE_PLAN.md` unstaged. Keep all retained BASE0.5.0/0.5.1/0.6.0/0.6.1builds/releases, currentuser0.7,
+  failed cold-build evidence and2760completed RTX/OptiX film frames. No rerender needed. No0.7/0.7.1portable archive exists yet.
 
-Next: preserve the user's new test session; native prepared92/93 and earned94/95 plus full current regression remain unrun, as do declared current-binary GPU/media/settings/performance checks.
-Retarget stale runners before execution. Continue the graphics/gameplay expansion after this deliverable; do not recreate the completed films.
-Linux/URP plus offline RTX-rendered Blender cinematics and improved real-time shaders remains the user's selected direction; gameplay hardware ray tracing is not implemented.
-Physical input, subjective listening, final realism quality, disk campaign saving and continued mission expansion remain distinct work.
-Historical invocation/source pins are in [HANDOFF_HISTORY_20261126.md](HANDOFF_HISTORY_20261126.md); old live labels there are not liveness.
+Next: actual0.7.1 build result/integrity, actual new-player96 and normal17/18 checks; earned94/95 and current full/default/rendered/media/settings/performance gates remain.
+Native071 supervisor is being staged Logs-only under BASE `Logs/native-071-focused-stage`; its runtime/build pins must come from the actual completed candidate.
+Never transfer0.7 source95d9 passes to0.7.1/de2acc or claim the newcoach is live. Continue the requested gameplay/realism expansion with the current userGPU reservation respected.
+Linux/URP plus offline RTX Blender films and improved real-time shaders is the chosen direction; gameplay hardware RT is not implemented.
+Disk campaign saving, physical input/listening, final realism quality and measured performance remain separate work. Historical checkpoint labels are in HANDOFF_HISTORY_20261126.md.
 
 ## Artifact and verification boundaries
 
