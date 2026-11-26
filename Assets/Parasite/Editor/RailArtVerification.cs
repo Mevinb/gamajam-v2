@@ -28,10 +28,10 @@ namespace Parasite.EditorTools
         }
         [Serializable] sealed class Report
         {
-            public int schema=1,expectedNativeExit=1;public string status="FAIL",startedUtc,endedUtc,error,sourceDirectory,sourceManifestSha256,sceneBefore,sceneAfter,device,api;
+            public int schema=2,expectedNativeExit=1;public string status="FAIL",startedUtc,endedUtc,error,sourceDirectory,sourceManifestSha256,sceneBefore,sceneAfter,device,api;
             public List<Check> checks=new();public List<ModelReceipt> models=new();public List<TextureReceipt> textures=new();
             public string scope="Actual imported metadata, source identities, CPU read-only positions/normals/tangents/UV/index values, shared original texture references and scene preservation only. No runtime visual binding, pixels, art quality, physics/nav, gameplay or performance acceptance.";
-            public string artLimit="Low-poly shared-atlas geometry is a foundation. Hero detail, per-surface texel density, material/weathering refinement and final RTX image/performance review remain pending.";
+            public string artLimit="Ten legacy models retain the shared atlas; the detailed coach has two materials and three dedicated maps. Rendered lighting/transparency quality and measured GPU performance remain pending.";
         }
         static Report report;static bool failed;
         static void Require(bool ok,string name,string detail="")
@@ -50,9 +50,10 @@ namespace Parasite.EditorTools
                 RailArtImporter.CheckOriginals();report.sourceDirectory=RailArtImporter.ValidateSource();report.sourceManifestSha256=RailArtImporter.Hash(Path.Combine(report.sourceDirectory,"production-manifest.json"));
                 Require(report.sourceManifestSha256==RailArtContract.AuthorManifestSha256,"Exact reviewed eleven-model author manifest");
                 Require(Directory.GetFiles(RailArtImporter.Root,"*.fbx",SearchOption.AllDirectories).Length==11,"Exactly eleven owned runtime FBX files");
-                Require(Directory.GetFiles(RailArtImporter.Root,"*.png",SearchOption.AllDirectories).Length==0,"No duplicated runtime atlas PNGs");
+                Require(Directory.GetFiles(RailArtImporter.Root,"*.png",SearchOption.AllDirectories).Length==3,"Exactly the three dedicated coach maps, no duplicate legacy atlas");
                 foreach(var model in RailArtContract.Models)Run(model.Name,()=>VerifyModel(model));
                 Run("Shared original material/maps",VerifyMaterial);
+                Run("Dedicated coach materials/maps",VerifyCoachMaterials);
             }
             catch(Exception error){failed=true;report.error=error.ToString();}
             finally
@@ -77,15 +78,23 @@ namespace Parasite.EditorTools
             Require(row.policy,"Scoped static metre-scale/unreadable/None-animation policy "+definition.Name,row.animationType);
             Require(AssetDatabase.LoadAllAssetsAtPath(asset).OfType<AnimationClip>().Count()==0,"No imported animation clips "+definition.Name);
             Require(RailAuthoredArt.ModelContract(prefab,definition,out string reason),"Complete runtime structural contract "+definition.Name,reason);
-            var filter=prefab.GetComponentInChildren<MeshFilter>(true);var mesh=filter.sharedMesh;row.mesh=mesh.name;row.vertices=mesh.vertexCount;row.submeshes=mesh.subMeshCount;row.triangles=(int)(mesh.GetIndexCount(0)/3);row.readable=mesh.isReadable;
+            var filter=prefab.GetComponentInChildren<MeshFilter>(true);var mesh=filter.sharedMesh;row.mesh=mesh.name;row.vertices=mesh.vertexCount;row.submeshes=mesh.subMeshCount;row.triangles=Enumerable.Range(0,mesh.subMeshCount).Sum(i=>(int)(mesh.GetIndexCount(i)/3));row.readable=mesh.isReadable;
             var matrix=prefab.transform.worldToLocalMatrix*filter.transform.localToWorldMatrix;var actual=RailAuthoredArt.TransformBounds(mesh.bounds,matrix);row.min=actual.min;row.max=actual.max;
             row.boundsError=Mathf.Max(Vector3.Distance(row.min,definition.Min),Vector3.Distance(row.max,definition.Max));Require(row.boundsError<=.001f,"Actual transformed metre bounds "+definition.Name,row.boundsError.ToString("R"));
             // Unity's Editor-only API reads the imported snapshot without setting importer.isReadable or mutating the mesh.
             using var snapshots=MeshUtility.AcquireReadOnlyMeshData(mesh);var data=snapshots[0];
             using var positions=new NativeArray<Vector3>(data.vertexCount,Allocator.TempJob);using var normals=new NativeArray<Vector3>(data.vertexCount,Allocator.TempJob);
             using var tangents=new NativeArray<Vector4>(data.vertexCount,Allocator.TempJob);using var uv=new NativeArray<Vector2>(data.vertexCount,Allocator.TempJob);
-            using var indices=new NativeArray<int>((int)mesh.GetIndexCount(0),Allocator.TempJob);
-            data.GetVertices(positions);data.GetNormals(normals);data.GetTangents(tangents);data.GetUVs(0,uv);data.GetIndices(indices,0);
+            using var indices=new NativeArray<int>(Enumerable.Range(0,mesh.subMeshCount).Sum(i=>(int)mesh.GetIndexCount(i)),Allocator.TempJob);
+            data.GetVertices(positions);data.GetNormals(normals);data.GetTangents(tangents);data.GetUVs(0,uv);
+            int offset=0;
+            for(int submesh=0;submesh<mesh.subMeshCount;submesh++)
+            {
+                Require(mesh.GetIndexCount(submesh)==(uint)(definition.SubmeshTriangles[submesh]*3),"Pinned ordered submesh indices "+definition.Name+" #"+submesh);
+                using var part=new NativeArray<int>((int)mesh.GetIndexCount(submesh),Allocator.TempJob);
+                data.GetIndices(part,submesh);NativeArray<int>.Copy(part,0,indices,offset,part.Length);offset+=part.Length;
+            }
+            Require(offset==definition.Triangles*3,"Full imported triangle total "+definition.Name);
             row.uvValues=uv.Length;var densities=new List<float>();Bounds measured=default;
             for(int i=0;i<data.vertexCount;i++)
             {
@@ -122,6 +131,46 @@ namespace Parasite.EditorTools
                 Require(importer.textureShape==TextureImporterShape.Texture2D&&importer.mipmapEnabled&&row.normal==(i==1)&&row.sRGB==(i==0)&&GraphicsFormatUtility.IsSRGBFormat(texture.graphicsFormat)==(i==0),"Original texture shape/type/colour-space policy "+suffixes[i]);
                 Require(material.GetTextureScale(properties[i])==original.GetTextureScale(properties[i])&&material.GetTextureOffset(properties[i])==original.GetTextureOffset(properties[i]),"Original atlas scale/offset preserved "+suffixes[i]);
             }
+        }
+        static void VerifyCoachMaterials()
+        {
+            var opaque=AssetDatabase.LoadAssetAtPath<Material>(RailArtImporter.CoachRoot+RailArtContract.CoachOpaqueName+".mat");
+            var glass=AssetDatabase.LoadAssetAtPath<Material>(RailArtImporter.CoachRoot+RailArtContract.CoachGlassName+".mat");
+            Require(opaque&&glass&&opaque!=glass,"Distinct actual opaque/glass coach materials");
+            Require(RailAuthoredArt.CoachOpaqueContract(opaque,out string reason),"Full actual coach opaque/PBR contract",reason);
+            Require(RailAuthoredArt.CoachGlassContract(glass,out reason),"Full actual coach transparency/pass contract",reason);
+            long totalBytes=0;
+            foreach(var definition in RailArtContract.CoachTextures)
+            {
+                string path=RailArtImporter.CoachTexturePath(definition);
+                string source=Path.Combine(report.sourceDirectory,"Textures",definition.Name+".png");
+                Require(File.Exists(path)&&new FileInfo(path).Length==definition.Bytes&&RailArtImporter.Hash(path)==definition.SourceSha256
+                    &&RailArtImporter.Hash(source)==definition.SourceSha256,"Pinned source and imported coach image bytes "+definition.Name);
+                var texture=AssetDatabase.LoadAssetAtPath<Texture2D>(path);var importer=AssetImporter.GetAtPath(path) as TextureImporter;
+                Require(texture&&importer,"Actual dedicated image importer "+definition.Name);
+                var platform=importer.GetPlatformTextureSettings("Standalone");
+                var expectedFormat=definition.NormalMap?TextureImporterFormat.BC5:TextureImporterFormat.BC7;
+                Require(importer.textureType==(definition.NormalMap?TextureImporterType.NormalMap:TextureImporterType.Default)
+                    &&importer.textureShape==TextureImporterShape.Texture2D&&importer.sRGBTexture==definition.Srgb&&!importer.isReadable
+                    &&!importer.convertToNormalmap&&!importer.flipGreenChannel&&!importer.alphaIsTransparency
+                    &&importer.alphaSource==(definition.NormalMap?TextureImporterAlphaSource.None:TextureImporterAlphaSource.FromInput),
+                    "Exact coach type/colour-space/normal/alpha policy "+definition.Name);
+                Require(importer.mipmapEnabled&&!importer.streamingMipmaps&&importer.maxTextureSize==2048&&importer.npotScale==TextureImporterNPOTScale.None
+                    &&importer.wrapMode==TextureWrapMode.Clamp&&importer.filterMode==FilterMode.Trilinear&&importer.anisoLevel==4
+                    &&!importer.crunchedCompression&&platform.overridden&&platform.format==expectedFormat&&platform.maxTextureSize==2048,
+                    "Full mip/sampling/Standalone compression policy "+definition.Name);
+                Require(texture.width==2048&&texture.height==2048&&texture.mipmapCount==12&&!texture.isReadable&&texture.format==definition.Format
+                    &&GraphicsFormatUtility.IsSRGBFormat(texture.graphicsFormat)==definition.Srgb
+                    &&opaque.GetTexture(definition.Property)==texture&&glass.GetTexture(definition.Property)==null,
+                    "Actual coach texture identity/format/dimensions and glass separation "+definition.Name);
+                int width=texture.width,height=texture.height;long bytes=0;
+                for(int mip=0;mip<texture.mipmapCount;mip++){bytes+=(long)((width+3)/4)*((height+3)/4)*16;width=Mathf.Max(1,width/2);height=Mathf.Max(1,height/2);}
+                totalBytes+=bytes;
+                report.textures.Add(new TextureReceipt{property=definition.Property,path=path,guid=AssetDatabase.AssetPathToGUID(path),format=texture.format.ToString(),
+                    graphicsFormat=texture.graphicsFormat.ToString(),width=texture.width,height=texture.height,mips=texture.mipmapCount,sameObject=true,
+                    sRGB=importer.sRGBTexture,normal=definition.NormalMap,standaloneBC7=expectedFormat==TextureImporterFormat.BC7});
+            }
+            Require(totalBytes<=RailArtContract.CoachTextureBudgetBytes,"Dedicated compressed mip payload within17MiB (not a measured GPU allocation)",totalBytes.ToString());
         }
         static bool Finite(float x)=>!float.IsNaN(x)&&!float.IsInfinity(x);
         static bool Finite(Vector3 p)=>Finite(p.x)&&Finite(p.y)&&Finite(p.z);

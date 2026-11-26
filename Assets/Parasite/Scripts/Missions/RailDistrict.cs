@@ -98,6 +98,17 @@ namespace Parasite.Missions
             foreach (float z in new[] { -4.05f, 4.05f }) Box("Northline departure west side beside boarding door", new Vector3(-1.52f, 1.94f, z), new Vector3(.16f, 2.38f, 5.7f), 1, true, escape.transform);
             foreach (float x in new[] { -1.45f, 1.45f }) foreach (float z in new[] { -5f, -4f, 4f, 5f }) Box("Northline departure wheel", new Vector3(x, .4f, z), new Vector3(.22f, .5f, .5f), 3, true, escape.transform);
             foreach (float z in new[] { -1.2f, 1.2f }) Box("Northline departure boarding door jamb", new Vector3(-1.52f, 1.94f, z), new Vector3(.16f, 2.38f, .08f), 2, true, escape.transform);
+            // Seats are solid reachable fittings on the actual coach compound body.
+            // These32 precise pan/back/support shapes are captured by SetTransitPhysics below;
+            // the original deck/ramp/control/boarding and outer compound stay exact.
+            for (int i = 0; i < RailLayout.CoachSeatBoundsLocal.Length; i++)
+            {
+                var seat = RailLayout.CoachSeatBoundsLocal[i];
+                var part = Box("Northline coach solid seat " + i, seat.center, seat.size, 3, true, escape.transform);
+                // AddComponent auto-fit can round world-space mesh bounds at x≈1500.
+                // These authored local cube parts have exact local collision geometry.
+                var collider = part.GetComponent<BoxCollider>(); collider.center = Vector3.zero; collider.size = Vector3.one;
+            }
             Exclude("Northline parked coach nonwalkable floor", new Bounds(new Vector3(8, 1.8f, 45), new Vector3(3.6f, 4, 14.4f)));
             var boardingRamp = visuals.BoardingRamp(art);
             escape.AddComponent<NavMeshModifier>().ignoreFromBuild = true;

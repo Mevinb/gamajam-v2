@@ -2,7 +2,7 @@
   "schema": 2,
   "status": "SOURCE_ONLY_RUNTIME_AND_VISUAL_ACCEPTANCE_PENDING",
   "baseline_manifest_sha256": "19ffc57f79c8a693339f863e1d90ce285625ec6215e9db8353f0c32237c3ed60",
-  "author_script_sha256": "cd2614bb26a669df91c150a3a36d5a3d384786333a9610dd159e6d98f5b6ad9c",
+  "author_script_sha256": "00f31dbf1029d180753bdeb89047533adbde9c31ccb28790d3c45a8ec2ba9e45",
   "source_atlas": {
     "gate_blend": {
       "path": "ArtSource/CityGatePilot/CityGatePilot.blend",
@@ -262,7 +262,8 @@
   "distinct_triangles": 15972,
   "new_textures": 3,
   "new_imported_colliders": 0,
-  "required_runtime_seat_colliders": 8,
+  "required_runtime_seat_colliders": 32,
+  "required_runtime_seat_assemblies": 8,
   "coach_texture_contract": {
     "size": 2048,
     "maps": [
@@ -285,16 +286,16 @@
   "closed_solids": 327,
   "files": {
     "NorthlineRail.blend": {
-      "bytes": 9200128,
-      "sha256": "1d499fbd709e4a884d63ba3df6b98b9ae0a0429f557386659c444126405c2d27"
+      "bytes": 9199936,
+      "sha256": "78eeb72db07f21e42d41850eccbfa4eea586bf53c0b9304cfdf2e72f2c4415dd"
     },
     "coach-seat-layout.json": {
-      "bytes": 1865,
-      "sha256": "4acd84c16e8e864ad452d1eeee9cc4a5fd123ec063c59bf4c6e9630800a00548"
+      "bytes": 11824,
+      "sha256": "8bdeef038f4ec4585187ab147baca473e650bc14f34d3c2b0a1536279cc039a9"
     },
     "piece-map.json": {
-      "bytes": 130294,
-      "sha256": "6908b0d9933875854fbf4b897eb4be263a44703642abc74765587e6f5d2fec69"
+      "bytes": 130102,
+      "sha256": "31ae9790f18ced5c8c38ca7c3ed4856ca59ead288f5230a75bbc444d9d43019d"
     },
     "Exports/RailTram.fbx": {
       "bytes": 54108,
@@ -330,7 +331,7 @@
     },
     "Exports/RailDepartureCoach.fbx": {
       "bytes": 251740,
-      "sha256": "3c05c598e6b1d4b4a88885b09e27209314f405886680599451ac1ba1db417527"
+      "sha256": "9e1a0dcbbc15a61a9e0bf9962bab9918af01f2a21980cfc5550b57dcd9d0d70b"
     },
     "Exports/RailServiceGate.fbx": {
       "bytes": 24540,
@@ -355,5 +356,5 @@
   },
   "blender": "4.5.16 LTS",
   "renders": 0,
-  "elapsed_seconds": 137.634
+  "elapsed_seconds": 64.067
 }

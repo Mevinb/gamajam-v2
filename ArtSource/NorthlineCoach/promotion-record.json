@@ -1,13 +1,16 @@
 {
-  "source_manifest_sha256": "a8e0648bf9a061baa356c404bdb677ad97462ebdecc736a6036a44932676b204",
-  "verification_sha256": "56114ad2cf9e6e519dfcfbf7e6b23b3b738e30a6af478aa8ec9ce738fa6df2df",
-  "source_patch_sha256": "53dd739878a8c08201087709260513f15d25b511af6bee011d842c9e2db01162",
-  "baseline_unchanged": true,
-  "runtime_assets_changed": false,
-  "author_root_exec_session": 70532,
+  "source_manifest_sha256": "0de23f46b09641b5cfe94ff2fdb52bdaf9adb9f544e3359784b1ab51e915c5e1",
+  "verification_sha256": "c7ba772c5d00434818ebbe72fe66340ece8a3b5749f5f09e59d00901c64c3ef6",
+  "geometry_unchanged": true,
+  "seat_collision_revision": 2,
+  "seat_assemblies": 8,
+  "seat_part_shapes": 32,
+  "author_root_exec_session": 40359,
   "author_exit_code": 0,
-  "verifier_root_exec_session": 83423,
+  "verifier_root_exec_session": 53858,
   "verifier_exit_code": 0,
+  "renders": 0,
+  "scope": "CPU source only; current runtime integration/import/testing remains in progress. Historical source output a and its proof are preserved under ignored Logs/Git70259de.",
   "files": {
     "CREDITS.md": {
       "bytes": 748,
@@ -27,7 +30,7 @@
     },
     "Exports/RailDepartureCoach.fbx": {
       "bytes": 251740,
-      "sha256": "3c05c598e6b1d4b4a88885b09e27209314f405886680599451ac1ba1db417527"
+      "sha256": "9e1a0dcbbc15a61a9e0bf9962bab9918af01f2a21980cfc5550b57dcd9d0d70b"
     },
     "Exports/RailLowSignal.fbx": {
       "bytes": 24892,
@@ -58,12 +61,12 @@
       "sha256": "9670653dbe6b4c5d9d037cb8dac335429c7184c560bbc290597775befea9ca0a"
     },
     "NorthlineRail.blend": {
-      "bytes": 9200128,
-      "sha256": "1d499fbd709e4a884d63ba3df6b98b9ae0a0429f557386659c444126405c2d27"
+      "bytes": 9199936,
+      "sha256": "78eeb72db07f21e42d41850eccbfa4eea586bf53c0b9304cfdf2e72f2c4415dd"
     },
     "README.md": {
-      "bytes": 2250,
-      "sha256": "50cadfae8dc9a26ab700feee2491999d7fdac91ae1810bfbe6fdfd45d7253372"
+      "bytes": 2272,
+      "sha256": "629bfbba8015e4b0cbe07e253d1ebc9927db9edb0d339586c00f6661ce664dd9"
     },
     "Textures/RailCoach_A.png": {
       "bytes": 63918,
@@ -78,20 +81,20 @@
       "sha256": "db5cdd7330a964c330210802682b4793af7663f2c76d46a7465965bdf348dc02"
     },
     "coach-seat-layout.json": {
-      "bytes": 1865,
-      "sha256": "4acd84c16e8e864ad452d1eeee9cc4a5fd123ec063c59bf4c6e9630800a00548"
+      "bytes": 11824,
+      "sha256": "8bdeef038f4ec4585187ab147baca473e650bc14f34d3c2b0a1536279cc039a9"
     },
     "cpu-verification.json": {
       "bytes": 1045,
-      "sha256": "56114ad2cf9e6e519dfcfbf7e6b23b3b738e30a6af478aa8ec9ce738fa6df2df"
+      "sha256": "c7ba772c5d00434818ebbe72fe66340ece8a3b5749f5f09e59d00901c64c3ef6"
     },
     "piece-map.json": {
-      "bytes": 130294,
-      "sha256": "6908b0d9933875854fbf4b897eb4be263a44703642abc74765587e6f5d2fec69"
+      "bytes": 130102,
+      "sha256": "31ae9790f18ced5c8c38ca7c3ed4856ca59ead288f5230a75bbc444d9d43019d"
     },
     "production-manifest.json": {
-      "bytes": 9915,
-      "sha256": "a8e0648bf9a061baa356c404bdb677ad97462ebdecc736a6036a44932676b204"
+      "bytes": 9957,
+      "sha256": "0de23f46b09641b5cfe94ff2fdb52bdaf9adb9f544e3359784b1ab51e915c5e1"
     }
   }
 }

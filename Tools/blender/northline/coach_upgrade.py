@@ -223,7 +223,7 @@ def main():
         records.append(row)
     old_pieces=json.loads((root/"piece-map.json").read_text())
     (output/"piece-map.json").write_text(json.dumps([p for p in old_pieces if p["group"]!="DepartureCoach"]+pieces,indent=2)+"\n")
-    (output/"coach-seat-layout.json").write_text(json.dumps({"schema":1,"required_runtime_compound_seats":recipe.SEATS,
+    (output/"coach-seat-layout.json").write_text(json.dumps({"schema":2,"seat_assemblies":recipe.SEATS,"required_runtime_compound_seats":recipe.SEAT_PARTS,
         "protected_aisle":recipe.PROTECTED_AISLE,"central_passage":recipe.CENTRAL_PASSAGE},indent=2)+"\n")
     bpy.ops.wm.save_as_mainfile(filepath=str(output/"NorthlineRail.blend"),compress=True)
     for file,pin in watched.items():assert sha(file)==pin,"Input source changed during authoring: "+file
@@ -231,7 +231,7 @@ def main():
     manifest={"schema":2,"status":"SOURCE_ONLY_RUNTIME_AND_VISUAL_ACCEPTANCE_PENDING","baseline_manifest_sha256":SOURCE_PINS["production-manifest.json"],
               "author_script_sha256":sha(__file__),"source_atlas":baseline["source_atlas"],"exports":records,
               "distinct_triangles":sum(r["triangles"] for r in records),"new_textures":3,"new_imported_colliders":0,
-              "required_runtime_seat_colliders":8,"coach_texture_contract":{"size":2048,"maps":["A:sRGB RGB/opaque A","N:linear tangent normal","M:linear R metallic/A smoothness"],"bands":surfaces.BANDS},
+              "required_runtime_seat_colliders":len(recipe.SEAT_PARTS),"required_runtime_seat_assemblies":len(recipe.SEATS),"coach_texture_contract":{"size":2048,"maps":["A:sRGB RGB/opaque A","N:linear tangent normal","M:linear R metallic/A smoothness"],"bands":surfaces.BANDS},
               "unchanged_fbx_count":10,"closed_solids":sum(r["closed_solids"] for r in records),"files":files,
               "blender":bpy.app.version_string,"renders":0,"elapsed_seconds":round(time.monotonic()-started,3)}
     assert manifest["distinct_triangles"]<=16828

@@ -30,7 +30,8 @@ def main():
     baseline=project/"ArtSource/NorthlineRail"
     manifest=json.loads((source/"production-manifest.json").read_text())
     assert manifest["schema"]==2 and manifest["new_textures"]==3 and manifest["unchanged_fbx_count"]==10
-    assert manifest["renders"]==0 and manifest["new_imported_colliders"]==0 and manifest["required_runtime_seat_colliders"]==8
+    assert manifest["renders"]==0 and manifest["new_imported_colliders"]==0 and manifest["required_runtime_seat_colliders"]==32
+    assert manifest["required_runtime_seat_assemblies"]==8
     assert sha(baseline/"production-manifest.json")==manifest["baseline_manifest_sha256"]
     original=json.loads((baseline/"production-manifest.json").read_text())
     for file,pin in manifest["files"].items():assert sha(source/file)==pin["sha256"],file
@@ -104,11 +105,15 @@ def main():
         assert opaque_tree.ray_cast(start,direction,length)[0] is None,"Opaque panel still backs a supposed window"
         assert glass_tree.ray_cast(start,direction,length)[0] is not None,"A real thin glass pane is required"
     layout=json.loads((source/"coach-seat-layout.json").read_text())
-    seats=layout["required_runtime_compound_seats"];assert len(seats)==8
+    seats=layout["required_runtime_compound_seats"];assert layout["schema"]==2 and len(seats)==32 and len(layout["seat_assemblies"])==8
+    pieces={p["name"]:p for p in json.loads((source/"piece-map.json").read_text()) if p["group"]=="DepartureCoach"}
     for seat in seats:
-        assert tuple(seat["size"])==(.62,1.09,1.44) and abs(seat["centre"][0])==1.09
-        assert seat["centre"][2] in (-5.6,-3.6,3.6,5.6)
+        piece=pieces[seat["name"]]
+        for i in range(3):
+            assert abs(piece["bounds_min"][i]-(seat["centre"][i]-seat["size"][i]/2))<.00001
+            assert abs(piece["bounds_max"][i]-(seat["centre"][i]+seat["size"][i]/2))<.00001
         assert abs(seat["centre"][2])-seat["size"][2]/2>1.85 and abs(seat["centre"][0])-seat["size"][0]/2>.75
+        if seat["kind"]=="pan":assert abs(seat["centre"][1]+seat["size"][1]/2-1.25)<.00001
     for suffix in ("A","N","M"):
         image=bpy.data.images.load(str(source/"Textures"/("RailCoach_"+suffix+".png")),check_existing=False)
         assert tuple(image.size)==(2048,2048) and image.channels==4

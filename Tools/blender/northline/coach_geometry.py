@@ -1,7 +1,7 @@
 """Manufacturing recipe in Unity metres; bpy-independent, no writes on import.
 
-The eight reachable seats intentionally require the eight reviewed compound
-colliders in SEATS. They are not a decorative/noncolliding interior promise.
+The eight reachable seats require separate pan/back/support collision shapes.
+Whole-seat bounds are not solid: they would block a normal hop onto the pan.
 All parts are mounted to the same original coach mesh/transform.
 """
 import math
@@ -10,6 +10,19 @@ BOUNDS = ((-1.602, .15, -7.0095), (1.602, 3.29, 7.0095))
 SEATS = tuple({"name": "Northline coach seat %s %s" % ("west" if side<0 else "east", str(z)),
                "centre": (side*1.09, 1.295, z), "size": (.62, 1.09, 1.44)}
               for side in (-1, 1) for z in (-5.6, -3.6, 3.6, 5.6))
+SEAT_PARTS = []
+for assembly, seat in enumerate(SEATS):
+    side = -1 if seat["centre"][0] < 0 else 1
+    z = seat["centre"][2]
+    for kind, centre, size, band, bevel, segments in (
+        ("pan", (side*1.08,1.18,z), (.54,.14,1.36), 6, .035, 2),
+        ("back", (side*1.34,1.485,z), (.10,.61,1.36), 6, .025, 2),
+        ("support 0", (side*1.16,.955,z-.49), (.28,.41,.09), 2, .006, 1),
+        ("support 1", (side*1.16,.955,z+.49), (.28,.41,.09), 2, .006, 1),
+    ):
+        SEAT_PARTS.append(dict(name=seat["name"]+" "+kind, assembly=assembly, kind=kind,
+            centre=centre, size=size, band=band, bevel=bevel, segments=segments))
+SEAT_PARTS = tuple(SEAT_PARTS)
 PROTECTED_AISLE = ((-1.43, .75, -1.85), (1.43, 2.65, 1.85))
 CENTRAL_PASSAGE = ((-.75, .75, -6.5), (.75, 2.65, 6.5))
 TRIANGLE_CAP = 12000
@@ -72,13 +85,8 @@ def build(g):
             t("ceiling passenger handrail", (x,2.84,z-1.7), (x,2.84,z+1.7), .017, 2, 10)
             for dz in (-1.4,1.4):
                 t("ceiling rail mount", (x,2.84,z+dz), (x,3.05,z+dz), .012, 2, 8)
-    for seat in SEATS:
-        side=-1 if seat["centre"][0]<0 else 1
-        z=seat["centre"][2]
-        b(seat["name"]+" seat pan", (side*1.08,1.18,z), (.54,.14,1.36), 6, .035, 2)
-        b(seat["name"]+" seat back", (side*1.34,1.485,z), (.10,.61,1.36), 6, .025, 2)
-        for dz in (-.49,.49):
-            b(seat["name"]+" anchored support", (side*1.16,.955,z+dz), (.28,.41,.09), 2, .006)
+    for part in SEAT_PARTS:
+        b(part["name"], part["centre"], part["size"], part["band"], part["bevel"], part["segments"])
     # Markers retain their exact existing locations; the control is a separate
     # original runtime-owned child and is never merged into this visual mesh.
     for z in (-1.2,.4):
@@ -127,14 +135,14 @@ class Plan:
             hi=[c+s/2 for c,s in zip(p["centre"],p["size"])]
             assert all(BOUNDS[0][i]-.00001<=lo[i]<=hi[i]<=BOUNDS[1][i]+.00001 for i in range(3)),p["name"]
         assert sum(p["glass"] for p in self.parts)==10
-        for seat in SEATS:
+        for seat in SEAT_PARTS:
             lo=[c-s/2 for c,s in zip(seat["centre"],seat["size"])]
             hi=[c+s/2 for c,s in zip(seat["centre"],seat["size"])]
             for aisle in (PROTECTED_AISLE,CENTRAL_PASSAGE):
                 assert any(hi[i]<aisle[0][i] or lo[i]>aisle[1][i] for i in range(3)),seat
-        return {"parts":len(self.parts),"glass_closed_panes":10,"intentional_seat_colliders":len(SEATS),
+        return {"parts":len(self.parts),"glass_closed_panes":10,"seat_assemblies":len(SEATS),"intentional_seat_colliders":len(SEAT_PARTS),
                 "bounds":BOUNDS,"slot_names":["RailCoachOpaquePBR","RailCoachGlass"],
-                "triangle_cap":TRIANGLE_CAP,"aisle_width_metres":1.56,
+                "triangle_cap":TRIANGLE_CAP,"aisle_width_metres":1.62,
                 "original_central_boarding_and_control_zone":PROTECTED_AISLE}
 
 

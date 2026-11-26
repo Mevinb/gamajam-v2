@@ -31,6 +31,41 @@ namespace Parasite.Missions
         public static readonly Vector3 BoardingRampFoot = At(3, .15f, 45);
         public static readonly Vector3 BoardingRampLanding = At(6.8f, CoachDeckY, 45);
         public static readonly Vector3[] BoardingStops = { At(7.25f, CoachDeckY, 43.8f), At(8, CoachDeckY, 45.4f) };
+        // Intentional reachable-seat collision delta. Imported art still has no colliders.
+        public static readonly Bounds[] CoachSeatBoundsLocal = {
+            new(new Vector3(-1.08f, 1.18f, -5.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(-1.34f, 1.485f, -5.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(-1.16f, 0.955f, -6.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(-1.16f, 0.955f, -5.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(-1.08f, 1.18f, -3.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(-1.34f, 1.485f, -3.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(-1.16f, 0.955f, -4.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(-1.16f, 0.955f, -3.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(-1.08f, 1.18f, 3.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(-1.34f, 1.485f, 3.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(-1.16f, 0.955f, 3.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(-1.16f, 0.955f, 4.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(-1.08f, 1.18f, 5.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(-1.34f, 1.485f, 5.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(-1.16f, 0.955f, 5.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(-1.16f, 0.955f, 6.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(1.08f, 1.18f, -5.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(1.34f, 1.485f, -5.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(1.16f, 0.955f, -6.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(1.16f, 0.955f, -5.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(1.08f, 1.18f, -3.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(1.34f, 1.485f, -3.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(1.16f, 0.955f, -4.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(1.16f, 0.955f, -3.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(1.08f, 1.18f, 3.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(1.34f, 1.485f, 3.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(1.16f, 0.955f, 3.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(1.16f, 0.955f, 4.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+            new(new Vector3(1.08f, 1.18f, 5.6f), new Vector3(0.54f, 0.14f, 1.36f)), // pan
+            new(new Vector3(1.34f, 1.485f, 5.6f), new Vector3(0.1f, 0.61f, 1.36f)), // back
+            new(new Vector3(1.16f, 0.955f, 5.11f), new Vector3(0.28f, 0.41f, 0.09f)), // support 0
+            new(new Vector3(1.16f, 0.955f, 6.09f), new Vector3(0.28f, 0.41f, 0.09f)), // support 1
+        };
         public static Bounds Crossing => new(At(0, 1.6f, -16), new Vector3(8, 3.2f, 8));
         public static Bounds CrankPad => new(Crank + Vector3.up * 1f, new Vector3(2.4f, 2f, 2.4f));
         public static Bounds SignalPad => new(Signal + Vector3.up * .7f, new Vector3(2.6f, 1.4f, 2.6f));
