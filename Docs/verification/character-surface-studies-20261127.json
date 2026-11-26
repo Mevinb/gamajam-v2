@@ -1,0 +1,48 @@
+{
+  "status": "ISOLATED_STUDIES_UNACCEPTED",
+  "live_character_assets_changed": false,
+  "production_queue": "Temporarily frame-safely stopped at93 LakeArrival frames for these comparisons; global and per-film STOP markers remain. Do not start Unity/Blender without fresh process checks.",
+  "normal_diagnosis": {
+    "report": "Logs/hair-cap-normal-diagnostic-v1/README.md",
+    "finding": "No flat-normal/export fault:3563 smooth LOD0 cap triangles/18 disconnected components; ordinary smoothing is a no-op. Remaining silhouette/strand response is an art issue."
+  },
+  "hair_map_candidate": {
+    "path": "Logs/lakegirl-hair-surface-pilot-v1/manifest.json",
+    "sha256": "78e847f1c24f793b82202525af17fbe8069ec301681ab55ed2bf8e496037980d"
+  },
+  "hair_shader_contract": {
+    "path": "Logs/hair-directional-shading-proposal/source-contract.json",
+    "sha256": "7abeec7e4ef95966734bdfc1b01ba84e4fc30dec4b51d9647c2c103e0f1aaaaf"
+  },
+  "eye_uv_audit": {
+    "path": "Logs/eye-uv-roster-audit-20261127/summary.json",
+    "sha256": "9683a30b9ba76506a253829b268c6d901705d7c419c7dabba53387b777de9e6a"
+  },
+  "retained_gpu_runs": [
+    {
+      "path": "Logs/hair-directional-gpu-review-v1/receipt.json",
+      "result": "FAIL matched material state before proposal draw; maps/formats and shaders supported, source/quality unchanged."
+    },
+    {
+      "path": "Logs/hair-directional-gpu-review-v2/receipt.json",
+      "result": "FAIL new flow texture binding despite legacy state checks matching."
+    },
+    {
+      "path": "Logs/eye-proportion-gpu-review-v1/receipt.json",
+      "result": "FAIL exact whole-frame stock parity despite12 captures/no shader errors/source unchanged. Delta localisation is mainly animated background foliage/light-cone areas; a same-clock fixture is required before interpreting controls."
+    }
+  ],
+  "binding_diagnostic": {
+    "receipt": {
+      "path": "Logs/hair-flow-binding-probe-v1/receipt.json",
+      "sha256": "a9fdab46ee5d86a524ff0046be026666b0f3e6eb02747ce69963c0266a214f4d"
+    },
+    "result": "Observation collected, not acceptance. Parsed shader declares flow Texture/Tex2D correctly. Bulk CopyPropertiesFromMaterial drops target-only texture metadata; subsequent SetTexture/readback fails in all copied arms. Fresh/explicit typed-common-property-copy arms bind/read back the actual map in on/off combinations. Errors are retained."
+  },
+  "next": "Use verified explicit property copy and shared RenderGraph-ordered shader clock, preserve guards, then actual Vulkan reruns and inspect images. No shader/material/eye-scale rollout is accepted yet.",
+  "temporary_assets": [
+    "Assets/Parasite/ReviewOnly/HairDirectionalPilot",
+    "Assets/Parasite/Editor/EyeProportionComparison"
+  ],
+  "cleanup_boundary": "These folders were newly created by root for isolated studies. Preserve their source/meta inventory and Logs evidence; promote only accepted content or remove only exact owned temporary artifacts before final source/build freeze."
+}

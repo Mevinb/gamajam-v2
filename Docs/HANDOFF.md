@@ -65,6 +65,12 @@ deletes footage. For a safe full-queue pause create `<job>/STOP` and wait for it
 to finish; individual film STOPs also stop the queue. After review, manually remove only the intended STOP
 and rerun `python3 Logs/realism-build-stage/finale_queue.py --go`; validated complete output is reused.
 Current source version is0.8.0-preview, committed locally; no0.8candidate has been built or launched.
+The queue is temporarily stopped at93 Arrival frames for isolated hair/eye comparisons. Current study
+state and owned temporary asset folders are in `verification/character-surface-studies-20261127.json`.
+The new strand maps/shader and adult-eye proportions are NOT accepted or rolled out. Retained GPU
+failures exposed a bulk material-copy texture-binding problem and dynamic background shader time;
+verified explicit property copying and a RenderGraph-ordered same-clock fixture are being prepared.
+Keep the original failures/guards. No new character FBX/rig/UV/material or cinematic source was changed.
 The producer now enforces actual limited-range BT709 matrix/transfer/primaries tags as well as complete silent VP8
 decode; a one-frame encode probe confirms the requested conversion/tag chain. Render driver, policy and sources
 remain frozen. The build's new eight-film import preflight is implemented/API-compiled, but its actual reimport gate
