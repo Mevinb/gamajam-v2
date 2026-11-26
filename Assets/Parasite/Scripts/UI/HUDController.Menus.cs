@@ -43,14 +43,21 @@ namespace Parasite.UI
             float y = -168f;
             Button Add(string label, UnityEngine.Events.UnityAction a)
             {
-                var b = UIKit.Btn(panel.transform, label, a, 460, 58, 26);
-                ((RectTransform)b.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, y), new Vector2(460, 58));
-                y -= 68f;
+                var b = UIKit.Btn(panel.transform, label, a, 460, 52, 26);
+                ((RectTransform)b.transform).Place(new Vector2(0.5f, 1), new Vector2(0.5f, 1), new Vector2(0, y), new Vector2(460, 52));
+                y -= 60f;
                 items.Add(b);
                 return b;
             }
             btnResume = Add("Resume", () => { var gm = GameManager.Instance; if (gm) gm.SetPaused(false); });
-            Add("Restart", () => { var gm = GameManager.Instance; if (gm) gm.RestartGame(); });
+            Add("Restart checkpoint", () =>
+            {
+                var gm = GameManager.Instance;
+                if (!gm) return;
+                gm.SetPaused(false);
+                gm.ResetToCheckpoint("Restarting checkpoint");
+            });
+            Add("Restart game", () => { var gm = GameManager.Instance; if (gm) gm.RestartGame(); });
             btnControls = Add("Controls", OpenControls);
             btnSettings = Add("Settings", OpenSettings);
             Add("Quit to Menu", () => { var gm = GameManager.Instance; if (gm) gm.QuitToMenu(); });

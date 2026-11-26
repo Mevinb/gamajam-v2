@@ -309,12 +309,13 @@ namespace Parasite.Testing
                 ("93 Northline Dominion: prepared M23 summary and physical chapter", () => RailAcceptance.RunChapter(EndingOutcome.Dominion, false)),
                 ("94 Continuous 26 missions: Main Gate Peace through four earned chapter continuations", () => ScenarioContinuousNorthline(EntryRoute.MainGate)),
                 ("95 Continuous 26 missions: Service Tunnel Dominion through four earned chapter continuations", () => ScenarioContinuousNorthline(EntryRoute.ServiceTunnel)),
+                ("96 Body free state: prepared river radio/deck, actual inactive destruction denial and checkpoint recovery", ScenarioBodyFreeState),
             };
         }
         static bool ScenarioSelected(string name, string[] only)
         {
             string id = name.Substring(0, 2);
-            bool explicitOnly = id == "90" || id == "91" || id == "92" || id == "93" || id == "94" || id == "95";
+            bool explicitOnly = id == "90" || id == "91" || id == "92" || id == "93" || id == "94" || id == "95" || id == "96";
             if (explicitOnly && (only == null || !only.Any(token => token.Trim() == id))) return false;
             return only == null || only.Any(token => name.StartsWith(token.Trim(), StringComparison.Ordinal));
         }
@@ -330,7 +331,7 @@ namespace Parasite.Testing
             Log.Clear();
             Write($"PARASITE autotest — {DateTime.Now:yyyy-MM-dd HH:mm:ss} — {SystemInfo.graphicsDeviceName} / {SystemInfo.operatingSystem}");
             var scenarios = RegisteredScenarios();
-            // Legacy IDs retain prefix filtering; expensive IDs90–95 require their exact comma-separated token.
+            // Legacy IDs retain prefix filtering; opt-in IDs90–96 require their exact comma-separated token.
             var args = Environment.GetCommandLineArgs();
             int fi = Array.IndexOf(args, "-autotestFilter");
             if (fi >= 0 && (fi + 1 >= args.Length || args[fi + 1].StartsWith("-", StringComparison.Ordinal)))
@@ -1355,6 +1356,34 @@ namespace Parasite.Testing
             Note("CONTINUITY26 SCOPE: existing original/chapter role, position, calm, checkpoint and timeScale fixtures remain; "
                 + "no M23→Northline boundary LoadCity/NewGame/Seed23, split fixture, fabricated summary, prior flag grant or statistic reset. "
                 + "Northline uses its shared physical/input driver with initial role ownership fixtures; this is not human input or graphics acceptance.");
+        }
+
+        // Declared completed-radio/deck slice only; no claim to have earned the earlier river missions.
+        static IEnumerator ScenarioBodyFreeState()
+        {
+            string unexpected = null, expectedObservation = null;
+            int observed = 0;
+            void OnLog(string line, string stack, LogType type)
+            {
+                if (type == LogType.Log && expectedObservation != null && line == expectedObservation)
+                { expectedObservation = null; observed++; return; }
+                if (unexpected == null) unexpected = type + ": " + line;
+            }
+            void Observe(string line)
+            {
+                expectedObservation = "[AutoTest-note] " + current.name + " :: " + line;
+                Note(line);
+            }
+            Application.logMessageReceived += OnLog;
+            try
+            {
+                yield return BodyFreeStateAcceptance.DestroyedInactiveBodyCannotAuthorizeTheFerryOrFinalization(Observe);
+                BodyFreeStateAcceptance.LiveHiddenAndDisabledBlobRemainsFreeWithoutChangingIdentity();
+                Check(unexpected == null && observed == 1 && expectedObservation == null,
+                    "Prepared radio/deck: real inactive destruction denies free/ferry/finalizer credit; only explicit checkpoint/new body/fresh E departs; "
+                    + "live hidden/disabled identity remains free; unexpected log=" + (unexpected ?? "none"));
+            }
+            finally { Application.logMessageReceived -= OnLog; }
         }
 
         // Uses real-time input pulses, so story protection is never bypassed by changing timeScale.

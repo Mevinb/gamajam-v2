@@ -24,6 +24,8 @@ namespace Parasite.Missions
                 { deniedReason = "Wait for possession leaps to finish before boarding."; return false; }
                 if (agent.Host)
                 { deniedReason = "Release EVERY host before boarding: [Tab] to switch amoebae, then [Q] to leave the host."; return false; }
+                if (!agent.IsFree)
+                { deniedReason = "An amoeba is missing. Use Restart checkpoint in the pause menu before boarding."; return false; }
             }
             return true;
         }

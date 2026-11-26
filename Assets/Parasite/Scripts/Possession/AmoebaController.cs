@@ -13,7 +13,8 @@ namespace Parasite.Possession
         public bool CapturedPendingEject;
         public float CaptureTimer;
 
-        public bool IsFree => Host == null && !InTransit;
+        // A retained registry entry with a destroyed blob is not a free body; visibility/enabled state is separate.
+        public bool IsFree => Host == null && !InTransit && Blob;
         // Interfaces do not apply Unity's destroyed-object null check. Keep live hidden/disabled bodies valid.
         public IControllable Body => Host ? (IControllable)Host : Blob ? Blob : null;
         public Vector3 Position => Host != null ? Host.transform.position : Blob ? Blob.transform.position : Vector3.zero;
