@@ -1,0 +1,68 @@
+{
+  "status": "SOURCE_EDITMODE_AND_PLAYMODE_VERIFIED_NATIVE_BUILD_PENDING",
+  "feature": "Versioned durable campaign checkpoint autosave and title Resume, including completed chapter summaries",
+  "schema": 1,
+  "storage": "campaign-v1.json plus last valid .bak under Application.persistentDataPath; tests use explicit owned temporary directories",
+  "safety": [
+    "No host/controller/hold/moving-transit references serialized. Normal checkpoint reconstruction makes one fresh free body.",
+    "Session saving starts only via explicit New/Resume/Restart; Editor, batch and automated entrypoints default off; tests opt into owned directory.",
+    "Coalesced end-frame capture after SetFlag/OnFlag/Advance; direct flag removals checked each second; statistics refresh every30s; safe quit/menu flush.",
+    "Protected ending/travel preserves prior stable slot until earned summary; recorded summary reopens actual Continue UI.",
+    "Atomic file replacement preserves valid backup; corrupt current primary may recover backup; future primary blocks both fallback and overwrite."
+  ],
+  "runs": [
+    {
+      "path": "Logs/campaign-save-edit-20261126b.xml",
+      "sha256": "95d66d3d71762ab5056648cd2453205ba2ff2e1742f8947fcc3f358b42cb02fe",
+      "result": "Passed",
+      "passed": 24,
+      "failed": 0,
+      "seconds": 0.1779541,
+      "failures": []
+    },
+    {
+      "path": "Logs/campaign-save-play-20261126.xml",
+      "sha256": "afcd9a94f9d1143b048bdc47064010c49f79618e49e0037649d5e2b6542c1b00",
+      "result": "Failed(Child)",
+      "passed": 3,
+      "failed": 1,
+      "seconds": 8.1196291,
+      "failures": [
+        {
+          "name": "ActualPauseQuitAndTitleResumeRebuildTheSavedFreeBodyAndProgress",
+          "message": "  Expected string length 21 but was 11. Strings differ at index 0.\n  Expected: \"The first safe corner\"\n  But was:  \"Storm Drain\"\n  -----------^\n"
+        }
+      ]
+    },
+    {
+      "path": "Logs/campaign-save-play-20261126b.xml",
+      "sha256": "b22c301ce53fee48628a84b2aeec840c392e8e3bf46e32f3ad2a75ebf5ad1a0a",
+      "result": "Passed",
+      "passed": 5,
+      "failed": 0,
+      "seconds": 8.8675052,
+      "failures": []
+    },
+    {
+      "path": "Logs/campaign-save-edit-20261126c.xml",
+      "sha256": "9c09c3d2c42491c2a23a312713135f026b3abed56451708fa3dcb9e23154c527",
+      "result": "Passed",
+      "passed": 24,
+      "failed": 0,
+      "seconds": 0.0675273,
+      "failures": []
+    }
+  ],
+  "latest_results": {
+    "store_editmode": "24/24 native0, includes future-primary-with-backup regressions",
+    "menu_playmode": "5/5 native0, actual buttons and normal scene reconstruction",
+    "label_ownership": "2/2 in initial mixed EditMode run, separate from pixel visibility"
+  },
+  "retained_red": "First PlayMode3/4 used an invented checkpoint name inside the authored Storm Drain trigger; normal reload re-labelled it. Corrected fixture uses actual authored checkpoint. Original red preserved.",
+  "environment_failure": "First isolated XDG profile Editor invocation198 failed license validation; normal environment succeeded. All actual save files remained in owned temporary directories.",
+  "remaining": [
+    "New Linux player build and actual target API check pending; old cached fast API check currently refuses stale test-assembly dependency timestamp.",
+    "This feature is not in the retained0.7.2 user binary.",
+    "Full campaign/rendered performance acceptance and continued mission expansion remain active."
+  ]
+}

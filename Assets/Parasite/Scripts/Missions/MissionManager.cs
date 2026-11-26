@@ -102,6 +102,7 @@ namespace Parasite.Missions
         public static void SetFlag(string flag)
         {
             if (string.IsNullOrEmpty(flag) || !RunState.Flags.Add(flag)) return;
+            CampaignPersistence.RequestSave();
             if (Instance) { Instance.OnFlag(flag); Instance.Advance(true); Instance.Refresh(); }
         }
 

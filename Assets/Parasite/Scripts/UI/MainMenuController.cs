@@ -22,7 +22,7 @@ namespace Parasite.UI
         Text title;
         Outline titleOutline;
         Image titleGlow, fade;
-        Button btnBegin, btnControls, btnSettings;
+        Button btnBegin, btnContinue, btnControls, btnSettings;
         SettingsOverlay settingsOverlay;
         GameObject controlsOverlay;
         Button controlsBack;
@@ -55,7 +55,7 @@ namespace Parasite.UI
         void Start()
         {
             UnlockCursor();
-            UIKit.Select(btnBegin);
+            UIKit.Select(btnContinue ? btnContinue : btnBegin);
         }
 
         static void UnlockCursor()
@@ -128,16 +128,19 @@ namespace Parasite.UI
             premise.rectTransform.Place(tl, tl, new Vector2(8, -456), new Vector2(760, 130));
 
             var items = new List<Selectable>();
+            bool canContinue = CampaignPersistence.TryGetSavedCheckpoint(out _);
+            float rowHeight = canContinue ? 56 : 64, rowStep = canContinue ? 64 : 76;
             float y = -610f;
             Button Add(string label, UnityEngine.Events.UnityAction a)
             {
-                var b = UIKit.Btn(column, label, a, 480, 64, 28);
-                ((RectTransform)b.transform).Place(tl, tl, new Vector2(4, y), new Vector2(480, 64));
-                y -= 76f;
+                var b = UIKit.Btn(column, label, a, 480, rowHeight, canContinue ? 26 : 28);
+                ((RectTransform)b.transform).Place(tl, tl, new Vector2(4, y), new Vector2(480, rowHeight));
+                y -= rowStep;
                 items.Add(b);
                 return b;
             }
-            btnBegin = Add("Begin Infiltration", Begin);
+            if (canContinue) btnContinue = Add("Continue checkpoint", ResumeCheckpoint);
+            btnBegin = Add(canContinue ? "New infiltration" : "Begin Infiltration", Begin);
             btnControls = Add("Controls", OpenControls);
             btnSettings = Add("Settings", OpenSettings);
             Add("Quit", GameManager.QuitApp);
@@ -171,6 +174,20 @@ namespace Parasite.UI
             StartCoroutine(BeginRoutine());
         }
 
+        void ResumeCheckpoint()
+        {
+            if (loading) return;
+            if (!CampaignPersistence.TryResume(out _))
+            {
+                btnContinue.interactable = false;
+                var label = btnContinue.GetComponentInChildren<Text>();
+                if (label) label.text = "Checkpoint unavailable";
+                UIKit.Select(btnBegin); return;
+            }
+            loading = true; Time.timeScale = 1;
+            SceneManager.LoadScene(GameManager.CityScene);
+        }
+
         IEnumerator BeginRoutine()
         {
             fade.raycastTarget = true;
@@ -180,7 +197,7 @@ namespace Parasite.UI
                 yield return null;
             }
             fade.color = Color.black;
-            RunState.NewGame();
+            CampaignPersistence.BeginNewGame();
             OpeningCinematic.RequestForNewGame();
             Time.timeScale = 1f;
             SceneManager.LoadScene(GameManager.CityScene);

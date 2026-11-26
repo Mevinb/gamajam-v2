@@ -84,6 +84,7 @@ namespace Parasite
         static void ResetStatics() { requested = false; Instance = null; LastExitReason = ""; }
 
         public static void RequestForNewGame() => requested = true;
+        public static void CancelPendingNewGame() => requested = false;
 
         /// <summary>Restore the live scene synchronously before a presentation shortcut starts another story.</summary>
         public static void CancelForPresentationShortcut()

@@ -13,7 +13,8 @@ namespace Parasite.Missions
         static readonly string[] PeaceManifest = { "A17", "A32" }, DominionManifest = { "R09", "R21" };
         public static bool Active => RunState.Has(Started);
         public static bool Peace => RunState.LakesideOutcome == EndingOutcome.Peace;
-        public static IReadOnlyList<string> RequiredCargoIds => Peace ? PeaceManifest : DominionManifest;
+        public static IReadOnlyList<string> RequiredCargoIds => RequiredCargoIdsFor(RunState.LakesideOutcome);
+        public static IReadOnlyList<string> RequiredCargoIdsFor(EndingOutcome outcome) => outcome == EndingOutcome.Peace ? PeaceManifest : DominionManifest;
         public static string ValveFlag(int slot) => "harbor_valve_" + (slot == 0 ? "a" : slot == 1 ? "b" : "c");
         public static string ReroutedFlag(string id) => "harbor_cargo_rerouted_" + id.ToLowerInvariant();
         public static string DeliveredFlag(string id) => "harbor_cargo_delivered_" + id.ToLowerInvariant();

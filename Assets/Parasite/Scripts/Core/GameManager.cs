@@ -132,6 +132,20 @@ namespace Parasite
             if (Instance == this) Instance = null;
         }
 
+        IEnumerator Start()
+        {
+            if (!CampaignPersistence.SummaryPending) yield break;
+            yield return null; // CityDirector and HUD must finish their normal scene construction first.
+            if (Instance != this || !UI.HUDController.Instance || !Missions.MissionManager.Instance || !CampaignPersistence.ConsumePendingSummary()) yield break;
+            State = GameState.Ended; Time.timeScale = 0; SetCursorLocked(false);
+            GameEvents.RaiseEnding(new EndingData { route = RunState.Route, timeSeconds = RunState.PlayTime,
+                hostsPossessed = RunState.HostsPossessed, peakSuspicion = RunState.PeakSuspicion,
+                captures = RunState.Captures, outcome = RunState.LakesideOutcome });
+        }
+
+        void LateUpdate() => CampaignPersistence.Tick(this);
+        void OnApplicationQuit() => CampaignPersistence.Flush(this);
+
         void Update()
         {
             // A disabled coordinator can be re-enabled after rollback; a destroyed one requires the ordinary chapter checkpoint.
@@ -168,6 +182,7 @@ namespace Parasite
             RunState.HasCheckpoint = true;
             RunState.CheckpointPosition = pos;
             RunState.CheckpointName = name;
+            CampaignPersistence.RequestSave();
             GameEvents.RaiseToast($"Checkpoint — {name}", Palette.Info);
         }
 
@@ -402,19 +417,22 @@ namespace Parasite
 
         public void RestartGame()
         {
-            RunState.NewGame();
+            CampaignPersistence.BeginNewGame();
             Time.timeScale = 1f;
             SceneManager.LoadScene(CityScene);
         }
 
         public void QuitToMenu()
         {
+            CampaignPersistence.Flush(this);
+            CampaignPersistence.LeaveSession();
             Time.timeScale = 1f;
             SceneManager.LoadScene(MenuScene);
         }
 
         public static void QuitApp()
         {
+            CampaignPersistence.Flush(Instance);
 #if UNITY_EDITOR
             CinematicFilmLifetime.QuitPlayMode();
 #else
