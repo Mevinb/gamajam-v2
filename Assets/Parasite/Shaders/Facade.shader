@@ -157,9 +157,13 @@ Shader "Parasite/Facade"
                 half lum = max(em.r, max(em.g, em.b));
                 if (lum > 0.02)
                 {
-                    float2 g = uvRoom * 6.0;
+                    // The photographed windows are centred on k/6 (gen_city_art.py), not
+                    // halfway across each atlas cell. Keep one room across both window panes.
+                    float2 g = uvRoom * 6.0 + 0.5;
                     float2 cellId = floor(g);
-                    float2 cell = frac(g);
+                    // The surveyed glass spans +/-0.31 of each bay/floor. Its perimeter,
+                    // rather than the surrounding masonry, defines the room opening.
+                    float2 cell = saturate((frac(g) - 0.5) / 0.62 + 0.5);
                     half3 light = em * _EmissionColor.rgb;
                     half3 room = InteriorRoom(cell, cellId, viewDirTS, light);
                     half edge = smoothstep(0.02, 0.12, lum);

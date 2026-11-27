@@ -995,8 +995,9 @@ namespace Parasite.EditorTools
                     void Set(string n, float v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.floatValue = v; }
                     void SetInt(string n, int v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.intValue = v; }
                     void SetBool(string n, bool v) { var pr = s.FindPropertyRelative(n); if (pr != null) pr.boolValue = v; }
-                    Set("Intensity", 1.15f);
-                    Set("Radius", 0.55f);
+                    // Human-scale contact occlusion: avoid broad mottled shadows across faces and collars.
+                    Set("Intensity", 0.55f);
+                    Set("Radius", 0.10f);
                     Set("DirectLightingStrength", 0.3f);
                     Set("Falloff", 120f);
                     SetInt("Samples", 0);

@@ -193,6 +193,34 @@ namespace Parasite.EditorTools
             finally { Object.DestroyImmediate(root); }
         }
 
+        /// <summary>Refreshes only the existing Van model/prefab, preserving the prepared shared surfaces.</summary>
+        public static void PrepareVanBatch()
+        {
+            var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText(Source + "production-manifest.json"));
+            if (manifest == null || manifest.schema != 1 || manifest.texture_size != 2048 || manifest.models?.Length != 6 || manifest.textures?.Length != 3)
+                throw new InvalidOperationException("Complete reviewed six-export/three-map vehicle manifest is required.");
+            var record = manifest.models.Single(model => model != null && model.name == "VehicleVan");
+            if (record.file != "Exports/VehicleVan.fbx") throw new InvalidOperationException("Van-only import requires the canonical manifest export path.");
+            const string modelPath = ArtRoot + "Models/VehicleVan.fbx", prefabPath = Root + "VehicleVan.prefab";
+            foreach (string path in new[] { modelPath, prefabPath })
+                if (!File.Exists(path) || !File.Exists(path + ".meta") || !AssetDatabase.LoadAssetAtPath<GameObject>(path))
+                    throw new InvalidOperationException("Van-only import requires an existing prepared model/prefab and meta: " + path);
+            foreach (string name in Materials)
+            {
+                string path = Root + "Surfaces/" + name + ".mat";
+                var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+                if (!File.Exists(path) || !File.Exists(path + ".meta") || !material || !material.shader)
+                    throw new InvalidOperationException("Van-only import requires all canonical prepared shared materials: " + name);
+            }
+            string modelGuid = AssetDatabase.AssetPathToGUID(modelPath), prefabGuid = AssetDatabase.AssetPathToGUID(prefabPath);
+            if (string.IsNullOrEmpty(modelGuid) || string.IsNullOrEmpty(prefabGuid)) throw new InvalidOperationException("Existing Van asset GUIDs are required.");
+            Copy(Source + record.file, modelPath, record.sha256);
+            Prefab("VehicleVan");
+            if (AssetDatabase.AssetPathToGUID(modelPath) != modelGuid || AssetDatabase.AssetPathToGUID(prefabPath) != prefabGuid)
+                throw new InvalidOperationException("Van-only import changed an existing asset GUID.");
+            Debug.Log("[VehicleArt] Existing Van model/prefab refreshed from its manifest. Regenerate City through CityBuilder to update serialized mesh/material bindings.");
+        }
+
         public static void PrepareBatch()
         {
             var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText(Source + "production-manifest.json"));

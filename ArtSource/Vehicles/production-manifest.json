@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "status": "AUTHORED_CPU_SOURCE_ONLY_UNITY_VISUAL_ACCEPTANCE_PENDING",
-  "author_sha256": "59fb40263ff17274a9dd73974e66c38d99d57203f717bc156575afbbc1c561f8",
+  "author_sha256": "0a834f2d3dde21646276d6fa5eb30fe5a8613dfb1a2b4ae35f931c1e0cccb71c",
   "materials": [
     "VehiclePaint",
     "VehicleTrim",
@@ -183,15 +183,15 @@
       "lods": [
         {
           "lod": 0,
-          "triangles": 44320
+          "triangles": 49783
         },
         {
           "lod": 1,
-          "triangles": 14058
+          "triangles": 14660
         },
         {
           "lod": 2,
-          "triangles": 3484
+          "triangles": 3702
         }
       ],
       "wheel_centres": [
@@ -229,7 +229,7 @@
           2.508500099182129
         ]
       ],
-      "sha256": "c8a146fd2cba8475992442d7fd87db61af4fe7ccba23df286931474743e93078"
+      "sha256": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27"
     },
     {
       "name": "VehicleBoxTruck",
@@ -323,16 +323,16 @@
   ],
   "files": {
     "Vehicles.blend": {
-      "bytes": 14604791,
-      "sha256": "b39de95ad0c8b81cdf3c59703f6160e13657b277fbe5d4879ae36d1804bb167d"
+      "bytes": 14733984,
+      "sha256": "9178639e9518962b1dfe98df0625fecd6c21edab8c631cca3749577077de1f10"
     },
     "Exports/VehicleHatch.fbx": {
       "bytes": 1823868,
       "sha256": "d66740b665dc906f9839b534a1d58c4708b9db4a3fced00a0c29debe1c11479e"
     },
     "Exports/VehicleVan.fbx": {
-      "bytes": 1766428,
-      "sha256": "c8a146fd2cba8475992442d7fd87db61af4fe7ccba23df286931474743e93078"
+      "bytes": 1974892,
+      "sha256": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27"
     },
     "Exports/VehicleTaxiSign.fbx": {
       "bytes": 51596,
@@ -384,5 +384,11 @@
       "file": "Textures/VehicleDetail_M.png",
       "sha256": "7ca4982e1e6986633f1c72fc24d8bffd617c8c5908d3e6f31a9c1ee7434be8fa"
     }
-  ]
+  ],
+  "van_revision": {
+    "version": 4,
+    "scope": "Closed curved Van primary form, preserved wheels/footprint/shared surfaces; fixed-camera RTX visual acceptance; no driving or automatic LOD claim",
+    "verification": "Docs/verification/van-refinement-20261128.json",
+    "complete_editable_source": true
+  }
 }

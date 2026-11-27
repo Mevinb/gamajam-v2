@@ -155,7 +155,7 @@ def blend(a, b, t):
     return tuple(a[i]*(1-t)+b[i]*t for i in range(3))
 
 
-def passenger(spec, lod):
+def _baseline_passenger(spec, lod):
     g, glass = Geometry(), Geometry()
     s = spec
     hw, hl = s["width"]*.5, s["length"]*.5
@@ -386,6 +386,264 @@ def passenger(spec, lod):
         for side in (-1,1):
             g.path([(side*(hw-.27),roof+.06,rr+.16),(side*(hw-.27),roof+.06,rf-.15)],.023,3)
     return g, glass, [(side*(hw-.10),r,z) for side in (-1,1) for z in wz]
+
+
+# Van-only primary-form revision. Unity-space metres; no new material slots.
+# This fragment is assembled into the staged full generator. Not executed.
+
+def van_bezier(a, b, c, d, t):
+    s=1-t
+    return tuple(s*s*s*a[i]+3*s*s*t*b[i]+3*s*t*t*c[i]+t*t*t*d[i] for i in range(len(a)))
+
+
+def van_smooth(t):
+    t=max(0.0,min(1.0,t))
+    return t*t*(3-2*t)
+
+
+def van_upper_profile(t):
+    """Continuous wall tumblehome, rolled roof corner and shallow centre crown.
+    Returns positive half-width,height. Peak1.875 + longitudinal crown.012
+    retains the existing1.887m maximum, with a visible corner roll below it.
+    """
+    if t<=.55:
+        return van_bezier((.870,1.115),(.870,1.350),(.850,1.620),(.820,1.730),t/.55)
+    if t<=.75:
+        return van_bezier((.820,1.730),(.820,1.800),(.760,1.840),(.660,1.855),(t-.55)/.20)
+    return van_bezier((.660,1.855),(.540,1.870),(.240,1.875),(0,1.875),(t-.75)/.25)
+
+
+def van_front_z(t):
+    return 1.780-.400*van_smooth(t/.60)
+
+
+def van_rear_z(t):
+    return -2.450+.090*t**1.2
+
+
+def van_roof_cross(q, along):
+    t=.60+.40*(1-abs(q));x,y=van_upper_profile(t)
+    z=van_rear_z(t)+(1.380-van_rear_z(t))*along
+    return ((-1 if q<0 else 1)*x,y+.012*math.sin(math.pi*along)*t*t,z)
+
+
+def van_lower_top(z):
+    return 1.080+.035*van_smooth((z-1.30)/.48)-.110*van_smooth((z-1.78)/.67)
+
+
+def van_lower_width(y,z):
+    t=max(0,min(1,(y-.27)/.81))
+    return .925-.045*(1-van_smooth(t/.25))-.055*van_smooth((t-.45)/.55)-.035*(abs(z)/2.45)**8
+
+
+def van_closed_shoulder(geometry, fn, nu, nv, side):
+    """Keep the exterior shoulder exact and give its disconnected sheet a closed inward backing."""
+    outer=[fn(i/nu,j/nv) for j in range(nv+1) for i in range(nu+1)]
+    count=len(outer)
+    # +Y enters the body at the horizontal front endpoint, where an X-only
+    # backing would have a coplanar/degenerate cap. The side strip stays inside
+    # the old vehicle envelope; every exterior point remains unchanged.
+    vertices=outer+[(p[0]-side*.012,p[1]+.004,p[2]) for p in outer]
+    outside=[]
+    for j in range(nv):
+        for i in range(nu):
+            a=j*(nu+1)+i;face=(a,a+1,a+nu+2,a+nu+1)
+            outside.append(tuple(reversed(face)) if side>0 else face)
+    inside=[tuple(count+i for i in reversed(face)) for face in outside]
+    edges={}
+    for face in outside:
+        for a,b in zip(face,(*face[1:],face[0])):
+            edges.setdefault(tuple(sorted((a,b))),[]).append((a,b))
+    caps=[(b,a,a+count,b+count) for uses in edges.values() if len(uses)==1 for a,b in uses]
+    geometry.mesh(vertices,outside+inside+caps,[0]*len(outside)+[4]*len(inside)+[0]*len(caps),True)
+    geometry.smooth[-len(caps):]=[False]*len(caps)
+
+
+def van_candidate(spec,lod):
+    g,glass=Geometry(),Geometry();s=spec;hw=s['width']*.5;hl=s['length']*.5;r=s['radius'];belt=s['belt']
+    axles=[-s['wheelbase']*.5,s['wheelbase']*.5]
+    nz,ny=(96,60,32)[lod],(12,8,5)[lod]
+    zs=sorted(set([-hl+i*s['length']/nz for i in range(nz+1)]+[.42,1.30,1.78]+[z+d*(r+.055) for z in axles for d in (-1,0,1)]))
+    def arch_bottom(z):
+        y=.27
+        for axle in axles:
+            delta=abs(z-axle)
+            if delta<r+.055:y=max(y,r+math.sqrt((r+.055)**2-delta*delta))
+        return min(y,van_lower_top(z)-.065)
+    # Nonconstant manufactured cross-section: tucked sill, door barrel and
+    # shoulder turn. Wheel-arch openings remain at original axle coordinates.
+    for side in (-1,1):
+        vertices=[]
+        for z in zs:
+            low,top=arch_bottom(z),van_lower_top(z)
+            for j in range(ny+1):
+                y=low+(top-low)*j/ny
+                vertices.append((side*van_lower_width(y,z),y,z))
+        faces=[]
+        for i in range(len(zs)-1):
+            for j in range(ny):
+                a=i*(ny+1)+j;f=(a,a+ny+1,a+ny+2,a+1)
+                faces.append(tuple(reversed(f)) if side>0 else f)
+        g.mesh(vertices,faces,0,True)
+    # Closed lower front/rear sections; the fascia sits in front of these
+    # backings, with real inset returns rather than floating lamp rectangles.
+    for direction in (-1,1):
+        z=direction*hl;low=arch_bottom(z);top=van_lower_top(z)
+        points=[(-van_lower_width(low,z),low,z),(van_lower_width(low,z),low,z)]
+        points += [(van_lower_width(low+(top-low)*j/ny,z),low+(top-low)*j/ny,z) for j in range(1,ny+1)]
+        points += [(-van_lower_width(low+(top-low)*j/ny,z),low+(top-low)*j/ny,z) for j in range(ny,-1,-1)]
+        g.mesh(points,[tuple(range(len(points))) if direction>0 else tuple(range(len(points)-1,-1,-1))],0)
+    g.box((0,.33,-.30),(1.35,.06,4.20),4,.01)
+    # Continuous roof sheet and headliner;75mm of rolled corner/crown is
+    # expressed downward inside the unchanged height envelope, not by scaling.
+    g.surface(lambda u,v:van_roof_cross(u*2-1,v),(32,20,10)[lod],(16,12,8)[lod],0,reverse=True,thickness=.018,inner_material=4)
+    for side in (-1,1):
+        def cargo(u,v):
+            t=.60*v;x,y=van_upper_profile(t);rear=van_rear_z(t);front=.420-.06*van_smooth(v)
+            z=rear+(front-rear)*u
+            # The wall's longitudinal crown is finite-scale shape, not noise.
+            return (side*(x+.018*math.sin(math.pi*u)*math.sin(math.pi*v)),y,z)
+        g.surface(cargo,(20,16,10)[lod],(16,10,5)[lod],0,reverse=side>0)
+        # Closed shoulder shell joins the old wheel envelope to the canopy.
+        # The outer grid is unchanged; inward backing fixes open-sheet recalc orientation.
+        def shoulder(u,v):
+            z=-hl+(1.78+hl)*u;low=van_lower_top(z);x0=van_lower_width(low,z)
+            return (side*(x0+(.870-x0)*v),low+(1.115-low)*v,z)
+        van_closed_shoulder(g,shoulder,(48,28,14)[lod],2,side)
+        # Actual front side-glass aperture. All surrounding returns are opaque.
+        def side_window(u,v):
+            t=.60*v;x,y=van_upper_profile(t)
+            back=.420-.060*van_smooth(v);front=van_front_z(t)
+            return (side*(x-.018),y+.014*(1-v)-.014*v,back+(front-back)*u)
+        glass.surface(side_window,(14,9,5)[lod],(10,6,3)[lod],9,reverse=side>0)
+        # Side-window perimeter follows its curved surface and is fully backed.
+        for u in (0,1):
+            def jamb(a,b):
+                inner=side_window(u,a);t=.60*a;x,y=van_upper_profile(t)
+                outer=(side*x,y,(.420-.060*van_smooth(a)) if u==0 else van_front_z(t))
+                return blend(inner,outer,b)
+            g.surface(jamb,(14,9,5)[lod],2,0,reverse=side*(2*u-1)<0)
+            g.path([side_window(u,i/16) for i in range(17)],.009,1,(6,5,4)[lod])
+        for v in (0,1):
+            def window_return(u,w):
+                inner=side_window(u,v);t=.60*v;x,y=van_upper_profile(t)
+                back=.420-.060*van_smooth(v);front=van_front_z(t)
+                return blend(inner,(side*x,y,back+(front-back)*u),w)
+            g.surface(window_return,(14,9,5)[lod],2,0,reverse=side*(2*v-1)>0)
+            g.path([side_window(i/16,v) for i in range(17)],.009,1,(6,5,4)[lod])
+        # Full-body door shut lines follow the curved panel instead of sitting
+        # on a fixed x plane. Only the original functional handle is retained.
+        if lod<2:
+            for z in (.42,1.72):
+                low=arch_bottom(z)+.035;top=van_lower_top(z)-.025
+                g.path([(side*(van_lower_width(low+(top-low)*i/14,z)+.0015),low+(top-low)*i/14,z) for i in range(15)],.0028,1,4)
+            z=1.34;y=1.00
+            g.box((side*(van_lower_width(y,z)+.009),y,z),(.018,.040,.15),1,.012)
+        # Original mirror outer extent remains exactly ±1.06m.
+        mx=side*(hw+.055);mz=1.25
+        g.path([(side*(hw-.03),belt+.095,mz-.04),(mx,belt+.10,mz)],.018,1)
+        g.box((mx,belt+.16,mz),(.16,.095,.205),0,.035,segments=3 if lod==0 else 2)
+        g.box((mx,belt+.16,mz-.099),(.13,.071,.009),3,.003)
+        for axle in axles:
+            points=[(side*(van_lower_width(r+(r+.058)*math.sin(a),axle+(r+.058)*math.cos(a))+.003),r+(r+.058)*math.sin(a),axle+(r+.058)*math.cos(a)) for a in [math.pi*i/(28 if lod==0 else 16) for i in range((28 if lod==0 else 16)+1)]]
+            g.path(points,.010,0,(7,5,4)[lod])
+    # Bowed front windscreen, thick curved A-pillars and an actual header return.
+    def wind(u,v):
+        q=u*2-1;t=.60+.40*(1-abs(q));tx,ty=van_upper_profile(t)
+        top=(((-1 if q<0 else 1)*tx*.94),ty-.014,1.380)
+        base=(q*.815,1.115+.025*(1-q*q),1.780)
+        x,y,z=blend(base,top,v)
+        return (x,y,z+.025*(1-q*q)*math.sin(math.pi*v))
+    glass.surface(wind,(24,14,7)[lod],(14,9,5)[lod],9)
+    for side in (-1,1):
+        u=0 if side<0 else 1
+        def pillar(v,w):
+            inner=wind(u,v);t=.60*v;x,y=van_upper_profile(t);outer=(side*x,y,van_front_z(t))
+            return blend(inner,outer,w)
+        # Two skins/edge returns form a closed section around the aperture.
+        g.surface(pillar,(22,14,7)[lod],3,0,reverse=side>0)
+        g.path([wind(u,i/18) for i in range(19)],.011,1,(7,5,4)[lod])
+        inner=[wind(u,i/18) for i in range(19)]
+        g.path([(p[0],p[1]-.016,p[2]-.022) for p in inner],.022,4,(7,5,4)[lod])
+    def header(u,v):return blend(wind(u,1),van_roof_cross(u*2-1,1),v)
+    g.surface(header,(32,18,9)[lod],3,0)
+    g.path([wind(i/24,1) for i in range(25)],.011,1,(7,5,4)[lod])
+    # Van-specific short crowned bonnet and cowl, not the sedan's long deck.
+    def bonnet(u,v):
+        q=u*2-1;z=1.78+(hl-1.78)*v;width=van_lower_width(van_lower_top(z),z);x=q*width
+        # At the cowl the crown follows the actual narrower windscreen base;
+        # the two flat outer shoulders continue beneath the A-pillars.
+        crown_width=.815+(width-.815)*van_smooth(v/.25)
+        return (x,van_lower_top(z)+.025*max(0,1-(x/crown_width)**2),z)
+    g.surface(bonnet,(24,14,7)[lod],(24,14,7)[lod],0,reverse=True)
+    def bonnet_front_return(u,v):
+        top=bonnet(u,1)
+        return blend((top[0],van_lower_top(hl),hl),top,v)
+    g.surface(bonnet_front_return,(24,14,7)[lod],2,0)
+    g.path([wind(i/20,0) for i in range(21)],.011,1,(6,5,4)[lod])
+    # Rounded complete rear upper skin matches the same roof/wall profiles.
+    def rear(u,v):
+        q=u*2-1;t=.60*v;x,y=van_upper_profile(t);rx,ry,rz=van_roof_cross(q,0)
+        x0=q*x;x=x0+(rx-q*van_upper_profile(.60)[0])*v*v
+        return (x,y+(ry-van_upper_profile(.60)[1])*v*v,van_rear_z(t)+(rz-van_rear_z(.60))*v*v)
+    g.surface(rear,(28,18,9)[lod],(18,12,6)[lod],0,reverse=True)
+    def rear_belt_return(u,v):
+        q=u*2-1;low=(q*van_lower_width(van_lower_top(-hl),-hl),van_lower_top(-hl),-hl)
+        return blend(low,rear(u,0),v)
+    g.surface(rear_belt_return,(28,18,9)[lod],2,0,reverse=True)
+    g.path([rear(.5,i/20) for i in range(21)],.003,1,4)
+    # Primary fascia volumes: broad recessed intake and rounded wrap bumpers.
+    for direction in (-1,1):
+        def bumper(u,v):
+            q=u*2-1
+            return (q*(hw-.055),.29+.27*v,direction*(hl-.018+.060*(1-q*q)*math.sin(math.pi*v)))
+        g.surface(bumper,(36,22,12)[lod],(8,5,3)[lod],0,reverse=direction<0)
+        # Lower returned lip preserves the original ±2.5085m end extent.
+        g.box((0,.335,direction*(hl+.036)),(s['width']-.18,.075,.045),1,.015)
+        g.box((0,.47,direction*(hl+.043)),(.48,.108,.015),8,.009)
+    # Recessed opening has an opaque backing and separate side/top returns.
+    g.box((0,.79,hl+.007),(1.02,.23,.018),1,.038,segments=3 if lod==0 else 2)
+    for y in (.715,.79,.865):g.box((0,y,hl+.023),(.94,.018,.014),3,.006)
+    for side in (-1,1):
+        # Lamp pockets wrap onto the front quarter; lenses share the authored
+        # glass surface. Housing and reflector are separate physical depths.
+        def lamp(u,v,offset):
+            x=side*(.535+.345*u);y=.900+.135*v-.018*u*v
+            z=hl-.008-.075*u*u+offset
+            return (x,y,z)
+        g.surface(lambda u,v:lamp(u,v,.007),(12,8,4)[lod],(6,4,2)[lod],1,reverse=side<0)
+        g.surface(lambda u,v:lamp(.06+.88*u,.10+.80*v,.020),(12,8,4)[lod],(6,4,2)[lod],5,reverse=side<0)
+        g.surface(lambda u,v:lamp(.88+.10*u,.12+.76*v,.022),(4,3,2)[lod],(6,4,2)[lod],7,reverse=side<0)
+        glass.surface(lambda u,v:lamp(.035+.93*u,.055+.89*v,.029),(14,9,5)[lod],(7,5,3)[lod],9,reverse=side<0)
+        # Simple opaque end returns enclose the pocket; no floating greebles.
+        for u in (0,1):
+            def lamp_u_return(v,w):return blend(lamp(u,v,.007),lamp(u,v,.029),w)
+            g.surface(lamp_u_return,6,2,1,reverse=side*(2*u-1)<0)
+        for v in (0,1):
+            def lamp_v_return(u,w):return blend(lamp(u,v,.007),lamp(u,v,.029),w)
+            g.surface(lamp_v_return,10,2,1,reverse=side*(2*v-1)>0)
+        g.box((side*.79,.91,-hl-.025),(.13,.25,.025),6,.025)
+    # Cab seating/dashboard/bulkhead establishes real glazing depth. Existing
+    # seat-front z=.835 is retained; no driver/agent or decorative cargo added.
+    for x in (-.40,.40):
+        g.box((x,.64,.835),(.48,.14,.48),4,.055,segments=3 if lod==0 else 2)
+        g.box((x,.90,.645),(.46,.50,.115),4,.045)
+        g.box((x,1.21,.635),(.23,.16,.10),4,.035)
+    g.box((0,1.055,1.62),(s['width']-.27,.16,.32),4,.045)
+    g.path([(-.40,1.04,1.50),(-.40,1.15,1.32)],.027,4)
+    centre=Vector((-.40,1.15,1.32))
+    g.path([centre+Vector((.145*math.cos(a),.145*math.sin(a),0)) for a in [2*math.pi*i/(24 if lod==0 else 14) for i in range(24 if lod==0 else 14)]],.015,4,6,True)
+    profile=[(-.83,.34,.38),(.83,.34,.38)]
+    profile += [(max(0,van_upper_profile(i/20)[0]-.035),van_upper_profile(i/20)[1]-.020,.38) for i in range(21)]
+    profile += [(-max(0,van_upper_profile(i/20)[0]-.035),van_upper_profile(i/20)[1]-.020,.38) for i in range(19,-1,-1)]
+    g.mesh(profile,[tuple(range(len(profile)))],4)
+    return g,glass,[(side*(hw-.10),r,z) for side in (-1,1) for z in axles]
+
+
+def passenger(spec,lod):
+    # Identity test keeps the shortened BoxTruck cab and all other bodies on
+    # their byte-identical existing generation path.
+    return van_candidate(spec,lod) if spec is SPECS['Van'] else _baseline_passenger(spec,lod)
 
 
 def wheel(radius,lod,centre):

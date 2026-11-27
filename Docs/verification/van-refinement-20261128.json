@@ -1,0 +1,247 @@
+{
+  "schema": 1,
+  "date": "2026-11-28",
+  "status": "CANONICAL_VAN_IMPORTED_GENERATED_AND_RENDERED",
+  "scope": "Accepted Van primary form and opaque shoulder repair, complete editable source, narrow canonical import, CityBuilder regeneration and current-source RTX/Vulkan captures. Static asset/render scope; no new gameplay or performance coverage.",
+  "source": {
+    "filesSha256": {
+      "Tools/blender/vehicles/author_vehicles.py": "0a834f2d3dde21646276d6fa5eb30fe5a8613dfb1a2b4ae35f931c1e0cccb71c",
+      "ArtSource/Vehicles/Vehicles.blend": "9178639e9518962b1dfe98df0625fecd6c21edab8c631cca3749577077de1f10",
+      "ArtSource/Vehicles/Exports/VehicleVan.fbx": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27",
+      "Assets/Parasite/Art/Vehicles/Models/VehicleVan.fbx": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27",
+      "Assets/Parasite/Resources/Vehicles/VehicleVan.prefab": "dafd325d2ee87899e41e67678d134a3daa6694738a20cc2091d418b4890ce005",
+      "ArtSource/Vehicles/production-manifest.json": "164542bd72d93b4f7ecb552b8a6750a13ac09184d84584fc0d76c11ff6b4284c",
+      "Assets/Parasite/Editor/VehicleArtImporter.cs": "572678f55d08b8098188c1bfedfc87fed66d30b6a2d8d8b9c087ec9482d56cfb"
+    },
+    "lodTriangles": [
+      49783,
+      14660,
+      3702
+    ],
+    "triangleCeilings": [
+      50968,
+      16166,
+      4006
+    ],
+    "modelGuid": "0774415ab918974a3a9a5133d4eb827f",
+    "prefabGuid": "d42680d6403b128cb9f525fd578790bb",
+    "completeBlend": {
+      "objects": 97,
+      "vanObjects": 18,
+      "retainedNonVanObjects": 79,
+      "materials": 10,
+      "packedImages": 1,
+      "packedImage": "VehicleDetail_N",
+      "externalPngFiles": 3
+    }
+  },
+  "change": {
+    "form": "Continuous curved cargo/tumblehome and rolled 18 mm roof, short cowl, bowed glazing/backed aperture returns and enclosed shoulder shells.",
+    "shoulderRepair": "Original open strips faced inward after bmesh normal recalculation. Preserve every exterior point; close each strip with 12 mm inward-X/+4 mm up backing, Paint exterior/caps and Interior liner.",
+    "unchanged": "Original wheel geometry/centres/radii, shared material and texture files, other vehicle authoring paths, traffic/collider code and the measured physical-envelope limits. Recalculated visual LOD reference centre shifts -0.86625 mm.",
+    "visibleLimitations": [
+      "Uniform paint and simple lamps remain.",
+      "Side composition retains identical foreground-car occlusion near lower front."
+    ],
+    "repairComparisonBasis": {
+      "authorSha256": "7b77e13b6aacf0b0788ab246addaf83144e4645a07186af80e9e7ca19aa9b304",
+      "scope": "Raw non-shoulder and Glass equality applies to the prior curved Van prototype, not to the older canonical slab-shaped Van."
+    }
+  },
+  "verification": {
+    "cpuGeometry": [
+      {
+        "path": "Logs/van-geometry-proof-lod0-v4/receipt.json",
+        "sha256": "60cfb6c3c95cb8e55dcf47edf3e86775dcad3a059fb25183cadd63471a25036d",
+        "nativeExitCode": 0,
+        "lod": 0,
+        "triangles": 49783,
+        "ceiling": 50968,
+        "rawExteriorShoulderCoordinatesExact": true,
+        "rawNonShoulderAndGlassExact": true,
+        "closedShoulderComponents": 2,
+        "outsidePaintToInteriorRayPairs": 54
+      },
+      {
+        "path": "Logs/van-geometry-proof-lod1-v4/receipt.json",
+        "sha256": "b27f2cd07ee36778e3065f789eed2943f5086af1a3cde7d97e8828bf94eacc0f",
+        "nativeExitCode": 0,
+        "lod": 1,
+        "triangles": 14660,
+        "ceiling": 16166,
+        "rawExteriorShoulderCoordinatesExact": true,
+        "rawNonShoulderAndGlassExact": true,
+        "closedShoulderComponents": 2,
+        "outsidePaintToInteriorRayPairs": 54
+      },
+      {
+        "path": "Logs/van-geometry-proof-lod2-v4/receipt.json",
+        "sha256": "8f46ff9abdbaa042511b25888ee3c5d5c42326e2143855b682c9d352c5cb67c1",
+        "nativeExitCode": 0,
+        "lod": 2,
+        "triangles": 3702,
+        "ceiling": 4006,
+        "rawExteriorShoulderCoordinatesExact": true,
+        "rawNonShoulderAndGlassExact": true,
+        "closedShoulderComponents": 2,
+        "outsidePaintToInteriorRayPairs": 54
+      }
+    ],
+    "quarantineExport": {
+      "path": "Logs/van-quarantine-export-v2/receipt.json",
+      "sha256": "62cca54fff8135b2c0d46a2c46fff89b12bd9f411b697ef4071bb83527e834b1",
+      "nativeExitCode": 0,
+      "emittedParts": 18,
+      "maximumBidirectionalVertexErrorMetres": 0.0,
+      "wheelVertexMultisetsExactToRetainedExport": 12,
+      "closedShoulderComponents": 6,
+      "outsidePaintToInteriorRayPairs": 162,
+      "roofApertureCheck": "POST_DECIMATION_ROOF_APERTURE_CHECK_PASS",
+      "protectedInputsUnchanged": true
+    },
+    "freshStandaloneSource": {
+      "path": "Logs/van-packed-source-check-v2/receipt.json",
+      "sha256": "1b81ff9dade9bfbfc1b6df13ef21089d1decf62ce3a808eda3216993185e6d85",
+      "nativeExitCode": 0,
+      "objects": 18,
+      "materials": 10,
+      "packedImages": 3,
+      "savedShoulderAndRoofChecksPass": true,
+      "exportAndProtectedBytesUnchanged": true
+    },
+    "completeSourceMerge": {
+      "merge": {
+        "path": "Logs/van-complete-source-merge-v10/receipt.json",
+        "sha256": "b4f8d9b589dab140b83f21d02bafce94ada341d3b913942ee72bfa08a117e0f7",
+        "nativeExitCode": 0
+      },
+      "freshReopen": {
+        "path": "Logs/van-complete-source-reopen-v2/receipt.json",
+        "sha256": "c88a4fc0ca124704669c08282f8959fb6a5285e52e03d657447009a9dccdbf68",
+        "nativeExitCode": 0
+      },
+      "retainedNonVanObjects": 79,
+      "retainedCollectionRecords": 5,
+      "retainedOriginalMaterials": 10,
+      "retainedPackedImages": 1,
+      "retainedExternalPngFiles": 3,
+      "vanGeometryUvsIndicesNormalsTangentsMaterialIndicesTransformsExactToStandaloneSource": true,
+      "nonVanFingerprint": "db2177791846b911f2f6d9d665982ced6439d2ce0c4cde484fd9e80e8d9f1adf",
+      "vanFingerprint": "cda4b16d1eff9b1d9672da79283164d5ab3e088f37261847a601f88ddc6d3b1a"
+    },
+    "staticGpu": {
+      "path": "Logs/van-candidate-visual-v4/receipt.json",
+      "sha256": "d087f17a5411fc51bb1bca8e0f4a00c749652986dc6b2cf93ea2297512f16827",
+      "nativeExitCode": 0,
+      "completed": true,
+      "savedImages": 18,
+      "armSettlingRows": 18,
+      "capturedWarningsAndErrors": 0,
+      "allFullFrameRepeatAndRestoredControlsWithin2Rgb8": true
+    },
+    "rootVisualAcceptance": {
+      "path": "Logs/van-v4-visual-acceptance-20261128.json",
+      "sha256": "5289e6f2880a6c67c7ea5443dc03cb1343825308b511420965b438a426148546",
+      "decision": "Accept primary form across all six reviewed candidate views; static scope."
+    },
+    "canonicalImport": {
+      "path": "Logs/visual-refinements-promotion-20261128/canonical-import.json",
+      "sha256": "05efab5e69b33d9393ac5ced07de6231f48704fe18820de1b5fb78f35ba72097",
+      "nativeExitCode": 0,
+      "method": "VehicleArtImporter.PrepareVanBatch",
+      "inventoryEntries": 82,
+      "inventory": {
+        "path": "Logs/visual-refinements-promotion-20261128/before.json",
+        "sha256": "5b45c2ae1a4fe5feb2fc29bdbf51f2af5110e72266fd5076eba7782d77eebc66"
+      },
+      "allNonAllowedVehicleFilesUnchanged": true,
+      "allExistingVehicleMetasUnchanged": true
+    },
+    "sceneRegeneration": {
+      "path": "Logs/visual-refinements-promotion-20261128/scene-regeneration.json",
+      "sha256": "fec8a76e2381152053490a6bdf2af68ad4b7b919a6daeae3d621dec5d459bc69",
+      "nativeExitCode": 0,
+      "entrypoint": "Parasite.EditorTools.CityBuilder.BuildAllBatch",
+      "sceneHashes": {
+        "Assets/Parasite/Scenes/City.unity": "9a3d4bb6de777d2a3fa05cc6918aca7e3cbe1f3bf95c500a7a958c01c1711657",
+        "Assets/Parasite/Scenes/Bootstrap.unity": "52e23711f30cdade9ecffdcadeb86fe5d08f1959cb02c77bef69864940ffb681"
+      }
+    },
+    "postImportProductionReview": {
+      "path": "Logs/van-production-review-v1/receipt.json",
+      "sha256": "fda97a4522e48531de25f47bc28e8583a5317f72d503d82e73c81c90309d9e58",
+      "nativeExitCode": 0,
+      "savedImages": 39,
+      "prefabParts": 18,
+      "sceneVanInstances": 2,
+      "sceneVanMeshes": 36,
+      "warningsAndErrors": 0,
+      "allNamedMeshSubassetLocalIdsPreserved": true,
+      "sceneFingerprintFiles": [
+        {
+          "path": "Logs/van-production-review-v1/production/City.geometry.json",
+          "sha256": "3a48ac26e3361a83a3af6aceba4c6d04794dc2962be6549197dc32a7da91cad6"
+        },
+        {
+          "path": "Logs/van-production-review-v1/production/Bootstrap.geometry.json",
+          "sha256": "724dbcda278791aa1bc148489ebab1458fd39c7d3b9a8a10b48660e7b53bbf4a"
+        }
+      ]
+    },
+    "sceneSemanticComparison": {
+      "path": "Logs/visual-scene-semantic-comparison-stage/FINAL.json",
+      "sha256": "40bbfc53476dfb6dbac91757a9cb7e0af95a6508f3baba9bc34c59c74642cdc8",
+      "status": "PASS_ONLY_DECLARED_VAN_RENDER_AND_LOD_REFERENCE_CHANGES",
+      "cityBodyGlassChanges": 12,
+      "cityCollidersUnchanged": 329,
+      "cityNonVanRenderersUnchanged": 1969,
+      "cityVanWheelRenderersUnchanged": 24,
+      "bootstrapRecordsUnchanged": 937,
+      "gameObjectsTransformsMarkersMonoBehavioursUnchanged": true,
+      "cityVolumeParametersAndComponentOrderUnchanged": true,
+      "reflectionExrsRebaked": 8,
+      "lightingDataRebaked": 2
+    }
+  },
+  "preservation": {
+    "otherFiveExports": [
+      "ArtSource/Vehicles/Exports/VehicleBoxTruck.fbx",
+      "ArtSource/Vehicles/Exports/VehicleHatch.fbx",
+      "ArtSource/Vehicles/Exports/VehicleSedan.fbx",
+      "ArtSource/Vehicles/Exports/VehicleSuv.fbx",
+      "ArtSource/Vehicles/Exports/VehicleTaxiSign.fbx"
+    ],
+    "otherFiveExportsByteExact": true,
+    "threeExternalTexturesByteExact": true,
+    "existingVehicleMetaCount": 36,
+    "allExistingVehicleMetasByteExact": true,
+    "retainedNonVanObjects": 79,
+    "nonVanObjectMeshCollectionMaterialFingerprintExact": true
+  },
+  "retainedFailures": [
+    {
+      "path": "Logs/van-candidate-visual-v1/receipt.json",
+      "nativeExitCode": 1,
+      "result": "Before images: fixture wrongly required10 global materials per compact native mesh. Corrected from actual polygon-used slot order.",
+      "sha256": "e01c454bf3d8c1252ed3169971eaa949632e27e2df8d1974002276aed6a4c969"
+    },
+    {
+      "path": "Logs/van-candidate-visual-v2/receipt.json",
+      "nativeExitCode": 1,
+      "result": "Inactive-group ForceLOD warnings/wrong restored LOD1. Root separately found inward open shoulder slit in retained LOD0 images. Active-arm settling and closed V4 shoulders corrected the separate defects.",
+      "sha256": "eba8bf14a67151498afa53c9aa2d4ebc6f2c5defd288fcd8fbee64d72fe260e6"
+    },
+    {
+      "path": "Logs/van-complete-source-merge-v9/receipt.json",
+      "failureDetectedBy": "Logs/van-complete-source-reopen-v1/receipt.json",
+      "result": "Rejected merge: clearing/rebuilding slots reset polygon material indices. V10 in-place slot assignment and independent fresh reopen V2 pass.",
+      "sha256": "a17e8bb73fb619a5946fdad1527121a1f425bcced49b0b39caf5fd1180804072",
+      "failureDetectedBySha256": "beaa70112dd75b29d3bb158caa1c359ef0f02466bf5b98e26ad38c19e7b2901d"
+    }
+  ],
+  "coverageLimits": [
+    "Static forced LOD0/1/2 imported geometry/material/pivot and rendered appearance only.",
+    "Driving, automatic LOD transitions, current-player gameplay and performance were not exercised or inferred.",
+    "No full photorealism or whole-game/all-bugs-fixed claim."
+  ]
+}
