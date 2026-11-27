@@ -1,7 +1,7 @@
 {
   "status": "ISOLATED_STUDIES_UNACCEPTED",
   "live_character_assets_changed": false,
-  "production_queue": "Resumed from93 frames while clock/material-helper integration is prepared; current queue receipt Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261126T233706235581Z-256a5ef6/receipt.json. Fresh actual process checks are required before any graphics action.",
+  "production_queue": "Resumed from109 Arrival frames during staged shader/LOD/all-roster work; current receipt Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261127T000224343858Z-e0a8ab17/receipt.json. Fresh actual process checks are required before graphics work.",
   "normal_diagnosis": {
     "report": "Logs/hair-cap-normal-diagnostic-v1/README.md",
     "finding": "No flat-normal/export fault:3563 smooth LOD0 cap triangles/18 disconnected components; ordinary smoothing is a no-op. Remaining silhouette/strand response is an art issue."
@@ -30,6 +30,14 @@
     {
       "path": "Logs/eye-proportion-gpu-review-v1/receipt.json",
       "result": "FAIL exact whole-frame stock parity despite12 captures/no shader errors/source unchanged. Delta localisation is mainly animated background foliage/light-cone areas; a same-clock fixture is required before interpreting controls."
+    },
+    {
+      "path": "Logs/eye-proportion-clock-gpu-review-v2/receipt.json",
+      "result": "FAIL zero clock markers/paths from pre-initialization renderer attachment; cleanup/source unchanged."
+    },
+    {
+      "path": "Logs/hair-directional-clock-gpu-review-v3/receipt.json",
+      "result": "FAIL after17 images. Verified typed texture copy works, city-view default-off parity exact and backface directional-only parity exact. Controlled-left default-off fails with background tree transition; genuine animated LOD settling under investigation. Vulkan warning about potentially uninitialised CharacterHairFragment also remains. No hair promotion."
     }
   ],
   "binding_diagnostic": {
@@ -44,5 +52,24 @@
     "Assets/Parasite/ReviewOnly/HairDirectionalPilot",
     "Assets/Parasite/Editor/EyeProportionComparison"
   ],
-  "cleanup_boundary": "These folders were newly created by root for isolated studies. Preserve their source/meta inventory and Logs evidence; promote only accepted content or remove only exact owned temporary artifacts before final source/build freeze."
+  "cleanup_boundary": "These folders were newly created by root for isolated studies. Preserve their source/meta inventory and Logs evidence; promote only accepted content or remove only exact owned temporary artifacts before final source/build freeze.",
+  "eye_matched_control_result": {
+    "result": "PASS_ACTUAL_RTX_VULKAN_STATIC_CONTROLS",
+    "receipt": {
+      "path": "Logs/eye-proportion-clock-gpu-review-v3/receipt.json",
+      "sha256": "0d0318335309ecf2bd42fc1d7a20224000e23956924859a487b777646d95c5c5"
+    },
+    "images": 12,
+    "exact_parity_actors": [
+      "CivOmar",
+      "DrPetrov",
+      "DrVale"
+    ],
+    "gpu_clock_samples": 252,
+    "intermediate_paths": 36,
+    "matching_renderer_identity_observations": 109,
+    "cleanup_restored": true,
+    "root_visual_review": "Stock/photo1.42 portrait pairs directly inspected for CivOmar,DrPetrov,DrVale. Photo-centred1.42 selected as a natural proportion direction for these three; preserves photograph pivot. No geometric recenter/optical-axis calibration or roster rollout accepted.",
+    "next": "Stage common-source integration and matched current/proposed portraits for all25 before any roster promotion."
+  }
 }
