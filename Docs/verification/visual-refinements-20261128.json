@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "date": "2026-11-28",
+  "status": "SOURCE_INTEGRATED_RENDERED_NEW_FILM_PRODUCTION_PENDING",
+  "scope": "Visual refinement only. User declined further gameplay playtests, benchmarks and player launches. Existing campaign/runtime logic is unchanged.",
+  "sourceChanges": {
+    "ambientOcclusion": {
+      "radiusMetres": 0.1,
+      "intensity": 0.55,
+      "directLightingStrength": 0.3,
+      "basis": {
+        "path": "Logs/ssao-calibration-acceptance-20261128.json",
+        "sha256": "4a83723c0e1706275582935d5d269a903f9e1e6638fb8ab093942cfb3067e007"
+      },
+      "sourceAndBuilderBothUpdated": true
+    },
+    "facadeRooms": {
+      "phaseOffset": 0.5,
+      "apertureWidth": 0.62,
+      "basis": {
+        "path": "Logs/facade-room-acceptance-20261128.json",
+        "sha256": "98ddbcf96a18c60746b9404734ddda5e323de313b11e6b8f8d3845c74545ffcb"
+      },
+      "materialsTexturesGeometryUnchanged": true
+    },
+    "van": {
+      "report": "Docs/verification/van-refinement-20261128.json"
+    },
+    "lakeGarment": {
+      "maskVertices": 104,
+      "coveredSkinFaces": 128,
+      "resolvedSkinFirstPixelSamples": 119,
+      "proof": {
+        "path": "Logs/lake-sweater-occlusion-v2/receipt.json",
+        "sha256": "10a3d7b04bd023ed7130d035a4c60e7c2b4ab82d2aa4fc48ee1a70a9fd62c875"
+      },
+      "fourFrameRtxReview": {
+        "path": "Logs/lake-sweater-v5-visual-acceptance-20261128.json",
+        "sha256": "dfeb5a8aef277f4f23693315d070c9ab44b0c9b66a9e47eecfaf43cfdaf47b4a"
+      },
+      "oldSourcesAnd131FramesPreserved": true,
+      "newSourceFiles": {
+        "ArtSource/RealisticFinales/Lake/Lake_Arrival_v5.blend": "7b22be75eba8cc52af5c1f6db11cc2e7ca9474f06e571654ab22c48d3ce49680",
+        "ArtSource/RealisticFinales/Lake/Lake_Hold_v5.blend": "ecb0490648e0995cc3535d84e797eed4f1e4f618cc495d5a1484933aecb0bb20",
+        "ArtSource/RealisticFinales/Lake/Lake_Peace_v5.blend": "de3fb4fb10e799b26d13455b089540b945ceeb27e9fc4caf79118a40fd8216dd",
+        "ArtSource/RealisticFinales/Lake/Lake_Dominion_v5.blend": "6a924b80ec3b3107db6026db8c29c53f439c0b5deb77e3f9022995361bf58d5b"
+      },
+      "derivedCopiesBaseSceneRevision": 4,
+      "versionedRecipe": "ArtSource/RealisticFinales/Lake/garment-occlusion-v5.json"
+    }
+  },
+  "integration": {
+    "narrowVanImport": {
+      "path": "Logs/visual-refinements-promotion-20261128/canonical-import.json",
+      "sha256": "05efab5e69b33d9393ac5ced07de6231f48704fe18820de1b5fb78f35ba72097"
+    },
+    "generatedScenes": {
+      "path": "Logs/visual-refinements-promotion-20261128/scene-regeneration.json",
+      "sha256": "fec8a76e2381152053490a6bdf2af68ad4b7b919a6daeae3d621dec5d459bc69"
+    },
+    "production": {
+      "path": "Logs/van-production-review-v1/receipt.json",
+      "sha256": "fda97a4522e48531de25f47bc28e8583a5317f72d503d82e73c81c90309d9e58"
+    },
+    "sceneSemantics": {
+      "path": "Logs/visual-scene-semantic-comparison-stage/FINAL.json",
+      "sha256": "40bbfc53476dfb6dbac91757a9cb7e0af95a6508f3baba9bc34c59c74642cdc8"
+    },
+    "selectedProductionImagesReviewed": [
+      "human_LakeGirl_portrait.png",
+      "vehicle_Van_front.png"
+    ],
+    "temporaryComparisonsRetired": {
+      "path": "Logs/temporary-visual-assets-retired-20261128/retirement.json",
+      "sha256": "a72b32297b51b99eb4a2d88dfff9081006ee38314327bf4932fc02646f7c2bbc",
+      "files": 22
+    },
+    "finalFastCompile": {
+      "runtime": {
+        "status": "PASS",
+        "files": 182
+      },
+      "editor": {
+        "status": "PASS",
+        "files": 45
+      },
+      "linuxMonoPlayerApi": {
+        "status": "PASS",
+        "files": 182
+      },
+      "scope": "Current source API compile after temporary helper retirement; no new Linux build/player is inferred."
+    }
+  },
+  "preservation": {
+    "runtimeScriptsUnchanged": true,
+    "campaignMissions": 26,
+    "previousPreviewRuntimeSha256": "8d842c264f29c374365f8bab3f5d37cddb4d84b8afd2c2842a8e6f4b1f176a0d",
+    "previewSession": {
+      "path": "Logs/visual-preview-user-v1/session.json",
+      "sha256": "27ecac4da09ba03fcbea7d531824f08999558cb3771b50f0613f1e2088d007b6"
+    },
+    "laterOldPlayerClosure": {
+      "path": "Logs/no-more-playtests-20261128.json",
+      "sha256": "23f000bdd82eecb89243c9a7deb73897dfcd77c9592ad3ca8d538e0e3d43df24"
+    }
+  },
+  "pending": {
+    "newFullFilms": "New V5 job must render/encode/review all1176 frames before journaled publication and all8film reimport. Old and QA frames are not reused.",
+    "linuxBuild": "A later new build must contain the completed media/source. No further gameplay launch or benchmark is scheduled.",
+    "knownIssues": "Old strict Editor coach ring warning and instrumented preview performance finding remain unresolved; no changed-source/native acceptance is inferred."
+  },
+  "whitespace": "Source/doc checks exclude Unity-generated scene YAML whose empty scalar fields retain Unity trailing-space serialization. Generated scenes were not hand-edited."
+}

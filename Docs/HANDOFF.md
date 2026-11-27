@@ -4,6 +4,22 @@ Read this before changing the project. The active request is a full realism/cine
 with frequent commits and pushes as **Mevinb** when publication access works.
 The full request remains **in progress**. Evidence applies to its named source or binary; do not transfer an older pass to a new build.
 
+## Current checkpoint — 28 November 2026
+
+**Current user scope is visual realism only: no more missions, gameplay playtests, benchmarks or player launches.** Both the lake and train finales remain required. Linux/URP plus RTX/OptiX Blender rendering remains the chosen platform; gameplay hardware ray tracing is not implemented.
+
+Continue in `/home/mevlec/.local/share/parasite-work/northline` on `codex/visual-realism`. The previous 0.8.0-preview was actually built, native-scoped checks passed and it was launched for the user. Its original session exited0 naturally at 2026-11-27T05:01:38.585916Z with source/candidate/protected-build integrity intact. A separate old BASE/Linux player was closed after the user declined further playtests. No player is currently required or authorized by this work queue; retain all existing builds.
+
+The accepted fixed-camera refinements are the .10m/.55 SSAO calibration, correctly aligned photographed facade rooms, and a curved Blender Van with closed shoulder returns. The AO change removes excessive mottled jaw/collar contamination while preserving real sun/contact shadows. The Van has49,783/14,660/3,702 triangles, unchanged wheels/physical envelope/shared surface GUIDs, a complete editable source preserving all 79 non-Van objects and the original packed normal image. The other five exports and all three external maps remain exact. Static forced-LOD/pivot/material/geometry captures apply to their named sources, not driving, automatic transitions, benchmarks or final photorealism. Detailed actual receipts and retained failed controls are in `verification/van-refinement-20261128.json` and `verification/visual-refinements-20261128.json`.
+
+The frozen old finale job is safely stopped with 131 Arrival frames preserved. A newly inspected frame exposed skin protruding through the sweater; that footage is superseded for delivery. The four new `Lake_*_v5.blend` files add a standard inverted vertex-group Mask over 104 covered skin vertices / 128 faces; the raw mesh, cloth, eyes, hair, materials, weights and rig actions remain unchanged. CPU ray checks resolve 119 exposed-skin samples at 127/165; four actual 192-sample 1080p OptiX frames are visually reviewed. The old packed sources, 131 frames, contract and STOP remain unchanged. No old or QA frames may be silently reused under the new source hashes.
+
+A fresh five-film V5 production job will be frozen after this clean source commit using the unchanged producer/driver/policy and explicit new source paths. The new derived queue differs only in JOB and CONTRACT_SHA. Train stays the accepted `_v4.blend`; all 1,176 frames still require new-job production/encoding/review before publication. The producer's default freeze map is historicalV4: use the reviewed explicit V5 configuration in `Logs/finale-v5-stage`, not a bare default freeze. Operational live state/receipt/PIDs are in ignored `Logs/visual-preview-external-stage/LATEST.json`; inspect actual jobs before graphics work. No new films have been published by this checkpoint.
+
+After all 5 finished films are fully decoded/reviewed, use the existing journaled publication path, actual all 8 film reimport and a new Linux build. Do not open a further gameplay player or run benchmarks against the user's instruction. A build/capture/asset-import pass must not be described as final-player or complete-gameplay acceptance. The old strict Editor coach ring warning and instrumented preview performance finding are retained unresolved; no suppression or quality cut was used to close those gates. Mevinb API authentication and repository push permission are restored in the latest read-only check. Verify the Git publication result in `Logs/visual-refinements-promotion-20261128/publication.json`; use only Mevinb and retain historical denied-access evidence.
+
+The checkpoints below are historical. Their stated pending-build/user-session/mission-expansion next steps are superseded by this checkpoint and the latest named receipts.
+
 ## Current checkpoint — 27 November 2026
 
 **User steering: pause mission expansion and concentrate on visual realism everywhere.** Both the lake ending and

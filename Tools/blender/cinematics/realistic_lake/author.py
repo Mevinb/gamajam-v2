@@ -23,6 +23,7 @@ sys.path.insert(0,str(HERE));sys.path.insert(0,str(ROOT/'Tools/blender/character
 import scenery
 import portrait
 from cinematic_surfaces import upgrade_character
+from sweater_body_occlusion import apply as apply_sweater_body_occlusion
 
 FILMS={'arrival':360,'hold':144,'peace':168,'dominion':168}
 QA={'arrival':[1,100,165,280,360],'hold':[1,73,144], 'peace':[1,62,103,168], 'dominion':[1,52,94,155]}
@@ -90,6 +91,8 @@ def build(film):
     eye_uv_loops=portrait.refine_eye_uv(hero);portrait.refine_hair_cap(materials['Hair']);support=portrait.foot_support(hero,rig)
     for ob in bpy.data.objects:
         if ob.name.startswith('LakeGirl_LOD'):ob.hide_render=ob!=hero
+    # Apply after original-index foot support; before Armature/Subsurf evaluation.
+    garment_occlusion=apply_sweater_body_occlusion(hero)
     scene.frame_set(1);eye=portrait.eye_position(rig)
     subdiv=hero.modifiers.new('Cinematic render subdivision - original armature retained','SUBSURF');subdiv.subdivision_type='CATMULL_CLARK';subdiv.levels=2;subdiv.render_levels=2;subdiv.uv_smooth='PRESERVE_BOUNDARIES'
     bpy.context.view_layer.update();hair=portrait.hair_fibres(hero,rig);subdiv.levels=1
@@ -100,27 +103,32 @@ def build(film):
     assert (len(hero.data.vertices),len(hero.data.polygons))==(source_vertex_count,source_faces)
     scene['original_armature_animation_sha256']=hashlib.sha256(json.dumps(before,sort_keys=True).encode()).hexdigest()
     scene['original_packed_source']=str(source.relative_to(ROOT));scene['original_packed_source_sha256']=original_hash
-    scene['realism_version']=4;scene['gpu_qa_frames']=json.dumps(QA[film]);scene['scenery_seed']='8157/47291/9641';scene['head_pinned_hair_strands']=int(hair['strand_count']);scene['head_pinned_flyaways']=int(hair['flyaway_count']);scene['boot_ground_support']=json.dumps(support)
+    scene['realism_version']=5;scene['garment_body_occlusion']=json.dumps(garment_occlusion);scene['gpu_qa_frames']=json.dumps(QA[film]);scene['scenery_seed']='8157/47291/9641';scene['head_pinned_hair_strands']=int(hair['strand_count']);scene['head_pinned_flyaways']=int(hair['flyaway_count']);scene['boot_ground_support']=json.dumps(support)
     # Drop old zero-user material/image libraries before packing each standalone.
     for _ in range(2):bpy.data.orphans_purge(do_local_ids=True,do_linked_ids=False,do_recursive=True)
-    scene.frame_set(1);bpy.context.preferences.filepaths.save_version=0;bpy.ops.file.pack_all();path=OUT/('Lake_'+film.title()+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(path),compress=True)
+    scene.frame_set(1);bpy.context.preferences.filepaths.save_version=0;bpy.ops.file.pack_all();path=OUT/('Lake_'+film.title()+'_v5.blend');bpy.ops.wm.save_as_mainfile(filepath=str(path),compress=True)
     assert hashlib.sha256(source.read_bytes()).hexdigest()==original_hash,'Read-only source changed'
-    receipt={'version':4,'film':film,'path':str(path.relative_to(ROOT)),'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'source_sha256':original_hash,'original_rig_animation_preserved':True,'original_geometry_counts_preserved':[source_vertex_count,source_faces],'cinematic_eye_uv_loops_refined':eye_uv_loops,'iris_uv_central_scale':1.42,'boot_ground_support':support,'hair_strands':int(hair['strand_count']),'flyaways':int(hair['flyaway_count']),'native_hair_primitives':True,'groom_conforms_to_render_subdivision':2,'guided_part_side_strands':int(hair['guided_part_side_strands']),'face_framing_strands':int(hair['face_framing_strands']),'render_subdivision':2,'eye_position_world':list(eye),'shots':shotlist,'gpu_qa_frames':QA[film],'saved_samples':192,'rendered':False}
-    receipt['authoring_source_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [HERE/'author.py',HERE/'portrait.py',HERE/'scenery.py',ROOT/'Tools/blender/characters/cinematic_surfaces.py']}
-    (OUT/(film+'-authoring.json')).write_text(json.dumps(receipt,indent=2)+'\n');print('[realistic-lake] AUTHORED',film,receipt['bytes'],flush=True)
+    receipt={'version':5,'garment_body_occlusion':garment_occlusion,'film':film,'path':str(path.relative_to(ROOT)),'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'source_sha256':original_hash,'original_rig_animation_preserved':True,'original_geometry_counts_preserved':[source_vertex_count,source_faces],'cinematic_eye_uv_loops_refined':eye_uv_loops,'iris_uv_central_scale':1.42,'boot_ground_support':support,'hair_strands':int(hair['strand_count']),'flyaways':int(hair['flyaway_count']),'native_hair_primitives':True,'groom_conforms_to_render_subdivision':2,'guided_part_side_strands':int(hair['guided_part_side_strands']),'face_framing_strands':int(hair['face_framing_strands']),'render_subdivision':2,'eye_position_world':list(eye),'shots':shotlist,'gpu_qa_frames':QA[film],'saved_samples':192,'rendered':False}
+    receipt['authoring_source_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [HERE/'author.py',HERE/'portrait.py',HERE/'scenery.py',ROOT/'Tools/blender/characters/cinematic_surfaces.py',ROOT/'Tools/blender/characters/sweater_body_occlusion.py']}
+    (OUT/(film+'-v5-authoring.json')).write_text(json.dumps(receipt,indent=2)+'\n');print('[realistic-lake] AUTHORED',film,receipt['bytes'],flush=True)
 
 
 def audit():
     result={};total=0
     for film,length in FILMS.items():
-        path=OUT/('Lake_'+film.title()+'.blend');bpy.ops.wm.open_mainfile(filepath=str(path));s=bpy.context.scene;rig=bpy.data.objects['Armature'];hero=bpy.data.objects['LakeGirl_LOD0'];pack=[i.name for i in bpy.data.images if i.source=='FILE' and not i.packed_file]
+        path=OUT/('Lake_'+film.title()+'_v5.blend');bpy.ops.wm.open_mainfile(filepath=str(path));s=bpy.context.scene;rig=bpy.data.objects['Armature'];hero=bpy.data.objects['LakeGirl_LOD0'];pack=[i.name for i in bpy.data.images if i.source=='FILE' and not i.packed_file]
         assert not pack,pack
         assert (s.frame_end,s.render.fps,s.render.resolution_x,s.render.resolution_y)==(length,24,1920,1080)
         assert s.cycles.samples==192 and s.cycles.max_bounces==10 and s.cycles.transmission_bounces==8
         assert not any(o.name.startswith(('Dominion heartbeat','Distant person')) for o in bpy.data.objects)
         assert not bpy.data.objects.get('Distant warm sun')
         assert hero.modifiers[-1].type=='SUBSURF' and hero.modifiers[-1].render_levels==2
-        assert s['realism_version']==4 and hero['cinematic_iris_uv_central_scale']==1.42
+        # Derived V5 copies retain the V4 scenery/groom metadata; the garment modifier identifies this revision.
+        assert s['realism_version'] in (4,5) and hero['cinematic_iris_uv_central_scale']==1.42
+        garment=hero.modifiers.get('Sweater body occlusion - covered skin only')
+        assert garment and garment.type=='MASK' and garment.invert_vertex_group and garment.show_render and garment.show_viewport
+        group=hero.vertex_groups.get('Sweater - covered torso skin occlusion');assert group and garment.vertex_group==group.name and abs(garment.threshold-.5)<1e-7
+        assert sum(any(g.group==group.index and g.weight>=.5 for g in v.groups) for v in hero.data.vertices)==104
         hair=bpy.data.objects['Head-pinned fine hair and restrained flyaways'];assert hair.type=='CURVES' and 25000<len(hair.data.curves)<=32000 and hair['groom_conforms_to_render_subdivision']==2
         assert min(p.radius for p in hair.data.points)>0 and max(p.radius for p in hair.data.points)<.000070
         skin=next(m for m in hero.data.materials if m.name.startswith('Skin.'));bs=skin.node_tree.nodes.get('Principled BSDF');assert abs(bs.inputs['Subsurface Scale'].default_value-.00125)<1e-7
@@ -130,7 +138,7 @@ def audit():
         if film=='hold':
             s.frame_set(1);first={b.name:b.matrix_basis.copy() for b in rig.pose.bones};water=bpy.data.materials['Calm dielectric lake IOR 1.333'];noise=next(n for n in water.node_tree.nodes if n.type=='TEX_NOISE' and n.noise_dimensions=='4D');a=noise.inputs['W'].default_value;grass=bpy.data.objects['Irregular low grass and seedling tufts'].data.shape_keys.key_blocks['Six second shore breeze'];g=grass.value;focus=bpy.data.objects['Eye focus pin - measured original eye bones'].location.copy()
             s.frame_set(145);loop_delta=max(abs(b.matrix_basis[i][j]-first[b.name][i][j]) for b in rig.pose.bones for i in range(4) for j in range(4));environment_delta=max(abs(noise.inputs['W'].default_value-a),abs(grass.value-g),(bpy.data.objects['Eye focus pin - measured original eye bones'].location-focus).length);assert max(loop_delta,environment_delta)<1e-5
-        s.frame_set(1);subdiv=hero.modifiers[-1];subdiv.show_viewport=False;bpy.context.view_layer.update();evaluated=hero.evaluated_get(bpy.context.evaluated_depsgraph_get());body=evaluated.to_mesh()
+        s.frame_set(1);subdiv=hero.modifiers[-1];mask=hero.modifiers['Sweater body occlusion - covered skin only'];assert mask.show_render and mask.show_viewport;mask.show_viewport=False;subdiv.show_viewport=False;bpy.context.view_layer.update();evaluated=hero.evaluated_get(bpy.context.evaluated_depsgraph_get());body=evaluated.to_mesh()
         ground=bpy.data.objects['Rolling shore and visible shallow lake bed'];tree=BVHTree.FromPolygons([ground.matrix_world@v.co for v in ground.data.vertices],[list(p.vertices) for p in ground.data.polygons]);gaps=[]
         try:
             ids={v.index for v in hero.data.vertices if any(hero.vertex_groups[g.group].name in ('LeftFoot','RightFoot','LeftToes','RightToes') and g.weight>.25 for g in v.groups)}
@@ -138,10 +146,10 @@ def audit():
                 p=evaluated.matrix_world@body.vertices[index].co;hit,_,_,_=tree.ray_cast(p+Vector((0,0,.5)),Vector((0,0,-1)),1)
                 if hit is not None:gaps.append(p.z-hit.z)
             assert gaps and -.005<min(gaps)<.020,(film,'feet do not meet actual terrain',min(gaps) if gaps else None)
-        finally:evaluated.to_mesh_clear();subdiv.show_viewport=True
-        total+=path.stat().st_size;result[film]={'version':4,'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'all_images_packed':True,'rig_animation_preserved':True,'hold_rig_delta':loop_delta,'hold_environment_delta':environment_delta,'minimum_boot_clearance_to_actual_terrain_m':min(gaps),'hair_strands':len(hair.data.curves),'native_hair_primitives':True,'groom_conforms_to_render_subdivision':2,'iris_uv_central_scale':1.42,'scenery':{k:s[k] for k in s.keys() if k.startswith('realism_') and k!='realism_version'},'objects':len(s.objects),'qa_frames':QA[film],'rendered':False}
+        finally:evaluated.to_mesh_clear();subdiv.show_viewport=True;mask.show_viewport=True
+        total+=path.stat().st_size;result[film]={'version':5,'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'all_images_packed':True,'rig_animation_preserved':True,'hold_rig_delta':loop_delta,'hold_environment_delta':environment_delta,'minimum_boot_clearance_to_actual_terrain_m':min(gaps),'hair_strands':len(hair.data.curves),'native_hair_primitives':True,'groom_conforms_to_render_subdivision':2,'iris_uv_central_scale':1.42,'scenery':{k:s[k] for k in s.keys() if k.startswith('realism_') and k!='realism_version'},'objects':len(s.objects),'qa_frames':QA[film],'rendered':False}
     assert total<400_000_000,total
-    report={'total_blend_bytes':total,'films':result,'verification_scope':'CPU authoring/data and packing only; GPU image quality remains pending'};(OUT/'audit.json').write_text(json.dumps(report,indent=2)+'\n');print('[realistic-lake] AUDIT PASS',total,flush=True)
+    report={'total_blend_bytes':total,'films':result,'verification_scope':'CPU authoring/data and packing only; GPU image quality remains pending'};(OUT/'audit-v5.json').write_text(json.dumps(report,indent=2)+'\n');print('[realistic-lake] AUDIT PASS',total,flush=True)
 
 
 def main():

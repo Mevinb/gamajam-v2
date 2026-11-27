@@ -1,3 +1,30 @@
+# Current lake sources — revision 5
+
+The current delivery uses `Lake_Arrival_v5.blend`, `Lake_Hold_v5.blend`,
+`Lake_Peace_v5.blend` and `Lake_Dominion_v5.blend`. Original revision 4 sources
+and their stopped 131-frame production job remain preserved.
+
+Revision 5 adds a standard inverted vertex-group Mask over 104 covered torso
+vertices, hiding 128 Skin faces beneath the opaque sweater. The raw mesh,
+cloth, face, eyes, hair, materials, original weights and rig actions remain
+unchanged. Targeted CPU rays resolve 119 original skin-first pixels at Arrival
+127/165; fresh saved-source checks pass for all four films. Root reviewed
+192-sample 1080p OptiX frames Arrival127, Hold73, Peace168 and Dominion52.
+Full finished-film motion/encoding review remains pending.
+
+`garment-occlusion-v5.json` records the exact recipe, source hashes and review
+receipts. The derived copies preserve the base V4 scenery/groom metadata;
+the Mask and versioned filenames identify this later garment revision. The
+updated replay author labels a full new build version5 and writes
+`audit-v5.json`, preserving the old audit.
+
+Freeze a new job using the explicit V5 source map from the current handoff.
+The unchanged producer's default map is historicalV4. Never reuse old or QA
+frames under the new source hashes. No new game movies have been published
+by this source update.
+
+The revision 4 authoring and review details below are retained as history.
+
 # Realistic lake finale source — revision4 candidate
 
 Four standalone compressed, packed Blender4.5 sources preserve the existing
