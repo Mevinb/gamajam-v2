@@ -44,9 +44,11 @@ half _SkinSurfaceEnabled;
 half _IrisUVScale;
 float4 _EyeAtlasCentres;
 half _HairForwardCutoff;
+half _HairAnisotropy;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
 
+TEXTURE2D(_HairFlowMap); SAMPLER(sampler_HairFlowMap);
 TEXTURE2D(_MaskMap);
 TEXTURE2D(_VeinMap);        SAMPLER(sampler_VeinMap);
 TEXTURE2D(_SkinSurfaceMap); SAMPLER(sampler_SkinSurfaceMap);
@@ -119,6 +121,10 @@ inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfa
     outSurfaceData.specular = _SpecColor.rgb;
     outSurfaceData.smoothness = smoothness;
     outSurfaceData.normalTS = SampleNormal(uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
+    // Isolated pilot only: 8-bit128/128 neutral is not exactly zero XY.
+    // Preserve exact stock flat brow/lash normals in normal-only controls too.
+    if (_CharacterMode > 1.5h && _CharacterMode < 2.5h && uv.y < 0.25)
+        outSurfaceData.normalTS = half3(0, 0, 1);
     outSurfaceData.occlusion = occlusion;
     outSurfaceData.emission = emission;
     // Eye wet film uses URP's energy-conserving coat BRDF in the same material slot.

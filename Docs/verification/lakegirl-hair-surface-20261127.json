@@ -1,0 +1,92 @@
+{
+  "status": "ACCEPTED_LAKEGIRL_HAIR_SURFACE_CANONICAL_PROMOTION",
+  "utc": "2026-11-27T00:40:08.371906+00:00",
+  "scope": "LakeGirl-only normal/flow maps and opt-in direct anisotropic GGX surface response. Existing cap/plate silhouette remains. All other material bytes, FBX/rig/UV/weights/alpha remain; no whole-cast fiber solver or hardware ray-tracing claim.",
+  "isolatedGPU": {
+    "receipt": "Logs/hair-directional-clock-gpu-review-v5/receipt.json",
+    "sha256": "5b4b7ea82a0d990f060ac637b69f4ffb081ea1d595aa383496da0fa0b980494d",
+    "nativeExit": 0,
+    "pairedImages": 25,
+    "pairedRequests": 75,
+    "settlingRequests": 126,
+    "gpuClockSamples": 1407,
+    "intermediatePaths": 201,
+    "rendererIdentityObservations": 604,
+    "fiveOriginalStabilityPairsExact": true,
+    "fiveDefaultOffPairsExact": true,
+    "shaderMessages": [],
+    "rootVisualReview": "Logs/hair-directional-clock-gpu-review-v5/root-visual-review.json"
+  },
+  "portableBlenderCPUReplay": {
+    "receipt": "Logs/hair-bundle-portable-replay-v1/receipt.json",
+    "sha256": "908b8f045a4cdf3b41a095bd6edc8fc4cd623131824f99a9ab5603f56f0a16c3",
+    "nativeExit": 0,
+    "blender": "4.5.16LTS",
+    "maxRSSMiB": 1667.1171875,
+    "normalFlowPayloads": [
+      {
+        "file": "LakeGirl_HairBundle_N.png",
+        "sha256": "f03fdf19d64411569a20679ac450f9e1890c3298a3dd8027ac46eacf4af83d24",
+        "bytes": 440014,
+        "dimensions": [
+          2048,
+          2048
+        ],
+        "lowerQuarterExact": true
+      },
+      {
+        "file": "LakeGirl_HairBundle_Flow.png",
+        "sha256": "999b7115c81964b00662431fdfbb7a7b559d257ffa88c78d05b5947e1534ac40",
+        "bytes": 237097,
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "lowerQuarterExact": true
+      }
+    ],
+    "result": "Both accepted PNG hashes reproduced exactly; source/model/rig/UV/weights/slots unchanged, no GPU render or Cycles bake."
+  },
+  "canonicalSourceApply": {
+    "receipt": "Logs/lakegirl-hair-root-promotion/source-apply-receipt.json",
+    "sha256": "ce3bfaf3bb9e7e189397a47cbe23077beaa97b9623d22e8883dfb65ccf6eaead",
+    "note": "Canonical include corrects a misleading warning-cause comment. Executable tokens match accepted v5. Removed nested full-PBR early return is the actual controlled warning fix."
+  },
+  "actualImport": {
+    "receipt": "Logs/lakegirl-hair-canonical-import-20261127T0036427288470Z/receipt.json",
+    "sha256": "b48ae3b9ce41326a4ad51967a174974d205ded75ef9d85bb29df8c0a84671e43",
+    "nativeExit": 0,
+    "preservedOtherCharacterHashes": 622,
+    "materialGUID": "c69527aab77db5a24a3d7fb35c9bb45d",
+    "materialSHA256": "5f6bac5a2707ea1726d2835b90bae2986d38e7ccf9d7f577a8eaeb048381d572",
+    "normal": "2048sq/BC5/12mips/linear/+Y green/Clamp",
+    "flow": "1024sq/BC7/11mips/linear/input-alpha-validity/Clamp",
+    "otherMaterialBytesUnchanged": true,
+    "materialDiff": "Two opt-in keywords, normal/flow bindings and directional parameters; saving also serializes the existing inert eye-centre default on Hair, which remains mode2."
+  },
+  "actualProductionGPU": {
+    "receipt": "Logs/production-realism-capture-v1/receipt.json",
+    "sha256": "f29aa55bb566356094a86055a5dbabbeecab8f32b97e0450081b07951444a4da",
+    "nativeExit": 0,
+    "gpu": "RTX4050/Vulkan",
+    "images": 39,
+    "subjects": 6,
+    "shaderMessages": [],
+    "sourceTreeHEADStatusUnchanged": true,
+    "sceneSaved": false,
+    "rootSelectedDirectReview": [
+      "human_LakeGirl_portrait.png",
+      "human_DrVale_portrait.png",
+      "city_15_street_level_detail.png",
+      "vehicle_Van_front.png"
+    ],
+    "scope": "Current generated city, four real humanoid rigs and two car bodies; edit-mode visual API proof, not native gameplay/performance."
+  },
+  "temporaryAssetCleanup": {
+    "receipt": "Logs/temporary-visual-assets-retired-20261127/receipt.json",
+    "sha256": "906c735974da86267bfc68bbb22576c12f2a7f3daa4b26dcc7331f26a293d706",
+    "filesPreservedThenRemovedFromAssets": 49,
+    "scope": "Only root-owned untracked helpers/pilot assets; full exact source/meta archive retained under Logs."
+  },
+  "pending": "Exact preview build, five native gates and ordinary user launch; final new-five-film production/eight-film acceptance remain separate."
+}

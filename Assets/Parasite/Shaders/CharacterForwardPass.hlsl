@@ -5,7 +5,14 @@
 // The stock fragment remains unused; this small entry point adds shadow-aware,
 // main-light thin-skin transmission after the stock PBR response. This is a
 // raster approximation, not a diffusion/SSS solver or hardware ray tracing.
+#if defined(_PARASITE_HAIR_DIRECTIONAL)
+    // Flow requires UV tangents even when the pilot normal map is disabled.
+    #define REQUIRES_WORLD_SPACE_TANGENT_INTERPOLATOR
+#endif
 #include "Packages/com.unity.render-pipelines.universal/Shaders/LitForwardPass.hlsl"
+#if defined(_PARASITE_HAIR_DIRECTIONAL)
+    #include "CharacterHairDirectional.hlsl"
+#endif
 
 void CharacterLitPassFragment(Varyings input, out half4 outColor : SV_Target0
 #ifdef _WRITE_RENDERING_LAYERS
@@ -27,7 +34,14 @@ void CharacterLitPassFragment(Varyings input, out half4 outColor : SV_Target0
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
 #endif
     InitializeBakedGIData(input, inputData);
-    half4 color = UniversalFragmentPBR(inputData, surfaceData);
+    half4 color;
+#if defined(_PARASITE_HAIR_DIRECTIONAL) && !defined(_SPECULAR_SETUP)
+    if (_CharacterMode > 1.5h && _CharacterMode < 2.5h && input.uv.y >= 0.25 &&
+        surfaceData.metallic <= 0.001h && surfaceData.clearCoatMask <= 0.001h)
+        color = CharacterHairFragment(input, inputData, surfaceData);
+    else
+#endif
+        color = UniversalFragmentPBR(inputData, surfaceData);
 #if !defined(DEBUG_DISPLAY)
     // Debug output from UniversalFragmentPBR is authoritative. Do not add a
     // lighting term over material/normal/streaming debug colours.

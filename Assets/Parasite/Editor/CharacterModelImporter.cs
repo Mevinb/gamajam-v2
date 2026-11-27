@@ -354,6 +354,7 @@ namespace Parasite.EditorTools
                 mat.SetFloat("_Cull", 0f);
                 mat.renderQueue = (int)RenderQueue.Transparent;
                 mat.SetOverrideTag("RenderType", "Transparent");
+                if (m.id == "LakeGirl") LakeGirlHairSurfaceImporter.BindReviewed(mat);
             });
             var cloth = Mat(m.id + "_Cloth", shader, mat =>
             {

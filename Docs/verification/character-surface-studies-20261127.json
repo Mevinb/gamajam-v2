@@ -1,6 +1,6 @@
 {
-  "status": "EYES_PROMOTED_HAIR_ISOLATED_GPU_PILOT_ACCEPTED_CANONICAL_PENDING",
-  "live_character_assets_changed": "Accepted25 Eyes property update only; see eye-atlas-calibration proof. Hair canonical promotion pending.",
+  "status": "ACCEPTED_EYES_AND_LAKEGIRL_HAIR_SURFACE_PROMOTED_NATIVE_PREVIEW_PENDING",
+  "live_character_assets_changed": "Accepted25 Eyes +LakeGirl-only Hair; all other character source/material bytes protected. See the two named promotion proofs.",
   "production_queue": "Frame-safe paused at126 Arrival frames for eye promotion, coach recheck and requested visual preview build. Latest terminal receipt Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261127T001918571482Z-d157fba7/receipt.json.",
   "normal_diagnosis": {
     "report": "Logs/hair-cap-normal-diagnostic-v1/README.md",
@@ -58,14 +58,8 @@
     },
     "result": "Observation collected, not acceptance. Parsed shader declares flow Texture/Tex2D correctly. Bulk CopyPropertiesFromMaterial drops target-only texture metadata; subsequent SetTexture/readback fails in all copied arms. Fresh/explicit typed-common-property-copy arms bind/read back the actual map in on/off combinations. Errors are retained."
   },
-  "next": "Finish narrow portable LakeGirl hair promotion if ready, prepare explicit current-media Visual Preview, final source freeze/build/native5/ordinary launch. Full five revised films/final-eight native gate remain pending.",
-  "temporary_assets": [
-    "Assets/Parasite/ReviewOnly/HairDirectionalPilot",
-    "Assets/Parasite/Editor/EyeProportionComparison",
-    "Assets/Parasite/Editor/EyeProportionClockComparison",
-    "Assets/Parasite/Editor/EyeRosterMatchedReview",
-    "Assets/Parasite/Editor/EyeProductionMaterialVerification"
-  ],
+  "next": "Commit final accepted source/docs after refresh/API pass, freeze and build explicit Visual Preview, run exact native5 and ordinary launch. The final new-five-film/eight-film workflow remains pending.",
+  "temporary_assets": [],
   "cleanup_boundary": "These folders were newly created by root for isolated studies. Preserve their source/meta inventory and Logs evidence; promote only accepted content or remove only exact owned temporary artifacts before final source/build freeze.",
   "eye_matched_control_result": {
     "result": "PASS_ACTUAL_RTX_VULKAN_STATIC_CONTROLS",
@@ -89,5 +83,10 @@
   "eye_production_result": {
     "proof": "Docs/verification/eye-atlas-calibration-20261127.json",
     "result": "Accepted all25 visual pairs,24 photo-centred1.42/fixed LakeGirl1.42 unchanged; actual saved25 Eyes/75prefabLOD mappings/other properties and GUIDs preserved. Portable Blender remeasurement exact."
+  },
+  "temporary_asset_retirement": "All49 root-owned untracked helper/pilot files preserved with metadata/hashes under Logs/temporary-visual-assets-retired-20261127 and removed from Assets.",
+  "hair_production_result": {
+    "proof": "Docs/verification/lakegirl-hair-surface-20261127.json",
+    "result": "Portable Blender replay exact, narrow canonical import native0/622 other character hashes preserved, fresh production39image GPU capture native0/no shader messages/source unchanged. Native preview/performance remains pending."
   }
 }

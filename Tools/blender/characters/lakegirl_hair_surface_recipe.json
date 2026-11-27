@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "scope": "LakeGirl-only isolated normal/flow candidate; no runtime installation or appearance acceptance",
+  "sourceBlend": "ArtSource/Characters/OralPilotV2/LakeGirl_OralPilotV2.blend",
+  "sourceSha256": "1372e5f2938a175ec4f6e911677dc4f66c9d1b5319a90f62dcd83870bdb213c0",
+  "blenderVersion": [
+    4,
+    5,
+    16
+  ],
+  "normalResolution": 2048,
+  "flowResolution": 1024,
+  "referenceWidthMetres": 0.064,
+  "referenceLengthMetres": 0.192,
+  "referenceCrossSegments": 1024,
+  "referenceLengthSegments": 128,
+  "bundleCyclesAcrossReference": 40,
+  "bundleAmplitudeMetres": 1.4e-05,
+  "lockCyclesAcrossReference": 8,
+  "lockAmplitudeMetres": 2.2e-05,
+  "maxTiltDegrees": 10,
+  "capVStart": 0.25,
+  "capGuardNormalPixels": 16,
+  "normalConvention": "+X red/+Y green tangent normal; linear, no green flip",
+  "flowConvention": "RG = normalized root-to-tip vector in raw Mikk T/B, encoded .5+.5; B = overlap-direction confidence; A = cap UV validity",
+  "flowBasis": "B = tangent.w * cross(N,T); measured root-to-tip = -dP/dV plus authored bundle guide curvature",
+  "normalImportProposal": "NormalMap BC5, linear, max2048, mips12, Clamp, flipGreen=false",
+  "flowImportProposal": "Default BC7, linear, max1024, mips11, Clamp",
+  "lowerQuarter": "normal RGB128,128,255; flow RG128,128,B0,A0; no brow/lash relief",
+  "encodingTiltMarginDegrees": 0.5,
+  "flowDifferentialTransport": "area-weighted chart-vertex Ju/Jv, interpolated across shared cap vertices; preserve UV seams",
+  "expectedPayloads": {
+    "LakeGirl_HairBundle_N.png": {
+      "sha256": "f03fdf19d64411569a20679ac450f9e1890c3298a3dd8027ac46eacf4af83d24",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    "LakeGirl_HairBundle_Flow.png": {
+      "sha256": "999b7115c81964b00662431fdfbb7a7b559d257ffa88c78d05b5947e1534ac40",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "requiredSemanticInputs": [
+    "sourceBlend",
+    "this recipe"
+  ],
+  "runtimePreservationObservations": "Optional existing files are pinned before/after, but absent runtime files do not prevent authoring",
+  "acceptedV5Provenance": {
+    "receipt": "Logs/hair-directional-clock-gpu-review-v5/receipt.json",
+    "receiptSHA256": "5b4b7ea82a0d990f060ac637b69f4ffb081ea1d595aa383496da0fa0b980494d",
+    "scope": "Root accepted narrow LakeGirl normal+directional combination,25shots,zero warnings and exact default-off pairs; native0 observed by Root",
+    "requiredAuthoringInput": false
+  },
+  "remainingLimitations": [
+    "Coarse layered cap/silhouette remains unchanged",
+    "This bundle relief/flow is not a complete physical hair-fibre BSDF",
+    "Other24 characters do not receive maps or directional shading"
+  ]
+}

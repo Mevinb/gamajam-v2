@@ -132,6 +132,11 @@ See full animation details in [Art/Characters/Animations/CREDITS.md](../Assets/P
 
 Universal RP 17.3, Shader Graph 17.3, Cinemachine 3.1.7, Input System 1.20.1, AI Navigation 2.0.16, uGUI 2.0, Test Framework 1.6 — installed through the Unity Package Manager, not redistributed as raw packs.
 
+`Assets/Parasite/Shaders/CharacterHairDirectional.hlsl` adapts the installed URP17.3 `UniversalFragmentPBR`
+light-loop body for the opt-in LakeGirl surface response. Its Unity copyright and Companion License are
+retained in the include and adjacent `CharacterHairDirectional.LICENSE.md`. The authored bundle normal/flow
+maps come from the project's Blender recipe; they introduce no downloaded art pack.
+
 ## Not used (blocked)
 
 - Unity Starter Assets Third Person controller, Demo City, Bubba/Scavenger (Asset Store) and Mixamo characters: require an

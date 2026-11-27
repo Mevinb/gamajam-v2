@@ -8,6 +8,9 @@ Shader "Parasite/Character"
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
         _Smoothness("Smoothness", Range(0.0, 1.0)) = 0.5
+        [Toggle(_PARASITE_HAIR_DIRECTIONAL)] _HairDirectional("Opt-in cap directional pilot", Float) = 0
+        _HairFlowMap("Linear RG tangent flow; B confidence; A cap validity", 2D) = "black" {}
+        _HairAnisotropy("Hair directional aspect", Range(0,0.8)) = 0.65
         _Metallic("Metallic", Range(0.0, 1.0)) = 0.0
         _BumpScale("Normal Scale", Float) = 1.0
         [Normal] _BumpMap("Normal Map", 2D) = "bump" {}
@@ -60,6 +63,7 @@ Shader "Parasite/Character"
             #pragma target 3.5
             #pragma vertex LitPassVertex
             #pragma fragment CharacterLitPassFragment
+            #pragma shader_feature_local _PARASITE_HAIR_DIRECTIONAL
 
             #pragma shader_feature_local _NORMALMAP
             #pragma shader_feature_local_fragment _SPECULAR_SETUP

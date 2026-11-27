@@ -75,16 +75,23 @@ and the portable Blender measurement replays exactly. See `verification/eye-atla
 Hair v5 now passes25 paired images and5 genuine native-LOD-settled arms, with no shader warnings/logs.
 Removing a redundant nested full-PBR early return resolves the observed Vulkan warning; zero-weight
 stock fallback remains per-light. Root accepts the combined map/direct-surface response only as a
-LakeGirl pilot; canonical promotion and exact-player checks remain pending. Coarse cap contours remain.
+LakeGirl pilot. The narrow canonical import now passes native0 with622 other character hashes preserved,
+BC5/BC7 linear maps loaded, and the existing Hair GUID retained. The portable Blender CPU replay is
+byte-exact. A fresh production GPU capture has39 images/no shader messages/source unchanged; selected
+hero/adult/street/van views are reviewed. See `verification/lakegirl-hair-surface-20261127.json`.
+Exact-player checks remain pending. Coarse cap contours remain.
 The two original strict coach fixtures still fail on the Editor Graphics Ring Buffer warning through native
 TickRealtimeProbes, with their log guards unchanged. See `verification/coach-ring-recheck-20261127.json`.
 A separate opt-in event/probe trace is being staged; no quality cut or allocator override is applied.
 Only regenerable Unity GI-cache intermediates were retired to recover2.316GB, with exact inventory;
 all project/Blender/footage/retained-build files remain. See `verification/storage-cleanup-20261127.json`.
-An explicit Visual Preview channel is being prepared so the user can test accepted current graphics
+The explicit Visual Preview channel now passes its actual scoped seven-film import (sourceAudio0,
+importAudio0/no transcode, unchanged video bytes/GUIDs), so the user can test accepted current graphics
 while final films render. It keeps the seven existing films strict and permits only missing optional
 Northline footage; the actual physical coach still completes its owned departure. Default final-eight
-validation remains strict. No preview build/native pass/user launch is claimed until its own receipts.
+validation remains strict. All49 owned temporary comparison/helper/pilot files were archived exactly under Logs and removed
+from Assets. Refresh/compile/source freeze, preview build/native5 and ordinary user launch follow.
+No preview build/native pass/user launch is claimed until its own receipts.
 The producer now enforces actual limited-range BT709 matrix/transfer/primaries tags as well as complete silent VP8
 decode; a one-frame encode probe confirms the requested conversion/tag chain. Render driver, policy and sources
 remain frozen. The build's new eight-film import preflight is implemented/API-compiled, but its actual reimport gate
