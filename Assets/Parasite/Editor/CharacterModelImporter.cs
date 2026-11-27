@@ -211,6 +211,76 @@ namespace Parasite.EditorTools
             if (!LoadAvatar(path)) Debug.LogError("[Chars] avatar still invalid after re-mapping: " + path);
         }
 
+        // Canonical CPU measurement + seven image hashes live beside the Blender recipe.
+        // These are photographic magnification pivots, not optical-axis or gaze targets.
+        const string EyeCalibrationPath = "Tools/blender/characters/eye_atlas_calibration.json";
+        const string EyeCalibrationSHA256 = "c66f9eeddc217c1aa3b42dfb0dd9d5852e42dc3e7bfe737424a9cd5328d1e95b";
+        [System.Serializable] class EyeAtlas { public string path, sha256; public float[] centres; }
+        [System.Serializable] class EyeActor { public string id, atlas, metadataSHA256; }
+        [System.Serializable] class EyeCalibration { public int schema; public EyeAtlas[] atlases; public EyeActor[] actors; }
+        static string EyeHash(string path)
+        {
+            using var sha = System.Security.Cryptography.SHA256.Create();
+            return System.BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant();
+        }
+        static EyeCalibration LoadEyeCalibration()
+        {
+            if (EyeHash(EyeCalibrationPath) != EyeCalibrationSHA256) throw new System.InvalidOperationException("Eye calibration dataset changed; remeasure/review before updating its pin");
+            var data = JsonUtility.FromJson<EyeCalibration>(File.ReadAllText(EyeCalibrationPath));
+            if (data == null || data.schema != 1 || data.atlases == null || data.atlases.Length != 7 || data.actors == null || data.actors.Length != 25)
+                throw new System.InvalidOperationException("Expected seven measured photographs and25 actor records");
+            var paths = new HashSet<string>(); var ids = new HashSet<string>();
+            foreach (var atlas in data.atlases)
+                if (atlas == null || !paths.Add(atlas.path) || atlas.path != "Eyes/" + Path.GetFileName(atlas.path) || atlas.centres == null || atlas.centres.Length != 4 || EyeHash(TexturesDir + "/" + atlas.path) != atlas.sha256)
+                    throw new System.InvalidOperationException("Measured eye photograph/path/hash changed: " + atlas?.path);
+            foreach (var actor in data.actors)
+                if (actor == null || !ids.Add(actor.id) || !paths.Contains(actor.atlas)) throw new System.InvalidOperationException("Invalid finite eye actor/atlas record");
+            return data;
+        }
+        static Vector4 CalibratedEyeCentres(EyeCalibration data, string id, string atlasPath)
+        {
+            var actor = System.Array.Find(data.actors, a => a.id == id);
+            if (actor == null || actor.atlas != atlasPath) throw new System.InvalidOperationException("Eye metadata differs from calibration: " + id);
+            if (id == "LakeGirl") return new Vector4(.292f, .289f, .707f, .704f);
+            var c = System.Array.Find(data.atlases, a => a.path == atlasPath).centres;
+            return new Vector4(c[0], c[1], c[2], c[3]);
+        }
+        static Vector4 CalibratedEyeCentres(string id, string atlasPath) => CalibratedEyeCentres(LoadEyeCalibration(), id, atlasPath);
+
+        /// <summary>After all25 visual approvals: preflight everything, then update only existing Eyes materials.</summary>
+        public static void ApplyEyeAtlasCalibrationBatch()
+        {
+            try
+            {
+                var data = LoadEyeCalibration(); // pins all seven actual source photographs before any material write
+                var updates = new List<(string id, Material material, Vector4 centres)>(); var ids = new HashSet<string>();
+                foreach (string path in Directory.GetFiles(ModelsDir, "*.json"))
+                {
+                    var m = JsonUtility.FromJson<Meta>(File.ReadAllText(path));
+                    if (m == null || string.IsNullOrEmpty(m.id) || m.textures == null) throw new System.InvalidOperationException("Invalid eye metadata: " + path);
+                    var record = System.Array.Find(data.actors, a => a.id == m.id);
+                    if (!ids.Add(m.id) || record == null || EyeHash(path) != record.metadataSHA256 || record.atlas != m.textures.eyes)
+                        throw new System.InvalidOperationException("Finite eye metadata id/atlas/hash changed: " + path);
+                    var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialsDir + "/" + m.id + "_Eyes.mat");
+                    string expectedAtlas = TexturesDir + "/" + record.atlas;
+                    var atlas = AssetDatabase.LoadAssetAtPath<Texture2D>(expectedAtlas);
+                    if (!material || !material.shader || material.shader.name != ShaderName || !material.HasProperty("_EyeAtlasCentres") || !material.HasProperty("_IrisUVScale") || !atlas || material.GetTexture("_BaseMap") != atlas || AssetDatabase.GetAssetPath(material.GetTexture("_BaseMap")) != expectedAtlas || atlas.width != 1024 || atlas.height != 1024 || atlas.wrapMode != TextureWrapMode.Clamp)
+                        throw new System.InvalidOperationException("Existing Character Eyes shader/actual BaseMap binding differs: " + m.id + " expected " + expectedAtlas);
+                    updates.Add((m.id, material, CalibratedEyeCentres(data, m.id, record.atlas)));
+                    Debug.Log($"[EyeCalibration] PREFLIGHT {m.id} material={AssetDatabase.GetAssetPath(material)} atlas={expectedAtlas} imageSHA256={EyeHash(expectedAtlas)}");
+                }
+                if (updates.Count != 25) throw new System.InvalidOperationException("Exactly25 existing Eyes materials required");
+                foreach (var update in updates)
+                {
+                    update.material.SetVector("_EyeAtlasCentres", update.centres); update.material.SetFloat("_IrisUVScale", 1.42f);
+                    EditorUtility.SetDirty(update.material); AssetDatabase.SaveAssetIfDirty(update.material);
+                    Debug.Log($"[EyeCalibration] {update.id} photographPivot={update.centres:R} scale=1.42; existing GUID retained");
+                }
+                if (Application.isBatchMode) EditorApplication.Exit(0);
+            }
+            catch (System.Exception error) { Debug.LogException(error); if (Application.isBatchMode) EditorApplication.Exit(1); else throw; }
+        }
+
         static CharacterCatalog.Entry BuildCharacter(Meta m, Shader shader, Texture2D vein)
         {
             string fbx = ModelsDir + "/" + m.id + ".fbx";
@@ -260,9 +330,10 @@ namespace Parasite.EditorTools
                 mat.SetFloat("_ClearCoatMask", 0.9f);
                 mat.SetFloat("_ClearCoatSmoothness", 0.94f);
                 mat.SetFloat("_CharacterMode", 1f);
-                // Close-view LakeGirl pilot only; other eye proportions await
-                // their own rendered review. The original FBX/outer UV is intact.
-                mat.SetFloat("_IrisUVScale", m.id == "LakeGirl" ? 1.42f : 1f);
+                // Photographic magnification pivot only; no destination/gaze recentering.
+                // LakeGirl retains its accepted fixed-centre1.42 configuration.
+                mat.SetVector("_EyeAtlasCentres", CalibratedEyeCentres(m.id, m.textures.eyes));
+                mat.SetFloat("_IrisUVScale", 1.42f);
                 mat.SetFloat("_Cull", 2f);
             });
             var hair = Mat(m.id + "_Hair", shader, mat =>

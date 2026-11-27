@@ -1,0 +1,87 @@
+{
+  "status": "ACCEPTED_EYE_ONLY_ROSTER_AND_MATERIAL_PROMOTION",
+  "utc": "2026-11-27T00:28:54.380722+00:00",
+  "scope": "Photographic-centred iris magnification1.42 for24; LakeGirl retains fixed-centre1.42 pixel-identical accepted appearance. No optical-axis/gaze recenter, geometry/rig/UV/native gameplay or full realism claim.",
+  "gpu": "RTX4050 / Vulkan / Unity6000.3.29f1",
+  "all25_visual_review": {
+    "path": "Logs/eye-roster-matched-gpu-review-v1/root-visual-review.json",
+    "sha256": "3318d91e23fac6ce96e8f5a467e9044122c6db7422a86f32e645b2fe3bb4526a",
+    "actors": 25,
+    "images": 50
+  },
+  "gpu_control": {
+    "path": "Logs/eye-roster-matched-gpu-review-v1/receipt.json",
+    "sha256": "d0267259ed4490d78155987c48613e31f534a8e01b370836d0628cec9f5fd923",
+    "nativeExit": 0,
+    "gpuClockSamples": 1050,
+    "intermediateRequests": 150,
+    "rendererIdentities": 451,
+    "shaderMessages": []
+  },
+  "actual_material_jobs": {
+    "before": {
+      "path": "Logs/eye-production-material-review-v2/before.json",
+      "sha256": "07bbbe39b640ca0420bdd3eacc019223841e34253cd7909ad05409016debc079",
+      "applyNativeExit": 0
+    },
+    "after": {
+      "path": "Logs/eye-production-material-review-v2/after.json",
+      "sha256": "fdac06fef2f8fdad875aef9982a754e2a025bbfb42dece3cfdae8e83546dce52",
+      "verifyNativeExit": 0
+    },
+    "materials": 25,
+    "prefabLODReferences": 75,
+    "preservedActualAssetHashes": 592,
+    "originalProtectedCharacterHashes": 598,
+    "onlyTwoEyePropertiesChanged": true,
+    "lakeGirlAcceptedSettingsPreserved": true
+  },
+  "canonicalSource": [
+    {
+      "path": "Assets/Parasite/Shaders/Character.shader",
+      "sha256": "6684e83f9e32e40a3c298a16144413e703a09508614ca135941086ba640e1ed4"
+    },
+    {
+      "path": "Assets/Parasite/Shaders/CharacterInput.hlsl",
+      "sha256": "195a9e7d5b359c749100e345a77f10f1d2f1557adc0a1fcb6af2966c92235c3d"
+    },
+    {
+      "path": "Assets/Parasite/Editor/CharacterModelImporter.cs",
+      "sha256": "b2d93f409daac746b2281e35a55e88518438d67c0086e5ab9a6522529c8410b0"
+    },
+    {
+      "path": "Tools/blender/characters/eye_atlas_calibration.json",
+      "sha256": "c66f9eeddc217c1aa3b42dfb0dd9d5852e42dc3e7bfe737424a9cd5328d1e95b"
+    },
+    {
+      "path": "Tools/blender/characters/measure_eye_atlases.py",
+      "sha256": "b0012d47ee6af7dd558c8c1f7dab7bc0b852db53d35bf32a7bd9a03d9bea6d2d"
+    }
+  ],
+  "portableBlenderRecipe": {
+    "file": "Tools/blender/characters/measure_eye_atlases.py",
+    "blender": "4.5.16LTS CPU-only",
+    "nativeExit": 0,
+    "all7AtlasesAnd25MetadataReplay": "exact JSON equality",
+    "result": "Logs/eye-production-material-review-v2/remeasured-eye-atlases.json"
+  },
+  "apiCompile": {
+    "runtime": 182,
+    "editor": 48,
+    "playerLinuxMono": 182,
+    "exit": 0
+  },
+  "retainedFailures": [
+    {
+      "path": "Logs/eye_production_apply_v1.log",
+      "nativeExit": 1,
+      "reason": "Verifier was not installed after a process-check false positive matched its own shell. No material write ran. Exact installed helper and fresh v2 output then passed."
+    }
+  ],
+  "remainingVisibleLimits": [
+    "Coarse layered hair silhouettes",
+    "Strong shadow/lighting and very dark skin in fixed street portrait",
+    "Existing cutout collars/garment geometry"
+  ],
+  "nativeProductionRendererAcceptance": "Pending exact preview/build checks; material jobs do not create GPU frames."
+}

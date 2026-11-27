@@ -16,6 +16,7 @@ Shader "Parasite/Character"
         _SkinSurfaceMap("Skin Surface (R smooth, G AO, B thickness)", 2D) = "white" {}
         [HideInInspector] _SkinSurfaceEnabled("Skin surface enabled", Float) = 0
         [HideInInspector] _IrisUVScale("Central iris UV scale", Float) = 1
+        [HideInInspector] _EyeAtlasCentres("Lower-left / upper-right photographic pivots", Vector) = (0.292,0.289,0.707,0.704)
         [HideInInspector] _HairForwardCutoff("Hair forward fine-fibre cutoff", Range(0,1)) = 0.02
         [HideInInspector] _SrcBlend("Source blend", Float) = 1
         [HideInInspector] _DstBlend("Destination blend", Float) = 0

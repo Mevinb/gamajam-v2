@@ -42,6 +42,7 @@ half _CharacterMode;
 half _Wrap;
 half _SkinSurfaceEnabled;
 half _IrisUVScale;
+float4 _EyeAtlasCentres;
 half _HairForwardCutoff;
 UNITY_TEXTURE_STREAMING_DEBUG_VARS;
 CBUFFER_END
@@ -63,7 +64,7 @@ inline void InitializeStandardLitSurfaceData(float2 uv, out SurfaceData outSurfa
     // changes; exterior sclera UVs, geometry and every other material keep uv0.
     if (_CharacterMode > 0.5h && _CharacterMode < 1.5h && _IrisUVScale > 1.001h)
     {
-        float2 centre = uv.x + uv.y > 1.0 ? float2(0.707, 0.704) : float2(0.292, 0.289);
+        float2 centre = uv.x + uv.y > 1.0 ? _EyeAtlasCentres.zw : _EyeAtlasCentres.xy;
         float2 delta = uv - centre;
         float fade = smoothstep(0.15, 0.27, length(delta));
         albedoUV = centre + delta * (1.0 + (_IrisUVScale - 1.0) * (1.0 - fade));

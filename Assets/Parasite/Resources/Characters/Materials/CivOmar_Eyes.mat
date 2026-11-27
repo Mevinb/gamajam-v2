@@ -59,7 +59,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _HairForwardCutoff: 0.02
-    - _IrisUVScale: 1
+    - _IrisUVScale: 1.42
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -74,6 +74,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EyeAtlasCentres: {r: 0.29190713, g: 0.29007193, b: 0.70764816, a: 0.702158}
     - _SpecColor: {r: 0.025, g: 0.025, b: 0.025, a: 1}
     - _TintA: {r: 1, g: 1, b: 1, a: 1}
     - _TintB: {r: 1, g: 1, b: 1, a: 1}

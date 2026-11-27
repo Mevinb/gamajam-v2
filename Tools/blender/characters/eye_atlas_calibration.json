@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "scope": "Photographic pupil-pivot magnification only; no geometric optical-axis calibration or gaze translation.",
+  "method": "Blender image.pixels max RGB; inner UV radius0.015 core99th percentile +0.02 contrast; centroid within0.055 UV ROI. Pixel centres and bottom-left UV origin; outer UV identity retained.",
+  "sourceDiagnosticSHA256": "581e9d33279c6d734aa57ac18b05631a17073fed3f14c6a7abd6da4dc2b8faa1",
+  "fixedLakeGirlCentres": [
+    0.292,
+    0.289,
+    0.707,
+    0.704
+  ],
+  "scale": 1.42,
+  "atlases": [
+    {
+      "path": "Eyes/blue.png",
+      "sha256": "e771e6a53808869aff3f7ebd72283dd0e797227dc80fc06daeb2d933600def78",
+      "centres": [
+        0.2937650680541992,
+        0.29803943634033203,
+        0.7068181644447162,
+        0.7037355904476517
+      ]
+    },
+    {
+      "path": "Eyes/bluegreen.png",
+      "sha256": "9f1f7607ec03b49bf81046a6066903b3e7ffd7a14164c6ef191045c5c7437b92",
+      "centres": [
+        0.29389965070392493,
+        0.2979968803327645,
+        0.7069358617230191,
+        0.7037440232240437
+      ]
+    },
+    {
+      "path": "Eyes/brown.png",
+      "sha256": "bff55d4585bce41cfa2ccf92012c09c4d73475ba36f1de0e36f2dc80cd2a219e",
+      "centres": [
+        0.29190711701968974,
+        0.29007192534307874,
+        0.7076481774508939,
+        0.7021579711023876
+      ]
+    },
+    {
+      "path": "Eyes/brownlight.png",
+      "sha256": "e75eb9bd956f483929cba223f23b1c7444ea96c73c4a977dd9ff675a144afbd9",
+      "centres": [
+        0.2938065745895644,
+        0.29804681150438883,
+        0.7068183117378048,
+        0.7037495236280488
+      ]
+    },
+    {
+      "path": "Eyes/green.png",
+      "sha256": "0ebb83f30b31cad23976415e367161e407f37e7c5ae564b56334e9500b8ff3fa",
+      "centres": [
+        0.293800053203405,
+        0.29805218897645813,
+        0.706817756307059,
+        0.703745421268748
+      ]
+    },
+    {
+      "path": "Eyes/grey.png",
+      "sha256": "59c8825217906790fa2274d4b907941bf0527f76e69b53f4df6b5b684b30d57f",
+      "centres": [
+        0.29384924303470505,
+        0.29800937858751325,
+        0.7069179853253182,
+        0.7037355242220651
+      ]
+    },
+    {
+      "path": "Eyes/lightblue.png",
+      "sha256": "5b72993544be4b65ce3158e3585486b0932847babda311b001c1ac1438354ed3",
+      "centres": [
+        0.29389965070392493,
+        0.2979968803327645,
+        0.7069358617230191,
+        0.7037440232240437
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "CivAmara",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "6c3b67d4b60979edca1f94bf5dad517046efdf55713f4a6ad2e3f5233fa13933"
+    },
+    {
+      "id": "CivGrace",
+      "atlas": "Eyes/green.png",
+      "metadataSHA256": "17c27a6ec891bb5dd261262561c05e5e52e193bdbd70c344f40a4e382c76ebbf"
+    },
+    {
+      "id": "CivKenji",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "4ecbc78e9f1365dac85b9c167c8f6c2325af540ddc0fbbc367de2505ccb2a88f"
+    },
+    {
+      "id": "CivLena",
+      "atlas": "Eyes/bluegreen.png",
+      "metadataSHA256": "78d2c4d362f30f656f26263f690416f0861ffec5547402a64824e68d2a1e3ced"
+    },
+    {
+      "id": "CivLeo",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "373efdd2328993a3a827e65f59a37747b3721b564cdb0f0424b4812aa49a41ef"
+    },
+    {
+      "id": "CivMaya",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "3d708781704b49e3bbd1a861534d6b80675ca06a8c9460d91515662b7f51e728"
+    },
+    {
+      "id": "CivOmar",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "23272ed060e571a25ff8d595c3d63ac5f972bca6f10585c43fb6890590f1619e"
+    },
+    {
+      "id": "CivSofia",
+      "atlas": "Eyes/brownlight.png",
+      "metadataSHA256": "b8c6425f6b33f7a5c8696e589af966238f1480fe05852748dc58941db0cca256"
+    },
+    {
+      "id": "CivTheo",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "a947ac8e229b718073100bbaa2dbbc34d48e5a0122e6d89626a79ef944275ec1"
+    },
+    {
+      "id": "CivWalter",
+      "atlas": "Eyes/lightblue.png",
+      "metadataSHA256": "8cd3fa9103377e1622ae45ef8f9d7918c4cb2bcc2699f2ad7624fd1b77885ddd"
+    },
+    {
+      "id": "DrPetrov",
+      "atlas": "Eyes/green.png",
+      "metadataSHA256": "8c44230db2874877ddba9063e81f9d458bf46d2cabacf2d285551be90c91467b"
+    },
+    {
+      "id": "DrVale",
+      "atlas": "Eyes/grey.png",
+      "metadataSHA256": "6035e6031a3b1936500fd1a2bee509abe18b78dbd31506b9c274b4854b5fe086"
+    },
+    {
+      "id": "GuardDana",
+      "atlas": "Eyes/blue.png",
+      "metadataSHA256": "937f025260a58fd188b27d8e191ef8a04ce4e72a027107f25a22c868ccb57194"
+    },
+    {
+      "id": "GuardJonas",
+      "atlas": "Eyes/brownlight.png",
+      "metadataSHA256": "ed4655f193c22cd6c7a462a295313dfb2029804babd3684a568b4165dfd0ad7a"
+    },
+    {
+      "id": "GuardMarcus",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "0bf1f1f8bde8959578017454eccc0a4e14906d90799de130e51cde1191404c19"
+    },
+    {
+      "id": "GuardPriya",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "27550c4ed340ce49d0caf69f186e7230b1cc8458ebbb0dab915a692af8e6c8a9"
+    },
+    {
+      "id": "GuardVictor",
+      "atlas": "Eyes/grey.png",
+      "metadataSHA256": "c133bc68ae71ff995d621b919db0d1561e174b9ffbf0ac4849c5352dbc8907f6"
+    },
+    {
+      "id": "LakeGirl",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "daa53fa41e2ff76789226d3bf844d1aa4474e1d4a2368c7937350b10ca47a638"
+    },
+    {
+      "id": "MaintEli",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "18475783e8e25af532bcca2a90735115a6b266a7f629cbe7e32608d0dd7bc88f"
+    },
+    {
+      "id": "MaintGus",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "690fe5de8e2c3b1e3b133d78c6f06607be43221e88550075388a36beee3d6585"
+    },
+    {
+      "id": "MaintNoor",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "95073bb5bd98530899ee3f872b7a8fa5beb5659ddc6388ede4a2f81687664bbd"
+    },
+    {
+      "id": "MaintRita",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "f312ab4382c86cd6a559498ca0026c7cbf2ab55e05d74269450cff57901781a4"
+    },
+    {
+      "id": "SciFelix",
+      "atlas": "Eyes/blue.png",
+      "metadataSHA256": "85b22be36cf53ed3fe2547d8b2efff73aa0b55364d2aa47555d9de3722a1e3a7"
+    },
+    {
+      "id": "SciIngrid",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "848ffeb56e81c08e330f5ba831c844dc963602c2625636f4c236baa55f444d98"
+    },
+    {
+      "id": "SciSamuel",
+      "atlas": "Eyes/brown.png",
+      "metadataSHA256": "19d54a47770d7abb3ef643d756851d880c0ddbe564a96a54e4bce00f26a02f83"
+    }
+  ]
+}
