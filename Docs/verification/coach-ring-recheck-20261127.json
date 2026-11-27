@@ -1,0 +1,26 @@
+{
+  "status": "UNRESOLVED_EDITOR_RING_WARNING_REPRODUCED_UNCHANGED_STRICT_FIXTURES",
+  "nativeExit": 2,
+  "sourceCommit": "34b5fdf",
+  "xml": "Logs/coach-strict-recheck-20261127.xml",
+  "xmlSHA256": "dc6d551f785f85aad62d632e13320df40dd938b20581fd6c4ce8ca481d20ed74",
+  "log": "Logs/coach_strict_recheck_20261127.log",
+  "logSHA256": "7aca008b638e9077c7987657403eece8affc0032880846426b38e6ce53d0ef9c",
+  "durationSeconds": 31.6742689,
+  "tests": [
+    {
+      "name": "Parasite.Tests.RailCoachFittingTests.ActualSeatBlocksNormalFreeMovementWhileOriginalAisleAndControlRemainReachable",
+      "result": "Failed",
+      "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+    },
+    {
+      "name": "Parasite.Tests.RailCoachRenderedReviewTests.ActualGlassTransmitsAnOwnedMarkerAndCoachViewsAreCaptured",
+      "result": "Failed",
+      "failure": "Unhandled log message: '[Warning] Ran out of Graphics Ring Buffer space. Consider using the -gfx-ring-buffer-size command line option to increase the size.'. Use UnityEngine.TestTools.LogAssert.Expect"
+    }
+  ],
+  "warningStack": "Native BuiltinRuntimeReflectionSystem.TickRealtimeProbes -> URP RenderSingleCamera -> ScriptableRenderContext.Submit",
+  "bareWarningLines": 6,
+  "scope": "Actual Editor Vulkan prepared coach fixtures. No native-player transfer, log suppression, allocator override, quality/probe setting changes or completed fix claim.",
+  "next": "Opt-in event/probe identity trace staged separately, then native-player comparison and causal fix."
+}

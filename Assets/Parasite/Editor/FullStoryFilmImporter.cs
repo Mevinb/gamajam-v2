@@ -21,7 +21,14 @@ namespace Parasite.EditorTools
             video.sRGBClip=true;
         }
 
-        public static void VerifyAllImported(bool reimport = false)
+        // Final release entrypoint remains strict: all eight assets are required.
+        public static void VerifyAllImported(bool reimport = false) => VerifyImported(reimport, false);
+
+        // Explicit Visual Preview policy: only an absent optional Northline movie
+        // may fall back. A present Northline asset must pass every normal gate.
+        public static void VerifyVisualPreviewImported(bool reimportExistingSeven = false) => VerifyImported(reimportExistingSeven, true);
+
+        static void VerifyImported(bool reimport, bool visualPreview)
         {
             var specs = CinematicStoryPlan.FullSet.Concat(new[]
             {
@@ -30,9 +37,21 @@ namespace Parasite.EditorTools
             foreach (var spec in specs)
             {
                 string path = "Assets/Parasite/Resources/" + spec.ResourcePath + ".webm";
-                if (!File.Exists(path)) throw new InvalidOperationException("Missing required story film: " + path);
+                bool optionalNorthline = spec.ResourcePath == CinematicStoryPlan.NorthlineDeparture.ResourcePath;
+                if (!File.Exists(path))
+                {
+                    if (visualPreview && optionalNorthline)
+                    {
+                        Debug.Log("[FilmImport] VISUAL_PREVIEW optional NorthlineDeparture absent; physical coach departure remains authoritative");
+                        continue;
+                    }
+                    throw new InvalidOperationException("Missing required story film: " + path);
+                }
                 string guid = AssetDatabase.AssetPathToGUID(path);
-                if (reimport) AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
+                // The preview reimport is deliberately scoped to the seven existing
+                // movies. If Northline is present, validate it without altering it.
+                if (reimport && (!visualPreview || !optionalNorthline))
+                    AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
                 var video = AssetImporter.GetAtPath(path) as VideoClipImporter;
                 if (!video) throw new InvalidOperationException("Missing video importer: " + path);
                 var standalone = video.GetTargetSettings("Standalone");
@@ -48,6 +67,22 @@ namespace Parasite.EditorTools
                 if (string.IsNullOrEmpty(afterGuid) || (!string.IsNullOrEmpty(guid) && guid != afterGuid))
                     throw new InvalidOperationException("Story film GUID changed: " + path);
                 Debug.Log($"[FilmImport] PASS {path} guid={afterGuid} frames={clip.frameCount} sourceAudio={video.sourceAudioTrackCount} importAudio={video.importAudio} transcode={video.defaultTargetSettings.enableTranscoding}");
+            }
+        }
+
+        public static void ReimportVisualPreviewSevenBatch()
+        {
+            try
+            {
+                VerifyVisualPreviewImported(true);
+                Debug.Log("[FilmImport] VISUAL_PREVIEW PASS seven mandatory existing films; any present NorthlineDeparture also validated");
+                if (Application.isBatchMode) EditorApplication.Exit(0);
+            }
+            catch (Exception error)
+            {
+                Debug.LogException(error);
+                if (Application.isBatchMode) EditorApplication.Exit(1);
+                else throw;
             }
         }
 

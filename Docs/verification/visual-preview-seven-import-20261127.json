@@ -1,0 +1,67 @@
+{
+  "status": "ACTUAL_SEVEN_FILM_REIMPORT_PASS_PREVIEW_ONLY",
+  "nativeExit": 0,
+  "utc": "2026-11-27T00:32:09.270573+00:00",
+  "scope": "Seven current streams retain exact bytes/GUIDs; importAudio0/no transcode/sourceAudio0 and declared clip dimensions/durations/frame counts pass actual Unity import. Missing optional new Northline permitted only in explicit Visual Preview. No new finales/native-player decode claimed.",
+  "sourcePatch": {
+    "path": "Logs/visual-preview-build-stage/visual-preview.patch",
+    "sha256": "8c82adcf2c16faf2cd758878b2bdcb2aaacca9b1ea738225f61f10e31b2fe81e"
+  },
+  "defaultFinalEightGate": "Unchanged strict all-eight preflight.",
+  "log": {
+    "path": "Logs/visual_preview_seven_import_v1.log",
+    "sha256": "6ef2ef3a04322c2f55107b562eedfa645fa327150756903fa72bd68f802b5018"
+  },
+  "movies": [
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/Films/ContainmentOpening.webm",
+      "sha256": "ca66e05b0be289067bdc4da9d6a62daab8e91557154c6da881aa83679578f7c2",
+      "guid": "10bd274c7596ff312be56ac66c74816a",
+      "metaSHA256": "9ce5ffd4a93ffbd73d9f01609270a9045e5cea157cc2564198c1152d3bf05b4a",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/Films/ContainmentOpening.webm guid=10bd274c7596ff312be56ac66c74816a frames=72 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/Films/LakesideEnding.webm",
+      "sha256": "af586fdd6e31745723fe3774856d039fb3db81bacd0600007a4a82d6baa75c17",
+      "guid": "7da20e4fdc05dbc16aec0b241c792f62",
+      "metaSHA256": "2c234aaf83fa9c8b59651290dfd58e245f7f4511da6f8eadc0610a9157bb203d",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/Films/LakesideEnding.webm guid=7da20e4fdc05dbc16aec0b241c792f62 frames=72 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/FullStory/LakeArrival.webm",
+      "sha256": "1f7e24eda91006c096ded6105a1798a5a1795eac5e0f765a6b259e6675dca619",
+      "guid": "e516edbfc91d9cdedacebe0c1bd4bda8",
+      "metaSHA256": "fba6a0dec642bd16c2571da0089d56717b0c6f3d53ae6a9eb2fa04afccf03668",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/FullStory/LakeArrival.webm guid=e516edbfc91d9cdedacebe0c1bd4bda8 frames=360 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/FullStory/LakeDominion.webm",
+      "sha256": "a1af0235be7fa32249229ae1e3daf90c25ea88d4722d84d7c5358fe280185d3c",
+      "guid": "529170288cd71e12d9774feb7f3121ee",
+      "metaSHA256": "80e3241a708be98af8e0f18b525b46b8fb349427294b57f8f3b633f3a8b80a41",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/FullStory/LakeDominion.webm guid=529170288cd71e12d9774feb7f3121ee frames=168 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/FullStory/LakeHold.webm",
+      "sha256": "67da88172cf7d11e8a3f2efd69e9e2660bb906cc20295db6ccd2749618268ffa",
+      "guid": "121f6645859c34e729710136c6d33ed1",
+      "metaSHA256": "acea7cbe335bf445eee8e802c9b9520db4a695b52521eed7ee1392f832020897",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/FullStory/LakeHold.webm guid=121f6645859c34e729710136c6d33ed1 frames=144 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/FullStory/LakePeace.webm",
+      "sha256": "b53917764a866245438c365615332e58ce877f410dabf91ab7e1850fa2e56fd0",
+      "guid": "8082f6e7497260e11890f4df9134349f",
+      "metaSHA256": "fa5163fb5fbbf9dc26d5a6ffde83700b41e54e1a064f25170b9af0e96c439f3a",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/FullStory/LakePeace.webm guid=8082f6e7497260e11890f4df9134349f frames=168 sourceAudio=0 importAudio=False transcode=False"
+    },
+    {
+      "path": "Assets/Parasite/Resources/Cinematics/FullStory/OpeningFull.webm",
+      "sha256": "e76b223295625233e32c30930951bd8718b40ed45e032050b24b923016d1ea27",
+      "guid": "6b4578fd05fb67cf9aaaedb78db93c58",
+      "metaSHA256": "b7b93e7109c04ef7b4a081b944f0d39d55d813344a4c8265ed65ebde1a3f4776",
+      "actualUnityPass": "[FilmImport] PASS Assets/Parasite/Resources/Cinematics/FullStory/OpeningFull.webm guid=6b4578fd05fb67cf9aaaedb78db93c58 frames=1920 sourceAudio=0 importAudio=False transcode=False"
+    }
+  ],
+  "next": "Finish accepted assets/source checks/commits/temporary cleanup, then source freeze/isolated preview build/native5/user launch."
+}

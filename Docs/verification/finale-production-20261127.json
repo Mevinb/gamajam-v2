@@ -15,10 +15,12 @@
       "path": "Logs/realism-build-stage/finale_queue.py",
       "sha256": "80064050ada05c95c724899ef823947b0778d88ace9d5225d450f73d5bf9a653"
     },
-    "receipt": "Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261127T000224343858Z-e0a8ab17/receipt.json",
-    "supervisor_pid": 165802,
-    "started_utc": "2026-11-27T00:02:24.343946+00:00",
-    "scope": "All5 films sequential render/encode only; no publication or build. Per-film/global STOP, source pins, live-player check,1GiB disk minimum and safe owned-child retirement."
+    "receipt": "Logs/full-cinematic-renders/realistic-finales-production-20261127/queue-runs/20261127T001918571482Z-d157fba7/receipt.json",
+    "supervisor_pid": 175447,
+    "started_utc": "2026-11-27T00:19:18.571582+00:00",
+    "scope": "All5 films sequential render/encode only; no publication or build. Per-film/global STOP, source pins, live-player check,1GiB disk minimum and safe owned-child retirement.",
+    "current_state": "STOPPED_MARKER",
+    "terminal": true
   },
   "producer": {
     "path": "Tools/blender/cinematics/finale_production.py",
@@ -78,5 +80,8 @@
     }
   },
   "limits": "No new candidate or complete new-movie/native-gameplay/performance pass. Only declared source/API/keyframe/static-baked character and queued-production scopes are accepted. Existing26 missions unchanged; Exchange stash remains parked.",
-  "publication_access": "Read-only gh auth status recheck on27Nov local still reports activeMevinb token invalid. No Git-data write, push, identity switch or credential mutation attempted. Continue local work; wait for restored access."
+  "publication_access": "Read-only gh auth status recheck on27Nov local still reports activeMevinb token invalid. No Git-data write, push, identity switch or credential mutation attempted. Continue local work; wait for restored access.",
+  "completed_frames_observed": 126,
+  "pause_reason": "Accepted eye promotion, coach recheck and requested current-media Visual Preview. STOP markers retained until actual graphics work/user player ends; sources/quality unchanged.",
+  "preview_scope": "Explicit interim Visual Preview keeps seven existing films strict and permits only absent optional Northline. Default final-eight preflight remains strict; full new finales not claimed."
 }

@@ -65,17 +65,26 @@ deletes footage. For a safe full-queue pause create `<job>/STOP` and wait for it
 to finish; individual film STOPs also stop the queue. After review, manually remove only the intended STOP
 and rerun `python3 Logs/realism-build-stage/finale_queue.py --go`; validated complete output is reused.
 Current source version is0.8.0-preview, committed locally; no0.8candidate has been built or launched.
-The queue resumed from109 Arrival frames while staged shader/LOD/all-roster work continues. Current study
-state and owned temporary asset folders are in `verification/character-surface-studies-20261127.json`.
-The new strand maps/shader and roster eye rollout are NOT accepted. The corrected eye control fixture now
-passes actual RTX/Vulkan/native0 with12 images,3 exact stock-parity pairs,252 GPU clock samples,
-36 intermediate-target proofs and109 matching renderer identities. Root inspected the three adult
-stock/photo1.42 pairs and selected that proportion direction for those profiles; all25 matched validation
-is still required before rollout. The verified fix warms the actual pipeline before attaching the clock.
-Typed property copying also resolves the observed bulk-copy target-texture binding loss. Hair v3 city-view
-and backface baseline parity pass, but its controlled-light arm fails on a background tree transition;
-animated LOD settling and a real Vulkan uninitialised-variable warning are being investigated.
-Keep all original failures/guards. Live character FBX/rig/UV/material and cinematic sources remain unchanged.
+The queue is frame-safe paused at126 Arrival frames for visual promotion, coach recheck and the user's requested
+playable preview. Current study state is in `verification/character-surface-studies-20261127.json`.
+All25 matched eye pairs pass actual RTX/Vulkan/native0:50 images,1050 clock samples,150 intermediate
+requests and451 renderer identities. Root inspected every pair. The24 adult photo-centred1.42
+proportions are promoted; LakeGirl keeps its accepted fixed-centre1.42 appearance exactly. Fresh-process
+material verification proves25 saved mappings/75prefabLOD references, all other state/GUIDs unchanged,
+and the portable Blender measurement replays exactly. See `verification/eye-atlas-calibration-20261127.json`.
+Hair v5 now passes25 paired images and5 genuine native-LOD-settled arms, with no shader warnings/logs.
+Removing a redundant nested full-PBR early return resolves the observed Vulkan warning; zero-weight
+stock fallback remains per-light. Root accepts the combined map/direct-surface response only as a
+LakeGirl pilot; canonical promotion and exact-player checks remain pending. Coarse cap contours remain.
+The two original strict coach fixtures still fail on the Editor Graphics Ring Buffer warning through native
+TickRealtimeProbes, with their log guards unchanged. See `verification/coach-ring-recheck-20261127.json`.
+A separate opt-in event/probe trace is being staged; no quality cut or allocator override is applied.
+Only regenerable Unity GI-cache intermediates were retired to recover2.316GB, with exact inventory;
+all project/Blender/footage/retained-build files remain. See `verification/storage-cleanup-20261127.json`.
+An explicit Visual Preview channel is being prepared so the user can test accepted current graphics
+while final films render. It keeps the seven existing films strict and permits only missing optional
+Northline footage; the actual physical coach still completes its owned departure. Default final-eight
+validation remains strict. No preview build/native pass/user launch is claimed until its own receipts.
 The producer now enforces actual limited-range BT709 matrix/transfer/primaries tags as well as complete silent VP8
 decode; a one-frame encode probe confirms the requested conversion/tag chain. Render driver, policy and sources
 remain frozen. The build's new eight-film import preflight is implemented/API-compiled, but its actual reimport gate

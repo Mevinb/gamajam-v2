@@ -1,0 +1,20 @@
+{
+  "state": "COMPLETE_REGENERABLE_GI_CACHE_CLEARED",
+  "root": "/home/mevlec/.cache/unity3d/GiCache",
+  "utc": "2026-11-27T00:21:29.605691+00:00",
+  "rationale": "Current render plus isolated build budget exceeds root disk space. Unity documentation identifies this as shared intermediate precomputed lighting data, not source or committed lightmaps.",
+  "documentation": "https://docs.unity3d.com/6000.3/Documentation/Manual/GICache.html",
+  "noUnityEditors": true,
+  "noObservedCacheOpenFiles": true,
+  "bytes": 2316401386,
+  "freeBefore": 4343296000,
+  "deletedFiles": 4568,
+  "freeAfter": 6672400384,
+  "remainingFiles": 0,
+  "endedUtc": "2026-11-27T00:21:31.996831+00:00",
+  "inventory": {
+    "path": "Logs/realism-storage-cleanup-20261127/receipt.json",
+    "sha256": "cb077b755e73834a7fbc9913cc8d622b4d458a9d15e0d86ab2f9a6462a8cfaa3"
+  },
+  "preservation": "Only exact listed files under resolved shared Unity GiCache removed with no Editor/cache open handles observed. No project, Blender source, rendered footage or retained build was deleted."
+}
