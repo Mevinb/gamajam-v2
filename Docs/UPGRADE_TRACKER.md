@@ -4,6 +4,17 @@ The current request reopens feature development and authorizes frequent commits 
 Older handoff statements freezing the eight-mission release, or prohibiting pushes for its capture session, are historical.
 The full upgrade remains in progress; a passing compile or a small acceptance suite does not establish that every bug is fixed.
 
+## Current visual scope — 28 November 2026
+
+The user's latest scope is visual realism only: no mission expansion, gameplay tests, PlayMode, benchmarks or player launches.
+The historical requirement table below does not authorize those deferred actions. Linux/URP plus offline RTX Blender films remains
+the chosen platform. The accepted limestone/curb/Van asset batch now has complete editable sources, portable recipes, actual
+comparison/import/CityBuilder/post-source capture evidence and clean helper retirement.
+[Current integration evidence](verification/visual-assets-round2-20261128.json) keeps imported-normal equality, stable identities,
+collider/marker preservation and static image decisions distinct from final-player acceptance. No hair pilot was promoted.
+The five frozen V5 films, full decoding/review, journaled publication/all-eight-film import and a fresh Linux build remain required;
+existing strict coach warning/performance findings stay open.
+
 ## Requested outcome and evidence
 
 | Requirement | Evidence needed before calling it complete |

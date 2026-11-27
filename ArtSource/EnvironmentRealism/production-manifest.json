@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "authoring": "Blender 4.5 LTS; deterministic bmesh solids; CPU Cycles 8-sample procedural atlas bake",
+  "authoring": "Blender 4.5 LTS; original seven-module kit with inward curb wear, limestone-only isotropic UV refinement and accepted limestone atlas quarter; other source state and atlas quarters preserved",
   "axes": "Unity X-right/Y-up/-Z front -> Blender X-right/Z-up/+Y front; FBX -Z forward Y-up; metres",
   "physics": "All exports are visual only, without colliders, lights, cameras, animation or gameplay scripts.",
   "atlas": {
@@ -19,18 +19,18 @@
     "compressed_full_mips_estimate_MiB": 16,
     "A": {
       "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_A.png",
-      "bytes": 2091321,
-      "sha256": "038421aa0e0aa46219da738b0d04707be4d0beb5ee2875ffcb4701f500fd203e"
+      "bytes": 2172344,
+      "sha256": "0da49e109fe69ef5d0dc7651198eef2379681af1c8bf97afea59b9f3b490fe3d"
     },
     "N": {
       "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_N.png",
-      "bytes": 5817395,
-      "sha256": "1886de0fb700bf00e3955031e2568b61483d54a024178c34338c4827955d6260"
+      "bytes": 4355833,
+      "sha256": "5aec2e7da7afcc2b8ea2b1f5f567ffa8da5e24bd7d9e518a446aead8c563e7e5"
     },
     "M": {
       "path": "Assets/Parasite/Art/EnvironmentRealism/Textures/EnvironmentRealism_M.png",
-      "bytes": 3079740,
-      "sha256": "50b4d318f33c02c5d7ee911c986b84fa7d605ef6f84f6188a35bd7b284f1cd42"
+      "bytes": 2050421,
+      "sha256": "92a83157590b47c776e05ad699904ece4aa70c9d78ee1e9b7fdc3c77db08f69b"
     }
   },
   "models": {
@@ -48,8 +48,8 @@
         0.020000003278255463
       ],
       "export": "Assets/Parasite/Art/EnvironmentRealism/WindowReveal.fbx",
-      "bytes": 29868,
-      "sha256": "105d4f4015a8e00e1c36762551164148b9dcc79b4c89f420f68baac1ff5217e4"
+      "bytes": 29996,
+      "sha256": "9d13704483cb6f51ca86a28c420e248a529ac9a427d91fa3494f658a8ab65ba1"
     },
     "EntranceSurround": {
       "triangles": 1076,
@@ -65,8 +65,8 @@
         0.03500000387430191
       ],
       "export": "Assets/Parasite/Art/EnvironmentRealism/EntranceSurround.fbx",
-      "bytes": 41276,
-      "sha256": "8d3c7c274a603042b7052ac4cc7c832801b7840fea04d5aead29ac873ec00b2c"
+      "bytes": 41404,
+      "sha256": "e708e4f9e50c88180a9106bcf5d52ebe049fc6d828d8f12f9c424b3db49b43f5"
     },
     "Condenser": {
       "triangles": 1880,
@@ -95,12 +95,12 @@
       ],
       "bounds_max": [
         0.4984999895095825,
-        0.16200000047683716,
+        0.16199959814548492,
         0.1589999943971634
       ],
       "export": "Assets/Parasite/Art/EnvironmentRealism/CurbStone.fbx",
-      "bytes": 22412,
-      "sha256": "433707e91f94a26f976e91bceb5c1eaa34b17f6ce0e5f37a5bee82a334e25ea7"
+      "bytes": 23260,
+      "sha256": "6ddc8e7ea6b74a3889dd0ec05ffc3997d1a396db850cd59315a656cdd6f89c4e"
     },
     "DrainGrate": {
       "triangles": 920,
@@ -133,8 +133,8 @@
         0.3216455578804016
       ],
       "export": "Assets/Parasite/Art/EnvironmentRealism/FracturedStone.fbx",
-      "bytes": 23180,
-      "sha256": "fc66a86bc24fcefece01096d1f93c4dda54fed9d7b0ac9df9b685269436b3c67"
+      "bytes": 23292,
+      "sha256": "1d6cf354999241a01b4183a4c71dcdc89c05844f47e3f86bad674f716100570c"
     },
     "GrassClump": {
       "triangles": 348,
@@ -1462,10 +1462,10 @@
       ],
       "bounds_max": [
         0.4984999895095825,
-        0.16200000047683716,
+        0.16199959814548492,
         0.1589999943971634
       ],
-      "signed_volume": 0.05060793521061604
+      "signed_volume": 0.050583145280753174
     },
     {
       "model": "DrainGrate",
@@ -1774,7 +1774,21 @@
   ],
   "packed_source": {
     "path": "ArtSource/EnvironmentRealism/EnvironmentRealism.blend",
-    "bytes": 11066108,
-    "sha256": "873542d74ea64d6809b3f4845e904d3c2401a346fb2b0a80f1c4985997c6c9a5"
+    "bytes": 8747560,
+    "sha256": "fb97cdc9f591990d76e8c38f92d7fe689c9c1cb6118f517fc6dd8846e4d33c45"
+  },
+  "refinement": {
+    "version": 1,
+    "verification": "Docs/verification/visual-assets-round2-20261128.json",
+    "scope": "Four visual models and limestone atlas quarter; no colliders, markers, gameplay, new shader or import-policy change",
+    "recipe": "Tools/blender/environment_realism/refinement/refine_environment.py",
+    "recipe_manifest": "Tools/blender/environment_realism/refinement/refinement-manifest.json",
+    "baseline": "ArtSource/EnvironmentRealism/RefinementSources/EnvironmentRealism.before-isotropic-uv.blend",
+    "baseline_sha256": "873542d74ea64d6809b3f4845e904d3c2401a346fb2b0a80f1c4985997c6c9a5",
+    "external_source_atlas": "ArtSource/EnvironmentRealism/Textures",
+    "replay": "Explicit original complete source plus three exact accepted PNG inputs; do not run the legacy whole-kit bake over the accepted atlas quarter",
+    "curb_volume_note": "pieces.signed_volume records Blender source cage; accepted exported triangle volume is 0.0505771641865468 m3",
+    "nonstone_uvs_and_other_three_modules": "exact",
+    "atlas_outside_limestone_quarter_rgba": "exact"
   }
 }

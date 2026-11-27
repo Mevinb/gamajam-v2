@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "baseSourceSha256": "873542d74ea64d6809b3f4845e904d3c2401a346fb2b0a80f1c4985997c6c9a5",
+  "baseSourceVersion": "Original environment source at source commit43b82de",
+  "allModules": [
+    "WindowReveal",
+    "EntranceSurround",
+    "Condenser",
+    "CurbStone",
+    "DrainGrate",
+    "FracturedStone",
+    "GrassClump"
+  ],
+  "uvTargets": [
+    "WindowReveal",
+    "EntranceSurround",
+    "FracturedStone"
+  ],
+  "exportTargets": [
+    "WindowReveal",
+    "EntranceSurround",
+    "FracturedStone",
+    "CurbStone"
+  ],
+  "acceptedCurbReferenceSha256": "f21183eb79264fbd4df5ac54264fd1b73ef342f09e7660b7100d0daa52d0efbd",
+  "atlasInputs": {
+    "A": {
+      "acceptedSha256": "0da49e109fe69ef5d0dc7651198eef2379681af1c8bf97afea59b9f3b490fe3d",
+      "originalPackedSha256": "038421aa0e0aa46219da738b0d04707be4d0beb5ee2875ffcb4701f500fd203e"
+    },
+    "N": {
+      "acceptedSha256": "5aec2e7da7afcc2b8ea2b1f5f567ffa8da5e24bd7d9e518a446aead8c563e7e5",
+      "originalPackedSha256": "1886de0fb700bf00e3955031e2568b61483d54a024178c34338c4827955d6260"
+    },
+    "M": {
+      "acceptedSha256": "92a83157590b47c776e05ad699904ece4aa70c9d78ee1e9b7fdc3c77db08f69b",
+      "originalPackedSha256": "50b4d318f33c02c5d7ee911c986b84fa7d605ef6f84f6188a35bd7b284f1cd42"
+    }
+  },
+  "limestoneQuarter": "PNGx[0,1024),y[1024,2048), UVbottomleft",
+  "projection": "One uniform physical scale per disconnected stone piece, physical tile=max(1m,longest piece span),12px atlas padding; same source stone-axis conventions",
+  "scope": "Three limestone UV-only updates, exact accepted curb replay, exact accepted A/N/M quarter; other modules/normals/roles/nonstoneUV preserved. Explicit external inputs, no hidden path dependency."
+}

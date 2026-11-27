@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "status": "AUTHORED_CPU_SOURCE_ONLY_UNITY_VISUAL_ACCEPTANCE_PENDING",
-  "author_sha256": "0a834f2d3dde21646276d6fa5eb30fe5a8613dfb1a2b4ae35f931c1e0cccb71c",
+  "status": "AUTHORED_CPU_SOURCE_WITH_SCOPED_VAN_V5_STATIC_RENDERER_ACCEPTANCE",
+  "author_sha256": "802f0acd946abf050fd1d77e173a7c138a42ee2a9f887becc80f6f1a839dff1a",
   "materials": [
     "VehiclePaint",
     "VehicleTrim",
@@ -183,15 +183,15 @@
       "lods": [
         {
           "lod": 0,
-          "triangles": 49783
+          "triangles": 50415
         },
         {
           "lod": 1,
-          "triangles": 14660
+          "triangles": 15816
         },
         {
           "lod": 2,
-          "triangles": 3702
+          "triangles": 3928
         }
       ],
       "wheel_centres": [
@@ -229,7 +229,7 @@
           2.508500099182129
         ]
       ],
-      "sha256": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27"
+      "sha256": "eb3fd08660343c8e9564aeb3fd56c24674d93fa2f38667052b098b12b08efc81"
     },
     {
       "name": "VehicleBoxTruck",
@@ -323,16 +323,16 @@
   ],
   "files": {
     "Vehicles.blend": {
-      "bytes": 14733984,
-      "sha256": "9178639e9518962b1dfe98df0625fecd6c21edab8c631cca3749577077de1f10"
+      "bytes": 14738548,
+      "sha256": "22d4903e0cf228b8cae116ed4ca7e94efc2709e9f44421b4609933c2d02c7f4b"
     },
     "Exports/VehicleHatch.fbx": {
       "bytes": 1823868,
       "sha256": "d66740b665dc906f9839b534a1d58c4708b9db4a3fced00a0c29debe1c11479e"
     },
     "Exports/VehicleVan.fbx": {
-      "bytes": 1974892,
-      "sha256": "e9a35874249ce13ee27b6f0859eecdb8c07b94e15b5f736d8be02854864b5e27"
+      "bytes": 2037580,
+      "sha256": "eb3fd08660343c8e9564aeb3fd56c24674d93fa2f38667052b098b12b08efc81"
     },
     "Exports/VehicleTaxiSign.fbx": {
       "bytes": 51596,
@@ -386,9 +386,18 @@
     }
   ],
   "van_revision": {
-    "version": 4,
-    "scope": "Closed curved Van primary form, preserved wheels/footprint/shared surfaces; fixed-camera RTX visual acceptance; no driving or automatic LOD claim",
-    "verification": "Docs/verification/van-refinement-20261128.json",
-    "complete_editable_source": true
+    "version": 5,
+    "scope": "Closed curved Van with three authored headlamp/amber LOD refinements; original twelve wheel buffers, physical envelope and shared surfaces preserved; static forced-LOD appearance only",
+    "verification": "Docs/verification/visual-assets-round2-20261128.json",
+    "complete_editable_source": true,
+    "complete_source_objects": 97,
+    "unchanged_non_van_objects": 79,
+    "recipe": "Tools/blender/vehicles/refine_van_lamps.py",
+    "recipe_readme": "Tools/blender/vehicles/README.headlamp-refinement.md",
+    "baseline": "ArtSource/Vehicles/RefinementSources/Vehicles.before-headlamps.blend",
+    "baseline_sha256": "9178639e9518962b1dfe98df0625fecd6c21edab8c631cca3749577077de1f10",
+    "baseline_generator": "ArtSource/Vehicles/RefinementSources/author_vehicles.before-headlamps.py",
+    "other_five_exports_and_three_external_maps": "byte exact",
+    "source_replay": "Complete source preserves original packed normal and all external image bytes; narrow recipe exports only Van and performs no bake"
   }
 }

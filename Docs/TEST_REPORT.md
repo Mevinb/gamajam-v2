@@ -1,3 +1,22 @@
+# Accepted visual asset integration — 28 November 2026
+
+The accepted Van headlamp/amber, curb, limestone maps and three limestone UV corrections are integrated with complete
+editable Blender sources, preserved recipe baselines and explicit portable reproduction inputs. Actual RTX/Vulkan native
+comparison passes 22 images/52 captures/five restorations; all three UV candidates retain component-exact imported normals
+and positions, and exact non-stone UVs. Source normal-prediction misses are diagnostic rather than a false provenance pass.
+The 15-image Van forced-LOD comparison remains bound to the exact promoted FBX.
+
+Narrow before/after import passes with stable target GUIDs/localIDs/metas/policies, twelve original wheels/four pivots intact
+and 7,769 protected asset/meta files unchanged. CityBuilder generation and fresh 39-image production capture pass with zero
+shader messages and unchanged source bytes during capture. City 2,334/Bootstrap 937 renderer+collider records retain all
+object transforms/colliders/gameplay data; only 36 environment batch renderers, 12 Van Body/Glass renderers and six saved Van
+Body material arrays change. All 15 temporary source helpers are archived/retired; fast compile 182/45/182 passes.
+[Full source identities, native receipts, image decisions and limits](verification/visual-assets-round2-20261128.json).
+
+This is static source/import/renderer verification. No new missions, gameplay tests, PlayMode, benchmarks or player launch
+were performed. The strict Editor coach ring warning and older instrumented performance finding remain unresolved. V5 film
+production/full decode/publication, all-eight-film import and a new Linux build remain separate work.
+
 # Working Harbor source verification — 26 November 2026
 
 Source0.6.0-preview implements missions21–23 after explicit island-summary continuation. Final combined Peace/Dominion

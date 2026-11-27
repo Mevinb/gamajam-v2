@@ -763,6 +763,202 @@ def materials(images):
     return result
 
 
+def van_lamp_roundrect(cx,cy,width,height,radius,steps,z):
+    points=[]
+    for x,y,start in ((width/2-radius,height/2-radius,0),(-width/2+radius,height/2-radius,math.pi/2),(-width/2+radius,-height/2+radius,math.pi),(width/2-radius,-height/2+radius,3*math.pi/2)):
+        for i in range(steps+1):
+            angle=start+i*math.pi/(2*steps);px=cx+x+radius*math.cos(angle)
+            points.append((px,cy+y+radius*math.sin(angle)-.006*((abs(px)-.536)/.320)**2,z))
+    return points
+
+
+def van_lamp_cup(g,side,lod):
+    steps=(4,3,1)[lod];cx=.696;cy=.955;n=4*(steps+1)
+    # Back contact is 2.5mm ahead of the accepted flat front skin. The closed
+    # pocket therefore shows real depth without cutting or moving that skin.
+    rings=[van_lamp_roundrect(cx,cy,.320,.110,.013,steps,2.4525),
+           van_lamp_roundrect(cx,cy,.320,.110,.013,steps,2.4950),
+           van_lamp_roundrect(cx,cy,.308,.098,.010,steps,2.4954),
+           van_lamp_roundrect(cx,cy,.304,.094,.009,steps,2.4555)]
+    if lod==2:
+        rings=[[(cx+x,cy+y-.006*((cx+x-.536)/.320)**2,z) for x,y in ((w/2,h/2),(-w/2,h/2),(-w/2,-h/2),(w/2,-h/2))] for w,h,z in ((.320,.110,2.4525),(.320,.110,2.4950),(.308,.098,2.4954),(.304,.094,2.4555))];n=4
+    vertices=[(side*p[0],p[1],p[2]) for ring in rings for p in ring]
+    vertices += [(side*cx,cy-.0015,2.4525),(side*cx,cy-.0015,2.4555)]
+    faces=[];smooth=[]
+    for ring in range(3):
+        for i in range(n):faces.append((ring*n+i,ring*n+(i+1)%n,(ring+1)*n+(i+1)%n,(ring+1)*n+i));smooth.append(True)
+    for i in range(n):
+        faces.append((4*n,(i+1)%n,i));smooth.append(False)
+        faces.append((4*n+1,3*n+i,3*n+(i+1)%n));smooth.append(False)
+    # Mirroring X reverses winding. The standard closed-component recalc later
+    # establishes consistent positive volume for both sides.
+    g.mesh(vertices,[tuple(reversed(f)) for f in faces] if side<0 else faces,1,True);g.smooth[-len(faces):]=smooth
+
+
+def van_lamp_revolve(g,centre,profile,segments,materials,smooth=True):
+    """Closed cup/optic from an axis-to-axis profile, with unique axis verts."""
+    vertices=[];rings=[]
+    for radius,z in profile:
+        if radius==0:
+            rings.append([len(vertices)]);vertices.append((centre[0],centre[1],z))
+        else:
+            rings.append(list(range(len(vertices),len(vertices)+segments)))
+            vertices.extend((centre[0]+radius*math.cos(2*math.pi*i/segments),centre[1]+radius*math.sin(2*math.pi*i/segments),z) for i in range(segments))
+    faces=[];mats=[]
+    for j,(a,b) in enumerate(zip(rings,rings[1:])):
+        for i in range(segments):
+            k=(i+1)%segments
+            face=(a[0],b[k],b[i]) if len(a)==1 else (a[i],a[k],b[0]) if len(b)==1 else (a[i],a[k],b[k],b[i])
+            faces.append(face);mats.append(materials[j])
+    g.mesh(vertices,faces,mats,smooth)
+
+
+def van_lamp_cover(glass,side,lod):
+    steps=(4,3,1)[lod];cx=.696;cy=.955;n=4*(steps+1)
+    edge=van_lamp_roundrect(cx,cy,.305,.095,.009,steps,0)
+    vertices=[(side*cx,cy-.0015,2.5005)]
+    rings=[]
+    levels=((1.,2.4972),(1.,2.4960)) if lod==2 else ((.55,2.5000),(1.,2.4972),(1.,2.4960),(.55,2.4988))
+    for scale,z in levels:
+        rings.append(list(range(len(vertices),len(vertices)+n)))
+        vertices.extend((side*(cx+(p[0]-cx)*scale),cy-.0015+(p[1]-(cy-.0015))*scale,z) for p in edge)
+    back=len(vertices);vertices.append((side*cx,cy-.0015,2.4993));faces=[]
+    for i in range(n):faces.append((0,rings[0][i],rings[0][(i+1)%n]))
+    for a,b in zip(rings,rings[1:]):
+        for i in range(n):faces.append((a[i],b[i],b[(i+1)%n],a[(i+1)%n]))
+    for i in range(n):faces.append((back,rings[-1][(i+1)%n],rings[-1][i]))
+    start=len(glass.f)
+    glass.mesh(vertices,[tuple(reversed(f)) for f in faces] if side<0 else faces,9,True)
+    # Keep the thin perimeter wall flat so its radial normal does not bend
+    # front/back transmission normals into an artificial prismatic rim.
+    wall_start=start+(n if lod==2 else 2*n)
+    glass.smooth[wall_start:wall_start+n]=[False]*n
+
+
+def van_headlamp_parts(geometry_type,lod):
+    body,glass=geometry_type(),geometry_type()
+    for side in (-1,1):
+        van_lamp_cup(body,side,lod)
+        # Integrated black barrel, bright rolled rim, parabolic reflector and
+        # small emitter: manufactured depth replaces the old luminous panel.
+        main=(side*.628,.9545)
+        secondary=(side*.756,.9522)
+        if lod==2:
+            # Distant authored optic keeps the chrome/emitter signature within
+            # the established coarsest-LOD ceiling; no second clear optic layer.
+            van_lamp_revolve(body,main,[(0,2.482),(.039,2.482),(.039,2.495),(.014,2.495),(0,2.495)],8,[1,3,3,5])
+            van_lamp_revolve(body,secondary,[(0,2.482),(.031,2.482),(.031,2.495),(.011,2.495),(0,2.495)],6,[1,3,3,5])
+        else:
+            profile=[(0,2.4560),(.045,2.4560),(.046,2.4915),(.043,2.4950),(.0345,2.4940),(.026,2.4800),(.014,2.4680),(0,2.4680)]
+            van_lamp_revolve(body,main,profile,(24,16)[lod],[1,1,3,3,3,3,5])
+            optic=[(0,2.4980),(.020,2.4972),(.0325,2.4950),(.0325,2.4938),(0,2.4938)]
+            van_lamp_revolve(glass,main,optic,(20,14)[lod],[9,9,9,9])
+            profile=[(0,2.4560),(.035,2.4560),(.037,2.4915),(.034,2.4950),(.029,2.4940),(.019,2.4770),(0,2.4650)]
+            van_lamp_revolve(body,secondary,profile,(16,12)[lod],[1,1,3,3,3,5],False)
+        # Restrained outer indicator and lower running-light element reuse the
+        # existing amber/headlamp surfaces, including their existing emission.
+        body.box((side*.837,.949,2.490),(.007,.074,.006),7,0)
+        if lod<2:body.box((side*.701,.910,2.490),(.239,.0035,.004),5,0)
+        if lod==0:
+            for x in (.548,.846):
+                van_lamp_revolve(body,(side*x,.984),[(0,2.4915),(.0032,2.4915),(.0032,2.4940),(0,2.4940)],8,[1,3,3],False)
+        van_lamp_cover(glass,side,lod)
+    return body,glass
+
+
+def van_lamp_components(mesh):
+    parent=list(range(len(mesh.vertices)))
+    def find(i):
+        while parent[i]!=i:parent[i]=parent[parent[i]];i=parent[i]
+        return i
+    for f in mesh.polygons:
+        for i in f.vertices[1:]:parent[find(i)]=find(f.vertices[0])
+    groups={}
+    for f in mesh.polygons:groups.setdefault(find(f.vertices[0]),[]).append(f.index)
+    return list(groups.values())
+
+
+def van_lamp_old_components(mesh,part):
+    selected=[]
+    for faces in van_lamp_components(mesh):
+        ids=sorted({v for i in faces for v in mesh.polygons[i].vertices});points=[(mesh.vertices[i].co.x,mesh.vertices[i].co.z,-mesh.vertices[i].co.y) for i in ids]
+        lo=[min(v[i] for v in points) for i in range(3)];hi=[max(v[i] for v in points) for i in range(3)]
+        side=1 if lo[0]>.50 else -1 if hi[0]<-.50 else 0
+        if side and min(abs(p[0]) for p in points)>.50 and max(abs(p[0]) for p in points)<.90 and lo[1]>.88 and hi[1]<1.05 and lo[2]>2.35 and hi[2]<2.49:
+            roles={mesh.polygons[i].material_index for i in faces}
+            assert roles <= ({1,5,7} if part=='Body' else {9}), 'Lamp selector touched an unexpected surface'
+            selected.append(dict(side=side,faces=faces,vertices=ids,roles=sorted(roles),bounds=[lo,hi]))
+    expected=14 if part=='Body' else 2
+    assert len(selected)==expected, 'Expected disconnected old lamp components: '+str((part,len(selected),expected))
+    return selected
+
+
+def van_lamp_mesh_signature(mesh):
+    """Dense meaningful buffers; index identity is preserved for whole wheels."""
+    mesh.calc_tangents(uvmap=mesh.uv_layers.active.name)
+    values=([tuple(v.co) for v in mesh.vertices],[(tuple(f.vertices),f.material_index,f.use_smooth) for f in mesh.polygons],[[tuple(v.uv) for v in layer.data] for layer in mesh.uv_layers],[(tuple(n.vector),tuple(loop.tangent),loop.bitangent_sign) for n,loop in zip(mesh.corner_normals,mesh.loops)])
+    return hashlib.sha256(repr(values).encode()).hexdigest()
+
+
+def van_headlamp_refine(ob,lod,part):
+    """Replace only old lamp components after standard LOD; preserve all others."""
+    assert part in ('Body','Glass') and not ob.modifiers
+    old=ob.data;assert not old.has_custom_normals and len(old.materials)==10
+    selected=van_lamp_old_components(old,part);removed_faces={i for r in selected for i in r['faces']};removed_vertices={i for r in selected for i in r['vertices']}
+    kept_faces=[f.index for f in old.polygons if f.index not in removed_faces];kept_vertices=[v.index for v in old.vertices if v.index not in removed_vertices];mapping={old_i:new_i for new_i,old_i in enumerate(kept_vertices)}
+    old.calc_tangents(uvmap=old.uv_layers.active.name)
+    corners=[(i,tuple(old.corner_normals[i].vector),tuple(old.loops[i].tangent),old.loops[i].bitangent_sign) for f in kept_faces for i in old.polygons[f].loop_indices]
+    body,glass=van_headlamp_parts(Geometry,lod);geometry=body if part=='Body' else glass
+    temp=geometry.object('OwnedVanHeadlamp_'+part+'_LOD'+str(lod),list(old.materials))
+    try:
+        # The new asset has explicit per-LOD tessellation. Existing accepted LOD
+        # surfaces are already simplified, so no global modifier runs again.
+        lamp=temp.data;lamp.calc_tangents(uvmap=lamp.uv_layers.active.name)
+        positions=[tuple(old.vertices[i].co) for i in kept_vertices]+[tuple(v.co) for v in lamp.vertices]
+        faces=[tuple(mapping[v] for v in old.polygons[i].vertices) for i in kept_faces]
+        faces += [tuple(len(kept_vertices)+v for v in f.vertices) for f in lamp.polygons]
+        mesh=bpy.data.meshes.new(old.name+'_headlamp');mesh.from_pydata(positions,[],faces)
+        for material in old.materials:mesh.materials.append(material)
+        old_polys=[old.polygons[i] for i in kept_faces];source_polys=old_polys+list(lamp.polygons)
+        for f,source in zip(mesh.polygons,source_polys):f.material_index=source.material_index;f.use_smooth=source.use_smooth
+        for layer in old.uv_layers:
+            target=mesh.uv_layers.new(name=layer.name);source_lamp=lamp.uv_layers.get(layer.name);assert source_lamp
+            values=[tuple(layer.data[i].uv) for f in old_polys for i in f.loop_indices]+[tuple(v.uv) for v in source_lamp.data]
+            target.data.foreach_set('uv',[v for uv in values for v in uv])
+        mesh.update();mesh.calc_tangents(uvmap=mesh.uv_layers.active.name)
+        maximum_normal=maximum_tangent=0.
+        for new_i,(old_i,normal,tangent,sign) in enumerate(corners):
+            maximum_normal=max(maximum_normal,(mesh.corner_normals[new_i].vector-Vector(normal)).length)
+            maximum_tangent=max(maximum_tangent,(mesh.loops[new_i].tangent-Vector(tangent)).length)
+            assert mesh.loops[new_i].bitangent_sign==sign
+        assert maximum_normal<=2e-6 and maximum_tangent<=2e-6,'Non-lamp shading buffers changed'
+        for i,old_i in enumerate(kept_faces):
+            f=mesh.polygons[i];original=old.polygons[old_i]
+            assert tuple(f.vertices)==tuple(mapping[v] for v in original.vertices)
+            assert all(tuple(mesh.vertices[n].co)==tuple(old.vertices[o].co) for n,o in zip(f.vertices,original.vertices))
+            assert f.material_index==original.material_index and f.use_smooth==original.use_smooth
+        old_name=old.name;old.name=old_name+'_retained_source';ob.data=mesh;mesh.name=old_name
+        report=dict(part=part,lod=lod,oldLampComponents=len(selected),removedLampTriangles=len(removed_faces),newLampTriangles=len(lamp.polygons),nonLampFacesExact=len(kept_faces),nonLampMaximumNormalDelta=maximum_normal,nonLampMaximumTangentDelta=maximum_tangent,addedVertexStart=len(kept_vertices),addedFaceStart=len(kept_faces),newComponents=[])
+        # Each actual added lamp component must be a consistently oriented
+        # closed solid after object construction/normal recalc.
+        for group in van_lamp_components(lamp):
+            used={v for i in group for v in lamp.polygons[i].vertices};edges={};volume=0.
+            for i in group:
+                f=lamp.polygons[i];ids=tuple(f.vertices);assert len(ids)==3
+                a,b,c=(lamp.vertices[v].co for v in ids);assert (b-a).cross(c-a).length/2>=1e-8
+                volume+=a.dot(b.cross(c))/6
+                for a,b in zip(ids,(*ids[1:],ids[0])):edges.setdefault(tuple(sorted((a,b))),[]).append((a,b))
+            assert edges and all(len(v)==2 and v[0]!=v[1] for v in edges.values()),'Open or inconsistent new lamp component'
+            assert volume>1e-10 and len(used)-len(edges)+len(group)==2,'New lamp component is not an outward genus0 solid'
+            assert {lamp.polygons[i].material_index for i in group} <= ({1,3,5,7} if part=='Body' else {9})
+            report['newComponents'].append(dict(triangles=len(group),vertices=len(used),euler=len(used)-len(edges)+len(group),positiveVolumeM3=volume,materials=sorted({lamp.polygons[i].material_index for i in group})))
+        if old.users==0:bpy.data.meshes.remove(old)
+        return report
+    finally:
+        data=temp.data;bpy.data.objects.remove(temp,do_unlink=True)
+        if data.users==0:bpy.data.meshes.remove(data)
+
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument("--output",type=Path,required=True)
     args=parser.parse_args(sys.argv[sys.argv.index("--")+1:]);output=args.output.resolve()
@@ -785,6 +981,7 @@ def main():
                     bpy.context.view_layer.objects.active=ob;ob.select_set(True)
                     decimate=ob.modifiers.new("Bounded distance simplification","DECIMATE");decimate.ratio=.65 if lod==1 else .32
                     decimate.use_collapse_triangulate=True;bpy.ops.object.modifier_apply(modifier=decimate.name);ob.select_set(False)
+                if name=='Van' and part in ('Body','Glass'):van_headlamp_refine(ob,lod,part)
                 bm=bmesh.new();bm.from_mesh(ob.data)
                 # Font tessellation can leave near-collinear cap triangles that
                 # collapse after FBX float conversion. Reject sub-0.01 mm2 faces.

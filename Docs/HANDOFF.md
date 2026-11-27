@@ -6,6 +6,18 @@ The full request remains **in progress**. Evidence applies to its named source o
 
 ## Current checkpoint — 28 November 2026
 
+The second accepted visual asset batch is integrated: inward curb wear, the revised limestone atlas quarter,
+isotropic limestone UVs for WindowReveal/EntranceSurround/FracturedStone, and Van headlamp/amber details at all three LODs.
+Complete editable sources and exact original recipe baselines are retained; the portable recipes have explicit inputs.
+The actual 22-image UV comparison and 15-image Van comparison are accepted. For UV-only changes, native source triangles
+associate uniquely by position/UV/winding and actual imported candidate positions/normals/non-stone UVs are component-exact;
+Blender-to-Unity normal predictor misses remain diagnostic, with the failed controls preserved.
+Narrow imports pass with all target GUIDs/localIDs/metas/policies stable, all twelve wheels/four pivots exact and 7,769 other
+asset/meta files protected. CityBuilder and a fresh 39-image production capture pass. Saved scene structure/transforms,
+all colliders/gameplay markers and every other renderer payload remain exact; only environment batches and Van visual data
+change. All 15 temporary comparison/audit sources are byte-archived and removed; clean API compile 182/45/182 passes.
+No hair/alpha/shader pilot is promoted. [Exact sources, native receipts and remaining limits](verification/visual-assets-round2-20261128.json).
+
 **Current user scope is visual realism only: no more missions, gameplay playtests, benchmarks or player launches.** Both the lake and train finales remain required. Linux/URP plus RTX/OptiX Blender rendering remains the chosen platform; gameplay hardware ray tracing is not implemented.
 
 Continue in `/home/mevlec/.local/share/parasite-work/northline` on `codex/visual-realism`. The previous 0.8.0-preview was actually built, native-scoped checks passed and it was launched for the user. Its original session exited0 naturally at 2026-11-27T05:01:38.585916Z with source/candidate/protected-build integrity intact. A separate old BASE/Linux player was closed after the user declined further playtests. No player is currently required or authorized by this work queue; retain all existing builds.
@@ -14,7 +26,13 @@ The accepted fixed-camera refinements are the .10m/.55 SSAO calibration, correct
 
 The frozen old finale job is safely stopped with 131 Arrival frames preserved. A newly inspected frame exposed skin protruding through the sweater; that footage is superseded for delivery. The four new `Lake_*_v5.blend` files add a standard inverted vertex-group Mask over 104 covered skin vertices / 128 faces; the raw mesh, cloth, eyes, hair, materials, weights and rig actions remain unchanged. CPU ray checks resolve 119 exposed-skin samples at 127/165; four actual 192-sample 1080p OptiX frames are visually reviewed. The old packed sources, 131 frames, contract and STOP remain unchanged. No old or QA frames may be silently reused under the new source hashes.
 
-A fresh five-film V5 production job will be frozen after this clean source commit using the unchanged producer/driver/policy and explicit new source paths. The new derived queue differs only in JOB and CONTRACT_SHA. Train stays the accepted `_v4.blend`; all 1,176 frames still require new-job production/encoding/review before publication. The producer's default freeze map is historicalV4: use the reviewed explicit V5 configuration in `Logs/finale-v5-stage`, not a bare default freeze. Operational live state/receipt/PIDs are in ignored `Logs/visual-preview-external-stage/LATEST.json`; inspect actual jobs before graphics work. No new films have been published by this checkpoint.
+The five-film V5 job is frozen at `Logs/full-cinematic-renders/realistic-finales-production-v5-20261128`, with 147 Arrival
+frames preserved at the asset-integration pause. Train remains the accepted `_v4.blend`; the contract requires all 1,176 frames
+from this V5 job, with no old/QA frame substitution. Use the reviewed explicit configuration in `Logs/finale-v5-stage`, not
+the producer's historical bare default freeze map. Operational state/receipts/PIDs are in ignored
+`Logs/visual-preview-external-stage/LATEST.json`; inspect actual jobs and locks before any graphics work. The owned pause
+markers must be byte-archived before resuming the identical source/quality/tool contract through a fresh durable user service.
+No film has been published early.
 
 After all 5 finished films are fully decoded/reviewed, use the existing journaled publication path, actual all 8 film reimport and a new Linux build. Do not open a further gameplay player or run benchmarks against the user's instruction. A build/capture/asset-import pass must not be described as final-player or complete-gameplay acceptance. The old strict Editor coach ring warning and instrumented preview performance finding are retained unresolved; no suppression or quality cut was used to close those gates. Mevinb API authentication and repository push permission are restored in the latest read-only check. Verify the Git publication result in `Logs/visual-refinements-promotion-20261128/publication.json`; use only Mevinb and retain historical denied-access evidence.
 

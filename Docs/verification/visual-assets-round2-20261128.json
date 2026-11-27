@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "status": "ACCEPTED_VISUAL_ASSET_BATCH_SOURCE_NATIVE_IMPORT_GENERATED_SCENE_STATIC_RENDERER_VERIFIED",
+  "createdUtc": "2026-11-27T23:13:01.914104+00:00",
+  "scope": "Van headlamps/amber, inward curb wear, limestone atlas quarter and three limestone UV corrections. Linux URP static renderer evidence only. No missions, gameplay tests, PlayMode, benchmarks or player launch.",
+  "canonicalArtifacts": {
+    "ArtSource/Vehicles/Vehicles.blend": {
+      "sha256": "22d4903e0cf228b8cae116ed4ca7e94efc2709e9f44421b4609933c2d02c7f4b",
+      "bytes": 14738548
+    },
+    "ArtSource/Vehicles/Exports/VehicleVan.fbx": {
+      "sha256": "eb3fd08660343c8e9564aeb3fd56c24674d93fa2f38667052b098b12b08efc81",
+      "bytes": 2037580
+    },
+    "Assets/Parasite/Art/Vehicles/Models/VehicleVan.fbx": {
+      "sha256": "eb3fd08660343c8e9564aeb3fd56c24674d93fa2f38667052b098b12b08efc81",
+      "bytes": 2037580
+    },
+    "ArtSource/EnvironmentRealism/EnvironmentRealism.blend": {
+      "sha256": "fb97cdc9f591990d76e8c38f92d7fe689c9c1cb6118f517fc6dd8846e4d33c45",
+      "bytes": 8747560
+    },
+    "ArtSource/Vehicles/production-manifest.json": {
+      "sha256": "546261af206ac48b2f1463723b705613f66ed9dac130abfd4306bd164e1887a4",
+      "bytes": 9665
+    },
+    "ArtSource/EnvironmentRealism/production-manifest.json": {
+      "sha256": "59d174bf091a24c19b688bedea7b4ebfd24a6cf4e4984c6f0c362f484f27b342",
+      "bytes": 44336
+    }
+  },
+  "completeEditableSources": {
+    "vehicle": {
+      "objects": 97,
+      "unchangedNonVanObjects": 79,
+      "materials": 10,
+      "unchangedWheels": 12,
+      "lodTriangles": [
+        50415,
+        15816,
+        3928
+      ],
+      "packedNormalAndThreeExternalMaps": "exact",
+      "otherFiveVehicleExports": "byte exact",
+      "portableRecipe": "Tools/blender/vehicles/refine_van_lamps.py",
+      "baseline": "ArtSource/Vehicles/RefinementSources/Vehicles.before-headlamps.blend",
+      "sourceProof": {
+        "path": "Logs/van-headlamp-source-integration-stage/FINAL.json",
+        "sha256": "2321115a8d06daa60a018cb74917b66bf0d8a9dbc385449d4ff1a99611a344ae"
+      }
+    },
+    "environment": {
+      "modules": 7,
+      "changedModels": [
+        "CurbStone",
+        "WindowReveal",
+        "EntranceSurround",
+        "FracturedStone"
+      ],
+      "unchangedOtherModules": 3,
+      "outsideLimestoneQuarterRgba": "all three PNGs exact, including M alpha35-118",
+      "normalsPositionsNonstoneUv": "three UV targets source-exact",
+      "portableRecipe": "Tools/blender/environment_realism/refinement/refine_environment.py",
+      "baseline": "ArtSource/EnvironmentRealism/RefinementSources/EnvironmentRealism.before-isotropic-uv.blend",
+      "sourceProof": {
+        "path": "Logs/environment-combined-portable-stage/FINAL.json",
+        "sha256": "482189eda7e5b9a0e205ece79486c23b96e8517b7e315db02f1a5d409e22dea4"
+      },
+      "curbExportNote": "Canonical uses actually rendered6ddc8e7e FBX. Complete-source replay has exact numerical geometry/UV/material/unit arrays; only transient Geometry label differs .001/.002."
+    }
+  },
+  "nativeUvComparison": {
+    "path": "Logs/limestone-uv-visual-v5/receipt.json",
+    "sha256": "1468f76454d6396633ba4a9cbc9257fbfd2abb925b34c7ee7c4428923cf8b2b4",
+    "images": 22,
+    "captureRequests": 52,
+    "settlingRequests": 1527,
+    "restoredSubjects": 5,
+    "sourceFilesUnchanged": true,
+    "capturedLogs": 0,
+    "normalPredictionPolicy": "Triangle association uses unique/bijective oriented position+UV with unchanged bounds/winding. Actual canonical-to-candidate positions AND normals are component-exact and non-stone UV exact. Blender-to-Unity source normal predictor misses remain diagnostics; raw source/FBX normals are independently protected exact.",
+    "meshRows": [
+      {
+        "name": "WindowReveal",
+        "arm": "canonical",
+        "triangles": 492,
+        "matchedTriangles": 492,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 1.1756817741570558e-07,
+        "maximumSourceNormalError": 1.5417286704177968e-05,
+        "maximumOwnSourceNormalError": 4.5012911868980154e-05,
+        "ownNormalMismatchCorners": 28,
+        "representativeNormalMismatchCorners": 0,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": true,
+        "sourceNormalPredictionStatus": "measured_within_bound_diagnostic_only",
+        "nativeDeltaComparison": "reference_arm_not_applicable"
+      },
+      {
+        "name": "WindowReveal",
+        "arm": "candidate",
+        "triangles": 492,
+        "matchedTriangles": 492,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 1.1756817741570558e-07,
+        "maximumSourceNormalError": 1.5417286704177968e-05,
+        "maximumOwnSourceNormalError": 4.5012911868980154e-05,
+        "ownNormalMismatchCorners": 28,
+        "representativeNormalMismatchCorners": 0,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": true,
+        "sourceNormalPredictionStatus": "measured_within_bound_diagnostic_only",
+        "nativeDeltaComparison": "component_exact",
+        "canonicalPositionsExact": true,
+        "canonicalNormalsExact": true,
+        "nonstoneUvExact": true
+      },
+      {
+        "name": "EntranceSurround",
+        "arm": "canonical",
+        "triangles": 1076,
+        "matchedTriangles": 1076,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 5.956999871159496e-07,
+        "maximumSourceNormalError": 0.00018975810962729156,
+        "maximumOwnSourceNormalError": 0.00018975810962729156,
+        "ownNormalMismatchCorners": 89,
+        "representativeNormalMismatchCorners": 10,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": false,
+        "sourceNormalPredictionStatus": "measured_mismatch_diagnostic_only",
+        "nativeDeltaComparison": "reference_arm_not_applicable"
+      },
+      {
+        "name": "EntranceSurround",
+        "arm": "candidate",
+        "triangles": 1076,
+        "matchedTriangles": 1076,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 5.956999871159496e-07,
+        "maximumSourceNormalError": 0.00018975810962729156,
+        "maximumOwnSourceNormalError": 0.00018975810962729156,
+        "ownNormalMismatchCorners": 89,
+        "representativeNormalMismatchCorners": 10,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": false,
+        "sourceNormalPredictionStatus": "measured_mismatch_diagnostic_only",
+        "nativeDeltaComparison": "component_exact",
+        "canonicalPositionsExact": true,
+        "canonicalNormalsExact": true,
+        "nonstoneUvExact": true
+      },
+      {
+        "name": "FracturedStone",
+        "arm": "canonical",
+        "triangles": 80,
+        "matchedTriangles": 80,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 6.664001972467304e-08,
+        "maximumSourceNormalError": 0.039629727602005005,
+        "maximumOwnSourceNormalError": 0.039629727602005005,
+        "ownNormalMismatchCorners": 15,
+        "representativeNormalMismatchCorners": 15,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": false,
+        "sourceNormalPredictionStatus": "measured_mismatch_diagnostic_only",
+        "nativeDeltaComparison": "reference_arm_not_applicable"
+      },
+      {
+        "name": "FracturedStone",
+        "arm": "candidate",
+        "triangles": 80,
+        "matchedTriangles": 80,
+        "sourceUvAssociation": true,
+        "maximumSourcePositionError": 6.664001972467304e-08,
+        "maximumSourceNormalError": 0.039629727602005005,
+        "maximumOwnSourceNormalError": 0.039629727602005005,
+        "ownNormalMismatchCorners": 15,
+        "representativeNormalMismatchCorners": 15,
+        "sourceNormalPredictionUsedForAcceptance": false,
+        "sourceNormalPredictionMeasured": true,
+        "sourceNormalPredictionWithinBound": false,
+        "sourceNormalPredictionStatus": "measured_mismatch_diagnostic_only",
+        "nativeDeltaComparison": "component_exact",
+        "canonicalPositionsExact": true,
+        "canonicalNormalsExact": true,
+        "nonstoneUvExact": true
+      }
+    ],
+    "visualDecision": {
+      "path": "Logs/round2-root-review-20261128/limestone-uv-renderer-decision.json",
+      "sha256": "c0ee84232b204f1377ad15444a8401766b756bd818ede10108e200e327181fcb"
+    }
+  },
+  "nativeVanLampComparison": {
+    "path": "Logs/van-headlamp-visual-v1/receipt.json",
+    "sha256": "88bfb19f7a520981fe300af1822fc5814d792b54e06f82894456e944a941e620",
+    "rootDecision": {
+      "path": "Logs/round2-root-review-20261128/van-renderer-review.json",
+      "sha256": "76dba117412b681bfd1a2780c30e3e36128cc60ce413fd7e83858a6aec811929"
+    },
+    "nativeExitCode": 0,
+    "images": 15,
+    "forcedLods": [
+      0,
+      1,
+      2
+    ],
+    "all15ImagesRootReviewed": true,
+    "scope": "Exact eb3fd086 candidate now used by canonical source/runtime FBX; no automatic LOD, driving or blinking acceptance"
+  },
+  "nativeImport": {
+    "path": "Logs/visual-round2-import-after-v1/receipt.json",
+    "sha256": "ed535894b5fdbc2ce16de47a3babe1dd21a414cf97cef34afed0592c301132f3",
+    "status": "IMPORT_COMPLETE_IDENTITIES_STABLE",
+    "beforeReceipt": {
+      "path": "Logs/visual-round2-import-before-v1/receipt.json",
+      "sha256": "0011a77259f80eac974b2c1a6e76d516bbf6f926a8f95a342bb6adf38544e1fa"
+    },
+    "targetAssets": 9,
+    "originalWheelsInModelAndPrefab": 24,
+    "originalPivots": 4,
+    "guidsUnchanged": true,
+    "policyUnchanged": true,
+    "otherAssetsAndScenesUnchanged": true,
+    "identityChanges": [],
+    "targetMetaChanges": [],
+    "capturedLogs": 0
+  },
+  "generatedScenes": {
+    "entrypoint": "Parasite.EditorTools.CityBuilder.BuildAllBatch",
+    "comparison": {
+      "path": "Logs/round2-root-review-20261128/promotion-stage-v1/scene-comparison.json",
+      "sha256": "84327e7dd3823ac0331de120895d3600b0aeb25cb247046bfcabdab0b1b07026"
+    },
+    "scenes": [
+      {
+        "name": "City",
+        "beforeSceneSha256": "9a3d4bb6de777d2a3fa05cc6918aca7e3cbe1f3bf95c500a7a958c01c1711657",
+        "afterSceneSha256": "20c76006874fefdfe97fa38dc68a05426bd6bc66a755d43ba686c9ba3a60fa78",
+        "geometryRecords": 2334,
+        "rendererChanges": 36,
+        "serializedChanges": [
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[8]/Geometry[0]/VehicleVan_Body_LOD0_Export[0]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          },
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[8]/Geometry[0]/VehicleVan_Body_LOD1_Export[1]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          },
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[8]/Geometry[0]/VehicleVan_Body_LOD2_Export[2]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          },
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[9]/Geometry[0]/VehicleVan_Body_LOD0_Export[0]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          },
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[9]/Geometry[0]/VehicleVan_Body_LOD1_Export[1]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          },
+          {
+            "path": "World[0]/Authored road vehicles[2]/VehicleVan[9]/Geometry[0]/VehicleVan_Body_LOD2_Export[2]|MeshRenderer[0]",
+            "kind": "MeshRenderer",
+            "fields": [
+              "m_Materials"
+            ]
+          }
+        ],
+        "gameplayChanges": 0,
+        "colliderChanges": 0
+      },
+      {
+        "name": "Bootstrap",
+        "beforeSceneSha256": "52e23711f30cdade9ecffdcadeb86fe5d08f1959cb02c77bef69864940ffb681",
+        "afterSceneSha256": "7fd2191cf4b1940d25be83bec20dde26304ac87010a416b97cec5d5dff42f51f",
+        "geometryRecords": 937,
+        "rendererChanges": 12,
+        "serializedChanges": [],
+        "gameplayChanges": 0,
+        "colliderChanges": 0
+      }
+    ]
+  },
+  "cityVolume": {
+    "path": "Logs/round2-root-review-20261128/promotion-stage-v1/CityVolume-comparison.json",
+    "sha256": "a71e4abb44117714283aa3a1c91644d56f44bc042e5bbcaf3cc7eaf6673b0a3b"
+  },
+  "derivedBakes": [
+    {
+      "path": "Assets/Parasite/Scenes/Bootstrap/LightingData.asset",
+      "beforeSha256": "586c944e181f17bb3eda7909c11f6e19c8fe5e68c4181eda6fd0c794a6f583c4",
+      "afterSha256": "372995b7355b1c24a35eae73b314a352a812207fe500e20f5f8188f8a30ea2c3",
+      "bytes": 17777,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/Bootstrap/ReflectionProbe-0.exr",
+      "beforeSha256": "dfaa64b9c3cabe2c025f415be251dc2a8af87e753df10c3f566b5e592f734d79",
+      "afterSha256": "d42e12b7ac1e4fac5b1fc4717313545c247a060f00af735f4a43b726393ccdf3",
+      "bytes": 1389143,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/Bootstrap/ReflectionProbe-1.exr",
+      "beforeSha256": "29ab26e1ed9e56fb4c850958ef0e1a7d991e1d339d804f5ac6ec451e2ea72928",
+      "afterSha256": "29ab26e1ed9e56fb4c850958ef0e1a7d991e1d339d804f5ac6ec451e2ea72928",
+      "bytes": 245752,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/LightingData.asset",
+      "beforeSha256": "f8007536a2f3d4f5ffcae6b5f342222a6287110f78a8f5f4fe488902d9779565",
+      "afterSha256": "39af9600165e1cd76b5d54d4277fae5bd1be0e9b257fe84a79ef1971201681ac",
+      "bytes": 18065,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-0.exr",
+      "beforeSha256": "1d8c794645f25e02d40070c4e0eb32dc9567aa0049bfcad4c7784282951fefd7",
+      "afterSha256": "7f86d14a61b28feb0f5721f963be82f1e43bf559931a4a92994eff9dfe9b6f6a",
+      "bytes": 1422037,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-1.exr",
+      "beforeSha256": "04ef93883b537818e32f2ab2da0db1bf3c170ab066969d2348f1d111625f064b",
+      "afterSha256": "811dc03faebc80cdbd40465526a2cdde9c2231d2b5ea848febd5cc5a426a3f14",
+      "bytes": 1458482,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-2.exr",
+      "beforeSha256": "3149abc97dfabed8bb5bf4c8943b69d24fd29192b7490c44d0cee0d2479a6c04",
+      "afterSha256": "926f20fbb26bf5d67ad45c8b0b199a943f27b171b5ddefd2ac77da329facc1d4",
+      "bytes": 1268530,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-3.exr",
+      "beforeSha256": "d446003a907c279a78ebd7c8515e70030b17d1865b665d3d9b666ac9e9ae6127",
+      "afterSha256": "20e9ce37c8cc3cadd63747c3751c8c978c1d5807cf2197c9491c544435257322",
+      "bytes": 1254322,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-4.exr",
+      "beforeSha256": "96e983fd06a95da885260d1c5d9222aa0a79a3e06ddec6fa7b11b044bdfa3b97",
+      "afterSha256": "8f49c422af2aabc744bc7c216fe1654d61d4b4d49d037467541df0a8e67079f4",
+      "bytes": 1388040,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-5.exr",
+      "beforeSha256": "cc98221a6c65fd64be240e1d1407bbb6421e7f1fa152db1e0d7e691dd33748ad",
+      "afterSha256": "19ccffb39d71ba9e2b0893f9c9c51edae4ecea0038ca5f6612fd54df48937386",
+      "bytes": 1372761,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-6.exr",
+      "beforeSha256": "7b21f3a7c52bce274853e198f22a9984eacacf1d08f42610d3f6cf0c930851d6",
+      "afterSha256": "b0a4c4daa10957f698baa7b1db65f4e9fd8338c469d0fc38ce05f39dcbf91c64",
+      "bytes": 366840,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    },
+    {
+      "path": "Assets/Parasite/Scenes/City/ReflectionProbe-7.exr",
+      "beforeSha256": "29ab26e1ed9e56fb4c850958ef0e1a7d991e1d339d804f5ac6ec451e2ea72928",
+      "afterSha256": "29ab26e1ed9e56fb4c850958ef0e1a7d991e1d339d804f5ac6ec451e2ea72928",
+      "bytes": 245752,
+      "scope": "CityBuilder regenerated reflection/lighting artifact; byte changes recorded, no opaque-binary semantic equivalence claimed"
+    }
+  ],
+  "productionCapture": {
+    "path": "Logs/visual-round2-production-after-v1/receipt.json",
+    "sha256": "d53d8d38c634004eeaead89aad95a9f999cf34c6c85584e354f00e667a2b0d78",
+    "nativeExitCode": 0,
+    "images": 39,
+    "shaderMessages": 0,
+    "sourceFilesUnchangedDuringCapture": true,
+    "before": {
+      "path": "Logs/visual-round2-production-before-v1/receipt.json",
+      "sha256": "dd26ff0859cff542eece02c50bc8f5d1e6a51653344cf3c8d0ede3a4f4906986"
+    },
+    "selectedRootReview": {
+      "path": "Logs/round2-root-review-20261128/production-after-selected-review.json",
+      "sha256": "d5b82a163845130450a5201ddf99741eb481ec7facc941b86bf34cd16b294188"
+    }
+  },
+  "protectedSource": {
+    "path": "Logs/round2-root-review-20261128/promotion-stage-v1/protected-source-final.json",
+    "sha256": "d4de25dc491bac8ddb83e305e2ecd9f39e78bd39f2ac0c52a53c37e4594fcd1b",
+    "status": "UNCHANGED_CHARACTERS_SHADERS_OTHER_VEHICLES_AND_FINALE_SOURCES",
+    "characterAndShaderFiles": 737,
+    "otherVehicleFiles": 67,
+    "finaleSourceFiles": 33
+  },
+  "temporaryHelpers": {
+    "path": "Logs/temporary-round2-comparisons-retired-20261128/receipt.json",
+    "sha256": "f42457d0f6720c3a322a8600bbbb8648466238d0d2e1e2d97564d8728c5fffa6",
+    "retiredComparisonSources": 13,
+    "allPilotBytesAndMetasArchived": true,
+    "importAuditRetiredSeparately": {
+      "path": "Logs/temporary-round2-import-audit-retired-20261128/receipt.json",
+      "sha256": "10d6ee4261e2ec1c6a3c5ae7a676538f583e75582327ee3d9f62cc6b36a0fb84"
+    }
+  },
+  "fastCompile": {
+    "path": "Logs/round2-root-review-20261128/promotion-stage-v1/final-compile.json",
+    "sha256": "8c33c5af1b957417135a2df10d43515ef6b88a25e6b6057fe45bb6a279bc5b9b",
+    "runtimeFiles": 182,
+    "editorFiles": 45,
+    "linuxMonoApiFiles": 182,
+    "exitCode": 0
+  },
+  "hair": "No hair, alpha, character shader or LakeGirl canonical geometry promoted. All new hair pilots remain rejected/HOLD.",
+  "limits": [
+    "Static forced-LOD appearance does not prove automatic LOD transitions, driving or blinking.",
+    "No full photorealism, gameplay performance or new-player acceptance is claimed.",
+    "The existing strict Editor coach ring warning and instrumented preview performance finding remain unresolved.",
+    "The same five-film V5 production job remains required; film sources/tools/quality are unchanged and no early movie publication is authorized."
+  ],
+  "diffCheck": {
+    "path": "Logs/round2-root-review-20261128/promotion-stage-v1/diff-check.json",
+    "sha256": "0037d837b89ca9e7483554c3c05d043bb2ac5befb8a7e4f3cb008c5eed7929f9",
+    "authoredAndNonSceneArtifactsExitCode": 0,
+    "rawFullExitCode": 2,
+    "unityGeneratedEmptyYamlTrailingSpaces": 350,
+    "scenesNotHandEdited": true
+  }
+}
